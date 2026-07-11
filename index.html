@@ -216,22 +216,12 @@
           <div
             class="w-full h-64 map-bg relative flex items-center justify-center overflow-hidden"
           >
-            <!-- Continentes simplificados (Silueta SVG) -->
-            <svg
-              class="absolute w-[120%] h-[120%] opacity-20 pointer-events-none"
-              viewBox="0 0 1000 500"
-              fill="#64748b"
-            >
-              <path
-                d="M 200,100 C 250,50 300,80 350,120 C 400,160 300,250 250,300 C 200,350 150,200 200,100 Z"
-              />
-              <path
-                d="M 500,50 C 600,20 700,80 750,150 C 800,220 700,350 600,400 C 500,450 450,250 500,50 Z"
-              />
-              <path
-                d="M 800,150 C 850,100 950,120 900,200 C 850,280 800,250 800,150 Z"
-              />
-            </svg>
+            <!-- Continentes reales (SVG Mapamundi) -->
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
+              class="absolute w-full h-full object-cover opacity-20 pointer-events-none grayscale"
+              alt="Mapamundi"
+            />
 
             <!-- Puntos de conflicto inyectados por JS -->
             <div id="map-markers-container" class="absolute inset-0"></div>
@@ -239,7 +229,7 @@
             <div
               class="absolute bottom-2 right-2 bg-white/80 backdrop-blur text-[10px] px-2 py-1 rounded shadow text-slate-500"
             >
-              Integración Leaflet/D3 pendiente
+              Prototipo Visual
             </div>
           </div>
         </div>
@@ -327,8 +317,8 @@
           {
             id: 'alerta-01',
             region: 'Mar de la China Meridional',
-            latitud: '45%', // Porcentajes para el mockup CSS
-            longitud: '75%',
+            latitud: '48%', // Porcentajes ajustados al mapa real
+            longitud: '82%',
             nivel_riesgo: 'critico',
             titular: 'Despliegue naval no programado',
             resumen_breve:
@@ -338,7 +328,7 @@
           {
             id: 'alerta-02',
             region: 'Europa del Este',
-            latitud: '35%',
+            latitud: '28%',
             longitud: '55%',
             nivel_riesgo: 'alto',
             titular: 'Ruptura de canales diplomáticos',
@@ -349,8 +339,8 @@
           {
             id: 'alerta-03',
             region: 'Cuerno de África',
-            latitud: '60%',
-            longitud: '58%',
+            latitud: '55%',
+            longitud: '60%',
             nivel_riesgo: 'alto',
             titular: 'Bloqueo de rutas navieras',
             resumen_breve:
