@@ -1,0 +1,175 @@
+Copia el siguiente bloque de texto tal cual y pégalo en tu archivo `src/pages/index.astro`. No estoy usando Canvas ni ningún formato especial oculto.
+
+```text
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+    <script src="https://unpkg.com/@phosphor-icons/web" is:inline></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0" is:inline></script>
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16" is:inline></script>
+
+    <style is:global>
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+        .pulse-dot { position: relative; }
+        .pulse-dot::before {
+            content: ''; position: absolute; left: -50%; top: -50%;
+            width: 200%; height: 200%; background-color: inherit;
+            border-radius: 50%; z-index: -1;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        .map-bg {
+            background-color: #e2e8f0;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-screen-2xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-globe-hemisphere-west text-2xl text-red-600"></i>
+                <h1 class="text-xl font-bold tracking-tight uppercase font-sans">Memo Geopolítico</h1>
+                <span class="ml-2 px-2 py-0.5 text-[10px] bg-white/10 text-white rounded border border-white/20">BETA</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative">
+                    <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" placeholder="Buscar región o tema..." class="bg-white/10 border border-white/20 rounded-full py-1.5 pl-9 pr-4 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-red-600 w-64 transition-all">
+                </div>
+                <nav class="flex gap-4 text-sm font-medium">
+                    <a href="#" class="text-white hover:text-red-600 transition-colors">Panorama Global</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">Ensayos</a>
+                    <a href="#" class="text-gray-300 hover:text-white transition-colors">Datos Macro</a>
+                </nav>
+            </div>
+            <button class="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-1.5 px-4 rounded transition-colors hidden sm:block">Suscribirse</button>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-screen-2xl mx-auto w-full px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <aside class="lg:col-span-3 flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-slate-300 pb-2">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                    <i class="ph-fill ph-warning-circle text-red-600"></i> Alertas y Focos
+                </h2>
+                <span class="text-[10px] text-slate-400">Actualizado 09:00</span>
+            </div>
+            <div id="alertas-container" class="flex flex-col gap-3 overflow-y-auto max-h-[calc(100vh-140px)] no-scrollbar pb-10"></div>
+        </aside>
+
+        <section class="lg:col-span-6 flex flex-col gap-6">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                <div class="px-4 py-3 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                    <h2 class="text-sm font-semibold text-slate-800">Termómetro Global</h2>
+                    <div class="flex gap-2">
+                        <span class="flex items-center gap-1 text-[10px] text-slate-500 font-medium"><div class="w-2 h-2 rounded-full bg-red-600"></div> Crítico</span>
+                        <span class="flex items-center gap-1 text-[10px] text-slate-500 font-medium"><div class="w-2 h-2 rounded-full bg-orange-500"></div> Alto</span>
+                    </div>
+                </div>
+                <div class="w-full h-64 map-bg relative flex items-center justify-center overflow-hidden">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg" class="absolute w-[120%] max-w-none h-auto opacity-20 pointer-events-none grayscale" style="top: -20%;" alt="Mapamundi">
+                    <div id="map-markers-container" class="absolute inset-0"></div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between border-b border-slate-300 pb-2 mt-2">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                    <i class="ph-fill ph-article text-slate-700"></i> Análisis a Fondo
+                </h2>
+            </div>
+            <div id="ensayos-container" class="flex flex-col gap-5"></div>
+        </section>
+
+        <aside class="lg:col-span-3 flex flex-col gap-6">
+            <div class="flex items-center justify-between border-b border-slate-300 pb-2">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+                    <i class="ph-fill ph-chart-bar text-slate-700"></i> Indicadores Macro
+                </h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                <h3 class="text-xs font-semibold text-slate-800 mb-1">Gasto en Defensa Regional</h3>
+                <div id="chart-defensa" class="w-full mt-3"></div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                <h3 class="text-xs font-semibold text-slate-800 mb-1">Vulnerabilidad Energética</h3>
+                <div id="chart-energia" class="w-full mt-3"></div>
+            </div>
+        </aside>
+
+    </main>
+
+    <script is:inline>
+        const MOCK_ALERTAS = {
+            "focos_activos": [
+                { "region": "Mar de la China Meridional", "latitud": "48%", "longitud": "78%", "nivel_riesgo": "critico", "titular": "Despliegue naval", "resumen_breve": "Movimientos incrementan fricciones.", "tiempo": "Hace 2h" },
+                { "region": "Europa del Este", "latitud": "32%", "longitud": "53%", "nivel_riesgo": "alto", "titular": "Ruptura diplomática", "resumen_breve": "Suspensión de negociaciones fronterizas.", "tiempo": "Hace 5h" }
+            ]
+        };
+
+        const MOCK_ENSAYOS = {
+            "articulos_destacados": [
+                { "fecha_publicacion": "10 Jul 2026", "titulo": "Reestructuración en el Indo-Pacífico", "resumen": "Análisis de las implicaciones comerciales y militares.", "etiquetas": ["Comercio", "Defensa"], "tiempo_lectura_min": 8 }
+            ]
+        };
+
+        const MOCK_MACRO = {
+            "gasto_defensa": [ { region: "Norteamérica", valor: 850 }, { region: "Asia", valor: 420 }, { region: "Europa", valor: 380 } ],
+            "energia": [ { pais: "Alemania", score: 78 }, { pais: "Japón", score: 85 }, { pais: "Francia", score: 42 } ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const mapContainer = document.getElementById('map-markers-container');
+            
+            // Render Alertas
+            MOCK_ALERTAS.focos_activos.forEach(alerta => {
+                const isCritical = alerta.nivel_riesgo === 'critico';
+                const card = document.createElement('article');
+                card.className = `p-3 rounded-lg border ${isCritical ? 'border-red-200 bg-red-50' : 'border-orange-200 bg-orange-50'} hover:shadow-md cursor-pointer relative`;
+                card.innerHTML = `<div class="absolute left-0 top-0 bottom-0 w-1 ${isCritical ? 'bg-red-600' : 'bg-orange-500'} rounded-l-lg"></div>
+                    <div class="flex justify-between items-start mb-1"><span class="text-[10px] font-bold uppercase ${isCritical ? 'text-red-700' : 'text-orange-700'}">${alerta.region}</span></div>
+                    <h3 class="text-sm font-semibold text-slate-900">${alerta.titular}</h3><p class="text-xs text-slate-600 mt-1">${alerta.resumen_breve}</p>`;
+                if(document.getElementById('alertas-container')) {
+                    document.getElementById('alertas-container').appendChild(card);
+                }
+
+                const marker = document.createElement('div');
+                marker.className = `absolute w-3 h-3 rounded-full pulse-dot ${isCritical ? 'bg-red-600' : 'bg-orange-500'} shadow-lg border border-white`;
+                marker.style.top = alerta.latitud;
+                marker.style.left = alerta.longitud;
+                if(mapContainer) mapContainer.appendChild(marker);
+            });
+
+            // Render Ensayos
+            MOCK_ENSAYOS.articulos_destacados.forEach(ensayo => {
+                const tags = ensayo.etiquetas.map(t => `<span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-medium rounded-full">${t}</span>`).join('');
+                const card = document.createElement('article');
+                card.className = "border border-slate-200 bg-white rounded-xl p-5 hover:shadow-lg transition-all";
+                card.innerHTML = `<h3 class="text-xl font-serif font-bold text-slate-900 mb-2">${ensayo.titulo}</h3>
+                    <p class="text-sm text-slate-600 mb-4">${ensayo.resumen}</p><div class="flex gap-2">${tags}</div>`;
+                if(document.getElementById('ensayos-container')) {
+                    document.getElementById('ensayos-container').appendChild(card);
+                }
+            });
+
+            // Render Charts
+            if(document.getElementById('chart-defensa')) {
+                document.getElementById('chart-defensa').appendChild(Plot.plot({ width: 280, height: 120, marginLeft: 80, x: { grid: true }, marks: [ Plot.barX(MOCK_MACRO.gasto_defensa, { x: "valor", y: "region", fill: "#0f172a", sort: {y: "x", reverse: true} }) ] }));
+            }
+            if(document.getElementById('chart-energia')) {
+                document.getElementById('chart-energia').appendChild(Plot.plot({ width: 280, height: 120, marginLeft: 70, x: { grid: true, domain: [0, 100] }, marks: [ Plot.ruleY(MOCK_MACRO.energia, {y: "pais", strokeOpacity: 0.2}), Plot.dot(MOCK_MACRO.energia, { x: "score", y: "pais", fill: d => d.score > 70 ? "#dc2626" : "#f97316", r: 5, sort: {y: "x", reverse: true} }) ] }));
+            }
+        });
+    </script>
+</Layout>
