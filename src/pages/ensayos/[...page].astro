@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import type { PaginateFunction } from 'astro';
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  const ensayos = await getCollection('ensayos');
+  const ensayosOrdenados = ensayos.sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
+  return paginate(ensayosOrdenados, { pageSize: 10 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title="Archivo de Ensayos | Memo Geopolítico">
+  <!-- Iterar sobre page.data para renderizar las tarjetas -->
+</Layout>
