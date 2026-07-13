@@ -29,16 +29,26 @@ const styles = {
 const currentStyle = styles[severity as keyof typeof styles];
 ---
 
-<a
-  href={`/alertas/${slug}`}
-  class="alert-card block group relative bg-white border border-slate-200 rounded-lg p-4 transition-all duration-200 hover:shadow-md cursor-pointer"
+<article
+  class="alert-card block group relative bg-white border border-slate-200 rounded-lg p-4 transition-all duration-200 hover:shadow-md"
   data-slug={slug}
 >
+  <!-- Enlace principal invisible que cubre toda la tarjeta -->
+  <a
+    href={`/alertas/${slug}`}
+    class="absolute inset-0 z-10"
+    aria-label={`Profundizar en ${title}`}></a>
+
+  <!-- Acento de Criticidad (Border-left) -->
   <div
     class={`absolute left-0 top-0 bottom-0 w-1 rounded-l-lg ${currentStyle.bg}`}
   >
   </div>
-  <div class="flex justify-between items-center mb-2 pl-2">
+
+  <!-- Header -->
+  <div
+    class="flex justify-between items-center mb-2 pl-2 relative z-20 pointer-events-none"
+  >
     <div class="flex items-center gap-1.5">
       <span class={`w-1.5 h-1.5 rounded-full ${currentStyle.bg}`}></span>
       <span
@@ -48,15 +58,30 @@ const currentStyle = styles[severity as keyof typeof styles];
     </div>
     <span class="text-[12px] text-slate-400">{dateDisplay}</span>
   </div>
+
+  <!-- Cuerpo (Se elimina line-clamp-2) -->
   <h3
-    class="text-[16px] font-semibold text-slate-900 leading-[1.2] line-clamp-2 mb-1 pl-2"
+    class="text-[16px] font-semibold text-slate-900 leading-[1.2] mb-1 pl-2 relative z-20 pointer-events-none"
   >
     {title}
   </h3>
-  <div class="text-[14px] font-normal text-slate-600 line-clamp-2 mb-4 pl-2">
+
+  <!-- Contenedor del Slot: Se elimina [&>p]:line-clamp-2 para que el texto se expanda según su longitud -->
+
+  <!--
+  <div class="text-[14px] font-normal text-slate-600 mb-4 pl-2 relative z-20 pointer-events-none [&>p]:m-0 [&_a]:text-inherit [&_a]:no-underline [&_strong]:font-semibold">
+  <slot />
+  </div>
+-->
+
+  <div
+    class="text-[14px] font-normal text-slate-600 mb-4 pl-2 relative z-20 pointer-events-none [&>p]:m-0 [&_a]:text-blue-600 [&_a]:underline hover:[&_a]:text-blue-800 [&_a]:pointer-events-auto [&_a]:relative [&_a]:z-30 [&_strong]:font-semibold"
+  >
     <slot />
   </div>
-  <div class="flex justify-end">
+
+  <!-- Footer / Affordance -->
+  <div class="flex justify-end relative z-20 pointer-events-none">
     <span
       class={`text-[13px] font-medium text-slate-500 flex items-center transition-colors duration-200 ${currentStyle.textGroupHover}`}
     >
@@ -66,4 +91,4 @@ const currentStyle = styles[severity as keyof typeof styles];
       ></i>
     </span>
   </div>
-</a>
+</article>

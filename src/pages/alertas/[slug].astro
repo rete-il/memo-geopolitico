@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const alertas = await getCollection('alertas');
@@ -11,7 +11,6 @@ export async function getStaticPaths() {
 }
 
 const { alerta } = Astro.props;
-const { Content } = await render(alerta);
 
 const severityConfig = {
   critical: {
@@ -62,9 +61,6 @@ const absoluteDate = new Date(alerta.data.date).toLocaleDateString('es-ES', {
         {alerta.data.title}
       </h1>
     </header>
-    <div class="prose prose-slate max-w-none mb-10 text-slate-700">
-      <Content />
-    </div>
     {
       alerta.data.sources && alerta.data.sources.length > 0 && (
         <section class="border-t border-slate-200 pt-8 mt-8">

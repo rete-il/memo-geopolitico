@@ -30,8 +30,10 @@ const mapAlertasData = alertas.map((alerta) => ({
 ---
 
 <Layout>
+  <!-- Inclusión de librerías D3 y TopoJSON requeridas para el mapa -->
   <script src="https://unpkg.com/@phosphor-icons/web" is:inline></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0" is:inline></script>
+  <script src="https://unpkg.com/topojson-client@3" is:inline></script>
   <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16" is:inline
   ></script>
 
@@ -52,32 +54,31 @@ const mapAlertasData = alertas.map((alerta) => ({
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-    @keyframes pulse-ring {
-      0% {
-        transform: scale(0.8);
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(2.5);
-        opacity: 0;
-      }
-    }
-    .pulse-dot::before {
-      content: '';
-      position: absolute;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: inherit;
-      border-radius: 50%;
-      z-index: -1;
-      animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-    }
     .map-bg {
       background-color: #e2e8f0;
       background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
       background-size: 20px 20px;
+    }
+    /* Estilos de cursor para el Panning del mapa */
+    .map-grabbing {
+      cursor: grabbing !important;
+    }
+    /* Animación de pulso optimizada para SVG */
+    @keyframes pulse-ring-svg {
+      0% {
+        r: 4px;
+        opacity: 0.8;
+        stroke-width: 2px;
+      }
+      100% {
+        r: 18px;
+        opacity: 0;
+        stroke-width: 0px;
+      }
+    }
+    .pulse-animation-svg {
+      animation: pulse-ring-svg 1.5s cubic-bezier(0.215, 0.61, 0.355, 1)
+        infinite;
     }
   </style>
 
@@ -181,16 +182,36 @@ const mapAlertasData = alertas.map((alerta) => ({
             >
           </div>
         </div>
+        <!-- Contenedor del Mapa D3 interactivo con proporción fluida -->
         <div
-          class="w-full h-64 map-bg relative flex items-center justify-center overflow-hidden"
+          id="map-wrapper"
+          class="w-full relative map-bg overflow-hidden"
+          style="aspect-ratio: 2/1; cursor: grab;"
         >
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
-            class="absolute w-[120%] max-w-none h-auto opacity-20 pointer-events-none grayscale"
-            style="top: -20%;"
-            alt="Mapamundi"
-          />
-          <div id="map-markers-container" class="absolute inset-0"></div>
+          <!-- Overlay de alerta para scroll -->
+          <div
+            id="zoom-overlay"
+            class="absolute inset-0 bg-slate-900/60 text-white flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-20"
+          >
+            <span
+              class="px-4 py-2 bg-slate-900/90 rounded font-medium shadow-lg"
+              >Presiona Ctrl + Scroll para hacer zoom</span
+            >
+          </div>
+
+          <!-- Controles UI de Zoom -->
+          <div class="absolute bottom-4 right-4 flex flex-col gap-1 z-10">
+            <button
+              id="zoom-in"
+              class="w-8 h-8 bg-white border border-slate-200 rounded text-slate-700 hover:bg-slate-50 shadow-sm flex items-center justify-center text-lg font-bold transition-colors"
+              >+</button
+            >
+            <button
+              id="zoom-out"
+              class="w-8 h-8 bg-white border border-slate-200 rounded text-slate-700 hover:bg-slate-50 shadow-sm flex items-center justify-center text-lg font-bold transition-colors"
+              >-</button
+            >
+          </div>
         </div>
       </div>
 
@@ -276,53 +297,186 @@ const mapAlertasData = alertas.map((alerta) => ({
     defer
   >
     document.addEventListener('DOMContentLoaded', () => {
-      const mapContainer = document.getElementById('map-markers-container');
+      // 1. Configuración Base del Mapa D3
+      const wrapper = document.getElementById('map-wrapper');
+      const overlay = document.getElementById('zoom-overlay');
+      let width = wrapper.clientWidth;
+      let height = wrapper.clientHeight;
 
-      alertasData.forEach((alerta) => {
-        const markerColors = {
-          critical: 'bg-red-500',
-          medium: 'bg-amber-500',
-          low: 'bg-yellow-400',
-        };
-        const markerColor = markerColors[alerta.severity] || 'bg-gray-500';
+      const svg = window.d3
+        .select('#map-wrapper')
+        .insert('svg', ':first-child')
+        .attr('width', width)
+        .attr('height', height);
 
-        const marker = document.createElement('div');
-        marker.className = `absolute w-3 h-3 rounded-full ${markerColor} shadow-lg border border-white transition-transform duration-300 map-marker`;
-        marker.dataset.markerId = alerta.id;
+      const g = svg.append('g');
 
-        const topPerc = 50 - (alerta.lat / 90) * 50;
-        const leftPerc = 50 + (alerta.lng / 180) * 50;
-        marker.style.top = `${topPerc}%`;
-        marker.style.left = `${leftPerc}%`;
+      // Proyección Mercator ajustada automáticamente al tamaño del contenedor
+      const projection = window.d3
+        .geoMercator()
+        .fitSize([width, height], { type: 'Sphere' });
+      const path = window.d3.geoPath().projection(projection);
 
-        if (mapContainer) mapContainer.appendChild(marker);
+      // Comportamiento del Zoom y Panning (Límites de Traslación aplicados en el ResizeObserver)
+      const zoom = window.d3
+        .zoom()
+        .scaleExtent([1, 8])
+        .wheelDelta((event) => {
+          // Anulamos el multiplicador x10 de D3 al presionar Ctrl para suavizar la rueda del ratón
+          return (
+            -event.deltaY *
+            (event.deltaMode === 1 ? 0.05 : event.deltaMode ? 1 : 0.0015)
+          );
+        })
+        .filter((event) => {
+          // Bloquear zoom con rueda del ratón si no se presiona Ctrl
+          if (event.type === 'wheel') return event.ctrlKey || event.metaKey;
+          return !event.button; // Permitir arrastre con click izquierdo
+        })
+        .on('zoom', (event) => {
+          g.attr('transform', event.transform);
+        });
+
+      svg.call(zoom);
+
+      // Clases para el estado de arrastre (grab/grabbing)
+      svg
+        .on('mousedown', () => wrapper.classList.add('map-grabbing'))
+        .on('mouseup', () => wrapper.classList.remove('map-grabbing'))
+        .on('mouseleave', () => wrapper.classList.remove('map-grabbing'));
+
+      // Interceptar scroll en el contenedor para mostrar advertencia del Ctrl
+      let overlayTimeout;
+      wrapper.addEventListener(
+        'wheel',
+        (e) => {
+          if (!e.ctrlKey && !e.metaKey) {
+            e.preventDefault();
+            overlay.classList.remove('opacity-0');
+            clearTimeout(overlayTimeout);
+            overlayTimeout = setTimeout(
+              () => overlay.classList.add('opacity-0'),
+              1500,
+            );
+          }
+        },
+        { passive: false },
+      );
+
+      // Botones de Zoom UI
+      document.getElementById('zoom-in').addEventListener('click', () => {
+        svg.transition().duration(400).call(zoom.scaleBy, 1.5);
+      });
+      document.getElementById('zoom-out').addEventListener('click', () => {
+        svg.transition().duration(400).call(zoom.scaleBy, 0.75);
       });
 
+      // 2. Cargar Cartografía e inyectar Marcadores
+      window.d3
+        .json('https://unpkg.com/world-atlas@2.0.2/countries-110m.json')
+        .then((world) => {
+          const countries = window.topojson.feature(
+            world,
+            world.objects.countries,
+          ).features;
+
+          // Dibujar países
+          const pathGroup = g.append('g');
+          pathGroup
+            .selectAll('path')
+            .data(countries)
+            .join('path')
+            .attr('fill', '#cbd5e1')
+            .attr('stroke', '#f8fafc')
+            .attr('stroke-width', 0.5)
+            .attr('d', path);
+
+          // Configurar y dibujar marcadores (Alertas)
+          const markerGroup = g.append('g');
+          const markerColors = {
+            critical: '#ef4444',
+            medium: '#f59e0b',
+            low: '#facc15',
+          };
+
+          const markers = markerGroup
+            .selectAll('g.marker')
+            .data(alertasData)
+            .join('g')
+            .attr('class', 'marker')
+            .attr('data-marker-id', (d) => d.id)
+            .attr('transform', (d) => {
+              const [x, y] = projection([d.lng, d.lat]) || [0, 0];
+              return `translate(${x},${y})`;
+            });
+
+          // Círculo base para la animación del pulso
+          markers
+            .append('circle')
+            .attr('class', 'pulse-ring-target')
+            .attr('r', 4)
+            .attr('fill', 'transparent')
+            .attr('stroke', (d) => markerColors[d.severity] || '#64748b')
+            .attr('stroke-width', 2)
+            .style('pointer-events', 'none');
+
+          // Círculo sólido (Centro)
+          markers
+            .append('circle')
+            .attr('r', 4)
+            .attr('fill', (d) => markerColors[d.severity] || '#64748b')
+            .attr('stroke', '#ffffff')
+            .attr('stroke-width', 1.5);
+
+          // ResizeObserver para mantener la proporción y las coordenadas al redimensionar
+          const resizeObserver = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+              width = entry.contentRect.width;
+              height = entry.contentRect.height;
+
+              svg.attr('width', width).attr('height', height);
+
+              // Recalcular proyección (Centrado y zoom 1 base)
+              projection.fitSize([width, height], { type: 'Sphere' });
+              pathGroup.selectAll('path').attr('d', path);
+
+              // Recalcular límite (Boundary Box) del paneo
+              zoom.translateExtent([
+                [0, 0],
+                [width, height],
+              ]);
+
+              // Reposicionar anclaje de los marcadores usando matemáticas cartográficas
+              markers.attr('transform', (d) => {
+                const [x, y] = projection([d.lng, d.lat]) || [0, 0];
+                return `translate(${x},${y})`;
+              });
+            }
+          });
+          resizeObserver.observe(wrapper);
+        });
+
+      // 3. Sincronización Interactiva (Hover de Tarjeta -> Animación en Mapa)
       const alertCards = document.querySelectorAll('.alert-card');
       alertCards.forEach((card) => {
         card.addEventListener('mouseenter', () => {
           const slug = card.dataset.slug;
-          const marker = document.querySelector(
-            `.map-marker[data-marker-id="${slug}"]`,
+          const markerRing = document.querySelector(
+            `g.marker[data-marker-id="${slug}"] .pulse-ring-target`,
           );
-          if (marker) {
-            marker.classList.add('pulse-dot', 'scale-125');
-            marker.style.zIndex = '10';
-          }
+          if (markerRing) markerRing.classList.add('pulse-animation-svg');
         });
 
         card.addEventListener('mouseleave', () => {
           const slug = card.dataset.slug;
-          const marker = document.querySelector(
-            `.map-marker[data-marker-id="${slug}"]`,
+          const markerRing = document.querySelector(
+            `g.marker[data-marker-id="${slug}"] .pulse-ring-target`,
           );
-          if (marker) {
-            marker.classList.remove('pulse-dot', 'scale-125');
-            marker.style.zIndex = '1';
-          }
+          if (markerRing) markerRing.classList.remove('pulse-animation-svg');
         });
       });
 
+      // 4. Observador de Gráficos (Plot/D3) ya existente
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
