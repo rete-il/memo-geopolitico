@@ -3,12 +3,11 @@ import { getRelativeTime } from '../utils/time';
 import Layout from '../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
 import macroData from '../data/macro.json';
+import AlertCard from '../components/AlertCard.astro';
 
-// Consultas a las Content Collections
 const ensayos = await getCollection('ensayos');
 const alertasBrutas = await getCollection('alertas');
 
-// 1. Resolvemos el contenido asíncrono AQUÍ ARRIBA usando Promise.all
 const alertas = await Promise.all(
   alertasBrutas.map(async (alerta) => {
     const { Content } = await render(alerta);
@@ -16,16 +15,14 @@ const alertas = await Promise.all(
   }),
 );
 
-// Ordenamiento de ensayos
 const ensayosOrdenados = ensayos.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 
-// Limitar a los 5 más recientes
 const ensayosRecientes = ensayosOrdenados.slice(0, 5);
 
-// Mapear datos para el script del cliente
 const mapAlertasData = alertas.map((alerta) => ({
+  id: alerta.id,
   lat: alerta.data.lat,
   lng: alerta.data.lng,
   severity: alerta.data.severity,
@@ -55,7 +52,6 @@ const mapAlertasData = alertas.map((alerta) => ({
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-
     @keyframes pulse-ring {
       0% {
         transform: scale(0.8);
@@ -65,9 +61,6 @@ const mapAlertasData = alertas.map((alerta) => ({
         transform: scale(2.5);
         opacity: 0;
       }
-    }
-    .pulse-dot {
-      position: relative;
     }
     .pulse-dot::before {
       content: '';
@@ -153,58 +146,10 @@ const mapAlertasData = alertas.map((alerta) => ({
         {
           alertas.map((alerta) => {
             const { Content } = alerta;
-
-            // Diccionario de estilos según el nivel de severity
-            const style = {
-              critical: {
-                border: 'border-red-200',
-                bg: 'bg-red-50',
-                bar: 'bg-red-600',
-                text: 'text-red-700',
-              },
-              medium: {
-                border: 'border-orange-200',
-                bg: 'bg-orange-50',
-                bar: 'bg-orange-500',
-                text: 'text-orange-700',
-              },
-              low: {
-                border: 'border-yellow-200',
-                bg: 'bg-yellow-50',
-                bar: 'bg-yellow-400',
-                text: 'text-yellow-700',
-              },
-            }[alerta.data.severity];
-
             return (
-              <article
-                class={`p-4 rounded-lg border ${style.border} ${style.bg} hover:shadow-md transition-shadow duration-200 cursor-pointer relative`}
-              >
-                <div
-                  class={`absolute left-0 top-0 bottom-0 w-1 ${style.bar} rounded-l-lg`}
-                />
-
-                <div class="flex justify-between items-center mb-1.5 pl-1">
-                  <span
-                    class={`text-[10px] font-bold uppercase tracking-wider ${style.text}`}
-                  >
-                    {alerta.data.region}
-                  </span>
-                  <span class="text-[10px] text-slate-400 font-medium">
-                    <span class="text-[10px] text-slate-400 font-medium">
-                      {getRelativeTime(alerta.data.date)}
-                    </span>
-                  </span>
-                </div>
-
-                <h3 class="text-sm font-bold text-slate-900 mb-1.5 pl-1">
-                  {alerta.data.title}
-                </h3>
-
-                <div class="text-xs text-slate-600 leading-snug pl-1">
-                  <Content />
-                </div>
-              </article>
+              <AlertCard alerta={alerta} slug={alerta.id}>
+                <Content />
+              </AlertCard>
             );
           })
         }
@@ -224,11 +169,11 @@ const mapAlertasData = alertas.map((alerta) => ({
           <div class="flex gap-2">
             <span
               class="flex items-center gap-1 text-[10px] text-slate-500 font-medium"
-              ><div class="w-2 h-2 rounded-full bg-red-600"></div> Crítico</span
+              ><div class="w-2 h-2 rounded-full bg-red-500"></div> Crítico</span
             >
             <span
               class="flex items-center gap-1 text-[10px] text-slate-500 font-medium"
-              ><div class="w-2 h-2 rounded-full bg-orange-500"></div> Medio</span
+              ><div class="w-2 h-2 rounded-full bg-amber-500"></div> Medio</span
             >
             <span
               class="flex items-center gap-1 text-[10px] text-slate-500 font-medium"
@@ -325,7 +270,6 @@ const mapAlertasData = alertas.map((alerta) => ({
     </aside>
   </main>
 
-  <!-- Inyectar las variables de servidor al script del cliente y aplicar defer -->
   <script
     is:inline
     define:vars={{ alertasData: mapAlertasData, datosGraficos: macroData }}
@@ -335,28 +279,50 @@ const mapAlertasData = alertas.map((alerta) => ({
       const mapContainer = document.getElementById('map-markers-container');
 
       alertasData.forEach((alerta) => {
-        // Definir los colores para los marcadores
         const markerColors = {
-          critical: 'bg-red-600',
-          medium: 'bg-orange-500',
+          critical: 'bg-red-500',
+          medium: 'bg-amber-500',
           low: 'bg-yellow-400',
         };
-
         const markerColor = markerColors[alerta.severity] || 'bg-gray-500';
 
         const marker = document.createElement('div');
-        marker.className = `absolute w-3 h-3 rounded-full pulse-dot ${markerColor} shadow-lg border border-white`;
+        marker.className = `absolute w-3 h-3 rounded-full ${markerColor} shadow-lg border border-white transition-transform duration-300 map-marker`;
+        marker.dataset.markerId = alerta.id;
 
         const topPerc = 50 - (alerta.lat / 90) * 50;
         const leftPerc = 50 + (alerta.lng / 180) * 50;
-
         marker.style.top = `${topPerc}%`;
         marker.style.left = `${leftPerc}%`;
 
         if (mapContainer) mapContainer.appendChild(marker);
       });
 
-      // IntersectionObserver para los gráficos
+      const alertCards = document.querySelectorAll('.alert-card');
+      alertCards.forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+          const slug = card.dataset.slug;
+          const marker = document.querySelector(
+            `.map-marker[data-marker-id="${slug}"]`,
+          );
+          if (marker) {
+            marker.classList.add('pulse-dot', 'scale-125');
+            marker.style.zIndex = '10';
+          }
+        });
+
+        card.addEventListener('mouseleave', () => {
+          const slug = card.dataset.slug;
+          const marker = document.querySelector(
+            `.map-marker[data-marker-id="${slug}"]`,
+          );
+          if (marker) {
+            marker.classList.remove('pulse-dot', 'scale-125');
+            marker.style.zIndex = '1';
+          }
+        });
+      });
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -401,12 +367,11 @@ const mapAlertasData = alertas.map((alerta) => ({
                     window.Plot.dot(datosGraficos.energia, {
                       x: 'score',
                       y: 'pais',
-                      // Nueva lógica de 3 colores coherente con el mapa
                       fill: (d) =>
                         d.score >= 80
-                          ? '#dc2626'
+                          ? '#ef4444'
                           : d.score >= 50
-                            ? '#f97316'
+                            ? '#f59e0b'
                             : '#facc15',
                       r: 5,
                       sort: { y: 'x', reverse: true },

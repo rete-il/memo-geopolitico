@@ -18,11 +18,20 @@ export const collections = {
     loader: glob({ pattern: '**/*.md', base: './src/content/alertas' }),
     schema: z.object({
       title: z.string(),
-      region: z.string(), // Añadido para el diseño
+      region: z.string(),
       date: z.date(),
       lat: z.number(),
       lng: z.number(),
       severity: z.enum(['low', 'medium', 'critical']),
+      sources: z
+        .array(
+          z.object({
+            title: z.string(),
+            url: z.string().url(),
+            summary: z.string(),
+          }),
+        )
+        .optional(),
     }),
   }),
 };
