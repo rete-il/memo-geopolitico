@@ -1,0 +1,17 @@
+[
+  {
+    "region": "Indo-Pacífico",
+    "tendencia": "alza",
+    "analisis": "Texto descriptivo sobre la tendencia de esta región."
+  },
+  {
+    "region": "Europa del Este",
+    "tendencia": "lateral",
+    "analisis": "Texto descriptivo sobre el estancamiento o situación actual."
+  },
+  {
+    "region": "Medio Oriente",
+    "tendencia": "baja",
+    "analisis": "Texto descriptivo sobre la desescalada en curso."
+  }
+]

@@ -34,7 +34,7 @@ const currentStyle = styles[severity as keyof typeof styles] || styles.low;
 ---
 
 <article
-  class="alert-card block group relative bg-white border border-slate-200 rounded-[8px] p-4 transition-all duration-300 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]"
+  class="alert-card block group relative bg-white border border-slate-200 rounded-lg p-4 transition-all duration-300 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]"
   data-slug={slug}
   id={`card-${slug}`}
 >
@@ -43,9 +43,9 @@ const currentStyle = styles[severity as keyof typeof styles] || styles.low;
     class="absolute inset-0 z-10"
     aria-label={`Profundizar en ${title}`}></a>
 
-  <!-- Banda vertical sólida de 4px conectada a las variables @theme -->
+  <!-- Banda vertical sólida conectada a las variables @theme -->
   <div
-    class={`absolute left-0 top-0 bottom-0 w-[4px] rounded-l-[8px] ${currentStyle.bg}`}
+    class={`absolute left-0 top-0 bottom-0 w-1 rounded-l-lg ${currentStyle.bg}`}
   >
   </div>
 
@@ -53,22 +53,20 @@ const currentStyle = styles[severity as keyof typeof styles] || styles.low;
     class="flex justify-between items-center mb-2 pl-2 relative z-20 pointer-events-none"
   >
     <div class="flex items-center gap-1.5">
-      <span class={`w-[6px] h-[6px] rounded-full ${currentStyle.bg}`}></span>
-      <span class="text-[11px] font-[600] text-[#64748B] uppercase"
+      <span class={`w-1.5 h-1.5 rounded-full ${currentStyle.bg}`}></span>
+      <span class="text-[11px] font-semibold text-[#64748B] uppercase"
         >{region}</span
       >
     </div>
     <span class="text-[12px] text-slate-400">{dateDisplay}</span>
   </div>
 
-  <!-- Eliminado line-clamp-2: El título se mostrará completo -->
   <h3
-    class="text-[15px] font-[700] text-slate-900 leading-[1.2] mb-1 pl-2 relative z-20 pointer-events-none"
+    class="text-[15px] font-bold text-slate-900 leading-[1.2] mb-1 pl-2 relative z-20 pointer-events-none"
   >
     {title}
   </h3>
 
-  <!-- Eliminado line-clamp-2: El texto resumen es autónomo y no se cortará -->
   <div
     class="text-[13px] font-normal text-[#475569] mb-4 pl-2 relative z-20 pointer-events-none [&>p]:m-0"
   >
@@ -81,7 +79,7 @@ const currentStyle = styles[severity as keyof typeof styles] || styles.low;
     >
       Para profundizar
       <i
-        class="ph ph-arrow-right ml-1 transition-transform duration-200 group-hover:translate-x-[4px]"
+        class="ph ph-arrow-right ml-1 transition-transform duration-200 group-hover:translate-x-1"
       ></i>
     </span>
   </div>
