@@ -1,0 +1,153 @@
+---
+const { mapData } = Astro.props;
+---
+
+<div
+  class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col"
+>
+  <div
+    class="px-4 py-3 border-b border-slate-100 flex justify-between items-center bg-slate-50"
+  >
+    <h2 class="text-sm font-semibold text-slate-800">Termómetro Global</h2>
+    <div class="flex gap-2">
+      <span class="flex items-center gap-1 text-[10px] text-slate-500"
+        ><div class="w-2 h-2 rounded-full bg-red-500"></div> Crítico</span
+      >
+      <span class="flex items-center gap-1 text-[10px] text-slate-500"
+        ><div class="w-2 h-2 rounded-full bg-orange-500"></div> Alto</span
+      >
+      <span class="flex items-center gap-1 text-[10px] text-slate-500"
+        ><div class="w-2 h-2 rounded-full bg-amber-500"></div> Medio</span
+      >
+      <span class="flex items-center gap-1 text-[10px] text-slate-500"
+        ><div class="w-2 h-2 rounded-full bg-blue-500"></div> Bajo</span
+      >
+    </div>
+  </div>
+
+  <!-- Contenedor del mapa Leaflet -->
+  <div id="map" class="w-full relative z-10" style="aspect-ratio: 2/1;"></div>
+</div>
+
+<script
+  id="map-data-payload"
+  type="application/json"
+  set:html={JSON.stringify(mapData)}
+/>
+
+<script>
+  import { activeAlertId } from '../store/mapStore';
+
+  // Declaraciones de TS para librerías importadas por CDN
+  declare const L: any;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const mapDataElement = document.getElementById('map-data-payload');
+    if (!mapDataElement) return;
+
+    const mapData = JSON.parse(mapDataElement.textContent || '[]');
+
+    const SEVERITY_CONFIG: Record<string, { color: string; weight: number }> = {
+      critical: { color: '#EF4444', weight: 4 },
+      high: { color: '#F97316', weight: 3 },
+      medium: { color: '#F59E0B', weight: 2 },
+      low: { color: '#3B82F6', weight: 1 },
+      default: { color: '#94A3B8', weight: 0 },
+    };
+
+    const map = L.map('map', { scrollWheelZoom: false }).setView([20, 0], 2);
+
+    L.tileLayer(
+      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+      {
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+        subdomains: 'abcd',
+        maxZoom: 10,
+        minZoom: 1,
+      },
+    ).addTo(map);
+
+    map.on('focus', () => map.scrollWheelZoom.enable());
+    map.on('blur', () => map.scrollWheelZoom.disable());
+
+    const markersCluster = L.markerClusterGroup({
+      spiderfyOnMaxZoom: true,
+      showCoverageOnHover: false,
+      zoomToBoundsOnClick: true,
+      maxClusterRadius: 40,
+      iconCreateFunction: function (cluster: any) {
+        const children = cluster.getAllChildMarkers();
+        let maxWeight = -1;
+        let clusterColor = SEVERITY_CONFIG.default.color;
+
+        children.forEach((marker: any) => {
+          const sev = marker.options.severity || 'default';
+          const weight = SEVERITY_CONFIG[sev].weight;
+          if (weight > maxWeight) {
+            maxWeight = weight;
+            clusterColor = SEVERITY_CONFIG[sev].color;
+          }
+        });
+
+        return L.divIcon({
+          html: `<div style="background-color: ${clusterColor}; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">${children.length}</div>`,
+          className: 'custom-cluster-icon',
+          iconSize: L.point(32, 32),
+        });
+      },
+    });
+
+    mapData.sort((a: any, b: any) => {
+      const weightA = SEVERITY_CONFIG[a.severity]?.weight || 0;
+      const weightB = SEVERITY_CONFIG[b.severity]?.weight || 0;
+      return weightB - weightA;
+    });
+
+    const markerNodes: Record<string, any> = {};
+
+    mapData.forEach((alerta: any) => {
+      const config =
+        SEVERITY_CONFIG[alerta.severity] || SEVERITY_CONFIG.default;
+
+      const iconHtml = `
+          <div class="relative flex items-center justify-center" style="width: 44px; height: 44px; margin-left: -14px; margin-top: -14px;">
+            <div id="dot-${alerta.id}" style="background-color: ${config.color}; color: ${config.color}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.2s; position: relative;"></div>
+          </div>
+        `;
+
+      const marker = L.marker([alerta.lat, alerta.lng], {
+        icon: L.divIcon({ html: iconHtml, className: '' }),
+        severity: alerta.severity,
+        zIndexOffset: config.weight * 100,
+      });
+
+      marker.on('mouseover', () => activeAlertId.set(alerta.id));
+      marker.on('mouseout', () => activeAlertId.set(null));
+      marker.on('click', () => activeAlertId.set(alerta.id));
+
+      markerNodes[alerta.id] = marker;
+      markersCluster.addLayer(marker);
+    });
+
+    map.addLayer(markersCluster);
+
+    activeAlertId.subscribe((activeId: string | null) => {
+      document
+        .querySelectorAll('.marker-pulse')
+        .forEach((el) => el.classList.remove('marker-pulse'));
+
+      if (activeId && markerNodes[activeId]) {
+        const marker = markerNodes[activeId];
+        const parentCluster = markersCluster.getVisibleParent(marker);
+
+        if (parentCluster && typeof parentCluster.spiderfy === 'function') {
+          const clusterIcon = parentCluster._icon?.firstChild;
+          if (clusterIcon) clusterIcon.classList.add('marker-pulse');
+        } else {
+          const dot = document.getElementById(`dot-${activeId}`);
+          if (dot) dot.classList.add('marker-pulse');
+        }
+      }
+    });
+  });
+</script>

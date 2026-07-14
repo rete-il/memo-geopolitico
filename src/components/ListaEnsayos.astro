@@ -1,0 +1,29 @@
+---
+const { ensayos } = Astro.props;
+---
+
+<div
+  class="flex items-center justify-between border-b border-slate-300 pb-2 mt-2"
+>
+  <h2
+    class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2"
+  >
+    <i class="ph-fill ph-article text-slate-700"></i> Análisis a Fondo
+  </h2>
+</div>
+<div id="ensayos-container" class="flex flex-col gap-5">
+  {
+    ensayos.map((ensayo: any) => (
+      <a href={`/ensayos/${ensayo.id}`} class="block group">
+        <article class="border border-slate-200 bg-white rounded-xl p-5 transition-shadow hover:shadow-md">
+          <h3 class="text-xl font-serif font-bold text-slate-900 mb-2 group-hover:text-slate-700">
+            {ensayo.data.title}
+          </h3>
+          <p class="text-sm text-slate-600 mb-4 line-clamp-3">
+            {ensayo.data.description}
+          </p>
+        </article>
+      </a>
+    ))
+  }
+</div>

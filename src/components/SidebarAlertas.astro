@@ -1,0 +1,27 @@
+---
+import AlertCard from './AlertCard.astro';
+
+const { alertas } = Astro.props;
+---
+
+<aside class="lg:col-span-3 flex flex-col gap-4">
+  <div class="flex items-center justify-between border-b border-slate-300 pb-2">
+    <h2
+      class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2"
+    >
+      <i class="ph-fill ph-warning-circle text-red-600"></i> Alertas y Focos
+    </h2>
+  </div>
+  <div
+    id="alertas-container"
+    class="flex flex-col gap-3 overflow-y-auto max-h-[calc(100vh-140px)] no-scrollbar pb-10"
+  >
+    {
+      alertas.map((alerta: any) => (
+        <AlertCard alerta={alerta} slug={alerta.id}>
+          <alerta.Content />
+        </AlertCard>
+      ))
+    }
+  </div>
+</aside>
