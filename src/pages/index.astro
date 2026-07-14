@@ -8,6 +8,7 @@ import AlertCard from '../components/AlertCard.astro';
 const ensayos = await getCollection('ensayos');
 const alertasBrutas = await getCollection('alertas');
 
+// 1. Resolver asincronía
 const alertas = await Promise.all(
   alertasBrutas.map(async (alerta) => {
     const { Content } = await render(alerta);
@@ -15,27 +16,49 @@ const alertas = await Promise.all(
   }),
 );
 
+// 2. Ordenamiento Ensayos
 const ensayosOrdenados = ensayos.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
-
 const ensayosRecientes = ensayosOrdenados.slice(0, 5);
 
-const mapAlertasData = alertas.map((alerta) => ({
-  id: alerta.id,
-  lat: alerta.data.lat,
-  lng: alerta.data.lng,
-  severity: alerta.data.severity,
-}));
+// 3. Reglas de Renderizado Map Data (TTL Filter de 14 días)
+const FOURTEEN_DAYS_MS = 14 * 24 * 60 * 60 * 1000;
+const nowMs = Date.now();
+
+const mapAlertasData = alertas
+  .filter((alerta) => {
+    if (alerta.data.en_mapa === false) return false;
+    const eventTime = new Date(alerta.data.date).getTime();
+    return nowMs - eventTime <= FOURTEEN_DAYS_MS;
+  })
+  .map((alerta) => ({
+    id: alerta.id,
+    lat: alerta.data.coordenadas[0],
+    lng: alerta.data.coordenadas[1],
+    severity: alerta.data.severity,
+  }));
 ---
 
 <Layout>
-  <!-- Inclusión de librerías D3 y TopoJSON requeridas para el mapa -->
+  <!-- Dependencias Cartográficas (Leaflet & MarkerCluster) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+  />
+
   <script src="https://unpkg.com/@phosphor-icons/web" is:inline></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0" is:inline></script>
-  <script src="https://unpkg.com/topojson-client@3" is:inline></script>
   <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16" is:inline
   ></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" is:inline
+  ></script>
+  <script
+    src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
+    is:inline></script>
 
   <style is:global>
     h1,
@@ -54,31 +77,44 @@ const mapAlertasData = alertas.map((alerta) => ({
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-    .map-bg {
-      background-color: #e2e8f0;
-      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-      background-size: 20px 20px;
+
+    /* Personalización Spiderfy y Leaflet */
+    .leaflet-container {
+      background: #e2e8f0;
+      font-family: inherit;
     }
-    /* Estilos de cursor para el Panning del mapa */
-    .map-grabbing {
-      cursor: grabbing !important;
+    .leaflet-spiderfied-leg {
+      stroke: #cbd5e1 !important;
+      stroke-width: 1.5px !important;
     }
-    /* Animación de pulso optimizada para SVG */
-    @keyframes pulse-ring-svg {
+
+    @keyframes leaflet-pulse {
       0% {
-        r: 4px;
+        transform: scale(0.8);
         opacity: 0.8;
-        stroke-width: 2px;
+        box-shadow: 0 0 0 0 rgba(inherit, 0.7);
+      }
+      70% {
+        transform: scale(1.5);
+        opacity: 0;
+        box-shadow: 0 0 0 15px rgba(inherit, 0);
       }
       100% {
-        r: 18px;
+        transform: scale(0.8);
         opacity: 0;
-        stroke-width: 0px;
       }
     }
-    .pulse-animation-svg {
-      animation: pulse-ring-svg 1.5s cubic-bezier(0.215, 0.61, 0.355, 1)
-        infinite;
+    .marker-pulse::after {
+      content: '';
+      position: absolute;
+      left: -100%;
+      top: -100%;
+      width: 300%;
+      height: 300%;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      animation: leaflet-pulse 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      pointer-events: none;
     }
   </style>
 
@@ -91,38 +127,7 @@ const mapAlertasData = alertas.map((alerta) => ({
         <h1 class="text-xl font-bold tracking-tight uppercase font-sans">
           Memo Geopolítico
         </h1>
-        <span
-          class="ml-2 px-2 py-0.5 text-[10px] bg-white/10 text-white rounded border border-white/20"
-          >BETA</span
-        >
       </div>
-      <div class="hidden md:flex items-center gap-6">
-        <div class="relative">
-          <i
-            class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-          ></i>
-          <input
-            type="text"
-            placeholder="Buscar región o tema..."
-            class="bg-white/10 border border-white/20 rounded-full py-1.5 pl-9 pr-4 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-red-600 w-64 transition-all"
-          />
-        </div>
-        <nav class="flex gap-4 text-sm font-medium">
-          <a href="#" class="text-white hover:text-red-600 transition-colors"
-            >Panorama Global</a
-          >
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"
-            >Ensayos</a
-          >
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"
-            >Datos Macro</a
-          >
-        </nav>
-      </div>
-      <button
-        class="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-1.5 px-4 rounded transition-colors hidden sm:block"
-        >Suscribirse</button
-      >
     </div>
   </header>
 
@@ -138,21 +143,17 @@ const mapAlertasData = alertas.map((alerta) => ({
         >
           <i class="ph-fill ph-warning-circle text-red-600"></i> Alertas y Focos
         </h2>
-        <span class="text-[10px] text-slate-400">Actualizado 09:00</span>
       </div>
       <div
         id="alertas-container"
         class="flex flex-col gap-3 overflow-y-auto max-h-[calc(100vh-140px)] no-scrollbar pb-10"
       >
         {
-          alertas.map((alerta) => {
-            const { Content } = alerta;
-            return (
-              <AlertCard alerta={alerta} slug={alerta.id}>
-                <Content />
-              </AlertCard>
-            );
-          })
+          alertas.map((alerta) => (
+            <AlertCard alerta={alerta} slug={alerta.id}>
+              <alerta.Content />
+            </AlertCard>
+          ))
         }
       </div>
     </aside>
@@ -168,50 +169,23 @@ const mapAlertasData = alertas.map((alerta) => ({
             Termómetro Global
           </h2>
           <div class="flex gap-2">
-            <span
-              class="flex items-center gap-1 text-[10px] text-slate-500 font-medium"
+            <span class="flex items-center gap-1 text-[10px] text-slate-500"
               ><div class="w-2 h-2 rounded-full bg-red-500"></div> Crítico</span
             >
-            <span
-              class="flex items-center gap-1 text-[10px] text-slate-500 font-medium"
+            <span class="flex items-center gap-1 text-[10px] text-slate-500"
+              ><div class="w-2 h-2 rounded-full bg-orange-500"></div> Alto</span
+            >
+            <span class="flex items-center gap-1 text-[10px] text-slate-500"
               ><div class="w-2 h-2 rounded-full bg-amber-500"></div> Medio</span
             >
-            <span
-              class="flex items-center gap-1 text-[10px] text-slate-500 font-medium"
-              ><div class="w-2 h-2 rounded-full bg-yellow-400"></div> Bajo</span
+            <span class="flex items-center gap-1 text-[10px] text-slate-500"
+              ><div class="w-2 h-2 rounded-full bg-blue-500"></div> Bajo</span
             >
           </div>
         </div>
-        <!-- Contenedor del Mapa D3 interactivo con proporción fluida -->
-        <div
-          id="map-wrapper"
-          class="w-full relative map-bg overflow-hidden"
-          style="aspect-ratio: 2/1; cursor: grab;"
-        >
-          <!-- Overlay de alerta para scroll -->
-          <div
-            id="zoom-overlay"
-            class="absolute inset-0 bg-slate-900/60 text-white flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-20"
-          >
-            <span
-              class="px-4 py-2 bg-slate-900/90 rounded font-medium shadow-lg"
-              >Presiona Ctrl + Scroll para hacer zoom</span
-            >
-          </div>
 
-          <!-- Controles UI de Zoom -->
-          <div class="absolute bottom-4 right-4 flex flex-col gap-1 z-10">
-            <button
-              id="zoom-in"
-              class="w-8 h-8 bg-white border border-slate-200 rounded text-slate-700 hover:bg-slate-50 shadow-sm flex items-center justify-center text-lg font-bold transition-colors"
-              >+</button
-            >
-            <button
-              id="zoom-out"
-              class="w-8 h-8 bg-white border border-slate-200 rounded text-slate-700 hover:bg-slate-50 shadow-sm flex items-center justify-center text-lg font-bold transition-colors"
-              >-</button
-            >
-          </div>
+        <!-- Contenedor del mapa Leaflet -->
+        <div id="map" class="w-full relative z-10" style="aspect-ratio: 2/1;">
         </div>
       </div>
 
@@ -227,38 +201,14 @@ const mapAlertasData = alertas.map((alerta) => ({
       <div id="ensayos-container" class="flex flex-col gap-5">
         {
           ensayosRecientes.map((ensayo) => (
-            <a
-              href={`/ensayos/${ensayo.id}`}
-              data-astro-prefetch
-              class="block group"
-            >
-              <article class="border border-slate-200 bg-white rounded-xl p-5 transition-shadow duration-200 hover:shadow-md">
-                <h3 class="text-xl font-serif font-bold text-slate-900 mb-2 group-hover:text-slate-700 transition-colors">
+            <a href={`/ensayos/${ensayo.id}`} class="block group">
+              <article class="border border-slate-200 bg-white rounded-xl p-5 transition-shadow hover:shadow-md">
+                <h3 class="text-xl font-serif font-bold text-slate-900 mb-2 group-hover:text-slate-700">
                   {ensayo.data.title}
                 </h3>
                 <p class="text-sm text-slate-600 mb-4 line-clamp-3">
                   {ensayo.data.description}
                 </p>
-                <div class="flex items-center justify-between">
-                  <div class="flex gap-2">
-                    {ensayo.data.tags?.map((t) => (
-                      <span class="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] font-medium rounded-full">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div class="text-xs text-slate-500 font-sans">
-                    <time datetime={ensayo.data.date.toISOString()}>
-                      {ensayo.data.date.toLocaleDateString('es-ES', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                      })}
-                    </time>
-                    <span class="mx-1">&bull;</span>
-                    <span>{ensayo.data.author}</span>
-                  </div>
-                </div>
               </article>
             </a>
           ))
@@ -278,213 +228,155 @@ const mapAlertasData = alertas.map((alerta) => ({
       </div>
       <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
         <h3 class="text-xs font-semibold text-slate-800 mb-1">
-          Gasto en Defensa Regional
+          Gasto en Defensa
         </h3>
         <div id="chart-defensa" class="w-full mt-3"></div>
-      </div>
-      <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-        <h3 class="text-xs font-semibold text-slate-800 mb-1">
-          Vulnerabilidad Energética
-        </h3>
-        <div id="chart-energia" class="w-full mt-3"></div>
       </div>
     </aside>
   </main>
 
   <script
-    is:inline
-    define:vars={{ alertasData: mapAlertasData, datosGraficos: macroData }}
-    defer
-  >
+    id="map-data-payload"
+    type="application/json"
+    set:html={JSON.stringify(mapAlertasData)}
+  />
+  <script
+    id="macro-data-payload"
+    type="application/json"
+    set:html={JSON.stringify(macroData)}
+  />
+
+  <script>
+    import { activeAlertId } from '../store/mapStore';
+
+    // Declaraciones de TS para librerías importadas por CDN
+    declare const L: any;
+    declare global {
+      interface Window {
+        Plot: any;
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Configuración Base del Mapa D3
-      const wrapper = document.getElementById('map-wrapper');
-      const overlay = document.getElementById('zoom-overlay');
-      let width = wrapper.clientWidth;
-      let height = wrapper.clientHeight;
-
-      const svg = window.d3
-        .select('#map-wrapper')
-        .insert('svg', ':first-child')
-        .attr('width', width)
-        .attr('height', height);
-
-      const g = svg.append('g');
-
-      // Proyección Mercator ajustada automáticamente al tamaño del contenedor
-      const projection = window.d3
-        .geoMercator()
-        .fitSize([width, height], { type: 'Sphere' });
-      const path = window.d3.geoPath().projection(projection);
-
-      // Comportamiento del Zoom y Panning (Límites de Traslación aplicados en el ResizeObserver)
-      const zoom = window.d3
-        .zoom()
-        .scaleExtent([1, 8])
-        .wheelDelta((event) => {
-          // Anulamos el multiplicador x10 de D3 al presionar Ctrl para suavizar la rueda del ratón
-          return (
-            -event.deltaY *
-            (event.deltaMode === 1 ? 0.05 : event.deltaMode ? 1 : 0.0015)
-          );
-        })
-        .filter((event) => {
-          // Bloquear zoom con rueda del ratón si no se presiona Ctrl
-          if (event.type === 'wheel') return event.ctrlKey || event.metaKey;
-          return !event.button; // Permitir arrastre con click izquierdo
-        })
-        .on('zoom', (event) => {
-          g.attr('transform', event.transform);
-        });
-
-      svg.call(zoom);
-
-      // Clases para el estado de arrastre (grab/grabbing)
-      svg
-        .on('mousedown', () => wrapper.classList.add('map-grabbing'))
-        .on('mouseup', () => wrapper.classList.remove('map-grabbing'))
-        .on('mouseleave', () => wrapper.classList.remove('map-grabbing'));
-
-      // Interceptar scroll en el contenedor para mostrar advertencia del Ctrl
-      let overlayTimeout;
-      wrapper.addEventListener(
-        'wheel',
-        (e) => {
-          if (!e.ctrlKey && !e.metaKey) {
-            e.preventDefault();
-            overlay.classList.remove('opacity-0');
-            clearTimeout(overlayTimeout);
-            overlayTimeout = setTimeout(
-              () => overlay.classList.add('opacity-0'),
-              1500,
-            );
-          }
-        },
-        { passive: false },
+      const mapData = JSON.parse(
+        document.getElementById('map-data-payload')!.textContent || '[]',
+      );
+      const macroData = JSON.parse(
+        document.getElementById('macro-data-payload')!.textContent || '{}',
       );
 
-      // Botones de Zoom UI
-      document.getElementById('zoom-in').addEventListener('click', () => {
-        svg.transition().duration(400).call(zoom.scaleBy, 1.5);
-      });
-      document.getElementById('zoom-out').addEventListener('click', () => {
-        svg.transition().duration(400).call(zoom.scaleBy, 0.75);
-      });
+      const SEVERITY_CONFIG: Record<string, { color: string; weight: number }> =
+        {
+          critical: { color: '#EF4444', weight: 4 },
+          high: { color: '#F97316', weight: 3 },
+          medium: { color: '#F59E0B', weight: 2 },
+          low: { color: '#3B82F6', weight: 1 },
+          default: { color: '#94A3B8', weight: 0 },
+        };
 
-      // 2. Cargar Cartografía e inyectar Marcadores
-      window.d3
-        .json('https://unpkg.com/world-atlas@2.0.2/countries-110m.json')
-        .then((world) => {
-          const countries = window.topojson.feature(
-            world,
-            world.objects.countries,
-          ).features;
+      const map = L.map('map', { scrollWheelZoom: false }).setView([20, 0], 2);
 
-          // Dibujar países
-          const pathGroup = g.append('g');
-          pathGroup
-            .selectAll('path')
-            .data(countries)
-            .join('path')
-            .attr('fill', '#cbd5e1')
-            .attr('stroke', '#f8fafc')
-            .attr('stroke-width', 0.5)
-            .attr('d', path);
+      L.tileLayer(
+        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        {
+          attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+          subdomains: 'abcd',
+          maxZoom: 10,
+          minZoom: 1,
+        },
+      ).addTo(map);
 
-          // Configurar y dibujar marcadores (Alertas)
-          const markerGroup = g.append('g');
-          const markerColors = {
-            critical: '#ef4444',
-            medium: '#f59e0b',
-            low: '#facc15',
-          };
+      map.on('focus', () => map.scrollWheelZoom.enable());
+      map.on('blur', () => map.scrollWheelZoom.disable());
 
-          const markers = markerGroup
-            .selectAll('g.marker')
-            .data(alertasData)
-            .join('g')
-            .attr('class', 'marker')
-            .attr('data-marker-id', (d) => d.id)
-            .attr('transform', (d) => {
-              const [x, y] = projection([d.lng, d.lat]) || [0, 0];
-              return `translate(${x},${y})`;
-            });
+      const markersCluster = L.markerClusterGroup({
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        maxClusterRadius: 40,
+        iconCreateFunction: function (cluster: any) {
+          const children = cluster.getAllChildMarkers();
+          let maxWeight = -1;
+          let clusterColor = SEVERITY_CONFIG.default.color;
 
-          // Círculo base para la animación del pulso
-          markers
-            .append('circle')
-            .attr('class', 'pulse-ring-target')
-            .attr('r', 4)
-            .attr('fill', 'transparent')
-            .attr('stroke', (d) => markerColors[d.severity] || '#64748b')
-            .attr('stroke-width', 2)
-            .style('pointer-events', 'none');
-
-          // Círculo sólido (Centro)
-          markers
-            .append('circle')
-            .attr('r', 4)
-            .attr('fill', (d) => markerColors[d.severity] || '#64748b')
-            .attr('stroke', '#ffffff')
-            .attr('stroke-width', 1.5);
-
-          // ResizeObserver para mantener la proporción y las coordenadas al redimensionar
-          const resizeObserver = new ResizeObserver((entries) => {
-            for (let entry of entries) {
-              width = entry.contentRect.width;
-              height = entry.contentRect.height;
-
-              svg.attr('width', width).attr('height', height);
-
-              // Recalcular proyección (Centrado y zoom 1 base)
-              projection.fitSize([width, height], { type: 'Sphere' });
-              pathGroup.selectAll('path').attr('d', path);
-
-              // Recalcular límite (Boundary Box) del paneo
-              zoom.translateExtent([
-                [0, 0],
-                [width, height],
-              ]);
-
-              // Reposicionar anclaje de los marcadores usando matemáticas cartográficas
-              markers.attr('transform', (d) => {
-                const [x, y] = projection([d.lng, d.lat]) || [0, 0];
-                return `translate(${x},${y})`;
-              });
+          children.forEach((marker: any) => {
+            const sev = marker.options.severity || 'default';
+            const weight = SEVERITY_CONFIG[sev].weight;
+            if (weight > maxWeight) {
+              maxWeight = weight;
+              clusterColor = SEVERITY_CONFIG[sev].color;
             }
           });
-          resizeObserver.observe(wrapper);
-        });
 
-      // 3. Sincronización Interactiva (Hover de Tarjeta -> Animación en Mapa)
-      const alertCards = document.querySelectorAll('.alert-card');
-      alertCards.forEach((card) => {
-        card.addEventListener('mouseenter', () => {
-          const slug = card.dataset.slug;
-          const markerRing = document.querySelector(
-            `g.marker[data-marker-id="${slug}"] .pulse-ring-target`,
-          );
-          if (markerRing) markerRing.classList.add('pulse-animation-svg');
-        });
-
-        card.addEventListener('mouseleave', () => {
-          const slug = card.dataset.slug;
-          const markerRing = document.querySelector(
-            `g.marker[data-marker-id="${slug}"] .pulse-ring-target`,
-          );
-          if (markerRing) markerRing.classList.remove('pulse-animation-svg');
-        });
+          return L.divIcon({
+            html: `<div style="background-color: ${clusterColor}; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">${children.length}</div>`,
+            className: 'custom-cluster-icon',
+            iconSize: L.point(32, 32),
+          });
+        },
       });
 
-      // 4. Observador de Gráficos (Plot/D3) ya existente
+      mapData.sort((a: any, b: any) => {
+        const weightA = SEVERITY_CONFIG[a.severity]?.weight || 0;
+        const weightB = SEVERITY_CONFIG[b.severity]?.weight || 0;
+        return weightB - weightA;
+      });
+
+      const markerNodes: Record<string, any> = {};
+
+      mapData.forEach((alerta: any) => {
+        const config =
+          SEVERITY_CONFIG[alerta.severity] || SEVERITY_CONFIG.default;
+
+        const iconHtml = `
+          <div class="relative flex items-center justify-center" style="width: 44px; height: 44px; margin-left: -14px; margin-top: -14px;">
+            <div id="dot-${alerta.id}" style="background-color: ${config.color}; color: ${config.color}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.2s; position: relative;"></div>
+          </div>
+        `;
+
+        const marker = L.marker([alerta.lat, alerta.lng], {
+          icon: L.divIcon({ html: iconHtml, className: '' }),
+          severity: alerta.severity,
+          zIndexOffset: config.weight * 100,
+        });
+
+        marker.on('mouseover', () => activeAlertId.set(alerta.id));
+        marker.on('mouseout', () => activeAlertId.set(null));
+        marker.on('click', () => activeAlertId.set(alerta.id));
+
+        markerNodes[alerta.id] = marker;
+        markersCluster.addLayer(marker);
+      });
+
+      map.addLayer(markersCluster);
+
+      activeAlertId.subscribe((activeId: string | null) => {
+        document
+          .querySelectorAll('.marker-pulse')
+          .forEach((el) => el.classList.remove('marker-pulse'));
+
+        if (activeId && markerNodes[activeId]) {
+          const marker = markerNodes[activeId];
+          const parentCluster = markersCluster.getVisibleParent(marker);
+
+          if (parentCluster && typeof parentCluster.spiderfy === 'function') {
+            const clusterIcon = parentCluster._icon?.firstChild;
+            if (clusterIcon) clusterIcon.classList.add('marker-pulse');
+          } else {
+            const dot = document.getElementById(`dot-${activeId}`);
+            if (dot) dot.classList.add('marker-pulse');
+          }
+        }
+      });
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (
-              entry.target.id === 'chart-defensa' &&
-              !entry.target.hasChildNodes() &&
-              window.Plot
-            ) {
+          if (
+            entry.isIntersecting &&
+            !entry.target.hasChildNodes() &&
+            window.Plot
+          ) {
+            if (entry.target.id === 'chart-defensa') {
               entry.target.appendChild(
                 window.Plot.plot({
                   width: 280,
@@ -492,7 +384,7 @@ const mapAlertasData = alertas.map((alerta) => ({
                   marginLeft: 80,
                   x: { grid: true },
                   marks: [
-                    window.Plot.barX(datosGraficos.gasto_defensa, {
+                    window.Plot.barX(macroData.gasto_defensa, {
                       x: 'valor',
                       y: 'region',
                       fill: '#0f172a',
@@ -502,47 +394,11 @@ const mapAlertasData = alertas.map((alerta) => ({
                 }),
               );
             }
-            if (
-              entry.target.id === 'chart-energia' &&
-              !entry.target.hasChildNodes() &&
-              window.Plot
-            ) {
-              entry.target.appendChild(
-                window.Plot.plot({
-                  width: 280,
-                  height: 120,
-                  marginLeft: 70,
-                  x: { grid: true, domain: [0, 100] },
-                  marks: [
-                    window.Plot.ruleY(datosGraficos.energia, {
-                      y: 'pais',
-                      strokeOpacity: 0.2,
-                    }),
-                    window.Plot.dot(datosGraficos.energia, {
-                      x: 'score',
-                      y: 'pais',
-                      fill: (d) =>
-                        d.score >= 80
-                          ? '#ef4444'
-                          : d.score >= 50
-                            ? '#f59e0b'
-                            : '#facc15',
-                      r: 5,
-                      sort: { y: 'x', reverse: true },
-                    }),
-                  ],
-                }),
-              );
-            }
           }
         });
       });
-
       const chartDefensa = document.getElementById('chart-defensa');
-      const chartEnergia = document.getElementById('chart-energia');
-
       if (chartDefensa) observer.observe(chartDefensa);
-      if (chartEnergia) observer.observe(chartEnergia);
     });
   </script>
 </Layout>

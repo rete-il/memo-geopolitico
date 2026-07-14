@@ -8,7 +8,7 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       description: z.string(),
-      date: z.date(),
+      date: z.coerce.date(),
       author: z.string().default('Equipo Editorial'),
       tags: z.array(z.string()).optional(),
       coverImage: z.string().optional(),
@@ -19,10 +19,19 @@ export const collections = {
     schema: z.object({
       title: z.string(),
       region: z.string(),
-      date: z.date(),
-      lat: z.number(),
-      lng: z.number(),
-      severity: z.enum(['low', 'medium', 'critical']),
+      date: z.coerce.date(),
+      coordenadas: z.tuple([z.number(), z.number()]),
+      severity: z.enum(['critical', 'high', 'medium', 'low']),
+      en_mapa: z.boolean().optional(),
+      vinculo: z.string(),
+    }),
+  }),
+  profundidad: defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/profundidad' }),
+    schema: z.object({
+      title: z.string(),
+      date: z.coerce.date(),
+      severity: z.enum(['critical', 'high', 'medium', 'low']),
       sources: z
         .array(
           z.object({

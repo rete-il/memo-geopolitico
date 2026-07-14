@@ -1,1 +1,10 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+/* Diccionario de Severidad nativo para Tailwind v4 */
+@theme {
+  --color-critical: #ef4444;
+  --color-high: #f97316;
+  --color-medium: #f59e0b;
+  --color-low: #3b82f6;
+}

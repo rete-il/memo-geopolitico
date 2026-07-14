@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const paginas = await getCollection('profundidad');
+  return paginas.map((pagina) => ({
+    params: { slug: pagina.id },
+    props: { pagina },
+  }));
+}
+
+const { pagina } = Astro.props;
+const { Content } = await render(pagina);
+
+const severityConfig = {
+  critical: {
+    color: 'bg-red-100 text-red-700 border-red-200',
+    icon: '🔴',
+    label: 'CRÍTICO',
+  },
+  high: {
+    color: 'bg-orange-100 text-orange-700 border-orange-200',
+    icon: '🟠',
+    label: 'ALTO',
+  },
+  medium: {
+    color: 'bg-amber-100 text-amber-700 border-amber-200',
+    icon: '🟡',
+    label: 'MEDIO',
+  },
+  low: {
+    color: 'bg-blue-100 text-blue-700 border-blue-200',
+    icon: '🔵',
+    label: 'BAJO',
+  },
+};
+const meta =
+  severityConfig[pagina.data.severity as keyof typeof severityConfig];
+const absoluteDate = new Date(pagina.data.date).toLocaleDateString('es-ES', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Layout>
+  <div
+    class="max-w-screen-md mx-auto w-full px-4 py-8 bg-slate-50 min-h-screen"
+  >
+    <header class="mb-8">
+      <a
+        href="/"
+        class="inline-flex items-center text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors mb-6"
+      >
+        <i class="ph ph-arrow-left mr-2"></i> Volver al tablero
+      </a>
+      <div class="flex items-center gap-3 mb-4">
+        <span
+          class={`px-2.5 py-1 rounded-full text-xs font-semibold border ${meta.color}`}
+        >
+          {meta.icon}
+          {meta.label}
+        </span>
+        <time class="text-sm text-slate-500 font-medium">{absoluteDate}</time>
+      </div>
+      <h1 class="text-[24px] font-bold text-slate-900 leading-tight">
+        {pagina.data.title}
+      </h1>
+    </header>
+
+    <div
+      class="prose prose-slate max-w-none mb-10 text-slate-700 [&_a]:text-blue-600 [&_a]:underline hover:[&_a]:text-blue-800 [&_a]:transition-colors"
+    >
+      <Content />
+    </div>
+
+    {
+      pagina.data.sources && pagina.data.sources.length > 0 && (
+        <section class="border-t border-slate-200 pt-8 mt-8">
+          <h2 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+            <i class="ph ph-article" /> Fuentes de Inteligencia
+          </h2>
+          <div class="flex flex-col">
+            {pagina.data.sources.map((source, index) => (
+              <article class="group">
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center text-[16px] font-semibold text-blue-600 underline hover:text-blue-800 transition-colors mb-2"
+                >
+                  {source.title}
+                  <i class="ph ph-arrow-up-right ml-1 text-blue-500 group-hover:text-blue-800" />
+                </a>
+                <p class="text-[15px] font-normal text-slate-700 leading-[1.6]">
+                  {source.summary}
+                </p>
+                {index !== pagina.data.sources!.length - 1 && (
+                  <hr class="border-slate-100 my-6" />
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Módulo 5.2: Apoyo Voluntario -->
+    <section
+      class="mt-12 p-6 bg-white border border-slate-200 rounded-lg text-center shadow-sm"
+    >
+      <h3 class="text-lg font-bold text-slate-900 mb-2">
+        ¿Valorás este análisis?
+      </h3>
+      <p class="text-[15px] text-slate-600 mb-6">
+        El contenido de Memo Geopolítico es independiente. Tu apoyo permite
+        mantener el servidor y las fuentes activas.
+      </p>
+      <a
+        href="https://ko-fi.com/tu_usuario"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-6 py-2.5 rounded-md font-semibold text-white bg-slate-900 hover:bg-slate-800 transition-colors"
+      >
+        Apoyar en Ko-fi
+      </a>
+    </section>
+  </div>
+</Layout>

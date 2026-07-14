@@ -1,10 +1,11 @@
 ---
-title: 'Cumbre de la OTAN - Ankara 226'
-region: 'MEDITERRANEO ORIENTAL'
+title: 'Cumbre de la OTAN - Ankara 2026'
+region: 'EUROPA Y ESTADOS UNIDOS'
 date: 2026-07-15
-lat: 39.52
-lng: 32.50
+coordenadas: [39.93576, 32.883869]
 severity: 'low'
+en_mapa: true
+vinculo: 'nato-ankara2026'
 ---
 
-La [**cumbre de la OTAN de 2026 en Ankara**](https://www.aljazeera.com/news/2026/7/7/nato-summit-begins-who-is-attending-and-what-is-at-stake) estuvo marcada por la presión de **Donald Trump** para que los aliados aumenten su gasto militar al **5% del PIB para 2035**. Trump criticó la falta de apoyo de España y el Reino Unido en el conflicto con Irán.
+La [**cumbre de la OTAN de 2026 en Ankara**](https://www.nato.int/en/news-and-events/events/2026/07/overview---2026-nato-summit-in-ankara-) estuvo marcada por la presión de **Donald Trump** para que los aliados aumenten su gasto militar al **5% del PIB para 2035**.

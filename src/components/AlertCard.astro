@@ -1,6 +1,6 @@
 ---
 const { alerta, slug } = Astro.props;
-const { title, region, date, severity } = alerta.data;
+const { title, region, date, severity, vinculo } = alerta.data;
 
 const alertDate = new Date(date);
 const today = new Date();
@@ -13,82 +13,111 @@ if (alertDate.toDateString() === today.toDateString()) {
 } else if (alertDate.toDateString() === yesterday.toDateString()) {
   dateDisplay = 'Ayer';
 } else {
-  dateDisplay = alertDate.toLocaleDateString('es-ES', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  });
+  // Formato: DD MMM YYYY - Prohibido "anteayer"
+  const day = alertDate.getDate().toString().padStart(2, '0');
+  const month = alertDate
+    .toLocaleString('es-ES', { month: 'short' })
+    .substring(0, 3);
+  const year = alertDate.getFullYear();
+  dateDisplay = `${day} ${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
 }
 
+// Tokens mapeados al Tailwind config
 const styles = {
-  critical: { bg: 'bg-red-500', textGroupHover: 'group-hover:text-red-500' },
-  medium: { bg: 'bg-amber-500', textGroupHover: 'group-hover:text-amber-500' },
-  low: { bg: 'bg-yellow-400', textGroupHover: 'group-hover:text-yellow-500' },
+  critical: { bg: 'bg-critical', textGroupHover: 'group-hover:text-critical' },
+  high: { bg: 'bg-high', textGroupHover: 'group-hover:text-high' },
+  medium: { bg: 'bg-medium', textGroupHover: 'group-hover:text-medium' },
+  low: { bg: 'bg-low', textGroupHover: 'group-hover:text-low' },
 };
 
-const currentStyle = styles[severity as keyof typeof styles];
+const currentStyle = styles[severity as keyof typeof styles] || styles.low;
 ---
 
 <article
-  class="alert-card block group relative bg-white border border-slate-200 rounded-lg p-4 transition-all duration-200 hover:shadow-md"
+  class="alert-card block group relative bg-white border border-slate-200 rounded-[8px] p-4 transition-all duration-300 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]"
   data-slug={slug}
+  id={`card-${slug}`}
 >
-  <!-- Enlace principal invisible que cubre toda la tarjeta -->
   <a
-    href={`/alertas/${slug}`}
+    href={`/profundidad/${vinculo}`}
     class="absolute inset-0 z-10"
     aria-label={`Profundizar en ${title}`}></a>
 
-  <!-- Acento de Criticidad (Border-left) -->
+  <!-- Banda vertical sólida de 4px conectada a las variables @theme -->
   <div
-    class={`absolute left-0 top-0 bottom-0 w-1 rounded-l-lg ${currentStyle.bg}`}
+    class={`absolute left-0 top-0 bottom-0 w-[4px] rounded-l-[8px] ${currentStyle.bg}`}
   >
   </div>
 
-  <!-- Header -->
   <div
     class="flex justify-between items-center mb-2 pl-2 relative z-20 pointer-events-none"
   >
     <div class="flex items-center gap-1.5">
-      <span class={`w-1.5 h-1.5 rounded-full ${currentStyle.bg}`}></span>
-      <span
-        class="text-[12px] font-medium tracking-[0.05em] text-slate-500 uppercase"
+      <span class={`w-[6px] h-[6px] rounded-full ${currentStyle.bg}`}></span>
+      <span class="text-[11px] font-[600] text-[#64748B] uppercase"
         >{region}</span
       >
     </div>
     <span class="text-[12px] text-slate-400">{dateDisplay}</span>
   </div>
 
-  <!-- Cuerpo (Se elimina line-clamp-2) -->
+  <!-- Eliminado line-clamp-2: El título se mostrará completo -->
   <h3
-    class="text-[16px] font-semibold text-slate-900 leading-[1.2] mb-1 pl-2 relative z-20 pointer-events-none"
+    class="text-[15px] font-[700] text-slate-900 leading-[1.2] mb-1 pl-2 relative z-20 pointer-events-none"
   >
     {title}
   </h3>
 
-  <!-- Contenedor del Slot: Se elimina [&>p]:line-clamp-2 para que el texto se expanda según su longitud -->
-
-  <!--
-  <div class="text-[14px] font-normal text-slate-600 mb-4 pl-2 relative z-20 pointer-events-none [&>p]:m-0 [&_a]:text-inherit [&_a]:no-underline [&_strong]:font-semibold">
-  <slot />
-  </div>
--->
-
+  <!-- Eliminado line-clamp-2: El texto resumen es autónomo y no se cortará -->
   <div
-    class="text-[14px] font-normal text-slate-600 mb-4 pl-2 relative z-20 pointer-events-none [&>p]:m-0 [&_a]:text-blue-600 [&_a]:underline hover:[&_a]:text-blue-800 [&_a]:pointer-events-auto [&_a]:relative [&_a]:z-30 [&_strong]:font-semibold"
+    class="text-[13px] font-normal text-[#475569] mb-4 pl-2 relative z-20 pointer-events-none [&>p]:m-0"
   >
     <slot />
   </div>
 
-  <!-- Footer / Affordance -->
   <div class="flex justify-end relative z-20 pointer-events-none">
     <span
       class={`text-[13px] font-medium text-slate-500 flex items-center transition-colors duration-200 ${currentStyle.textGroupHover}`}
     >
       Para profundizar
       <i
-        class="ph ph-arrow-right ml-1 transition-transform duration-200 group-hover:translate-x-1"
+        class="ph ph-arrow-right ml-1 transition-transform duration-200 group-hover:translate-x-[4px]"
       ></i>
     </span>
   </div>
 </article>
+
+<script>
+  import { activeAlertId } from '../store/mapStore';
+
+  const cards = document.querySelectorAll('.alert-card');
+
+  activeAlertId.subscribe((activeId: string | null) => {
+    cards.forEach((card) => {
+      const htmlCard = card as HTMLElement;
+      if (htmlCard.dataset.slug === activeId) {
+        htmlCard.classList.add(
+          'ring-2',
+          'ring-slate-400',
+          'shadow-lg',
+          'scale-[1.02]',
+        );
+        htmlCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        htmlCard.classList.remove(
+          'ring-2',
+          'ring-slate-400',
+          'shadow-lg',
+          'scale-[1.02]',
+        );
+      }
+    });
+  });
+
+  cards.forEach((card) => {
+    card.addEventListener('mouseenter', () =>
+      activeAlertId.set((card as HTMLElement).dataset.slug || null),
+    );
+    card.addEventListener('mouseleave', () => activeAlertId.set(null));
+  });
+</script>
