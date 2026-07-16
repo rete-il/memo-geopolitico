@@ -1,10 +1,10 @@
 ---
-title: 'Alianza Estratégica y Hoja de Ruta India-Nueva Zelanda 2030'
+title: 'Alianza Estratégica y Hoja de Ruta India-Nueva Zelandia 2030'
 date: 2026-07-15
 severity: 'low'
 ---
 
-# Análisis de Inteligencia Geopolítica: Relación Estratégica India-Nueva Zelanda
+# Análisis de Inteligencia Geopolítica
 
 ## Contexto
 

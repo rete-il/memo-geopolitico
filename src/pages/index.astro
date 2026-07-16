@@ -1,4 +1,5 @@
 ---
+import Header from '../components/Header.astro';
 import Layout from '../layouts/Layout.astro';
 import SidebarAlertas from '../components/SidebarAlertas.astro';
 import MapaGlobal from '../components/MapaGlobal.astro';
@@ -51,6 +52,7 @@ const mapAlertasData = alertas
 ---
 
 <Layout>
+  <Header />
   <!-- Dependencias Cartográficas (Leaflet & MarkerCluster) -->
   <link
     rel="stylesheet"
@@ -125,30 +127,6 @@ const mapAlertasData = alertas
       pointer-events: none;
     }
   </style>
-
-  <header
-    class="bg-slate-900 text-white sticky top-0 z-50 shadow-md border-b border-slate-800"
-  >
-    <div
-      class="max-w-screen-2xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between"
-    >
-      <!-- Logo y Título -->
-      <div class="flex items-center gap-2">
-        <i class="ph-fill ph-globe-hemisphere-west text-2xl text-red-600"></i>
-        <h1 class="text-xl font-bold tracking-tight uppercase font-sans">
-          Memo Geopolítico
-        </h1>
-      </div>
-
-      <!-- Menú de Navegación rediseñado -->
-      <nav class="flex items-center gap-1">
-        <a href="/" class="px-4 py-2 ...">Inicio</a>
-        <a href="/escenarios" class="px-4 py-2 ...">Proyecciones</a>
-        <a href="/catalizadores" class="px-4 py-2 ...">Catalizadores</a>
-        <a href="/contacto" class="px-4 py-2 ...">Contacto</a>
-      </nav>
-    </div>
-  </header>
 
   <main
     class="flex-1 max-w-screen-2xl mx-auto w-full px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-slate-100"

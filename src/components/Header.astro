@@ -1,0 +1,33 @@
+---
+const pathname = Astro.url.pathname;
+---
+
+<header
+  class="bg-slate-900 text-white sticky top-0 z-50 shadow-md border-b border-slate-800"
+>
+  <div
+    class="max-w-screen-2xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between"
+  >
+    <div class="flex items-center gap-2">
+      <i class="ph-fill ph-globe-hemisphere-west text-2xl text-red-600"></i>
+      <h1 class="text-xl font-bold tracking-tight uppercase font-sans">
+        Memo Geopolítico
+      </h1>
+    </div>
+
+    <nav class="flex items-center gap-1">
+      <a
+        href="/"
+        class={`px-4 py-2 text-sm transition-colors ${pathname === '/' ? 'font-bold text-blue-400' : 'font-medium text-gray-300 hover:text-white'}`}
+      >
+        Inicio
+      </a>
+      <a
+        href="/directorio"
+        class={`px-4 py-2 text-sm transition-colors ${pathname.includes('/directorio') ? 'font-bold text-blue-400' : 'font-medium text-gray-300 hover:text-white'}`}
+      >
+        Directorio
+      </a>
+    </nav>
+  </div>
+</header>
