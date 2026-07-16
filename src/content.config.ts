@@ -20,7 +20,11 @@ export const collections = {
       title: z.string(),
       region: z.string(),
       date: z.coerce.date(),
-      coordenadas: z.tuple([z.number(), z.number()]),
+      // Se utiliza z.union para aceptar un par único o un array de pares
+      coordenadas: z.union([
+        z.tuple([z.number(), z.number()]),
+        z.array(z.tuple([z.number(), z.number()])),
+      ]),
       severity: z.enum(['critical', 'high', 'medium', 'low']),
       en_mapa: z.boolean().optional(),
       vinculo: z.string(),

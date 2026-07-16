@@ -38,20 +38,13 @@ const currentStyle = styles[severity as keyof typeof styles] || styles.low;
   data-slug={slug}
   id={`card-${slug}`}
 >
-  <a
-    href={`/profundidad/${vinculo}`}
-    class="absolute inset-0 z-10"
-    aria-label={`Profundizar en ${title}`}></a>
-
   <!-- Banda vertical sólida conectada a las variables @theme -->
   <div
     class={`absolute left-0 top-0 bottom-0 w-1 rounded-l-lg ${currentStyle.bg}`}
   >
   </div>
 
-  <div
-    class="flex justify-between items-center mb-2 pl-2 relative z-20 pointer-events-none"
-  >
+  <div class="flex justify-between items-center mb-2 pl-2">
     <div class="flex items-center gap-1.5">
       <span class={`w-1.5 h-1.5 rounded-full ${currentStyle.bg}`}></span>
       <span class="text-[11px] font-semibold text-[#64748B] uppercase"
@@ -61,27 +54,29 @@ const currentStyle = styles[severity as keyof typeof styles] || styles.low;
     <span class="text-[12px] text-slate-400">{dateDisplay}</span>
   </div>
 
-  <h3
-    class="text-[15px] font-bold text-slate-900 leading-[1.2] mb-1 pl-2 relative z-20 pointer-events-none"
-  >
+  <h3 class="text-[15px] font-bold text-slate-900 leading-[1.2] mb-1 pl-2">
     {title}
   </h3>
 
+  <!-- Contenedor del Slot con estilos para habilitar y pintar los enlaces del Markdown -->
   <div
-    class="text-[13px] font-normal text-[#475569] mb-4 pl-2 relative z-20 pointer-events-none [&>p]:m-0"
+    class="text-[13px] font-normal text-[#475569] mb-4 pl-2 [&>p]:m-0 [&_a]:text-blue-600 [&_a]:underline hover:[&_a]:text-blue-800 [&_a]:transition-colors"
   >
     <slot />
   </div>
 
-  <div class="flex justify-end relative z-20 pointer-events-none">
-    <span
+  <div class="flex justify-end">
+    <!-- Enlace específico a la página de profundidad (reemplaza al span anterior) -->
+    <a
+      href={`/profundidad/${vinculo}`}
       class={`text-[13px] font-medium text-slate-500 flex items-center transition-colors duration-200 ${currentStyle.textGroupHover}`}
+      aria-label={`Profundizar en ${title}`}
     >
       Para profundizar
       <i
         class="ph ph-arrow-right ml-1 transition-transform duration-200 group-hover:translate-x-1"
       ></i>
-    </span>
+    </a>
   </div>
 </article>
 

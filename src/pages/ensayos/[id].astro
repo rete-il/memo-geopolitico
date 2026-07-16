@@ -2,7 +2,6 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-// Generar rutas estáticas para cada ensayo
 export async function getStaticPaths() {
   const ensayos = await getCollection('ensayos');
   return ensayos.map((ensayo) => ({
@@ -50,17 +49,28 @@ const { Content } = await render(ensayo);
   >
     <article>
       <header class="mb-10 pb-8 border-b border-slate-200">
-        {
-          ensayo.data.tags && ensayo.data.tags.length > 0 && (
-            <div class="flex gap-2 mb-5">
-              {ensayo.data.tags.map((t: string) => (
-                <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-full uppercase tracking-wider">
-                  {t}
-                </span>
-              ))}
-            </div>
-          )
-        }
+        <!-- Contenedor de Etiquetas y Tipo de Documento -->
+        <div class="flex items-center gap-2 mb-5">
+          <!-- Etiqueta identificadora del tipo de documento -->
+          <span
+            class="px-3 py-1 bg-slate-800 text-white text-[10px] font-bold rounded-sm uppercase tracking-widest"
+          >
+            Ensayo
+          </span>
+
+          <!-- Etiquetas geográficas/temáticas -->
+          {
+            ensayo.data.tags && ensayo.data.tags.length > 0 && (
+              <div class="flex gap-2 border-l border-slate-300 pl-2">
+                {ensayo.data.tags.map((t: string) => (
+                  <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-full uppercase tracking-wider">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )
+          }
+        </div>
 
         <h1
           class="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-6 leading-tight"
@@ -73,11 +83,12 @@ const { Content } = await render(ensayo);
         >
           {ensayo.data.description}
         </p>
+
         <div
           class="flex items-center text-sm text-slate-500 font-sans bg-slate-50 p-4 rounded-xl border border-slate-100 my-6"
         >
           <div
-            class="w-10 h-10 flex-shrink-0 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 font-bold text-lg"
+            class="w-10 h-10 shrink-0 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 font-bold text-lg"
           >
             {ensayo.data.author.charAt(0)}
           </div>
@@ -98,66 +109,10 @@ const { Content } = await render(ensayo);
     </article>
 
     <!-- Contenedor donde se inyecta el Markdown -->
-    <div class="markdown-body font-serif text-lg text-slate-800">
+    <div
+      class="prose max-w-none font-serif text-lg text-slate-800 prose-headings:font-serif"
+    >
       <Content />
     </div>
   </main>
 </Layout>
-
-<style is:global>
-  /* Formato automático para el contenido generado desde Markdown */
-  .markdown-body p {
-    margin-bottom: 1.75rem;
-    line-height: 1.8;
-  }
-  .markdown-body h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin-top: 3rem;
-    margin-bottom: 1.25rem;
-  }
-  .markdown-body h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  .markdown-body ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    margin-bottom: 1.75rem;
-  }
-  .markdown-body li {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
-  }
-  .markdown-body blockquote {
-    border-left: 4px solid #dc2626;
-    background-color: #f8fafc;
-    padding: 1.25rem 1.5rem;
-    margin: 2rem 0;
-    font-style: italic;
-    color: #475569;
-    border-radius: 0 0.5rem 0.5rem 0;
-  }
-  .markdown-body a {
-    color: #dc2626;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    font-weight: 500;
-  }
-  .markdown-body a:hover {
-    color: #b91c1c;
-  }
-  .markdown-body img {
-    border-radius: 0.75rem;
-    margin: 2rem 0;
-    width: 100%;
-    height: auto;
-    border: 1px solid #e2e8f0;
-  }
-</style>

@@ -1,10 +1,29 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
-/* Diccionario de Severidad nativo para Tailwind v4 */
 @theme {
   --color-critical: #ef4444;
   --color-high: #f97316;
   --color-medium: #f59e0b;
   --color-low: #3b82f6;
+}
+
+/* 
+  Estilos directos fuera de @layer para garantizar que su especificidad 
+  sea mayor que la del plugin de tipografía, sin usar !important.
+*/
+.prose a {
+  color: #2563eb; /* Azul nativo */
+  text-decoration: underline;
+  text-decoration-color: #93c5fd;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition:
+    color 0.2s ease-in-out,
+    text-decoration-color 0.2s ease-in-out;
+}
+
+.prose a:hover {
+  color: #1e40af; /* Azul oscuro al pasar el cursor */
+  text-decoration-color: #1e40af;
 }

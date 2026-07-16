@@ -1,0 +1,25 @@
+{
+  "friccion_narrativa": [
+    {
+      "teatro": "Frontera Norte (Israel/Líbano)",
+      "escalada_nivel": 4,
+      "cobertura_pct": 30,
+      "alerta_asimetria": "Punto Ciego",
+      "insight": "Fuego de artillería sostenido, pero el foco mediático sigue en Gaza."
+    },
+    {
+      "teatro": "Mar de China Meridional",
+      "escalada_nivel": 2,
+      "cobertura_pct": 85,
+      "alerta_asimetria": "Sobrerrepresentado",
+      "insight": "Alta tensión retórica por ejercicios navales, sin riesgo cinético inminente."
+    },
+    {
+      "teatro": "Frente Oriental (Ucrania)",
+      "escalada_nivel": 5,
+      "cobertura_pct": 90,
+      "alerta_asimetria": "Sincrónico",
+      "insight": "Guerra de desgaste total alineada con la atención global."
+    }
+  ]
+}

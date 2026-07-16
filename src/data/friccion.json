@@ -1,17 +1,26 @@
 [
   {
-    "region": "Indo-Pacífico",
+    "region": "Indo Pacífico",
     "tendencia": "alza",
-    "analisis": "Texto descriptivo sobre la tendencia de esta región."
+    "analisis": "Texto descriptivo sobre la tendencia de esta región.",
+    "vinculo": "/profundidad/indo-pacifico"
   },
   {
     "region": "Europa del Este",
     "tendencia": "lateral",
-    "analisis": "Texto descriptivo sobre el estancamiento o situación actual."
+    "analisis": "Texto descriptivo sobre el estancamiento o situación actual.",
+    "vinculo": "/profundidad/europa-del-este"
   },
   {
     "region": "Medio Oriente",
     "tendencia": "baja",
-    "analisis": "Texto descriptivo sobre la desescalada en curso."
+    "analisis": "Texto descriptivo sobre la desescalada en curso.",
+    "vinculo": "/profundidad/medio-oriente"
+  },
+  {
+    "region": "África",
+    "tendencia": "alza",
+    "analisis": "Descripción de la situación geopolítica en la región.",
+    "vinculo": "/profundidad/africa"
   }
 ]

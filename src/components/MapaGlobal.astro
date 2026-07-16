@@ -103,15 +103,17 @@ const { mapData } = Astro.props;
       return weightB - weightA;
     });
 
-    const markerNodes: Record<string, any> = {};
+    // 1. CAMBIO AQUÍ: Ahora es un objeto de Arrays para guardar múltiples marcadores por ID
+    const markerNodes: Record<string, any[]> = {};
 
     mapData.forEach((alerta: any) => {
       const config =
         SEVERITY_CONFIG[alerta.severity] || SEVERITY_CONFIG.default;
 
+      // 2. CAMBIO AQUÍ: Se reemplazó id="dot-${alerta.id}" por class="alert-dot"
       const iconHtml = `
           <div class="relative flex items-center justify-center" style="width: 44px; height: 44px; margin-left: -14px; margin-top: -14px;">
-            <div id="dot-${alerta.id}" style="background-color: ${config.color}; color: ${config.color}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.2s; position: relative;"></div>
+            <div class="alert-dot" style="background-color: ${config.color}; color: ${config.color}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.2s; position: relative;"></div>
           </div>
         `;
 
@@ -125,7 +127,12 @@ const { mapData } = Astro.props;
       marker.on('mouseout', () => activeAlertId.set(null));
       marker.on('click', () => activeAlertId.set(alerta.id));
 
-      markerNodes[alerta.id] = marker;
+      // 3. CAMBIO AQUÍ: Si el array para este ID no existe, se crea, y luego se añade el marcador
+      if (!markerNodes[alerta.id]) {
+        markerNodes[alerta.id] = [];
+      }
+      markerNodes[alerta.id].push(marker);
+
       markersCluster.addLayer(marker);
     });
 
@@ -137,16 +144,21 @@ const { mapData } = Astro.props;
         .forEach((el) => el.classList.remove('marker-pulse'));
 
       if (activeId && markerNodes[activeId]) {
-        const marker = markerNodes[activeId];
-        const parentCluster = markersCluster.getVisibleParent(marker);
+        // 4. CAMBIO AQUÍ: Iteramos sobre todos los marcadores que comparten el mismo ID
+        markerNodes[activeId].forEach((marker) => {
+          const parentCluster = markersCluster.getVisibleParent(marker);
 
-        if (parentCluster && typeof parentCluster.spiderfy === 'function') {
-          const clusterIcon = parentCluster._icon?.firstChild;
-          if (clusterIcon) clusterIcon.classList.add('marker-pulse');
-        } else {
-          const dot = document.getElementById(`dot-${activeId}`);
-          if (dot) dot.classList.add('marker-pulse');
-        }
+          if (parentCluster && typeof parentCluster.spiderfy === 'function') {
+            const clusterIcon = parentCluster._icon?.firstChild;
+            if (clusterIcon) clusterIcon.classList.add('marker-pulse');
+          } else {
+            // Buscamos el elemento visual (el punto) dentro del HTML de este marcador específico
+            if (marker._icon) {
+              const dot = marker._icon.querySelector('.alert-dot');
+              if (dot) dot.classList.add('marker-pulse');
+            }
+          }
+        });
       }
     });
   });

@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SidebarAlertas from '../components/SidebarAlertas.astro';
 import MapaGlobal from '../components/MapaGlobal.astro';
 import ListaEnsayos from '../components/ListaEnsayos.astro';
-import Pronosticos from '../components/Pronosticos.astro';
+import PanelDerecho from '../components/PanelDerecho.astro';
 import { getCollection, render } from 'astro:content';
 
 const ensayos = await getCollection('ensayos');
@@ -33,12 +33,21 @@ const mapAlertasData = alertas
     const eventTime = new Date(alerta.data.date).getTime();
     return nowMs - eventTime <= FOURTEEN_DAYS_MS;
   })
-  .map((alerta) => ({
-    id: alerta.id,
-    lat: alerta.data.coordenadas[0],
-    lng: alerta.data.coordenadas[1],
-    severity: alerta.data.severity,
-  }));
+  .flatMap((alerta) => {
+    const coords = alerta.data.coordenadas;
+
+    // Le indicamos explícitamente a TypeScript la estructura del array
+    const arrayDeCoords = Array.isArray(coords[0])
+      ? (coords as [number, number][])
+      : ([coords] as [number, number][]);
+
+    return arrayDeCoords.map((coord) => ({
+      id: alerta.id,
+      lat: coord[0],
+      lng: coord[1],
+      severity: alerta.data.severity,
+    }));
+  });
 ---
 
 <Layout>
@@ -117,16 +126,27 @@ const mapAlertasData = alertas
     }
   </style>
 
-  <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+  <header
+    class="bg-slate-900 text-white sticky top-0 z-50 shadow-md border-b border-slate-800"
+  >
     <div
       class="max-w-screen-2xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between"
     >
+      <!-- Logo y Título -->
       <div class="flex items-center gap-2">
         <i class="ph-fill ph-globe-hemisphere-west text-2xl text-red-600"></i>
         <h1 class="text-xl font-bold tracking-tight uppercase font-sans">
           Memo Geopolítico
         </h1>
       </div>
+
+      <!-- Menú de Navegación rediseñado -->
+      <nav class="flex items-center gap-1">
+        <a href="/" class="px-4 py-2 ...">Inicio</a>
+        <a href="/escenarios" class="px-4 py-2 ...">Proyecciones</a>
+        <a href="/catalizadores" class="px-4 py-2 ...">Catalizadores</a>
+        <a href="/contacto" class="px-4 py-2 ...">Contacto</a>
+      </nav>
     </div>
   </header>
 
@@ -143,6 +163,6 @@ const mapAlertasData = alertas
     </section>
 
     <!-- 3. COLUMNA DERECHA -->
-    <Pronosticos />
+    <PanelDerecho />
   </main>
 </Layout>

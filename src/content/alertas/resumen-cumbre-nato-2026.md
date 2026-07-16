@@ -8,4 +8,4 @@ en_mapa: true
 vinculo: 'nato-ankara2026'
 ---
 
-La [**cumbre de la OTAN de 2026 en Ankara**](https://www.nato.int/en/news-and-events/events/2026/07/overview---2026-nato-summit-in-ankara-) estuvo marcada por la presión de **Donald Trump** para que los aliados aumenten su gasto militar al **5% del PIB para 2035**.
+La [cumbre de la OTAN de 2026 en Ankara](https://www.nato.int/en/news-and-events/events/2026/07/overview---2026-nato-summit-in-ankara-) estuvo marcada por la presión de Donald Trump para que los aliados aumenten su gasto militar al 5% del PIB para 2035.

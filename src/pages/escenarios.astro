@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import escenariosData from '../data/escenarios.json';
+---
+<Layout>
+  <main class="max-w-4xl mx-auto py-10 px-4">
+    <h1 class="text-3xl font-serif font-bold mb-6">Proyecciones Estratégicas</h1>
+    <div class="flex flex-col gap-4">
+      {escenariosData.map((foco) => (
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+           <!-- ... aquí copias el interior del bucle de escenarios que tenías en Pronosticos.astro ... -->
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>

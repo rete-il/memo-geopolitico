@@ -1,0 +1,75 @@
+---
+import monitores from '../data/monitores.json';
+---
+
+<aside class="lg:col-span-3 flex flex-col gap-6 w-full">
+  
+  <!-- Módulo Único: Matriz de Fricción vs. Narrativa -->
+  <section class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+    <header class="mb-5 flex justify-between items-end border-b border-slate-100 pb-3">
+      <div class="flex items-center gap-2">
+        <i class="ph ph-crosshair text-slate-500 text-lg"></i>
+        <h2 class="text-xs font-bold text-slate-900 uppercase tracking-widest">
+          Fricción vs. Narrativa
+        </h2>
+      </div>
+    </header>
+
+    <div class="space-y-6">
+      {monitores.friccion_narrativa.map((item) => (
+        <article>
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-sm font-bold text-slate-800">{item.teatro}</h3>
+            {item.alerta_asimetria === 'Punto Ciego' && (
+              <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-red-100 text-red-700">
+                Punto Ciego
+              </span>
+            )}
+            {item.alerta_asimetria === 'Sobrerrepresentado' && (
+              <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-blue-100 text-blue-700">
+                Ruido
+              </span>
+            )}
+            {item.alerta_asimetria === 'Sincrónico' && (
+              <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-slate-100 text-slate-700">
+                Sincrónico
+              </span>
+            )}
+          </div>
+
+          <!-- Métrica 1: Escalada Física -->
+          <div class="mb-2">
+            <div class="flex justify-between text-[10px] text-slate-500 uppercase font-semibold mb-1">
+              <span>Escalada (Nivel {item.escalada_nivel})</span>
+            </div>
+            <div class="flex gap-1">
+              {[1, 2, 3, 4, 5].map((step) => (
+                <div class={`h-1.5 flex-1 rounded-sm ${
+                  step <= item.escalada_nivel 
+                    ? (item.escalada_nivel >= 4 ? 'bg-red-600' : item.escalada_nivel >= 3 ? 'bg-orange-500' : 'bg-amber-400') 
+                    : 'bg-slate-100'
+                }`}></div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Métrica 2: Cobertura Mediática -->
+          <div class="mb-2">
+            <div class="flex justify-between text-[10px] text-slate-500 uppercase font-semibold mb-1">
+              <span>Foco Mediático</span>
+              <span>{item.cobertura_pct}%</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-1.5">
+              <div class="bg-blue-500 h-1.5 rounded-full" style={`width: ${item.cobertura_pct}%`}></div>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-600 italic leading-relaxed mt-2 border-l-2 border-slate-200 pl-2">
+            "{item.insight}"
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+</aside>
