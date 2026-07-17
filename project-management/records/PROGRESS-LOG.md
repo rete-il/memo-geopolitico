@@ -85,3 +85,31 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 - Cerrar PMAPP-009 como completado.
 - Confirmar los cambios mediante commit y push a la rama beta.
 
+
+## 2026-07-17 — QA-001 — Línea base de Astro Check completada
+
+### Completado
+
+- Se instalaron @astrojs/check y TypeScript.
+- Se agregó el script npm run check.
+- Se ejecutó la comprobación sobre 23 archivos.
+- El resultado fue 0 errores, 0 advertencias y 38 hints.
+
+### Validación
+
+- npm reconoce correctamente el script check.
+- astro check finaliza sin errores bloqueantes.
+- El build de producción continúa funcionando.
+
+### Problemas o bloqueos
+
+- No existen bloqueos.
+- Quedan 38 hints de mantenimiento y migración que serán tratados en una tarea independiente.
+
+### Próximo trabajo
+
+- Crear y ejecutar una tarea de reducción de hints.
+- Corregir APIs obsoletas de Astro y Zod.
+- Eliminar variables no utilizadas.
+- Revisar el script inline del mapa.
+

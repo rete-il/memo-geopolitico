@@ -150,16 +150,16 @@
     "epic": "Validación",
     "title": "Agregar astro check y dependencias necesarias",
     "priority": "P0",
-    "status": "ready",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "S",
-    "owner": "TBD",
+    "owner": "Rete",
     "dependencies": [],
     "progress": null,
     "acceptanceCriteria": [
       "npm run check finaliza sin errores bloqueantes."
     ],
-    "notes": ""
+    "notes": "Se instalaron @astrojs/check y TypeScript.\nSe agregó el script npm run check.\nAstro check analizó 23 archivos con 0 errores, 0 advertencias y 38 hints no bloqueantes.\nEl build de producción fue verificado correctamente.\nLos hints se gestionarán en una tarea separada de saneamiento técnico.\n\nSe inicia la incorporación de astro check para establecer la línea base de validación de Astro y TypeScript."
   },
   {
     "id": "FIX-001",
@@ -1558,5 +1558,29 @@
       "El dashboard inicia y permite guardar una actualización real en Windows."
     ],
     "notes": "Dashboard instalado y validado en Windows. Se comprobaron la carga de datos, la detección de la rama beta, la persistencia de cambios y la regeneración documental.\n---\nDashboard instalado y ejecutado correctamente en Windows.\nLectura de datos, resumen, navegación y validación comprobados."
+  },
+  {
+    "id": "QA-004",
+    "type": "QA",
+    "epic": "Calidad Técnica",
+    "title": "Reducir hints de Astro Check",
+    "priority": "P1",
+    "status": "ready",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "QA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Astro Check finaliza con 0 errores.",
+      "Astro Check finaliza con 0 advertencias.",
+      "Los hints corregibles quedan eliminados.",
+      "Los hints que no se corrijan quedan justificados y documentados.",
+      "No se modifica el comportamiento funcional del sitio.",
+      "npm run build finaliza correctamente."
+    ],
+    "notes": "Objetivo: analizar y reducir los hints detectados por Astro Check sin modificar el comportamiento funcional del sitio.\n\nLínea base registrada: 23 archivos analizados, 0 errores, 0 advertencias y 38 hints.\n\nGrupos iniciales identificados:\n- APIs obsoletas de Astro y Zod.\n- Variables o parámetros no utilizados.\n- Script inline de MapaGlobal.\n- Página de ensayos incompleta."
   }
 ]

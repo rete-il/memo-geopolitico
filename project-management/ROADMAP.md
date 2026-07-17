@@ -39,7 +39,7 @@
 | OPS-001 | OPS | P0 | ✓ Terminada | S | Registrar baseline de Netlify y producción |
 | OPS-002 | OPS | P1 | ◉ Lista | XS | Versionar Node con .nvmrc o .node-version |
 | OPS-003 | OPS | P1 | ◉ Lista | S | Versionar configuración Netlify en netlify.toml |
-| QA-001 | QA | P0 | ◉ Lista | S | Agregar astro check y dependencias necesarias |
+| QA-001 | QA | P0 | ✓ Terminada | S | Agregar astro check y dependencias necesarias |
 | FIX-001 | FIX | P0 | ◉ Lista | S | Corregir rutas inexistentes del encabezado |
 | FIX-002 | FIX | P0 | ◉ Lista | M | Completar el índice /ensayos/ |
 | FIX-003 | FIX | P0 | ◉ Lista | S | Retirar o normalizar placeholder Indo-Pacífico |
@@ -58,6 +58,7 @@
 | PMAPP-007 | PMAPP | P0 | ✓ Terminada | M | Implementar releases y registro de actividad |
 | PMAPP-008 | PMAPP | P0 | ✓ Terminada | S | Implementar copias de seguridad locales |
 | PMAPP-009 | PMAPP | P0 | ✓ Terminada | S | Validar dashboard local en Windows y documentar resultados |
+| QA-004 | QA | P1 | ◉ Lista | M | Reducir hints de Astro Check |
 
 ## Beta 1 — Fundamentos y sistema de diseño
 

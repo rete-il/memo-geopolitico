@@ -31,10 +31,11 @@
 | PMAPP-007 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | M | Rete | PMAPP-003 | Implementar releases y registro de actividad |
 | PMAPP-008 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | S | Rete | PMAPP-002 | Implementar copias de seguridad locales |
 | PMAPP-009 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | S | Rete | PMAPP-004, PMAPP-006, PMAPP-007, PMAPP-008 | Validar dashboard local en Windows y documentar resultados |
-| QA-001 | QA | Validación | P0 | ◉ Lista | S | TBD | — | Agregar astro check y dependencias necesarias |
+| QA-001 | QA | Validación | P0 | ✓ Terminada | S | Rete | — | Agregar astro check y dependencias necesarias |
 | A11Y-001 | A11Y | Baseline | P1 | ○ Propuesta | M | TBD | — | Registrar auditoría de teclado, contraste y headings |
 | OPS-002 | OPS | Reproducibilidad | P1 | ◉ Lista | XS | TBD | — | Versionar Node con .nvmrc o .node-version |
 | OPS-003 | OPS | Reproducibilidad | P1 | ◉ Lista | S | TBD | OPS-002 | Versionar configuración Netlify en netlify.toml |
+| QA-004 | QA | Calidad Técnica | P1 | ◉ Lista | M | Rete | QA-001 | Reducir hints de Astro Check |
 | SEO-001 | SEO | Social | P1 | ◉ Lista | S | TBD | — | Crear default-og.png y validar Open Graph |
 | SEO-002 | SEO | Indexación | P1 | ◉ Lista | M | TBD | OPS-003 | Publicar robots.txt seguro y sitemap |
 | UI-001 | FIX | Iconos | P1 | ◉ Lista | S | TBD | — | Cargar iconografía globalmente o empaquetarla |

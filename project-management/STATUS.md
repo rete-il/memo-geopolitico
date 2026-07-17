@@ -5,19 +5,19 @@
 **Actualizado:** 2026-07-17  
 **Rama de trabajo:** `beta`  
 **Release actual:** Beta 0 — Baseline, seguridad y control  
-**Avance ponderado total:** **10%**
+**Avance ponderado total:** **11%**
 
 ## Resumen
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 89 |
-| Terminados | 15 |
+| Total de work items | 90 |
+| Terminados | 16 |
 | En progreso | 0 |
 | En revisión | 0 |
 | Bloqueados | 0 |
 | Listos | 12 |
-| P0 abiertos | 22 |
+| P0 abiertos | 21 |
 
 ## Release actual
 
@@ -35,7 +35,6 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 |---|---|---|---|---|
 | OPS-002 | P1 | Versionar Node con .nvmrc o .node-version | beta-0-baseline | — |
 | OPS-003 | P1 | Versionar configuración Netlify en netlify.toml | beta-0-baseline | OPS-002 |
-| QA-001 | P0 | Agregar astro check y dependencias necesarias | beta-0-baseline | — |
 | FIX-001 | P0 | Corregir rutas inexistentes del encabezado | beta-0-baseline | — |
 | FIX-002 | P0 | Completar el índice /ensayos/ | beta-0-baseline | — |
 | FIX-003 | P0 | Retirar o normalizar placeholder Indo-Pacífico | beta-0-baseline | — |
@@ -45,12 +44,12 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 | UX-001 | P1 | Crear página 404 coherente con la marca | beta-0-baseline | — |
 | UI-001 | P1 | Cargar iconografía globalmente o empaquetarla | beta-0-baseline | — |
 | IA-001 | P0 | Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones | beta-1-foundations | FIX-001 |
+| QA-004 | P1 | Reducir hints de Astro Check | beta-0-baseline | QA-001 |
 
 ### P0 abiertos
 
 | ID | Estado | Trabajo | Release |
 |---|---|---|---|
-| QA-001 | Lista | Agregar astro check y dependencias necesarias | beta-0-baseline |
 | FIX-001 | Lista | Corregir rutas inexistentes del encabezado | beta-0-baseline |
 | FIX-002 | Lista | Completar el índice /ensayos/ | beta-0-baseline |
 | FIX-003 | Lista | Retirar o normalizar placeholder Indo-Pacífico | beta-0-baseline |
