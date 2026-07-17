@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import Header from '../../components/Header.astro';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -20,29 +21,8 @@ const { Content } = await render(ensayo);
   image={ensayo.data.coverImage || '/default-og.png'}
 >
   <!-- Barra de navegación superior -->
-  <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
-    <div
-      class="max-w-screen-2xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between"
-    >
-      <a
-        href="/"
-        class="flex items-center gap-2 hover:opacity-80 transition-opacity"
-      >
-        <span
-          class="text-xl font-bold tracking-tight uppercase font-sans flex items-center gap-2"
-        >
-          <span class="text-red-600 text-2xl">🌍</span> Memo Geopolítico
-        </span>
-      </a>
-      <a
-        href="/"
-        class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
-      >
-        &larr; Volver al Panorama
-      </a>
-    </div>
-  </header>
 
+  <Header />
   <!-- Contenedor principal de lectura -->
   <main
     class="max-w-3xl mx-auto px-6 py-12 bg-white min-h-screen shadow-sm border-x border-slate-200 mt-6 mb-12 rounded-t-xl"

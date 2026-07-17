@@ -28,6 +28,18 @@ const pathname = Astro.url.pathname;
       >
         Directorio
       </a>
+      <a
+        href="/profundizar"
+        class={`px-4 py-2 text-sm transition-colors ${pathname.includes('/profundizar') ? 'font-bold text-blue-400' : 'font-medium text-gray-300 hover:text-white'}`}
+      >
+        Para profundizar
+      </a>
+      <a
+        href="/analisis"
+        class={`px-4 py-2 text-sm transition-colors ${pathname.includes('/analisis') ? 'font-bold text-blue-400' : 'font-medium text-gray-300 hover:text-white'}`}
+      >
+        Análisis a fondo
+      </a>
     </nav>
   </div>
 </header>

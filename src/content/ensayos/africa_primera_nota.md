@@ -6,15 +6,6 @@ author: 'Equipo Editorial'
 tags: ['Africa']
 ---
 
----
-
-title: "África no es un país: regiones, recursos y poder en el continente decisivo del siglo XXI"
-author: "Ensayo geopolítico"
-date: "2026-07-16"
-lang: "es"
-
----
-
 ## Introducción: el singular que deforma un continente
 
 En el lenguaje cotidiano, África suele aparecer en singular. Se habla de “la crisis africana”, “la economía africana”, “la cultura africana” o “la política africana” como si el continente fuera una unidad homogénea, comparable con un país. La expresión parece inocente, pero contiene un error geopolítico profundo: borra fronteras, historias, sistemas políticos, redes comerciales, identidades lingüísticas, religiones, conflictos y proyectos nacionales radicalmente diferentes.
