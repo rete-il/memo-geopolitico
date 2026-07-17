@@ -12,24 +12,22 @@
 | Métrica | Valor |
 |---|---:|
 | Total de work items | 90 |
-| Terminados | 19 |
-| En progreso | 1 |
+| Terminados | 20 |
+| En progreso | 0 |
 | En revisión | 0 |
 | Bloqueados | 0 |
 | Listos | 8 |
-| P0 abiertos | 19 |
+| P0 abiertos | 18 |
 
 ## Release actual
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
 
-**Avance del release:** 73%
+**Avance del release:** 75%
 
 ### Trabajo activo
 
-| ID | Estado | Trabajo | Responsable | Progreso |
-|---|---|---|---|---:|
-| FIX-003 | ▶ En progreso | Retirar o normalizar placeholder Indo-Pacífico | Rete | 20% |
+No hay tareas marcadas como en progreso, revisión o bloqueadas.
 
 ### Próximas tareas listas
 
@@ -48,7 +46,6 @@
 
 | ID | Estado | Trabajo | Release |
 |---|---|---|---|
-| FIX-003 | En progreso | Retirar o normalizar placeholder Indo-Pacífico | beta-0-baseline |
 | FIX-004 | Lista | Corregir o retirar CTA Ko-fi provisional | beta-0-baseline |
 | IA-001 | Lista | Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones | beta-1-foundations |
 | REG-001 | Propuesta | Aprobar taxonomía de regiones, subregiones y teatros | beta-2-navigation-regions |

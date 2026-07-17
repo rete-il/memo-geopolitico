@@ -187,3 +187,29 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 - No existen bloqueos activos.
 - La navegación responsive y el menú hamburguesa se implementarán en una fase posterior.
 
+
+## 2026-07-17 — FIX-003 — Placeholder Indo-Pacífico retirado
+
+### Completado
+
+- Se eliminó la página provisional Indo-Pacífico.
+- Se retiraron las referencias documentales obsoletas.
+- Se comprobó que friccion.json ya no existía ni estaba rastreado.
+- Se confirmó que monitores.json continúa alimentando la columna derecha.
+
+### Validación
+
+- La ruta retirada devuelve 404.
+- Las páginas reales de profundidad funcionan correctamente.
+- La portada, el mapa y Fricción vs. Narrativa permanecen operativos.
+- Astro Check y el build finalizaron correctamente.
+
+### Problemas o bloqueos
+
+- No existen bloqueos.
+- Un futuro contenido sobre Indo-Pacífico deberá crearse como contenido editorial real.
+
+### Próximo trabajo
+
+- Localizar y corregir el CTA provisional de Ko-fi.
+

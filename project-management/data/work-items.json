@@ -207,14 +207,23 @@
     "epic": "Contenido",
     "title": "Retirar o normalizar placeholder Indo-Pacífico",
     "priority": "P0",
-    "status": "in_progress",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "S",
     "owner": "Rete",
     "dependencies": [],
-    "progress": 20,
-    "acceptanceCriteria": [],
-    "notes": "Se inicia la retirada del placeholder Indo-Pacífico.\n\nObjetivos:\n- Eliminar la página provisional.\n- Eliminar fuentes y textos demostrativos.\n- Comprobar que no existan enlaces hacia la ruta retirada.\n- Mantener operativas las páginas reales de profundidad."
+    "progress": null,
+    "acceptanceCriteria": [
+      "La página provisional Indo-Pacífico fue retirada.",
+      "No quedan textos demostrativos ni fuentes ficticias asociadas.",
+      "No existen enlaces internos hacia /profundidad/indo-pacifico/.",
+      "El build ya no genera la ruta provisional.",
+      "monitores.json continúa alimentando la columna Fricción vs. Narrativa.",
+      "Las páginas reales de profundidad continúan funcionando.",
+      "Astro Check finaliza con 0 errores, 0 advertencias y 0 hints.",
+      "npm run build finaliza correctamente."
+    ],
+    "notes": "Se retiró la página provisional /profundidad/indo-pacifico/.\n\nSe comprobó que src/data/friccion.json ya no estaba presente ni rastreado por Git.\nSe conservó src/data/monitores.json, que alimenta la columna Fricción vs. Narrativa.\n\nLa documentación fue actualizada para eliminar referencias obsoletas al placeholder.\n\nValidación:\n- La ruta retirada devuelve 404.\n- Las páginas reales de profundidad funcionan.\n- La portada, el mapa y la columna derecha permanecen operativos.\n- npm run check y npm run build finalizaron correctamente.\n\nSe inicia la retirada del placeholder Indo-Pacífico.\n\nObjetivos:\n- Eliminar la página provisional.\n- Eliminar fuentes y textos demostrativos.\n- Comprobar que no existan enlaces hacia la ruta retirada.\n- Mantener operativas las páginas reales de profundidad."
   },
   {
     "id": "FIX-004",

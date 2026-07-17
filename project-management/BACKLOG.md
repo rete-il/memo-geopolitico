@@ -15,7 +15,7 @@
 | DOC-001 | DOC | Baseline | P0 | ✓ Terminada | S | Rete | — | Incorporar documentación técnica v2 al repositorio |
 | FIX-001 | FIX | Navegación | P0 | ✓ Terminada | S | Rete | — | Corregir rutas inexistentes del encabezado |
 | FIX-002 | FIX | Contenido | P0 | ✓ Terminada | M | Rete | — | Completar el índice /ensayos/ |
-| FIX-003 | FIX | Contenido | P0 | ▶ En progreso | S | Rete | — | Retirar o normalizar placeholder Indo-Pacífico |
+| FIX-003 | FIX | Contenido | P0 | ✓ Terminada | S | Rete | — | Retirar o normalizar placeholder Indo-Pacífico |
 | FIX-004 | FIX | Conversión | P0 | ◉ Lista | XS | TBD | — | Corregir o retirar CTA Ko-fi provisional |
 | OPS-001 | OPS | Producción | P0 | ✓ Terminada | S | Rete | — | Registrar baseline de Netlify y producción |
 | PM-001 | PM | Gestión | P0 | ✓ Terminada | S | Rete | — | Separar documentación del estado actual y documentación de proyecto |
