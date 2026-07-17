@@ -113,3 +113,28 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 - Eliminar variables no utilizadas.
 - Revisar el script inline del mapa.
 
+
+## 2026-07-17 — QA-004 — Astro Check completamente saneado
+
+### Completado
+
+- Se redujeron los diagnósticos de Astro Check de 38 hints a 0.
+- Se migraron APIs obsoletas de Astro y Zod.
+- Se eliminaron imports, parámetros y variables sin uso.
+- Se corrigió el bloque JSON inline de MapaGlobal.
+
+### Validación
+
+- Astro Check analizó 23 archivos con 0 errores, 0 advertencias y 0 hints.
+- npm run build finalizó correctamente.
+
+### Problemas o bloqueos
+
+- No existen bloqueos.
+- La página de archivo de Ensayos continúa pendiente de implementación funcional.
+
+### Próximo trabajo
+
+- Continuar con las tareas restantes de Beta 0.
+- Revisar la advertencia de DOC-001 y completar sus criterios de aceptación.
+
