@@ -1385,5 +1385,178 @@
     "progress": null,
     "acceptanceCriteria": [],
     "notes": "No automatizar hasta validar el modelo editorial manual."
+  },
+  {
+    "id": "PMAPP-001",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Definir arquitectura del dashboard local",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-002",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Crear servidor local restringido a 127.0.0.1",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-003",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar lectura y resumen de datos canónicos",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-004",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar editor de work items",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-005",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar validación y dependencias circulares",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-006",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Integrar regeneración automática de Markdown",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-004",
+      "PMAPP-005"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-007",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar releases y registro de actividad",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-008",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar copias de seguridad locales",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-009",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Validar dashboard local en Windows y documentar resultados",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-004",
+      "PMAPP-006",
+      "PMAPP-007",
+      "PMAPP-008"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "El dashboard inicia y permite guardar una actualización real en Windows."
+    ],
+    "notes": "Dashboard instalado y validado en Windows. Se comprobaron la carga de datos, la detección de la rama beta, la persistencia de cambios y la regeneración documental.\n---\nDashboard instalado y ejecutado correctamente en Windows.\nLectura de datos, resumen, navegación y validación comprobados."
   }
 ]

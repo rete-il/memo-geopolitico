@@ -22,6 +22,15 @@
 | PM-002 | PM | Gestión | P0 | ✓ Terminada | M | Rete | PM-001 | Crear sistema dinámico de project management |
 | PM-003 | OPS | Git | P0 | ✓ Terminada | XS | Rete | — | Confirmar rama beta local y upstream origin/beta |
 | PM-004 | PM | Gestión | P0 | ✓ Terminada | XS | Rete | PM-002, PM-003 | Integrar project-management/ en la rama beta |
+| PMAPP-001 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | S | Rete | — | Definir arquitectura del dashboard local |
+| PMAPP-002 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | M | Rete | PMAPP-001 | Crear servidor local restringido a 127.0.0.1 |
+| PMAPP-003 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | M | Rete | PMAPP-002 | Implementar lectura y resumen de datos canónicos |
+| PMAPP-004 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | L | Rete | PMAPP-003 | Implementar editor de work items |
+| PMAPP-005 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | M | Rete | PMAPP-003 | Implementar validación y dependencias circulares |
+| PMAPP-006 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | S | Rete | PMAPP-004, PMAPP-005 | Integrar regeneración automática de Markdown |
+| PMAPP-007 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | M | Rete | PMAPP-003 | Implementar releases y registro de actividad |
+| PMAPP-008 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | S | Rete | PMAPP-002 | Implementar copias de seguridad locales |
+| PMAPP-009 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | S | Rete | PMAPP-004, PMAPP-006, PMAPP-007, PMAPP-008 | Validar dashboard local en Windows y documentar resultados |
 | QA-001 | QA | Validación | P0 | ◉ Lista | S | TBD | — | Agregar astro check y dependencias necesarias |
 | A11Y-001 | A11Y | Baseline | P1 | ○ Propuesta | M | TBD | — | Registrar auditoría de teclado, contraste y headings |
 | OPS-002 | OPS | Reproducibilidad | P1 | ◉ Lista | XS | TBD | — | Versionar Node con .nvmrc o .node-version |

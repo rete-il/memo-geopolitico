@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Project Dashboard · Memo Geopolítico</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegación del proyecto">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">MG</span>
+        <div><strong>Memo Geopolítico</strong><span>Project Dashboard</span></div>
+      </div>
+      <nav id="main-nav" class="nav-list">
+        <button class="nav-item is-active" data-view="overview"><span aria-hidden="true">◫</span> Resumen</button>
+        <button class="nav-item" data-view="items"><span aria-hidden="true">☷</span> Work items</button>
+        <button class="nav-item" data-view="releases"><span aria-hidden="true">◆</span> Releases</button>
+        <button class="nav-item" data-view="activity"><span aria-hidden="true">✎</span> Actividad</button>
+        <button class="nav-item" data-view="validation"><span aria-hidden="true">✓</span> Validación</button>
+      </nav>
+      <div class="sidebar-footer">
+        <span class="local-badge">Solo local</span>
+        <small>127.0.0.1 · sin credenciales</small>
+      </div>
+    </aside>
+
+    <main id="main" class="main-content">
+      <header class="topbar">
+        <button id="mobile-nav-toggle" class="icon-button mobile-only" aria-label="Abrir navegación" aria-expanded="false">☰</button>
+        <div>
+          <p class="eyebrow">REACONDICIONAMIENTO Y EXPANSIÓN</p>
+          <h1 id="page-title">Resumen del proyecto</h1>
+        </div>
+        <div class="top-actions">
+          <span id="branch-badge" class="branch-badge">Rama…</span>
+          <button id="refresh-button" class="button button-ghost">Recargar</button>
+          <button id="regenerate-button" class="button button-primary">Validar y regenerar</button>
+        </div>
+      </header>
+
+      <div id="global-message" class="message" role="status" hidden></div>
+
+      <section id="view-overview" class="view is-active" aria-labelledby="page-title">
+        <div id="summary-cards" class="summary-grid"></div>
+        <div class="dashboard-grid">
+          <section class="panel panel-wide">
+            <div class="panel-header"><div><p class="eyebrow">RELEASE ACTUAL</p><h2 id="current-release-title">—</h2></div><span id="current-release-progress" class="metric-pill">0%</span></div>
+            <div class="progress-track"><span id="current-release-bar"></span></div>
+            <p id="current-release-goal" class="muted"></p>
+          </section>
+          <section class="panel">
+            <div class="panel-header"><h2>Estado del repositorio</h2></div>
+            <dl id="git-summary" class="definition-list"></dl>
+          </section>
+          <section class="panel panel-wide">
+            <div class="panel-header"><h2>Trabajo activo</h2><button class="text-button" data-go-view="items" data-filter-status="in_progress,review,blocked">Ver todos</button></div>
+            <div id="active-items" class="task-list"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-header"><h2>Alertas de calidad</h2><button class="text-button" data-go-view="validation">Abrir</button></div>
+            <div id="quality-summary"></div>
+          </section>
+          <section class="panel panel-full">
+            <div class="panel-header"><h2>Avance por release</h2></div>
+            <div id="release-progress-list" class="release-progress-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="view-items" class="view" aria-labelledby="items-heading">
+        <div class="section-heading"><div><p class="eyebrow">BACKLOG CANÓNICO</p><h2 id="items-heading">Work items</h2></div><button id="new-item-button" class="button button-primary">Nueva tarea</button></div>
+        <div class="filters panel">
+          <label class="field field-grow"><span>Buscar</span><input id="filter-search" type="search" placeholder="ID, título, epic o responsable"></label>
+          <label class="field"><span>Estado</span><select id="filter-status"><option value="">Todos</option></select></label>
+          <label class="field"><span>Release</span><select id="filter-release"><option value="">Todas</option></select></label>
+          <label class="field"><span>Prioridad</span><select id="filter-priority"><option value="">Todas</option><option>P0</option><option>P1</option><option>P2</option><option>P3</option></select></label>
+          <button id="clear-filters" class="button button-ghost align-end">Limpiar</button>
+        </div>
+        <div class="panel table-panel">
+          <div class="table-meta"><span id="items-count">0 tareas</span><span class="muted">Selecciona una fila para editar</span></div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>ID</th><th>Trabajo</th><th>Release</th><th>Prioridad</th><th>Estado</th><th>Responsable</th><th>Avance</th></tr></thead>
+              <tbody id="items-table-body"></tbody>
+            </table>
+          </div>
+          <div id="items-empty" class="empty-state" hidden>No hay tareas para estos filtros.</div>
+        </div>
+      </section>
+
+      <section id="view-releases" class="view" aria-labelledby="releases-heading">
+        <div class="section-heading"><div><p class="eyebrow">PLAN DE ENTREGAS</p><h2 id="releases-heading">Releases</h2></div></div>
+        <div id="release-cards" class="release-card-grid"></div>
+      </section>
+
+      <section id="view-activity" class="view" aria-labelledby="activity-heading">
+        <div class="section-heading"><div><p class="eyebrow">REGISTRO DE AVANCES</p><h2 id="activity-heading">Actividad</h2></div></div>
+        <div class="activity-grid">
+          <form id="activity-form" class="panel form-stack">
+            <h3>Nueva entrada</h3>
+            <label class="field"><span>Fecha</span><input id="activity-date" type="date" required></label>
+            <label class="field"><span>Título</span><input id="activity-title" required maxlength="200" placeholder="Ej. Dashboard local integrado"></label>
+            <label class="field"><span>Completado <small>una línea por punto</small></span><textarea id="activity-completed" rows="5"></textarea></label>
+            <label class="field"><span>Validación</span><textarea id="activity-validation" rows="3"></textarea></label>
+            <label class="field"><span>Problemas o bloqueos</span><textarea id="activity-issues" rows="3"></textarea></label>
+            <label class="field"><span>Próximo trabajo</span><textarea id="activity-next" rows="3"></textarea></label>
+            <button class="button button-primary" type="submit">Guardar entrada</button>
+          </form>
+          <section class="panel"><div class="panel-header"><h3>Entradas recientes</h3></div><div id="activity-list" class="activity-list"></div></section>
+        </div>
+      </section>
+
+      <section id="view-validation" class="view" aria-labelledby="validation-heading">
+        <div class="section-heading"><div><p class="eyebrow">INTEGRIDAD DEL SISTEMA</p><h2 id="validation-heading">Validación</h2></div><button id="validation-run-button" class="button button-primary">Ejecutar validación</button></div>
+        <div id="validation-summary" class="summary-grid compact"></div>
+        <div class="validation-grid">
+          <section class="panel"><div class="panel-header"><h3>Errores</h3></div><ul id="validation-errors" class="issue-list"></ul></section>
+          <section class="panel"><div class="panel-header"><h3>Advertencias</h3></div><ul id="validation-warnings" class="issue-list"></ul></section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="item-dialog" class="dialog">
+    <form id="item-form" method="dialog">
+      <div class="dialog-header"><div><p class="eyebrow">WORK ITEM</p><h2 id="item-dialog-title">Editar tarea</h2></div><button type="button" id="close-item-dialog" class="icon-button" aria-label="Cerrar">×</button></div>
+      <div class="form-grid">
+        <label class="field"><span>ID</span><input id="item-id" required pattern="[A-Za-z][A-Za-z0-9]*-[0-9]{3,}"></label>
+        <label class="field"><span>Tipo</span><input id="item-type" required maxlength="20"></label>
+        <label class="field field-full"><span>Título</span><input id="item-title" required maxlength="300"></label>
+        <label class="field"><span>Epic</span><input id="item-epic" required maxlength="100"></label>
+        <label class="field"><span>Responsable</span><input id="item-owner" maxlength="100"></label>
+        <label class="field"><span>Prioridad</span><select id="item-priority"><option>P0</option><option>P1</option><option>P2</option><option>P3</option></select></label>
+        <label class="field"><span>Tamaño</span><select id="item-size"><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option></select></label>
+        <label class="field"><span>Estado</span><select id="item-status"></select></label>
+        <label class="field"><span>Progreso (%)</span><input id="item-progress" type="number" min="0" max="100"></label>
+        <label class="field field-full"><span>Release</span><select id="item-release"></select></label>
+        <label class="field field-full"><span>Dependencias <small>IDs separados por coma</small></span><input id="item-dependencies" placeholder="PM-001, QA-001"></label>
+        <label class="field field-full"><span>Criterios de aceptación <small>uno por línea</small></span><textarea id="item-criteria" rows="5"></textarea></label>
+        <label class="field field-full"><span>Notas</span><textarea id="item-notes" rows="5"></textarea></label>
+      </div>
+      <div id="item-form-errors" class="form-errors" role="alert" hidden></div>
+      <div class="dialog-actions"><button type="button" id="cancel-item-dialog" class="button button-ghost">Cancelar</button><button type="submit" class="button button-primary">Guardar y regenerar</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="release-dialog" class="dialog dialog-small">
+    <form id="release-form" method="dialog">
+      <div class="dialog-header"><div><p class="eyebrow">RELEASE</p><h2 id="release-dialog-title">Editar release</h2></div><button type="button" id="close-release-dialog" class="icon-button" aria-label="Cerrar">×</button></div>
+      <input id="release-id" type="hidden">
+      <div class="form-stack">
+        <label class="field"><span>Objetivo</span><textarea id="release-goal" rows="5"></textarea></label>
+        <label class="field"><span>Fecha objetivo</span><input id="release-target" maxlength="100"></label>
+        <label class="field"><span>Criterios de salida <small>uno por línea</small></span><textarea id="release-criteria" rows="8"></textarea></label>
+        <label class="checkbox-field"><input id="release-current" type="checkbox"><span>Establecer como release actual</span></label>
+      </div>
+      <div class="dialog-actions"><button type="button" id="cancel-release-dialog" class="button button-ghost">Cancelar</button><button type="submit" class="button button-primary">Guardar y regenerar</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

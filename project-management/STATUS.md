@@ -5,14 +5,14 @@
 **Actualizado:** 2026-07-17  
 **Rama de trabajo:** `beta`  
 **Release actual:** Beta 0 — Baseline, seguridad y control  
-**Avance ponderado total:** **3%**
+**Avance ponderado total:** **10%**
 
 ## Resumen
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 80 |
-| Terminados | 6 |
+| Total de work items | 89 |
+| Terminados | 15 |
 | En progreso | 0 |
 | En revisión | 0 |
 | Bloqueados | 0 |
@@ -23,7 +23,7 @@
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
 
-**Avance del release:** 31%
+**Avance del release:** 59%
 
 ### Trabajo activo
 

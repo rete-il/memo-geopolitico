@@ -98,3 +98,13 @@ No fusionar `beta` a `main` hasta cumplir [`QUALITY-GATES.md`](./QUALITY-GATES.m
 - Todo cambio de URL debe incluir redirect y prueba.
 - Todo cambio visual debe revisarse en móvil y escritorio.
 - Una tarea `done` debe tener evidencia de validación.
+
+## Dashboard local
+
+La interfaz habitual de actualización se inicia con:
+
+```powershell
+node project-management/app/server.mjs --open
+```
+
+Guía: [`DASHBOARD-LOCAL.md`](./DASHBOARD-LOCAL.md). La edición manual descrita en `ACTUALIZAR-PROGRESO.md` permanece como procedimiento alternativo y de recuperación.

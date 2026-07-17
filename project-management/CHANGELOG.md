@@ -1,5 +1,11 @@
 # Changelog de gestión del proyecto
 
+## 2.0 — 2026-07-17
+
+- Se incorpora Project Dashboard v0.1 para mantener tareas, releases, registros y paneles desde una interfaz local.
+- Se agregan validación ampliada, backups automáticos y lectura de estado Git.
+
+
 ## 1.1 — 17 de julio de 2026
 
 - Se agrega `ACTUALIZAR-PROGRESO.md` con la secuencia operativa completa para actualizar work items, registros, paneles dinámicos y la rama `beta`.

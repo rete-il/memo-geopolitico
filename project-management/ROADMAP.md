@@ -4,7 +4,7 @@
 
 | Secuencia | Release | Objetivo | Avance | Estado |
 |---:|---|---|---:|---|
-| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 31% | Actual |
+| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 59% | Actual |
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
 | 2 | Beta 2 — Navegación, menú y regiones | Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas. | 0% | Planificada |
 | 3 | Beta 3 — Monitor y Fricción vs. Narrativa | Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones. | 0% | Planificada |
@@ -17,7 +17,7 @@
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.  
 **Fecha objetivo:** TBD  
-**Avance:** 31%
+**Avance:** 59%
 
 ### Criterios de salida
 
@@ -49,6 +49,15 @@
 | UX-001 | UX | P1 | ◉ Lista | S | Crear página 404 coherente con la marca |
 | A11Y-001 | A11Y | P1 | ○ Propuesta | M | Registrar auditoría de teclado, contraste y headings |
 | UI-001 | FIX | P1 | ◉ Lista | S | Cargar iconografía globalmente o empaquetarla |
+| PMAPP-001 | PMAPP | P0 | ✓ Terminada | S | Definir arquitectura del dashboard local |
+| PMAPP-002 | PMAPP | P0 | ✓ Terminada | M | Crear servidor local restringido a 127.0.0.1 |
+| PMAPP-003 | PMAPP | P0 | ✓ Terminada | M | Implementar lectura y resumen de datos canónicos |
+| PMAPP-004 | PMAPP | P0 | ✓ Terminada | L | Implementar editor de work items |
+| PMAPP-005 | PMAPP | P0 | ✓ Terminada | M | Implementar validación y dependencias circulares |
+| PMAPP-006 | PMAPP | P0 | ✓ Terminada | S | Integrar regeneración automática de Markdown |
+| PMAPP-007 | PMAPP | P0 | ✓ Terminada | M | Implementar releases y registro de actividad |
+| PMAPP-008 | PMAPP | P0 | ✓ Terminada | S | Implementar copias de seguridad locales |
+| PMAPP-009 | PMAPP | P0 | ✓ Terminada | S | Validar dashboard local en Windows y documentar resultados |
 
 ## Beta 1 — Fundamentos y sistema de diseño
 

@@ -53,3 +53,35 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 
 -
 ```
+
+## 2026-07-17 — Dashboard local v0.1 instalado y validado
+
+### Completado
+
+- Se instaló el Project Dashboard v0.1.
+- El servidor local quedó operativo en 127.0.0.1:4322.
+- Se confirmó que el dashboard detecta correctamente la rama beta.
+- Se cargaron 89 work items.
+- Se verificó la visualización del resumen, releases y work items.
+
+### Validación
+
+- El dashboard inicia correctamente en Windows.
+- La rama actual y la rama esperada son beta.
+- La validación estructural informa 0 errores.
+- La información de project-management se carga correctamente.
+- La interfaz funciona únicamente en localhost.
+
+### Problemas o bloqueos
+
+- Existe una advertencia no bloqueante pendiente de revisión en la sección Validación.
+- No se detectaron errores que impidan utilizar el dashboard.
+
+### Próximo trabajo
+
+- Revisar la advertencia de validación.
+- Comprobar la edición y persistencia de PMAPP-009.
+- Ejecutar Validar y regenerar.
+- Cerrar PMAPP-009 como completado.
+- Confirmar los cambios mediante commit y push a la rama beta.
+
