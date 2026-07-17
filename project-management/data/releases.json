@@ -1,0 +1,107 @@
+[
+  {
+    "id": "beta-0-baseline",
+    "name": "Beta 0 — Baseline, seguridad y control",
+    "sequence": 0,
+    "goal": "Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Rama beta confirmada y vinculada a origin/beta.",
+      "Build reproducible con versión de Node documentada.",
+      "Rutas críticas, SEO básico y assets sociales corregidos.",
+      "astro check disponible y sin errores bloqueantes.",
+      "Baseline visual y técnico registrado."
+    ]
+  },
+  {
+    "id": "beta-1-foundations",
+    "name": "Beta 1 — Fundamentos y sistema de diseño",
+    "sequence": 1,
+    "goal": "Crear contratos, tokens, componentes UI y shell de sitio reutilizable.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Tokens visuales centralizados.",
+      "Componentes base documentados y accesibles.",
+      "Layout, header y SEO desacoplados.",
+      "Tipos principales y validaciones incorporados."
+    ]
+  },
+  {
+    "id": "beta-2-navigation-regions",
+    "name": "Beta 2 — Navegación, menú y regiones",
+    "sequence": 2,
+    "goal": "Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Taxonomía regional aprobada y centralizada.",
+      "Menú móvil accesible y mega-menú de escritorio funcional.",
+      "Rutas regionales generadas dinámicamente.",
+      "Al menos una página funcional por macroregión.",
+      "Datos e interpretación editorial claramente diferenciados."
+    ]
+  },
+  {
+    "id": "beta-3-monitor-friction",
+    "name": "Beta 3 — Monitor y Fricción vs. Narrativa",
+    "sequence": 3,
+    "goal": "Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Modelo y metodología publicados.",
+      "Datos manuales con fuentes, confianza y fecha de actualización.",
+      "Panel responsive y accesible.",
+      "Alternativa textual al mapa.",
+      "Prototipo reemplazado por datos reales o rotulado como experimental."
+    ]
+  },
+  {
+    "id": "beta-4-editorial",
+    "name": "Beta 4 — Experiencia editorial",
+    "sequence": 4,
+    "goal": "Normalizar análisis, ensayos, fuentes, metadatos, navegación relacionada y lectura extensa.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Índices de análisis y ensayos completos.",
+      "Plantillas editoriales compartidas.",
+      "Índice de contenidos, fuentes y relacionados.",
+      "Metadatos y JSON-LD validados.",
+      "Lectura móvil y escritorio aprobada."
+    ]
+  },
+  {
+    "id": "beta-5-directory",
+    "name": "Beta 5 — Directorio modular",
+    "sequence": 5,
+    "goal": "Separar presentación, lógica y datos del Directorio y mejorar filtros, móvil y accesibilidad.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Página monolítica descompuesta.",
+      "Filtros compartibles mediante URL.",
+      "Tabla y tarjetas móviles equivalentes.",
+      "Estados vacíos, error y carga definidos.",
+      "Exportación y modal cubiertos por pruebas."
+    ]
+  },
+  {
+    "id": "beta-6-hardening",
+    "name": "Beta 6 — QA, rendimiento y preparación de release",
+    "sequence": 6,
+    "goal": "Cerrar calidad, accesibilidad, seguridad, rendimiento y documentación antes de fusionar a main.",
+    "target": "TBD",
+    "exitCriteria": [
+      "CI y pruebas automatizadas activas.",
+      "Lighthouse y presupuestos de rendimiento aceptados.",
+      "Cabeceras y política de seguridad revisadas.",
+      "Smoke test de producción definido.",
+      "Checklist de release aprobado y rollback documentado."
+    ]
+  },
+  {
+    "id": "future",
+    "name": "Futuro — Capacidades posteriores",
+    "sequence": 99,
+    "goal": "Funciones no bloqueantes para el reacondicionamiento inicial.",
+    "target": "Sin compromiso",
+    "exitCriteria": []
+  }
+]
