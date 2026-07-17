@@ -89,9 +89,17 @@
     "size": "S",
     "owner": "Rete",
     "dependencies": [],
-    "progress": 90,
-    "acceptanceCriteria": [],
-    "notes": "Documentación técnica v2 incorporada en la rama beta."
+    "progress": null,
+    "acceptanceCriteria": [
+      "La documentación técnica versión 2 está incorporada en docs/.",
+      "docs/README.md funciona como punto de entrada.",
+      "La arquitectura actual, rutas, contenidos y operación local están documentados.",
+      "El entorno de producción en Netlify está documentado.",
+      "Las evidencias de build, dominio y HTTPS están incorporadas.",
+      "La documentación distingue el estado actual de las propuestas futuras.",
+      "La incorporación documental no modifica el funcionamiento del sitio."
+    ],
+    "notes": "Documentación técnica v2 incorporada y verificada en la rama beta.\nLos planes futuros se administran separadamente desde project-management/.\n---\n\nDocumentación técnica v2 incorporada en la rama beta."
   },
   {
     "id": "OPS-001",
@@ -167,16 +175,16 @@
     "epic": "Navegación",
     "title": "Corregir rutas inexistentes del encabezado",
     "priority": "P0",
-    "status": "ready",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "S",
-    "owner": "TBD",
+    "owner": "Rete",
     "dependencies": [],
     "progress": null,
     "acceptanceCriteria": [
       "Ningún enlace principal devuelve 404."
     ],
-    "notes": ""
+    "notes": "La navegación principal quedó normalizada con rutas funcionales a Inicio, Directorio y Ensayos.\nLa marca enlaza al inicio.\nSe eliminaron rutas inexistentes.\nSe incorporaron estados activos y foco accesible.\nLa ruta /ensayos/ quedó implementada y validada.\nLa regresión temporal de MapaGlobal fue restaurada y verificada.\n---\nSe inicia la normalización de la navegación principal.\n\nObjetivos:\n- Eliminar enlaces hacia rutas inexistentes.\n- Sustituir las denominaciones provisionales por secciones editoriales claras.\n- Mantener compatibilidad con las rutas actualmente publicadas.\n- Preparar la navegación para el futuro menú regional y hamburguesa."
   },
   {
     "id": "FIX-002",
@@ -184,14 +192,14 @@
     "epic": "Contenido",
     "title": "Completar el índice /ensayos/",
     "priority": "P0",
-    "status": "ready",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "M",
-    "owner": "TBD",
+    "owner": "Rete",
     "dependencies": [],
     "progress": null,
     "acceptanceCriteria": [],
-    "notes": ""
+    "notes": "Se implementó el índice funcional de /ensayos/.\n\nResultado:\n- La colección de ensayos se obtiene mediante Astro Content Collections.\n- Los ensayos se ordenan por fecha descendente.\n- Se muestran tarjetas editoriales con título, descripción, fecha y etiquetas.\n- Cada tarjeta enlaza correctamente con su ensayo individual.\n- Se incorporó paginación preparada para el crecimiento del archivo.\n- Se incorporó un estado vacío para ausencia de contenidos.\n- La sección Ensayos permanece resaltada en la navegación.\n- La portada y MapaGlobal continúan funcionando correctamente.\n\nValidación:\n- npm run check: 0 errores, 0 advertencias y 0 hints.\n- npm run build: correcto.\n- /ensayos/ validado visualmente.\n- Enlaces individuales comprobados.\n\n\nSe implementó el índice funcional de /ensayos/.\n\nLa página ahora:\n- obtiene la colección ensayos;\n- ordena los contenidos por fecha;\n- renderiza tarjetas editoriales;\n- enlaza con los ensayos individuales;\n- admite paginación;\n- contempla el estado sin resultados.\n\nPendiente:\n- validación visual;\n- Astro Check;\n- build;\n- comprobación de enlaces."
   },
   {
     "id": "FIX-003",

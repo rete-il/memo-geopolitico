@@ -1,5 +1,34 @@
 ---
 const pathname = Astro.url.pathname;
+
+const navItems = [
+  {
+    label: 'Inicio',
+    href: '/',
+  },
+  {
+    label: 'Directorio',
+    href: '/directorio/',
+  },
+  {
+    label: 'Ensayos',
+    href: '/ensayos/',
+  },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') {
+    return pathname === '/';
+  }
+
+  const normalizedHref = href.replace(/\/$/, '');
+
+  return (
+    pathname === normalizedHref ||
+    pathname === `${normalizedHref}/` ||
+    pathname.startsWith(`${normalizedHref}/`)
+  );
+}
 ---
 
 <header
@@ -8,38 +37,44 @@ const pathname = Astro.url.pathname;
   <div
     class="max-w-screen-2xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between"
   >
-    <div class="flex items-center gap-2">
-      <i class="ph-fill ph-globe-hemisphere-west text-2xl text-red-600"></i>
-      <h1 class="text-xl font-bold tracking-tight uppercase font-sans">
-        Memo Geopolítico
-      </h1>
-    </div>
+    <a
+      href="/"
+      class="flex items-center gap-2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+      aria-label="Ir al inicio de Memo Geopolítico"
+    >
+      <i
+        class="ph-fill ph-globe-hemisphere-west text-2xl text-red-600"
+        aria-hidden="true"></i>
 
-    <nav class="flex items-center gap-1">
-      <a
-        href="/"
-        class={`px-4 py-2 text-sm transition-colors ${pathname === '/' ? 'font-bold text-blue-400' : 'font-medium text-gray-300 hover:text-white'}`}
-      >
-        Inicio
-      </a>
-      <a
-        href="/directorio"
-        class={`px-4 py-2 text-sm transition-colors ${pathname.includes('/directorio') ? 'font-bold text-blue-400' : 'font-medium text-gray-300 hover:text-white'}`}
-      >
-        Directorio
-      </a>
-      <a
-        href="/profundizar"
-        class={`px-4 py-2 text-sm transition-colors ${pathname.includes('/profundizar') ? 'font-bold text-blue-400' : 'font-medium text-gray-300 hover:text-white'}`}
-      >
-        Para profundizar
-      </a>
-      <a
-        href="/analisis"
-        class={`px-4 py-2 text-sm transition-colors ${pathname.includes('/analisis') ? 'font-bold text-blue-400' : 'font-medium text-gray-300 hover:text-white'}`}
-      >
-        Análisis a fondo
-      </a>
+      <span class="text-xl font-bold tracking-tight uppercase font-sans">
+        Memo Geopolítico
+      </span>
+    </a>
+
+    <nav class="flex items-center gap-1" aria-label="Navegación principal">
+      {
+        navItems.map((item) => {
+          const active = isActive(item.href);
+
+          return (
+            <a
+              href={item.href}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'px-4 py-2 text-sm rounded-sm transition-colors',
+                'focus-visible:outline-none focus-visible:ring-2',
+                'focus-visible:ring-blue-400 focus-visible:ring-offset-2',
+                'focus-visible:ring-offset-slate-900',
+                active
+                  ? 'font-bold text-blue-400'
+                  : 'font-medium text-gray-300 hover:text-white',
+              ]}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
     </nav>
   </div>
 </header>

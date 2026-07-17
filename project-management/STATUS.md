@@ -5,25 +5,25 @@
 **Actualizado:** 2026-07-17  
 **Rama de trabajo:** `beta`  
 **Release actual:** Beta 0 — Baseline, seguridad y control  
-**Avance ponderado total:** **11%**
+**Avance ponderado total:** **13%**
 
 ## Resumen
 
 | Métrica | Valor |
 |---|---:|
 | Total de work items | 90 |
-| Terminados | 17 |
+| Terminados | 19 |
 | En progreso | 0 |
 | En revisión | 0 |
 | Bloqueados | 0 |
-| Listos | 11 |
-| P0 abiertos | 21 |
+| Listos | 9 |
+| P0 abiertos | 19 |
 
 ## Release actual
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
 
-**Avance del release:** 64%
+**Avance del release:** 72%
 
 ### Trabajo activo
 
@@ -35,8 +35,6 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 |---|---|---|---|---|
 | OPS-002 | P1 | Versionar Node con .nvmrc o .node-version | beta-0-baseline | — |
 | OPS-003 | P1 | Versionar configuración Netlify en netlify.toml | beta-0-baseline | OPS-002 |
-| FIX-001 | P0 | Corregir rutas inexistentes del encabezado | beta-0-baseline | — |
-| FIX-002 | P0 | Completar el índice /ensayos/ | beta-0-baseline | — |
 | FIX-003 | P0 | Retirar o normalizar placeholder Indo-Pacífico | beta-0-baseline | — |
 | FIX-004 | P0 | Corregir o retirar CTA Ko-fi provisional | beta-0-baseline | — |
 | SEO-001 | P1 | Crear default-og.png y validar Open Graph | beta-0-baseline | — |
@@ -49,8 +47,6 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 
 | ID | Estado | Trabajo | Release |
 |---|---|---|---|
-| FIX-001 | Lista | Corregir rutas inexistentes del encabezado | beta-0-baseline |
-| FIX-002 | Lista | Completar el índice /ensayos/ | beta-0-baseline |
 | FIX-003 | Lista | Retirar o normalizar placeholder Indo-Pacífico | beta-0-baseline |
 | FIX-004 | Lista | Corregir o retirar CTA Ko-fi provisional | beta-0-baseline |
 | IA-001 | Lista | Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones | beta-1-foundations |

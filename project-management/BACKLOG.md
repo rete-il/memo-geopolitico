@@ -13,8 +13,8 @@
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|
 | DOC-001 | DOC | Baseline | P0 | ✓ Terminada | S | Rete | — | Incorporar documentación técnica v2 al repositorio |
-| FIX-001 | FIX | Navegación | P0 | ◉ Lista | S | TBD | — | Corregir rutas inexistentes del encabezado |
-| FIX-002 | FIX | Contenido | P0 | ◉ Lista | M | TBD | — | Completar el índice /ensayos/ |
+| FIX-001 | FIX | Navegación | P0 | ✓ Terminada | S | Rete | — | Corregir rutas inexistentes del encabezado |
+| FIX-002 | FIX | Contenido | P0 | ✓ Terminada | M | Rete | — | Completar el índice /ensayos/ |
 | FIX-003 | FIX | Contenido | P0 | ◉ Lista | S | TBD | — | Retirar o normalizar placeholder Indo-Pacífico |
 | FIX-004 | FIX | Conversión | P0 | ◉ Lista | XS | TBD | — | Corregir o retirar CTA Ko-fi provisional |
 | OPS-001 | OPS | Producción | P0 | ✓ Terminada | S | Rete | — | Registrar baseline de Netlify y producción |

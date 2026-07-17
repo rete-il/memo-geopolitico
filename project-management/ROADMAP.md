@@ -4,7 +4,7 @@
 
 | Secuencia | Release | Objetivo | Avance | Estado |
 |---:|---|---|---:|---|
-| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 64% | Actual |
+| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 72% | Actual |
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
 | 2 | Beta 2 — Navegación, menú y regiones | Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas. | 0% | Planificada |
 | 3 | Beta 3 — Monitor y Fricción vs. Narrativa | Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones. | 0% | Planificada |
@@ -17,7 +17,7 @@
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.  
 **Fecha objetivo:** TBD  
-**Avance:** 64%
+**Avance:** 72%
 
 ### Criterios de salida
 
@@ -40,8 +40,8 @@
 | OPS-002 | OPS | P1 | ◉ Lista | XS | Versionar Node con .nvmrc o .node-version |
 | OPS-003 | OPS | P1 | ◉ Lista | S | Versionar configuración Netlify en netlify.toml |
 | QA-001 | QA | P0 | ✓ Terminada | S | Agregar astro check y dependencias necesarias |
-| FIX-001 | FIX | P0 | ◉ Lista | S | Corregir rutas inexistentes del encabezado |
-| FIX-002 | FIX | P0 | ◉ Lista | M | Completar el índice /ensayos/ |
+| FIX-001 | FIX | P0 | ✓ Terminada | S | Corregir rutas inexistentes del encabezado |
+| FIX-002 | FIX | P0 | ✓ Terminada | M | Completar el índice /ensayos/ |
 | FIX-003 | FIX | P0 | ◉ Lista | S | Retirar o normalizar placeholder Indo-Pacífico |
 | FIX-004 | FIX | P0 | ◉ Lista | XS | Corregir o retirar CTA Ko-fi provisional |
 | SEO-001 | SEO | P1 | ◉ Lista | S | Crear default-og.png y validar Open Graph |
