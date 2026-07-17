@@ -35,7 +35,7 @@
 | A11Y-001 | A11Y | Baseline | P1 | ○ Propuesta | M | TBD | — | Registrar auditoría de teclado, contraste y headings |
 | OPS-002 | OPS | Reproducibilidad | P1 | ◉ Lista | XS | TBD | — | Versionar Node con .nvmrc o .node-version |
 | OPS-003 | OPS | Reproducibilidad | P1 | ◉ Lista | S | TBD | OPS-002 | Versionar configuración Netlify en netlify.toml |
-| QA-004 | QA | Calidad Técnica | P1 | ◉ Lista | M | Rete | QA-001 | Reducir hints de Astro Check |
+| QA-004 | QA | Calidad Técnica | P1 | ✓ Terminada | M | Rete | QA-001 | Reducir hints de Astro Check |
 | SEO-001 | SEO | Social | P1 | ◉ Lista | S | TBD | — | Crear default-og.png y validar Open Graph |
 | SEO-002 | SEO | Indexación | P1 | ◉ Lista | M | TBD | OPS-003 | Publicar robots.txt seguro y sitemap |
 | UI-001 | FIX | Iconos | P1 | ◉ Lista | S | TBD | — | Cargar iconografía globalmente o empaquetarla |

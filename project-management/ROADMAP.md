@@ -4,7 +4,7 @@
 
 | Secuencia | Release | Objetivo | Avance | Estado |
 |---:|---|---|---:|---|
-| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 59% | Actual |
+| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 64% | Actual |
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
 | 2 | Beta 2 — Navegación, menú y regiones | Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas. | 0% | Planificada |
 | 3 | Beta 3 — Monitor y Fricción vs. Narrativa | Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones. | 0% | Planificada |
@@ -17,7 +17,7 @@
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.  
 **Fecha objetivo:** TBD  
-**Avance:** 59%
+**Avance:** 64%
 
 ### Criterios de salida
 
@@ -58,7 +58,7 @@
 | PMAPP-007 | PMAPP | P0 | ✓ Terminada | M | Implementar releases y registro de actividad |
 | PMAPP-008 | PMAPP | P0 | ✓ Terminada | S | Implementar copias de seguridad locales |
 | PMAPP-009 | PMAPP | P0 | ✓ Terminada | S | Validar dashboard local en Windows y documentar resultados |
-| QA-004 | QA | P1 | ◉ Lista | M | Reducir hints de Astro Check |
+| QA-004 | QA | P1 | ✓ Terminada | M | Reducir hints de Astro Check |
 
 ## Beta 1 — Fundamentos y sistema de diseño
 

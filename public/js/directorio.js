@@ -288,7 +288,7 @@
       return;
     }
     let cursor = 0;
-    const stops = entries.map(([label, count], i) => {
+    const stops = entries.map(([, count], i) => {
       const start = cursor;
       cursor += (count / total) * 100;
       return `${donutColors[i % donutColors.length]} ${start}% ${cursor}%`;

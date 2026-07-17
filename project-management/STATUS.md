@@ -12,18 +12,18 @@
 | Métrica | Valor |
 |---|---:|
 | Total de work items | 90 |
-| Terminados | 16 |
+| Terminados | 17 |
 | En progreso | 0 |
 | En revisión | 0 |
 | Bloqueados | 0 |
-| Listos | 12 |
+| Listos | 11 |
 | P0 abiertos | 21 |
 
 ## Release actual
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
 
-**Avance del release:** 59%
+**Avance del release:** 64%
 
 ### Trabajo activo
 
@@ -44,7 +44,6 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 | UX-001 | P1 | Crear página 404 coherente con la marca | beta-0-baseline | — |
 | UI-001 | P1 | Cargar iconografía globalmente o empaquetarla | beta-0-baseline | — |
 | IA-001 | P0 | Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones | beta-1-foundations | FIX-001 |
-| QA-004 | P1 | Reducir hints de Astro Check | beta-0-baseline | QA-001 |
 
 ### P0 abiertos
 
