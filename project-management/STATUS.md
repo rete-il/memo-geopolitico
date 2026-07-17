@@ -12,31 +12,27 @@
 | Métrica | Valor |
 |---|---:|
 | Total de work items | 80 |
-| Terminados | 3 |
+| Terminados | 6 |
 | En progreso | 0 |
-| En revisión | 1 |
+| En revisión | 0 |
 | Bloqueados | 0 |
-| Listos | 14 |
-| P0 abiertos | 25 |
+| Listos | 12 |
+| P0 abiertos | 22 |
 
 ## Release actual
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
 
-**Avance del release:** 24%
+**Avance del release:** 31%
 
 ### Trabajo activo
 
-| ID | Estado | Trabajo | Responsable | Progreso |
-|---|---|---|---|---:|
-| DOC-001 | ◆ En revisión | Incorporar documentación técnica v2 al repositorio | Rete | 90% |
+No hay tareas marcadas como en progreso, revisión o bloqueadas.
 
 ### Próximas tareas listas
 
 | ID | Prioridad | Trabajo | Release | Dependencias |
 |---|---|---|---|---|
-| PM-003 | P0 | Confirmar rama beta local y upstream origin/beta | beta-0-baseline | — |
-| PM-004 | P0 | Integrar project-management/ en la rama beta | beta-0-baseline | PM-002, PM-003 |
 | OPS-002 | P1 | Versionar Node con .nvmrc o .node-version | beta-0-baseline | — |
 | OPS-003 | P1 | Versionar configuración Netlify en netlify.toml | beta-0-baseline | OPS-002 |
 | QA-001 | P0 | Agregar astro check y dependencias necesarias | beta-0-baseline | — |
@@ -54,9 +50,6 @@
 
 | ID | Estado | Trabajo | Release |
 |---|---|---|---|
-| PM-003 | Lista | Confirmar rama beta local y upstream origin/beta | beta-0-baseline |
-| PM-004 | Lista | Integrar project-management/ en la rama beta | beta-0-baseline |
-| DOC-001 | En revisión | Incorporar documentación técnica v2 al repositorio | beta-0-baseline |
 | QA-001 | Lista | Agregar astro check y dependencias necesarias | beta-0-baseline |
 | FIX-001 | Lista | Corregir rutas inexistentes del encabezado | beta-0-baseline |
 | FIX-002 | Lista | Completar el índice /ensayos/ | beta-0-baseline |

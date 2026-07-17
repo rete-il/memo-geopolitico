@@ -12,7 +12,7 @@
 
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|
-| DOC-001 | DOC | Baseline | P0 | ◆ En revisión | S | Rete | — | Incorporar documentación técnica v2 al repositorio |
+| DOC-001 | DOC | Baseline | P0 | ✓ Terminada | S | Rete | — | Incorporar documentación técnica v2 al repositorio |
 | FIX-001 | FIX | Navegación | P0 | ◉ Lista | S | TBD | — | Corregir rutas inexistentes del encabezado |
 | FIX-002 | FIX | Contenido | P0 | ◉ Lista | M | TBD | — | Completar el índice /ensayos/ |
 | FIX-003 | FIX | Contenido | P0 | ◉ Lista | S | TBD | — | Retirar o normalizar placeholder Indo-Pacífico |
@@ -20,8 +20,8 @@
 | OPS-001 | OPS | Producción | P0 | ✓ Terminada | S | Rete | — | Registrar baseline de Netlify y producción |
 | PM-001 | PM | Gestión | P0 | ✓ Terminada | S | Rete | — | Separar documentación del estado actual y documentación de proyecto |
 | PM-002 | PM | Gestión | P0 | ✓ Terminada | M | Rete | PM-001 | Crear sistema dinámico de project management |
-| PM-003 | OPS | Git | P0 | ◉ Lista | XS | Rete | — | Confirmar rama beta local y upstream origin/beta |
-| PM-004 | PM | Gestión | P0 | ◉ Lista | XS | Rete | PM-002, PM-003 | Integrar project-management/ en la rama beta |
+| PM-003 | OPS | Git | P0 | ✓ Terminada | XS | Rete | — | Confirmar rama beta local y upstream origin/beta |
+| PM-004 | PM | Gestión | P0 | ✓ Terminada | XS | Rete | PM-002, PM-003 | Integrar project-management/ en la rama beta |
 | QA-001 | QA | Validación | P0 | ◉ Lista | S | TBD | — | Agregar astro check y dependencias necesarias |
 | A11Y-001 | A11Y | Baseline | P1 | ○ Propuesta | M | TBD | — | Registrar auditoría de teclado, contraste y headings |
 | OPS-002 | OPS | Reproducibilidad | P1 | ◉ Lista | XS | TBD | — | Versionar Node con .nvmrc o .node-version |

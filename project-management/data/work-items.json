@@ -44,7 +44,7 @@
     "epic": "Git",
     "title": "Confirmar rama beta local y upstream origin/beta",
     "priority": "P0",
-    "status": "ready",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "XS",
     "owner": "Rete",
@@ -54,7 +54,7 @@
       "git branch -vv muestra beta vinculada a origin/beta.",
       "main no recibe el commit de project-management."
     ],
-    "notes": ""
+    "notes": "Rama beta confirmada y vinculada a origin/beta."
   },
   {
     "id": "PM-004",
@@ -62,7 +62,7 @@
     "epic": "Gestión",
     "title": "Integrar project-management/ en la rama beta",
     "priority": "P0",
-    "status": "ready",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "XS",
     "owner": "Rete",
@@ -76,7 +76,7 @@
       "Los paneles se regeneran con Node.",
       "El commit fue enviado a origin/beta y no a main."
     ],
-    "notes": ""
+    "notes": "project-management/ integrado y publicado únicamente en origin/beta."
   },
   {
     "id": "DOC-001",
@@ -84,14 +84,14 @@
     "epic": "Baseline",
     "title": "Incorporar documentación técnica v2 al repositorio",
     "priority": "P0",
-    "status": "review",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "S",
     "owner": "Rete",
     "dependencies": [],
     "progress": 90,
     "acceptanceCriteria": [],
-    "notes": "Copiada y preparada localmente; pendiente confirmar commit/push en beta."
+    "notes": "Documentación técnica v2 incorporada en la rama beta."
   },
   {
     "id": "OPS-001",

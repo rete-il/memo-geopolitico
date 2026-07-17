@@ -4,7 +4,7 @@
 
 | Secuencia | Release | Objetivo | Avance | Estado |
 |---:|---|---|---:|---|
-| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 24% | Actual |
+| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 31% | Actual |
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
 | 2 | Beta 2 — Navegación, menú y regiones | Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas. | 0% | Planificada |
 | 3 | Beta 3 — Monitor y Fricción vs. Narrativa | Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones. | 0% | Planificada |
@@ -17,7 +17,7 @@
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.  
 **Fecha objetivo:** TBD  
-**Avance:** 24%
+**Avance:** 31%
 
 ### Criterios de salida
 
@@ -33,9 +33,9 @@
 |---|---|---|---|---|---|
 | PM-001 | PM | P0 | ✓ Terminada | S | Separar documentación del estado actual y documentación de proyecto |
 | PM-002 | PM | P0 | ✓ Terminada | M | Crear sistema dinámico de project management |
-| PM-003 | OPS | P0 | ◉ Lista | XS | Confirmar rama beta local y upstream origin/beta |
-| PM-004 | PM | P0 | ◉ Lista | XS | Integrar project-management/ en la rama beta |
-| DOC-001 | DOC | P0 | ◆ En revisión | S | Incorporar documentación técnica v2 al repositorio |
+| PM-003 | OPS | P0 | ✓ Terminada | XS | Confirmar rama beta local y upstream origin/beta |
+| PM-004 | PM | P0 | ✓ Terminada | XS | Integrar project-management/ en la rama beta |
+| DOC-001 | DOC | P0 | ✓ Terminada | S | Incorporar documentación técnica v2 al repositorio |
 | OPS-001 | OPS | P0 | ✓ Terminada | S | Registrar baseline de Netlify y producción |
 | OPS-002 | OPS | P1 | ◉ Lista | XS | Versionar Node con .nvmrc o .node-version |
 | OPS-003 | OPS | P1 | ◉ Lista | S | Versionar configuración Netlify en netlify.toml |
