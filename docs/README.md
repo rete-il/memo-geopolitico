@@ -1,25 +1,30 @@
 # Documentación técnica — Memo Geopolítico
 
-**Versión documental:** 1.0  
-**Fecha del relevamiento:** 16 de julio de 2026  
-**Estado del producto:** desarrollo local, sin publicación pública  
-**Stack relevado:** Astro 7.0.7, Tailwind CSS 4.3.2, TypeScript, JavaScript, Nanostores y Netlify como plataforma prevista
+**Versión documental:** 2.0  
+**Fecha del relevamiento inicial:** 16 de julio de 2026  
+**Actualización de producción:** 17 de julio de 2026  
+**Estado del producto:** publicado en producción  
+**URL canónica:** `https://memogeopolitico.com`  
+**Stack relevado:** Astro 7.0.7, Tailwind CSS 4.3.2, TypeScript, JavaScript, Nanostores y Netlify
 
 ## Propósito
 
-Esta carpeta documenta el sitio **tal como está construido en la instantánea analizada**. No describe todavía una arquitectura ideal ni presupone que las recomendaciones ya fueron implementadas.
+Esta carpeta documenta el sitio **tal como está construido en la instantánea de código analizada** y separa esa instantánea del estado comprobado en Netlify. No supone que las recomendaciones ya fueron implementadas.
 
-La documentación diferencia cinco estados:
+La documentación diferencia seis estados:
 
 | Marca | Significado |
 |---|---|
-| **Implementado** | Existe en el código y fue comprobado en la ejecución o el build. |
-| **Prototipo** | Existe como representación visual o datos de muestra, pero no como módulo editorial completo. |
+| **Implementado** | Existe en el código y fue comprobado en desarrollo, build o preview. |
+| **Verificado en producción** | Existe evidencia de Netlify o del dominio publicado. |
+| **Prototipo** | Existe visualmente o con datos de muestra, pero no como módulo editorial completo. |
 | **Pendiente** | Está anunciado, enlazado o esbozado, pero no implementado. |
-| **Riesgo** | Puede causar errores, inconsistencias, problemas de accesibilidad o fallas de publicación. |
+| **Riesgo** | Puede causar errores, inconsistencias, problemas de accesibilidad, SEO o publicación. |
 | **Deuda técnica** | Funciona actualmente, pero dificulta mantenimiento, pruebas o escalabilidad. |
 
 ## Evidencia técnica disponible
+
+### Entorno local
 
 - Node.js usado por el propietario: `v24.18.0`.
 - npm usado por el propietario: `9.8.1`.
@@ -27,7 +32,20 @@ La documentación diferencia cinco estados:
 - `npm run dev`: correcto en `http://localhost:4321/`.
 - `npm run build`: correcto; salida `static`, carpeta `dist/`, 9 páginas generadas.
 - `npm run preview`: correcto en `http://localhost:4321/`.
-- `npm run check`: no existe como script; no representa una falla del build, sino una validación todavía no configurada.
+- `npm run check`: no existe como script; no representa una falla del build, sino una validación aún no configurada.
+
+### Producción
+
+- Proyecto Netlify: `memo-geopolitico`.
+- Published deploy desde la rama `main`.
+- Commit documentado: `9b2b70d`.
+- Build: 13 segundos; deploy total: 14 segundos.
+- 16 archivos nuevos enviados; 9 páginas generadas y 7 assets modificados.
+- Todas las fases del deploy figuran como `Complete`.
+- Dominio principal: `memogeopolitico.com`.
+- `www.memogeopolitico.com` redirige al dominio principal.
+- HTTPS habilitado mediante certificado Let’s Encrypt administrado por Netlify.
+- `beta.memogeopolitico.com` permanece como alias inactivo con verificación DNS pendiente por decisión operativa.
 
 ![Portada actual en escritorio](./assets/portada-desktop.png)
 
@@ -51,16 +69,29 @@ La documentación diferencia cinco estados:
 16. [Plan de modularización](./16-plan-de-modularizacion.md)
 17. [Checklist de publicación](./17-checklist-publicacion.md)
 18. [Inventario de archivos](./18-anexo-inventario.md)
+19. [Entorno de producción y Netlify](./19-entorno-produccion-netlify.md)
+20. [Registro de verificación de producción](./20-registro-verificacion-produccion.md)
 
 ## Alcance de esta versión
 
-Esta versión cubre código, configuración, contenido, rutas, datos, interacción, estilos, build y riesgos iniciales. Quedan pendientes de comprobación empírica:
+La versión 2.0 cubre:
 
-- comportamiento en móvil real o viewport aproximado de `390 × 844 px`;
-- pruebas en Safari, Firefox y navegadores móviles;
-- resultados de Lighthouse y auditorías automatizadas;
-- consola del navegador durante todas las rutas;
-- configuración efectiva del repositorio y de Netlify, porque no se incluyeron `.git`, `netlify.toml` ni una URL desplegada;
+- código, configuración, contenido, rutas, datos, interacción y estilos;
+- build y preview locales;
+- configuración efectiva de build en Netlify;
+- rama y commit del published deploy;
+- dominios de producción, redirección `www` y certificado TLS;
+- diferencias conocidas entre la instantánea entregada y el repositorio desplegado;
+- riesgos de producción y procedimiento de rollback.
+
+Quedan pendientes de comprobación empírica o automatizada:
+
+- viewport móvil real o aproximado de `390 × 844 px`;
+- Safari, Firefox y navegadores móviles;
+- Lighthouse y Core Web Vitals;
+- consola y red del navegador en todas las rutas;
+- respuesta HTTP real de rutas inexistentes, `robots.txt`, sitemap y assets sociales;
+- cabeceras de seguridad efectivamente servidas;
 - política editorial definitiva de cada sección.
 
 ## Regla de mantenimiento documental
@@ -71,4 +102,5 @@ Toda modificación estructural debe actualizar, como mínimo:
 - el contrato de contenido o datos afectado;
 - la ficha del componente modificado;
 - el registro de deuda técnica;
-- el checklist de publicación cuando cambie el proceso de despliegue.
+- el checklist de publicación;
+- el registro de producción cuando cambien dominio, rama, runtime, build o plataforma.

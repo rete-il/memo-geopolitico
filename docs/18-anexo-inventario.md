@@ -1,5 +1,9 @@
 # 18. Anexo — Inventario de archivos
 
+## 18.1 Alcance
+
+Este inventario describe la instantánea enviada antes del deploy de producción documentado. El commit publicado `9b2b70d` puede contener cambios posteriores —especialmente configuración de Node 24— que deben reconciliarse cuando se entregue una copia más reciente del repositorio.
+
 ## Raíz
 
 | Archivo | Tamaño/líneas aproximadas | Responsabilidad | Estado |
@@ -10,8 +14,10 @@
 | `tailwind.config.mjs` | 573 B | config Tailwind paralela/legacy | Revisar |
 | `tsconfig.json` | 109 B | strict config de Astro | Activo |
 | `README.md` | 44 líneas | README del starter | Obsoleto |
-| `robots.txt` | 2 líneas | bloqueo de crawlers | Cambiar antes de publicar |
+| `robots.txt` | 2 líneas | contiene `Disallow: /`, pero está fuera de `public/` | No asumir publicado |
 | `index.html` | 537 líneas | prototipo previo estático | Huérfano/archivo histórico |
+| `.nvmrc` o equivalente | no presente en la instantánea | versión de Node | Confirmar en repositorio actual |
+| `netlify.toml` | ausente | configuración reproducible Netlify | Recomendado |
 
 ## Layout y estilos
 
@@ -84,3 +90,15 @@
 - `default-og.png`: referenciado, pero ausente.
 - `/js/directorio.js`: se sirve sin procesamiento de TypeScript.
 - `/data/Medios_Geopolitica.xlsx`: descarga directa.
+- `robots.txt`: no está en `public/`; debe corregirse y trasladarse intencionalmente.
+
+## Evidencia documental añadida
+
+```text
+docs/assets/netlify-build-settings.png
+docs/assets/netlify-published-deploy.png
+docs/assets/netlify-production-domains.png
+docs/assets/netlify-https-certificate.png
+```
+
+Estas imágenes son evidencia operativa, no recursos del sitio público.

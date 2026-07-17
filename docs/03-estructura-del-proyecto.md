@@ -77,7 +77,7 @@ User-agent: *
 Disallow: /
 ```
 
-Es coherente con un entorno no publicado, pero bloqueará todo rastreo si se despliega sin modificación.
+El sitio ya está publicado, pero este archivo se encuentra en la raíz y no en `public/`. Con la configuración Astro observada no debe asumirse que llega a `dist/`. Si se traslada a `public/` sin corregirlo, bloqueará todo el rastreo.
 
 ### `tailwind.config.mjs`
 
@@ -93,7 +93,9 @@ Convive con configuración CSS-first en `src/styles/global.css`. La implementaci
 ## 3.5 Archivos ausentes que convendría incorporar
 
 - `.env.example`, si aparecen variables de entorno.
-- `netlify.toml`, para fijar build y cabeceras.
+- `.nvmrc` o `.node-version`, si no quedó incorporado en el commit posterior.
+- `netlify.toml`, para fijar build, cabeceras y redirects.
+- `public/robots.txt` con política de producción.
 - `public/default-og.png` o equivalente.
 - página `404.astro`.
 - configuración de formato y lint.

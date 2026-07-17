@@ -104,7 +104,7 @@ El `<id>` se conserva en la URL, incluidos guiones bajos.
 - Validar coordenadas: latitud `-90…90`, longitud `-180…180`.
 - Añadir un estado `draft` para que un archivo incompleto no se publique automáticamente.
 - No usar enlaces Markdown sin URL válida. Se detectó al menos una referencia con destino textual no URL en `nato-ankara2026.md`.
-- Sustituir URLs de ejemplo antes de publicar.
+- Sustituir de inmediato las URLs de ejemplo que ya hayan llegado a producción.
 
 ## 6.6 Inventario editorial actual
 
