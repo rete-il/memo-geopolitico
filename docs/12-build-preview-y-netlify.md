@@ -28,16 +28,16 @@ No existe todavía `check`, `test`, `lint` ni un script de validación de enlace
 
 `npm run build` crea `dist/`. Netlify publica solamente esa carpeta. En la configuración de producción se verificaron estos valores:
 
-| Campo | Valor observado | Evaluación |
-|---|---|---|
-| Runtime | `Not set` | No se usa un runtime de Functions; la versión de Node se gestiona aparte. |
-| Base directory | `/` | Correcto: el proyecto vive en la raíz del repositorio. |
-| Package directory | `Not set` | Correcto: no es monorepo. |
-| Build command | `npm run build` | Correcto. |
-| Publish directory | `dist` | Correcto. |
-| Functions directory | `netlify/functions` | Valor por defecto; no existen funciones en la instantánea. |
-| Deploy log visibility | Logs públicos | Revisar si el repositorio o futuros secretos requieren restringirlos. |
-| Build status | Active | Correcto para despliegue continuo. |
+| Campo                 | Valor observado     | Evaluación                                                                |
+| --------------------- | ------------------- | ------------------------------------------------------------------------- |
+| Runtime               | `Not set`           | No se usa un runtime de Functions; la versión de Node se gestiona aparte. |
+| Base directory        | `/`                 | Correcto: el proyecto vive en la raíz del repositorio.                    |
+| Package directory     | `Not set`           | Correcto: no es monorepo.                                                 |
+| Build command         | `npm run build`     | Correcto.                                                                 |
+| Publish directory     | `dist`              | Correcto.                                                                 |
+| Functions directory   | `netlify/functions` | Valor por defecto; no existen funciones en la instantánea.                |
+| Deploy log visibility | Logs públicos       | Revisar si el repositorio o futuros secretos requieren restringirlos.     |
+| Build status          | Active              | Correcto para despliegue continuo.                                        |
 
 ![Configuración efectiva de build](./assets/netlify-build-settings.png)
 
@@ -45,19 +45,19 @@ Netlify documenta que solo el contenido de la carpeta de publicación llega al d
 
 ## 12.4 Published deploy verificado
 
-| Dato | Valor observado |
-|---|---|
-| Proyecto | `memo-geopolitico` |
-| Tipo | Published deploy / Production |
-| Rama | `main` |
-| Commit | `9b2b70d` |
-| Mensaje | `Configura Node 24 para Netlify` |
-| Build | 13 s |
-| Deploy total | 14 s |
-| Archivos nuevos | 16 |
-| Páginas generadas | 9 |
-| Assets modificados | 7 |
-| Fases | Initializing, Building, Deploying, Cleanup y Post-processing: `Complete` |
+| Dato               | Valor observado                                                          |
+| ------------------ | ------------------------------------------------------------------------ |
+| Proyecto           | `memo-geopolitico`                                                       |
+| Tipo               | Published deploy / Production                                            |
+| Rama               | `main`                                                                   |
+| Commit             | `9b2b70d`                                                                |
+| Mensaje            | `Configura Node 24 para Netlify`                                         |
+| Build              | 13 s                                                                     |
+| Deploy total       | 14 s                                                                     |
+| Archivos nuevos    | 16                                                                       |
+| Páginas generadas  | 9                                                                        |
+| Assets modificados | 7                                                                        |
+| Fases              | Initializing, Building, Deploying, Cleanup y Post-processing: `Complete` |
 
 ![Resumen del published deploy](./assets/netlify-published-deploy.png)
 
@@ -106,7 +106,6 @@ Antes de agregar una Content Security Policy hay que inventariar Google Fonts, u
 
 - dos enlaces del Header apuntan a rutas no generadas;
 - `/ensayos/` se genera sin UI;
-- `/profundidad/indo-pacifico/` contiene placeholder;
 - Ko-fi usa `tu_usuario`;
 - `/default-og.png` está referenciado pero no existe en la instantánea;
 - no existe 404 personalizada;

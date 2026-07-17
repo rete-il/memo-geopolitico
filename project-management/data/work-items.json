@@ -207,14 +207,14 @@
     "epic": "Contenido",
     "title": "Retirar o normalizar placeholder Indo-Pacífico",
     "priority": "P0",
-    "status": "ready",
+    "status": "in_progress",
     "release": "beta-0-baseline",
     "size": "S",
-    "owner": "TBD",
+    "owner": "Rete",
     "dependencies": [],
-    "progress": null,
+    "progress": 20,
     "acceptanceCriteria": [],
-    "notes": ""
+    "notes": "Se inicia la retirada del placeholder Indo-Pacífico.\n\nObjetivos:\n- Eliminar la página provisional.\n- Eliminar fuentes y textos demostrativos.\n- Comprobar que no existan enlaces hacia la ruta retirada.\n- Mantener operativas las páginas reales de profundidad."
   },
   {
     "id": "FIX-004",

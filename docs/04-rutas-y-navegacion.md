@@ -4,17 +4,16 @@
 
 El build local y el deploy de Netlify informan 9 páginas generadas:
 
-| Ruta | Fuente | Estado funcional en la instantánea |
-|---|---|---|
-| `/` | `src/pages/index.astro` | Implementada. |
-| `/directorio/` | `src/pages/directorio.astro` | Implementada. |
-| `/ensayos/` | `src/pages/ensayos/[...page].astro` | Generada, pero sin contenido visible. |
-| `/ensayos/africa_primera_nota/` | colección `ensayos` | Implementada. |
-| `/ensayos/la_ilustracion_oscura/` | colección `ensayos` | Implementada. |
-| `/ensayos/turquia/` | colección `ensayos` | Implementada. |
-| `/profundidad/india-nzelandia/` | colección `profundidad` | Implementada. |
-| `/profundidad/nato-ankara2026/` | colección `profundidad` | Implementada. |
-| `/profundidad/indo-pacifico/` | `src/pages/profundidad/indo-pacifico.md` | Placeholder fuera del layout común. |
+| Ruta                              | Fuente                              | Estado funcional en la instantánea    |
+| --------------------------------- | ----------------------------------- | ------------------------------------- |
+| `/`                               | `src/pages/index.astro`             | Implementada.                         |
+| `/directorio/`                    | `src/pages/directorio.astro`        | Implementada.                         |
+| `/ensayos/`                       | `src/pages/ensayos/[...page].astro` | Generada, pero sin contenido visible. |
+| `/ensayos/africa_primera_nota/`   | colección `ensayos`                 | Implementada.                         |
+| `/ensayos/la_ilustracion_oscura/` | colección `ensayos`                 | Implementada.                         |
+| `/ensayos/turquia/`               | colección `ensayos`                 | Implementada.                         |
+| `/profundidad/india-nzelandia/`   | colección `profundidad`             | Implementada.                         |
+| `/profundidad/nato-ankara2026/`   | colección `profundidad`             | Implementada.                         |
 
 > **Alcance de la verificación:** la generación se comprobó en local y en el resumen de Netlify. Esta versión documental no incluye todavía un crawler HTTP automatizado que confirme el código de respuesta de cada URL pública.
 

@@ -107,10 +107,6 @@ Riesgos:
 
 Configura paginación de diez ensayos, pero el template contiene solo un comentario. La ruta `/ensayos/` está técnicamente generada y funcionalmente vacía.
 
-### `src/pages/profundidad/indo-pacifico.md`
-
-Placeholder con “Tu contenido aquí…”. Está fuera de la colección y el layout dinámico, por lo que rompe la uniformidad editorial y de metadata.
-
 ### `src/pages/directorio.astro`
 
 Aplicación de 985 líneas que reúne:
@@ -124,14 +120,14 @@ Es el principal candidato a descomposición modular.
 
 ## 8.5 Matriz de dependencias
 
-| Componente/página | Depende de |
-|---|---|
-| Layout | `global.css`, Google Fonts, `Astro.site` |
-| Header | `Astro.url`, Phosphor global no declarado |
-| Inicio | tres colecciones, seis componentes, Leaflet CDN, Phosphor CDN |
-| AlertCard | Nanostore `activeAlertId` |
-| MapaGlobal | Nanostore, Leaflet global, MarkerCluster global |
-| PanelDerecho | `monitores.json` |
-| Directorio | `medios.json`, `directorio.js`, Excel público |
-| Ensayo individual | colección ensayos, Layout, Header |
-| Profundidad individual | colección profundidad, Layout, Header |
+| Componente/página      | Depende de                                                    |
+| ---------------------- | ------------------------------------------------------------- |
+| Layout                 | `global.css`, Google Fonts, `Astro.site`                      |
+| Header                 | `Astro.url`, Phosphor global no declarado                     |
+| Inicio                 | tres colecciones, seis componentes, Leaflet CDN, Phosphor CDN |
+| AlertCard              | Nanostore `activeAlertId`                                     |
+| MapaGlobal             | Nanostore, Leaflet global, MarkerCluster global               |
+| PanelDerecho           | `monitores.json`                                              |
+| Directorio             | `medios.json`, `directorio.js`, Excel público                 |
+| Ensayo individual      | colección ensayos, Layout, Header                             |
+| Profundidad individual | colección profundidad, Layout, Header                         |

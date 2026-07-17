@@ -33,8 +33,7 @@
 │   │   ├── index.astro
 │   │   ├── ensayos/[...page].astro
 │   │   ├── ensayos/[id].astro
-│   │   ├── profundidad/[slug].astro
-│   │   └── profundidad/indo-pacifico.md
+│   │   └── profundidad/[slug].astro
 │   ├── store/mapStore.ts
 │   ├── styles/global.css
 │   ├── utils/time.ts

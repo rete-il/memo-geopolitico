@@ -13,21 +13,23 @@
 |---|---:|
 | Total de work items | 90 |
 | Terminados | 19 |
-| En progreso | 0 |
+| En progreso | 1 |
 | En revisión | 0 |
 | Bloqueados | 0 |
-| Listos | 9 |
+| Listos | 8 |
 | P0 abiertos | 19 |
 
 ## Release actual
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
 
-**Avance del release:** 72%
+**Avance del release:** 73%
 
 ### Trabajo activo
 
-No hay tareas marcadas como en progreso, revisión o bloqueadas.
+| ID | Estado | Trabajo | Responsable | Progreso |
+|---|---|---|---|---:|
+| FIX-003 | ▶ En progreso | Retirar o normalizar placeholder Indo-Pacífico | Rete | 20% |
 
 ### Próximas tareas listas
 
@@ -35,7 +37,6 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 |---|---|---|---|---|
 | OPS-002 | P1 | Versionar Node con .nvmrc o .node-version | beta-0-baseline | — |
 | OPS-003 | P1 | Versionar configuración Netlify en netlify.toml | beta-0-baseline | OPS-002 |
-| FIX-003 | P0 | Retirar o normalizar placeholder Indo-Pacífico | beta-0-baseline | — |
 | FIX-004 | P0 | Corregir o retirar CTA Ko-fi provisional | beta-0-baseline | — |
 | SEO-001 | P1 | Crear default-og.png y validar Open Graph | beta-0-baseline | — |
 | SEO-002 | P1 | Publicar robots.txt seguro y sitemap | beta-0-baseline | OPS-003 |
@@ -47,7 +48,7 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 
 | ID | Estado | Trabajo | Release |
 |---|---|---|---|
-| FIX-003 | Lista | Retirar o normalizar placeholder Indo-Pacífico | beta-0-baseline |
+| FIX-003 | En progreso | Retirar o normalizar placeholder Indo-Pacífico | beta-0-baseline |
 | FIX-004 | Lista | Corregir o retirar CTA Ko-fi provisional | beta-0-baseline |
 | IA-001 | Lista | Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones | beta-1-foundations |
 | REG-001 | Propuesta | Aprobar taxonomía de regiones, subregiones y teatros | beta-2-navigation-regions |

@@ -6,14 +6,14 @@ Las colecciones se definen en `src/content.config.ts` mediante `glob` y Zod.
 
 ### Colección `ensayos`
 
-| Campo | Tipo | Obligatorio | Observación |
-|---|---|---:|---|
-| `title` | string | Sí | Título principal. |
-| `description` | string | Sí | Bajada y meta description. |
-| `date` | fecha coercionada | Sí | Se usa para orden y visualización. |
-| `author` | string | No | Default: `Equipo Editorial`. |
-| `tags` | string[] | No | Texto libre. |
-| `coverImage` | string | No | Se usa como imagen social; no se valida existencia. |
+| Campo         | Tipo              | Obligatorio | Observación                                         |
+| ------------- | ----------------- | ----------: | --------------------------------------------------- |
+| `title`       | string            |          Sí | Título principal.                                   |
+| `description` | string            |          Sí | Bajada y meta description.                          |
+| `date`        | fecha coercionada |          Sí | Se usa para orden y visualización.                  |
+| `author`      | string            |          No | Default: `Equipo Editorial`.                        |
+| `tags`        | string[]          |          No | Texto libre.                                        |
+| `coverImage`  | string            |          No | Se usa como imagen social; no se valida existencia. |
 
 Ejemplo:
 
@@ -29,15 +29,15 @@ tags: ['Africa']
 
 ### Colección `alertas`
 
-| Campo | Tipo | Obligatorio | Observación |
-|---|---|---:|---|
-| `title` | string | Sí | Titular de la tarjeta. |
-| `region` | string | Sí | Texto visible; sin taxonomía cerrada. |
-| `date` | fecha | Sí | Alimenta fecha relativa y filtro de mapa. |
-| `coordenadas` | par o array de pares | Sí | Formato `[lat, lng]`. |
-| `severity` | enum | Sí | `critical`, `high`, `medium`, `low`. |
-| `en_mapa` | boolean | No | Si es `false`, no se crea marcador. Default funcional: visible. |
-| `vinculo` | string | Sí | ID de página en `profundidad`. |
+| Campo         | Tipo                 | Obligatorio | Observación                                                     |
+| ------------- | -------------------- | ----------: | --------------------------------------------------------------- |
+| `title`       | string               |          Sí | Titular de la tarjeta.                                          |
+| `region`      | string               |          Sí | Texto visible; sin taxonomía cerrada.                           |
+| `date`        | fecha                |          Sí | Alimenta fecha relativa y filtro de mapa.                       |
+| `coordenadas` | par o array de pares |          Sí | Formato `[lat, lng]`.                                           |
+| `severity`    | enum                 |          Sí | `critical`, `high`, `medium`, `low`.                            |
+| `en_mapa`     | boolean              |          No | Si es `false`, no se crea marcador. Default funcional: visible. |
+| `vinculo`     | string               |          Sí | ID de página en `profundidad`.                                  |
 
 Ejemplo:
 
@@ -57,14 +57,14 @@ vinculo: 'india-nzelandia'
 
 ### Colección `profundidad`
 
-| Campo | Tipo | Obligatorio | Observación |
-|---|---|---:|---|
-| `title` | string | Sí | Título principal. |
-| `date` | fecha | Sí | Fecha absoluta. |
-| `severity` | enum | Sí | Mismo vocabulario que alertas. |
-| `sources` | array | No | Cada fuente contiene `title`, URL válida y `summary`. |
+| Campo      | Tipo   | Obligatorio | Observación                                           |
+| ---------- | ------ | ----------: | ----------------------------------------------------- |
+| `title`    | string |          Sí | Título principal.                                     |
+| `date`     | fecha  |          Sí | Fecha absoluta.                                       |
+| `severity` | enum   |          Sí | Mismo vocabulario que alertas.                        |
+| `sources`  | array  |          No | Cada fuente contiene `title`, URL válida y `summary`. |
 
-El template dinámico permite una sección de “Fuentes de Inteligencia”, pero los dos artículos de la colección no incluyen `sources`. La única pieza con ese campo es `src/pages/profundidad/indo-pacifico.md`, que no utiliza el template de la colección; por tanto, esa sección no se aprovecha actualmente.
+El template dinámico permite una sección de “Fuentes de Inteligencia”, pero los dos artículos de la colección no incluyen `sources`.
 
 ## 6.2 Cómo publicar un ensayo con el sistema actual
 
@@ -108,9 +108,8 @@ El `<id>` se conserva en la URL, incluidos guiones bajos.
 
 ## 6.6 Inventario editorial actual
 
-| Colección | Cantidad | Piezas |
-|---|---:|---|
-| Alertas | 2 | India–Nueva Zelanda; Cumbre OTAN Ankara. |
-| Ensayos | 3 | África; Ilustración oscura; Turquía. |
-| Profundidad en colección | 2 | India–Nueva Zelanda; OTAN Ankara. |
-| Profundidad directa/placeholder | 1 | Indo-Pacífico. |
+| Colección                | Cantidad | Piezas                                   |
+| ------------------------ | -------: | ---------------------------------------- |
+| Alertas                  |        2 | India–Nueva Zelanda; Cumbre OTAN Ankara. |
+| Ensayos                  |        3 | África; Ilustración oscura; Turquía.     |
+| Profundidad en colección |        2 | India–Nueva Zelanda; OTAN Ankara.        |     |
