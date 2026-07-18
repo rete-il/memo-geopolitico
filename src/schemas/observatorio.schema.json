@@ -5,23 +5,24 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
+    "schema_version",
     "id",
     "titulo",
     "categoria",
     "region",
     "estado_publicacion",
+    "estado_datos",
     "resumen",
     "corte_editorial",
-    "periodo_cobertura",
-    "dimensiones_relevancia",
-    "indices",
-    "atencion_mediatica",
-    "metricas_especificas",
     "insight",
     "fuentes",
     "historial"
   ],
   "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
     "id": {
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
@@ -51,6 +52,13 @@
         "publicado",
         "destacado",
         "archivado"
+      ]
+    },
+    "estado_datos": {
+      "type": "string",
+      "enum": [
+        "incompleto",
+        "completo"
       ]
     },
     "orden_portada": {
@@ -355,6 +363,94 @@
           }
         }
       }
+    },
+    "migracion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origen",
+        "estado",
+        "datos_legacy"
+      ],
+      "properties": {
+        "origen": {
+          "type": "string",
+          "const": "src/data/monitores.json"
+        },
+        "estado": {
+          "type": "string",
+          "enum": [
+            "pendiente_datos",
+            "validado",
+            "retirado"
+          ]
+        },
+        "datos_legacy": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "estado_publicacion": {
+            "enum": [
+              "publicado",
+              "destacado",
+              "archivado"
+            ]
+          }
+        },
+        "required": [
+          "estado_publicacion"
+        ]
+      },
+      "then": {
+        "required": [
+          "periodo_cobertura",
+          "dimensiones_relevancia",
+          "indices",
+          "atencion_mediatica",
+          "metricas_especificas"
+        ],
+        "properties": {
+          "estado_datos": {
+            "const": "completo"
+          },
+          "fuentes": {
+            "minItems": 1
+          },
+          "historial": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "estado_publicacion": {
+            "const": "destacado"
+          }
+        },
+        "required": [
+          "estado_publicacion"
+        ]
+      },
+      "then": {
+        "required": [
+          "orden_portada"
+        ],
+        "properties": {
+          "orden_portada": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  ]
 }

@@ -43,9 +43,29 @@ Un caso debería cumplir al menos tres de los siguientes criterios:
 - involucra actores con capacidad material de ejecución;
 - presenta una brecha relevante entre su importancia y su cobertura.
 
-## 5. Índice de relevancia geopolítica
+## 5. Ciclo editorial y estados
 
-Todos los casos se evalúan mediante siete dimensiones comunes, puntuadas de 0 a 5.
+Cada caso tiene dos estados independientes:
+
+### Estado de publicación
+
+- `borrador`: solo existe en los datos de trabajo;
+- `publicado`: aparece en `/observatorio/`;
+- `destacado`: aparece en `/observatorio/` y en la portada;
+- `archivado`: conserva su ficha histórica, pero sale de las vistas activas.
+
+### Estado de datos
+
+- `incompleto`: todavía faltan métricas, período o fuentes;
+- `completo`: el caso supera la validación metodológica.
+
+Un borrador puede estar incompleto. Un caso publicado, destacado o archivado debe estar completo.
+
+Esta separación permite migrar los monitores existentes sin inventar cifras ni interrumpir la portada actual.
+
+## 6. Índice de relevancia geopolítica
+
+Todos los casos completos se evalúan mediante siete dimensiones comunes, puntuadas de 0 a 5.
 
 | Dimensión | Peso |
 |---|---:|
@@ -65,15 +85,15 @@ El resultado se expresa de 0 a 100.
 
 ### Escala orientativa
 
-- 0–19: relevancia limitada
-- 20–39: relevancia baja
-- 40–59: relevancia media
-- 60–79: relevancia alta
-- 80–100: relevancia crítica
+- 0–19: relevancia limitada;
+- 20–39: relevancia baja;
+- 40–59: relevancia media;
+- 60–79: relevancia alta;
+- 80–100: relevancia crítica.
 
 El índice es una herramienta editorial documentada, no una medida científica exacta.
 
-## 6. Métricas específicas por categoría
+## 7. Métricas específicas por categoría
 
 ### Seguridad y conflicto
 
@@ -111,11 +131,9 @@ El índice es una herramienta editorial documentada, no una medida científica e
 
 Las métricas específicas explican el caso, pero no se comparan directamente entre categorías.
 
-## 7. Índice de atención mediática
+## 8. Índice de atención mediática
 
 La atención se calcula para un período explícito y una muestra definida de medios.
-
-Variables iniciales:
 
 | Variable | Peso |
 |---|---:|
@@ -123,8 +141,6 @@ Variables iniciales:
 | Porcentaje de medios de la muestra que cubrieron el caso | 25% |
 | Presencia relativa en titulares o posiciones destacadas | 15% |
 | Persistencia de la cobertura dentro del período | 10% |
-
-Cada variable se normaliza de 0 a 100.
 
 Cálculo:
 
@@ -138,11 +154,11 @@ La ficha debe publicar:
 - criterios de selección de la muestra;
 - fecha del corte editorial.
 
-## 8. Brecha de atención
+## 9. Brecha de atención
 
 Cálculo:
 
-`brecha = atencion − relevancia`
+`brecha = atención − relevancia`
 
 Clasificación inicial:
 
@@ -152,7 +168,7 @@ Clasificación inicial:
 
 Los umbrales podrán recalibrarse después de acumular suficientes casos y cortes históricos.
 
-## 9. Temporalidad
+## 10. Temporalidad
 
 Debe distinguirse entre:
 
@@ -160,19 +176,12 @@ Debe distinguirse entre:
 - métricas del último período de cobertura;
 - fecha del corte editorial.
 
-Cada actualización agrega un corte histórico. No debe sobrescribir completamente el anterior.
+Cada actualización completa agrega un corte histórico. No debe sobrescribir completamente el anterior.
 
 Frecuencia editorial recomendada:
 
 - dos o tres revisiones semanales;
 - actualización extraordinaria solo cuando exista un cambio estructural relevante.
-
-## 10. Estados editoriales
-
-- `borrador`: visible solo en el dashboard;
-- `publicado`: aparece en `/observatorio/`;
-- `destacado`: aparece también en la portada;
-- `archivado`: conserva su página histórica, pero sale de las vistas activas.
 
 ## 11. Arquitectura pública
 
