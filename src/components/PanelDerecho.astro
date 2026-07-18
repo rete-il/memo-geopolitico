@@ -1,75 +1,161 @@
 ---
 import monitores from '../data/monitores.json';
+
+type Asymmetry = 'punto_ciego' | 'sobrerrepresentado' | 'sincronico';
+
+interface MonitorItem {
+  id: string;
+  orden: number;
+  activo: boolean;
+  teatro: string;
+  escalada_nivel: number;
+  cobertura_pct: number;
+  alerta_asimetria: Asymmetry;
+  insight: string;
+  actualizado: string;
+  fuente_url?: string;
+}
+
+const badgeConfig: Record<
+  Asymmetry,
+  { label: string; className: string }
+> = {
+  punto_ciego: {
+    label: 'Punto Ciego',
+    className: 'bg-red-100 text-red-700',
+  },
+  sobrerrepresentado: {
+    label: 'Ruido',
+    className: 'bg-blue-100 text-blue-700',
+  },
+  sincronico: {
+    label: 'Sincrónico',
+    className: 'bg-slate-100 text-slate-700',
+  },
+};
+
+const items = (monitores.friccion_narrativa as MonitorItem[])
+  .filter((item) => item.activo)
+  .sort(
+    (a, b) =>
+      a.orden - b.orden ||
+      a.teatro.localeCompare(b.teatro, 'es'),
+  );
+
+function escalationClass(level: number): string {
+  if (level >= 4) return 'bg-red-600';
+  if (level >= 3) return 'bg-orange-500';
+  return 'bg-amber-400';
+}
+
+function formatDate(value: string): string {
+  const parsed = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) return value;
+  return parsed.toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
+}
 ---
 
-<aside class="lg:col-span-3 flex flex-col gap-6 w-full">
-  
-  <!-- Módulo Único: Matriz de Fricción vs. Narrativa -->
-  <section class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-    <header class="mb-5 flex justify-between items-end border-b border-slate-100 pb-3">
-      <div class="flex items-center gap-2">
-        <i class="ph ph-crosshair text-slate-500 text-lg"></i>
-        <h2 class="text-xs font-bold text-slate-900 uppercase tracking-widest">
-          Fricción vs. Narrativa
-        </h2>
-      </div>
-    </header>
-
-    <div class="space-y-6">
-      {monitores.friccion_narrativa.map((item) => (
-        <article>
-          <div class="flex justify-between items-center mb-2">
-            <h3 class="text-sm font-bold text-slate-800">{item.teatro}</h3>
-            {item.alerta_asimetria === 'Punto Ciego' && (
-              <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-red-100 text-red-700">
-                Punto Ciego
-              </span>
-            )}
-            {item.alerta_asimetria === 'Sobrerrepresentado' && (
-              <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-blue-100 text-blue-700">
-                Ruido
-              </span>
-            )}
-            {item.alerta_asimetria === 'Sincrónico' && (
-              <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-slate-100 text-slate-700">
-                Sincrónico
-              </span>
-            )}
+{
+  items.length > 0 && (
+    <aside class="lg:col-span-3 flex flex-col gap-6 w-full">
+      <section class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+        <header class="mb-5 flex justify-between items-end border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2">
+            <i class="ph ph-crosshair text-slate-500 text-lg" aria-hidden="true" />
+            <h2 class="text-xs font-bold text-slate-900 uppercase tracking-widest">
+              Fricción vs. Narrativa
+            </h2>
           </div>
+        </header>
 
-          <!-- Métrica 1: Escalada Física -->
-          <div class="mb-2">
-            <div class="flex justify-between text-[10px] text-slate-500 uppercase font-semibold mb-1">
-              <span>Escalada (Nivel {item.escalada_nivel})</span>
-            </div>
-            <div class="flex gap-1">
-              {[1, 2, 3, 4, 5].map((step) => (
-                <div class={`h-1.5 flex-1 rounded-sm ${
-                  step <= item.escalada_nivel 
-                    ? (item.escalada_nivel >= 4 ? 'bg-red-600' : item.escalada_nivel >= 3 ? 'bg-orange-500' : 'bg-amber-400') 
-                    : 'bg-slate-100'
-                }`}></div>
-              ))}
-            </div>
-          </div>
+        <div class="space-y-6">
+          {items.map((item) => {
+            const badge = badgeConfig[item.alerta_asimetria];
 
-          <!-- Métrica 2: Cobertura Mediática -->
-          <div class="mb-2">
-            <div class="flex justify-between text-[10px] text-slate-500 uppercase font-semibold mb-1">
-              <span>Foco Mediático</span>
-              <span>{item.cobertura_pct}%</span>
-            </div>
-            <div class="w-full bg-slate-100 rounded-full h-1.5">
-              <div class="bg-blue-500 h-1.5 rounded-full" style={`width: ${item.cobertura_pct}%`}></div>
-            </div>
-          </div>
+            return (
+              <article data-monitor-id={item.id}>
+                <div class="flex justify-between items-center gap-2 mb-2">
+                  <h3 class="text-sm font-bold text-slate-800">
+                    {item.teatro}
+                  </h3>
 
-          <p class="text-xs text-slate-600 italic leading-relaxed mt-2 border-l-2 border-slate-200 pl-2">
-            "{item.insight}"
-          </p>
-        </article>
-      ))}
-    </div>
-  </section>
+                  <span
+                    class={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm ${badge.className}`}
+                  >
+                    {badge.label}
+                  </span>
+                </div>
 
-</aside>
+                <div class="mb-2">
+                  <div class="flex justify-between text-[10px] text-slate-500 uppercase font-semibold mb-1">
+                    <span>Escalada (Nivel {item.escalada_nivel})</span>
+                  </div>
+
+                  <div class="flex gap-1" aria-label={`Escalada ${item.escalada_nivel} de 5`}>
+                    {[1, 2, 3, 4, 5].map((step) => (
+                      <div
+                        class:list={[
+                          'h-1.5 flex-1 rounded-sm',
+                          step <= item.escalada_nivel
+                            ? escalationClass(item.escalada_nivel)
+                            : 'bg-slate-100',
+                        ]}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <div class="flex justify-between text-[10px] text-slate-500 uppercase font-semibold mb-1">
+                    <span>Foco Mediático</span>
+                    <span>{item.cobertura_pct}%</span>
+                  </div>
+
+                  <div
+                    class="w-full bg-slate-100 rounded-full h-1.5"
+                    role="progressbar"
+                    aria-label={`Cobertura mediática de ${item.teatro}`}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow={item.cobertura_pct}
+                  >
+                    <div
+                      class="bg-blue-500 h-1.5 rounded-full"
+                      style={`width: ${item.cobertura_pct}%`}
+                    />
+                  </div>
+                </div>
+
+                <p class="text-xs text-slate-600 italic leading-relaxed mt-2 border-l-2 border-slate-200 pl-2">
+                  “{item.insight}”
+                </p>
+
+                <div class="mt-3 flex items-center justify-between gap-3 text-[10px] text-slate-400">
+                  <time datetime={item.actualizado}>
+                    Actualizado: {formatDate(item.actualizado)}
+                  </time>
+
+                  {item.fuente_url && (
+                    <a
+                      href={item.fuente_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="font-semibold text-blue-600 hover:text-blue-800 underline"
+                    >
+                      Fuente
+                      <span class="sr-only"> de {item.teatro}</span>
+                    </a>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    </aside>
+  )
+}

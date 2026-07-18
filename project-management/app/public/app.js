@@ -7,6 +7,7 @@ const app = {
   state: null,
   view: 'overview',
   editingItemId: null,
+  editingMonitorId: null,
   filters: { search: '', status: '', release: '', priority: '' }
 };
 
@@ -182,6 +183,182 @@ function renderValidation() {
   $('#validation-warnings').innerHTML = validation.warnings.length ? validation.warnings.map(v => `<li>${escapeHtml(v)}</li>`).join('') : '<li>Sin advertencias.</li>';
 }
 
+
+const ASYMMETRY_LABELS = {
+  punto_ciego: 'Punto Ciego',
+  sobrerrepresentado: 'Ruido',
+  sincronico: 'Sincrónico'
+};
+
+function asymmetryBadge(value) {
+  const label = ASYMMETRY_LABELS[value] || value;
+  return `<span class="asymmetry-badge asymmetry-${escapeHtml(value)}">${escapeHtml(label)}</span>`;
+}
+
+function renderMonitors() {
+  const monitors = app.state.monitors?.friccion_narrativa || [];
+  $('#monitors-count').textContent = `${monitors.length} monitor${monitors.length === 1 ? '' : 'es'}`;
+  $('#monitors-empty').hidden = monitors.length > 0;
+
+  $('#monitors-table-body').innerHTML = monitors.map((monitor, index) => `
+    <tr data-edit-monitor="${escapeHtml(monitor.id)}">
+      <td><strong>${escapeHtml(monitor.orden)}</strong></td>
+      <td class="item-title-cell">
+        <span>${escapeHtml(monitor.teatro)}</span>
+        <small>${escapeHtml(monitor.id)}</small>
+      </td>
+      <td><span class="level-badge level-${escapeHtml(monitor.escalada_nivel)}">${escapeHtml(monitor.escalada_nivel)} / 5</span></td>
+      <td>
+        <div class="monitor-coverage">
+          <span>${escapeHtml(monitor.cobertura_pct)}%</span>
+          <div class="progress-track"><span style="width:${monitor.cobertura_pct}%"></span></div>
+        </div>
+      </td>
+      <td>${asymmetryBadge(monitor.alerta_asimetria)}</td>
+      <td>${escapeHtml(monitor.actualizado)}</td>
+      <td><span class="monitor-status ${monitor.activo ? 'is-active' : 'is-inactive'}">${monitor.activo ? 'Activo' : 'Inactivo'}</span></td>
+      <td>
+        <div class="monitor-actions">
+          <button class="icon-action" type="button" data-move-monitor="${escapeHtml(monitor.id)}" data-direction="-1" aria-label="Subir ${escapeHtml(monitor.teatro)}" ${index === 0 ? 'disabled' : ''}>↑</button>
+          <button class="icon-action" type="button" data-move-monitor="${escapeHtml(monitor.id)}" data-direction="1" aria-label="Bajar ${escapeHtml(monitor.teatro)}" ${index === monitors.length - 1 ? 'disabled' : ''}>↓</button>
+          <button class="icon-action" type="button" data-toggle-monitor="${escapeHtml(monitor.id)}" aria-label="${monitor.activo ? 'Desactivar' : 'Activar'} ${escapeHtml(monitor.teatro)}">${monitor.activo ? '◉' : '○'}</button>
+          <button class="icon-action" type="button" data-duplicate-monitor="${escapeHtml(monitor.id)}" aria-label="Duplicar ${escapeHtml(monitor.teatro)}">⧉</button>
+          <button class="icon-action is-danger" type="button" data-delete-monitor="${escapeHtml(monitor.id)}" aria-label="Eliminar ${escapeHtml(monitor.teatro)}">×</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openMonitorDialog(monitor = null, duplicate = false) {
+  app.editingMonitorId = monitor && !duplicate ? monitor.id : null;
+  $('#monitor-dialog-title').textContent = monitor
+    ? duplicate
+      ? 'Duplicar monitor'
+      : `Editar ${monitor.id}`
+    : 'Nuevo monitor';
+
+  $('#monitor-id').value = duplicate ? '' : monitor?.id || '';
+  $('#monitor-id').readOnly = Boolean(monitor && !duplicate);
+  $('#monitor-order').value = duplicate
+    ? (monitor?.orden || 0) + 10
+    : monitor?.orden ?? ((app.state.monitors?.friccion_narrativa?.length || 0) + 1) * 10;
+  $('#monitor-active').checked = duplicate ? true : monitor?.activo ?? true;
+  $('#monitor-theater').value = duplicate ? `${monitor.teatro} (copia)` : monitor?.teatro || '';
+  $('#monitor-escalation').value = monitor?.escalada_nivel ?? 1;
+  $('#monitor-coverage').value = monitor?.cobertura_pct ?? 0;
+  $('#monitor-asymmetry').value = monitor?.alerta_asimetria || 'sincronico';
+  $('#monitor-updated').value = new Date().toISOString().slice(0, 10);
+  if (monitor && !duplicate) $('#monitor-updated').value = monitor.actualizado || '';
+  $('#monitor-source').value = monitor?.fuente_url || '';
+  $('#monitor-insight').value = monitor?.insight || '';
+  $('#monitor-form-errors').hidden = true;
+  $('#monitor-dialog').showModal();
+  $('#monitor-theater').focus();
+}
+
+async function saveMonitor(event) {
+  event.preventDefault();
+  const submit = event.submitter;
+  setLoading(submit, true, 'Guardando…');
+
+  const payload = {
+    id: $('#monitor-id').value,
+    orden: $('#monitor-order').value,
+    activo: $('#monitor-active').checked,
+    teatro: $('#monitor-theater').value,
+    escalada_nivel: $('#monitor-escalation').value,
+    cobertura_pct: $('#monitor-coverage').value,
+    alerta_asimetria: $('#monitor-asymmetry').value,
+    actualizado: $('#monitor-updated').value,
+    fuente_url: $('#monitor-source').value,
+    insight: $('#monitor-insight').value
+  };
+
+  try {
+    const result = app.editingMonitorId
+      ? await api(`/api/monitors/${encodeURIComponent(app.editingMonitorId)}`, {
+          method: 'PATCH',
+          body: JSON.stringify(payload)
+        })
+      : await api('/api/monitors', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+
+    app.state = result.state;
+    $('#monitor-dialog').close();
+    renderAll();
+    showMessage(
+      app.editingMonitorId
+        ? 'Monitor actualizado.'
+        : 'Monitor creado.'
+    );
+    app.editingMonitorId = null;
+  } catch (error) {
+    const details = error.data?.validation?.errors || [error.message];
+    $('#monitor-form-errors').textContent = details.join('\n');
+    $('#monitor-form-errors').hidden = false;
+  } finally {
+    setLoading(submit, false);
+  }
+}
+
+async function toggleMonitor(id) {
+  const monitor = app.state.monitors?.friccion_narrativa?.find(item => item.id === id);
+  if (!monitor) return;
+  try {
+    const result = await api(`/api/monitors/${encodeURIComponent(id)}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ activo: !monitor.activo })
+    });
+    app.state = result.state;
+    renderAll();
+    showMessage(monitor.activo ? 'Monitor desactivado.' : 'Monitor activado.');
+  } catch (error) {
+    showMessage(error.message, 'error');
+  }
+}
+
+async function deleteMonitor(id) {
+  const monitor = app.state.monitors?.friccion_narrativa?.find(item => item.id === id);
+  if (!monitor) return;
+  if (!window.confirm(`¿Eliminar definitivamente "${monitor.teatro}"? Se creará una copia de seguridad.`)) return;
+
+  try {
+    const result = await api(`/api/monitors/${encodeURIComponent(id)}`, {
+      method: 'DELETE',
+      body: '{}'
+    });
+    app.state = result.state;
+    renderAll();
+    showMessage('Monitor eliminado.');
+  } catch (error) {
+    showMessage(error.message, 'error');
+  }
+}
+
+async function moveMonitor(id, direction) {
+  const monitors = [...(app.state.monitors?.friccion_narrativa || [])];
+  const index = monitors.findIndex(item => item.id === id);
+  const target = index + Number(direction);
+  if (index < 0 || target < 0 || target >= monitors.length) return;
+
+  [monitors[index], monitors[target]] = [monitors[target], monitors[index]];
+
+  try {
+    const result = await api('/api/monitors/order', {
+      method: 'PUT',
+      body: JSON.stringify({ ids: monitors.map(item => item.id) })
+    });
+    app.state = result.state;
+    renderAll();
+    showMessage('Orden de monitores actualizado.');
+  } catch (error) {
+    showMessage(error.message, 'error');
+  }
+}
+
 function renderSettings() {
   const support = app.state.features?.support;
   if (!support) return;
@@ -213,6 +390,7 @@ function renderAll() {
   renderItems();
   renderReleases();
   renderActivity();
+  renderMonitors();
   renderValidation();
   renderSettings();
 }
@@ -221,7 +399,7 @@ function setView(view) {
   app.view = view;
   $$('.view').forEach(section => section.classList.toggle('is-active', section.id === `view-${view}`));
   $$('.nav-item').forEach(button => button.classList.toggle('is-active', button.dataset.view === view));
-  const titles = { overview: 'Resumen del proyecto', items: 'Work items', releases: 'Releases', activity: 'Actividad', settings: 'Configuración', validation: 'Validación' };
+  const titles = { overview: 'Resumen del proyecto', items: 'Work items', releases: 'Releases', activity: 'Actividad', monitors: 'Monitores', settings: 'Configuración', validation: 'Validación' };
   $('#page-title').textContent = titles[view] || 'Project Dashboard';
   $('.sidebar').classList.remove('is-open');
   $('#mobile-nav-toggle').setAttribute('aria-expanded', 'false');
@@ -419,6 +597,40 @@ function bindEvents() {
     if (edit) openItemDialog(app.state.items.find(item => item.id === edit.dataset.editItem));
     const release = event.target.closest('[data-edit-release]');
     if (release) openReleaseDialog(release.dataset.editRelease);
+
+    const monitorAction = event.target.closest(
+      '[data-move-monitor], [data-toggle-monitor], [data-duplicate-monitor], [data-delete-monitor]',
+    );
+    if (monitorAction) {
+      event.preventDefault();
+      event.stopPropagation();
+      const id =
+        monitorAction.dataset.moveMonitor ||
+        monitorAction.dataset.toggleMonitor ||
+        monitorAction.dataset.duplicateMonitor ||
+        monitorAction.dataset.deleteMonitor;
+      if (monitorAction.dataset.moveMonitor)
+        moveMonitor(id, monitorAction.dataset.direction);
+      else if (monitorAction.dataset.toggleMonitor)
+        toggleMonitor(id);
+      else if (monitorAction.dataset.duplicateMonitor) {
+        const monitor = app.state.monitors?.friccion_narrativa?.find(
+          item => item.id === id,
+        );
+        if (monitor) openMonitorDialog(monitor, true);
+      } else if (monitorAction.dataset.deleteMonitor)
+        deleteMonitor(id);
+      return;
+    }
+
+    const monitorRow = event.target.closest('[data-edit-monitor]');
+    if (monitorRow) {
+      const monitor = app.state.monitors?.friccion_narrativa?.find(
+        item => item.id === monitorRow.dataset.editMonitor,
+      );
+      if (monitor) openMonitorDialog(monitor);
+    }
+
     const go = event.target.closest('[data-go-view]');
     if (go) {
       if (go.dataset.filterStatus) {
@@ -430,6 +642,10 @@ function bindEvents() {
     }
   });
   $('#new-item-button').addEventListener('click', () => openItemDialog());
+  $('#new-monitor-button').addEventListener('click', () => openMonitorDialog());
+  $('#close-monitor-dialog').addEventListener('click', () => $('#monitor-dialog').close());
+  $('#cancel-monitor-dialog').addEventListener('click', () => $('#monitor-dialog').close());
+  $('#monitor-form').addEventListener('submit', saveMonitor);
   $('#close-item-dialog').addEventListener('click', () => $('#item-dialog').close());
   $('#cancel-item-dialog').addEventListener('click', () => $('#item-dialog').close());
   $('#item-form').addEventListener('submit', saveItem);

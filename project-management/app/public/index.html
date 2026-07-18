@@ -23,6 +23,7 @@
         <button class="nav-item" data-view="items"><span aria-hidden="true">☷</span> Work items</button>
         <button class="nav-item" data-view="releases"><span aria-hidden="true">◆</span> Releases</button>
         <button class="nav-item" data-view="activity"><span aria-hidden="true">✎</span> Actividad</button>
+        <button class="nav-item" data-view="monitors"><span aria-hidden="true">◎</span> Monitores</button>
         <button class="nav-item" data-view="settings"><span aria-hidden="true">⚙</span> Configuración</button>
         <button class="nav-item" data-view="validation"><span aria-hidden="true">✓</span> Validación</button>
       </nav>
@@ -115,6 +116,50 @@
             <button class="button button-primary" type="submit">Guardar entrada</button>
           </form>
           <section class="panel"><div class="panel-header"><h3>Entradas recientes</h3></div><div id="activity-list" class="activity-list"></div></section>
+        </div>
+      </section>
+
+
+      <section id="view-monitors" class="view" aria-labelledby="monitors-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DATOS EDITORIALES</p>
+            <h2 id="monitors-heading">Monitores</h2>
+          </div>
+          <button id="new-monitor-button" class="button button-primary">Nuevo monitor</button>
+        </div>
+
+        <section class="panel monitor-intro">
+          <div>
+            <h3>Fricción vs. Narrativa</h3>
+            <p class="muted">Administra los registros que aparecen en la columna derecha de la portada. Los cambios se guardan en <code>src/data/monitores.json</code>.</p>
+          </div>
+          <span id="monitors-count" class="metric-pill">0 monitores</span>
+        </section>
+
+        <div class="panel table-panel">
+          <div class="table-meta">
+            <span>Selecciona una fila para editar</span>
+            <span class="muted">↑ ↓ orden · ◉ estado · ⧉ duplicar · × eliminar</span>
+          </div>
+          <div class="table-scroll monitor-table-scroll">
+            <table class="monitor-table">
+              <thead>
+                <tr>
+                  <th>Orden</th>
+                  <th>Teatro</th>
+                  <th>Escalada</th>
+                  <th>Cobertura</th>
+                  <th>Asimetría</th>
+                  <th>Actualizado</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="monitors-table-body"></tbody>
+            </table>
+          </div>
+          <div id="monitors-empty" class="empty-state" hidden>No hay monitores registrados.</div>
         </div>
       </section>
 
@@ -237,6 +282,87 @@
       </section>
     </main>
   </div>
+
+
+  <dialog id="monitor-dialog" class="dialog">
+    <form id="monitor-form" method="dialog">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow">MONITOR EDITORIAL</p>
+          <h2 id="monitor-dialog-title">Editar monitor</h2>
+        </div>
+        <button type="button" id="close-monitor-dialog" class="icon-button" aria-label="Cerrar">×</button>
+      </div>
+
+      <div class="form-grid">
+        <label class="field">
+          <span>ID estable</span>
+          <input id="monitor-id" required maxlength="80" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="israel-libano">
+        </label>
+
+        <label class="field">
+          <span>Orden</span>
+          <input id="monitor-order" type="number" min="0" max="9999" step="1" required>
+        </label>
+
+        <label class="field field-full">
+          <span>Teatro o región</span>
+          <input id="monitor-theater" required maxlength="200">
+        </label>
+
+        <label class="field">
+          <span>Nivel de escalada</span>
+          <select id="monitor-escalation" required>
+            <option value="1">1 — Bajo</option>
+            <option value="2">2 — Moderado</option>
+            <option value="3">3 — Relevante</option>
+            <option value="4">4 — Alto</option>
+            <option value="5">5 — Crítico</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Cobertura mediática (%)</span>
+          <input id="monitor-coverage" type="number" min="0" max="100" step="1" required>
+        </label>
+
+        <label class="field">
+          <span>Asimetría</span>
+          <select id="monitor-asymmetry" required>
+            <option value="punto_ciego">Punto Ciego</option>
+            <option value="sobrerrepresentado">Sobrerrepresentado / Ruido</option>
+            <option value="sincronico">Sincrónico</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Fecha de actualización</span>
+          <input id="monitor-updated" type="date" required>
+        </label>
+
+        <label class="field field-full">
+          <span>Fuente opcional</span>
+          <input id="monitor-source" type="url" maxlength="500" placeholder="https://...">
+        </label>
+
+        <label class="field field-full">
+          <span>Insight editorial</span>
+          <textarea id="monitor-insight" rows="5" required maxlength="1000"></textarea>
+        </label>
+
+        <label class="checkbox-field field-full">
+          <input id="monitor-active" type="checkbox">
+          <span>Mostrar este monitor en la portada</span>
+        </label>
+      </div>
+
+      <div id="monitor-form-errors" class="form-errors" role="alert" hidden></div>
+      <div class="dialog-actions">
+        <button type="button" id="cancel-monitor-dialog" class="button button-ghost">Cancelar</button>
+        <button type="submit" class="button button-primary">Guardar monitor</button>
+      </div>
+    </form>
+  </dialog>
 
   <dialog id="item-dialog" class="dialog">
     <form id="item-form" method="dialog">

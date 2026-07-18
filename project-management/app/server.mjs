@@ -15,12 +15,13 @@ const recordsDir = path.join(pmRoot, 'records');
 const backupsDir = path.join(pmRoot, 'backups');
 const generatorPath = path.join(pmRoot, 'tools', 'update-dashboard.mjs');
 const featuresPath = path.join(repoRoot, 'src', 'config', 'features.json');
+const monitorsPath = path.join(repoRoot, 'src', 'data', 'monitores.json');
 
 const HOST = '127.0.0.1';
 const PORT = Number(process.env.PM_DASHBOARD_PORT || 4322);
 const MAX_BODY_BYTES = 1024 * 1024;
 const MAX_BACKUPS = 20;
-const VERSION = '0.2.0';
+const VERSION = '0.3.0';
 
 const DEFAULT_FEATURES = {
   support: {
@@ -33,6 +34,16 @@ const DEFAULT_FEATURES = {
   },
 };
 
+const DEFAULT_MONITORS = {
+  friccion_narrativa: [],
+};
+
+const ASYMMETRY_VALUES = new Set([
+  'punto_ciego',
+  'sobrerrepresentado',
+  'sincronico',
+]);
+
 const jsonFiles = {
   project: path.join(dataDir, 'project.json'),
   releases: path.join(dataDir, 'releases.json'),
@@ -43,6 +54,7 @@ const progressLogPath = path.join(recordsDir, 'PROGRESS-LOG.md');
 function ensureDirectories() {
   fs.mkdirSync(backupsDir, { recursive: true });
   fs.mkdirSync(path.dirname(featuresPath), { recursive: true });
+  fs.mkdirSync(path.dirname(monitorsPath), { recursive: true });
 
   const ignorePath = path.join(backupsDir, '.gitignore');
   if (!fs.existsSync(ignorePath))
@@ -52,6 +64,13 @@ function ensureDirectories() {
     fs.writeFileSync(
       featuresPath,
       `${JSON.stringify(DEFAULT_FEATURES, null, 2)}\n`,
+      'utf8',
+    );
+
+  if (!fs.existsSync(monitorsPath))
+    fs.writeFileSync(
+      monitorsPath,
+      `${JSON.stringify(DEFAULT_MONITORS, null, 2)}\n`,
       'utf8',
     );
 }
@@ -71,6 +90,149 @@ function readData() {
 function readFeatures() {
   if (!fs.existsSync(featuresPath)) return structuredClone(DEFAULT_FEATURES);
   return readJson(featuresPath);
+}
+
+
+function readMonitors() {
+  if (!fs.existsSync(monitorsPath)) return structuredClone(DEFAULT_MONITORS);
+  return readJson(monitorsPath);
+}
+
+function normalizeInteger(value, fallback, min, max) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(min, Math.min(max, Math.round(parsed)));
+}
+
+function normalizeMonitor(raw, existing = null) {
+  const today = new Date().toISOString().slice(0, 10);
+  return {
+    id: safeText(raw.id ?? existing?.id, 80)
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9-]+/g, '-')
+      .replace(/^-+|-+$/g, ''),
+    orden: normalizeInteger(raw.orden, existing?.orden ?? 10, 0, 9999),
+    activo: normalizeBoolean(raw.activo, existing?.activo ?? true),
+    teatro: safeText(raw.teatro ?? existing?.teatro, 200).trim(),
+    escalada_nivel: normalizeInteger(
+      raw.escalada_nivel,
+      existing?.escalada_nivel ?? 1,
+      1,
+      5,
+    ),
+    cobertura_pct: normalizeInteger(
+      raw.cobertura_pct,
+      existing?.cobertura_pct ?? 0,
+      0,
+      100,
+    ),
+    alerta_asimetria: safeText(
+      raw.alerta_asimetria ?? existing?.alerta_asimetria,
+      40,
+    )
+      .trim()
+      .toLowerCase(),
+    insight: safeText(raw.insight ?? existing?.insight, 1000).trim(),
+    actualizado: safeText(
+      raw.actualizado ?? existing?.actualizado ?? today,
+      10,
+    ).trim(),
+    fuente_url: safeText(raw.fuente_url ?? existing?.fuente_url, 500).trim(),
+  };
+}
+
+function validateMonitors(monitors) {
+  const errors = [];
+  const warnings = [];
+  const list = monitors?.friccion_narrativa;
+
+  if (!Array.isArray(list)) {
+    errors.push(
+      'monitores.json: friccion_narrativa debe ser una lista.',
+    );
+    return { valid: false, errors, warnings };
+  }
+
+  const ids = new Set();
+  const orders = new Set();
+
+  for (const monitor of list) {
+    const prefix = monitor?.id || 'monitor sin ID';
+
+    if (!monitor?.id) errors.push('Monitor sin ID.');
+    else if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(monitor.id))
+      errors.push(`${prefix}: el ID debe usar minúsculas, números y guiones.`);
+    else if (ids.has(monitor.id))
+      errors.push(`ID de monitor duplicado: ${monitor.id}.`);
+    ids.add(monitor?.id);
+
+    if (!monitor?.teatro) errors.push(`${prefix}: falta teatro.`);
+    if (!Number.isInteger(monitor?.orden) || monitor.orden < 0)
+      errors.push(`${prefix}: orden debe ser un entero no negativo.`);
+    if (orders.has(monitor?.orden))
+      warnings.push(
+        `${prefix}: comparte orden ${monitor.orden} con otro monitor.`,
+      );
+    orders.add(monitor?.orden);
+
+    if (
+      !Number.isInteger(monitor?.escalada_nivel) ||
+      monitor.escalada_nivel < 1 ||
+      monitor.escalada_nivel > 5
+    )
+      errors.push(`${prefix}: escalada_nivel debe estar entre 1 y 5.`);
+
+    if (
+      !Number.isInteger(monitor?.cobertura_pct) ||
+      monitor.cobertura_pct < 0 ||
+      monitor.cobertura_pct > 100
+    )
+      errors.push(`${prefix}: cobertura_pct debe estar entre 0 y 100.`);
+
+    if (!ASYMMETRY_VALUES.has(monitor?.alerta_asimetria))
+      errors.push(
+        `${prefix}: alerta_asimetria debe ser punto_ciego, sobrerrepresentado o sincronico.`,
+      );
+
+    if (!monitor?.insight) errors.push(`${prefix}: falta insight.`);
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(monitor?.actualizado || ''))
+      errors.push(`${prefix}: actualizado debe usar YYYY-MM-DD.`);
+    else if (
+      Number.isNaN(
+        new Date(`${monitor.actualizado}T00:00:00Z`).getTime(),
+      )
+    )
+      errors.push(`${prefix}: actualizado no contiene una fecha válida.`);
+
+    if (monitor?.fuente_url) {
+      try {
+        const sourceUrl = new URL(monitor.fuente_url);
+        if (sourceUrl.protocol !== 'https:')
+          errors.push(`${prefix}: fuente_url debe utilizar HTTPS.`);
+      } catch {
+        errors.push(`${prefix}: fuente_url no es una URL válida.`);
+      }
+    }
+  }
+
+  if (!list.some((monitor) => monitor.activo))
+    warnings.push(
+      'No hay monitores activos: la columna derecha se ocultará.',
+    );
+
+  return {
+    valid: errors.length === 0,
+    errors: [...new Set(errors)],
+    warnings: [...new Set(warnings)],
+  };
+}
+
+function sortedMonitors(monitors) {
+  return [...(monitors.friccion_narrativa || [])].sort(
+    (a, b) => a.orden - b.orden || a.teatro.localeCompare(b.teatro, 'es'),
+  );
 }
 
 function normalizeBoolean(value, fallback = false) {
@@ -331,12 +493,25 @@ function parseRecentActivity(limit = 12) {
 function buildState() {
   const data = readData();
   const features = readFeatures();
+  const monitors = readMonitors();
   const dataValidation = validateData(data);
   const featureValidation = validateFeatures(features);
+  const monitorValidation = validateMonitors(monitors);
   const validation = {
-    valid: dataValidation.valid && featureValidation.valid,
-    errors: [...dataValidation.errors, ...featureValidation.errors],
-    warnings: [...dataValidation.warnings, ...featureValidation.warnings],
+    valid:
+      dataValidation.valid &&
+      featureValidation.valid &&
+      monitorValidation.valid,
+    errors: [
+      ...dataValidation.errors,
+      ...featureValidation.errors,
+      ...monitorValidation.errors,
+    ],
+    warnings: [
+      ...dataValidation.warnings,
+      ...featureValidation.warnings,
+      ...monitorValidation.warnings,
+    ],
   };
   const { project, releases, items } = data;
   const counts = Object.fromEntries(
@@ -372,6 +547,9 @@ function buildState() {
     git: gitInfo(),
     activity: parseRecentActivity(),
     features,
+    monitors: {
+      friccion_narrativa: sortedMonitors(monitors),
+    },
   };
 }
 
@@ -391,6 +569,8 @@ function createBackup(reason = 'save') {
       fs.copyFileSync(file, path.join(folder, path.basename(file)));
   if (fs.existsSync(featuresPath))
     fs.copyFileSync(featuresPath, path.join(folder, 'features.json'));
+  if (fs.existsSync(monitorsPath))
+    fs.copyFileSync(monitorsPath, path.join(folder, 'monitores.json'));
   if (fs.existsSync(progressLogPath))
     fs.copyFileSync(
       progressLogPath,
@@ -565,6 +745,171 @@ async function handleApi(req, url, res) {
 
     createBackup('update-support');
     writeJsonSafely(featuresPath, features);
+
+    return sendJson(res, 200, {
+      ok: true,
+      state: buildState(),
+    });
+  }
+
+
+  if (req.method === 'POST' && url.pathname === '/api/monitors') {
+    const body = await readBody(req);
+    const current = readMonitors();
+    const monitor = normalizeMonitor(body);
+
+    if (
+      current.friccion_narrativa.some(
+        (existing) => existing.id === monitor.id,
+      )
+    )
+      return sendJson(res, 409, {
+        error: `Ya existe el monitor ${monitor.id}.`,
+      });
+
+    const proposed = {
+      ...current,
+      friccion_narrativa: [
+        ...current.friccion_narrativa,
+        monitor,
+      ],
+    };
+    const validation = validateMonitors(proposed);
+
+    if (!validation.valid)
+      return sendJson(res, 422, {
+        error: 'El monitor no supera la validación.',
+        validation,
+      });
+
+    createBackup('create-monitor');
+    writeJsonSafely(monitorsPath, {
+      ...proposed,
+      friccion_narrativa: sortedMonitors(proposed),
+    });
+
+    return sendJson(res, 201, {
+      ok: true,
+      state: buildState(),
+    });
+  }
+
+  if (req.method === 'PUT' && url.pathname === '/api/monitors/order') {
+    const body = await readBody(req);
+    const ids = normalizeStringArray(body.ids);
+    const current = readMonitors();
+    const existingIds = current.friccion_narrativa.map(
+      (monitor) => monitor.id,
+    );
+
+    if (
+      ids.length !== existingIds.length ||
+      new Set(ids).size !== existingIds.length ||
+      existingIds.some((id) => !ids.includes(id))
+    )
+      return sendJson(res, 422, {
+        error: 'La secuencia de monitores no coincide con los datos actuales.',
+      });
+
+    const orderMap = new Map(ids.map((id, index) => [id, (index + 1) * 10]));
+    const proposed = {
+      ...current,
+      friccion_narrativa: current.friccion_narrativa.map((monitor) => ({
+        ...monitor,
+        orden: orderMap.get(monitor.id),
+      })),
+    };
+    const validation = validateMonitors(proposed);
+
+    if (!validation.valid)
+      return sendJson(res, 422, {
+        error: 'El nuevo orden no supera la validación.',
+        validation,
+      });
+
+    createBackup('reorder-monitors');
+    writeJsonSafely(monitorsPath, {
+      ...proposed,
+      friccion_narrativa: sortedMonitors(proposed),
+    });
+
+    return sendJson(res, 200, {
+      ok: true,
+      state: buildState(),
+    });
+  }
+
+  const monitorMatch = url.pathname.match(
+    /^\/api\/monitors\/([a-z0-9-]+)$/,
+  );
+
+  if (req.method === 'PATCH' && monitorMatch) {
+    const body = await readBody(req);
+    const current = readMonitors();
+    const index = current.friccion_narrativa.findIndex(
+      (monitor) => monitor.id === monitorMatch[1],
+    );
+
+    if (index < 0)
+      return sendJson(res, 404, { error: 'Monitor no encontrado.' });
+
+    const updated = normalizeMonitor(
+      body,
+      current.friccion_narrativa[index],
+    );
+    updated.id = current.friccion_narrativa[index].id;
+
+    const list = [...current.friccion_narrativa];
+    list[index] = updated;
+    const proposed = { ...current, friccion_narrativa: list };
+    const validation = validateMonitors(proposed);
+
+    if (!validation.valid)
+      return sendJson(res, 422, {
+        error: 'Los cambios del monitor no superan la validación.',
+        validation,
+      });
+
+    createBackup('update-monitor');
+    writeJsonSafely(monitorsPath, {
+      ...proposed,
+      friccion_narrativa: sortedMonitors(proposed),
+    });
+
+    return sendJson(res, 200, {
+      ok: true,
+      state: buildState(),
+    });
+  }
+
+  if (req.method === 'DELETE' && monitorMatch) {
+    const current = readMonitors();
+    const exists = current.friccion_narrativa.some(
+      (monitor) => monitor.id === monitorMatch[1],
+    );
+
+    if (!exists)
+      return sendJson(res, 404, { error: 'Monitor no encontrado.' });
+
+    const proposed = {
+      ...current,
+      friccion_narrativa: current.friccion_narrativa.filter(
+        (monitor) => monitor.id !== monitorMatch[1],
+      ),
+    };
+    const validation = validateMonitors(proposed);
+
+    if (!validation.valid)
+      return sendJson(res, 422, {
+        error: 'La eliminación no supera la validación.',
+        validation,
+      });
+
+    createBackup('delete-monitor');
+    writeJsonSafely(monitorsPath, {
+      ...proposed,
+      friccion_narrativa: sortedMonitors(proposed),
+    });
 
     return sendJson(res, 200, {
       ok: true,

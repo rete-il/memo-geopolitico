@@ -1,25 +1,40 @@
 {
   "friccion_narrativa": [
     {
+      "id": "israel-libano",
+      "orden": 20,
+      "activo": true,
       "teatro": "Frontera Norte (Israel/Líbano)",
       "escalada_nivel": 4,
       "cobertura_pct": 30,
-      "alerta_asimetria": "Punto Ciego",
-      "insight": "Fuego de artillería sostenido, pero el foco mediático sigue en Gaza."
+      "alerta_asimetria": "punto_ciego",
+      "insight": "Fuego de artillería sostenido, pero el foco mediático sigue en Gaza.",
+      "actualizado": "2026-07-18",
+      "fuente_url": ""
     },
     {
+      "id": "mar-china-meridional",
+      "orden": 30,
+      "activo": false,
       "teatro": "Mar de China Meridional",
       "escalada_nivel": 2,
       "cobertura_pct": 85,
-      "alerta_asimetria": "Sobrerrepresentado",
-      "insight": "Alta tensión retórica por ejercicios navales, sin riesgo cinético inminente."
+      "alerta_asimetria": "sobrerrepresentado",
+      "insight": "Alta tensión retórica por ejercicios navales, sin riesgo cinético inminente.",
+      "actualizado": "2026-07-18",
+      "fuente_url": ""
     },
     {
+      "id": "ucrania-frente-oriental",
+      "orden": 40,
+      "activo": true,
       "teatro": "Frente Oriental (Ucrania)",
       "escalada_nivel": 5,
       "cobertura_pct": 90,
-      "alerta_asimetria": "Sincrónico",
-      "insight": "Guerra de desgaste total alineada con la atención global."
+      "alerta_asimetria": "sincronico",
+      "insight": "Guerra de desgaste total alineada con la atención global.",
+      "actualizado": "2026-07-18",
+      "fuente_url": ""
     }
   ]
 }

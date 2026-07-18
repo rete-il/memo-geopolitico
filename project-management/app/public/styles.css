@@ -325,6 +325,118 @@ td strong { font-size: .78rem; }
   font-size: .86rem;
 }
 
+
+
+.monitor-intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.monitor-intro p {
+  margin: .45rem 0 0;
+  line-height: 1.55;
+}
+.monitor-intro code {
+  color: var(--accent);
+}
+.monitor-table {
+  min-width: 1220px;
+}
+.monitor-table-scroll {
+  max-height: calc(100vh - 285px);
+}
+.monitor-actions {
+  display: flex;
+  align-items: center;
+  gap: .32rem;
+  white-space: nowrap;
+}
+.icon-action {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 .4rem;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--muted);
+  background: var(--surface-2);
+  font-weight: 800;
+}
+.icon-action:hover:not(:disabled),
+.icon-action:focus-visible {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.icon-action:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+.icon-action.is-danger:hover:not(:disabled),
+.icon-action.is-danger:focus-visible {
+  color: var(--red);
+  border-color: rgb(255 107 114 / 55%);
+}
+.monitor-coverage {
+  display: grid;
+  grid-template-columns: 38px 90px;
+  align-items: center;
+  gap: .5rem;
+}
+.monitor-coverage .progress-track {
+  width: 90px;
+  height: 6px;
+  margin: 0;
+}
+.monitor-status,
+.asymmetry-badge,
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 99px;
+  padding: .26rem .55rem;
+  font-size: .72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.monitor-status.is-active {
+  color: var(--green);
+  background: rgb(68 213 138 / 13%);
+}
+.monitor-status.is-inactive {
+  color: var(--muted);
+  background: rgb(154 171 193 / 12%);
+}
+.asymmetry-punto_ciego {
+  color: var(--red);
+  background: rgb(255 107 114 / 13%);
+}
+.asymmetry-sobrerrepresentado {
+  color: var(--blue);
+  background: rgb(87 149 255 / 14%);
+}
+.asymmetry-sincronico {
+  color: var(--muted);
+  background: rgb(154 171 193 / 12%);
+}
+.level-1,
+.level-2 {
+  color: var(--amber);
+  background: rgb(244 185 66 / 12%);
+}
+.level-3 {
+  color: #ff963d;
+  background: rgb(255 150 61 / 12%);
+}
+.level-4,
+.level-5 {
+  color: var(--red);
+  background: rgb(255 107 114 / 13%);
+}
+
 @media (max-width: 1180px) {
   .summary-grid { grid-template-columns: repeat(3, minmax(150px,1fr)); }
   .dashboard-grid { grid-template-columns: 1fr; }
@@ -341,6 +453,7 @@ td strong { font-size: .78rem; }
   .top-actions .branch-badge, #refresh-button { display: none; }
   .summary-grid, .summary-grid.compact { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .release-card-grid, .activity-grid, .validation-grid { grid-template-columns: 1fr; }
+  .monitor-intro { flex-direction: column; }
   .release-progress-row { grid-template-columns: 1fr 55px; }
   .release-progress-row .progress-track { grid-row: 2; grid-column: 1 / -1; }
   .form-grid { grid-template-columns: 1fr; }
