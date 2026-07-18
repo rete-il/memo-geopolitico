@@ -336,14 +336,21 @@
     "epic": "Iconos",
     "title": "Cargar iconografía globalmente o empaquetarla",
     "priority": "P1",
-    "status": "ready",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "S",
-    "owner": "TBD",
+    "owner": "Rete",
     "dependencies": [],
     "progress": null,
-    "acceptanceCriteria": [],
-    "notes": ""
+    "acceptanceCriteria": [
+      "La biblioteca de iconos se carga desde el layout global.",
+      "Los iconos aparecen en Inicio, Directorio, Ensayos y páginas de profundidad.",
+      "No existe una carga duplicada en index.astro.",
+      "El icono de marca aparece correctamente en todas las rutas.",
+      "Astro Check finaliza sin errores, advertencias ni hints.",
+      "El build finaliza correctamente."
+    ],
+    "notes": "La biblioteca Phosphor Icons estaba cargada únicamente en index.astro.\n\nComo consecuencia, los componentes que utilizaban clases ph-* funcionaban\nen la portada, pero mostraban espacios vacíos en las páginas interiores.\n\nSe trasladó la carga de @phosphor-icons/web a Layout.astro y se eliminó\nla referencia duplicada de index.astro.\n\nSe eligió la carga global mediante unpkg. El empaquetado local de la\nbiblioteca queda como posible optimización futura si se decide eliminar\nla dependencia del CDN externo.\n\nValidación:\n- icono de marca visible en todas las rutas;\n- páginas interiores verificadas;\n- Astro Check correcto;\n- build correcto."
   },
   {
     "id": "IA-001",
@@ -1672,5 +1679,59 @@
       "El flujo de publicación desde la rama beta queda documentado."
     ],
     "notes": "El alias beta.memogeopolitico.com existe actualmente como reserva futura,\npero no se utiliza como entorno operativo.\n\nSu finalidad prevista es permitir pruebas reales desde dispositivos móviles\ny tabletas antes de publicar cambios en memogeopolitico.com.\n\nCuando se implemente deberán distinguirse tres entornos:\n- localhost: desarrollo;\n- beta.memogeopolitico.com: validación previa;\n- memogeopolitico.com: producción."
+  },
+  {
+    "id": "DATA-002",
+    "type": "FEATURE",
+    "epic": "Datos y Monitoreo",
+    "title": "Convertir los monitores de la columna derecha en datos administrables",
+    "priority": "P1",
+    "status": "in_progress",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": 15,
+    "acceptanceCriteria": [
+      "Los registros de la columna derecha pueden administrarse desde el dashboard local.",
+      "Cada registro tiene un ID estable.",
+      "Los registros pueden activarse, desactivarse y ordenarse.",
+      "Escalada acepta únicamente valores entre 1 y 5.",
+      "Cobertura acepta únicamente valores entre 0 y 100.",
+      "La asimetría utiliza una taxonomía cerrada y validada.",
+      "Cada registro indica cuándo fue actualizado.",
+      "El componente solo muestra registros activos y ordenados.",
+      "La sección se oculta correctamente cuando no existen registros activos.",
+      "Los cambios generan una copia de seguridad.",
+      "No es necesario editar monitores.json manualmente.",
+      "Astro Check y el build finalizan correctamente.",
+      "---",
+      "El contenido operativo de la columna derecha no está escrito directamente en el componente.",
+      "Los registros se cargan desde una fuente de datos centralizada.",
+      "Cada registro dispone de título, descripción, nivel, cobertura y estado.",
+      "El componente admite cero, uno o varios registros sin romper el layout.",
+      "Los datos inválidos producen errores de validación durante el desarrollo.",
+      "La columna mantiene su funcionamiento responsive.",
+      "El dashboard permite editar los registros sin modificar código.",
+      "Astro Check y el build finalizan correctamente."
+    ],
+    "notes": "Los datos operativos ya se encontraban externalizados en\nsrc/data/monitores.json.\n\nLa deuda principal no era el renderizado, sino la ausencia de:\n- administración desde el dashboard;\n- IDs estables;\n- orden explícito;\n- activación y desactivación;\n- fecha de actualización;\n- validación estructural.\n\nLa presentación visual, las escalas y la taxonomía permanecerán controladas\npor el componente para conservar coherencia editorial y visual.\n---\nLa columna derecha contiene actualmente una combinación de estructura fija\ny contenido operativo que requiere cambios manuales en el proyecto.\n\nLa implementación se dividirá en dos etapas:\n\n1. normalizar el modelo de datos y desacoplar completamente el contenido;\n2. incorporar una pantalla de administración en el dashboard local.\n\nLa fuente canónica prevista es src/data/monitores.json."
+  },
+  {
+    "id": "DATA-003",
+    "type": "PM",
+    "epic": "Gestión",
+    "title": "Definir el modelo de relevancia geopolítica y atención mediática",
+    "priority": "P1",
+    "status": "in_progress",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": 20,
+    "acceptanceCriteria": [
+      "Definir el modelo de relevancia geopolítica y atención mediática"
+    ],
+    "notes": ""
   }
 ]

@@ -4,7 +4,7 @@
 
 | Secuencia | Release | Objetivo | Avance | Estado |
 |---:|---|---|---:|---|
-| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 77% | Actual |
+| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 75% | Actual |
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
 | 2 | Beta 2 — Navegación, menú y regiones | Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas. | 0% | Planificada |
 | 3 | Beta 3 — Monitor y Fricción vs. Narrativa | Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones. | 0% | Planificada |
@@ -17,7 +17,7 @@
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.  
 **Fecha objetivo:** TBD  
-**Avance:** 77%
+**Avance:** 75%
 
 ### Criterios de salida
 
@@ -48,7 +48,7 @@
 | SEO-002 | SEO | P1 | ◉ Lista | M | Publicar robots.txt seguro y sitemap |
 | UX-001 | UX | P1 | ◉ Lista | S | Crear página 404 coherente con la marca |
 | A11Y-001 | A11Y | P1 | ○ Propuesta | M | Registrar auditoría de teclado, contraste y headings |
-| UI-001 | FIX | P1 | ◉ Lista | S | Cargar iconografía globalmente o empaquetarla |
+| UI-001 | FIX | P1 | ✓ Terminada | S | Cargar iconografía globalmente o empaquetarla |
 | PMAPP-001 | PMAPP | P0 | ✓ Terminada | S | Definir arquitectura del dashboard local |
 | PMAPP-002 | PMAPP | P0 | ✓ Terminada | M | Crear servidor local restringido a 127.0.0.1 |
 | PMAPP-003 | PMAPP | P0 | ✓ Terminada | M | Implementar lectura y resumen de datos canónicos |
@@ -59,6 +59,8 @@
 | PMAPP-008 | PMAPP | P0 | ✓ Terminada | S | Implementar copias de seguridad locales |
 | PMAPP-009 | PMAPP | P0 | ✓ Terminada | S | Validar dashboard local en Windows y documentar resultados |
 | QA-004 | QA | P1 | ✓ Terminada | M | Reducir hints de Astro Check |
+| DATA-002 | FEATURE | P1 | ▶ En progreso | M | Convertir los monitores de la columna derecha en datos administrables |
+| DATA-003 | PM | P1 | ▶ En progreso | M | Definir el modelo de relevancia geopolítica y atención mediática |
 
 ## Beta 1 — Fundamentos y sistema de diseño
 

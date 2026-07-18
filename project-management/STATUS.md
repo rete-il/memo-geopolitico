@@ -8,29 +8,32 @@
 
 **Release actual:** Beta 0 — Baseline, seguridad y control
 
-**Avance ponderado total:** **14%**
+**Avance ponderado total:** **15%**
 
 ## Resumen
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 91 |
-| Terminados | 21 |
-| En progreso | 0 |
+| Total de work items | 93 |
+| Terminados | 22 |
+| En progreso | 2 |
 | En revisión | 0 |
 | Bloqueados | 0 |
-| Listos | 7 |
+| Listos | 6 |
 | P0 abiertos | 17 |
 
 ## Release actual
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
 
-**Avance del release:** 77%
+**Avance del release:** 75%
 
 ### Trabajo activo
 
-No hay tareas marcadas como en progreso, revisión o bloqueadas.
+| ID | Estado | Trabajo | Responsable | Progreso |
+|---|---|---|---|---:|
+| DATA-002 | ▶ En progreso | Convertir los monitores de la columna derecha en datos administrables | Rete | 15% |
+| DATA-003 | ▶ En progreso | Definir el modelo de relevancia geopolítica y atención mediática | Rete | 20% |
 
 ### Próximas tareas listas
 
@@ -41,7 +44,6 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 | SEO-001 | P1 | Crear default-og.png y validar Open Graph | beta-0-baseline | — |
 | SEO-002 | P1 | Publicar robots.txt seguro y sitemap | beta-0-baseline | OPS-003 |
 | UX-001 | P1 | Crear página 404 coherente con la marca | beta-0-baseline | — |
-| UI-001 | P1 | Cargar iconografía globalmente o empaquetarla | beta-0-baseline | — |
 | IA-001 | P0 | Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones | beta-1-foundations | FIX-001 |
 
 ### P0 abiertos
