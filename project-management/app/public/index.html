@@ -23,6 +23,7 @@
         <button class="nav-item" data-view="items"><span aria-hidden="true">☷</span> Work items</button>
         <button class="nav-item" data-view="releases"><span aria-hidden="true">◆</span> Releases</button>
         <button class="nav-item" data-view="activity"><span aria-hidden="true">✎</span> Actividad</button>
+        <button class="nav-item" data-view="settings"><span aria-hidden="true">⚙</span> Configuración</button>
         <button class="nav-item" data-view="validation"><span aria-hidden="true">✓</span> Validación</button>
       </nav>
       <div class="sidebar-footer">
@@ -115,6 +116,115 @@
           </form>
           <section class="panel"><div class="panel-header"><h3>Entradas recientes</h3></div><div id="activity-list" class="activity-list"></div></section>
         </div>
+      </section>
+
+      <section id="view-settings" class="view" aria-labelledby="settings-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FEATURE FLAGS</p>
+            <h2 id="settings-heading">Configuración</h2>
+          </div>
+        </div>
+
+        <form id="support-form" class="settings-grid">
+          <section class="panel settings-panel settings-main">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">SISTEMA DE APOYO</p>
+                <h3>Ko-fi</h3>
+              </div>
+            </div>
+
+            <label class="field">
+              <span>URL pública de Ko-fi</span>
+              <input id="support-url" type="url" required maxlength="500" placeholder="https://ko-fi.com/usuario">
+            </label>
+
+            <fieldset class="settings-fieldset">
+              <legend>Entornos</legend>
+
+              <label class="switch-field">
+                <span>
+                  <strong>Mostrar en localhost</strong>
+                  <small>Visible al ejecutar npm run dev.</small>
+                </span>
+                <input id="support-dev-enabled" type="checkbox">
+              </label>
+
+              <label class="switch-field">
+                <span>
+                  <strong>Mostrar en producción</strong>
+                  <small>Requiere commit, actualización de main y nuevo deploy.</small>
+                </span>
+                <input id="support-prod-enabled" type="checkbox">
+              </label>
+            </fieldset>
+
+            <fieldset class="settings-fieldset">
+              <legend>Ubicaciones</legend>
+
+              <label class="switch-field">
+                <span>
+                  <strong>Alertas en profundidad</strong>
+                  <small>CTA completo después del contenido y las fuentes.</small>
+                </span>
+                <input id="support-alerts" type="checkbox">
+              </label>
+
+              <label class="switch-field">
+                <span>
+                  <strong>Ensayos</strong>
+                  <small>CTA completo al final de cada ensayo.</small>
+                </span>
+                <input id="support-essays" type="checkbox">
+              </label>
+
+              <label class="switch-field">
+                <span>
+                  <strong>Footer</strong>
+                  <small>Enlace discreto en el pie global.</small>
+                </span>
+                <input id="support-footer" type="checkbox">
+              </label>
+            </fieldset>
+
+            <div class="settings-actions">
+              <button class="button button-primary" type="submit">Guardar configuración</button>
+            </div>
+          </section>
+
+          <aside class="settings-side">
+            <section class="panel">
+              <div class="panel-header"><h3>Estado por entorno</h3></div>
+              <div class="environment-list">
+                <div class="environment-row">
+                  <span><strong>localhost</strong><small>npm run dev</small></span>
+                  <strong id="support-local-state" class="environment-state">—</strong>
+                </div>
+                <div class="environment-row">
+                  <span><strong>memogeopolitico.com</strong><small>build de producción</small></span>
+                  <strong id="support-production-state" class="environment-state">—</strong>
+                </div>
+              </div>
+            </section>
+
+            <section id="support-production-notice" class="configuration-notice is-safe" aria-live="polite">
+              <strong>Producción protegida.</strong>
+              <span>El CTA permanece oculto hasta que lo actives y publiques un nuevo deploy.</span>
+            </section>
+
+            <section class="panel compact-help">
+              <h3>Secuencia de publicación</h3>
+              <ol>
+                <li>Probar en localhost.</li>
+                <li>Activar producción desde este panel.</li>
+                <li>Revisar los cambios en Git.</li>
+                <li>Llevar el cambio a main.</li>
+                <li>Esperar el deploy de Netlify.</li>
+              </ol>
+            </section>
+          </aside>
+        </form>
       </section>
 
       <section id="view-validation" class="view" aria-labelledby="validation-heading">

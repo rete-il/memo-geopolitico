@@ -2,28 +2,31 @@
 
 > Archivo generado. Editar `data/*.json` y ejecutar `node project-management/tools/update-dashboard.mjs`.
 
-**Actualizado:** 2026-07-17  
-**Rama de trabajo:** `beta`  
-**Release actual:** Beta 0 — Baseline, seguridad y control  
-**Avance ponderado total:** **13%**
+**Actualizado:** 2026-07-18
+
+**Rama de trabajo:** `beta`
+
+**Release actual:** Beta 0 — Baseline, seguridad y control
+
+**Avance ponderado total:** **14%**
 
 ## Resumen
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 90 |
-| Terminados | 20 |
+| Total de work items | 91 |
+| Terminados | 21 |
 | En progreso | 0 |
 | En revisión | 0 |
 | Bloqueados | 0 |
-| Listos | 8 |
-| P0 abiertos | 18 |
+| Listos | 7 |
+| P0 abiertos | 17 |
 
 ## Release actual
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
 
-**Avance del release:** 75%
+**Avance del release:** 77%
 
 ### Trabajo activo
 
@@ -35,7 +38,6 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 |---|---|---|---|---|
 | OPS-002 | P1 | Versionar Node con .nvmrc o .node-version | beta-0-baseline | — |
 | OPS-003 | P1 | Versionar configuración Netlify en netlify.toml | beta-0-baseline | OPS-002 |
-| FIX-004 | P0 | Corregir o retirar CTA Ko-fi provisional | beta-0-baseline | — |
 | SEO-001 | P1 | Crear default-og.png y validar Open Graph | beta-0-baseline | — |
 | SEO-002 | P1 | Publicar robots.txt seguro y sitemap | beta-0-baseline | OPS-003 |
 | UX-001 | P1 | Crear página 404 coherente con la marca | beta-0-baseline | — |
@@ -46,7 +48,6 @@ No hay tareas marcadas como en progreso, revisión o bloqueadas.
 
 | ID | Estado | Trabajo | Release |
 |---|---|---|---|
-| FIX-004 | Lista | Corregir o retirar CTA Ko-fi provisional | beta-0-baseline |
 | IA-001 | Lista | Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones | beta-1-foundations |
 | REG-001 | Propuesta | Aprobar taxonomía de regiones, subregiones y teatros | beta-2-navigation-regions |
 | REG-002 | Propuesta | Crear fuente central src/config/regions.ts | beta-2-navigation-regions |

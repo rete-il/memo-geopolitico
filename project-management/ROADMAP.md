@@ -4,7 +4,7 @@
 
 | Secuencia | Release | Objetivo | Avance | Estado |
 |---:|---|---|---:|---|
-| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 75% | Actual |
+| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 77% | Actual |
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
 | 2 | Beta 2 — Navegación, menú y regiones | Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas. | 0% | Planificada |
 | 3 | Beta 3 — Monitor y Fricción vs. Narrativa | Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones. | 0% | Planificada |
@@ -17,7 +17,7 @@
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.  
 **Fecha objetivo:** TBD  
-**Avance:** 75%
+**Avance:** 77%
 
 ### Criterios de salida
 
@@ -43,7 +43,7 @@
 | FIX-001 | FIX | P0 | ✓ Terminada | S | Corregir rutas inexistentes del encabezado |
 | FIX-002 | FIX | P0 | ✓ Terminada | M | Completar el índice /ensayos/ |
 | FIX-003 | FIX | P0 | ✓ Terminada | S | Retirar o normalizar placeholder Indo-Pacífico |
-| FIX-004 | FIX | P0 | ◉ Lista | XS | Corregir o retirar CTA Ko-fi provisional |
+| FIX-004 | FIX | P0 | ✓ Terminada | M | Configurar sistema modular de apoyo mediante Ko-fi |
 | SEO-001 | SEO | P1 | ◉ Lista | S | Crear default-og.png y validar Open Graph |
 | SEO-002 | SEO | P1 | ◉ Lista | M | Publicar robots.txt seguro y sitemap |
 | UX-001 | UX | P1 | ◉ Lista | S | Crear página 404 coherente con la marca |
@@ -249,4 +249,5 @@
 | SEARCH-002 | FEAT | P3 | ○ Propuesta | XL | Implementar búsqueda transversal |
 | SUB-001 | FEAT | P3 | – Postergada | L | Evaluar newsletter y alertas temáticas |
 | AUTO-001 | FEAT | P3 | – Postergada | XL | Evaluar automatización de atención mediática |
+| INFRA-001 | INFRA | P2 | ○ Propuesta | M | Configurar entorno beta para validación multidispositivo |
 

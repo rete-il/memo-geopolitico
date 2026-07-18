@@ -16,7 +16,7 @@
 | FIX-001 | FIX | Navegación | P0 | ✓ Terminada | S | Rete | — | Corregir rutas inexistentes del encabezado |
 | FIX-002 | FIX | Contenido | P0 | ✓ Terminada | M | Rete | — | Completar el índice /ensayos/ |
 | FIX-003 | FIX | Contenido | P0 | ✓ Terminada | S | Rete | — | Retirar o normalizar placeholder Indo-Pacífico |
-| FIX-004 | FIX | Conversión | P0 | ◉ Lista | XS | TBD | — | Corregir o retirar CTA Ko-fi provisional |
+| FIX-004 | FIX | Conversión | P0 | ✓ Terminada | M | Rete | — | Configurar sistema modular de apoyo mediante Ko-fi |
 | OPS-001 | OPS | Producción | P0 | ✓ Terminada | S | Rete | — | Registrar baseline de Netlify y producción |
 | PM-001 | PM | Gestión | P0 | ✓ Terminada | S | Rete | — | Separar documentación del estado actual y documentación de proyecto |
 | PM-002 | PM | Gestión | P0 | ✓ Terminada | M | Rete | PM-001 | Crear sistema dinámico de project management |
@@ -133,6 +133,7 @@
 
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|
+| INFRA-001 | INFRA | Infraestructura y despliegue | P2 | ○ Propuesta | M | Rete | — | Configurar entorno beta para validación multidispositivo |
 | SEARCH-001 | FEAT | Búsqueda | P2 | ○ Propuesta | L | TBD | ED-001, REG-002 | Preparar metadatos para búsqueda global |
 | AUTO-001 | FEAT | Automatización | P3 | – Postergada | XL | TBD | FRIC-003, FRIC-006 | Evaluar automatización de atención mediática |
 | SEARCH-002 | FEAT | Búsqueda | P3 | ○ Propuesta | XL | TBD | SEARCH-001 | Implementar búsqueda transversal |

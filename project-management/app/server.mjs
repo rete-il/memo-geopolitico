@@ -14,12 +14,24 @@ const dataDir = path.join(pmRoot, 'data');
 const recordsDir = path.join(pmRoot, 'records');
 const backupsDir = path.join(pmRoot, 'backups');
 const generatorPath = path.join(pmRoot, 'tools', 'update-dashboard.mjs');
+const featuresPath = path.join(repoRoot, 'src', 'config', 'features.json');
 
 const HOST = '127.0.0.1';
 const PORT = Number(process.env.PM_DASHBOARD_PORT || 4322);
 const MAX_BODY_BYTES = 1024 * 1024;
 const MAX_BACKUPS = 20;
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
+
+const DEFAULT_FEATURES = {
+  support: {
+    enabledInDevelopment: true,
+    enabledInProduction: false,
+    kofiUrl: 'https://ko-fi.com/reteil',
+    showOnAlerts: true,
+    showOnEssays: true,
+    showInFooter: true,
+  },
+};
 
 const jsonFiles = {
   project: path.join(dataDir, 'project.json'),
@@ -30,9 +42,18 @@ const progressLogPath = path.join(recordsDir, 'PROGRESS-LOG.md');
 
 function ensureDirectories() {
   fs.mkdirSync(backupsDir, { recursive: true });
+  fs.mkdirSync(path.dirname(featuresPath), { recursive: true });
+
   const ignorePath = path.join(backupsDir, '.gitignore');
   if (!fs.existsSync(ignorePath))
     fs.writeFileSync(ignorePath, '*\n!.gitignore\n', 'utf8');
+
+  if (!fs.existsSync(featuresPath))
+    fs.writeFileSync(
+      featuresPath,
+      `${JSON.stringify(DEFAULT_FEATURES, null, 2)}\n`,
+      'utf8',
+    );
 }
 
 function readJson(file) {
@@ -44,6 +65,69 @@ function readData() {
     project: readJson(jsonFiles.project),
     releases: readJson(jsonFiles.releases),
     items: readJson(jsonFiles.items),
+  };
+}
+
+function readFeatures() {
+  if (!fs.existsSync(featuresPath)) return structuredClone(DEFAULT_FEATURES);
+  return readJson(featuresPath);
+}
+
+function normalizeBoolean(value, fallback = false) {
+  return value === undefined ? fallback : value === true;
+}
+
+function normalizeSupport(raw, existing = DEFAULT_FEATURES.support) {
+  return {
+    enabledInDevelopment: normalizeBoolean(
+      raw.enabledInDevelopment,
+      existing.enabledInDevelopment,
+    ),
+    enabledInProduction: normalizeBoolean(
+      raw.enabledInProduction,
+      existing.enabledInProduction,
+    ),
+    kofiUrl: safeText(raw.kofiUrl ?? existing.kofiUrl, 500).trim(),
+    showOnAlerts: normalizeBoolean(raw.showOnAlerts, existing.showOnAlerts),
+    showOnEssays: normalizeBoolean(raw.showOnEssays, existing.showOnEssays),
+    showInFooter: normalizeBoolean(raw.showInFooter, existing.showInFooter),
+  };
+}
+
+function validateFeatures(features) {
+  const errors = [];
+  const warnings = [];
+  const support = features?.support;
+
+  if (!support) {
+    errors.push('features.json: falta el bloque support.');
+    return { valid: false, errors, warnings };
+  }
+
+  try {
+    const url = new URL(support.kofiUrl);
+    if (url.protocol !== 'https:')
+      errors.push('Ko-fi debe utilizar una URL HTTPS.');
+    if (!['ko-fi.com', 'www.ko-fi.com'].includes(url.hostname))
+      errors.push('La URL de apoyo debe pertenecer a ko-fi.com.');
+  } catch {
+    errors.push('La URL pública de Ko-fi no es válida.');
+  }
+
+  const anyPlacement =
+    support.showOnAlerts || support.showOnEssays || support.showInFooter;
+  const anyEnvironment =
+    support.enabledInDevelopment || support.enabledInProduction;
+
+  if (anyEnvironment && !anyPlacement)
+    warnings.push(
+      'El sistema de apoyo está activado, pero no tiene ubicaciones habilitadas.',
+    );
+
+  return {
+    valid: errors.length === 0,
+    errors,
+    warnings,
   };
 }
 
@@ -246,7 +330,14 @@ function parseRecentActivity(limit = 12) {
 
 function buildState() {
   const data = readData();
-  const validation = validateData(data);
+  const features = readFeatures();
+  const dataValidation = validateData(data);
+  const featureValidation = validateFeatures(features);
+  const validation = {
+    valid: dataValidation.valid && featureValidation.valid,
+    errors: [...dataValidation.errors, ...featureValidation.errors],
+    warnings: [...dataValidation.warnings, ...featureValidation.warnings],
+  };
   const { project, releases, items } = data;
   const counts = Object.fromEntries(
     (project.statusVocabulary || []).map((status) => [
@@ -280,6 +371,7 @@ function buildState() {
     validation,
     git: gitInfo(),
     activity: parseRecentActivity(),
+    features,
   };
 }
 
@@ -297,6 +389,8 @@ function createBackup(reason = 'save') {
   for (const file of Object.values(jsonFiles))
     if (fs.existsSync(file))
       fs.copyFileSync(file, path.join(folder, path.basename(file)));
+  if (fs.existsSync(featuresPath))
+    fs.copyFileSync(featuresPath, path.join(folder, 'features.json'));
   if (fs.existsSync(progressLogPath))
     fs.copyFileSync(
       progressLogPath,
@@ -452,6 +546,30 @@ async function handleApi(req, url, res) {
       });
     const output = regenerateMarkdown();
     return sendJson(res, 200, { ok: true, output, state: buildState() });
+  }
+
+  if (req.method === 'PATCH' && url.pathname === '/api/features/support') {
+    const body = await readBody(req);
+    const current = readFeatures();
+    const features = {
+      ...current,
+      support: normalizeSupport(body, current.support),
+    };
+    const validation = validateFeatures(features);
+
+    if (!validation.valid)
+      return sendJson(res, 422, {
+        error: 'La configuración de apoyo no supera la validación.',
+        validation,
+      });
+
+    createBackup('update-support');
+    writeJsonSafely(featuresPath, features);
+
+    return sendJson(res, 200, {
+      ok: true,
+      state: buildState(),
+    });
   }
 
   if (req.method === 'POST' && url.pathname === '/api/work-items') {

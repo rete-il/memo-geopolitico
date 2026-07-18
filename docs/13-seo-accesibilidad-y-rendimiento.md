@@ -14,18 +14,18 @@
 
 ### Riesgos actuales
 
-| Hallazgo | Impacto | Prioridad |
-|---|---|---|
-| `robots.txt` está fuera de `public/` | Puede no publicarse; no existe política de rastreo verificable | Alta |
-| El contenido del archivo fuente dice `Disallow: /` | Si se mueve sin corregir, bloquearía todo el sitio | Crítica al implementar |
-| `default-og.png` ausente | Preview social rota o 404 | Alta |
-| Profundidad usa metadata genérica | Títulos/descripciones incorrectos | Alta |
-| `og:type` siempre `website` | Semántica de artículos incompleta | Media |
-| Sin sitemap ni RSS | Descubrimiento limitado | Media |
-| Sin datos estructurados | Menor riqueza semántica | Media |
-| Slugs con guiones bajos | Legibilidad menor; ya requieren redirects si cambian | Media |
-| Página de archivo vacía | Ruta indexable sin valor | Alta |
-| Dominio técnico Netlify disponible | Riesgo menor de duplicidad si canonical falla | Baja |
+| Hallazgo                                           | Impacto                                                        | Prioridad              |
+| -------------------------------------------------- | -------------------------------------------------------------- | ---------------------- |
+| `robots.txt` está fuera de `public/`               | Puede no publicarse; no existe política de rastreo verificable | Alta                   |
+| El contenido del archivo fuente dice `Disallow: /` | Si se mueve sin corregir, bloquearía todo el sitio             | Crítica al implementar |
+| `default-og.png` ausente                           | Preview social rota o 404                                      | Alta                   |
+| Profundidad usa metadata genérica                  | Títulos/descripciones incorrectos                              | Alta                   |
+| `og:type` siempre `website`                        | Semántica de artículos incompleta                              | Media                  |
+| Sin sitemap ni RSS                                 | Descubrimiento limitado                                        | Media                  |
+| Sin datos estructurados                            | Menor riqueza semántica                                        | Media                  |
+| Slugs con guiones bajos                            | Legibilidad menor; ya requieren redirects si cambian           | Media                  |
+| Página de archivo vacía                            | Ruta indexable sin valor                                       | Alta                   |
+| Dominio técnico Netlify disponible                 | Riesgo menor de duplicidad si canonical falla                  | Baja                   |
 
 ### Acción correcta para `robots.txt`
 
@@ -134,7 +134,11 @@ Primero debe existir un sitemap real. Verificar después que el archivo quede de
 - evaluar HSTS solo cuando todos los subdominios se sirvan correctamente por HTTPS;
 - no aplicar `includeSubDomains` mientras `beta` u otros subdominios puedan permanecer inactivos;
 - prevenir spreadsheet formula injection en la exportación CSV si los datos se vuelven editables por terceros;
-- documentar terceros y privacidad: Google Fonts, CARTO, OpenStreetMap, unpkg y Ko-fi.
+- documentar terceros y privacidad: Google Fonts, CARTO, OpenStreetMap,
+  unpkg y Ko-fi;
+- Ko-fi solo se enlaza cuando el feature flag de apoyo está activo;
+- los enlaces externos usan `target="_blank"` y
+  `rel="noopener noreferrer"`.
 
 ## 13.5 Validaciones pendientes en producción
 

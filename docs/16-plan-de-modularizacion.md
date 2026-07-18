@@ -21,8 +21,14 @@ Orden recomendado:
 
 1. corregir `/profundizar` y `/analisis` o retirar esos enlaces;
 2. completar o desindexar temporalmente `/ensayos/`;
-3. retirar/mover el placeholder Indo-Pacífico;
-4. corregir Ko-fi o retirar CTA;
+3. Retirar el placeholder Indo-Pacífico y sus datos demostrativos. Estado: completado en Beta 0
+4. [x] Modularizar el CTA de Ko-fi y controlarlo mediante feature flag;
+   - [x] URL centralizada;
+   - [x] CTA reutilizable para alertas y ensayos;
+   - [x] footer condicional;
+   - [x] controles incorporados al dashboard;
+   - [x] habilitado en localhost;
+   - [x] desactivado inicialmente en producción.
 5. crear `public/default-og.png`;
 6. crear `public/robots.txt` correcto y sitemap;
 7. crear 404;

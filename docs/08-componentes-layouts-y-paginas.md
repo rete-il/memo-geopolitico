@@ -93,12 +93,18 @@ Observaciones:
 
 ### `src/pages/profundidad/[slug].astro`
 
-Genera las páginas de profundidad, badge de severidad, fecha, contenido, fuentes opcionales y llamada a Ko-fi.
+Genera las páginas de profundidad, incluyendo badge de severidad, fecha,
+contenido, fuentes opcionales y el componente condicional de apoyo.
+
+El CTA se implementa mediante `SupportCTA.astro` y utiliza la configuración
+centralizada de `src/config/features.json`.
 
 Riesgos:
 
 - usa `<Layout>` sin título, description ni imagen;
-- URL de Ko-fi es placeholder `tu_usuario`;
+- La URL pública es `https://ko-fi.com/reteil`.
+- El sistema está habilitado en desarrollo y desactivado inicialmente en producción.
+- El sistema está habilitado en desarrollo y desactivado inicialmente en producción.
 - los iconos no se cargan en esta ruta;
 - el tipo editorial no incluye autor, descripción ni actualización;
 - las fuentes estructuradas no se usan en las piezas actuales.

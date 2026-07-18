@@ -182,19 +182,46 @@ function renderValidation() {
   $('#validation-warnings').innerHTML = validation.warnings.length ? validation.warnings.map(v => `<li>${escapeHtml(v)}</li>`).join('') : '<li>Sin advertencias.</li>';
 }
 
+function renderSettings() {
+  const support = app.state.features?.support;
+  if (!support) return;
+
+  $('#support-url').value = support.kofiUrl || '';
+  $('#support-dev-enabled').checked = Boolean(support.enabledInDevelopment);
+  $('#support-prod-enabled').checked = Boolean(support.enabledInProduction);
+  $('#support-alerts').checked = Boolean(support.showOnAlerts);
+  $('#support-essays').checked = Boolean(support.showOnEssays);
+  $('#support-footer').checked = Boolean(support.showInFooter);
+
+  const localState = $('#support-local-state');
+  localState.textContent = support.enabledInDevelopment ? 'Visible' : 'Oculto';
+  localState.className = `environment-state ${support.enabledInDevelopment ? 'is-on' : 'is-off'}`;
+
+  const productionState = $('#support-production-state');
+  productionState.textContent = support.enabledInProduction ? 'Visible tras deploy' : 'Oculto';
+  productionState.className = `environment-state ${support.enabledInProduction ? 'is-on' : 'is-off'}`;
+
+  const productionNotice = $('#support-production-notice');
+  productionNotice.className = `configuration-notice ${support.enabledInProduction ? 'is-warning' : 'is-safe'}`;
+  productionNotice.innerHTML = support.enabledInProduction
+    ? '<strong>Producción preparada para activarse.</strong><span>El CTA aparecerá en memogeopolitico.com únicamente después de llevar este cambio a main y completar un nuevo deploy de Netlify.</span>'
+    : '<strong>Producción protegida.</strong><span>El CTA permanece oculto en memogeopolitico.com. Puedes probarlo en localhost con npm run dev.</span>';
+}
+
 function renderAll() {
   renderOverview();
   renderItems();
   renderReleases();
   renderActivity();
   renderValidation();
+  renderSettings();
 }
 
 function setView(view) {
   app.view = view;
   $$('.view').forEach(section => section.classList.toggle('is-active', section.id === `view-${view}`));
   $$('.nav-item').forEach(button => button.classList.toggle('is-active', button.dataset.view === view));
-  const titles = { overview: 'Resumen del proyecto', items: 'Work items', releases: 'Releases', activity: 'Actividad', validation: 'Validación' };
+  const titles = { overview: 'Resumen del proyecto', items: 'Work items', releases: 'Releases', activity: 'Actividad', settings: 'Configuración', validation: 'Validación' };
   $('#page-title').textContent = titles[view] || 'Project Dashboard';
   $('.sidebar').classList.remove('is-open');
   $('#mobile-nav-toggle').setAttribute('aria-expanded', 'false');
@@ -325,6 +352,46 @@ async function saveActivity(event) {
   finally { setLoading(submit, false); }
 }
 
+async function saveSupportSettings(event) {
+  event.preventDefault();
+  const submit = event.submitter;
+  const currentProduction = Boolean(app.state.features?.support?.enabledInProduction);
+  const nextProduction = $('#support-prod-enabled').checked;
+
+  if (!currentProduction && nextProduction) {
+    const confirmed = window.confirm(
+      'Vas a preparar la activación de Ko-fi en producción. El cambio solo será visible después de actualizar main y completar un nuevo deploy de Netlify. ¿Continuar?',
+    );
+    if (!confirmed) return;
+  }
+
+  setLoading(submit, true, 'Guardando…');
+  try {
+    const result = await api('/api/features/support', {
+      method: 'PATCH',
+      body: JSON.stringify({
+        kofiUrl: $('#support-url').value,
+        enabledInDevelopment: $('#support-dev-enabled').checked,
+        enabledInProduction: nextProduction,
+        showOnAlerts: $('#support-alerts').checked,
+        showOnEssays: $('#support-essays').checked,
+        showInFooter: $('#support-footer').checked,
+      }),
+    });
+    app.state = result.state;
+    renderAll();
+    showMessage(
+      nextProduction
+        ? 'Configuración guardada. Producción se activará en el próximo deploy desde main.'
+        : 'Configuración guardada. Producción permanece oculta.',
+    );
+  } catch (error) {
+    showMessage(error.message, 'error');
+  } finally {
+    setLoading(submit, false);
+  }
+}
+
 async function regenerate(button = $('#regenerate-button')) {
   setLoading(button, true, 'Regenerando…');
   try {
@@ -371,6 +438,7 @@ function bindEvents() {
   $('#cancel-release-dialog').addEventListener('click', () => $('#release-dialog').close());
   $('#release-form').addEventListener('submit', saveRelease);
   $('#activity-form').addEventListener('submit', saveActivity);
+  $('#support-form').addEventListener('submit', saveSupportSettings);
   $('#regenerate-button').addEventListener('click', () => regenerate());
   $('#validation-run-button').addEventListener('click', event => regenerate(event.currentTarget));
   $('#refresh-button').addEventListener('click', () => loadState('Datos recargados desde disco.'));

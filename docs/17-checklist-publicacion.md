@@ -19,7 +19,10 @@ Esta lista se usa para el primer lanzamiento y para cada actualización de produ
 
 ## Contenido
 
-- [ ] No hay textos “Tu contenido aquí”, `ejemplo.com` ni `tu_usuario`.
+- [x] No quedan textos de muestra, dominios ficticios ni identificadores placeholder.
+- [x] La URL pública de Ko-fi fue validada.
+- [x] El sistema de apoyo puede activarse y desactivarse desde configuración.
+- [x] El sistema permanece desactivado inicialmente en producción.
 - [ ] Todas las alertas tienen profundidad válida.
 - [ ] Fechas, autores, títulos y descripciones son correctos.
 - [ ] Los artículos tienen fuentes revisadas y enlaces válidos.

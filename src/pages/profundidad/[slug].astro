@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
+import SupportCTA from '../../components/SupportCTA.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -119,24 +120,6 @@ const absoluteDate = new Date(pagina.data.date).toLocaleDateString('es-ES', {
       )
     }
 
-    <section
-      class="mt-12 p-6 bg-white border border-slate-200 rounded-lg text-center shadow-sm"
-    >
-      <h3 class="text-lg font-bold text-slate-900 mb-2">
-        ¿Valorás este análisis?
-      </h3>
-      <p class="text-[15px] text-slate-600 mb-6">
-        El contenido de Memo Geopolítico es independiente. Tu apoyo permite
-        mantener el servidor y las fuentes activas.
-      </p>
-      <a
-        href="https://ko-fi.com/tu_usuario"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center px-6 py-2.5 rounded-md font-semibold text-white bg-slate-900 hover:bg-slate-800 transition-colors"
-      >
-        Apoyar en Ko-fi
-      </a>
-    </section>
+    <SupportCTA placement="alert" />
   </main>
 </Layout>

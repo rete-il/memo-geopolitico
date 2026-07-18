@@ -106,7 +106,10 @@ Antes de agregar una Content Security Policy hay que inventariar Google Fonts, u
 
 - dos enlaces del Header apuntan a rutas no generadas;
 - `/ensayos/` se genera sin UI;
-- Ko-fi usa `tu_usuario`;
+- El sistema de apoyo usa `https://ko-fi.com/reteil`.
+- `npm run dev` utiliza la configuración de desarrollo.
+- `npm run build` y `npm run preview` utilizan la configuración de producción.
+- El sistema comienza con `enabledInProduction: false`.
 - `/default-og.png` está referenciado pero no existe en la instantánea;
 - no existe 404 personalizada;
 - `robots.txt` está en la raíz del repositorio, no en `public/`; por tanto, no debe asumirse que llega a `dist`;

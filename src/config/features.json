@@ -1,0 +1,10 @@
+{
+  "support": {
+    "enabledInDevelopment": true,
+    "enabledInProduction": false,
+    "kofiUrl": "https://ko-fi.com/reteil",
+    "showOnAlerts": true,
+    "showOnEssays": true,
+    "showInFooter": true
+  }
+}
