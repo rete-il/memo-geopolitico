@@ -1,4 +1,6 @@
 ---
+import { regionNavigation } from '../config/regions';
+
 const pathname = Astro.url.pathname;
 
 interface NavItem {
@@ -16,7 +18,6 @@ const primaryItems: NavItem[] = [
 ];
 
 const exploreItems: NavItem[] = [
-  { label: 'Regiones', href: '/regiones/' },
   { label: 'Temas', href: '/temas/' },
   { label: 'Medios', href: '/medios/', aliases: ['/directorio/'] },
 ];
@@ -105,7 +106,7 @@ const updatedDisplay = new Date().toLocaleDateString('es-ES', {
 
 <aside
   id="site-menu"
-  class="fixed inset-y-0 left-0 z-[70] flex w-[min(88vw,360px)] flex-col bg-white text-slate-900 shadow-2xl transition-transform duration-200"
+  class="fixed inset-y-0 left-0 z-[70] flex w-[min(92vw,400px)] flex-col bg-white text-slate-900 shadow-2xl transition-transform duration-200"
   aria-label="Menú del sitio"
   aria-hidden="true"
   tabindex="-1"
@@ -149,6 +150,81 @@ const updatedDisplay = new Date().toLocaleDateString('es-ES', {
     <nav class="mt-8 border-t border-slate-200 pt-6 md:mt-0 md:border-t-0 md:pt-0" aria-label="Explorar el sitio">
       <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Explorar</p>
       <ul class="space-y-1">
+        <li class="rounded-md border border-slate-200 bg-slate-50/70">
+          <div class="flex min-h-12 items-center gap-1 px-1">
+            <a
+              href="/regiones/"
+              aria-current={pathMatches('/regiones/') ? 'page' : undefined}
+              class:list={[
+                'flex min-h-11 flex-1 items-center rounded-md px-3 text-base font-semibold transition-colors',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600',
+                pathMatches('/regiones/')
+                  ? 'text-blue-800'
+                  : 'text-slate-800 hover:bg-white hover:text-slate-950',
+              ]}
+            >
+              Regiones
+            </a>
+            <button
+              type="button"
+              class="regional-toggle inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-slate-600 hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+              aria-label="Mostrar regiones"
+              aria-controls="regional-navigation"
+              aria-expanded="false"
+            >
+              <i class="ph ph-caret-down transition-transform" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <ul id="regional-navigation" class="hidden space-y-1 border-t border-slate-200 px-2 py-2">
+            {regionNavigation.map((region) => {
+              const childrenId = `region-children-${region.id}`;
+              return (
+                <li>
+                  <div class="flex min-h-11 items-center gap-1">
+                    <a
+                      href={region.href}
+                      class="flex min-h-10 flex-1 items-center rounded-md px-3 text-sm font-bold text-slate-700 transition-colors hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                    >
+                      {region.label}
+                    </a>
+                    {region.children?.length ? (
+                      <button
+                        type="button"
+                        class="regional-toggle inline-flex min-h-10 min-w-10 items-center justify-center rounded-md text-slate-500 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                        aria-label={`Mostrar subregiones de ${region.label}`}
+                        aria-controls={childrenId}
+                        aria-expanded="false"
+                      >
+                        <i class="ph ph-caret-down text-sm transition-transform" aria-hidden="true"></i>
+                      </button>
+                    ) : (
+                      <span class="inline-flex min-h-10 min-w-10 items-center justify-center text-slate-300" aria-hidden="true">
+                        <i class="ph ph-arrow-right text-sm"></i>
+                      </span>
+                    )}
+                  </div>
+
+                  {region.children?.length ? (
+                    <ul id={childrenId} class="ml-4 hidden space-y-1 border-l border-slate-200 py-1 pl-3">
+                      {region.children.map((child) => (
+                        <li>
+                          <a
+                            href={child.href}
+                            class="flex min-h-10 items-center rounded-md px-3 text-sm text-slate-600 transition-colors hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </li>
+              );
+            })}
+          </ul>
+        </li>
+
         {exploreItems.map((item) => (
           <li>
             <a
@@ -187,6 +263,9 @@ const updatedDisplay = new Date().toLocaleDateString('es-ES', {
   #site-menu.is-open {
     transform: translateX(0);
   }
+  .regional-toggle[aria-expanded='true'] i {
+    transform: rotate(180deg);
+  }
 </style>
 
 <script>
@@ -221,9 +300,30 @@ const updatedDisplay = new Date().toLocaleDateString('es-ES', {
     }
   }
 
+  function setExpanded(button: HTMLButtonElement, expanded: boolean) {
+    const targetId = button.getAttribute('aria-controls');
+    const target = targetId ? document.getElementById(targetId) : null;
+    if (!target) return;
+
+    button.setAttribute('aria-expanded', String(expanded));
+    target.classList.toggle('hidden', !expanded);
+
+    const label = button.getAttribute('aria-label') || '';
+    button.setAttribute(
+      'aria-label',
+      label.replace(expanded ? /^Mostrar/ : /^Ocultar/, expanded ? 'Ocultar' : 'Mostrar'),
+    );
+  }
+
   menuButton?.addEventListener('click', () => setMenu(true));
   menuClose?.addEventListener('click', () => setMenu(false));
   overlay?.addEventListener('click', () => setMenu(false));
+
+  menu?.querySelectorAll<HTMLButtonElement>('.regional-toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      setExpanded(button, button.getAttribute('aria-expanded') !== 'true');
+    });
+  });
 
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => setMenu(false));
@@ -239,7 +339,9 @@ const updatedDisplay = new Date().toLocaleDateString('es-ES', {
     }
 
     if (event.key !== 'Tab') return;
-    const focusable = [...menu.querySelectorAll<HTMLElement>(focusableSelector)];
+    const focusable = [...menu.querySelectorAll<HTMLElement>(focusableSelector)].filter(
+      (element) => !element.closest('.hidden'),
+    );
     if (!focusable.length) return;
 
     const first = focusable[0];
