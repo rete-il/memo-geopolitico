@@ -1,0 +1,36 @@
+---
+import Header from '../components/Header.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Acerca de | Memo Geopolítico" description="Propósito, criterios editoriales y metodología de Memo Geopolítico.">
+  <Header />
+  <main class="mx-auto w-full max-w-3xl px-4 py-10 lg:px-6">
+    <article class="rounded-xl border border-slate-200 bg-white px-6 py-10 shadow-sm md:px-10">
+      <header class="mb-8 border-b border-slate-200 pb-7">
+        <p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">El proyecto</p>
+        <h1 class="mt-2 text-4xl font-serif font-bold text-slate-950">Acerca de Memo Geopolítico</h1>
+        <p class="mt-4 text-lg leading-8 text-slate-600">
+          Memo Geopolítico es un proyecto editorial independiente dedicado a organizar hechos, procesos y fuentes para comprender transformaciones geopolíticas contemporáneas.
+        </p>
+      </header>
+
+      <div class="prose prose-slate max-w-none">
+        <h2>Qué publica</h2>
+        <p><strong>Alertas</strong> presenta hechos recientes en piezas breves y autónomas. <strong>Dossiers</strong> profundiza temas relacionados mediante contexto, actores y escenarios. <strong>Focos</strong> examina procesos estructurales que requieren seguimiento de largo plazo.</p>
+
+        <h2>Criterio editorial</h2>
+        <p>El proyecto procura distinguir los datos observados de la interpretación editorial, enlazar las fuentes relevantes y señalar límites, incertidumbres o vacíos cuando la evidencia no permite una conclusión firme.</p>
+
+        <h2>Medios y fuentes</h2>
+        <p>La sección Medios reúne un directorio comparativo de organizaciones periodísticas y fuentes de información. Las valoraciones son orientativas y contextuales: una fuente oficial puede ser útil como documento primario sin constituir verificación independiente.</p>
+
+        <h2>Uso de inteligencia artificial</h2>
+        <p>Las herramientas de inteligencia artificial pueden utilizarse como apoyo para investigación, organización, traducción, contraste inicial y edición. La selección temática, la interpretación y la decisión de publicación permanecen bajo revisión editorial humana.</p>
+
+        <h2>Correcciones</h2>
+        <p>Cuando se detecta un error material, el contenido debe corregirse y la modificación relevante debe quedar documentada. Las afirmaciones controvertidas requieren fuentes explícitas y una formulación proporcional a la evidencia disponible.</p>
+      </div>
+    </article>
+  </main>
+</Layout>

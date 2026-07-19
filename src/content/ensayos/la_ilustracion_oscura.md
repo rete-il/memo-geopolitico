@@ -1,9 +1,12 @@
 ---
 title: 'La ilustración oscura'
 description: 'Análisis geopolítico y reconfiguración de la gobernanza tecnocrática'
+homeSummary: 'La Ilustración Oscura reúne críticas radicales a la democracia liberal surgidas en círculos intelectuales, tecnológicos y financieros. Este foco examina a sus principales referentes, la relación con Silicon Valley y las propuestas de gobernanza corporativa, aceleracionismo y poder tecnocrático que buscan sustituir la participación política por jerarquías administradas desde las élites.'
 date: 2026-07-11
+updated: 2026-07-11
 author: 'Equipo Editorial'
 tags: ['Gobernanza']
+listingSummary: 'La Ilustración Oscura articula una crítica radical a la democracia liberal desde círculos tecnológicos, financieros e intelectuales. Este foco revisa sus principales autores, su relación con Silicon Valley y las propuestas de gobernanza corporativa, aceleracionismo y militarización tecnológica que buscan redefinir el poder político occidental, sus instituciones y la participación ciudadana.'
 ---
 
 ## Contexto

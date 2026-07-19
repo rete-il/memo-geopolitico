@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import Header from '../../components/Header.astro';
+import Layout from '../../layouts/Layout.astro';
+
+const focos = (await getCollection('ensayos')).sort((a, b) => {
+  const dateA = (a.data.updated ?? a.data.date).valueOf();
+  const dateB = (b.data.updated ?? b.data.date).valueOf();
+  return dateB - dateA;
+});
+
+function formatDate(value: Date): string {
+  return value.toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+---
+
+<Layout
+  title="Focos | Memo Geopolítico"
+  description="Procesos geopolíticos estructurales y temas de seguimiento de largo plazo."
+>
+  <Header />
+
+  <main class="mx-auto w-full max-w-5xl px-4 py-10 lg:px-6">
+    <header class="mb-8 border-b border-slate-300 pb-6">
+      <p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+        Procesos estructurales
+      </p>
+      <h1 class="mt-2 text-4xl font-serif font-bold text-slate-950">
+        Focos
+      </h1>
+      <p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">
+        Análisis sobre tendencias, actores y transformaciones que requieren
+        seguimiento más allá de la coyuntura inmediata.
+      </p>
+    </header>
+
+    {
+      focos.length ? (
+        <div class="grid gap-6 md:grid-cols-2">
+          {focos.map((foco) => {
+            const updated = foco.data.updated ?? foco.data.date;
+
+            return (
+              <article class="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                <div class="flex flex-wrap gap-2">
+                  {(foco.data.tags || []).map((tag) => (
+                    <span class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-600">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <h2 class="mt-4 text-2xl font-serif font-bold leading-snug text-slate-900">
+                  {foco.data.title}
+                </h2>
+
+                <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                  {foco.data.listingSummary}
+                </p>
+
+                <footer class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4">
+                  <time
+                    datetime={updated.toISOString()}
+                    class="text-[11px] text-slate-400"
+                  >
+                    Actualizado: {formatDate(updated)}
+                  </time>
+
+                  <a
+                    href={`/focos/${foco.id}/`}
+                    class="inline-flex items-center text-sm font-semibold text-blue-700 transition-colors hover:text-blue-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+                    aria-label={`Leer el foco completo: ${foco.data.title}`}
+                  >
+                    Leer foco
+                    <i class="ph ph-arrow-right ml-1" aria-hidden="true"></i>
+                  </a>
+                </footer>
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <p class="rounded-xl border border-slate-200 bg-white p-8 text-slate-600">
+          No hay focos publicados.
+        </p>
+      )
+    }
+  </main>
+</Layout>

@@ -5,97 +5,44 @@ import SupportCTA from '../../components/SupportCTA.astro';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  const ensayos = await getCollection('ensayos');
-  return ensayos.map((ensayo) => ({
-    params: { id: ensayo.id },
-    props: { ensayo },
+  const focos = await getCollection('ensayos');
+  return focos.map((foco) => ({
+    params: { id: foco.id },
+    props: { foco },
   }));
 }
 
-const { ensayo } = Astro.props;
-const { Content } = await render(ensayo);
+const { foco } = Astro.props;
+const { Content } = await render(foco);
 ---
 
-<Layout
-  title={`${ensayo.data.title} | Memo Geopolítico`}
-  description={ensayo.data.description}
-  image={ensayo.data.coverImage || '/default-og.png'}
->
-  <!-- Barra de navegación superior -->
-
+<Layout canonicalPath={`/focos/${foco.id}/`} title={`${foco.data.title} | Memo Geopolítico`} description={foco.data.description} image={foco.data.coverImage || '/default-og.png'}>
   <Header />
-  <!-- Contenedor principal de lectura -->
-  <main
-    class="max-w-3xl mx-auto px-6 py-12 bg-white min-h-screen shadow-sm border-x border-slate-200 mt-6 mb-12 rounded-t-xl"
-  >
+  <main class="mx-auto mt-6 mb-12 min-h-screen max-w-3xl rounded-t-xl border-x border-slate-200 bg-white px-6 py-12 shadow-sm">
     <article>
-      <header class="mb-10 pb-8 border-b border-slate-200">
-        <!-- Contenedor de Etiquetas y Tipo de Documento -->
-        <div class="flex items-center gap-2 mb-5">
-          <!-- Etiqueta identificadora del tipo de documento -->
-          <span
-            class="px-3 py-1 bg-slate-800 text-white text-[10px] font-bold rounded-sm uppercase tracking-widest"
-          >
-            Ensayo
-          </span>
-
-          <!-- Etiquetas geográficas/temáticas -->
-          {
-            ensayo.data.tags && ensayo.data.tags.length > 0 && (
-              <div class="flex gap-2 border-l border-slate-300 pl-2">
-                {ensayo.data.tags.map((t: string) => (
-                  <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-full uppercase tracking-wider">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            )
-          }
+      <header class="mb-10 border-b border-slate-200 pb-8">
+        <div class="mb-5 flex items-center gap-2">
+          <span class="rounded-sm bg-slate-800 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">Foco</span>
+          {foco.data.tags && foco.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 border-l border-slate-300 pl-2">
+              {foco.data.tags.map((tag: string) => (
+                <span class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-600">{tag}</span>
+              ))}
+            </div>
+          )}
         </div>
-
-        <h1
-          class="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-6 leading-tight"
-        >
-          {ensayo.data.title}
-        </h1>
-
-        <p
-          class="text-xl text-slate-600 mb-8 font-serif italic leading-relaxed"
-        >
-          {ensayo.data.description}
-        </p>
-
-        <div
-          class="flex items-center text-sm text-slate-500 font-sans bg-slate-50 p-4 rounded-xl border border-slate-100 my-6"
-        >
-          <div
-            class="w-10 h-10 shrink-0 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 font-bold text-lg"
-          >
-            {ensayo.data.author.charAt(0)}
-          </div>
+        <h1 class="mb-6 text-4xl font-serif font-bold leading-tight text-slate-900 md:text-5xl">{foco.data.title}</h1>
+        <p class="mb-8 text-xl font-serif italic leading-relaxed text-slate-600">{foco.data.description}</p>
+        <div class="my-6 flex items-center rounded-xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-500">
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-200 text-lg font-bold text-slate-700">{foco.data.author.charAt(0)}</div>
           <div class="ml-4">
-            <div class="font-bold text-slate-900">{ensayo.data.author}</div>
-            <time datetime={ensayo.data.date.toISOString()}>
-              {
-                ensayo.data.date.toLocaleDateString('es-ES', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })
-              }
-            </time>
+            <div class="font-bold text-slate-900">{foco.data.author}</div>
+            <time datetime={foco.data.date.toISOString()}>{foco.data.date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
           </div>
         </div>
       </header>
+      <div class="prose max-w-none font-serif text-lg text-slate-800 prose-headings:font-serif"><Content /></div>
     </article>
-
-    <!-- Contenedor donde se inyecta el Markdown -->
-    <div
-      class="prose max-w-none font-serif text-lg text-slate-800 prose-headings:font-serif"
-    >
-      <Content />
-    </div>
-
     <SupportCTA placement="essay" />
   </main>
 </Layout>

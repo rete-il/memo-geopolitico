@@ -66,13 +66,13 @@ const currentStyle = styles[severity as keyof typeof styles] || styles.low;
   </div>
 
   <div class="flex justify-end">
-    <!-- Enlace específico a la página de profundidad (reemplaza al span anterior) -->
+    <!-- La alerta y el dossier son piezas autónomas relacionadas por tema. -->
     <a
-      href={`/profundidad/${vinculo}`}
+      href={`/dossiers/${vinculo}/`}
       class={`text-[13px] font-medium text-slate-500 flex items-center transition-colors duration-200 ${currentStyle.textGroupHover}`}
-      aria-label={`Profundizar en ${title}`}
+      aria-label={`Ver dossier relacionado con ${title}`}
     >
-      Para profundizar
+      Ver dossier
       <i
         class="ph ph-arrow-right ml-1 transition-transform duration-200 group-hover:translate-x-1"
       ></i>

@@ -2,6 +2,8 @@
 title: 'Cumbre de la OTAN 2026: Tensiones, Irán y Nueva Geopolítica'
 date: 2026-07-15
 severity: 'low'
+description: 'Presiones financieras, tensiones transatlánticas y escenarios posteriores a la cumbre de Ankara.'
+listingSummary: 'La cumbre de la OTAN en Ankara reveló una alianza cada vez más condicionada por exigencias financieras y acuerdos bilaterales. El dossier examina el objetivo del 5 % del PIB, la presión estadounidense, las respuestas europeas y tres escenarios: autonomía defensiva, fragmentación transaccional y deterioro de la resiliencia civil.'
 ---
 
 ## Contexto

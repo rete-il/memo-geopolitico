@@ -1,0 +1,84 @@
+---
+import { getCollection, render } from 'astro:content';
+import Header from '../../components/Header.astro';
+import SupportCTA from '../../components/SupportCTA.astro';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const focos = await getCollection('ensayos');
+
+  return focos.map((foco) => ({
+    params: { slug: foco.id },
+    props: { foco },
+  }));
+}
+
+const { foco } = Astro.props;
+const { Content } = await render(foco);
+const updated = foco.data.updated ?? foco.data.date;
+---
+
+<Layout
+  title={`${foco.data.title} | Memo Geopolítico`}
+  description={foco.data.description}
+  image={foco.data.coverImage || '/default-og.png'}
+>
+  <Header />
+
+  <main class="mx-auto mt-6 mb-12 min-h-screen max-w-3xl rounded-t-xl border-x border-slate-200 bg-white px-6 py-12 shadow-sm">
+    <article>
+      <header class="mb-10 border-b border-slate-200 pb-8">
+        <div class="mb-5 flex items-center gap-2">
+          <span class="rounded-sm bg-slate-800 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
+            Foco
+          </span>
+
+          {
+            foco.data.tags && foco.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2 border-l border-slate-300 pl-2">
+                {foco.data.tags.map((tag: string) => (
+                  <span class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-600">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )
+          }
+        </div>
+
+        <h1 class="mb-6 text-4xl font-serif font-bold leading-tight text-slate-900 md:text-5xl">
+          {foco.data.title}
+        </h1>
+
+        <p class="mb-8 text-xl font-serif italic leading-relaxed text-slate-600">
+          {foco.data.description}
+        </p>
+
+        <div class="my-6 flex items-center rounded-xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-500">
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-200 text-lg font-bold text-slate-700">
+            {foco.data.author.charAt(0)}
+          </div>
+
+          <div class="ml-4">
+            <div class="font-bold text-slate-900">{foco.data.author}</div>
+            <time datetime={updated.toISOString()}>
+              Actualizado: {
+                updated.toLocaleDateString('es-ES', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })
+              }
+            </time>
+          </div>
+        </div>
+      </header>
+
+      <div class="prose max-w-none font-serif text-lg text-slate-800 prose-headings:font-serif">
+        <Content />
+      </div>
+    </article>
+
+    <SupportCTA placement="essay" />
+  </main>
+</Layout>

@@ -6,16 +6,18 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  canonicalPath?: string;
 }
 
 const {
   title = 'Memo Geopolítico',
-  description = 'Análisis y alertas geopolíticas en tiempo real.',
+  description = 'Alertas, focos y dossiers de análisis geopolítico.',
   image = '/default-og.png',
+  canonicalPath,
 } = Astro.props;
 
 const canonicalURL = new URL(
-  Astro.url.pathname,
+  canonicalPath || Astro.url.pathname,
   Astro.site || 'https://memogeopolitico.com',
 );
 ---

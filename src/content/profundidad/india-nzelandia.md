@@ -2,6 +2,8 @@
 title: 'Alianza Estratégica y Hoja de Ruta India-Nueva Zelandia 2030'
 date: 2026-07-15
 severity: 'low'
+description: 'Claves, actores y escenarios de la alianza estratégica entre India y Nueva Zelanda.'
+listingSummary: 'La asociación India–Nueva Zelanda busca unir comercio, cooperación naval, movilidad e inteligencia dentro de una hoja de ruta hacia 2030. El dossier estudia los intereses de ambos gobiernos, la presión estratégica de China, el papel de la diáspora sij y los escenarios que pueden fortalecer o limitar la nueva relación.'
 ---
 
 # Análisis de Inteligencia Geopolítica

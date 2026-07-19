@@ -1,0 +1,86 @@
+---
+import Header from '../../components/Header.astro';
+import Layout from '../../layouts/Layout.astro';
+import monitores from '../../data/monitores.json';
+
+interface MonitorItem {
+  id: string;
+  orden: number;
+  activo: boolean;
+  titulo: string;
+  categoria: 'seguridad_conflicto' | 'infraestructura_estrategica' | 'comercio_energia_recursos';
+  relevancia_nivel: number;
+  atencion_nivel: number;
+  dato_clave: string;
+  insight: string;
+  actualizado: string;
+  fuente_url?: string;
+}
+
+const categoryLabels = {
+  seguridad_conflicto: 'Seguridad y conflictos',
+  infraestructura_estrategica: 'Infraestructura estratégica',
+  comercio_energia_recursos: 'Comercio, energía y recursos',
+};
+
+export function getStaticPaths() {
+  return (monitores.friccion_narrativa as MonitorItem[])
+    .filter((item) => item.activo)
+    .map((item) => ({ params: { id: item.id }, props: { item } }));
+}
+
+const { item } = Astro.props as { item: MonitorItem };
+const gap = item.atencion_nivel - item.relevancia_nivel;
+const classification = gap <= -2 ? 'Subcubierto' : gap >= 2 ? 'Sobrecubierto' : 'Cobertura equilibrada';
+const updated = new Date(`${item.actualizado}T00:00:00`).toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
+---
+
+<Layout title={`${item.titulo} | Relevancia y atención`} description={item.insight}>
+  <Header />
+  <main class="mx-auto w-full max-w-3xl px-4 py-10 lg:px-6">
+    <article class="rounded-xl border border-slate-200 bg-white px-6 py-9 shadow-sm md:px-10">
+      <header class="border-b border-slate-200 pb-7">
+        <p class="text-xs font-bold uppercase tracking-[0.15em] text-slate-500">Relevancia vs. atención mediática</p>
+        <h1 class="mt-3 text-4xl font-serif font-bold leading-tight text-slate-950">{item.titulo}</h1>
+        <div class="mt-4 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider">
+          <span class="rounded-full bg-slate-100 px-3 py-1.5 text-slate-600">{categoryLabels[item.categoria]}</span>
+          <span class="rounded-full bg-blue-50 px-3 py-1.5 text-blue-800">{classification}</span>
+        </div>
+      </header>
+
+      <section class="mt-8 grid gap-5 sm:grid-cols-2" aria-label="Valoración editorial">
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+          <div class="flex items-center justify-between"><h2 class="font-bold text-slate-800">Relevancia geopolítica</h2><strong>{item.relevancia_nivel}/5</strong></div>
+          <div class="mt-3 flex gap-1" role="img" aria-label={`Relevancia geopolítica ${item.relevancia_nivel} de 5`}>
+            {[1,2,3,4,5].map((step) => <span class:list={['h-2 flex-1 rounded-sm', step <= item.relevancia_nivel ? 'bg-red-600' : 'bg-slate-200']} />)}
+          </div>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
+          <div class="flex items-center justify-between"><h2 class="font-bold text-slate-800">Atención mediática</h2><strong>{item.atencion_nivel}/5</strong></div>
+          <div class="mt-3 flex gap-1" role="img" aria-label={`Atención mediática ${item.atencion_nivel} de 5`}>
+            {[1,2,3,4,5].map((step) => <span class:list={['h-2 flex-1 rounded-sm', step <= item.atencion_nivel ? 'bg-blue-500' : 'bg-slate-200']} />)}
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-serif font-bold text-slate-900">Dato clave</h2>
+        <p class="mt-3 rounded-xl bg-slate-50 p-5 font-semibold leading-7 text-slate-700">{item.dato_clave}</p>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-serif font-bold text-slate-900">Lectura editorial</h2>
+        <p class="mt-3 leading-7 text-slate-700">{item.insight}</p>
+      </section>
+
+      <aside class="mt-8 rounded-xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-950">
+        Esta ficha explica la valoración utilizada en la portada. No sustituye un dossier temático completo ni presenta la escala como una medición científica automatizada.
+      </aside>
+
+      <footer class="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6 text-sm text-slate-500">
+        <time datetime={item.actualizado}>Actualizado: {updated}</time>
+        {item.fuente_url && <a href={item.fuente_url} target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-700 hover:text-blue-900">Consultar fuente →</a>}
+      </footer>
+    </article>
+  </main>
+</Layout>

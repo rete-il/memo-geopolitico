@@ -1,9 +1,12 @@
 ---
 title: 'África no es un país'
 description: 'Regiones, recursos y poder en el continente decisivo del siglo XXI'
+homeSummary: 'África no puede comprenderse como una unidad homogénea ni como un simple depósito de recursos. Este foco recorre sus regiones, corredores logísticos, minerales críticos y disputas por infraestructura para mostrar cómo la competencia internacional interactúa con los proyectos nacionales, la integración continental y la capacidad africana de decidir las condiciones de su creciente centralidad geopolítica.'
 date: 2026-07-11
+updated: 2026-07-11
 author: 'Equipo Editorial'
 tags: ['Africa']
+listingSummary: 'África reúne Estados, regiones y trayectorias que no pueden reducirse a una sola narrativa. Este foco examina la cobertura mediática, los minerales críticos, los corredores logísticos y la competencia internacional, preguntando quién controlará las cadenas de valor, cómo se distribuirán sus beneficios y bajo qué condiciones crecerá la centralidad geopolítica del continente.'
 ---
 
 ## Introducción: el singular que deforma un continente

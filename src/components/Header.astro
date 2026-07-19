@@ -1,80 +1,255 @@
 ---
 const pathname = Astro.url.pathname;
 
-const navItems = [
-  {
-    label: 'Inicio',
-    href: '/',
-  },
-  {
-    label: 'Directorio',
-    href: '/directorio/',
-  },
-  {
-    label: 'Ensayos',
-    href: '/ensayos/',
-  },
+interface NavItem {
+  label: string;
+  href: string;
+  aliases?: string[];
+}
+
+const primaryItems: NavItem[] = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Alertas', href: '/alertas/' },
+  { label: 'Focos', href: '/focos/', aliases: ['/ensayos/'] },
+  { label: 'Dossiers', href: '/dossiers/', aliases: ['/profundidad/'] },
+  { label: 'Acerca de', href: '/acerca-de/' },
 ];
 
-function isActive(href: string): boolean {
-  if (href === '/') {
-    return pathname === '/';
-  }
+const exploreItems: NavItem[] = [
+  { label: 'Regiones', href: '/regiones/' },
+  { label: 'Temas', href: '/temas/' },
+  { label: 'Medios', href: '/medios/', aliases: ['/directorio/'] },
+];
 
-  const normalizedHref = href.replace(/\/$/, '');
-
+function pathMatches(value: string): boolean {
+  if (value === '/') return pathname === '/';
+  const normalized = value.replace(/\/$/, '');
   return (
-    pathname === normalizedHref ||
-    pathname === `${normalizedHref}/` ||
-    pathname.startsWith(`${normalizedHref}/`)
+    pathname === normalized ||
+    pathname === `${normalized}/` ||
+    pathname.startsWith(`${normalized}/`)
   );
 }
+
+function isActive(item: NavItem): boolean {
+  return [item.href, ...(item.aliases || [])].some(pathMatches);
+}
+
+const updatedDisplay = new Date().toLocaleDateString('es-ES', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+});
 ---
 
-<header
-  class="bg-slate-900 text-white sticky top-0 z-50 shadow-md border-b border-slate-800"
->
-  <div
-    class="max-w-screen-2xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between"
-  >
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white text-slate-900 shadow-sm">
+  <div class="mx-auto grid h-16 max-w-screen-2xl grid-cols-[1fr_auto_1fr] items-center px-4 lg:px-6">
+    <div class="flex justify-start">
+      <button
+        id="site-menu-button"
+        type="button"
+        class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-transparent text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+        aria-label="Abrir menú de exploración"
+        aria-controls="site-menu"
+        aria-expanded="false"
+      >
+        <i class="ph ph-list text-2xl" aria-hidden="true"></i>
+      </button>
+    </div>
+
     <a
       href="/"
-      class="flex items-center gap-2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+      class="flex items-center justify-center gap-2 rounded-sm text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
       aria-label="Ir al inicio de Memo Geopolítico"
     >
-      <i
-        class="ph-fill ph-globe-hemisphere-west text-2xl text-red-600"
-        aria-hidden="true"></i>
-
-      <span class="text-xl font-bold tracking-tight uppercase font-sans">
-        Memo Geopolítico
-      </span>
+      <i class="ph-fill ph-globe-hemisphere-west text-2xl text-red-600" aria-hidden="true"></i>
+      <span class="text-base font-bold uppercase tracking-tight sm:text-xl">Memo Geopolítico</span>
     </a>
 
-    <nav class="flex items-center gap-1" aria-label="Navegación principal">
-      {
-        navItems.map((item) => {
-          const active = isActive(item.href);
+    <div class="flex justify-end">
+      <time class="hidden text-xs font-medium text-slate-500 sm:block" datetime={new Date().toISOString().slice(0, 10)}>
+        Actualizado: {updatedDisplay}
+      </time>
+    </div>
+  </div>
 
-          return (
+  <nav class="hidden border-t border-slate-200 bg-white md:block" aria-label="Navegación principal">
+    <div class="mx-auto flex h-11 max-w-screen-2xl items-center justify-center gap-1 px-4 lg:px-6">
+      {primaryItems.map((item) => {
+        const active = isActive(item);
+        return (
+          <a
+            href={item.href}
+            aria-current={active ? 'page' : undefined}
+            class:list={[
+              'rounded-sm px-4 py-2 text-sm transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2',
+              active
+                ? 'font-bold text-blue-700'
+                : 'font-semibold text-slate-600 hover:text-slate-950',
+            ]}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </div>
+  </nav>
+</header>
+
+<div
+  id="site-menu-overlay"
+  class="fixed inset-0 z-[60] bg-slate-950/50 transition-opacity duration-200"
+  aria-hidden="true"
+></div>
+
+<aside
+  id="site-menu"
+  class="fixed inset-y-0 left-0 z-[70] flex w-[min(88vw,360px)] flex-col bg-white text-slate-900 shadow-2xl transition-transform duration-200"
+  aria-label="Menú del sitio"
+  aria-hidden="true"
+  tabindex="-1"
+>
+  <div class="flex h-16 items-center justify-between border-b border-slate-200 px-5">
+    <span class="text-sm font-bold uppercase tracking-wider">Memo Geopolítico</span>
+    <button
+      id="site-menu-close"
+      type="button"
+      class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+      aria-label="Cerrar menú"
+    >
+      <i class="ph ph-x text-2xl" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="flex-1 overflow-y-auto px-5 py-6">
+    <nav class="md:hidden" aria-label="Secciones principales">
+      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Secciones</p>
+      <ul class="space-y-1">
+        {primaryItems.map((item) => (
+          <li>
             <a
               href={item.href}
-              aria-current={active ? 'page' : undefined}
+              aria-current={isActive(item) ? 'page' : undefined}
               class:list={[
-                'px-4 py-2 text-sm rounded-sm transition-colors',
-                'focus-visible:outline-none focus-visible:ring-2',
-                'focus-visible:ring-blue-400 focus-visible:ring-offset-2',
-                'focus-visible:ring-offset-slate-900',
-                active
-                  ? 'font-bold text-blue-400'
-                  : 'font-medium text-gray-300 hover:text-white',
+                'flex min-h-11 items-center rounded-md px-3 text-base font-semibold transition-colors',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600',
+                isActive(item)
+                  ? 'bg-blue-50 text-blue-800'
+                  : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950',
               ]}
             >
               {item.label}
             </a>
-          );
-        })
-      }
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav class="mt-8 border-t border-slate-200 pt-6 md:mt-0 md:border-t-0 md:pt-0" aria-label="Explorar el sitio">
+      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Explorar</p>
+      <ul class="space-y-1">
+        {exploreItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isActive(item) ? 'page' : undefined}
+              class:list={[
+                'flex min-h-12 items-center justify-between rounded-md px-3 text-base font-semibold transition-colors',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600',
+                isActive(item)
+                  ? 'bg-blue-50 text-blue-800'
+                  : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950',
+              ]}
+            >
+              <span>{item.label}</span>
+              <i class="ph ph-arrow-right text-base" aria-hidden="true"></i>
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   </div>
-</header>
+</aside>
+
+<style is:global>
+  #site-menu-overlay {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #site-menu-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #site-menu {
+    transform: translateX(-100%);
+  }
+  #site-menu.is-open {
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  const menuButton = document.querySelector<HTMLButtonElement>('#site-menu-button');
+  const menuClose = document.querySelector<HTMLButtonElement>('#site-menu-close');
+  const menu = document.querySelector<HTMLElement>('#site-menu');
+  const overlay = document.querySelector<HTMLElement>('#site-menu-overlay');
+  let previousFocus: HTMLElement | null = null;
+
+  const focusableSelector = [
+    'a[href]',
+    'button:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(',');
+
+  function setMenu(open: boolean) {
+    if (!menuButton || !menu || !overlay) return;
+
+    menuButton.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
+    overlay.setAttribute('aria-hidden', String(!open));
+    menu.classList.toggle('is-open', open);
+    overlay.classList.toggle('is-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+
+    if (open) {
+      previousFocus = document.activeElement as HTMLElement;
+      const first = menu.querySelector<HTMLElement>(focusableSelector);
+      window.setTimeout(() => first?.focus(), 0);
+    } else {
+      (previousFocus || menuButton).focus();
+    }
+  }
+
+  menuButton?.addEventListener('click', () => setMenu(true));
+  menuClose?.addEventListener('click', () => setMenu(false));
+  overlay?.addEventListener('click', () => setMenu(false));
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (!menu?.classList.contains('is-open')) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setMenu(false);
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+    const focusable = [...menu.querySelectorAll<HTMLElement>(focusableSelector)];
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+</script>

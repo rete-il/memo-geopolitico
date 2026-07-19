@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Header from '../../components/Header.astro';
+import Layout from '../../layouts/Layout.astro';
+
+const alertas = (await getCollection('alertas')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+function formatDate(value: Date): string {
+  return value.toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+---
+
+<Layout title="Alertas | Memo Geopolítico" description="Hechos recientes con relevancia geopolítica y acceso a dossiers de contexto.">
+  <Header />
+  <main class="mx-auto w-full max-w-5xl px-4 py-10 lg:px-6">
+    <header class="mb-8 border-b border-slate-300 pb-6">
+      <p class="text-xs font-bold uppercase tracking-[0.16em] text-red-600">Actualidad</p>
+      <h1 class="mt-2 text-4xl font-serif font-bold text-slate-950">Alertas</h1>
+      <p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">
+        Piezas breves y autónomas sobre hechos recientes. Cuando existe un dossier relacionado, el enlace conduce a un análisis independiente del mismo tema.
+      </p>
+    </header>
+
+    {alertas.length ? (
+      <div class="grid gap-5 md:grid-cols-2">
+        {alertas.map((alerta) => (
+          <article class="flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="flex items-start justify-between gap-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <span>{alerta.data.region}</span>
+              <time datetime={alerta.data.date.toISOString()}>{formatDate(alerta.data.date)}</time>
+            </div>
+            <h2 class="mt-4 text-xl font-serif font-bold leading-snug text-slate-900">{alerta.data.title}</h2>
+            <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">{alerta.data.listingSummary}</p>
+            <a
+              href={`/dossiers/${alerta.data.vinculo}/`}
+              class="mt-5 inline-flex items-center self-start rounded-sm text-sm font-semibold text-blue-700 hover:text-blue-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+            >
+              Ver dossier relacionado →
+            </a>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="rounded-xl border border-slate-200 bg-white p-8 text-slate-600">No hay alertas publicadas.</p>
+    )}
+  </main>
+</Layout>

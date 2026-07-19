@@ -1,9 +1,12 @@
 ---
 title: 'La Proyección Geopolítica de Turquía'
 description: 'Entre el Expansionismo de la "Patria Azul" y las Fracturas del "Sultanato Republicano"'
+homeSummary: 'Turquía combina una creciente proyección militar y logística con un deterioro institucional interno cada vez más visible. Este foco analiza la doctrina de la Patria Azul, la diplomacia de los drones, los corredores euroasiáticos y la relación transaccional con sus aliados para explicar cómo Ankara transforma su geografía en influencia regional, autonomía estratégica y capacidad de presión.'
 date: 2026-07-11
+updated: 2026-07-11
 author: 'Equipo Editorial'
 tags: ['Europa', 'Turquía']
+listingSummary: 'Turquía combina deterioro institucional interno con una política exterior de gran alcance. Este foco analiza la doctrina de la Patria Azul, la diplomacia de los drones, los corredores euroasiáticos y la relación transaccional con sus aliados, mostrando cómo Ankara transforma su geografía en influencia regional, autonomía estratégica y capacidad sostenida de presión diplomática.'
 ---
 
 ## Contexto
