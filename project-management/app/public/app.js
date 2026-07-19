@@ -184,46 +184,67 @@ function renderValidation() {
 }
 
 
-const ASYMMETRY_LABELS = {
-  punto_ciego: 'Punto Ciego',
-  sobrerrepresentado: 'Ruido',
-  sincronico: 'Sincrónico'
+const MONITOR_CATEGORY_LABELS = {
+  seguridad_conflicto: 'Seguridad y conflictos',
+  infraestructura_estrategica: 'Infraestructura estratégica',
+  comercio_energia_recursos: 'Comercio, energía y recursos'
 };
 
-function asymmetryBadge(value) {
-  const label = ASYMMETRY_LABELS[value] || value;
-  return `<span class="asymmetry-badge asymmetry-${escapeHtml(value)}">${escapeHtml(label)}</span>`;
+function monitorGap(monitor) {
+  return Number(monitor.atencion_nivel) - Number(monitor.relevancia_nivel);
+}
+
+function gapMeta(monitor) {
+  const gap = monitorGap(monitor);
+  if (gap <= -2)
+    return { key: 'subcubierto', label: 'Subcubierto', gap };
+  if (gap >= 2)
+    return { key: 'sobrecubierto', label: 'Sobrecubierto', gap };
+  return { key: 'equilibrado', label: 'Equilibrada', gap };
+}
+
+function gapBadge(monitor) {
+  const meta = gapMeta(monitor);
+  const sign = meta.gap > 0 ? '+' : '';
+  return `<span class="gap-badge gap-${escapeHtml(meta.key)}">${escapeHtml(meta.label)} · ${sign}${escapeHtml(meta.gap)}</span>`;
+}
+
+function categoryBadge(value) {
+  const label = MONITOR_CATEGORY_LABELS[value] || value;
+  return `<span class="category-badge">${escapeHtml(label)}</span>`;
+}
+
+function levelBadge(value, kind) {
+  return `<span class="level-badge level-${escapeHtml(kind)}">${escapeHtml(value)} / 5</span>`;
 }
 
 function renderMonitors() {
   const monitors = app.state.monitors?.friccion_narrativa || [];
-  $('#monitors-count').textContent = `${monitors.length} monitor${monitors.length === 1 ? '' : 'es'}`;
+  const activeCount = monitors.filter(monitor => monitor.activo).length;
+  $('#monitors-count').textContent =
+    `${monitors.length} caso${monitors.length === 1 ? '' : 's'} · ${activeCount} activo${activeCount === 1 ? '' : 's'}`;
   $('#monitors-empty').hidden = monitors.length > 0;
 
   $('#monitors-table-body').innerHTML = monitors.map((monitor, index) => `
     <tr data-edit-monitor="${escapeHtml(monitor.id)}">
       <td><strong>${escapeHtml(monitor.orden)}</strong></td>
       <td class="item-title-cell">
-        <span>${escapeHtml(monitor.teatro)}</span>
+        <span>${escapeHtml(monitor.titulo)}</span>
         <small>${escapeHtml(monitor.id)}</small>
       </td>
-      <td><span class="level-badge level-${escapeHtml(monitor.escalada_nivel)}">${escapeHtml(monitor.escalada_nivel)} / 5</span></td>
-      <td>
-        <div class="monitor-coverage">
-          <span>${escapeHtml(monitor.cobertura_pct)}%</span>
-          <div class="progress-track"><span style="width:${monitor.cobertura_pct}%"></span></div>
-        </div>
-      </td>
-      <td>${asymmetryBadge(monitor.alerta_asimetria)}</td>
+      <td>${categoryBadge(monitor.categoria)}</td>
+      <td>${levelBadge(monitor.relevancia_nivel, 'relevance')}</td>
+      <td>${levelBadge(monitor.atencion_nivel, 'attention')}</td>
+      <td>${gapBadge(monitor)}</td>
       <td>${escapeHtml(monitor.actualizado)}</td>
       <td><span class="monitor-status ${monitor.activo ? 'is-active' : 'is-inactive'}">${monitor.activo ? 'Activo' : 'Inactivo'}</span></td>
       <td>
         <div class="monitor-actions">
-          <button class="icon-action" type="button" data-move-monitor="${escapeHtml(monitor.id)}" data-direction="-1" aria-label="Subir ${escapeHtml(monitor.teatro)}" ${index === 0 ? 'disabled' : ''}>↑</button>
-          <button class="icon-action" type="button" data-move-monitor="${escapeHtml(monitor.id)}" data-direction="1" aria-label="Bajar ${escapeHtml(monitor.teatro)}" ${index === monitors.length - 1 ? 'disabled' : ''}>↓</button>
-          <button class="icon-action" type="button" data-toggle-monitor="${escapeHtml(monitor.id)}" aria-label="${monitor.activo ? 'Desactivar' : 'Activar'} ${escapeHtml(monitor.teatro)}">${monitor.activo ? '◉' : '○'}</button>
-          <button class="icon-action" type="button" data-duplicate-monitor="${escapeHtml(monitor.id)}" aria-label="Duplicar ${escapeHtml(monitor.teatro)}">⧉</button>
-          <button class="icon-action is-danger" type="button" data-delete-monitor="${escapeHtml(monitor.id)}" aria-label="Eliminar ${escapeHtml(monitor.teatro)}">×</button>
+          <button class="icon-action" type="button" data-move-monitor="${escapeHtml(monitor.id)}" data-direction="-1" aria-label="Subir ${escapeHtml(monitor.titulo)}" ${index === 0 ? 'disabled' : ''}>↑</button>
+          <button class="icon-action" type="button" data-move-monitor="${escapeHtml(monitor.id)}" data-direction="1" aria-label="Bajar ${escapeHtml(monitor.titulo)}" ${index === monitors.length - 1 ? 'disabled' : ''}>↓</button>
+          <button class="icon-action" type="button" data-toggle-monitor="${escapeHtml(monitor.id)}" aria-label="${monitor.activo ? 'Desactivar' : 'Activar'} ${escapeHtml(monitor.titulo)}">${monitor.activo ? '◉' : '○'}</button>
+          <button class="icon-action" type="button" data-duplicate-monitor="${escapeHtml(monitor.id)}" aria-label="Duplicar ${escapeHtml(monitor.titulo)}">⧉</button>
+          <button class="icon-action is-danger" type="button" data-delete-monitor="${escapeHtml(monitor.id)}" aria-label="Eliminar ${escapeHtml(monitor.titulo)}">×</button>
         </div>
       </td>
     </tr>
@@ -234,9 +255,9 @@ function openMonitorDialog(monitor = null, duplicate = false) {
   app.editingMonitorId = monitor && !duplicate ? monitor.id : null;
   $('#monitor-dialog-title').textContent = monitor
     ? duplicate
-      ? 'Duplicar monitor'
+      ? 'Duplicar caso'
       : `Editar ${monitor.id}`
-    : 'Nuevo monitor';
+    : 'Nuevo caso';
 
   $('#monitor-id').value = duplicate ? '' : monitor?.id || '';
   $('#monitor-id').readOnly = Boolean(monitor && !duplicate);
@@ -244,17 +265,19 @@ function openMonitorDialog(monitor = null, duplicate = false) {
     ? (monitor?.orden || 0) + 10
     : monitor?.orden ?? ((app.state.monitors?.friccion_narrativa?.length || 0) + 1) * 10;
   $('#monitor-active').checked = duplicate ? true : monitor?.activo ?? true;
-  $('#monitor-theater').value = duplicate ? `${monitor.teatro} (copia)` : monitor?.teatro || '';
-  $('#monitor-escalation').value = monitor?.escalada_nivel ?? 1;
-  $('#monitor-coverage').value = monitor?.cobertura_pct ?? 0;
-  $('#monitor-asymmetry').value = monitor?.alerta_asimetria || 'sincronico';
+  $('#monitor-title').value = duplicate ? `${monitor.titulo} (copia)` : monitor?.titulo || '';
+  $('#monitor-category').value = monitor?.categoria || 'seguridad_conflicto';
+  $('#monitor-relevance').value = monitor?.relevancia_nivel ?? 1;
+  $('#monitor-attention').value = monitor?.atencion_nivel ?? 1;
+  $('#monitor-key-data').value = monitor?.dato_clave || '';
   $('#monitor-updated').value = new Date().toISOString().slice(0, 10);
   if (monitor && !duplicate) $('#monitor-updated').value = monitor.actualizado || '';
+  $('#monitor-href').value = monitor?.href || '';
   $('#monitor-source').value = monitor?.fuente_url || '';
   $('#monitor-insight').value = monitor?.insight || '';
   $('#monitor-form-errors').hidden = true;
   $('#monitor-dialog').showModal();
-  $('#monitor-theater').focus();
+  $('#monitor-title').focus();
 }
 
 async function saveMonitor(event) {
@@ -266,11 +289,13 @@ async function saveMonitor(event) {
     id: $('#monitor-id').value,
     orden: $('#monitor-order').value,
     activo: $('#monitor-active').checked,
-    teatro: $('#monitor-theater').value,
-    escalada_nivel: $('#monitor-escalation').value,
-    cobertura_pct: $('#monitor-coverage').value,
-    alerta_asimetria: $('#monitor-asymmetry').value,
+    titulo: $('#monitor-title').value,
+    categoria: $('#monitor-category').value,
+    relevancia_nivel: $('#monitor-relevance').value,
+    atencion_nivel: $('#monitor-attention').value,
+    dato_clave: $('#monitor-key-data').value,
     actualizado: $('#monitor-updated').value,
+    href: $('#monitor-href').value,
     fuente_url: $('#monitor-source').value,
     insight: $('#monitor-insight').value
   };
@@ -291,8 +316,8 @@ async function saveMonitor(event) {
     renderAll();
     showMessage(
       app.editingMonitorId
-        ? 'Monitor actualizado.'
-        : 'Monitor creado.'
+        ? 'Caso actualizado.'
+        : 'Caso creado.'
     );
     app.editingMonitorId = null;
   } catch (error) {
@@ -314,7 +339,7 @@ async function toggleMonitor(id) {
     });
     app.state = result.state;
     renderAll();
-    showMessage(monitor.activo ? 'Monitor desactivado.' : 'Monitor activado.');
+    showMessage(monitor.activo ? 'Caso desactivado.' : 'Caso activado.');
   } catch (error) {
     showMessage(error.message, 'error');
   }
@@ -323,7 +348,7 @@ async function toggleMonitor(id) {
 async function deleteMonitor(id) {
   const monitor = app.state.monitors?.friccion_narrativa?.find(item => item.id === id);
   if (!monitor) return;
-  if (!window.confirm(`¿Eliminar definitivamente "${monitor.teatro}"? Se creará una copia de seguridad.`)) return;
+  if (!window.confirm(`¿Eliminar definitivamente "${monitor.titulo}"? Se creará una copia de seguridad.`)) return;
 
   try {
     const result = await api(`/api/monitors/${encodeURIComponent(id)}`, {
@@ -332,7 +357,7 @@ async function deleteMonitor(id) {
     });
     app.state = result.state;
     renderAll();
-    showMessage('Monitor eliminado.');
+    showMessage('Caso eliminado.');
   } catch (error) {
     showMessage(error.message, 'error');
   }
@@ -353,7 +378,7 @@ async function moveMonitor(id, direction) {
     });
     app.state = result.state;
     renderAll();
-    showMessage('Orden de monitores actualizado.');
+    showMessage('Orden de casos actualizado.');
   } catch (error) {
     showMessage(error.message, 'error');
   }

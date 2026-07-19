@@ -213,3 +213,105 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 
 - Localizar y corregir el CTA provisional de Ko-fi.
 
+## 2026-07-19 — Arquitectura editorial y navegación aprobadas
+
+### Completado
+
+- Se aprobó la nomenclatura Alertas, Focos, Dossiers y Medios.
+- Se aprobó el nombre Relevancia vs. atención mediática para la columna derecha.
+- Se definió la navegación principal: Inicio, Alertas, Focos, Dossiers y Acerca de.
+- Se definió el menú hamburguesa izquierdo: Regiones, Temas y Medios.
+- Se aprobó una cabecera editorial compacta de dos niveles con marca centrada.
+- Se cerraron DATA-002 y DATA-003 con un modelo manual de escalas 1–5.
+- GDELT quedó diferido como experimento de investigación.
+
+### En curso
+
+- Implementación de la nueva cabecera y del menú hamburguesa.
+- Normalización de nombres en la portada.
+- Creación de los índices de Alertas, Focos y Dossiers.
+
+### Próximo
+
+- Preservar compatibilidad con las rutas anteriores.
+- Crear la página Acerca de.
+- Renombrar el acceso Directorio como Medios.
+- Enlazar las tarjetas de relevancia y atención solo cuando existan páginas temáticas reales.
+- Ejecutar Astro Check, build y validación de teclado y responsive.
+
+### Bloqueos o decisiones
+
+- Los tres casos actuales de la columna derecha todavía no disponen de páginas temáticas completas; no deben enlazarse a rutas inexistentes.
+
+
+## 2026-07-19 — Implementación inicial de la arquitectura editorial
+
+### Completado
+
+- Se incorporó la cabecera editorial compacta de dos niveles.
+- Se incorporó el menú hamburguesa izquierdo con Regiones, Temas y Medios.
+- Se normalizaron en la portada las denominaciones Alertas, Focos, Dossiers y Relevancia vs. atención mediática.
+- Se crearon los índices de Alertas, Focos y Dossiers.
+- Se incorporaron las rutas Medios y Acerca de.
+- Se preservó compatibilidad con las rutas Ensayos, Profundidad y Directorio.
+- Las tarjetas de la columna derecha quedaron enlazadas a fichas editoriales internas válidas.
+
+### Validación
+
+- El paquete reconstruido finalizó Astro Check con 0 errores, 0 advertencias y 0 hints.
+- El build estático generó correctamente las rutas nuevas y heredadas.
+- La portada fue cargada y revisada en localhost.
+
+### En curso
+
+- Revisión editorial de los índices y de la página Acerca de.
+- Recorrido manual de todas las rutas.
+- Validación completa del menú con teclado, Escape y retorno de foco.
+
+### Bloqueos o decisiones
+
+- No existen bloqueos técnicos activos.
+- Las fichas de Relevancia vs. atención mediática aportan contexto editorial; podrán sustituirse por Dossiers cuando existan piezas completas sobre el mismo tema.
+
+
+## 2026-07-19 — ED-011 — Tarjetas de Focos recompuestas
+
+### Completado
+
+- Cada tarjeta de Focos muestra un párrafo editorial completo y no truncado.
+- Se separaron los textos `homeSummary` y `listingSummary`.
+- Se incorporó la fecha de actualización con fallback a la fecha de publicación.
+- Se incorporó el enlace explícito `Leer foco` hacia la página completa.
+- Se mantuvo coherencia de borde, espaciado, jerarquía y pie con el resto de las tarjetas.
+
+### Validación
+
+- Los tres Focos actuales contienen resúmenes completos de aproximadamente 50 palabras o más.
+- La portada fue revisada simultáneamente en escritorio, tablet y teléfono.
+- El editor aprobó visualmente el resultado en localhost.
+
+### Próximo
+
+- Revisar la página general `/focos/` y cada página individual antes del commit final.
+
+
+## 2026-07-19 — QA-006 — Responsive Preview v2 operativo
+
+### Completado
+
+- Se incorporó una herramienta local con tres viewports simultáneos: escritorio, tablet y teléfono.
+- Se agregaron selector de rutas, recarga conjunta, rotación y apertura de la página real.
+- La herramienta quedó fuera de `src/pages`, por lo que no se publica con Astro/Netlify.
+- Se corrigió el fallo `spawn EINVAL` observado en Windows con Node 22.
+- El servidor inicia npm a través de `cmd.exe` y reutiliza Astro cuando ya está activo.
+
+### Validación
+
+- La herramienta inició correctamente en Windows.
+- Los tres paneles cargaron la portada desde el mismo servidor Astro.
+- Se confirmó la actualización visual responsive de cabecera, Alertas, mapa, Focos y columna derecha.
+- El editor aprobó la herramienta y su presentación.
+
+### Próximo
+
+- Utilizar la vista responsive como control visual permanente durante las siguientes modificaciones.

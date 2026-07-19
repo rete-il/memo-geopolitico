@@ -28,51 +28,51 @@
   },
   {
     "id": "beta-2-navigation-regions",
-    "name": "Beta 2 — Navegación, menú y regiones",
+    "name": "Beta 2 — Navegación y exploración temática",
     "sequence": 2,
-    "goal": "Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas.",
+    "goal": "Implementar la cabecera editorial, el menú hamburguesa y la navegación secundaria por regiones, temas y medios.",
     "target": "TBD",
     "exitCriteria": [
-      "Taxonomía regional aprobada y centralizada.",
-      "Menú móvil accesible y mega-menú de escritorio funcional.",
-      "Rutas regionales generadas dinámicamente.",
-      "Al menos una página funcional por macroregión.",
-      "Datos e interpretación editorial claramente diferenciados."
+      "Cabecera editorial de dos niveles implementada.",
+      "Menú hamburguesa izquierdo accesible y funcional.",
+      "Navegación principal: Inicio, Alertas, Focos, Dossiers y Acerca de.",
+      "Navegación secundaria: Regiones, Temas y Medios.",
+      "Rutas activas y compatibilidad con URLs anteriores verificadas."
     ]
   },
   {
     "id": "beta-3-monitor-friction",
-    "name": "Beta 3 — Monitor y Fricción vs. Narrativa",
+    "name": "Beta 3 — Relevancia y atención mediática",
     "sequence": 3,
-    "goal": "Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones.",
+    "goal": "Consolidar la columna derecha como módulo editorial manual, administrable y enlazado a páginas temáticas.",
     "target": "TBD",
     "exitCriteria": [
-      "Modelo y metodología publicados.",
-      "Datos manuales con fuentes, confianza y fecha de actualización.",
-      "Panel responsive y accesible.",
-      "Alternativa textual al mapa.",
-      "Prototipo reemplazado por datos reales o rotulado como experimental."
+      "Escalas editoriales de relevancia y atención de 1 a 5.",
+      "Clasificación automática de la brecha.",
+      "Datos manuales con fecha, fuente opcional y enlace interno.",
+      "Panel responsive, accesible y administrable desde el dashboard.",
+      "Cada tarjeta activa enlaza a una página temática publicada."
     ]
   },
   {
     "id": "beta-4-editorial",
-    "name": "Beta 4 — Experiencia editorial",
+    "name": "Beta 4 — Alertas, Focos y Dossiers",
     "sequence": 4,
-    "goal": "Normalizar análisis, ensayos, fuentes, metadatos, navegación relacionada y lectura extensa.",
+    "goal": "Normalizar los tres tipos editoriales, sus índices, metadatos, resúmenes diferenciados y lectura extensa.",
     "target": "TBD",
     "exitCriteria": [
-      "Índices de análisis y ensayos completos.",
+      "Índices de Alertas, Focos y Dossiers completos.",
+      "Resúmenes de portada y de listado diferenciados.",
       "Plantillas editoriales compartidas.",
-      "Índice de contenidos, fuentes y relacionados.",
-      "Metadatos y JSON-LD validados.",
+      "Fuentes, relacionados, metadatos y JSON-LD validados.",
       "Lectura móvil y escritorio aprobada."
     ]
   },
   {
     "id": "beta-5-directory",
-    "name": "Beta 5 — Directorio modular",
+    "name": "Beta 5 — Medios",
     "sequence": 5,
-    "goal": "Separar presentación, lógica y datos del Directorio y mejorar filtros, móvil y accesibilidad.",
+    "goal": "Modularizar la página Medios, preservar el directorio actual y mejorar filtros, móvil y accesibilidad.",
     "target": "TBD",
     "exitCriteria": [
       "Página monolítica descompuesta.",

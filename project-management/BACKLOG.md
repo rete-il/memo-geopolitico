@@ -13,10 +13,16 @@
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|
 | DOC-001 | DOC | Baseline | P0 | ✓ Terminada | S | Rete | — | Incorporar documentación técnica v2 al repositorio |
+| ED-008 | FEAT | Editorial | P0 | ◆ En revisión | L | Rete | IA-001 | Crear índices de Alertas, Focos y Dossiers |
+| ED-009 | REF | Editorial | P0 | ◆ En revisión | L | Rete | ED-008 | Migrar Ensayos a Focos y Profundidad a Dossiers sin romper URLs |
+| ED-011 | UX | Focos | P0 | ✓ Terminada | S | Rete | ED-008 | Recomponer tarjetas de Focos con resumen completo, fecha y enlace |
 | FIX-001 | FIX | Navegación | P0 | ✓ Terminada | S | Rete | — | Corregir rutas inexistentes del encabezado |
 | FIX-002 | FIX | Contenido | P0 | ✓ Terminada | M | Rete | — | Completar el índice /ensayos/ |
 | FIX-003 | FIX | Contenido | P0 | ✓ Terminada | S | Rete | — | Retirar o normalizar placeholder Indo-Pacífico |
 | FIX-004 | FIX | Conversión | P0 | ✓ Terminada | M | Rete | — | Configurar sistema modular de apoyo mediante Ko-fi |
+| HOME-002 | UX | Portada | P0 | ✓ Terminada | S | Rete | IA-001 | Normalizar la nomenclatura editorial de la portada |
+| IA-001 | UX | Arquitectura de información | P0 | ✓ Terminada | M | Rete | FIX-001 | Aprobar arquitectura editorial Alertas, Focos, Dossiers, Medios y exploración secundaria |
+| NAV-001 | FEAT | Navegación | P0 | ◆ En revisión | L | Rete | FIX-001, IA-001 | Implementar cabecera editorial y menú hamburguesa izquierdo accesible |
 | OPS-001 | OPS | Producción | P0 | ✓ Terminada | S | Rete | — | Registrar baseline de Netlify y producción |
 | PM-001 | PM | Gestión | P0 | ✓ Terminada | S | Rete | — | Separar documentación del estado actual y documentación de proyecto |
 | PM-002 | PM | Gestión | P0 | ✓ Terminada | M | Rete | PM-001 | Crear sistema dinámico de project management |
@@ -32,12 +38,17 @@
 | PMAPP-008 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | S | Rete | PMAPP-002 | Implementar copias de seguridad locales |
 | PMAPP-009 | PMAPP | Dashboard de gestión | P0 | ✓ Terminada | S | Rete | PMAPP-004, PMAPP-006, PMAPP-007, PMAPP-008 | Validar dashboard local en Windows y documentar resultados |
 | QA-001 | QA | Validación | P0 | ✓ Terminada | S | Rete | — | Agregar astro check y dependencias necesarias |
+| QA-005 | QA | Navegación editorial | P0 | ▶ En progreso | M | Rete | NAV-001, HOME-002, ED-008, ED-009, DIR-010 | Validar cabecera, índices, rutas heredadas y navegación por teclado |
 | A11Y-001 | A11Y | Baseline | P1 | ○ Propuesta | M | TBD | — | Registrar auditoría de teclado, contraste y headings |
-| DATA-002 | FEATURE | Datos y Monitoreo | P1 | ▶ En progreso | M | Rete | — | Convertir los monitores de la columna derecha en datos administrables |
-| DATA-003 | PM | Gestión | P1 | ▶ En progreso | M | Rete | — | Definir el modelo de relevancia geopolítica y atención mediática |
+| DATA-002 | FEATURE | Datos y Monitoreo | P1 | ✓ Terminada | M | Rete | — | Administrar la columna Relevancia vs. atención mediática desde el dashboard |
+| DATA-003 | PM | Gestión | P1 | ✓ Terminada | M | Rete | — | Definir el modelo editorial de relevancia geopolítica y atención mediática |
+| DATA-004 | DATA | Relevancia vs. atención mediática | P1 | ✓ Terminada | M | Rete | DATA-002, ED-008 | Enlazar cada tarjeta activa con una página temática publicada |
+| DIR-010 | UX | Medios | P1 | ◆ En revisión | S | Rete | NAV-001 | Renombrar Directorio como Medios y preservar la ruta anterior |
+| ED-010 | CONTENT | Transparencia | P1 | ◆ En revisión | M | Rete | IA-001 | Crear la página Acerca de Memo Geopolítico |
 | OPS-002 | OPS | Reproducibilidad | P1 | ◉ Lista | XS | TBD | — | Versionar Node con .nvmrc o .node-version |
 | OPS-003 | OPS | Reproducibilidad | P1 | ◉ Lista | S | TBD | OPS-002 | Versionar configuración Netlify en netlify.toml |
 | QA-004 | QA | Calidad Técnica | P1 | ✓ Terminada | M | Rete | QA-001 | Reducir hints de Astro Check |
+| QA-006 | QA | Validación responsive | P1 | ✓ Terminada | M | Rete | QA-001 | Incorporar vista local simultánea de escritorio, tablet y teléfono |
 | SEO-001 | SEO | Social | P1 | ◉ Lista | S | TBD | — | Crear default-og.png y validar Open Graph |
 | SEO-002 | SEO | Indexación | P1 | ◉ Lista | M | TBD | OPS-003 | Publicar robots.txt seguro y sitemap |
 | UI-001 | FIX | Iconos | P1 | ✓ Terminada | S | Rete | — | Cargar iconografía globalmente o empaquetarla |
@@ -47,7 +58,6 @@
 
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|
-| IA-001 | UX | Arquitectura de información | P0 | ◉ Lista | M | TBD | FIX-001 | Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones |
 | A11Y-002 | A11Y | Componentes | P1 | ○ Propuesta | M | TBD | DS-003, A11Y-001 | Definir patrones de foco, teclado y reduced motion |
 | DATA-001 | REF | Validación | P1 | ○ Propuesta | L | TBD | TYPE-001 | Validar JSON y frontmatter con esquemas |
 | DS-001 | REF | Sistema de diseño | P1 | ○ Propuesta | L | TBD | IA-001 | Centralizar tokens de color, espacio, tipografía y capas |
@@ -57,11 +67,10 @@
 | REF-001 | REF | Shell | P1 | ○ Propuesta | L | TBD | DS-003, UI-001 | Extraer SiteHeader, SiteFooter y Seo |
 | TYPE-001 | REF | Tipos | P1 | ○ Propuesta | L | TBD | QA-001 | Crear contratos TypeScript para contenido, mapa, monitor y directorio |
 
-## Beta 2 — Navegación, menú y regiones
+## Beta 2 — Navegación y exploración temática
 
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|
-| NAV-001 | FEAT | Navegación | P0 | ○ Propuesta | L | TBD | REF-001, REG-002, A11Y-002 | Implementar menú hamburguesa móvil accesible |
 | REG-001 | FEAT | Regiones | P0 | ○ Propuesta | L | TBD | IA-001 | Aprobar taxonomía de regiones, subregiones y teatros |
 | REG-002 | REF | Regiones | P0 | ○ Propuesta | M | TBD | REG-001, TYPE-001 | Crear fuente central src/config/regions.ts |
 | REG-003 | FEAT | Regiones | P0 | ○ Propuesta | L | TBD | REG-002 | Crear índice /regiones/ y rutas dinámicas |
@@ -74,22 +83,22 @@
 | REG-007 | CONTENT | Regiones | P2 | ○ Propuesta | XL | TBD | REG-004 | Crear páginas base para Asia, Américas y Oceanía |
 | REG-008 | CONTENT | Teatros | P2 | ○ Propuesta | L | TBD | REG-004 | Crear teatros transregionales iniciales |
 
-## Beta 3 — Monitor y Fricción vs. Narrativa
+## Beta 3 — Relevancia y atención mediática
 
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|
-| FRIC-001 | FEAT | Fricción vs. Narrativa | P0 | ○ Propuesta | L | TBD | IA-001, REG-001 | Aprobar metodología, umbrales y vocabulario |
-| FRIC-002 | DATA | Fricción vs. Narrativa | P0 | ○ Propuesta | M | TBD | FRIC-001, TYPE-001 | Crear modelo de datos con fuentes, confianza y actualización |
-| FRIC-003 | CONTENT | Fricción vs. Narrativa | P0 | ○ Propuesta | XL | TBD | FRIC-002 | Crear dataset editorial inicial real |
-| FRIC-004 | FEAT | Fricción vs. Narrativa | P0 | ○ Propuesta | XL | TBD | FRIC-002, DS-004 | Implementar panel y tarjetas responsive |
-| FRIC-006 | CONTENT | Metodología | P0 | ○ Propuesta | L | TBD | FRIC-001 | Publicar página de metodología del indicador |
-| FRIC-005 | A11Y | Fricción vs. Narrativa | P1 | ○ Propuesta | M | TBD | FRIC-004 | Añadir representación textual de barras y estados |
+| FRIC-001 | FEAT | Relevancia vs. atención mediática | P0 | ○ Propuesta | L | TBD | IA-001, REG-001 | Revisar criterios editoriales y escala de relevancia y atención |
+| FRIC-002 | DATA | Relevancia vs. atención mediática | P0 | ○ Propuesta | M | TBD | FRIC-001, TYPE-001 | Evolucionar el modelo de datos con fuentes, confianza e historial |
+| FRIC-003 | CONTENT | Relevancia vs. atención mediática | P0 | ○ Propuesta | XL | TBD | FRIC-002 | Ampliar el dataset editorial de relevancia y atención |
+| FRIC-004 | FEAT | Relevancia vs. atención mediática | P0 | ○ Propuesta | XL | TBD | FRIC-002, DS-004 | Evolucionar el panel y las tarjetas responsive |
+| FRIC-006 | CONTENT | Metodología | P0 | ○ Propuesta | L | TBD | FRIC-001 | Publicar nota metodológica del módulo editorial |
+| FRIC-005 | A11Y | Relevancia vs. atención mediática | P1 | ○ Propuesta | M | TBD | FRIC-004 | Mantener representación textual de barras y estados |
 | HOME-001 | UX | Portada | P1 | ○ Propuesta | XL | TBD | DS-003, FRIC-004 | Rediseñar jerarquía de portada |
 | MAP-001 | REF | Mapa | P1 | ○ Propuesta | XL | TBD | REG-002, TYPE-001 | Conectar mapa con regiones, alertas y contenido |
 | MAP-003 | A11Y | Mapa | P1 | ○ Propuesta | L | TBD | MAP-001 | Crear alternativa textual y vista lista móvil |
 | MAP-002 | FEAT | Mapa | P2 | ○ Propuesta | L | TBD | MAP-001 | Añadir filtros por región, severidad, tipo y periodo |
 
-## Beta 4 — Experiencia editorial
+## Beta 4 — Alertas, Focos y Dossiers
 
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|
@@ -102,7 +111,7 @@
 | ED-003 | FEAT | Editorial | P2 | ○ Propuesta | M | TBD | ED-001 | Crear índice de contenidos y anclas |
 | ED-007 | FEAT | Editorial | P2 | ○ Propuesta | M | TBD | ED-004 | Crear navegación anterior/siguiente y compartir |
 
-## Beta 5 — Directorio modular
+## Beta 5 — Medios
 
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|

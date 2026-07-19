@@ -21,7 +21,7 @@ const HOST = '127.0.0.1';
 const PORT = Number(process.env.PM_DASHBOARD_PORT || 4322);
 const MAX_BODY_BYTES = 1024 * 1024;
 const MAX_BACKUPS = 20;
-const VERSION = '0.3.0';
+const VERSION = '0.4.0';
 
 const DEFAULT_FEATURES = {
   support: {
@@ -38,10 +38,10 @@ const DEFAULT_MONITORS = {
   friccion_narrativa: [],
 };
 
-const ASYMMETRY_VALUES = new Set([
-  'punto_ciego',
-  'sobrerrepresentado',
-  'sincronico',
+const MONITOR_CATEGORY_VALUES = new Set([
+  'seguridad_conflicto',
+  'infraestructura_estrategica',
+  'comercio_energia_recursos',
 ]);
 
 const jsonFiles = {
@@ -106,6 +106,15 @@ function normalizeInteger(value, fallback, min, max) {
 
 function normalizeMonitor(raw, existing = null) {
   const today = new Date().toISOString().slice(0, 10);
+  const legacyCoverage =
+    raw.cobertura_pct ?? existing?.cobertura_pct ?? null;
+  const relevanceFallback =
+    raw.escalada_nivel ?? existing?.escalada_nivel ?? 1;
+  const attentionFallback =
+    legacyCoverage === null || legacyCoverage === undefined
+      ? 1
+      : Math.max(1, Math.min(5, Math.ceil(Number(legacyCoverage) / 20)));
+
   return {
     id: safeText(raw.id ?? existing?.id, 80)
       .trim()
@@ -114,31 +123,42 @@ function normalizeMonitor(raw, existing = null) {
       .replace(/^-+|-+$/g, ''),
     orden: normalizeInteger(raw.orden, existing?.orden ?? 10, 0, 9999),
     activo: normalizeBoolean(raw.activo, existing?.activo ?? true),
-    teatro: safeText(raw.teatro ?? existing?.teatro, 200).trim(),
-    escalada_nivel: normalizeInteger(
-      raw.escalada_nivel,
-      existing?.escalada_nivel ?? 1,
-      1,
-      5,
-    ),
-    cobertura_pct: normalizeInteger(
-      raw.cobertura_pct,
-      existing?.cobertura_pct ?? 0,
-      0,
-      100,
-    ),
-    alerta_asimetria: safeText(
-      raw.alerta_asimetria ?? existing?.alerta_asimetria,
-      40,
+    titulo: safeText(
+      raw.titulo ?? raw.teatro ?? existing?.titulo ?? existing?.teatro,
+      200,
+    ).trim(),
+    categoria: safeText(
+      raw.categoria ?? existing?.categoria ?? 'seguridad_conflicto',
+      60,
     )
       .trim()
       .toLowerCase(),
+    relevancia_nivel: normalizeInteger(
+      raw.relevancia_nivel ?? relevanceFallback,
+      existing?.relevancia_nivel ?? relevanceFallback,
+      1,
+      5,
+    ),
+    atencion_nivel: normalizeInteger(
+      raw.atencion_nivel ?? attentionFallback,
+      existing?.atencion_nivel ?? attentionFallback,
+      1,
+      5,
+    ),
+    dato_clave: safeText(
+      raw.dato_clave ?? existing?.dato_clave,
+      240,
+    ).trim(),
     insight: safeText(raw.insight ?? existing?.insight, 1000).trim(),
     actualizado: safeText(
       raw.actualizado ?? existing?.actualizado ?? today,
       10,
     ).trim(),
-    fuente_url: safeText(raw.fuente_url ?? existing?.fuente_url, 500).trim(),
+    href: safeText(raw.href ?? existing?.href, 500).trim(),
+    fuente_url: safeText(
+      raw.fuente_url ?? existing?.fuente_url,
+      500,
+    ).trim(),
   };
 }
 
@@ -167,7 +187,7 @@ function validateMonitors(monitors) {
       errors.push(`ID de monitor duplicado: ${monitor.id}.`);
     ids.add(monitor?.id);
 
-    if (!monitor?.teatro) errors.push(`${prefix}: falta teatro.`);
+    if (!monitor?.titulo) errors.push(`${prefix}: falta titulo.`);
     if (!Number.isInteger(monitor?.orden) || monitor.orden < 0)
       errors.push(`${prefix}: orden debe ser un entero no negativo.`);
     if (orders.has(monitor?.orden))
@@ -176,25 +196,27 @@ function validateMonitors(monitors) {
       );
     orders.add(monitor?.orden);
 
-    if (
-      !Number.isInteger(monitor?.escalada_nivel) ||
-      monitor.escalada_nivel < 1 ||
-      monitor.escalada_nivel > 5
-    )
-      errors.push(`${prefix}: escalada_nivel debe estar entre 1 y 5.`);
-
-    if (
-      !Number.isInteger(monitor?.cobertura_pct) ||
-      monitor.cobertura_pct < 0 ||
-      monitor.cobertura_pct > 100
-    )
-      errors.push(`${prefix}: cobertura_pct debe estar entre 0 y 100.`);
-
-    if (!ASYMMETRY_VALUES.has(monitor?.alerta_asimetria))
+    if (!MONITOR_CATEGORY_VALUES.has(monitor?.categoria))
       errors.push(
-        `${prefix}: alerta_asimetria debe ser punto_ciego, sobrerrepresentado o sincronico.`,
+        `${prefix}: categoria debe ser seguridad_conflicto, infraestructura_estrategica o comercio_energia_recursos.`,
       );
 
+    if (
+      !Number.isInteger(monitor?.relevancia_nivel) ||
+      monitor.relevancia_nivel < 1 ||
+      monitor.relevancia_nivel > 5
+    )
+      errors.push(`${prefix}: relevancia_nivel debe estar entre 1 y 5.`);
+
+    if (
+      !Number.isInteger(monitor?.atencion_nivel) ||
+      monitor.atencion_nivel < 1 ||
+      monitor.atencion_nivel > 5
+    )
+      errors.push(`${prefix}: atencion_nivel debe estar entre 1 y 5.`);
+
+    if (!monitor?.dato_clave)
+      errors.push(`${prefix}: falta dato_clave.`);
     if (!monitor?.insight) errors.push(`${prefix}: falta insight.`);
 
     if (!/^\d{4}-\d{2}-\d{2}$/.test(monitor?.actualizado || ''))
@@ -205,6 +227,13 @@ function validateMonitors(monitors) {
       )
     )
       errors.push(`${prefix}: actualizado no contiene una fecha válida.`);
+
+    if (monitor?.href) {
+      if (!monitor.href.startsWith('/') || monitor.href.startsWith('//'))
+        errors.push(
+          `${prefix}: href debe ser una ruta interna que comience con una sola barra.`,
+        );
+    }
 
     if (monitor?.fuente_url) {
       try {
@@ -217,9 +246,16 @@ function validateMonitors(monitors) {
     }
   }
 
-  if (!list.some((monitor) => monitor.activo))
+  const activeCount = list.filter((monitor) => monitor.activo).length;
+
+  if (!activeCount)
     warnings.push(
       'No hay monitores activos: la columna derecha se ocultará.',
+    );
+
+  if (activeCount > 4)
+    warnings.push(
+      `Hay ${activeCount} monitores activos: la portada mostrará solamente los primeros 4 según su orden.`,
     );
 
   return {
@@ -231,7 +267,9 @@ function validateMonitors(monitors) {
 
 function sortedMonitors(monitors) {
   return [...(monitors.friccion_narrativa || [])].sort(
-    (a, b) => a.orden - b.orden || a.teatro.localeCompare(b.teatro, 'es'),
+    (a, b) =>
+      a.orden - b.orden ||
+      a.titulo.localeCompare(b.titulo, 'es'),
   );
 }
 

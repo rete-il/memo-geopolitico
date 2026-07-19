@@ -199,7 +199,7 @@
     "dependencies": [],
     "progress": null,
     "acceptanceCriteria": [],
-    "notes": "Se implementó el índice funcional de /ensayos/.\n\nResultado:\n- La colección de ensayos se obtiene mediante Astro Content Collections.\n- Los ensayos se ordenan por fecha descendente.\n- Se muestran tarjetas editoriales con título, descripción, fecha y etiquetas.\n- Cada tarjeta enlaza correctamente con su ensayo individual.\n- Se incorporó paginación preparada para el crecimiento del archivo.\n- Se incorporó un estado vacío para ausencia de contenidos.\n- La sección Ensayos permanece resaltada en la navegación.\n- La portada y MapaGlobal continúan funcionando correctamente.\n\nValidación:\n- npm run check: 0 errores, 0 advertencias y 0 hints.\n- npm run build: correcto.\n- /ensayos/ validado visualmente.\n- Enlaces individuales comprobados.\n\n\nSe implementó el índice funcional de /ensayos/.\n\nLa página ahora:\n- obtiene la colección ensayos;\n- ordena los contenidos por fecha;\n- renderiza tarjetas editoriales;\n- enlaza con los ensayos individuales;\n- admite paginación;\n- contempla el estado sin resultados.\n\nPendiente:\n- validación visual;\n- Astro Check;\n- build;\n- comprobación de enlaces."
+    "notes": "Se implementó el índice funcional de /ensayos/.\n\nResultado:\n- La colección de ensayos se obtiene mediante Astro Content Collections.\n- Los ensayos se ordenan por fecha descendente.\n- Se muestran tarjetas editoriales con título, descripción, fecha y etiquetas.\n- Cada tarjeta enlaza correctamente con su ensayo individual.\n- Se incorporó paginación preparada para el crecimiento del archivo.\n- Se incorporó un estado vacío para ausencia de contenidos.\n- La sección Ensayos permanece resaltada en la navegación.\n- La portada y MapaGlobal continúan funcionando correctamente.\n\nValidación:\n- npm run check: 0 errores, 0 advertencias y 0 hints.\n- npm run build: correcto.\n- /ensayos/ validado visualmente.\n- Enlaces individuales comprobados.\n\n\nSe implementó el índice funcional de /ensayos/.\n\nLa página ahora:\n- obtiene la colección ensayos;\n- ordena los contenidos por fecha;\n- renderiza tarjetas editoriales;\n- enlaza con los ensayos individuales;\n- admite paginación;\n- contempla el estado sin resultados.\n\nPendiente:\n- validación visual;\n- Astro Check;\n- build;\n- comprobación de enlaces.\n\nDecisión posterior: /ensayos/ se conservará como compatibilidad durante la migración editorial a /focos/."
   },
   {
     "id": "FIX-003",
@@ -356,18 +356,26 @@
     "id": "IA-001",
     "type": "UX",
     "epic": "Arquitectura de información",
-    "title": "Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones",
+    "title": "Aprobar arquitectura editorial Alertas, Focos, Dossiers, Medios y exploración secundaria",
     "priority": "P0",
-    "status": "ready",
-    "release": "beta-1-foundations",
+    "status": "done",
+    "release": "beta-0-baseline",
     "size": "M",
-    "owner": "TBD",
+    "owner": "Rete",
     "dependencies": [
       "FIX-001"
     ],
     "progress": null,
-    "acceptanceCriteria": [],
-    "notes": ""
+    "acceptanceCriteria": [
+      "Alertas identifica piezas breves y autónomas sobre hechos recientes.",
+      "Dossiers identifica profundizaciones autónomas relacionadas con una o varias alertas.",
+      "Focos identifica los contenidos estructurales situados debajo del mapa.",
+      "Medios identifica el actual directorio de medios geopolíticos.",
+      "La navegación principal contiene Inicio, Alertas, Focos, Dossiers y Acerca de.",
+      "El menú hamburguesa contiene Regiones, Temas y Medios.",
+      "Relevancia vs. atención mediática identifica la columna derecha."
+    ],
+    "notes": "Arquitectura y nomenclatura aprobadas el 19/07/2026."
   },
   {
     "id": "DS-001",
@@ -581,20 +589,27 @@
     "id": "NAV-001",
     "type": "FEAT",
     "epic": "Navegación",
-    "title": "Implementar menú hamburguesa móvil accesible",
+    "title": "Implementar cabecera editorial y menú hamburguesa izquierdo accesible",
     "priority": "P0",
-    "status": "proposed",
-    "release": "beta-2-navigation-regions",
+    "status": "review",
+    "release": "beta-0-baseline",
     "size": "L",
-    "owner": "TBD",
+    "owner": "Rete",
     "dependencies": [
-      "REF-001",
-      "REG-002",
-      "A11Y-002"
+      "FIX-001",
+      "IA-001"
     ],
-    "progress": null,
-    "acceptanceCriteria": [],
-    "notes": ""
+    "progress": 90,
+    "acceptanceCriteria": [
+      "La primera franja contiene hamburguesa a la izquierda, marca centrada y fecha de actualización a la derecha.",
+      "La segunda franja contiene Inicio, Alertas, Focos, Dossiers y Acerca de.",
+      "El panel lateral contiene Regiones, Temas y Medios.",
+      "En móvil, el panel incluye también las secciones principales.",
+      "El menú se abre y cierra con teclado, Escape, botón y clic exterior.",
+      "El foco se traslada al panel y vuelve al botón al cerrarse.",
+      "La cabecera conserva estado activo y funciona en todas las rutas."
+    ],
+    "notes": "Diseño aprobado a partir de una cabecera editorial de dos niveles inspirada en El País, simplificada para Memo Geopolítico.\n\nImplementación incorporada: cabecera de dos niveles, hamburguesa izquierda, panel lateral, estados activos y control de foco. La presentación fue verificada en escritorio, tablet y teléfono. Pendiente: comprobación manual completa de teclado, Escape y foco en todas las rutas."
   },
   {
     "id": "NAV-002",
@@ -720,8 +735,8 @@
   {
     "id": "FRIC-001",
     "type": "FEAT",
-    "epic": "Fricción vs. Narrativa",
-    "title": "Aprobar metodología, umbrales y vocabulario",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Revisar criterios editoriales y escala de relevancia y atención",
     "priority": "P0",
     "status": "proposed",
     "release": "beta-3-monitor-friction",
@@ -738,8 +753,8 @@
   {
     "id": "FRIC-002",
     "type": "DATA",
-    "epic": "Fricción vs. Narrativa",
-    "title": "Crear modelo de datos con fuentes, confianza y actualización",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Evolucionar el modelo de datos con fuentes, confianza e historial",
     "priority": "P0",
     "status": "proposed",
     "release": "beta-3-monitor-friction",
@@ -756,8 +771,8 @@
   {
     "id": "FRIC-003",
     "type": "CONTENT",
-    "epic": "Fricción vs. Narrativa",
-    "title": "Crear dataset editorial inicial real",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Ampliar el dataset editorial de relevancia y atención",
     "priority": "P0",
     "status": "proposed",
     "release": "beta-3-monitor-friction",
@@ -773,8 +788,8 @@
   {
     "id": "FRIC-004",
     "type": "FEAT",
-    "epic": "Fricción vs. Narrativa",
-    "title": "Implementar panel y tarjetas responsive",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Evolucionar el panel y las tarjetas responsive",
     "priority": "P0",
     "status": "proposed",
     "release": "beta-3-monitor-friction",
@@ -791,8 +806,8 @@
   {
     "id": "FRIC-005",
     "type": "A11Y",
-    "epic": "Fricción vs. Narrativa",
-    "title": "Añadir representación textual de barras y estados",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Mantener representación textual de barras y estados",
     "priority": "P1",
     "status": "proposed",
     "release": "beta-3-monitor-friction",
@@ -809,7 +824,7 @@
     "id": "FRIC-006",
     "type": "CONTENT",
     "epic": "Metodología",
-    "title": "Publicar página de metodología del indicador",
+    "title": "Publicar nota metodológica del módulo editorial",
     "priority": "P0",
     "status": "proposed",
     "release": "beta-3-monitor-friction",
@@ -1436,7 +1451,7 @@
     ],
     "progress": null,
     "acceptanceCriteria": [],
-    "notes": "No automatizar hasta validar el modelo editorial manual."
+    "notes": "No automatizar hasta validar durante un período suficiente el modelo editorial manual. Los ensayos con GDELT se conservan solo como investigación."
   },
   {
     "id": "PMAPP-001",
@@ -1684,54 +1699,263 @@
     "id": "DATA-002",
     "type": "FEATURE",
     "epic": "Datos y Monitoreo",
-    "title": "Convertir los monitores de la columna derecha en datos administrables",
+    "title": "Administrar la columna Relevancia vs. atención mediática desde el dashboard",
     "priority": "P1",
-    "status": "in_progress",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "M",
     "owner": "Rete",
     "dependencies": [],
-    "progress": 15,
+    "progress": null,
     "acceptanceCriteria": [
-      "Los registros de la columna derecha pueden administrarse desde el dashboard local.",
-      "Cada registro tiene un ID estable.",
-      "Los registros pueden activarse, desactivarse y ordenarse.",
-      "Escalada acepta únicamente valores entre 1 y 5.",
-      "Cobertura acepta únicamente valores entre 0 y 100.",
-      "La asimetría utiliza una taxonomía cerrada y validada.",
-      "Cada registro indica cuándo fue actualizado.",
-      "El componente solo muestra registros activos y ordenados.",
-      "La sección se oculta correctamente cuando no existen registros activos.",
+      "Los casos se administran desde el dashboard local.",
+      "Cada caso tiene ID estable, orden y estado activo.",
+      "Relevancia y atención aceptan valores de 1 a 5.",
+      "La brecha se clasifica automáticamente como subcubierta, equilibrada o sobrecubierta.",
+      "Cada caso incluye dato clave, insight y fecha de actualización.",
+      "La fuente externa y el enlace interno son opcionales.",
+      "La portada muestra como máximo cuatro casos activos y ordenados.",
       "Los cambios generan una copia de seguridad.",
-      "No es necesario editar monitores.json manualmente.",
-      "Astro Check y el build finalizan correctamente.",
-      "---",
-      "El contenido operativo de la columna derecha no está escrito directamente en el componente.",
-      "Los registros se cargan desde una fuente de datos centralizada.",
-      "Cada registro dispone de título, descripción, nivel, cobertura y estado.",
-      "El componente admite cero, uno o varios registros sin romper el layout.",
-      "Los datos inválidos producen errores de validación durante el desarrollo.",
-      "La columna mantiene su funcionamiento responsive.",
-      "El dashboard permite editar los registros sin modificar código.",
-      "Astro Check y el build finalizan correctamente."
+      "Astro Check y el build finalizaron correctamente en la implementación instalada."
     ],
-    "notes": "Los datos operativos ya se encontraban externalizados en\nsrc/data/monitores.json.\n\nLa deuda principal no era el renderizado, sino la ausencia de:\n- administración desde el dashboard;\n- IDs estables;\n- orden explícito;\n- activación y desactivación;\n- fecha de actualización;\n- validación estructural.\n\nLa presentación visual, las escalas y la taxonomía permanecerán controladas\npor el componente para conservar coherencia editorial y visual.\n---\nLa columna derecha contiene actualmente una combinación de estructura fija\ny contenido operativo que requiere cambios manuales en el proyecto.\n\nLa implementación se dividirá en dos etapas:\n\n1. normalizar el modelo de datos y desacoplar completamente el contenido;\n2. incorporar una pantalla de administración en el dashboard local.\n\nLa fuente canónica prevista es src/data/monitores.json."
+    "notes": "Completado con el modelo editorial simplificado. La automatización GDELT no forma parte del producto actual. La interfaz pública y el dashboard utilizan la denominación Relevancia vs. atención mediática."
   },
   {
     "id": "DATA-003",
     "type": "PM",
     "epic": "Gestión",
-    "title": "Definir el modelo de relevancia geopolítica y atención mediática",
+    "title": "Definir el modelo editorial de relevancia geopolítica y atención mediática",
     "priority": "P1",
-    "status": "in_progress",
+    "status": "done",
     "release": "beta-0-baseline",
     "size": "M",
     "owner": "Rete",
     "dependencies": [],
-    "progress": 20,
+    "progress": null,
     "acceptanceCriteria": [
-      "Definir el modelo de relevancia geopolítica y atención mediática"
+      "Relevancia y atención se valoran editorialmente en una escala de 1 a 5.",
+      "La diferencia Atención menos Relevancia produce la clasificación visible.",
+      "No se presentan cifras automatizadas como mediciones concluyentes.",
+      "El capturador GDELT queda documentado como experimento y no bloquea la publicación.",
+      "La columna se actualiza manualmente algunas veces por semana."
     ],
-    "notes": ""
+    "notes": "Se cerró el alcance cuantitativo avanzado. Se adopta un modelo editorial simple, transparente y administrable. GDELT queda diferido como investigación."
+  },
+  {
+    "id": "HOME-002",
+    "type": "UX",
+    "epic": "Portada",
+    "title": "Normalizar la nomenclatura editorial de la portada",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "IA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Alertas y Focos se muestra como Alertas.",
+      "Análisis a Fondo se muestra como Focos.",
+      "Para profundizar se sustituye por Ver dossier o Profundizar en el tema.",
+      "La columna derecha se identifica como Relevancia vs. atención mediática.",
+      "No quedan denominaciones públicas contradictorias en la portada."
+    ],
+    "notes": "Nomenclatura pública normalizada y comprobada en localhost: Alertas, Focos, Dossiers, Medios y Relevancia vs. atención mediática."
+  },
+  {
+    "id": "ED-008",
+    "type": "FEAT",
+    "epic": "Editorial",
+    "title": "Crear índices de Alertas, Focos y Dossiers",
+    "priority": "P0",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Rete",
+    "dependencies": [
+      "IA-001"
+    ],
+    "progress": 90,
+    "acceptanceCriteria": [
+      "Existe /alertas/ con todas las alertas ordenadas por fecha.",
+      "Existe /focos/ con tarjetas de los contenidos estructurales.",
+      "Existe /dossiers/ con tarjetas de profundización.",
+      "Las tarjetas de los índices muestran un resumen editorial cercano a 50 palabras.",
+      "El resumen de listado puede diferir del texto breve utilizado en la portada.",
+      "Los estados vacíos están definidos."
+    ],
+    "notes": "Primera implementación reutilizará las colecciones actuales y añadirá campos opcionales para resúmenes diferenciados.\n\nSe crearon los índices /alertas/, /focos/ y /dossiers/ con estados vacíos y resúmenes editoriales diferenciados. Pendiente: revisión editorial final de todas las páginas índice."
+  },
+  {
+    "id": "ED-009",
+    "type": "REF",
+    "epic": "Editorial",
+    "title": "Migrar Ensayos a Focos y Profundidad a Dossiers sin romper URLs",
+    "priority": "P0",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Rete",
+    "dependencies": [
+      "ED-008"
+    ],
+    "progress": 90,
+    "acceptanceCriteria": [
+      "Las páginas públicas nuevas utilizan /focos/[slug]/ y /dossiers/[slug]/.",
+      "Las rutas /ensayos/ y /profundidad/[slug]/ conservan compatibilidad.",
+      "Las páginas individuales muestran las etiquetas Foco y Dossier.",
+      "Los enlaces internos apuntan preferentemente a las rutas nuevas.",
+      "No se duplica el contenido canónico."
+    ],
+    "notes": "La migración de nombres no requiere mover inmediatamente las carpetas de contenido internas.\n\nLas rutas públicas nuevas y las rutas heredadas fueron incorporadas al build. Pendiente: recorrido manual completo de enlaces y canonicals antes del cierre."
+  },
+  {
+    "id": "ED-010",
+    "type": "CONTENT",
+    "epic": "Transparencia",
+    "title": "Crear la página Acerca de Memo Geopolítico",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "IA-001"
+    ],
+    "progress": 80,
+    "acceptanceCriteria": [
+      "Existe /acerca-de/.",
+      "Explica propósito, tipos de contenido y criterios editoriales.",
+      "Incluye autoría, uso de fuentes, uso de IA y política de correcciones.",
+      "No contiene textos provisionales ni afirmaciones no aprobadas."
+    ],
+    "notes": "La redacción final deberá ser revisada por el editor antes de publicarse.\n\nLa página /acerca-de/ fue creada. Permanece en revisión hasta aprobar su redacción editorial definitiva."
+  },
+  {
+    "id": "DIR-010",
+    "type": "UX",
+    "epic": "Medios",
+    "title": "Renombrar Directorio como Medios y preservar la ruta anterior",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "NAV-001"
+    ],
+    "progress": 90,
+    "acceptanceCriteria": [
+      "El menú muestra Medios.",
+      "La ruta preferente es /medios/.",
+      "El título de página continúa siendo Directorio de medios geopolíticos.",
+      "/directorio/ permanece operativa como alias o redirección.",
+      "No se rompen descargas ni scripts del directorio."
+    ],
+    "notes": "El menú público usa Medios, existe /medios/ y se conserva /directorio/. Pendiente: recorrido manual de la página, descargas y scripts antes del cierre."
+  },
+  {
+    "id": "DATA-004",
+    "type": "DATA",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Enlazar cada tarjeta activa con una página temática publicada",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "DATA-002",
+      "ED-008"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Cada tarjeta activa tiene href interno válido.",
+      "La tarjeta completa o su llamada a la acción es navegable.",
+      "No se publican enlaces hacia páginas inexistentes.",
+      "El dashboard permite administrar el enlace.",
+      "Las páginas vinculadas aportan contexto adicional y no repiten únicamente el texto de la tarjeta."
+    ],
+    "notes": "Las tarjetas activas de Relevancia vs. atención mediática disponen de href internos válidos hacia fichas editoriales en /relevancia-atencion/[id]/. Los enlaces pueden administrarse desde la fuente de datos y no apuntan a rutas inexistentes."
+  },
+  {
+    "id": "QA-005",
+    "type": "QA",
+    "epic": "Navegación editorial",
+    "title": "Validar cabecera, índices, rutas heredadas y navegación por teclado",
+    "priority": "P0",
+    "status": "in_progress",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "NAV-001",
+      "HOME-002",
+      "ED-008",
+      "ED-009",
+      "DIR-010"
+    ],
+    "progress": 70,
+    "acceptanceCriteria": [
+      "npm run check finaliza sin errores, advertencias ni hints.",
+      "npm run build finaliza correctamente.",
+      "Inicio, Alertas, Focos, Dossiers, Acerca de y Medios no devuelven 404.",
+      "Las rutas heredadas continúan funcionando.",
+      "El menú hamburguesa funciona con teclado y Escape.",
+      "La cabecera y las páginas índice se revisan en móvil y escritorio."
+    ],
+    "notes": "Astro Check y build fueron validados en el paquete de implementación. La portada fue revisada simultáneamente en escritorio, tablet y teléfono mediante la herramienta local. Pendiente: comprobar todas las rutas heredadas y nuevas, además del ciclo completo de teclado, Escape y retorno de foco."
+  },
+  {
+    "id": "ED-011",
+    "type": "UX",
+    "epic": "Focos",
+    "title": "Recomponer tarjetas de Focos con resumen completo, fecha y enlace",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "ED-008"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Cada tarjeta muestra un párrafo editorial completo de aproximadamente 50 palabras o más.",
+      "El texto no utiliza line-clamp ni truncamiento visual.",
+      "La portada utiliza homeSummary y el índice /focos/ utiliza listingSummary.",
+      "La tarjeta muestra fecha de actualización con fallback a la fecha de publicación.",
+      "Existe un enlace explícito Leer foco hacia la página completa.",
+      "La presentación es coherente con el sistema de tarjetas del sitio.",
+      "La vista fue comprobada en escritorio, tablet y teléfono."
+    ],
+    "notes": "Implementado y validado visualmente en localhost mediante la vista responsive multipanel."
+  },
+  {
+    "id": "QA-006",
+    "type": "QA",
+    "epic": "Validación responsive",
+    "title": "Incorporar vista local simultánea de escritorio, tablet y teléfono",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "QA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La herramienta muestra simultáneamente escritorio, tablet y teléfono.",
+      "Los tres paneles cargan el mismo servidor Astro y admiten actualización en vivo.",
+      "Existe selector de rutas, recarga conjunta, rotación y apertura de la página real.",
+      "La herramienta reside fuera de src/pages y no se publica con el sitio.",
+      "El lanzador funciona en Windows con Node 22.",
+      "El inicio de Astro evita el error spawn EINVAL mediante cmd.exe.",
+      "La herramienta fue ejecutada y aprobada visualmente en localhost."
+    ],
+    "notes": "Responsive Preview v2 operativo en 127.0.0.1:4323. La primera versión produjo spawn EINVAL en Windows; se corrigió iniciando npm a través de cmd.exe."
   }
 ]

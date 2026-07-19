@@ -4,12 +4,12 @@
 
 | Secuencia | Release | Objetivo | Avance | Estado |
 |---:|---|---|---:|---|
-| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 75% | Actual |
+| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 85% | Actual |
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
-| 2 | Beta 2 — Navegación, menú y regiones | Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas. | 0% | Planificada |
-| 3 | Beta 3 — Monitor y Fricción vs. Narrativa | Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones. | 0% | Planificada |
-| 4 | Beta 4 — Experiencia editorial | Normalizar análisis, ensayos, fuentes, metadatos, navegación relacionada y lectura extensa. | 0% | Planificada |
-| 5 | Beta 5 — Directorio modular | Separar presentación, lógica y datos del Directorio y mejorar filtros, móvil y accesibilidad. | 0% | Planificada |
+| 2 | Beta 2 — Navegación y exploración temática | Implementar la cabecera editorial, el menú hamburguesa y la navegación secundaria por regiones, temas y medios. | 0% | Planificada |
+| 3 | Beta 3 — Relevancia y atención mediática | Consolidar la columna derecha como módulo editorial manual, administrable y enlazado a páginas temáticas. | 0% | Planificada |
+| 4 | Beta 4 — Alertas, Focos y Dossiers | Normalizar los tres tipos editoriales, sus índices, metadatos, resúmenes diferenciados y lectura extensa. | 0% | Planificada |
+| 5 | Beta 5 — Medios | Modularizar la página Medios, preservar el directorio actual y mejorar filtros, móvil y accesibilidad. | 0% | Planificada |
 | 6 | Beta 6 — QA, rendimiento y preparación de release | Cerrar calidad, accesibilidad, seguridad, rendimiento y documentación antes de fusionar a main. | 0% | Planificada |
 | 99 | Futuro — Capacidades posteriores | Funciones no bloqueantes para el reacondicionamiento inicial. | 0% | Planificada |
 
@@ -17,7 +17,7 @@
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.  
 **Fecha objetivo:** TBD  
-**Avance:** 75%
+**Avance:** 85%
 
 ### Criterios de salida
 
@@ -49,6 +49,8 @@
 | UX-001 | UX | P1 | ◉ Lista | S | Crear página 404 coherente con la marca |
 | A11Y-001 | A11Y | P1 | ○ Propuesta | M | Registrar auditoría de teclado, contraste y headings |
 | UI-001 | FIX | P1 | ✓ Terminada | S | Cargar iconografía globalmente o empaquetarla |
+| IA-001 | UX | P0 | ✓ Terminada | M | Aprobar arquitectura editorial Alertas, Focos, Dossiers, Medios y exploración secundaria |
+| NAV-001 | FEAT | P0 | ◆ En revisión | L | Implementar cabecera editorial y menú hamburguesa izquierdo accesible |
 | PMAPP-001 | PMAPP | P0 | ✓ Terminada | S | Definir arquitectura del dashboard local |
 | PMAPP-002 | PMAPP | P0 | ✓ Terminada | M | Crear servidor local restringido a 127.0.0.1 |
 | PMAPP-003 | PMAPP | P0 | ✓ Terminada | M | Implementar lectura y resumen de datos canónicos |
@@ -59,8 +61,17 @@
 | PMAPP-008 | PMAPP | P0 | ✓ Terminada | S | Implementar copias de seguridad locales |
 | PMAPP-009 | PMAPP | P0 | ✓ Terminada | S | Validar dashboard local en Windows y documentar resultados |
 | QA-004 | QA | P1 | ✓ Terminada | M | Reducir hints de Astro Check |
-| DATA-002 | FEATURE | P1 | ▶ En progreso | M | Convertir los monitores de la columna derecha en datos administrables |
-| DATA-003 | PM | P1 | ▶ En progreso | M | Definir el modelo de relevancia geopolítica y atención mediática |
+| DATA-002 | FEATURE | P1 | ✓ Terminada | M | Administrar la columna Relevancia vs. atención mediática desde el dashboard |
+| DATA-003 | PM | P1 | ✓ Terminada | M | Definir el modelo editorial de relevancia geopolítica y atención mediática |
+| HOME-002 | UX | P0 | ✓ Terminada | S | Normalizar la nomenclatura editorial de la portada |
+| ED-008 | FEAT | P0 | ◆ En revisión | L | Crear índices de Alertas, Focos y Dossiers |
+| ED-009 | REF | P0 | ◆ En revisión | L | Migrar Ensayos a Focos y Profundidad a Dossiers sin romper URLs |
+| ED-010 | CONTENT | P1 | ◆ En revisión | M | Crear la página Acerca de Memo Geopolítico |
+| DIR-010 | UX | P1 | ◆ En revisión | S | Renombrar Directorio como Medios y preservar la ruta anterior |
+| DATA-004 | DATA | P1 | ✓ Terminada | M | Enlazar cada tarjeta activa con una página temática publicada |
+| QA-005 | QA | P0 | ▶ En progreso | M | Validar cabecera, índices, rutas heredadas y navegación por teclado |
+| ED-011 | UX | P0 | ✓ Terminada | S | Recomponer tarjetas de Focos con resumen completo, fecha y enlace |
+| QA-006 | QA | P1 | ✓ Terminada | M | Incorporar vista local simultánea de escritorio, tablet y teléfono |
 
 ## Beta 1 — Fundamentos y sistema de diseño
 
@@ -79,7 +90,6 @@
 
 | ID | Tipo | Prioridad | Estado | Tamaño | Trabajo |
 |---|---|---|---|---|---|
-| IA-001 | UX | P0 | ◉ Lista | M | Aprobar arquitectura editorial Monitor/Análisis/Ensayos/Directorio/Regiones |
 | DS-001 | REF | P1 | ○ Propuesta | L | Centralizar tokens de color, espacio, tipografía y capas |
 | DS-002 | REF | P1 | ○ Propuesta | M | Definir escala tipográfica editorial e interfaz |
 | DS-003 | FEAT | P1 | ○ Propuesta | L | Crear Container, Button, Badge, Card y SectionHeader |
@@ -89,19 +99,19 @@
 | DATA-001 | REF | P1 | ○ Propuesta | L | Validar JSON y frontmatter con esquemas |
 | A11Y-002 | A11Y | P1 | ○ Propuesta | M | Definir patrones de foco, teclado y reduced motion |
 
-## Beta 2 — Navegación, menú y regiones
+## Beta 2 — Navegación y exploración temática
 
-**Objetivo:** Implementar arquitectura regional, menú hamburguesa, mega-menú y páginas regionales dinámicas.  
+**Objetivo:** Implementar la cabecera editorial, el menú hamburguesa y la navegación secundaria por regiones, temas y medios.  
 **Fecha objetivo:** TBD  
 **Avance:** 0%
 
 ### Criterios de salida
 
-- [ ] Taxonomía regional aprobada y centralizada.
-- [ ] Menú móvil accesible y mega-menú de escritorio funcional.
-- [ ] Rutas regionales generadas dinámicamente.
-- [ ] Al menos una página funcional por macroregión.
-- [ ] Datos e interpretación editorial claramente diferenciados.
+- [ ] Cabecera editorial de dos niveles implementada.
+- [ ] Menú hamburguesa izquierdo accesible y funcional.
+- [ ] Navegación principal: Inicio, Alertas, Focos, Dossiers y Acerca de.
+- [ ] Navegación secundaria: Regiones, Temas y Medios.
+- [ ] Rutas activas y compatibilidad con URLs anteriores verificadas.
 
 ### Work items
 
@@ -111,7 +121,6 @@
 | REG-002 | REF | P0 | ○ Propuesta | M | Crear fuente central src/config/regions.ts |
 | REG-003 | FEAT | P0 | ○ Propuesta | L | Crear índice /regiones/ y rutas dinámicas |
 | REG-004 | FEAT | P0 | ○ Propuesta | XL | Crear plantilla regional con datos e interpretación separados |
-| NAV-001 | FEAT | P0 | ○ Propuesta | L | Implementar menú hamburguesa móvil accesible |
 | NAV-002 | FEAT | P1 | ○ Propuesta | L | Implementar mega-menú regional de escritorio |
 | NAV-003 | FEAT | P1 | ○ Propuesta | M | Crear acordeones regionales y estado activo |
 | NAV-004 | FEAT | P1 | ○ Propuesta | M | Crear breadcrumbs compartidos |
@@ -120,47 +129,47 @@
 | REG-007 | CONTENT | P2 | ○ Propuesta | XL | Crear páginas base para Asia, Américas y Oceanía |
 | REG-008 | CONTENT | P2 | ○ Propuesta | L | Crear teatros transregionales iniciales |
 
-## Beta 3 — Monitor y Fricción vs. Narrativa
+## Beta 3 — Relevancia y atención mediática
 
-**Objetivo:** Convertir la columna prototipada en un módulo editorial trazable e integrar mapa, alertas y regiones.  
+**Objetivo:** Consolidar la columna derecha como módulo editorial manual, administrable y enlazado a páginas temáticas.  
 **Fecha objetivo:** TBD  
 **Avance:** 0%
 
 ### Criterios de salida
 
-- [ ] Modelo y metodología publicados.
-- [ ] Datos manuales con fuentes, confianza y fecha de actualización.
-- [ ] Panel responsive y accesible.
-- [ ] Alternativa textual al mapa.
-- [ ] Prototipo reemplazado por datos reales o rotulado como experimental.
+- [ ] Escalas editoriales de relevancia y atención de 1 a 5.
+- [ ] Clasificación automática de la brecha.
+- [ ] Datos manuales con fecha, fuente opcional y enlace interno.
+- [ ] Panel responsive, accesible y administrable desde el dashboard.
+- [ ] Cada tarjeta activa enlaza a una página temática publicada.
 
 ### Work items
 
 | ID | Tipo | Prioridad | Estado | Tamaño | Trabajo |
 |---|---|---|---|---|---|
-| FRIC-001 | FEAT | P0 | ○ Propuesta | L | Aprobar metodología, umbrales y vocabulario |
-| FRIC-002 | DATA | P0 | ○ Propuesta | M | Crear modelo de datos con fuentes, confianza y actualización |
-| FRIC-003 | CONTENT | P0 | ○ Propuesta | XL | Crear dataset editorial inicial real |
-| FRIC-004 | FEAT | P0 | ○ Propuesta | XL | Implementar panel y tarjetas responsive |
-| FRIC-005 | A11Y | P1 | ○ Propuesta | M | Añadir representación textual de barras y estados |
-| FRIC-006 | CONTENT | P0 | ○ Propuesta | L | Publicar página de metodología del indicador |
+| FRIC-001 | FEAT | P0 | ○ Propuesta | L | Revisar criterios editoriales y escala de relevancia y atención |
+| FRIC-002 | DATA | P0 | ○ Propuesta | M | Evolucionar el modelo de datos con fuentes, confianza e historial |
+| FRIC-003 | CONTENT | P0 | ○ Propuesta | XL | Ampliar el dataset editorial de relevancia y atención |
+| FRIC-004 | FEAT | P0 | ○ Propuesta | XL | Evolucionar el panel y las tarjetas responsive |
+| FRIC-005 | A11Y | P1 | ○ Propuesta | M | Mantener representación textual de barras y estados |
+| FRIC-006 | CONTENT | P0 | ○ Propuesta | L | Publicar nota metodológica del módulo editorial |
 | HOME-001 | UX | P1 | ○ Propuesta | XL | Rediseñar jerarquía de portada |
 | MAP-001 | REF | P1 | ○ Propuesta | XL | Conectar mapa con regiones, alertas y contenido |
 | MAP-002 | FEAT | P2 | ○ Propuesta | L | Añadir filtros por región, severidad, tipo y periodo |
 | MAP-003 | A11Y | P1 | ○ Propuesta | L | Crear alternativa textual y vista lista móvil |
 
-## Beta 4 — Experiencia editorial
+## Beta 4 — Alertas, Focos y Dossiers
 
-**Objetivo:** Normalizar análisis, ensayos, fuentes, metadatos, navegación relacionada y lectura extensa.  
+**Objetivo:** Normalizar los tres tipos editoriales, sus índices, metadatos, resúmenes diferenciados y lectura extensa.  
 **Fecha objetivo:** TBD  
 **Avance:** 0%
 
 ### Criterios de salida
 
-- [ ] Índices de análisis y ensayos completos.
+- [ ] Índices de Alertas, Focos y Dossiers completos.
+- [ ] Resúmenes de portada y de listado diferenciados.
 - [ ] Plantillas editoriales compartidas.
-- [ ] Índice de contenidos, fuentes y relacionados.
-- [ ] Metadatos y JSON-LD validados.
+- [ ] Fuentes, relacionados, metadatos y JSON-LD validados.
 - [ ] Lectura móvil y escritorio aprobada.
 
 ### Work items
@@ -176,9 +185,9 @@
 | ED-007 | FEAT | P2 | ○ Propuesta | M | Crear navegación anterior/siguiente y compartir |
 | TRUST-001 | CONTENT | P1 | ○ Propuesta | XL | Crear Acerca de, Política editorial, Uso de IA y Correcciones |
 
-## Beta 5 — Directorio modular
+## Beta 5 — Medios
 
-**Objetivo:** Separar presentación, lógica y datos del Directorio y mejorar filtros, móvil y accesibilidad.  
+**Objetivo:** Modularizar la página Medios, preservar el directorio actual y mejorar filtros, móvil y accesibilidad.  
 **Fecha objetivo:** TBD  
 **Avance:** 0%
 

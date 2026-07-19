@@ -124,17 +124,18 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">DATOS EDITORIALES</p>
-            <h2 id="monitors-heading">Monitores</h2>
+            <h2 id="monitors-heading">Casos destacados</h2>
           </div>
-          <button id="new-monitor-button" class="button button-primary">Nuevo monitor</button>
+          <button id="new-monitor-button" class="button button-primary">Nuevo caso</button>
         </div>
 
         <section class="panel monitor-intro">
           <div>
-            <h3>Fricción vs. Narrativa</h3>
-            <p class="muted">Administra los registros que aparecen en la columna derecha de la portada. Los cambios se guardan en <code>src/data/monitores.json</code>.</p>
+            <h3>Relevancia geopolítica vs. atención mediática</h3>
+            <p class="muted">Administra las tarjetas de la columna derecha. La valoración es editorial, utiliza escalas simples de 1 a 5 y se guarda en <code>src/data/monitores.json</code>.</p>
+            <p class="muted monitor-intro-note">La portada muestra como máximo los primeros cuatro casos activos. La clasificación se calcula automáticamente a partir de la diferencia entre atención y relevancia.</p>
           </div>
-          <span id="monitors-count" class="metric-pill">0 monitores</span>
+          <span id="monitors-count" class="metric-pill">0 casos</span>
         </section>
 
         <div class="panel table-panel">
@@ -147,10 +148,11 @@
               <thead>
                 <tr>
                   <th>Orden</th>
-                  <th>Teatro</th>
-                  <th>Escalada</th>
-                  <th>Cobertura</th>
-                  <th>Asimetría</th>
+                  <th>Caso</th>
+                  <th>Categoría</th>
+                  <th>Relevancia</th>
+                  <th>Atención</th>
+                  <th>Brecha</th>
                   <th>Actualizado</th>
                   <th>Estado</th>
                   <th>Acciones</th>
@@ -159,7 +161,7 @@
               <tbody id="monitors-table-body"></tbody>
             </table>
           </div>
-          <div id="monitors-empty" class="empty-state" hidden>No hay monitores registrados.</div>
+          <div id="monitors-empty" class="empty-state" hidden>No hay casos registrados.</div>
         </div>
       </section>
 
@@ -288,8 +290,8 @@
     <form id="monitor-form" method="dialog">
       <div class="dialog-header">
         <div>
-          <p class="eyebrow">MONITOR EDITORIAL</p>
-          <h2 id="monitor-dialog-title">Editar monitor</h2>
+          <p class="eyebrow">CASO EDITORIAL</p>
+          <h2 id="monitor-dialog-title">Editar caso</h2>
         </div>
         <button type="button" id="close-monitor-dialog" class="icon-button" aria-label="Cerrar">×</button>
       </div>
@@ -297,7 +299,7 @@
       <div class="form-grid">
         <label class="field">
           <span>ID estable</span>
-          <input id="monitor-id" required maxlength="80" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="israel-libano">
+          <input id="monitor-id" required maxlength="80" pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="puerto-chancay">
         </label>
 
         <label class="field">
@@ -306,33 +308,44 @@
         </label>
 
         <label class="field field-full">
-          <span>Teatro o región</span>
-          <input id="monitor-theater" required maxlength="200">
+          <span>Título del caso</span>
+          <input id="monitor-title" required maxlength="200" placeholder="Puerto de Chancay">
         </label>
 
-        <label class="field">
-          <span>Nivel de escalada</span>
-          <select id="monitor-escalation" required>
-            <option value="1">1 — Bajo</option>
-            <option value="2">2 — Moderado</option>
-            <option value="3">3 — Relevante</option>
-            <option value="4">4 — Alto</option>
-            <option value="5">5 — Crítico</option>
+        <label class="field field-full">
+          <span>Categoría</span>
+          <select id="monitor-category" required>
+            <option value="seguridad_conflicto">Seguridad y conflictos</option>
+            <option value="infraestructura_estrategica">Infraestructura estratégica</option>
+            <option value="comercio_energia_recursos">Comercio, energía y recursos</option>
           </select>
         </label>
 
         <label class="field">
-          <span>Cobertura mediática (%)</span>
-          <input id="monitor-coverage" type="number" min="0" max="100" step="1" required>
+          <span>Relevancia geopolítica</span>
+          <select id="monitor-relevance" required>
+            <option value="1">1 — Limitada</option>
+            <option value="2">2 — Baja</option>
+            <option value="3">3 — Media</option>
+            <option value="4">4 — Alta</option>
+            <option value="5">5 — Crítica</option>
+          </select>
         </label>
 
         <label class="field">
-          <span>Asimetría</span>
-          <select id="monitor-asymmetry" required>
-            <option value="punto_ciego">Punto Ciego</option>
-            <option value="sobrerrepresentado">Sobrerrepresentado / Ruido</option>
-            <option value="sincronico">Sincrónico</option>
+          <span>Atención mediática</span>
+          <select id="monitor-attention" required>
+            <option value="1">1 — Muy baja</option>
+            <option value="2">2 — Baja</option>
+            <option value="3">3 — Media</option>
+            <option value="4">4 — Alta</option>
+            <option value="5">5 — Muy alta</option>
           </select>
+        </label>
+
+        <label class="field field-full">
+          <span>Dato clave</span>
+          <input id="monitor-key-data" required maxlength="240" placeholder="Ruta marítima crítica · soberanía y proyección naval">
         </label>
 
         <label class="field">
@@ -340,8 +353,13 @@
           <input id="monitor-updated" type="date" required>
         </label>
 
+        <label class="field">
+          <span>Enlace interno opcional</span>
+          <input id="monitor-href" maxlength="500" placeholder="/observatorio/puerto-chancay/">
+        </label>
+
         <label class="field field-full">
-          <span>Fuente opcional</span>
+          <span>Fuente externa opcional</span>
           <input id="monitor-source" type="url" maxlength="500" placeholder="https://...">
         </label>
 
@@ -350,16 +368,19 @@
           <textarea id="monitor-insight" rows="5" required maxlength="1000"></textarea>
         </label>
 
-        <label class="checkbox-field field-full">
+        <label class="checkbox-field field-full monitor-active-field">
           <input id="monitor-active" type="checkbox">
-          <span>Mostrar este monitor en la portada</span>
+          <span>
+            <strong>Activo — mostrar en la portada</strong>
+            <small>Desmarcado: el caso se conserva en el dashboard, pero no se publica en la columna derecha.</small>
+          </span>
         </label>
       </div>
 
       <div id="monitor-form-errors" class="form-errors" role="alert" hidden></div>
       <div class="dialog-actions">
         <button type="button" id="cancel-monitor-dialog" class="button button-ghost">Cancelar</button>
-        <button type="submit" class="button button-primary">Guardar monitor</button>
+        <button type="submit" class="button button-primary">Guardar caso</button>
       </div>
     </form>
   </dialog>

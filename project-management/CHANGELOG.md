@@ -1,5 +1,23 @@
 # Changelog de gestión del proyecto
 
+## 2.2 — 2026-07-19
+
+- Se registra la implementación de la cabecera editorial y la nueva nomenclatura pública.
+- Se actualizan los estados de Alertas, Focos, Dossiers, Medios y Relevancia vs. atención mediática.
+- Se recomponen las tarjetas de Focos con párrafos completos, fecha de actualización y enlace explícito.
+- Se incorpora Responsive Preview v2 para validar simultáneamente escritorio, tablet y teléfono.
+- Se documenta la corrección del error `spawn EINVAL` en Windows/Node 22.
+- Se registran la validación visual en localhost y las comprobaciones todavía pendientes de teclado y rutas.
+
+## 2.1 — 2026-07-19
+
+- Se aprueba la arquitectura editorial basada en Alertas, Focos y Dossiers.
+- Se redefine la navegación principal y el menú hamburguesa izquierdo.
+- Se renombra Directorio como Medios en la navegación pública.
+- Se consolida el nombre Relevancia vs. atención mediática para la columna derecha.
+- Se cierra el alcance avanzado de GDELT y se mantiene como experimento diferido.
+- Se incorporan tareas de migración de rutas, índices editoriales, página Acerca de y validación.
+
 ## 2.0 — 2026-07-17
 
 - Se incorpora Project Dashboard v0.1 para mantener tareas, releases, registros y paneles desde una interfaz local.
