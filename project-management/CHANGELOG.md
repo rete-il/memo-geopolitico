@@ -1,5 +1,14 @@
 # Changelog de gestión del proyecto
 
+## 2.3 — 2026-07-21
+
+- Se registra el Observatorio editorial autónomo v0.3.0, mantenido fuera del repositorio y del build de Astro.
+- Se documenta el flujo macroevento → señales y fuentes → expediente → encargo de investigación → encargo de redacción → revisión humana → Markdown.
+- Se incorpora el piloto del Corredor de Lobito como prueba controlada del flujo editorial.
+- Se separan evidencia verificada, señales revisadas e hipótesis analíticas provisionales.
+- Se establece que la integración futura y la taxonomía pública se decidirán después de completar un corpus piloto.
+- GDELT y las APIs externas continúan fuera de las dependencias del sitio.
+
 ## 2.2 — 2026-07-19
 
 - Se registra la implementación de la cabecera editorial y la nueva nomenclatura pública.

@@ -1957,5 +1957,78 @@
       "La herramienta fue ejecutada y aprobada visualmente en localhost."
     ],
     "notes": "Responsive Preview v2 operativo en 127.0.0.1:4323. La primera versión produjo spawn EINVAL en Windows; se corrigió iniciando npm a través de cmd.exe."
+  },
+  {
+    "id": "OBS-001",
+    "type": "PMAPP",
+    "epic": "Observatorio editorial",
+    "title": "Consolidar el Observatorio autónomo de macroeventos y expedientes v0.3.0",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-3-monitor-friction",
+    "size": "XL",
+    "owner": "Rete",
+    "dependencies": [
+      "DATA-003"
+    ],
+    "progress": 90,
+    "acceptanceCriteria": [
+      "El Observatorio funciona como aplicación local autónoma fuera del repositorio y del build de Astro.",
+      "Macroeventos, señales, fuentes y expedientes usan IDs estables y persistencia JSON con backups.",
+      "Las fuentes se vinculan con el catálogo de medios y la diversidad de cobertura se muestra de forma explícita.",
+      "El flujo distingue encargo de investigación, encargo de redacción y revisión humana.",
+      "La suficiencia documental advierte cuando la evidencia no permite redactar responsablemente.",
+      "La interfaz muestra versión, ayuda general y estado del servidor local.",
+      "npm run check finaliza sin errores y el QA local cubre escritorio, tablet, teléfono, teclado y persistencia."
+    ],
+    "notes": "Versión autónoma v0.3.0 preparada fuera de D:\\Memo geopolitico, en D:\\Memo dashboards. Validación técnica ejecutada: esquema v2, 14 macroeventos, 26 señales, 20 fuentes, 1 expediente y catálogo de 92 medios, sin errores ni advertencias. El piloto del Corredor de Lobito confirmó el flujo fuente–señal–expediente y la separación entre investigación y redacción. Pendiente: cierre del QA local integral y aprobación operativa del usuario."
+  },
+  {
+    "id": "OBS-002",
+    "type": "CONTENT",
+    "epic": "Piloto editorial",
+    "title": "Completar el piloto del Corredor de Lobito hasta un Markdown publicable",
+    "priority": "P1",
+    "status": "in_progress",
+    "release": "beta-4-editorial",
+    "size": "L",
+    "owner": "Rete",
+    "dependencies": [
+      "OBS-001"
+    ],
+    "progress": 45,
+    "acceptanceCriteria": [
+      "El encargo de investigación se ejecuta con búsqueda web y produce una matriz de vacíos y fuentes candidatas.",
+      "Las fuentes candidatas se revisan manualmente y solo las pertinentes pasan a verificadas.",
+      "El expediente incorpora diversidad institucional, africana o regional y analítica suficiente.",
+      "Se regenera el encargo de redacción con evidencia suficiente y sin dependencias no autorizadas.",
+      "El borrador Markdown pasa revisión factual, editorial y de enlaces.",
+      "El frontmatter y la ubicación se adaptan al esquema local real de Astro.",
+      "npm run check, npm run build, git diff --check y QA responsive finalizan correctamente antes de publicar."
+    ],
+    "notes": "Piloto actual: dos fuentes Reuters verificadas y dos señales revisadas. El panel detecta correctamente baja diversidad y evidencia insuficiente. Ya se generaron y probaron los encargos de investigación y redacción; el encargo de redacción actual es solo una prueba y no debe publicarse. La siguiente acción es ejecutar el encargo de investigación y ampliar la evidencia."
+  },
+  {
+    "id": "OBS-003",
+    "type": "PM",
+    "epic": "Arquitectura editorial",
+    "title": "Definir la integración futura del Observatorio a partir del corpus piloto",
+    "priority": "P2",
+    "status": "deferred",
+    "release": "future",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "OBS-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La decisión se basa en documentos piloto revisados y no en una taxonomía abstracta.",
+      "Se distingue la taxonomía interna amplia de la taxonomía pública estable.",
+      "Se define si el Observatorio permanece autónomo, se integra parcialmente o se incorpora como módulo del sitio.",
+      "La integración no convierte GDELT ni APIs externas en dependencias de producción.",
+      "Las rutas, el esquema de contenido y la navegación se validan contra la copia local de Astro."
+    ],
+    "notes": "Postergada hasta completar un corpus piloto suficiente de Movimientos, Focos y Dossiers y revisar la arquitectura del sitio con evidencia editorial real."
   }
 ]

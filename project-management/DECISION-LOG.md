@@ -21,6 +21,9 @@ Las decisiones se numeran de forma estable. No eliminar decisiones reemplazadas;
 | DEC-015 | 2026-07-19 | Aprobada | Mantener compatibilidad temporal con `/ensayos/`, `/profundidad/` y `/directorio/` | La migración de nombres no rompe enlaces existentes |
 | DEC-016 | 2026-07-19 | Aprobada | Las tarjetas de Focos muestran un párrafo editorial completo, fecha de actualización y enlace explícito | Se evita el truncamiento y cada tarjeta funciona como unidad editorial autosuficiente |
 | DEC-017 | 2026-07-19 | Aprobada | Mantener una herramienta responsive local con escritorio, tablet y teléfono simultáneos | El control visual multidispositivo se integra al flujo de QA sin publicar herramientas internas en Netlify |
+| DEC-018 | 2026-07-21 | Aprobada | Mantener el Observatorio como aplicación local autónoma fuera del repositorio y del build de producción | Se preserva la separación entre herramienta editorial, sitio Astro y experimentos de datos |
+| DEC-019 | 2026-07-21 | Aprobada | Separar el encargo de investigación del encargo de redacción y exigir revisión humana entre ambos | La búsqueda de evidencia, su verificación y la redacción dejan de formar una cadena automática |
+| DEC-020 | 2026-07-21 | Aprobada | Definir la integración futura del Observatorio y la taxonomía pública después de completar un corpus piloto | La arquitectura del sitio se basará en documentos reales y en el esquema local de Astro, no en supuestos previos |
 ## Plantilla para nueva decisión
 
 ```markdown

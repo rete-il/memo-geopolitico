@@ -2,22 +2,22 @@
 
 > Archivo generado. Editar `data/*.json` y ejecutar `node project-management/tools/update-dashboard.mjs`.
 
-**Actualizado:** 2026-07-19
+**Actualizado:** 2026-07-21
 
 **Rama de trabajo:** `beta`
 
 **Release actual:** Beta 0 — Baseline, seguridad y control
 
-**Avance ponderado total:** **23%**
+**Avance ponderado total:** **25%**
 
 ## Resumen
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 102 |
+| Total de work items | 105 |
 | Terminados | 29 |
-| En progreso | 1 |
-| En revisión | 5 |
+| En progreso | 2 |
+| En revisión | 6 |
 | Bloqueados | 0 |
 | Listos | 5 |
 | P0 abiertos | 19 |
@@ -38,6 +38,8 @@
 | ED-010 | ◆ En revisión | Crear la página Acerca de Memo Geopolítico | Rete | 80% |
 | DIR-010 | ◆ En revisión | Renombrar Directorio como Medios y preservar la ruta anterior | Rete | 90% |
 | QA-005 | ▶ En progreso | Validar cabecera, índices, rutas heredadas y navegación por teclado | Rete | 70% |
+| OBS-001 | ◆ En revisión | Consolidar el Observatorio autónomo de macroeventos y expedientes v0.3.0 | Rete | 90% |
+| OBS-002 | ▶ En progreso | Completar el piloto del Corredor de Lobito hasta un Markdown publicable | Rete | 45% |
 
 ### Próximas tareas listas
 

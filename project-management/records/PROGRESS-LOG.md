@@ -315,3 +315,34 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 ### Próximo
 
 - Utilizar la vista responsive como control visual permanente durante las siguientes modificaciones.
+
+
+## 2026-07-21 — OBS-001 / OBS-002 — Observatorio autónomo y piloto Lobito
+
+### Completado
+
+- Se consolidó el Observatorio como dashboard local autónomo, fuera del repositorio de Memo Geopolítico.
+- Se estructuraron macroeventos, temas internos, señales, fuentes, catálogo de medios y expedientes editoriales.
+- Se incorporaron controles de diversidad y suficiencia documental.
+- Se separaron los encargos de investigación y de redacción.
+- Se añadió ayuda contextual, ayuda general, versión visible y estado del servidor.
+- Se ejecutó el piloto del Corredor de Lobito con dos fuentes Reuters verificadas y dos señales revisadas.
+- Se comprobó que el sistema advierte la baja diversidad y evita considerar suficiente una evidencia limitada.
+
+### Validación
+
+- `npm run check` del Observatorio v0.3.0: esquema v2 válido, 14 macroeventos, 26 señales, 20 fuentes, 1 expediente y 92 medios; 0 errores y 0 advertencias.
+- Se generaron y descargaron correctamente los encargos de investigación y redacción del piloto.
+- El encargo de redacción conserva incertidumbres, advertencias de suficiencia y marcadores `[VERIFICAR]`.
+
+### En curso
+
+- Cierre del QA local integral de v0.3.0.
+- Ejecución web del encargo de investigación del Corredor de Lobito.
+- Revisión humana y diversificación de fuentes antes de producir un borrador publicable.
+
+### Decisiones
+
+- El dashboard permanece en `D:\Memo dashboards`, fuera del repositorio y de Netlify.
+- El encargo de redacción probado no es contenido publicable.
+- La integración con el sitio se decidirá después de completar y analizar el corpus piloto.

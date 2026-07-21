@@ -96,6 +96,7 @@
 | HOME-001 | UX | Portada | P1 | ○ Propuesta | XL | TBD | DS-003, FRIC-004 | Rediseñar jerarquía de portada |
 | MAP-001 | REF | Mapa | P1 | ○ Propuesta | XL | TBD | REG-002, TYPE-001 | Conectar mapa con regiones, alertas y contenido |
 | MAP-003 | A11Y | Mapa | P1 | ○ Propuesta | L | TBD | MAP-001 | Crear alternativa textual y vista lista móvil |
+| OBS-001 | PMAPP | Observatorio editorial | P1 | ◆ En revisión | XL | Rete | DATA-003 | Consolidar el Observatorio autónomo de macroeventos y expedientes v0.3.0 |
 | MAP-002 | FEAT | Mapa | P2 | ○ Propuesta | L | TBD | MAP-001 | Añadir filtros por región, severidad, tipo y periodo |
 
 ## Beta 4 — Alertas, Focos y Dossiers
@@ -107,6 +108,7 @@
 | ED-004 | FEAT | Editorial | P1 | ○ Propuesta | L | TBD | ED-001 | Crear fuentes, notas y contenido relacionado |
 | ED-005 | SEO | Editorial | P1 | ○ Propuesta | L | TBD | SEO-001, ED-001 | Implementar canonical, Open Graph y JSON-LD por artículo |
 | ED-006 | UX | Editorial | P1 | ○ Propuesta | M | TBD | DS-002, ED-002 | Diseñar lectura responsive y ancho editorial |
+| OBS-002 | CONTENT | Piloto editorial | P1 | ▶ En progreso | L | Rete | OBS-001 | Completar el piloto del Corredor de Lobito hasta un Markdown publicable |
 | TRUST-001 | CONTENT | Transparencia | P1 | ○ Propuesta | XL | TBD | IA-001 | Crear Acerca de, Política editorial, Uso de IA y Correcciones |
 | ED-003 | FEAT | Editorial | P2 | ○ Propuesta | M | TBD | ED-001 | Crear índice de contenidos y anclas |
 | ED-007 | FEAT | Editorial | P2 | ○ Propuesta | M | TBD | ED-004 | Crear navegación anterior/siguiente y compartir |
@@ -145,6 +147,7 @@
 | ID | Tipo | Epic | Prioridad | Estado | Tamaño | Responsable | Dependencias | Trabajo |
 |---|---|---|---|---|---|---|---|---|
 | INFRA-001 | INFRA | Infraestructura y despliegue | P2 | ○ Propuesta | M | Rete | — | Configurar entorno beta para validación multidispositivo |
+| OBS-003 | PM | Arquitectura editorial | P2 | – Postergada | M | Rete | OBS-002 | Definir la integración futura del Observatorio a partir del corpus piloto |
 | SEARCH-001 | FEAT | Búsqueda | P2 | ○ Propuesta | L | TBD | ED-001, REG-002 | Preparar metadatos para búsqueda global |
 | AUTO-001 | FEAT | Automatización | P3 | – Postergada | XL | TBD | FRIC-003, FRIC-006 | Evaluar automatización de atención mediática |
 | SEARCH-002 | FEAT | Búsqueda | P3 | ○ Propuesta | XL | TBD | SEARCH-001 | Implementar búsqueda transversal |
