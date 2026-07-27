@@ -6,6 +6,7 @@ import {
   processes,
   sources,
 } from '../../../lib/data';
+import { effectiveEditorialState } from '../../../lib/editorial';
 import {
   editorialStageLabel,
   formatDate,
@@ -16,15 +17,8 @@ import { getPublicationEntries } from '../../../lib/publications';
 const publicationEntries = await getPublicationEntries({
   includePreview: true,
 });
-const publicationStateByProcess = new Map(
-  publicationEntries.map(({ data }) => [
-    data.macroevento_principal_id,
-    data.publicacion.estado,
-  ]),
-);
 const stateFor = (process: (typeof processes)[number]) =>
-  publicationStateByProcess.get(process.macroevento_id) ||
-  process.publicacion.estado;
+  effectiveEditorialState(process, publicationEntries);
 
 const regions = catalog('regiones').filter((region) =>
   processes.some((process) =>
@@ -324,10 +318,11 @@ const pointPosition = (value: number) =>
                       const themeId = process.clasificacion.tema_principal_id || '';
                       const regionIds = process.clasificacion.geografia.region_ids;
                       const regionNames = regionIds
-                        .map((id) => catalogMaps.regiones.get(id)?.nombre || id)
+                        .map((id) => catalogMaps.regiones.get(id)?.nombre)
+                        .filter(Boolean)
                         .join(', ');
                       const themeName = themeId
-                        ? catalogMaps.temas.get(themeId)?.nombre || themeId
+                        ? catalogMaps.temas.get(themeId)?.nombre || 'Sin tema'
                         : 'Sin tema';
                       const state = stateFor(process);
                       const search = [

@@ -1,0 +1,84 @@
+---
+import ProcessCard from '../../../components/ProcessCard.astro';
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import {
+  editorialStateDefinitions,
+  effectiveEditorialState,
+  relatedPublicationForProcess,
+} from '../../../lib/editorial';
+import {
+  getPublicationEntries,
+} from '../../../lib/publications';
+import { processes } from '../../../lib/data';
+
+export function getStaticPaths() {
+  return editorialStateDefinitions.map((definition) => ({
+    params: { slug: definition.slug },
+    props: { definition },
+  }));
+}
+
+interface Props {
+  definition: (typeof editorialStateDefinitions)[number];
+}
+
+const { definition } = Astro.props;
+const publicationEntries = await getPublicationEntries({
+  includePreview: true,
+});
+const related = processes
+  .map((process) => {
+    const publication = relatedPublicationForProcess(
+      process,
+      publicationEntries,
+    );
+    return {
+      process,
+      publication,
+      state: effectiveEditorialState(process, publicationEntries),
+    };
+  })
+  .filter(({ state }) => state === definition.state);
+---
+
+<SiteLayout title={definition.title} description={definition.description}>
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Estado del Observatorio</p>
+        <h1>{definition.title}</h1>
+      </div>
+      <div class="taxonomy-page-summary">
+        <p>{definition.description}</p>
+        <p class="taxonomy-counts">
+          {related.length}{' '}
+          {related.length === 1 ? 'proceso' : 'procesos'}
+        </p>
+      </div>
+    </header>
+
+    <section class="section-shell" aria-label={definition.title}>
+      {
+        related.length > 0 ? (
+          <div class="process-grid">
+            {related.map(({ process, publication, state }) => (
+              <ProcessCard
+                process={process}
+                currentState={definition.state}
+                editorialState={state}
+                relatedPublication={publication}
+              />
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">
+            No hay expedientes con este estado editorial.
+          </p>
+        )
+      }
+      <a class="taxonomy-return-link" href="/observatorio/">
+        Ver todo el Observatorio <span aria-hidden="true">→</span>
+      </a>
+    </section>
+  </div>
+</SiteLayout>

@@ -43,7 +43,11 @@ const related = processesForRegion(item.id);
     <section class="section-shell">
       <div class="process-grid">
         {related.map((process) => (
-          <ProcessCard process={process} editorialPreview={editorialPreviewEnabled} />
+          <ProcessCard
+            process={process}
+            editorialPreview={editorialPreviewEnabled}
+            currentGeographyId={item.id}
+          />
         ))}
       </div>
     </section>

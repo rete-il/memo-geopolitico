@@ -92,6 +92,58 @@ function stateFromLegacy(value, file) {
   return 'borrador';
 }
 
+function normalizedClassification(legacy, process) {
+  const source =
+    legacy.clasificacion?.tema_principal_id
+      ? legacy.clasificacion
+      : process?.clasificacion;
+  const principal = String(source?.tema_principal_id || '');
+  const secondary = [
+    ...new Set(
+      (Array.isArray(source?.tema_secundario_ids)
+        ? source.tema_secundario_ids
+        : []
+      )
+        .map(String)
+        .filter((id) => id && id !== principal),
+    ),
+  ];
+  const subthemes = [
+    ...new Set(
+      (Array.isArray(source?.subtema_ids) ? source.subtema_ids : [])
+        .map(String)
+        .filter(Boolean),
+    ),
+  ];
+
+  return {
+    tema_principal_id: principal || null,
+    tema_secundario_ids: secondary,
+    subtema_ids: subthemes,
+    geografia: source?.geografia || {
+      alcance: 'regional',
+      region_ids: [],
+      subregion_ids: [],
+      pais_ids: [],
+      espacio_ids: [],
+    },
+    actor_ids: [
+      ...new Set(
+        (Array.isArray(source?.actor_ids) ? source.actor_ids : [])
+          .map(String)
+          .filter(Boolean),
+      ),
+    ],
+    etiqueta_ids: [
+      ...new Set(
+        (Array.isArray(source?.etiqueta_ids) ? source.etiqueta_ids : [])
+          .map(String)
+          .filter(Boolean),
+      ),
+    ],
+  };
+}
+
 export function migratePublication(file, process, sources) {
   const parsed = matter.read(file);
   const legacy = parsed.data;
@@ -121,20 +173,7 @@ export function migratePublication(file, process, sources) {
     },
     macroevento_principal_id: slugify(legacy.macroevento_id),
     macroevento_secundario_ids: [],
-    clasificacion: process?.clasificacion || {
-      tema_principal_id: null,
-      tema_secundario_ids: [],
-      subtema_ids: [],
-      geografia: {
-        alcance: 'regional',
-        region_ids: [],
-        subregion_ids: [],
-        pais_ids: [],
-        espacio_ids: [],
-      },
-      actor_ids: [],
-      etiqueta_ids: [],
-    },
+    clasificacion: normalizedClassification(legacy, process),
     fuente_ids: sourceIdsFromBody(parsed.content, sourceByUrl),
     recurso_visual_ids: [],
     post_relacionado_ids: [],

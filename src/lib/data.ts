@@ -53,6 +53,11 @@ function mergeById<T>(items: T[], identity: (item: T) => string): T[] {
 const publicPackage = publicObservatory as PublicPackage;
 const previewPackage = readPreview();
 
+export const publicProcesses: PublicProcess[] = [...publicPackage.procesos]
+  .sort((a, b) =>
+    b.publicacion.actualizado_el.localeCompare(a.publicacion.actualizado_el),
+  );
+
 export const processes: PublicProcess[] = mergeById(
   [
     ...publicPackage.procesos,
@@ -100,6 +105,7 @@ export const catalogMaps = {
     catalog('espacios_geopoliticos').map((item) => [item.id, item]),
   ),
   actores: new Map(catalog('actores').map((item) => [item.id, item])),
+  etiquetas: new Map(catalog('etiquetas').map((item) => [item.id, item])),
 };
 
 export function labelFor(
@@ -107,7 +113,7 @@ export function labelFor(
   id: string | null | undefined,
 ): string {
   if (!id) return '';
-  return map.get(id)?.nombre || id;
+  return map.get(id)?.nombre || '';
 }
 
 export function processesForRegion(id: string): PublicProcess[] {
@@ -137,6 +143,12 @@ export function processesForActor(id: string): PublicProcess[] {
 
 export function processesForLabel(id: string): PublicProcess[] {
   return processes.filter((item) =>
+    item.clasificacion.etiqueta_ids.includes(id),
+  );
+}
+
+export function publicProcessesForLabel(id: string): PublicProcess[] {
+  return publicProcesses.filter((item) =>
     item.clasificacion.etiqueta_ids.includes(id),
   );
 }

@@ -11,8 +11,8 @@ const { process } = Astro.props;
 
 <article class="publication-card publication-card--in-progress">
   <div class="card-meta">
-    <span>Expediente en desarrollo</span>
-    <span class="draft-chip">
+    <span class="meta-link meta-link--geography">Expediente en desarrollo</span>
+    <span class:list={['status-link', `status-link--${process.publicacion.estado}`]}>
       {editorialStageLabel(process.publicacion.estado)}
     </span>
   </div>

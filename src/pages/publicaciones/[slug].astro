@@ -1,12 +1,15 @@
 ---
 import { render } from 'astro:content';
+import ClassificationFooter from '../../components/ClassificationFooter.astro';
 import SupportCTA from '../../components/SupportCTA.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import {
+  catalogMaps,
   editorialPreviewEnabled,
   processes,
   sourceById,
 } from '../../lib/data';
+import { topicHref, topicReferences } from '../../lib/taxonomy';
 import {
   editorialStageLabel,
   formatDate,
@@ -40,6 +43,8 @@ const process = processes.find(
 const publicationSources = entry.data.fuente_ids
   .map((id) => sourceById.get(id))
   .filter(Boolean);
+const topics = topicReferences(entry.data.clasificacion, catalogMaps);
+const primaryTopic = topics.find((topic) => topic.primary);
 ---
 
 <SiteLayout
@@ -49,7 +54,19 @@ const publicationSources = entry.data.fuente_ids
 >
   <div class="page-shell">
     <header class="publication-hero">
-      <p class="eyebrow">{humanize(entry.data.tipo_publicacion)}</p>
+      <p class="eyebrow detail-kicker">
+        <span>{humanize(entry.data.tipo_publicacion)}</span>
+        {
+          primaryTopic && (
+            <>
+              <span aria-hidden="true">·</span>
+              <a href={topicHref(primaryTopic)}>
+                {primaryTopic.item.nombre}
+              </a>
+            </>
+          )
+        }
+      </p>
       <h1>{entry.data.titulo}</h1>
       {entry.data.subtitulo && <p class="lead">{entry.data.subtitulo}</p>}
       <div class="hero-meta">
@@ -133,6 +150,8 @@ const publicationSources = entry.data.fuente_ids
         </section>
       )
     }
+
+    <ClassificationFooter classification={entry.data.clasificacion} />
 
     <SupportCTA />
   </article>

@@ -81,7 +81,7 @@ test('la carga resiste copias antiguas y Publicaciones expone solo textos public
   );
   assert.match(contentConfig, /generateId:/);
   assert.match(publicationsHelper, /preferredEntry/);
-  assert.match(publicationsHelper, /statePriority/);
+  assert.match(publicationsHelper, /publicationStatePriority/);
   assert.match(publicationsPage, />Publicados</);
   assert.doesNotMatch(publicationsPage, />Trabajo en curso</);
   assert.match(
@@ -90,16 +90,17 @@ test('la carga resiste copias antiguas y Publicaciones expone solo textos public
   );
 });
 
-test('Inicio muestra cuatro publicaciones y Ver más cuando hay adicionales', () => {
+test('Inicio presenta accesos a Publicaciones y Observatorio sin exponer borradores', () => {
   const homePage = fs.readFileSync(
     path.join(root, 'src', 'pages', 'index.astro'),
     'utf8',
   );
 
   assert.match(homePage, /publishedOnly:\s*true/);
-  assert.match(homePage, /publications\.slice\(0,\s*4\)/);
-  assert.match(homePage, /hasMorePublications/);
-  assert.match(homePage, />Ver más…</);
+  assert.match(homePage, /publicationCountLabel/);
+  assert.match(homePage, /href="\/publicaciones\/"/);
+  assert.match(homePage, /href="\/observatorio\/"/);
+  assert.doesNotMatch(homePage, /PublicationCard/);
   assert.doesNotMatch(homePage, /ProcessCard/);
   assert.doesNotMatch(homePage, /Procesos en movimiento/);
   assert.doesNotMatch(homePage, /Trabajo en curso/);

@@ -6,6 +6,10 @@ import {
   editorialPreviewEnabled,
   processes,
 } from '../../lib/data';
+import {
+  effectiveEditorialState,
+  relatedPublicationForProcess,
+} from '../../lib/editorial';
 import { getPublicationEntries } from '../../lib/publications';
 
 const regions = [
@@ -41,15 +45,8 @@ const actors = catalog('actores').filter((item) =>
 const publicationEntries = await getPublicationEntries({
   includePreview: true,
 });
-const publicationStateByProcess = new Map(
-  publicationEntries.map(({ data }) => [
-    data.macroevento_principal_id,
-    data.publicacion.estado,
-  ]),
-);
 const stateFor = (process: (typeof processes)[number]) =>
-  publicationStateByProcess.get(process.macroevento_id) ||
-  process.publicacion.estado;
+  effectiveEditorialState(process, publicationEntries);
 const workflowCounts = {
   borrador: processes.filter((item) => stateFor(item) === 'borrador').length,
   en_revision: processes.filter((item) => stateFor(item) === 'en_revision').length,
@@ -192,12 +189,19 @@ const workflowCounts = {
           processes.length ? (
             <>
               <div class="process-results" data-process-results data-view="list">
-                {processes.map((process) => (
-                  <ProcessCard
-                    process={process}
-                    editorialPreview={editorialPreviewEnabled}
-                  />
-                ))}
+                {
+                  processes.map((process) => (
+                    <ProcessCard
+                      process={process}
+                      editorialPreview={editorialPreviewEnabled}
+                      editorialState={stateFor(process)}
+                      relatedPublication={relatedPublicationForProcess(
+                        process,
+                        publicationEntries,
+                      )}
+                    />
+                  ))
+                }
               </div>
               <p class="empty-state" data-filter-empty hidden>
                 Ningún proceso coincide con los filtros activos.

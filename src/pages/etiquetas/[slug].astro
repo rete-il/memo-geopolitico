@@ -1,45 +1,134 @@
 ---
 import ProcessCard from '../../components/ProcessCard.astro';
+import PublicationCard from '../../components/PublicationCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import {
   catalog,
-  editorialPreviewEnabled,
-  processesForLabel,
+  publicProcessesForLabel,
 } from '../../lib/data';
-import type { CatalogItem } from '../../lib/types';
+import {
+  getPublicationEntries,
+  publicationEntriesForLabel,
+  type PublicationEntry,
+} from '../../lib/publications';
+import type { CatalogItem, PublicProcess } from '../../lib/types';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const publications = await getPublicationEntries({
+    includePreview: false,
+    publishedOnly: true,
+  });
+
   return catalog('etiquetas')
-    .filter((item) => processesForLabel(item.id).length > 0)
     .map((item) => ({
+      item,
+      publications: publicationEntriesForLabel(publications, item.id),
+      processes: publicProcessesForLabel(item.id),
+    }))
+    .filter(({ publications, processes }) => publications.length + processes.length > 0)
+    .map(({ item, publications, processes }) => ({
       params: { slug: item.slug },
-      props: { item },
+      props: { item, publications, processes },
     }));
 }
 
 interface Props {
   item: CatalogItem;
+  publications: PublicationEntry[];
+  processes: PublicProcess[];
 }
 
-const { item } = Astro.props;
-const related = processesForLabel(item.id);
+const { item, publications, processes } = Astro.props;
+const total = publications.length + processes.length;
+const updatedAt = (value: PublicationEntry | PublicProcess) =>
+  'data' in value
+    ? value.data.publicacion.actualizado_el
+    : value.publicacion.actualizado_el;
+const orderedResults = [...publications, ...processes].sort((a, b) =>
+  updatedAt(b).localeCompare(updatedAt(a)),
+);
+const publicationIds = new Set(publications.map(({ data }) => data.post_id));
+const orderedPublications = orderedResults.filter(
+  (value): value is PublicationEntry =>
+    'data' in value && publicationIds.has(value.data.post_id),
+);
+const orderedProcesses = orderedResults.filter(
+  (value): value is PublicProcess => !('data' in value),
+);
 ---
 
-<SiteLayout title={item.nombre} description={`Procesos etiquetados como ${item.nombre}.`}>
+<SiteLayout
+  title={item.nombre}
+  description={item.descripcion || `Contenido público relacionado con ${item.nombre}.`}
+>
   <div class="page-shell">
-    <header class="page-intro">
+    <nav class="breadcrumbs" aria-label="Migas de pan">
+      <a href="/">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <a href="/etiquetas/">Etiquetas</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{item.nombre}</span>
+    </nav>
+
+    <header class="page-intro label-page-intro">
       <div>
         <p class="eyebrow">Etiqueta</p>
         <h1>{item.nombre}</h1>
       </div>
-      <p>{related.length} procesos del Observatorio comparten esta etiqueta.</p>
-    </header>
-    <section class="section-shell">
-      <div class="process-grid">
-        {related.map((process) => (
-          <ProcessCard process={process} editorialPreview={editorialPreviewEnabled} />
-        ))}
+      <div>
+        {item.descripcion && <p>{item.descripcion}</p>}
+        <p>
+          {total} {total === 1 ? 'contenido público relacionado' : 'contenidos públicos relacionados'}.
+        </p>
       </div>
+    </header>
+
+    <section class="section-shell">
+      <div class="section-heading">
+        <h2>Publicaciones relacionadas</h2>
+        <strong>{orderedPublications.length}</strong>
+      </div>
+      {
+        orderedPublications.length ? (
+          <div class="publication-grid">
+            {orderedPublications.map((publication) => (
+              <PublicationCard
+                publication={publication.data}
+                currentLabelId={item.id}
+              />
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">
+            Todavía no hay publicaciones relacionadas con esta etiqueta.
+          </p>
+        )
+      }
     </section>
+
+    <section class="section-shell">
+      <div class="section-heading">
+        <h2>Expedientes del Observatorio relacionados</h2>
+        <strong>{orderedProcesses.length}</strong>
+      </div>
+      {
+        orderedProcesses.length ? (
+          <div class="process-grid">
+            {orderedProcesses.map((process) => (
+              <ProcessCard process={process} currentLabelId={item.id} />
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">
+            Todavía no hay expedientes del Observatorio relacionados con esta
+            etiqueta.
+          </p>
+        )
+      }
+    </section>
+
+    <a class="taxonomy-return-link" href="/etiquetas/">
+      ← Ver todas las etiquetas
+    </a>
   </div>
 </SiteLayout>

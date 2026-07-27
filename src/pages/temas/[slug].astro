@@ -1,4 +1,5 @@
 ---
+import PublicationCard from '../../components/PublicationCard.astro';
 import ProcessCard from '../../components/ProcessCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import {
@@ -6,12 +7,24 @@ import {
   editorialPreviewEnabled,
   processesForTheme,
 } from '../../lib/data';
+import {
+  getPublicationEntries,
+  publicationEntriesForTheme,
+} from '../../lib/publications';
 import type { CatalogItem } from '../../lib/types';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
   const allItems = [...catalog('temas'), ...catalog('subtemas')];
+  const publications = await getPublicationEntries({
+    includePreview: false,
+    publishedOnly: true,
+  });
   return allItems
-    .filter((item) => processesForTheme(item.id).length > 0)
+    .filter(
+      (item) =>
+        processesForTheme(item.id).length > 0 ||
+        publicationEntriesForTheme(publications, item.id).length > 0,
+    )
     .map((item) => ({
       params: { slug: item.slug },
       props: { item },
@@ -23,24 +36,91 @@ interface Props {
 }
 
 const { item } = Astro.props;
-const related = processesForTheme(item.id);
+const relatedProcesses = processesForTheme(item.id);
+const relatedPublications = publicationEntriesForTheme(
+  await getPublicationEntries({
+    includePreview: false,
+    publishedOnly: true,
+  }),
+  item.id,
+);
+const publicationLabel =
+  relatedPublications.length === 1 ? 'publicación' : 'publicaciones';
+const processLabel =
+  relatedProcesses.length === 1 ? 'proceso' : 'procesos';
 ---
 
-<SiteLayout title={item.nombre} description={`Procesos vinculados con ${item.nombre}.`}>
+<SiteLayout
+  title={item.nombre}
+  description={
+    item.descripcion ||
+    `${relatedPublications.length} ${publicationLabel} y ${relatedProcesses.length} ${processLabel} vinculados con ${item.nombre}.`
+  }
+>
   <div class="page-shell">
     <header class="page-intro">
       <div>
         <p class="eyebrow">Tema</p>
         <h1>{item.nombre}</h1>
       </div>
-      <p>{related.length} procesos del Observatorio comparten esta clasificación.</p>
-    </header>
-    <section class="section-shell">
-      <div class="process-grid">
-        {related.map((process) => (
-          <ProcessCard process={process} editorialPreview={editorialPreviewEnabled} />
-        ))}
+      <div class="taxonomy-page-summary">
+        {item.descripcion && <p>{item.descripcion}</p>}
+        <p class="taxonomy-counts">
+          {relatedPublications.length} {publicationLabel} ·{' '}
+          {relatedProcesses.length} {processLabel} del Observatorio
+        </p>
       </div>
+    </header>
+    <section class="section-shell" aria-labelledby="theme-publications-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Lecturas completas</p>
+          <h2 id="theme-publications-heading">Publicaciones relacionadas</h2>
+        </div>
+        <strong>{relatedPublications.length}</strong>
+      </div>
+      {
+        relatedPublications.length > 0 ? (
+          <div class="publication-grid">
+            {relatedPublications.map((publication) => (
+              <PublicationCard
+                publication={publication.data}
+                currentThemeId={item.id}
+              />
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">
+            Todavía no hay publicaciones relacionadas con este tema.
+          </p>
+        )
+      }
+    </section>
+    <section class="section-shell" aria-labelledby="theme-processes-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Seguimiento</p>
+          <h2 id="theme-processes-heading">Procesos del Observatorio</h2>
+        </div>
+        <strong>{relatedProcesses.length}</strong>
+      </div>
+      {
+        relatedProcesses.length > 0 ? (
+          <div class="process-grid">
+            {relatedProcesses.map((process) => (
+              <ProcessCard
+                process={process}
+                editorialPreview={editorialPreviewEnabled}
+                currentThemeId={item.id}
+              />
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">
+            Todavía no hay procesos del Observatorio relacionados con este tema.
+          </p>
+        )
+      }
     </section>
   </div>
 </SiteLayout>

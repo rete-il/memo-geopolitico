@@ -7,12 +7,13 @@ export interface CatalogItem {
   slug: string;
   estado: 'activo' | 'inactivo';
   orden: number;
+  descripcion?: string;
   parent_id?: string;
   aliases?: string[];
 }
 
 export interface Classification {
-  tema_principal_id: string | null;
+  tema_principal_id: string;
   tema_secundario_ids: string[];
   subtema_ids: string[];
   geografia: {

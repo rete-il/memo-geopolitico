@@ -1,42 +1,102 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import { catalog, processesForLabel } from '../../lib/data';
+import {
+  catalog,
+  publicProcessesForLabel,
+} from '../../lib/data';
+import {
+  getPublicationEntries,
+  publicationEntriesForLabel,
+} from '../../lib/publications';
 
-const items = catalog('etiquetas').filter(
-  (item) => processesForLabel(item.id).length > 0,
-);
+const publications = await getPublicationEntries({
+  includePreview: false,
+  publishedOnly: true,
+});
+const collator = new Intl.Collator('es', { sensitivity: 'base' });
+const items = catalog('etiquetas')
+  .map((item) => ({
+    item,
+    publicationCount: publicationEntriesForLabel(publications, item.id).length,
+    processCount: publicProcessesForLabel(item.id).length,
+  }))
+  .filter(({ publicationCount, processCount }) => publicationCount + processCount > 0)
+  .sort((a, b) => collator.compare(a.item.nombre, b.item.nombre));
+const showSearch = items.length >= 25;
+
+const countLabel = (count: number, singular: string, plural: string) =>
+  `${count} ${count === 1 ? singular : plural}`;
 ---
 
-<SiteLayout title="Etiquetas" description="Etiquetas transversales del archivo de Memo Geopolítico.">
+<SiteLayout
+  title="Etiquetas"
+  description="Conceptos específicos que conectan publicaciones y procesos del Observatorio más allá de su tema principal."
+>
   <div class="page-shell">
     <header class="page-intro">
       <div>
         <p class="eyebrow">Explorar</p>
-        <h1>Etiquetas para relaciones específicas.</h1>
+        <h1>Etiquetas</h1>
       </div>
       <p>
-        Las etiquetas complementan regiones, temas y actores cuando una relación
-        editorial necesita una clasificación más precisa.
+        Conceptos específicos que conectan publicaciones y procesos del
+        Observatorio más allá de su tema principal.
       </p>
     </header>
-    <section class="section-shell">
+
+    <section class="section-shell label-directory">
+      <div class="section-heading">
+        <h2>Todas las etiquetas</h2>
+        <strong>{items.length} etiquetas públicas</strong>
+      </div>
+
+      {
+        showSearch && (
+          <label class="label-search">
+            <span>Buscar por nombre</span>
+            <input
+              type="search"
+              placeholder="Ej.: minerales críticos"
+              data-label-search
+              autocomplete="off"
+            />
+          </label>
+        )
+      }
+
       {
         items.length ? (
-          <div class="explore-grid">
-            {items.map((item) => (
-              <article class="explore-card">
-                <h2><a href={`/etiquetas/${item.slug}/`}>{item.nombre}</a></h2>
-                <p>{processesForLabel(item.id).length} procesos relacionados.</p>
-                <a href={`/etiquetas/${item.slug}/`}>Explorar etiqueta</a>
-              </article>
-            ))}
-          </div>
+          <>
+            <div class="label-directory-grid" data-label-directory>
+              {items.map(({ item, publicationCount, processCount }) => (
+                <a
+                  class="label-directory-item"
+                  href={`/etiquetas/${item.slug}/`}
+                  data-label-name={item.nombre}
+                >
+                  <span>
+                    <strong>{item.nombre}</strong>
+                    <small>
+                      {countLabel(publicationCount, 'publicación', 'publicaciones')}
+                      {' · '}
+                      {countLabel(processCount, 'expediente', 'expedientes')}
+                    </small>
+                  </span>
+                  <span aria-hidden="true">→</span>
+                </a>
+              ))}
+            </div>
+            <p class="empty-state label-search-empty" data-label-search-empty hidden>
+              No hay etiquetas que coincidan con la búsqueda.
+            </p>
+          </>
         ) : (
           <div class="empty-state">
-            <h2>Etiquetas en preparación</h2>
+            <h2>Todavía no hay etiquetas públicas</h2>
             <p>
-              Todavía no hay etiquetas públicas asignadas. La navegación por
-              regiones, temas, actores y espacios ya está disponible.
+              Las etiquetas internas seguirán disponibles en el editor y
+              aparecerán aquí cuando se asocien a una publicación o expediente
+              público.
             </p>
           </div>
         )
@@ -44,3 +104,31 @@ const items = catalog('etiquetas').filter(
     </section>
   </div>
 </SiteLayout>
+
+{
+  showSearch && (
+    <script>
+      const input = document.querySelector<HTMLInputElement>('[data-label-search]');
+      const items = [
+        ...document.querySelectorAll<HTMLElement>('[data-label-name]'),
+      ];
+      const empty = document.querySelector<HTMLElement>('[data-label-search-empty]');
+      const normalize = (value: string) =>
+        value
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLocaleLowerCase('es');
+
+      input?.addEventListener('input', () => {
+        const query = normalize(input.value.trim());
+        let visible = 0;
+        for (const item of items) {
+          const matches = normalize(item.dataset.labelName || '').includes(query);
+          item.hidden = !matches;
+          if (matches) visible += 1;
+        }
+        if (empty) empty.hidden = visible > 0;
+      });
+    </script>
+  )
+}

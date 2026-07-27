@@ -104,6 +104,46 @@ function catalogItem(id, nombre, order = 100, extra = {}) {
   };
 }
 
+function canonicalCatalog(taxonomy, key, fallbackDefinitions) {
+  const explicit = taxonomy?.catalogos?.[key] || taxonomy?.[key];
+  const source =
+    Array.isArray(explicit) && explicit.length
+      ? explicit
+      : fallbackDefinitions.map(([id, nombre]) => ({ id, nombre }));
+
+  return source
+    .map((entry, index) => {
+      const value = Array.isArray(entry)
+        ? { id: entry[0], nombre: entry[1] }
+        : entry;
+      const nombre = String(value?.nombre || '').trim();
+      const id = String(value?.id || value?.slug || slugify(nombre)).trim();
+      if (!id || !nombre) return null;
+
+      return catalogItem(
+        id,
+        nombre,
+        Number.isFinite(Number(value.orden))
+          ? Number(value.orden)
+          : (index + 1) * 10,
+        {
+          ...(value.descripcion
+            ? { descripcion: String(value.descripcion).trim() }
+            : {}),
+          ...(value.parent_id
+            ? { parent_id: String(value.parent_id) }
+            : {}),
+          ...(Array.isArray(value.aliases)
+            ? { aliases: unique(value.aliases.map(String)) }
+            : {}),
+          ...(value.estado === 'inactivo' ? { estado: 'inactivo' } : {}),
+          slug: String(value.slug || id),
+        },
+      );
+    })
+    .filter(Boolean);
+}
+
 function themeFromInternalCategory(category) {
   const name = String(category?.nombre || '').toLowerCase();
   if (/seguridad|conflicto|militar|armamento/.test(name)) return 'seguridad-conflicto';
@@ -275,6 +315,16 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
       ]),
     ),
   );
+  const canonicalThemes = canonicalCatalog(
+    taxonomy,
+    'temas',
+    THEME_DEFINITIONS,
+  );
+  const canonicalSubthemes = canonicalCatalog(
+    taxonomy,
+    'subtemas',
+    SUBTHEME_DEFINITIONS,
+  );
 
   const processes = [];
   const globalSources = new Map();
@@ -296,12 +346,41 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
     const mappedTopicThemes = unique(
       eventTopics.map((item) => themeFromInternalCategory(item.categoria)),
     );
-    const primaryTheme = CATEGORY_THEME[event.categoria] || mappedTopicThemes[0] || null;
-    const secondaryThemes = mappedTopicThemes.filter((id) => id !== primaryTheme);
+    const ownClassification = event.clasificacion;
+    const hasOwnPrimary =
+      ownClassification &&
+      Object.prototype.hasOwnProperty.call(
+        ownClassification,
+        'tema_principal_id',
+      );
+    const primaryTheme = hasOwnPrimary
+      ? String(ownClassification.tema_principal_id || '') || null
+      : CATEGORY_THEME[event.categoria] || mappedTopicThemes[0] || null;
+    const secondaryThemes = unique(
+      ownClassification &&
+        Object.prototype.hasOwnProperty.call(
+          ownClassification,
+          'tema_secundario_ids',
+        )
+        ? Array.isArray(ownClassification.tema_secundario_ids)
+          ? ownClassification.tema_secundario_ids.map(String)
+          : []
+        : mappedTopicThemes,
+    ).filter((id) => id !== primaryTheme);
     if (primaryTheme) usedThemes.add(primaryTheme);
     secondaryThemes.forEach((id) => usedThemes.add(id));
 
-    const subthemes = subthemesFromTopics(eventTopics);
+    const subthemes = unique(
+      ownClassification &&
+        Object.prototype.hasOwnProperty.call(
+          ownClassification,
+          'subtema_ids',
+        )
+        ? Array.isArray(ownClassification.subtema_ids)
+          ? ownClassification.subtema_ids.map(String)
+          : []
+        : subthemesFromTopics(eventTopics),
+    );
     subthemes.forEach((id) => usedSubthemes.add(id));
 
     const geography = geographyProjection(event.regiones || []);
@@ -430,12 +509,8 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
     });
   }
 
-  const themeCatalog = THEME_DEFINITIONS
-    .filter(([id]) => usedThemes.has(id))
-    .map(([id, name], index) => catalogItem(id, name, (index + 1) * 10));
-  const subthemeCatalog = SUBTHEME_DEFINITIONS
-    .filter(([id]) => usedSubthemes.has(id))
-    .map(([id, name], index) => catalogItem(id, name, (index + 1) * 10));
+  const themeCatalog = canonicalThemes;
+  const subthemeCatalog = canonicalSubthemes;
 
   return {
     formato: 'memo-geopolitico-publico',
@@ -474,14 +549,69 @@ export function validatePublicPackage(data, options = {}) {
   const subthemeIds = new Set((data?.catalogos?.subtemas || []).map((item) => item.id));
   const actorIds = new Set((data?.catalogos?.actores || []).map((item) => item.id));
 
+  const normalizeCatalogValue = (value) =>
+    String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, ' ');
+  for (const [key, items] of Object.entries(data?.catalogos || {})) {
+    const ids = new Set();
+    const slugs = new Set();
+    const names = new Set();
+    for (const item of items || []) {
+      const normalizedName = normalizeCatalogValue(item.nombre);
+      if (!item.id || !item.nombre || !item.slug) {
+        errors.push(`Catálogo ${key}: entrada incompleta.`);
+        continue;
+      }
+      if (ids.has(item.id)) {
+        errors.push(`Catálogo ${key}: ID duplicado (${item.id}).`);
+      }
+      if (slugs.has(item.slug)) {
+        errors.push(`Catálogo ${key}: slug duplicado (${item.slug}).`);
+      }
+      if (names.has(normalizedName)) {
+        errors.push(
+          `Catálogo ${key}: nombre duplicado o variante accidental (${item.nombre}).`,
+        );
+      }
+      ids.add(item.id);
+      slugs.add(item.slug);
+      names.add(normalizedName);
+    }
+  }
+
   for (const process of data?.procesos || []) {
     const label = process.titulo || process.macroevento_id;
     if (!process.macroevento_id) errors.push(`${label}: falta macroevento_id.`);
     if (processIds.has(process.macroevento_id)) errors.push(`${label}: ID duplicado.`);
     processIds.add(process.macroevento_id);
     if (!process.titulo || !process.sintesis) errors.push(`${label}: faltan título o síntesis.`);
-    if (process.clasificacion.tema_principal_id && !themeIds.has(process.clasificacion.tema_principal_id)) {
+    if (!process.clasificacion.tema_principal_id) {
+      errors.push(`${label}: falta tema principal.`);
+    } else if (!themeIds.has(process.clasificacion.tema_principal_id)) {
       errors.push(`${label}: tema principal inexistente.`);
+    }
+    if (
+      process.clasificacion.tema_secundario_ids.includes(
+        process.clasificacion.tema_principal_id,
+      )
+    ) {
+      errors.push(`${label}: el tema principal está repetido como secundario.`);
+    }
+    if (
+      new Set(process.clasificacion.tema_secundario_ids).size !==
+      process.clasificacion.tema_secundario_ids.length
+    ) {
+      errors.push(`${label}: hay temas secundarios duplicados.`);
+    }
+    if (
+      new Set(process.clasificacion.subtema_ids).size !==
+      process.clasificacion.subtema_ids.length
+    ) {
+      errors.push(`${label}: hay subtemas duplicados.`);
     }
     for (const id of process.clasificacion.tema_secundario_ids) {
       if (!themeIds.has(id)) errors.push(`${label}: tema secundario inexistente (${id}).`);
@@ -491,6 +621,16 @@ export function validatePublicPackage(data, options = {}) {
     }
     for (const id of process.clasificacion.actor_ids) {
       if (!actorIds.has(id)) errors.push(`${label}: actor inexistente (${id}).`);
+    }
+    const topicCount = unique([
+      process.clasificacion.tema_principal_id,
+      ...process.clasificacion.tema_secundario_ids,
+      ...process.clasificacion.subtema_ids,
+    ]).length;
+    if (topicCount > 3) {
+      warnings.push(
+        `${label}: ${topicCount} clasificaciones temáticas; revisar legibilidad editorial.`,
+      );
     }
     for (const id of process.fuente_ids) {
       if (!sourceIds.has(id)) errors.push(`${label}: fuente inexistente (${id}).`);
@@ -503,7 +643,6 @@ export function validatePublicPackage(data, options = {}) {
     }
     if (process.publicacion.estado === 'publicado') {
       if (!process.por_que_importa) errors.push(`${label}: un proceso publicado requiere “por qué importa”.`);
-      if (!process.clasificacion.tema_principal_id) errors.push(`${label}: un proceso publicado requiere tema principal.`);
       if (!process.senales.length) errors.push(`${label}: un proceso publicado requiere señales.`);
       if (!process.fuente_ids.length) errors.push(`${label}: un proceso publicado requiere fuentes.`);
     } else if (!options.allowDrafts && !options.allowDevelopment) {

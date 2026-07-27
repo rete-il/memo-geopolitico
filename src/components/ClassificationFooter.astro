@@ -1,0 +1,80 @@
+---
+import { catalogMaps } from '../lib/data';
+import {
+  labelHref,
+  labelReferences,
+  topicHref,
+  topicReferences,
+} from '../lib/taxonomy';
+import type { Classification } from '../lib/types';
+
+interface Props {
+  classification: Classification;
+}
+
+const { classification } = Astro.props;
+const topics = topicReferences(classification, catalogMaps);
+const primaryTopic = topics.find((topic) => topic.primary);
+const secondaryTopics = topics.filter((topic) => !topic.primary);
+const labels = labelReferences(classification, catalogMaps);
+const hasClassification =
+  Boolean(primaryTopic) || secondaryTopics.length > 0 || labels.length > 0;
+---
+
+{
+  hasClassification && (
+    <section class="content-section classification-footer">
+      <h2>Temas y etiquetas</h2>
+      <div class="classification-groups">
+        {
+          primaryTopic && (
+            <div>
+              <h3>Tema principal</h3>
+              <a
+                class="classification-link classification-link--primary"
+                href={topicHref(primaryTopic)}
+              >
+                {primaryTopic.item.nombre}
+              </a>
+            </div>
+          )
+        }
+        {
+          secondaryTopics.length > 0 && (
+            <div>
+              <h3>Otros temas</h3>
+              <ul>
+                {secondaryTopics.map((topic) => (
+                  <li>
+                    <a class="classification-link" href={topicHref(topic)}>
+                      {topic.item.nombre}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        {
+          labels.length > 0 && (
+            <div>
+              <h3>Etiquetas relacionadas</h3>
+              <ul>
+                {labels.map((label) => (
+                  <li>
+                    <a
+                      class="classification-link classification-link--label"
+                      href={labelHref(label)}
+                    >
+                      {label.item.nombre}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </div>
+    </section>
+  )
+}

@@ -1,5 +1,13 @@
 ---
-import { editorialStageLabel, formatDate, humanize } from '../lib/text';
+import { catalogMaps } from '../lib/data';
+import {
+  cardLabelReferences,
+  labelHref,
+  topicHref,
+  topicReferences,
+} from '../lib/taxonomy';
+import { editorialStageLabel, formatDate } from '../lib/text';
+import type { Classification } from '../lib/types';
 
 interface Props {
   publication: {
@@ -14,15 +22,26 @@ interface Props {
       actualizado_el: string;
     };
     macroevento_principal_id: string;
+    clasificacion: Classification;
   };
   editorialPreview?: boolean;
+  currentThemeId?: string;
+  currentLabelId?: string;
 }
 
-const { publication, editorialPreview = false } = Astro.props;
+const {
+  publication,
+  editorialPreview = false,
+  currentThemeId,
+  currentLabelId,
+} = Astro.props;
 const isPublished = publication.publicacion.estado === 'publicado';
 const destination = isPublished
   ? `/publicaciones/${publication.slug}/`
   : `/observatorio/${publication.macroevento_principal_id}/`;
+const topics = topicReferences(publication.clasificacion, catalogMaps);
+const primaryTopic = topics.find((topic) => topic.primary);
+const labels = cardLabelReferences(publication.clasificacion, catalogMaps);
 ---
 
 <article
@@ -34,12 +53,55 @@ const destination = isPublished
   ]}
 >
   <div class="card-meta">
-    <span>{humanize(publication.tipo_publicacion)}</span>
     {
-      isPublished ? (
-        <span class="published-chip">Publicado</span>
-      ) : (
-        <span class="draft-chip">
+      primaryTopic &&
+        (primaryTopic.id === currentThemeId ? (
+          <span
+            class="meta-link meta-link--theme meta-link--primary"
+            aria-current="page"
+          >
+            <span class="meta-link-prefix">Tema</span>
+            <span aria-hidden="true">·</span>
+            {primaryTopic.item.nombre}
+          </span>
+        ) : (
+          <a
+            class="meta-link meta-link--theme meta-link--primary"
+            href={topicHref(primaryTopic)}
+          >
+            <span class="meta-link-prefix">Tema</span>
+            <span aria-hidden="true">·</span>
+            {primaryTopic.item.nombre}
+          </a>
+        ))
+    }
+    {
+      labels.map((label) =>
+        label.id === currentLabelId ? (
+          <span
+            class="meta-link meta-link--label"
+            aria-current="page"
+          >
+            {label.item.nombre}
+          </span>
+        ) : (
+          <a
+            class="meta-link meta-link--label"
+            href={labelHref(label)}
+          >
+            {label.item.nombre}
+          </a>
+        ),
+      )
+    }
+    {
+      !isPublished && (
+        <span
+          class:list={[
+            'status-link',
+            `status-link--${publication.publicacion.estado}`,
+          ]}
+        >
           {editorialPreview && 'Vista local · '}
           {editorialStageLabel(publication.publicacion.estado)}
         </span>

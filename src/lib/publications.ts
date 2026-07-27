@@ -1,5 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { editorialPreviewEnabled } from './data';
+import { publicationStatePriority } from './editorial';
+import { classificationTopicIds } from './taxonomy';
 
 export type PublicationEntry = CollectionEntry<'publicaciones'>;
 
@@ -8,21 +10,16 @@ interface PublicationOptions {
   publishedOnly?: boolean;
 }
 
-const statePriority = {
-  borrador: 0,
-  en_revision: 1,
-  listo: 2,
-  publicado: 3,
-} as const;
-
 function preferredEntry(
   current: PublicationEntry | undefined,
   candidate: PublicationEntry,
 ): PublicationEntry {
   if (!current) return candidate;
 
-  const currentPriority = statePriority[current.data.publicacion.estado];
-  const candidatePriority = statePriority[candidate.data.publicacion.estado];
+  const currentPriority =
+    publicationStatePriority[current.data.publicacion.estado];
+  const candidatePriority =
+    publicationStatePriority[candidate.data.publicacion.estado];
 
   if (candidatePriority !== currentPriority) {
     return candidatePriority > currentPriority ? candidate : current;
@@ -62,8 +59,8 @@ export async function getPublicationEntries(
     )
     .sort((a, b) => {
       const stateDifference =
-        statePriority[b.data.publicacion.estado] -
-        statePriority[a.data.publicacion.estado];
+        publicationStatePriority[b.data.publicacion.estado] -
+        publicationStatePriority[a.data.publicacion.estado];
       if (stateDifference !== 0) return stateDifference;
 
       return (
@@ -72,4 +69,37 @@ export async function getPublicationEntries(
         ) || a.data.titulo.localeCompare(b.data.titulo, 'es')
       );
     });
+}
+
+export async function publicationsForTheme(
+  id: string,
+): Promise<PublicationEntry[]> {
+  const publications = await getPublicationEntries({
+    includePreview: false,
+    publishedOnly: true,
+  });
+
+  return publicationEntriesForTheme(publications, id);
+}
+
+export function publicationEntriesForTheme(
+  publications: PublicationEntry[],
+  id: string,
+): PublicationEntry[] {
+  return publications.filter(({ data }) =>
+    classificationTopicIds(data.clasificacion).includes(id),
+  );
+}
+
+export function publicationEntriesForLabel(
+  publications: PublicationEntry[],
+  id: string,
+): PublicationEntry[] {
+  return publications
+    .filter(({ data }) => data.clasificacion.etiqueta_ids.includes(id))
+    .sort((a, b) =>
+      b.data.publicacion.actualizado_el.localeCompare(
+        a.data.publicacion.actualizado_el,
+      ),
+    );
 }

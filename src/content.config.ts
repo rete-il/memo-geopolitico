@@ -2,20 +2,53 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const classificationSchema = z.object({
-  tema_principal_id: z.string().nullable(),
-  tema_secundario_ids: z.array(z.string()).default([]),
-  subtema_ids: z.array(z.string()).default([]),
-  geografia: z.object({
-    alcance: z.enum(['global', 'regional', 'transfronterizo', 'nacional', 'local']),
-    region_ids: z.array(z.string()).default([]),
-    subregion_ids: z.array(z.string()).default([]),
-    pais_ids: z.array(z.string()).default([]),
-    espacio_ids: z.array(z.string()).default([]),
-  }),
-  actor_ids: z.array(z.string()).default([]),
-  etiqueta_ids: z.array(z.string()).default([]),
-});
+const uniqueIdList = z
+  .array(z.string().min(1))
+  .default([])
+  .superRefine((ids, context) => {
+    if (new Set(ids).size !== ids.length) {
+      context.addIssue({
+        code: 'custom',
+        message: 'Los IDs de clasificación no pueden repetirse.',
+      });
+    }
+  });
+
+const classificationSchema = z
+  .object({
+    tema_principal_id: z.string().min(1),
+    tema_secundario_ids: uniqueIdList,
+    subtema_ids: uniqueIdList,
+    geografia: z.object({
+      alcance: z.enum([
+        'global',
+        'regional',
+        'transfronterizo',
+        'nacional',
+        'local',
+      ]),
+      region_ids: uniqueIdList,
+      subregion_ids: uniqueIdList,
+      pais_ids: uniqueIdList,
+      espacio_ids: uniqueIdList,
+    }),
+    actor_ids: uniqueIdList,
+    etiqueta_ids: uniqueIdList,
+  })
+  .superRefine((classification, context) => {
+    if (
+      classification.tema_secundario_ids.includes(
+        classification.tema_principal_id,
+      )
+    ) {
+      context.addIssue({
+        code: 'custom',
+        path: ['tema_secundario_ids'],
+        message:
+          'El tema principal no puede repetirse como tema secundario.',
+      });
+    }
+  });
 
 export const collections = {
   publicaciones: defineCollection({

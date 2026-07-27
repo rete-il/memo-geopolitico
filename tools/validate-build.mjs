@@ -77,12 +77,22 @@ const dashboard = fs.readFileSync(
   path.join(production, 'observatorio', 'dashboard', 'index.html'),
   'utf8',
 );
+const sitemap = fs.readFileSync(
+  path.join(production, 'sitemap.xml'),
+  'utf8',
+);
+const energyTheme = fs.readFileSync(
+  path.join(
+    production,
+    'temas',
+    'energia-recursos-estrategicos',
+    'index.html',
+  ),
+  'utf8',
+);
 
 const productionPages = validateLinks(production);
 const previewPages = validateLinks(preview);
-const homePublicationCards = (
-  home.match(/class="publication-card publication-card--published"/g) || []
-).length;
 const publicationArchiveCards = (
   publications.match(/class="publication-card publication-card--published"/g) ||
   []
@@ -96,18 +106,55 @@ const linkedPublicationTitles = (
 const dashboardProcessRows = (
   dashboard.match(/<tr[^>]*data-dashboard-process/g) || []
 ).length;
+const observatoryStateLinks = (
+  observatory.match(/href="\/observatorio\/estado\//g) || []
+).length;
+const publicationThemeLinks = (
+  publications.match(/class="meta-link meta-link--theme/g) || []
+).length;
+const publicationCardMetadata = [
+  ...publications.matchAll(/<div class="card-meta">([\s\S]*?)<\/div>/g),
+].map((match) => match[1]);
+const stateRouteCount = countRoutes(
+  production,
+  path.join('observatorio', 'estado'),
+);
 
-assert.equal(homePublicationCards, 4);
+assert.equal(home.includes('home-path--publications'), true);
+assert.equal(home.includes('home-path--observatory'), true);
 assert.equal(home.includes('data-process-card'), false);
 assert.equal(home.includes('publication-card--in-progress'), false);
 assert.equal(publicationArchiveCards, 5);
+assert.ok(publicationThemeLinks >= 5);
+assert.equal(
+  publicationCardMetadata.some((metadata) => />Análisis</.test(metadata)),
+  false,
+);
+assert.equal(
+  publicationCardMetadata.some((metadata) => />Publicado</.test(metadata)),
+  false,
+);
 assert.equal(publications.includes('publication-card--in-progress'), false);
 assert.equal(observatoryProcessCards, 17);
 assert.equal(linkedPublicationTitles, 5);
+assert.equal(observatoryStateLinks, 17);
 assert.equal(dashboardProcessRows, 17);
 assert.equal(/>(?:Guardar|Editar|Eliminar)</.test(dashboard), false);
 assert.equal(countRoutes(production, 'publicaciones'), 5);
 assert.equal(countRoutes(preview, 'publicaciones'), 17);
+assert.equal(stateRouteCount, 4);
+assert.ok(
+  (energyTheme.match(/publication-card--published/g) || []).length > 0,
+);
+assert.ok(
+  (energyTheme.match(/data-process-card/g) || []).length > 0,
+);
+assert.equal(
+  sitemap.includes(
+    '/publicaciones/africa-oriental-puertas-entrada/',
+  ),
+  false,
+);
 assert.equal(
   countRoutes(
     production,
@@ -121,11 +168,14 @@ console.log(
     {
       paginas_produccion: productionPages,
       paginas_editoriales: previewPages,
-      publicaciones_en_inicio: homePublicationCards,
+      accesos_principales_en_inicio: 2,
       publicaciones_publicas: 5,
       posts_editoriales: 17,
       expedientes: observatoryProcessCards,
       enlaces_de_titulo_a_posts: linkedPublicationTitles,
+      enlaces_de_estado: observatoryStateLinks,
+      paginas_de_estado: stateRouteCount,
+      enlaces_tematicos_en_publicaciones: publicationThemeLinks,
       filas_dashboard: dashboardProcessRows,
       paginas_metodologicas_especificas: 17,
       enlaces_internos_rotos: 0,

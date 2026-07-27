@@ -1,13 +1,28 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { catalog, processesForTheme } from '../../lib/data';
+import {
+  getPublicationEntries,
+  publicationEntriesForTheme,
+} from '../../lib/publications';
 
-const items = [...catalog('temas'), ...catalog('subtemas')].filter(
-  (item) => processesForTheme(item.id).length > 0,
-);
+const publications = await getPublicationEntries({
+  includePreview: false,
+  publishedOnly: true,
+});
+const items = [...catalog('temas'), ...catalog('subtemas')]
+  .map((item) => ({
+    item,
+    publicationCount: publicationEntriesForTheme(publications, item.id).length,
+    processCount: processesForTheme(item.id).length,
+  }))
+  .filter(({ publicationCount, processCount }) => publicationCount || processCount);
 ---
 
-<SiteLayout title="Temas" description="Exploración temática del Observatorio.">
+<SiteLayout
+  title="Temas"
+  description="Exploración temática transversal de Publicaciones y del Observatorio."
+>
   <div class="page-shell">
     <header class="page-intro">
       <div>
@@ -15,16 +30,22 @@ const items = [...catalog('temas'), ...catalog('subtemas')].filter(
         <h1>Temas que atraviesan regiones y actores.</h1>
       </div>
       <p>
-        Los temas se asignan mediante IDs canónicos y sus relaciones se calculan
-        desde los metadatos, sin listas manuales duplicadas.
+        Cada tema reúne Publicaciones y procesos del Observatorio a partir de
+        los IDs guardados en los metadatos de cada contenido.
       </p>
     </header>
     <section class="section-shell">
       <div class="explore-grid">
-        {items.map((item) => (
+        {items.map(({ item, publicationCount, processCount }) => (
           <article class="explore-card">
             <h2>{item.nombre}</h2>
-            <p>{processesForTheme(item.id).length} procesos relacionados.</p>
+            {item.descripcion && <p>{item.descripcion}</p>}
+            <p class="taxonomy-counts">
+              {publicationCount}{' '}
+              {publicationCount === 1 ? 'publicación' : 'publicaciones'} ·{' '}
+              {processCount}{' '}
+              {processCount === 1 ? 'proceso' : 'procesos'}
+            </p>
             <a href={`/temas/${item.slug}/`}>Abrir</a>
           </article>
         ))}

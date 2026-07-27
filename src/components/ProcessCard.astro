@@ -1,41 +1,97 @@
 ---
-import { catalogMaps, labelFor } from '../lib/data';
-import { getPublicationEntries } from '../lib/publications';
+import { catalogMaps } from '../lib/data';
+import {
+  editorialStateSlug,
+  effectiveEditorialState,
+  relatedPublicationForProcess,
+} from '../lib/editorial';
+import {
+  getPublicationEntries,
+  type PublicationEntry,
+} from '../lib/publications';
+import {
+  cardLabelReferences,
+  labelHref,
+  topicHref,
+  topicReferences,
+  uniqueIds,
+} from '../lib/taxonomy';
 import { editorialStageLabel, formatDate } from '../lib/text';
-import type { PublicProcess } from '../lib/types';
+import type { PublicationState, PublicProcess } from '../lib/types';
 import RatingPair from './RatingPair.astro';
 
 interface Props {
   process: PublicProcess;
   editorialPreview?: boolean;
+  currentThemeId?: string;
+  currentLabelId?: string;
+  currentGeographyId?: string;
+  currentState?: PublicationState;
+  editorialState?: PublicationState;
+  relatedPublication?: PublicationEntry;
 }
 
-const { process } = Astro.props;
-const themeItem = process.clasificacion.tema_principal_id
-  ? catalogMaps.temas.get(process.clasificacion.tema_principal_id)
-  : undefined;
+const {
+  process,
+  currentThemeId,
+  currentLabelId,
+  currentGeographyId,
+  currentState,
+  editorialState: suppliedEditorialState,
+  relatedPublication: suppliedRelatedPublication,
+} = Astro.props;
+const topics = topicReferences(process.clasificacion, catalogMaps);
+const primaryTopic = topics.find((topic) => topic.primary);
+const labels = cardLabelReferences(process.clasificacion, catalogMaps);
 const geographyItems = [
-  ...process.clasificacion.geografia.region_ids.map((id) =>
-    catalogMaps.regiones.get(id),
-  ),
-  ...process.clasificacion.geografia.subregion_ids.map((id) =>
-    catalogMaps.subregiones.get(id),
-  ),
-].filter(Boolean);
-const theme = labelFor(catalogMaps.temas, process.clasificacion.tema_principal_id);
-const geography = geographyItems.map((item) => item?.nombre || '').filter(Boolean);
-const relatedPublication = (await getPublicationEntries({
-  includePreview: true,
-})).find(
-  ({ data }) =>
-    data.macroevento_principal_id === process.macroevento_id ||
-    data.macroevento_secundario_ids.includes(process.macroevento_id),
+  ...process.clasificacion.geografia.region_ids.map((id) => ({
+    id,
+    item: catalogMaps.regiones.get(id),
+    hrefBase: '/regiones',
+  })),
+  ...process.clasificacion.geografia.subregion_ids.map((id) => ({
+    id,
+    item: catalogMaps.subregiones.get(id),
+    hrefBase: '/regiones',
+  })),
+  ...process.clasificacion.geografia.pais_ids.map((id) => ({
+    id,
+    item: catalogMaps.paises.get(id),
+    hrefBase: '/regiones',
+  })),
+  ...process.clasificacion.geografia.espacio_ids.map((id) => ({
+    id,
+    item: catalogMaps.espacios.get(id),
+    hrefBase: '/espacios-geopoliticos',
+  })),
+].filter(
+  (
+    reference,
+  ): reference is {
+    id: string;
+    item: NonNullable<typeof reference.item>;
+    hrefBase: string;
+  } => Boolean(reference.item),
 );
+const geographyIds = uniqueIds(geographyItems.map(({ id }) => id));
+const geography = geographyItems
+  .filter(({ id }, index) => geographyIds.indexOf(id) === index)
+  .map(({ item }) => item.nombre);
+const contextualGeography =
+  geographyItems.find(({ id }) => id === currentGeographyId) ||
+  geographyItems[0];
+const publicationEntries = await getPublicationEntries({
+  includePreview: true,
+});
+const relatedPublication =
+  suppliedRelatedPublication ||
+  relatedPublicationForProcess(process, publicationEntries);
 const publicationHref = relatedPublication?.data.publicacion.estado === 'publicado'
   ? `/publicaciones/${relatedPublication.data.slug}/`
   : '';
 const editorialState =
-  relatedPublication?.data.publicacion.estado || process.publicacion.estado;
+  suppliedEditorialState ||
+  effectiveEditorialState(process, publicationEntries);
 ---
 
 <article
@@ -44,7 +100,8 @@ const editorialState =
   data-search={[
     process.titulo,
     process.sintesis,
-    theme,
+    ...topics.map(({ item }) => item.nombre),
+    ...labels.map(({ item }) => item.nombre),
     ...geography,
     ...process.clasificacion.actor_ids,
   ].join(' ').toLowerCase()}
@@ -60,6 +117,7 @@ const editorialState =
     ...process.clasificacion.subtema_ids,
   ].filter(Boolean).join(' ')}
   data-actor={process.clasificacion.actor_ids.join(' ')}
+  data-label={process.clasificacion.etiqueta_ids.join(' ')}
   data-tracking-state={process.estado_seguimiento}
   data-editorial-state={editorialState}
   data-relevance={process.valoraciones.relevancia_geopolitica}
@@ -68,18 +126,88 @@ const editorialState =
   <div class="process-card-main">
     <div class="card-meta">
       {
-        geographyItems[0] && (
-          <a href={`/regiones/${geographyItems[0]?.slug}/`}>
-            {geographyItems[0]?.nombre}
-          </a>
+        contextualGeography &&
+          (contextualGeography.id === currentGeographyId ? (
+            <span
+              class="meta-link meta-link--geography"
+              aria-current="page"
+            >
+              {contextualGeography.item.nombre}
+            </span>
+          ) : (
+            <a
+              class="meta-link meta-link--geography"
+              href={`${contextualGeography.hrefBase}/${contextualGeography.item.slug}/`}
+            >
+              {contextualGeography.item.nombre}
+            </a>
+          ))
+      }
+      {
+        primaryTopic &&
+          (primaryTopic.id === currentThemeId ? (
+            <span
+              class="meta-link meta-link--theme meta-link--primary"
+              aria-current="page"
+            >
+              <span class="meta-link-prefix">Tema</span>
+              <span aria-hidden="true">·</span>
+              {primaryTopic.item.nombre}
+            </span>
+          ) : (
+            <a
+              class="meta-link meta-link--theme meta-link--primary"
+              href={topicHref(primaryTopic)}
+            >
+              <span class="meta-link-prefix">Tema</span>
+              <span aria-hidden="true">·</span>
+              {primaryTopic.item.nombre}
+            </a>
+          ))
+      }
+      {
+        labels.map((label) =>
+          label.id === currentLabelId ? (
+            <span
+              class="meta-link meta-link--label"
+              aria-current="page"
+            >
+              {label.item.nombre}
+            </span>
+          ) : (
+            <a
+              class="meta-link meta-link--label"
+              href={labelHref(label)}
+            >
+              {label.item.nombre}
+            </a>
+          ),
         )
       }
       {
-        themeItem && (
-          <a href={`/temas/${themeItem.slug}/`}>{themeItem.nombre}</a>
+        editorialState === currentState ? (
+          <span
+            class:list={[
+              'status-link',
+              `status-link--${editorialState}`,
+            ]}
+            aria-current="page"
+          >
+            Estado: {editorialStageLabel(editorialState)}
+          </span>
+        ) : (
+          <a
+            class:list={[
+              'status-link',
+              `status-link--${editorialState}`,
+            ]}
+            href={`/observatorio/estado/${editorialStateSlug(editorialState)}/`}
+            aria-label={`Ver expedientes con estado ${editorialStageLabel(editorialState)}`}
+          >
+            Estado: {editorialStageLabel(editorialState)}
+          </a>
         )
       }
-      <span class="draft-chip">{editorialStageLabel(editorialState)}</span>
     </div>
     <h2>
       {
