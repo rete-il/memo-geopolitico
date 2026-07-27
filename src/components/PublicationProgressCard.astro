@@ -1,0 +1,27 @@
+---
+import { editorialStageLabel, formatDate } from '../lib/text';
+import type { PublicProcess } from '../lib/types';
+
+interface Props {
+  process: PublicProcess;
+}
+
+const { process } = Astro.props;
+---
+
+<article class="publication-card publication-card--in-progress">
+  <div class="card-meta">
+    <span>Expediente en desarrollo</span>
+    <span class="draft-chip">
+      {editorialStageLabel(process.publicacion.estado)}
+    </span>
+  </div>
+  <h2><span>{process.titulo}</span></h2>
+  <p>{process.sintesis}</p>
+  <footer>
+    <span>Actualizado {formatDate(process.publicacion.actualizado_el)}</span>
+    <a href={`/observatorio/${process.slug}/`}>
+      Abrir expediente <span aria-hidden="true">→</span>
+    </a>
+  </footer>
+</article>

@@ -1,0 +1,581 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import {
+  catalog,
+  catalogMaps,
+  processes,
+  sources,
+} from '../../../lib/data';
+import {
+  editorialStageLabel,
+  formatDate,
+  humanize,
+} from '../../../lib/text';
+import { getPublicationEntries } from '../../../lib/publications';
+
+const publicationEntries = await getPublicationEntries({
+  includePreview: true,
+});
+const publicationStateByProcess = new Map(
+  publicationEntries.map(({ data }) => [
+    data.macroevento_principal_id,
+    data.publicacion.estado,
+  ]),
+);
+const stateFor = (process: (typeof processes)[number]) =>
+  publicationStateByProcess.get(process.macroevento_id) ||
+  process.publicacion.estado;
+
+const regions = catalog('regiones').filter((region) =>
+  processes.some((process) =>
+    process.clasificacion.geografia.region_ids.includes(region.id),
+  ),
+);
+const themes = catalog('temas').filter((theme) =>
+  processes.some(
+    (process) =>
+      process.clasificacion.tema_principal_id === theme.id ||
+      process.clasificacion.tema_secundario_ids.includes(theme.id),
+  ),
+);
+const signals = processes
+  .flatMap((process) =>
+    process.senales.map((signal) => ({
+      ...signal,
+      processSlug: process.slug,
+      processTitle: process.titulo,
+    })),
+  )
+  .sort((a, b) => b.fecha.localeCompare(a.fecha));
+const ranked = [...processes].sort(
+  (a, b) =>
+    b.valoraciones.relevancia_geopolitica -
+      a.valoraciones.relevancia_geopolitica ||
+    b.valoraciones.brecha - a.valoraciones.brecha,
+);
+const publishedCount = processes.filter(
+  (process) => stateFor(process) === 'publicado',
+).length;
+const inProgressCount = processes.length - publishedCount;
+const verifiedSources = sources.filter(
+  (source) => source.estado_verificacion === 'verificada',
+);
+const generatedAt = formatDate(
+  [...processes]
+    .map((process) => process.publicacion.actualizado_el)
+    .sort()
+    .at(-1),
+);
+const taxonomySections = [
+  { label: 'Temas', items: catalog('temas'), href: '/temas/' },
+  { label: 'Regiones', items: catalog('regiones'), href: '/regiones/' },
+  {
+    label: 'Espacios geopolíticos',
+    items: catalog('espacios_geopoliticos'),
+    href: '/espacios-geopoliticos/',
+  },
+  { label: 'Actores', items: catalog('actores'), href: '/actores/' },
+];
+
+const pointPosition = (value: number) =>
+  Math.max(4, Math.min(96, ((value - 1) / 4) * 100));
+---
+
+<SiteLayout
+  title="Dashboard público del Observatorio"
+  description="Vista pública de consulta del Observatorio de Memo Geopolítico: procesos, señales, fuentes, matriz y avance editorial."
+>
+  <div class="dashboard-page-shell">
+    <header class="dashboard-page-intro">
+      <div>
+        <p class="eyebrow">Observatorio · modo consulta</p>
+        <h1>Dashboard público de seguimiento.</h1>
+        <p>
+          Una vista del mismo corpus editorial para explorar procesos,
+          valoraciones, señales, fuentes y progreso. No incluye controles de
+          edición ni campos internos.
+        </p>
+      </div>
+      <a class="button-secondary" href="/observatorio/">Volver al Observatorio</a>
+    </header>
+
+    <aside class="dashboard-readonly-notice">
+      <strong>Vista pública de consulta.</strong>
+      <span>
+        Los datos se editan fuera del sitio, atraviesan revisión y se actualizan
+        mediante el mismo flujo documental que el resto de Memo Geopolítico.
+      </span>
+    </aside>
+
+    <div class="public-observatory-dashboard" data-public-dashboard>
+      <aside class="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <span aria-hidden="true">MG</span>
+          <div>
+            <strong>Observatorio</strong>
+            <small>Consulta pública</small>
+          </div>
+        </div>
+        <nav
+          class="dashboard-navigation"
+          aria-label="Secciones del dashboard"
+          role="tablist"
+        >
+          <button type="button" role="tab" aria-selected="true" data-dashboard-nav="panorama">
+            Panorama
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="procesos">
+            Procesos
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="matriz">
+            Matriz
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="senales">
+            Señales
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="fuentes">
+            Fuentes
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="expedientes">
+            Expedientes
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="taxonomia">
+            Taxonomía
+          </button>
+        </nav>
+        <footer>
+          <strong>Corte público</strong>
+          <small>{generatedAt}</small>
+        </footer>
+      </aside>
+
+      <div class="dashboard-workspace">
+        <header class="dashboard-topbar">
+          <div>
+            <p class="eyebrow">Dashboard público</p>
+            <h2 data-dashboard-title>Panorama</h2>
+          </div>
+          <span class="readonly-badge">Solo consulta</span>
+        </header>
+
+        <section
+          class="dashboard-view"
+          data-dashboard-view="panorama"
+          role="tabpanel"
+        >
+          <div class="dashboard-heading">
+            <div>
+              <p class="eyebrow">Estado del corpus</p>
+              <h3>Panorama editorial</h3>
+            </div>
+            <p>Datos públicos saneados del Observatorio.</p>
+          </div>
+
+          <div class="dashboard-metrics">
+            <article>
+              <span>Procesos</span>
+              <strong>{processes.length}</strong>
+              <small>expedientes visibles</small>
+            </article>
+            <article>
+              <span>Publicados</span>
+              <strong>{publishedCount}</strong>
+              <small>análisis disponibles</small>
+            </article>
+            <article>
+              <span>En curso</span>
+              <strong>{inProgressCount}</strong>
+              <small>documentación y revisión</small>
+            </article>
+            <article>
+              <span>Señales</span>
+              <strong>{signals.length}</strong>
+              <small>con fuente vinculada</small>
+            </article>
+            <article>
+              <span>Fuentes</span>
+              <strong>{verifiedSources.length}</strong>
+              <small>verificadas y expuestas</small>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="dashboard-panel">
+              <header>
+                <div>
+                  <p class="eyebrow">Prioridad estructural</p>
+                  <h3>Mayor relevancia</h3>
+                </div>
+              </header>
+              <ol class="dashboard-ranking">
+                {
+                  ranked.slice(0, 6).map((process, index) => (
+                    <li>
+                      <span>{index + 1}</span>
+                      <a href={`/observatorio/${process.slug}/`}>
+                        <strong>{process.titulo}</strong>
+                        <small>{editorialStageLabel(stateFor(process))}</small>
+                      </a>
+                      <b>{process.valoraciones.relevancia_geopolitica.toFixed(1)}</b>
+                    </li>
+                  ))
+                }
+              </ol>
+            </article>
+
+            <article class="dashboard-panel">
+              <header>
+                <div>
+                  <p class="eyebrow">Estados públicos</p>
+                  <h3>Flujo editorial</h3>
+                </div>
+              </header>
+              <div class="dashboard-status-list">
+                {
+                  [
+                    ['borrador', 'En documentación'],
+                    ['en_revision', 'En revisión editorial'],
+                    ['listo', 'Listo para publicación'],
+                    ['publicado', 'Publicado'],
+                  ].map(([state, label]) => {
+                    const count = processes.filter(
+                      (process) => stateFor(process) === state,
+                    ).length;
+                    const width = processes.length
+                      ? `${Math.max(2, (count / processes.length) * 100)}%`
+                      : '0%';
+                    return (
+                      <div>
+                        <span>{label}</span>
+                        <i><b style={`width:${width}`}></b></i>
+                        <strong>{count}</strong>
+                      </div>
+                    );
+                  })
+                }
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section
+          class="dashboard-view"
+          data-dashboard-view="procesos"
+          role="tabpanel"
+          hidden
+        >
+          <div class="dashboard-heading">
+            <div>
+              <p class="eyebrow">Macroeventos</p>
+              <h3>Procesos geopolíticos</h3>
+            </div>
+            <p data-dashboard-results-count>{processes.length} procesos</p>
+          </div>
+
+          <form class="dashboard-filters" data-dashboard-filters>
+            <label class="grow">
+              <span>Buscar</span>
+              <input type="search" name="q" placeholder="Título, región o tema" />
+            </label>
+            <label>
+              <span>Estado editorial</span>
+              <select name="state">
+                <option value="">Todos</option>
+                <option value="borrador">En documentación</option>
+                <option value="en_revision">En revisión editorial</option>
+                <option value="listo">Listo para publicación</option>
+                <option value="publicado">Publicado</option>
+              </select>
+            </label>
+            <label>
+              <span>Región</span>
+              <select name="region">
+                <option value="">Todas</option>
+                {regions.map((region) => <option value={region.id}>{region.nombre}</option>)}
+              </select>
+            </label>
+            <label>
+              <span>Tema</span>
+              <select name="theme">
+                <option value="">Todos</option>
+                {themes.map((theme) => <option value={theme.id}>{theme.nombre}</option>)}
+              </select>
+            </label>
+            <button type="reset">Restablecer</button>
+          </form>
+
+          <div class="dashboard-table-panel">
+            <div class="dashboard-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Proceso</th>
+                    <th>Estado</th>
+                    <th>Región</th>
+                    <th>Tema</th>
+                    <th>Relevancia</th>
+                    <th>Atención</th>
+                    <th>Brecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    processes.map((process) => {
+                      const themeId = process.clasificacion.tema_principal_id || '';
+                      const regionIds = process.clasificacion.geografia.region_ids;
+                      const regionNames = regionIds
+                        .map((id) => catalogMaps.regiones.get(id)?.nombre || id)
+                        .join(', ');
+                      const themeName = themeId
+                        ? catalogMaps.temas.get(themeId)?.nombre || themeId
+                        : 'Sin tema';
+                      const state = stateFor(process);
+                      const search = [
+                        process.titulo,
+                        process.sintesis,
+                        regionNames,
+                        themeName,
+                      ].join(' ').toLowerCase();
+                      return (
+                        <tr
+                          data-dashboard-process
+                          data-search={search}
+                          data-state={state}
+                          data-region={regionIds.join(' ')}
+                          data-theme={[
+                            themeId,
+                            ...process.clasificacion.tema_secundario_ids,
+                            ...process.clasificacion.subtema_ids,
+                          ].filter(Boolean).join(' ')}
+                        >
+                          <td>
+                            <a href={`/observatorio/${process.slug}/`}>
+                              <strong>{process.titulo}</strong>
+                            </a>
+                            <small>{process.sintesis}</small>
+                          </td>
+                          <td><span class={`dashboard-state dashboard-state--${state}`}>{editorialStageLabel(state)}</span></td>
+                          <td>{regionNames || 'Global'}</td>
+                          <td>{themeName}</td>
+                          <td><b class="dashboard-score">{process.valoraciones.relevancia_geopolitica.toFixed(1)}</b></td>
+                          <td><b class="dashboard-score">{process.valoraciones.atencion_mediatica.toFixed(1)}</b></td>
+                          <td><b class:list={['dashboard-score', { 'dashboard-score--gap': process.valoraciones.brecha > 0 }]}>{process.valoraciones.brecha > 0 ? '+' : ''}{process.valoraciones.brecha.toFixed(1)}</b></td>
+                        </tr>
+                      );
+                    })
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="dashboard-empty" data-dashboard-filter-empty hidden>
+            Ningún proceso coincide con los filtros.
+          </p>
+        </section>
+
+        <section
+          class="dashboard-view"
+          data-dashboard-view="matriz"
+          role="tabpanel"
+          hidden
+        >
+          <div class="dashboard-heading">
+            <div>
+              <p class="eyebrow">Comparación editorial</p>
+              <h3>Matriz de relevancia y atención</h3>
+            </div>
+            <p>Escala provisional de 1 a 5.</p>
+          </div>
+          <div class="dashboard-matrix" aria-label="Matriz de procesos">
+            <span class="matrix-label matrix-label--top-left">Alta relevancia · baja atención</span>
+            <span class="matrix-label matrix-label--top-right">Alta relevancia · alta atención</span>
+            <span class="matrix-label matrix-label--bottom-left">Baja relevancia · baja atención</span>
+            <span class="matrix-label matrix-label--bottom-right">Baja relevancia · alta atención</span>
+            {
+              processes.map((process) => (
+                <a
+                  class="dashboard-matrix-point"
+                  href={`/observatorio/${process.slug}/`}
+                  style={`left:${pointPosition(process.valoraciones.atencion_mediatica)}%;bottom:${pointPosition(process.valoraciones.relevancia_geopolitica)}%`}
+                  aria-label={`${process.titulo}: relevancia ${process.valoraciones.relevancia_geopolitica}, atención ${process.valoraciones.atencion_mediatica}`}
+                >
+                  <span>{process.titulo}</span>
+                </a>
+              ))
+            }
+          </div>
+          <div class="dashboard-axis dashboard-axis--x">Atención mediática 1 → 5</div>
+          <div class="dashboard-matrix-note">
+            <a href="/metodologia/relevancia-atencion-mediatica/">
+              Cómo se están definiendo estas valoraciones
+            </a>
+          </div>
+        </section>
+
+        <section
+          class="dashboard-view"
+          data-dashboard-view="senales"
+          role="tabpanel"
+          hidden
+        >
+          <div class="dashboard-heading">
+            <div>
+              <p class="eyebrow">Evidencia trazable</p>
+              <h3>Señales expuestas</h3>
+            </div>
+            <p>{signals.length} señales con fuente vinculada</p>
+          </div>
+          <div class="dashboard-table-panel">
+            <div class="dashboard-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Señal</th>
+                    <th>Proceso</th>
+                    <th>Verificación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    signals.map((signal) => (
+                      <tr>
+                        <td>{formatDate(signal.fecha)}</td>
+                        <td>
+                          <strong>{signal.titulo}</strong>
+                          <small>{signal.resumen}</small>
+                        </td>
+                        <td><a href={`/observatorio/${signal.processSlug}/`}>{signal.processTitle}</a></td>
+                        <td><span class="dashboard-state dashboard-state--publicado">{humanize(signal.estado_verificacion)}</span></td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="dashboard-view"
+          data-dashboard-view="fuentes"
+          role="tabpanel"
+          hidden
+        >
+          <div class="dashboard-heading">
+            <div>
+              <p class="eyebrow">Fuentes públicas</p>
+              <h3>Documentación expuesta</h3>
+            </div>
+            <p>{sources.length} fuentes aptas para consulta pública</p>
+          </div>
+          <div class="dashboard-table-panel">
+            <div class="dashboard-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Medio</th>
+                    <th>Publicación</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    sources.map((source) => (
+                      <tr>
+                        <td>{source.medio}</td>
+                        <td>
+                          <a href={source.url} target="_blank" rel="noopener noreferrer">
+                            <strong>{source.titulo || source.medio}</strong>
+                          </a>
+                          <small>{source.tipo} · {source.idioma}</small>
+                        </td>
+                        <td>{formatDate(source.fecha)}</td>
+                        <td><span class="dashboard-state dashboard-state--publicado">{humanize(source.estado_verificacion)}</span></td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="dashboard-view"
+          data-dashboard-view="expedientes"
+          role="tabpanel"
+          hidden
+        >
+          <div class="dashboard-heading">
+            <div>
+              <p class="eyebrow">Seguimiento público</p>
+              <h3>Expedientes y próximos pasos</h3>
+            </div>
+            <p>{processes.length} expedientes</p>
+          </div>
+          <div class="dashboard-expedients">
+            {
+              processes.map((process) => {
+                const state = stateFor(process);
+                return (
+                  <article>
+                    <div>
+                      <span class={`dashboard-state dashboard-state--${state}`}>
+                        {editorialStageLabel(state)}
+                      </span>
+                      <h4><a href={`/observatorio/${process.slug}/`}>{process.titulo}</a></h4>
+                      <p>{process.progreso_publico.proximo_paso}</p>
+                    </div>
+                    <dl>
+                      <div>
+                        <dt>Actualizado</dt>
+                        <dd>{formatDate(process.publicacion.actualizado_el)}</dd>
+                      </div>
+                      <div>
+                        <dt>Hitos</dt>
+                        <dd>{process.progreso_publico.hitos_completados.length}</dd>
+                      </div>
+                    </dl>
+                  </article>
+                );
+              })
+            }
+          </div>
+        </section>
+
+        <section
+          class="dashboard-view"
+          data-dashboard-view="taxonomia"
+          role="tabpanel"
+          hidden
+        >
+          <div class="dashboard-heading">
+            <div>
+              <p class="eyebrow">Clasificación</p>
+              <h3>Taxonomía pública</h3>
+            </div>
+            <p>Ejes utilizados por los expedientes visibles.</p>
+          </div>
+          <div class="dashboard-taxonomy">
+            {
+              taxonomySections.map(({ label, items, href }) => (
+                <article>
+                  <span>{items.length}</span>
+                  <h4>{label}</h4>
+                  <p>Clasificaciones activas en el corpus público.</p>
+                  <a href={href}>Explorar</a>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import '../../../scripts/public-observatory-dashboard';
+  </script>
+</SiteLayout>

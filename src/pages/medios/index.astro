@@ -1,0 +1,112 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { mediaRecords } from '../../lib/data';
+
+const unique = (values: string[]) =>
+  [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es'));
+
+const regions = unique(mediaRecords.map((item) => item.region));
+const functions = unique(mediaRecords.map((item) => item.funcion));
+const perspectives = unique(mediaRecords.map((item) => item.perspectiva));
+---
+
+<SiteLayout
+  title="Medios"
+  description="Directorio profesional de medios y fuentes para análisis geopolítico."
+>
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Directorio de medios</p>
+        <h1>Fuentes clasificadas para una lectura crítica.</h1>
+      </div>
+      <p>
+        El catálogo se mantiene fuera de línea en su Excel canónico. Esta vista
+        pública permite cruzar región, función epistemológica, perspectiva y
+        criterios de calidad sin llamadas externas.
+      </p>
+    </header>
+
+    {
+      mediaRecords.length ? (
+        <>
+          <form class="media-toolbar" data-media-filters>
+            <label class="sr-only" for="media-search">Buscar medio</label>
+            <input id="media-search" type="search" name="q" placeholder="Buscar medio, sede o uso" />
+            <label class="sr-only" for="media-region">Región</label>
+            <select id="media-region" name="region">
+              <option value="">Todas las regiones</option>
+              {regions.map((item) => <option value={item}>{item}</option>)}
+            </select>
+            <label class="sr-only" for="media-function">Función</label>
+            <select id="media-function" name="function">
+              <option value="">Todas las funciones</option>
+              {functions.map((item) => <option value={item}>{item}</option>)}
+            </select>
+            <label class="sr-only" for="media-perspective">Perspectiva</label>
+            <select id="media-perspective" name="perspective">
+              <option value="">Todas las perspectivas</option>
+              {perspectives.map((item) => <option value={item}>{item}</option>)}
+            </select>
+          </form>
+          <p class="media-summary" data-media-count>{mediaRecords.length} medios</p>
+          <div class="media-table-wrap">
+            <table class="media-table">
+              <thead>
+                <tr>
+                  <th>Medio</th>
+                  <th>Región</th>
+                  <th>Función</th>
+                  <th>Perspectiva</th>
+                  <th>Puntuación</th>
+                  <th>Uso recomendado</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mediaRecords.map((item) => (
+                  <tr
+                    data-media-row
+                    data-search={[
+                      item.nombre,
+                      item.sede,
+                      item.region,
+                      item.uso,
+                      item.perspectiva,
+                    ].join(' ').toLowerCase()}
+                    data-region={item.region}
+                    data-function={item.funcion}
+                    data-perspective={item.perspectiva}
+                  >
+                    <td>
+                      <a href={item.url} target="_blank" rel="noopener noreferrer">
+                        {item.nombre}
+                      </a>
+                      <br />
+                      <small>{item.media_id}</small>
+                    </td>
+                    <td>{item.region}</td>
+                    <td>{item.funcion}</td>
+                    <td>{item.perspectiva}</td>
+                    <td><span class="media-score">{item.puntuacion.toFixed(1)}</span>/5</td>
+                    <td>{item.uso}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <section class="section-shell">
+          <div class="empty-state">
+            <h2>Catálogo pendiente de sincronización</h2>
+            <p>Ejecutá la sincronización local desde el Excel maestro.</p>
+          </div>
+        </section>
+      )
+    }
+  </div>
+
+  <script>
+    import '../../scripts/media-filters';
+  </script>
+</SiteLayout>

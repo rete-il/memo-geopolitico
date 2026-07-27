@@ -1,0 +1,108 @@
+---
+import { catalogMaps, labelFor } from '../lib/data';
+import { getPublicationEntries } from '../lib/publications';
+import { editorialStageLabel, formatDate } from '../lib/text';
+import type { PublicProcess } from '../lib/types';
+import RatingPair from './RatingPair.astro';
+
+interface Props {
+  process: PublicProcess;
+  editorialPreview?: boolean;
+}
+
+const { process } = Astro.props;
+const themeItem = process.clasificacion.tema_principal_id
+  ? catalogMaps.temas.get(process.clasificacion.tema_principal_id)
+  : undefined;
+const geographyItems = [
+  ...process.clasificacion.geografia.region_ids.map((id) =>
+    catalogMaps.regiones.get(id),
+  ),
+  ...process.clasificacion.geografia.subregion_ids.map((id) =>
+    catalogMaps.subregiones.get(id),
+  ),
+].filter(Boolean);
+const theme = labelFor(catalogMaps.temas, process.clasificacion.tema_principal_id);
+const geography = geographyItems.map((item) => item?.nombre || '').filter(Boolean);
+const relatedPublication = (await getPublicationEntries({
+  includePreview: true,
+})).find(
+  ({ data }) =>
+    data.macroevento_principal_id === process.macroevento_id ||
+    data.macroevento_secundario_ids.includes(process.macroevento_id),
+);
+const publicationHref = relatedPublication?.data.publicacion.estado === 'publicado'
+  ? `/publicaciones/${relatedPublication.data.slug}/`
+  : '';
+const editorialState =
+  relatedPublication?.data.publicacion.estado || process.publicacion.estado;
+---
+
+<article
+  class="process-card"
+  data-process-card
+  data-search={[
+    process.titulo,
+    process.sintesis,
+    theme,
+    ...geography,
+    ...process.clasificacion.actor_ids,
+  ].join(' ').toLowerCase()}
+  data-region={[
+    ...process.clasificacion.geografia.region_ids,
+    ...process.clasificacion.geografia.subregion_ids,
+    ...process.clasificacion.geografia.pais_ids,
+    ...process.clasificacion.geografia.espacio_ids,
+  ].join(' ')}
+  data-theme={[
+    process.clasificacion.tema_principal_id,
+    ...process.clasificacion.tema_secundario_ids,
+    ...process.clasificacion.subtema_ids,
+  ].filter(Boolean).join(' ')}
+  data-actor={process.clasificacion.actor_ids.join(' ')}
+  data-tracking-state={process.estado_seguimiento}
+  data-editorial-state={editorialState}
+  data-relevance={process.valoraciones.relevancia_geopolitica}
+  data-attention={process.valoraciones.atencion_mediatica}
+>
+  <div class="process-card-main">
+    <div class="card-meta">
+      {
+        geographyItems[0] && (
+          <a href={`/regiones/${geographyItems[0]?.slug}/`}>
+            {geographyItems[0]?.nombre}
+          </a>
+        )
+      }
+      {
+        themeItem && (
+          <a href={`/temas/${themeItem.slug}/`}>{themeItem.nombre}</a>
+        )
+      }
+      <span class="draft-chip">{editorialStageLabel(editorialState)}</span>
+    </div>
+    <h2>
+      {
+        publicationHref ? (
+          <a href={publicationHref}>{process.titulo}</a>
+        ) : (
+          <span title="El post todavía no está publicado">{process.titulo}</span>
+        )
+      }
+    </h2>
+    <p>{process.sintesis}</p>
+    <footer>
+      <span>Actualizado {formatDate(process.publicacion.actualizado_el)}</span>
+      <a href={`/observatorio/${process.slug}/`}>
+        Abrir expediente <span aria-hidden="true">→</span>
+      </a>
+    </footer>
+  </div>
+  <RatingPair
+    relevance={process.valoraciones.relevancia_geopolitica}
+    attention={process.valoraciones.atencion_mediatica}
+    compact
+    publicationTitle={relatedPublication?.data.titulo || process.titulo}
+    methodHref={`/metodologia/relevancia-atencion-mediatica/${process.slug}/`}
+  />
+</article>

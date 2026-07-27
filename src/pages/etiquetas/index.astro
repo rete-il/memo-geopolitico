@@ -1,0 +1,46 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { catalog, processesForLabel } from '../../lib/data';
+
+const items = catalog('etiquetas').filter(
+  (item) => processesForLabel(item.id).length > 0,
+);
+---
+
+<SiteLayout title="Etiquetas" description="Etiquetas transversales del archivo de Memo Geopolítico.">
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Explorar</p>
+        <h1>Etiquetas para relaciones específicas.</h1>
+      </div>
+      <p>
+        Las etiquetas complementan regiones, temas y actores cuando una relación
+        editorial necesita una clasificación más precisa.
+      </p>
+    </header>
+    <section class="section-shell">
+      {
+        items.length ? (
+          <div class="explore-grid">
+            {items.map((item) => (
+              <article class="explore-card">
+                <h2><a href={`/etiquetas/${item.slug}/`}>{item.nombre}</a></h2>
+                <p>{processesForLabel(item.id).length} procesos relacionados.</p>
+                <a href={`/etiquetas/${item.slug}/`}>Explorar etiqueta</a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <h2>Etiquetas en preparación</h2>
+            <p>
+              Todavía no hay etiquetas públicas asignadas. La navegación por
+              regiones, temas, actores y espacios ya está disponible.
+            </p>
+          </div>
+        )
+      }
+    </section>
+  </div>
+</SiteLayout>

@@ -1,0 +1,51 @@
+---
+import ProcessCard from '../../components/ProcessCard.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import {
+  catalog,
+  editorialPreviewEnabled,
+  processesForRegion,
+} from '../../lib/data';
+import type { CatalogItem } from '../../lib/types';
+
+export function getStaticPaths() {
+  const allItems = [
+    ...catalog('regiones'),
+    ...catalog('subregiones'),
+    ...catalog('paises_territorios'),
+    ...catalog('espacios_geopoliticos'),
+  ];
+  return allItems
+    .filter((item) => processesForRegion(item.id).length > 0)
+    .map((item) => ({
+      params: { slug: item.slug },
+      props: { item },
+    }));
+}
+
+interface Props {
+  item: CatalogItem;
+}
+
+const { item } = Astro.props;
+const related = processesForRegion(item.id);
+---
+
+<SiteLayout title={item.nombre} description={`Procesos vinculados con ${item.nombre}.`}>
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Geografía</p>
+        <h1>{item.nombre}</h1>
+      </div>
+      <p>{related.length} procesos del Observatorio vinculados con esta geografía.</p>
+    </header>
+    <section class="section-shell">
+      <div class="process-grid">
+        {related.map((process) => (
+          <ProcessCard process={process} editorialPreview={editorialPreviewEnabled} />
+        ))}
+      </div>
+    </section>
+  </div>
+</SiteLayout>

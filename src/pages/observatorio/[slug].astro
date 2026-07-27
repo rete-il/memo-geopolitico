@@ -1,0 +1,345 @@
+---
+import PublicationCard from '../../components/PublicationCard.astro';
+import RatingPair from '../../components/RatingPair.astro';
+import SignalTimeline from '../../components/SignalTimeline.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import {
+  catalogMaps,
+  editorialPreviewEnabled,
+  labelFor,
+  processes,
+  sourceById,
+} from '../../lib/data';
+import {
+  editorialStageLabel,
+  formatDate,
+  humanize,
+} from '../../lib/text';
+import type { PublicProcess } from '../../lib/types';
+import { getPublicationEntries } from '../../lib/publications';
+
+export function getStaticPaths() {
+  return processes.map((process) => ({
+    params: { slug: process.slug },
+    props: { process },
+  }));
+}
+
+interface Props {
+  process: PublicProcess;
+}
+
+const { process } = Astro.props as Props;
+const processSources = process.fuente_ids
+  .map((id) => sourceById.get(id))
+  .filter(Boolean);
+
+const publications = (await getPublicationEntries()).filter(
+  ({ data }) =>
+    data.macroevento_principal_id === process.macroevento_id ||
+    data.macroevento_secundario_ids.includes(process.macroevento_id),
+);
+const publicationMetadata = (await getPublicationEntries({
+  includePreview: true,
+})).find(
+  ({ data }) =>
+    data.macroevento_principal_id === process.macroevento_id ||
+    data.macroevento_secundario_ids.includes(process.macroevento_id),
+);
+
+const themeIds = [
+  process.clasificacion.tema_principal_id,
+  ...process.clasificacion.tema_secundario_ids,
+].filter(Boolean) as string[];
+
+const geographyItems = [
+  ...process.clasificacion.geografia.region_ids.map((id) => ({
+    id,
+    item: catalogMaps.regiones.get(id),
+  })),
+  ...process.clasificacion.geografia.subregion_ids.map((id) => ({
+    id,
+    item: catalogMaps.subregiones.get(id),
+  })),
+  ...process.clasificacion.geografia.pais_ids.map((id) => ({
+    id,
+    item: catalogMaps.paises.get(id),
+  })),
+  ...process.clasificacion.geografia.espacio_ids.map((id) => ({
+    id,
+    item: catalogMaps.espacios.get(id),
+  })),
+];
+---
+
+<SiteLayout
+  title={process.titulo}
+  description={process.sintesis}
+>
+  <div class="page-shell">
+    <header class="process-hero">
+      <p class="eyebrow">Expediente del Observatorio</p>
+      <h1>{process.titulo}</h1>
+      <p class="lead">{process.sintesis}</p>
+      <div class="hero-meta">
+        <span>Actualizado {formatDate(process.publicacion.actualizado_el)}</span>
+        <span>{humanize(process.estado_seguimiento)}</span>
+        {
+          process.publicacion.estado !== 'publicado' && (
+            <span class="draft-chip">
+              {editorialStageLabel(process.publicacion.estado)}
+            </span>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="process-layout">
+      <article class="process-content">
+        {
+          process.publicacion.estado !== 'publicado' && (
+            <aside class="editorial-note development-note">
+              <strong>Expediente en desarrollo.</strong>
+              <span>
+                Esta ficha permite seguir el trabajo editorial en curso. Su
+                documentación, valoraciones y contenido pueden cambiar durante
+                la investigación y revisión.
+              </span>
+            </aside>
+          )
+        }
+
+        <section class="content-section">
+          <h2>Qué está ocurriendo</h2>
+          <p>{process.que_esta_ocurriendo || process.sintesis}</p>
+        </section>
+
+        <section class="content-section">
+          <h2>Por qué importa</h2>
+          <p>
+            {
+              process.por_que_importa ||
+                'Esta sección permanece pendiente de revisión editorial.'
+            }
+          </p>
+        </section>
+
+        {
+          process.claves_estructurales.length > 0 && (
+            <section class="content-section">
+              <h2>Claves estructurales</h2>
+              <ul>
+                {process.claves_estructurales.map((item) => <li>{item}</li>)}
+              </ul>
+            </section>
+          )
+        }
+
+        <section class="content-section">
+          <h2>Señales y cronología</h2>
+          {
+            process.senales.length ? (
+              <SignalTimeline signals={process.senales} processSlug={process.slug} />
+            ) : (
+              <p>
+                Aún no hay señales con fuentes vinculadas aptas para esta
+                proyección.
+              </p>
+            )
+          }
+        </section>
+
+        {
+          process.indicadores_seguimiento.length > 0 && (
+            <section class="content-section">
+              <h2>Indicadores para seguir</h2>
+              <ul>
+                {process.indicadores_seguimiento.map((item) => <li>{item}</li>)}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          Object.values(process.escenarios).some(Boolean) && (
+            <section class="content-section">
+              <h2>Escenarios</h2>
+              <div class="explore-grid">
+                {process.escenarios.base && (
+                  <article class="explore-card">
+                    <h3>Base</h3>
+                    <p>{process.escenarios.base}</p>
+                  </article>
+                )}
+                {process.escenarios.adverso && (
+                  <article class="explore-card">
+                    <h3>Adverso</h3>
+                    <p>{process.escenarios.adverso}</p>
+                  </article>
+                )}
+                {process.escenarios.transformador && (
+                  <article class="explore-card">
+                    <h3>Transformador</h3>
+                    <p>{process.escenarios.transformador}</p>
+                  </article>
+                )}
+              </div>
+            </section>
+          )
+        }
+
+        {
+          publications.length > 0 && (
+            <section class="content-section">
+              <h2>Publicaciones relacionadas</h2>
+              <div class="publication-grid">
+                {publications.map((publication) => (
+                  <PublicationCard
+                    publication={publication.data}
+                    editorialPreview={editorialPreviewEnabled}
+                  />
+                ))}
+              </div>
+            </section>
+          )
+        }
+
+        <section class="content-section">
+          <h2>Fuentes</h2>
+          {
+            processSources.length ? (
+              <ol class="source-list">
+                {processSources.map((source) => (
+                  <li>
+                    <a href={source?.url} target="_blank" rel="noopener noreferrer">
+                      {source?.titulo || source?.medio}
+                    </a>
+                    <p>
+                      {source?.medio} · {formatDate(source?.fecha)} ·{' '}
+                      {source?.estado_verificacion}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <p>No hay fuentes proyectadas para este expediente.</p>
+            )
+          }
+        </section>
+      </article>
+
+      <aside class="process-sidebar" aria-label="Clasificación del proceso">
+        <section class="sidebar-card progress-card">
+          <p class="eyebrow">Progreso público</p>
+          <h2>{editorialStageLabel(process.progreso_publico.etapa)}</h2>
+          <dl>
+            <div>
+              <dt>Última actualización</dt>
+              <dd>{formatDate(process.publicacion.actualizado_el)}</dd>
+            </div>
+            <div>
+              <dt>Señales expuestas</dt>
+              <dd>{process.senales.length}</dd>
+            </div>
+            <div>
+              <dt>Fuentes expuestas</dt>
+              <dd>{process.fuente_ids.length}</dd>
+            </div>
+          </dl>
+          <h3>Próximo paso</h3>
+          <p>{process.progreso_publico.proximo_paso}</p>
+          <h3>Hitos completados</h3>
+          <ul>
+            {process.progreso_publico.hitos_completados.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <RatingPair
+          relevance={process.valoraciones.relevancia_geopolitica}
+          attention={process.valoraciones.atencion_mediatica}
+          publicationTitle={publicationMetadata?.data.titulo || process.titulo}
+          methodHref={`/metodologia/relevancia-atencion-mediatica/${process.slug}/`}
+        />
+
+        <section class="sidebar-card">
+          <h2>Temas</h2>
+          <ul class="taxonomy-list">
+            {
+              themeIds.map((id) => {
+                const item = catalogMaps.temas.get(id);
+                return (
+                  <li>
+                    <a href={`/temas/${item?.slug || id}/`}>
+                      {labelFor(catalogMaps.temas, id)}
+                    </a>
+                  </li>
+                );
+              })
+            }
+            {
+              process.clasificacion.subtema_ids.map((id) => (
+                <li>
+                  <a href={`/temas/${catalogMaps.subtemas.get(id)?.slug || id}/`}>
+                    {labelFor(catalogMaps.subtemas, id)}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="sidebar-card">
+          <h2>Geografía</h2>
+          <ul class="taxonomy-list">
+            {
+              geographyItems.map(({ id, item }) => (
+                <li>
+                  <a
+                    href={
+                      catalogMaps.espacios.has(id)
+                        ? `/espacios-geopoliticos/${item?.slug || id}/`
+                        : `/regiones/${item?.slug || id}/`
+                    }
+                  >
+                    {item?.nombre || id}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="sidebar-card">
+          <h2>Actores</h2>
+          <ul class="taxonomy-list">
+            {
+              process.clasificacion.actor_ids.map((id) => (
+                <li>
+                  <a href={`/actores/${catalogMaps.actores.get(id)?.slug || id}/`}>
+                    {labelFor(catalogMaps.actores, id)}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        {
+          process.metricas_editoriales && editorialPreviewEnabled && (
+            <section class="sidebar-card">
+              <h2>Control editorial</h2>
+              <p>
+                {process.metricas_editoriales.senales_omitidas_sin_fuente} señales
+                omitidas por falta de fuente vinculada.
+              </p>
+              <p>
+                {process.metricas_editoriales.fuentes_pendientes} fuentes
+                pendientes de verificación.
+              </p>
+            </section>
+          )
+        }
+      </aside>
+    </div>
+  </div>
+</SiteLayout>

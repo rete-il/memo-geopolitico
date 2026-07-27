@@ -1,0 +1,37 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { catalog, processesForRegion } from '../../lib/data';
+
+const items = catalog('espacios_geopoliticos').filter(
+  (item) => processesForRegion(item.id).length > 0,
+);
+---
+
+<SiteLayout
+  title="Espacios geopolíticos"
+  description="Mares, estrechos, corredores y espacios transfronterizos del Observatorio."
+>
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Explorar</p>
+        <h1>Espacios que no caben dentro de una frontera.</h1>
+      </div>
+      <p>
+        Mares, estrechos, corredores y zonas transfronterizas organizan procesos
+        que no pueden comprenderse solamente desde los Estados.
+      </p>
+    </header>
+    <section class="section-shell">
+      <div class="explore-grid">
+        {items.map((item) => (
+          <article class="explore-card">
+            <h2><a href={`/espacios-geopoliticos/${item.slug}/`}>{item.nombre}</a></h2>
+            <p>{processesForRegion(item.id).length} procesos relacionados.</p>
+            <a href={`/espacios-geopoliticos/${item.slug}/`}>Explorar espacio</a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+</SiteLayout>

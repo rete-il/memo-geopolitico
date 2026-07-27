@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import PreviewBanner from '../components/PreviewBanner.astro';
+import { editorialPreviewEnabled } from '../lib/data';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = 'Memo Geopolítico',
+  description = 'Observatorio y publicaciones sobre procesos geopolíticos de mediano y largo plazo.',
+  canonicalPath,
+  noindex = false,
+} = Astro.props;
+
+const fullTitle =
+  title === 'Memo Geopolítico' ? title : `${title} · Memo Geopolítico`;
+const canonicalURL = new URL(
+  canonicalPath || Astro.url.pathname,
+  Astro.site || 'https://memogeopolitico.com',
+);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101c2c" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    {editorialPreviewEnabled && <PreviewBanner />}
+    <Header />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,2606 @@
+{
+  "formato": "memo-geopolitico-publico",
+  "schema_version": 2,
+  "generado_el": "2026-07-26",
+  "procesos": [
+    {
+      "schema_version": 2,
+      "macroevento_id": "rail-baltica-movilidad-militar-europea",
+      "slug": "rail-baltica-movilidad-militar-europea",
+      "titulo": "Rail Baltica como columna de movilidad militar europea",
+      "sintesis": "Rail Baltica deja de ser solamente un proyecto de mercado único y se convierte en infraestructura potencial para el refuerzo militar del flanco oriental europeo. Su utilidad depende de la continuidad transfronteriza, la coordinación y la financiación.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-23"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "seguridad-conflicto",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "europa"
+          ],
+          "subregion_ids": [
+            "estados-balticos",
+            "europa-central"
+          ],
+          "pais_ids": [],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "estonia",
+          "letonia",
+          "lituania",
+          "polonia",
+          "union-europea",
+          "otan",
+          "rb-rail"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Rail Baltica deja de ser solamente un proyecto de mercado único y se convierte en infraestructura potencial para el refuerzo militar del flanco oriental europeo. Su utilidad depende de la continuidad transfronteriza, la coordinación y la financiación.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 3,
+        "brecha": 1.8,
+        "confianza": "alta",
+        "incertidumbre": 3
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Asignaciones del marco financiero plurianual",
+        "Adjudicaciones de obra",
+        "Avance del tramo letón",
+        "Puente sobre el Daugava",
+        "Continuidad ferroviaria de ancho europeo",
+        "Uso durante ejercicios de la OTAN",
+        "Devolución de fondos europeos"
+      ],
+      "escenarios": {
+        "base": "La primera fase queda incompleta, pero algunos tramos adquieren utilidad militar.",
+        "adverso": "La discontinuidad del tramo letón reduce el valor estratégico del sistema completo.",
+        "transformador": "La Unión Europea financia crecientemente Rail Baltica como infraestructura de defensa y garantiza su continuidad operacional."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "ferrocarril-china-kirguistan-uzbekistan",
+      "slug": "ferrocarril-china-kirguistan-uzbekistan",
+      "titulo": "Ferrocarril China–Kirguistán–Uzbekistán: bypass meridional de Eurasia",
+      "sintesis": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-23"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "asia"
+          ],
+          "subregion_ids": [
+            "china-occidental",
+            "asia-central"
+          ],
+          "pais_ids": [],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "china",
+          "kirguistan",
+          "uzbekistan",
+          "kazajistan",
+          "rusia"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito.",
+      "por_que_importa": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito. El ferrocarril China–Kirguistán–Uzbekistán promete conectar Xinjiang con el valle de Ferganá y redes hacia el oeste. Reduce dependencia de trayectos por Kazajistán y Rusia. El trazado montañoso exige decenas de puentes y túneles, lo que convierte la transición a la obra física en una prueba política y financiera. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.5,
+        "atencion_mediatica": 1,
+        "brecha": 3.5,
+        "confianza": "media-alta",
+        "incertidumbre": 4
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Porcentaje construido",
+        "Avance de túneles y puentes",
+        "Desembolsos de financiación",
+        "Solución al cambio de ancho ferroviario",
+        "Terminal de Makmal",
+        "Expropiaciones",
+        "Conexiones occidentales"
+      ],
+      "escenarios": {
+        "base": "La construcción avanza lentamente, pero alcanza un grado difícil de revertir.",
+        "adverso": "Los costes, la seguridad, las expropiaciones y la oposición local retrasan o reducen el proyecto.",
+        "transformador": "El ferrocarril se conecta con el Caspio, Irán o Afganistán y crea un bypass meridional euroasiático."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "land-bridge-tailandes-malaca",
+      "slug": "land-bridge-tailandes-malaca",
+      "titulo": "Land Bridge tailandés como alternativa parcial a Malaca",
+      "sintesis": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "en_revision",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-23"
+      },
+      "progreso_publico": {
+        "etapa": "en_revision",
+        "proximo_paso": "Revisar coherencia, fuentes y valoraciones antes de autorizar la publicación.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado",
+          "Revisión editorial iniciada"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "regional",
+          "region_ids": [
+            "asia"
+          ],
+          "subregion_ids": [
+            "sudeste-asiatico"
+          ],
+          "pais_ids": [],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "tailandia",
+          "china",
+          "singapur",
+          "malasia",
+          "japon",
+          "navieras",
+          "inversores",
+          "comunidades-locales"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local.",
+      "por_que_importa": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local. Tailandia propone dos puertos, en el golfo de Tailandia y el mar de Andamán, unidos por unos 90 kilómetros de carretera y ferrocarril. El proyecto evitaría parte del paso por Malaca. A diferencia de un canal, requiere doble manipulación de la carga y grandes volúmenes para justificar una inversión cercana a US$30.000 millones. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4,
+        "atencion_mediatica": 3,
+        "brecha": 1,
+        "confianza": "media",
+        "incertidumbre": 5
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Licitación",
+        "Selección de inversor ancla",
+        "Compromisos de navieras",
+        "Expropiaciones",
+        "Conexión ferroviaria con China",
+        "Resistencia local",
+        "Coste por contenedor"
+      ],
+      "escenarios": {
+        "base": "Tailandia adjudica una concesión reducida o desarrolla el proyecto por fases.",
+        "adverso": "Los costes de doble manipulación, la oposición local y la falta de demanda vuelven inviable el modelo.",
+        "transformador": "Un inversor ancla y la conexión con redes regionales convierten el Land Bridge en un nodo logístico de influencia china."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "hormuz-bab-el-mandeb-suez",
+      "slug": "hormuz-bab-el-mandeb-suez",
+      "titulo": "Conversión del eje Hormuz–Bab el-Mandeb–Suez en un sistema de riesgo correlacionado",
+      "sintesis": "La vulnerabilidad simultánea de Hormuz, Bab el-Mandeb y Suez impulsa una transición desde la logística de máxima eficiencia hacia redes redundantes: oleoductos terrestres, puertos exteriores al Golfo, almacenamiento, rutas por el Cabo y corredores ferroviarios.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [
+          "energia-recursos-estrategicos",
+          "geoeconomia-comercio-sanciones"
+        ],
+        "subtema_ids": [
+          "rutas-maritimas-estrechos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "oriente-medio",
+            "europa",
+            "africa"
+          ],
+          "subregion_ids": [
+            "africa-austral"
+          ],
+          "pais_ids": [],
+          "espacio_ids": [
+            "mar-rojo",
+            "mediterraneo"
+          ]
+        },
+        "actor_ids": [
+          "iran",
+          "huties",
+          "estados-unidos",
+          "arabia-saudita",
+          "emiratos-arabes-unidos",
+          "egipto",
+          "irak",
+          "navieras",
+          "aseguradoras"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "La vulnerabilidad simultánea de Hormuz, Bab el-Mandeb y Suez impulsa una transición desde la logística de máxima eficiencia hacia redes redundantes: oleoductos terrestres, puertos exteriores al Golfo, almacenamiento, rutas por el Cabo y corredores ferroviarios.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 5,
+        "atencion_mediatica": 5,
+        "brecha": 0,
+        "confianza": "alta",
+        "incertidumbre": 2
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Tránsitos diarios por Suez y Hormuz",
+        "Primas de riesgo de guerra",
+        "Capacidad de Fujairah",
+        "Ampliación de oleoductos Este-Oeste",
+        "Tiempos por el Cabo"
+      ],
+      "escenarios": {
+        "base": "Normalización parcial con redundancias permanentes.",
+        "adverso": "Crisis encadenada en dos estrechos.",
+        "transformador": "Desplazamiento estructural hacia puertos del Índico, oleoductos y transporte terrestre."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "cables-submarinos-infraestructura-critica",
+      "slug": "cables-submarinos-infraestructura-critica",
+      "titulo": "Securitización de los corredores submarinos de datos y electricidad",
+      "sintesis": "Los cables submarinos dejan de tratarse como infraestructura comercial invisible y pasan a integrarse en la planificación de defensa, inteligencia, soberanía digital y resiliencia económica.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "tecnologia-poder-digital",
+        "tema_secundario_ids": [
+          "infraestructura-conectividad"
+        ],
+        "subtema_ids": [
+          "infraestructura-critica-resiliencia",
+          "movilidad-militar-infraestructura-doble-uso",
+          "cables-submarinos",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "global",
+            "europa",
+            "oriente-medio"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [],
+          "espacio_ids": [
+            "mar-baltico",
+            "mar-rojo",
+            "mediterraneo",
+            "mar-del-norte"
+          ]
+        },
+        "actor_ids": [
+          "estados-unidos",
+          "china",
+          "rusia",
+          "union-europea",
+          "reino-unido",
+          "otan",
+          "operadores-de-telecomunicaciones",
+          "hyperscalers"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Los cables submarinos dejan de tratarse como infraestructura comercial invisible y pasan a integrarse en la planificación de defensa, inteligencia, soberanía digital y resiliencia económica.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 5,
+        "atencion_mediatica": 3,
+        "brecha": 2,
+        "confianza": "media-alta",
+        "incertidumbre": 3
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Buques de inteligencia cerca de trazados",
+        "Tiempos de reparación",
+        "Concentración por estaciones de amarre",
+        "Incidentes sin atribución"
+      ],
+      "escenarios": {
+        "base": "Mayor vigilancia, duplicación y reparación rápida.",
+        "adverso": "Sabotajes ambiguos y recurrentes.",
+        "transformador": "Bloques digitales con cables, nubes y estándares parcialmente separados."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "corredor-medio-caucaso-sur",
+      "slug": "corredor-medio-caucaso-sur",
+      "titulo": "Institucionalización del Corredor Medio y conversión del Cáucaso Sur en bisagra euroasiática",
+      "sintesis": "La Unión Europea, Turquía, Estados Unidos y los Estados de Asia Central intentan consolidar una ruta China–Europa que reduzca la exposición a Rusia, Irán y los estrechos de Oriente Medio.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [
+          "geoeconomia-comercio-sanciones",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "cadenas-suministro",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "asia",
+            "oriente-medio",
+            "europa"
+          ],
+          "subregion_ids": [
+            "asia-central",
+            "caucaso-sur"
+          ],
+          "pais_ids": [
+            "TUR"
+          ],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "union-europea",
+          "turquia",
+          "azerbaiyan",
+          "armenia",
+          "georgia",
+          "kazajistan",
+          "uzbekistan",
+          "estados-unidos",
+          "china"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "La Unión Europea, Turquía, Estados Unidos y los Estados de Asia Central intentan consolidar una ruta China–Europa que reduzca la exposición a Rusia, Irán y los estrechos de Oriente Medio.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 2,
+        "brecha": 2.8,
+        "confianza": "alta",
+        "incertidumbre": 3
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Tiempo puerta a puerta",
+        "Capacidad de ferris del Caspio",
+        "Ampliación de Alat, Aktau y Kuryk",
+        "Frontera Turquía–Armenia",
+        "Volúmenes TITR"
+      ],
+      "escenarios": {
+        "base": "Crecimiento gradual y menor fricción aduanera.",
+        "adverso": "Disputas de soberanía y nuevos bloqueos.",
+        "transformador": "Corredor ferroviario, energético y digital integrado."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "mar-negro-azov-guerra-logistica",
+      "slug": "mar-negro-azov-guerra-logistica",
+      "titulo": "Guerra contra la infraestructura logística del mar Negro y mar de Azov",
+      "sintesis": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "seguridad-conflicto",
+        "tema_secundario_ids": [
+          "infraestructura-conectividad",
+          "energia-recursos-estrategicos",
+          "geoeconomia-comercio-sanciones"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "cadenas-suministro",
+          "movilidad-militar-infraestructura-doble-uso",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "europa"
+          ],
+          "subregion_ids": [
+            "europa-oriental"
+          ],
+          "pais_ids": [],
+          "espacio_ids": [
+            "mar-negro",
+            "mar-de-azov"
+          ]
+        },
+        "actor_ids": [
+          "ucrania",
+          "rusia",
+          "turquia",
+          "otan",
+          "exportadores-de-granos",
+          "exportadores-de-petroleo",
+          "flota-sombra"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial.",
+      "por_que_importa": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial. El mar Negro y el mar de Azov conectan producción agrícola, energía, industria y sostenimiento militar. Desde 2022, ataques, bloqueos y corredores negociados mostraron que el control marítimo no depende solo de grandes buques: drones, misiles y daños a terminales pueden alterar el valor estratégico de toda la costa. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 4,
+        "brecha": 0.8,
+        "confianza": "alta",
+        "incertidumbre": 2
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Cierres portuarios",
+        "Ataques a mercantes",
+        "Seguros del mar Negro",
+        "Exportaciones por el Danubio",
+        "Movimientos de la flota sombra",
+        "Capacidad de Novorossiysk"
+      ],
+      "escenarios": {
+        "base": "Interdicción selectiva y adaptación portuaria.",
+        "adverso": "Extensión de ataques al Báltico y Caspio.",
+        "transformador": "Régimen marítimo negociado pero frágil."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "panama-gobernanza-portuaria",
+      "slug": "panama-gobernanza-portuaria",
+      "titulo": "Internacionalización de la gobernanza portuaria del canal de Panamá",
+      "sintesis": "La disputa por el canal se extiende a concesiones portuarias, registros navales, arbitrajes, inspecciones de buques y alineamiento diplomático.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "geoeconomia-comercio-sanciones",
+        "tema_secundario_ids": [
+          "infraestructura-conectividad",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "cadenas-suministro",
+          "infraestructura-critica-resiliencia",
+          "puertos-estrategicos",
+          "rutas-maritimas-estrechos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "americas"
+          ],
+          "subregion_ids": [
+            "america-central",
+            "caribe"
+          ],
+          "pais_ids": [],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "panama",
+          "estados-unidos",
+          "china",
+          "ck-hutchison",
+          "operadores-portuarios",
+          "navieras"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "La disputa por el canal se extiende a concesiones portuarias, registros navales, arbitrajes, inspecciones de buques y alineamiento diplomático.",
+      "por_que_importa": "La disputa por el canal se extiende a concesiones portuarias, registros navales, arbitrajes, inspecciones de buques y alineamiento diplomático. El canal es una infraestructura panameña con función mundial. A ambos extremos, puertos y servicios marítimos conectan rutas, operadores y cadenas logísticas. La rivalidad entre Estados Unidos y China hace que decisiones comerciales y regulatorias sean interpretadas como alineamientos geopolíticos. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 4,
+        "brecha": 0.8,
+        "confianza": "alta",
+        "incertidumbre": 3
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Resultado arbitral",
+        "Licitación de Balboa y Cristóbal",
+        "Cambios de bandera",
+        "Inspecciones en China",
+        "Acuerdos con Estados Unidos"
+      ],
+      "escenarios": {
+        "base": "Nuevo operador bajo mayor supervisión política.",
+        "adverso": "Coerción comercial china sostenida.",
+        "transformador": "Securitización regional de puertos vinculados a China."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "corredor-lobito-minerales",
+      "slug": "corredor-lobito-minerales",
+      "titulo": "Corredor de Lobito como plataforma occidental de minerales críticos y energía",
+      "sintesis": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "publicado",
+        "publicado_el": "2026-07-26",
+        "actualizado_el": "2026-07-26"
+      },
+      "progreso_publico": {
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "energia-recursos-estrategicos",
+        "tema_secundario_ids": [
+          "infraestructura-conectividad",
+          "geoeconomia-comercio-sanciones",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "minerales-criticos",
+          "cadenas-suministro",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "africa"
+          ],
+          "subregion_ids": [
+            "africa-austral",
+            "africa-central"
+          ],
+          "pais_ids": [],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "angola",
+          "rdc",
+          "zambia",
+          "estados-unidos",
+          "union-europea",
+          "afc",
+          "dfc",
+          "afdb",
+          "trafigura",
+          "mota-engil",
+          "china"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos.",
+      "por_que_importa": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos. El ferrocarril de Benguela conecta el puerto angoleño de Lobito con la República Democrática del Congo y proyecta una futura extensión hacia Zambia. La rehabilitación ferroviaria crea una salida occidental para el Copperbelt, pero el corredor más amplio depende de componentes eléctricos, fronterizos, digitales y productivos que no avanzan al mismo ritmo. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.5,
+        "atencion_mediatica": 2,
+        "brecha": 2.5,
+        "confianza": "alta",
+        "incertidumbre": 3
+      },
+      "senales": [
+        {
+          "senal_id": "sig-corredor-lobito-minerales-002",
+          "fecha": "2026-07-15",
+          "titulo": "Riesgo en infraestructura eléctrica",
+          "resumen": "La retirada de Trafigura de una propuesta de línea de transmisión entre\nAngola y las zonas mineras de la RDC y Zambia introduce incertidumbre\nfinanciera y de ejecución sobre ese proyecto específico.\n\nLa señal no implica la cancelación del conjunto de la infraestructura\neléctrica vinculada al Corredor de Lobito, ya que existen otras iniciativas\ny líneas de transmisión en desarrollo.",
+          "fuente_ids": [
+            "src-corredor-lobito-minerales-002"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-corredor-lobito-minerales-003",
+          "fecha": "2026-07-03",
+          "titulo": "Cierre financiero de US$753 millones para Lobito Atlantic Railway",
+          "resumen": "Africa Finance Corporation anunció el cierre financiero de US$753 millones para Lobito Atlantic Railway.\n\nLos fondos se destinan a la rehabilitación, modernización y operación a largo plazo del corredor ferroviario existente de 1.300 km entre el Puerto de Lobito, en Angola, y la frontera con la República Democrática del Congo.\n\nLa evidencia disponible confirma la financiación de este componente ferroviario. No permite afirmar que esté financiada la totalidad del Corredor de Lobito.",
+          "fuente_ids": [
+            "src-corredor-lobito-minerales-004"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-corredor-lobito-minerales-001",
+          "fecha": "2026-04-30",
+          "titulo": "AFC busca financiadores para el Corredor de Lobito",
+          "resumen": "Africa Finance Corporation (AFC) avanzó en la identificación y coordinación de prestamistas regionales e internacionales para financiar componentes del Corredor de Lobito. La financiación completa del proyecto no debe considerarse cerrada.",
+          "fuente_ids": [
+            "src-corredor-lobito-minerales-001"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
+      "cronologia": [],
+      "fuente_ids": [
+        "src-corredor-lobito-minerales-001",
+        "src-corredor-lobito-minerales-002",
+        "src-corredor-lobito-minerales-004"
+      ],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Cierre financiero de extensión a Zambia",
+        "Capacidad Kolwezi–Lobito",
+        "Líneas eléctricas",
+        "Contenido local",
+        "Procesamiento mineral",
+        "Reasentamientos"
+      ],
+      "escenarios": {
+        "base": "Corredor minero funcional.",
+        "adverso": "Cuellos eléctricos, captura de rentas y rechazo social.",
+        "transformador": "Procesamiento local y diversificación productiva."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "imec-reconfiguracion-modular",
+      "slug": "imec-reconfiguracion-modular",
+      "titulo": "Reconfiguración modular del Corredor India–Oriente Medio–Europa",
+      "sintesis": "El IMEC probablemente avance mediante módulos nacionales y bilaterales —puertos, aduanas digitales, ferrocarriles, cables y energía— antes de funcionar como corredor integrado.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "en_revision",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "en_revision",
+        "proximo_paso": "Revisar coherencia, fuentes y valoraciones antes de autorizar la publicación.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado",
+          "Revisión editorial iniciada"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [
+          "geoeconomia-comercio-sanciones",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "cadenas-suministro",
+          "cables-submarinos",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "asia",
+            "oriente-medio",
+            "europa"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "IND"
+          ],
+          "espacio_ids": [
+            "golfo-persico",
+            "levante-mediterraneo",
+            "mediterraneo"
+          ]
+        },
+        "actor_ids": [
+          "india",
+          "emiratos-arabes-unidos",
+          "arabia-saudita",
+          "jordania",
+          "israel",
+          "union-europea",
+          "estados-unidos",
+          "italia",
+          "grecia",
+          "francia"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "El IMEC probablemente avance mediante módulos nacionales y bilaterales —puertos, aduanas digitales, ferrocarriles, cables y energía— antes de funcionar como corredor integrado.",
+      "por_que_importa": "El IMEC probablemente avance mediante módulos nacionales y bilaterales —puertos, aduanas digitales, ferrocarriles, cables y energía— antes de funcionar como corredor integrado. El IMEC fue presentado como conexión marítima y ferroviaria entre India, el Golfo, el Levante y Europa, acompañada por energía y datos. Su geografía atraviesa rivalidades y conflictos; por eso puertos, aduanas digitales, ferrocarriles y cables pueden avanzar separadamente. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.5,
+        "atencion_mediatica": 3,
+        "brecha": 1.5,
+        "confianza": "media",
+        "incertidumbre": 5
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Financiación identificada",
+        "Acuerdos aduaneros",
+        "Tramos ferroviarios saudíes y jordanos",
+        "Normalización regional",
+        "Puertos europeos"
+      ],
+      "escenarios": {
+        "base": "Implementación bilateral y modular.",
+        "adverso": "Congelamiento político por conflictos regionales.",
+        "transformador": "Corredor multimodal interoperable con redes energéticas y digitales."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "ruta-maritima-norte-artico",
+      "slug": "ruta-maritima-norte-artico",
+      "titulo": "Conversión de la Ruta Marítima del Norte en corredor geopolítico Rusia–Asia",
+      "sintesis": "Rusia intenta transformar una ruta estacional y principalmente energética en un corredor transártico integral conectado con China e India.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "en_revision",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "en_revision",
+        "proximo_paso": "Revisar coherencia, fuentes y valoraciones antes de autorizar la publicación.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado",
+          "Revisión editorial iniciada"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "clima-ambiente-seguridad-humana",
+        "tema_secundario_ids": [
+          "infraestructura-conectividad",
+          "energia-recursos-estrategicos",
+          "geoeconomia-comercio-sanciones",
+          "seguridad-conflicto",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "cadenas-suministro",
+          "rutas-maritimas-estrechos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "global",
+            "europa",
+            "asia"
+          ],
+          "subregion_ids": [
+            "asia-nororiental"
+          ],
+          "pais_ids": [
+            "RUS",
+            "IND"
+          ],
+          "espacio_ids": [
+            "artico"
+          ]
+        },
+        "actor_ids": [
+          "rusia",
+          "china",
+          "india",
+          "estados-unidos",
+          "canada",
+          "paises-nordicos",
+          "rosatom"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Rusia intenta transformar una ruta estacional y principalmente energética en un corredor transártico integral conectado con China e India.",
+      "por_que_importa": "Rusia intenta transformar una ruta estacional y principalmente energética en un corredor transártico integral conectado con China e India. La Ruta Marítima del Norte reduce distancias entre partes de Asia y Europa, aunque no reemplaza de manera simple las rutas meridionales. Rusia intenta integrarla a puertos, recursos energéticos y conexiones ferroviarias, mientras China e India evalúan acceso, inversión y seguridad de suministro. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.5,
+        "atencion_mediatica": 3,
+        "brecha": 1.5,
+        "confianza": "media",
+        "incertidumbre": 5
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Tonelaje internacional",
+        "Nuevos rompehielos",
+        "Tarifas",
+        "Seguros",
+        "Puertos Murmansk y Sabetta",
+        "Duración de temporada navegable"
+      ],
+      "escenarios": {
+        "base": "Corredor regional energético y estacional.",
+        "adverso": "Militarización, accidentes y sanciones crecientes.",
+        "transformador": "Servicio estacional Asia–Europa respaldado por flotas estatales."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "iraq-development-road",
+      "slug": "iraq-development-road",
+      "titulo": "Iraq Development Road y reapertura de salidas energéticas hacia Siria y Turquía",
+      "sintesis": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "en_revision",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "en_revision",
+        "proximo_paso": "Revisar coherencia, fuentes y valoraciones antes de autorizar la publicación.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado",
+          "Revisión editorial iniciada"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [
+          "energia-recursos-estrategicos",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "oriente-medio"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "IRQ",
+            "TUR",
+            "SYR"
+          ],
+          "espacio_ids": [
+            "golfo-persico"
+          ]
+        },
+        "actor_ids": [
+          "irak",
+          "turquia",
+          "qatar",
+          "emiratos-arabes-unidos",
+          "siria",
+          "estados-unidos",
+          "rusia"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo.",
+      "por_que_importa": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo. El puerto de Grand Faw y el Development Road prometen llevar carga desde el Golfo hasta Turquía y Europa. A la vez, la reapertura de salidas energéticas hacia el Mediterráneo ampliaría opciones iraquíes. El corredor atraviesa un espacio donde compiten agendas nacionales, milicias, vecinos y grandes potencias. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.3,
+        "atencion_mediatica": 2,
+        "brecha": 2.3,
+        "confianza": "media-alta",
+        "incertidumbre": 4
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Avance de Grand Faw",
+        "Contratos ferroviarios",
+        "Acuerdos fronterizos",
+        "Financiación catarí y emiratí",
+        "Rehabilitación Baniyas y Ceyhan"
+      ],
+      "escenarios": {
+        "base": "Construcción por tramos.",
+        "adverso": "Fragmentación por inseguridad, rivalidades y financiación.",
+        "transformador": "Corredor integrado puerto–ferrocarril–oleoducto."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "instc-rusia-iran-india",
+      "slug": "instc-rusia-iran-india",
+      "titulo": "Paso del INSTC ruso-iraní de proyecto declarativo a infraestructura operativa",
+      "sintesis": "El corredor Norte–Sur busca conectar Rusia con el océano Índico sin depender de Europa ni de rutas dominadas por Occidente. Rasht–Astara es el eslabón decisivo.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "geoeconomia-comercio-sanciones",
+        "tema_secundario_ids": [
+          "infraestructura-conectividad",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "cadenas-suministro"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "europa",
+            "oriente-medio",
+            "asia"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "RUS",
+            "IRN",
+            "AZE",
+            "IND"
+          ],
+          "espacio_ids": [
+            "mar-caspio"
+          ]
+        },
+        "actor_ids": [
+          "rusia",
+          "iran",
+          "india",
+          "azerbaiyan",
+          "kazajistan"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "El corredor Norte–Sur busca conectar Rusia con el océano Índico sin depender de Europa ni de rutas dominadas por Occidente. Rasht–Astara es el eslabón decisivo.",
+      "por_que_importa": "El corredor Norte–Sur busca conectar Rusia con el océano Índico sin depender de Europa ni de rutas dominadas por Occidente. Rasht–Astara es el eslabón decisivo. El INSTC busca conectar Rusia con el océano Índico mediante redes marítimas, ferroviarias y viales a través de Irán y el Caspio. La guerra y las sanciones aumentaron su atractivo político; al mismo tiempo, financiación, anchos de vía y trámites impiden tratarlo como una ruta única. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.3,
+        "atencion_mediatica": 2,
+        "brecha": 2.3,
+        "confianza": "alta",
+        "incertidumbre": 3
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Entrega de terrenos",
+        "Obra Rasht–Astara",
+        "Tráfico Bandar Abbas–Caspio",
+        "Financiación",
+        "Tiempos aduaneros",
+        "Tonelaje anual"
+      ],
+      "escenarios": {
+        "base": "Corredor multimodal con cuellos ferroviarios.",
+        "adverso": "Sanciones secundarias, retrasos y rivalidad Irán–Azerbaiyán.",
+        "transformador": "Conexión ferroviaria continua Rusia–Índico."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "chancay-corredores-bioceanicos",
+      "slug": "chancay-corredores-bioceanicos",
+      "titulo": "Chancay y los corredores bioceánicos como reorientación sudamericana hacia Asia",
+      "sintesis": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [
+          "energia-recursos-estrategicos",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "minerales-criticos",
+          "infraestructura-critica-resiliencia",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "americas",
+            "asia"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "PER",
+            "BRA",
+            "BOL",
+            "CHL",
+            "PRY",
+            "CHN"
+          ],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "china",
+          "peru",
+          "brasil",
+          "chile",
+          "estados-unidos",
+          "cosco",
+          "gobiernos-subnacionales"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica.",
+      "por_que_importa": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica. Chancay ofrece una gran terminal del Pacífico con conexión directa hacia Asia. Su potencial excede al comercio peruano si logra captar carga de Brasil, Bolivia y otras economías interiores. Pero cruzar los Andes exige obras costosas y acuerdos que han frustrado proyectos anteriores. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.3,
+        "atencion_mediatica": 2,
+        "brecha": 2.3,
+        "confianza": "media",
+        "incertidumbre": 4
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Carga y escalas de Chancay",
+        "Financiación china",
+        "Estudios Brasil–Perú",
+        "Obras FICO y FIOL",
+        "Permisos ambientales",
+        "Inversiones en Callao"
+      ],
+      "escenarios": {
+        "base": "Integración vial y ferroviaria parcial.",
+        "adverso": "Inviabilidad financiera, daño amazónico y resistencia social.",
+        "transformador": "Red bioceánica regional articulada alrededor de Chancay."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "myanmar-corredores-china-india",
+      "slug": "myanmar-corredores-china-india",
+      "titulo": "Competencia entre corredores chinos e indios a través de Myanmar",
+      "sintesis": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "diplomacia-gobernanza",
+        "tema_secundario_ids": [
+          "seguridad-conflicto",
+          "infraestructura-conectividad",
+          "geoeconomia-comercio-sanciones"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "cadenas-suministro",
+          "infraestructura-critica-resiliencia",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "asia"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "MMR",
+            "CHN",
+            "IND"
+          ],
+          "espacio_ids": [
+            "bahia-de-bengala"
+          ]
+        },
+        "actor_ids": [
+          "china",
+          "india",
+          "junta-de-myanmar",
+          "arakan-army",
+          "grupos-etnicos-armados",
+          "bangladesh"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil.",
+      "por_que_importa": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil. China conecta Yunnan con el Índico mediante Kyaukphyu y oleoductos; India desarrolla Sittwe y Kaladan para vincular su nordeste. Ambos proyectos evitan cuellos de botella externos, pero atraviesan Rakhine y otras zonas afectadas por guerra, desplazamiento y poder territorial disputado. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.3,
+        "atencion_mediatica": 2,
+        "brecha": 2.3,
+        "confianza": "media-alta",
+        "incertidumbre": 4
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Control territorial en Rakhine y Chin",
+        "Kyaukphyu",
+        "Seguridad de oleoductos",
+        "Carretera Paletwa–Zorinpui",
+        "Actividad de Sittwe"
+      ],
+      "escenarios": {
+        "base": "Obras parciales negociadas con múltiples actores.",
+        "adverso": "Ataques y territorialización de infraestructuras.",
+        "transformador": "Esferas logísticas chino-indias en competencia."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "africa-oriental-puertas-entrada",
+      "slug": "africa-oriental-puertas-entrada",
+      "titulo": "Competencia por las puertas de entrada de África oriental",
+      "sintesis": "Mombasa, Dar es Salaam, Lamu, Berbera y Yibuti compiten por servir a economías sin litoral. Capital chino, emiratí y europeo crea corredores parcialmente superpuestos.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [
+          "geoeconomia-comercio-sanciones",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "cadenas-suministro",
+          "infraestructura-critica-resiliencia",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "africa"
+          ],
+          "subregion_ids": [
+            "africa-oriental",
+            "cuerno-de-africa",
+            "grandes-lagos-africanos"
+          ],
+          "pais_ids": [],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "tanzania",
+          "kenia",
+          "etiopia",
+          "uganda",
+          "rwanda",
+          "somalilandia",
+          "yibuti",
+          "china",
+          "emiratos-arabes-unidos",
+          "union-europea"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Mombasa, Dar es Salaam, Lamu, Berbera y Yibuti compiten por servir a economías sin litoral. Capital chino, emiratí y europeo crea corredores parcialmente superpuestos.",
+      "por_que_importa": "Mombasa, Dar es Salaam, Lamu, Berbera y Yibuti compiten por servir a economías sin litoral. Capital chino, emiratí y europeo crea corredores parcialmente superpuestos. Mombasa, Dar es Salaam, Lamu, Berbera y Yibuti sirven o aspiran a servir a Etiopía, Uganda, Rwanda, Sudán del Sur y los Grandes Lagos. Capital chino, emiratí y europeo superpone terminales y corredores. La redundancia puede ampliar opciones, aunque también crear dependencia y capacidad subutilizada. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.3,
+        "atencion_mediatica": 2,
+        "brecha": 2.3,
+        "confianza": "media",
+        "incertidumbre": 4
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Rendimiento de Dar es Salaam y Mombasa",
+        "Extensión SGR",
+        "Tráfico de Lamu",
+        "Participación etíope en Berbera y Yibuti",
+        "Contratos DP World"
+      ],
+      "escenarios": {
+        "base": "Competencia con interoperabilidad limitada.",
+        "adverso": "Corredores fallidos por deuda, insurgencia y rivalidad.",
+        "transformador": "Red regional interoperable."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "marruecos-estado-conector",
+      "slug": "marruecos-estado-conector",
+      "titulo": "Marruecos como Estado conector entre Europa, Atlántico y Sahel",
+      "sintesis": "Tanger Med, Nador West Med, Dakhla y las conexiones terrestres con el Sahel forman una estrategia integrada de manufactura, transbordo, energía y acceso marítimo para Estados sin litoral.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-07-19"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [
+          "energia-recursos-estrategicos",
+          "geoeconomia-comercio-sanciones",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "cadenas-suministro",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "africa",
+            "europa"
+          ],
+          "subregion_ids": [
+            "magreb",
+            "sahel",
+            "africa-atlantica"
+          ],
+          "pais_ids": [],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "marruecos",
+          "mali",
+          "niger",
+          "burkina-faso",
+          "union-europea",
+          "estados-del-golfo",
+          "argelia"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Tanger Med, Nador West Med, Dakhla y las conexiones terrestres con el Sahel forman una estrategia integrada de manufactura, transbordo, energía y acceso marítimo para Estados sin litoral.",
+      "por_que_importa": "Tanger Med, Nador West Med, Dakhla y las conexiones terrestres con el Sahel forman una estrategia integrada de manufactura, transbordo, energía y acceso marítimo para Estados sin litoral. Marruecos se presenta simultáneamente como plataforma próxima a Europa y como puerta atlántica africana. Tanger Med demostró el valor de integrar puerto, zonas industriales y acuerdos comerciales. Los nuevos nodos amplían esa lógica hacia energía y Estados sahelianos sin litoral, aunque se cruzan con la disputa del Sahara Occidental. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.3,
+        "atencion_mediatica": 2,
+        "brecha": 2.3,
+        "confianza": "media-alta",
+        "incertidumbre": 3
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Avance de Dakhla y Nador",
+        "Acuerdos con Estados del Sahel",
+        "Carreteras y seguridad",
+        "Carga de Tanger Med",
+        "Inversión industrial"
+      ],
+      "escenarios": {
+        "base": "Ampliación gradual de la red portuaria.",
+        "adverso": "Inseguridad, disputa territorial y rivalidad Marruecos–Argelia.",
+        "transformador": "Eje Sahel–Atlántico operativo."
+      }
+    }
+  ],
+  "fuentes": [
+    {
+      "fuente_id": "src-corredor-lobito-minerales-001",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "AFC lines up lenders for Lobito Corridor",
+      "fecha": "2026-04-30",
+      "idioma": "en",
+      "tipo": "noticia de agencia",
+      "url": "https://www.reuters.com/world/africa/afc-lines-up-regional-international-lenders-including-citi-lobito-corridor-2026-04-30/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-corredor-lobito-minerales-002",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Trafigura backs out of Angola transmission line project",
+      "fecha": "2026-07-15",
+      "idioma": "en",
+      "tipo": "noticia de agencia",
+      "url": "https://www.reuters.com/business/energy/trafigura-backs-out-angola-transmission-line-project-sources-say-2026-07-15/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-corredor-lobito-minerales-004",
+      "media_id": null,
+      "medio": "Mining Weekly",
+      "titulo": "Lobito Corridor railway project achieves $753m financial close",
+      "fecha": "2026-07-03",
+      "idioma": "Inglés",
+      "tipo": "Medio periodístico",
+      "url": "https://www.miningweekly.com/article/lobito-corridor-railway-project-achieves-753m-financial-close-2026-07-03",
+      "estado_verificacion": "verificada"
+    }
+  ],
+  "recursos_visuales": [],
+  "catalogos": {
+    "temas": [
+      {
+        "id": "seguridad-conflicto",
+        "nombre": "Seguridad y conflicto",
+        "slug": "seguridad-conflicto",
+        "estado": "activo",
+        "orden": 10
+      },
+      {
+        "id": "diplomacia-gobernanza",
+        "nombre": "Diplomacia y gobernanza",
+        "slug": "diplomacia-gobernanza",
+        "estado": "activo",
+        "orden": 20
+      },
+      {
+        "id": "geoeconomia-comercio-sanciones",
+        "nombre": "Geoeconomía, comercio y sanciones",
+        "slug": "geoeconomia-comercio-sanciones",
+        "estado": "activo",
+        "orden": 30
+      },
+      {
+        "id": "infraestructura-conectividad",
+        "nombre": "Infraestructura y conectividad",
+        "slug": "infraestructura-conectividad",
+        "estado": "activo",
+        "orden": 40
+      },
+      {
+        "id": "energia-recursos-estrategicos",
+        "nombre": "Energía y recursos estratégicos",
+        "slug": "energia-recursos-estrategicos",
+        "estado": "activo",
+        "orden": 50
+      },
+      {
+        "id": "tecnologia-poder-digital",
+        "nombre": "Tecnología y poder digital",
+        "slug": "tecnologia-poder-digital",
+        "estado": "activo",
+        "orden": 60
+      },
+      {
+        "id": "clima-ambiente-seguridad-humana",
+        "nombre": "Clima, ambiente y seguridad humana",
+        "slug": "clima-ambiente-seguridad-humana",
+        "estado": "activo",
+        "orden": 70
+      }
+    ],
+    "subtemas": [
+      {
+        "id": "corredores-estrategicos",
+        "nombre": "Corredores estratégicos",
+        "slug": "corredores-estrategicos",
+        "estado": "activo",
+        "orden": 10
+      },
+      {
+        "id": "minerales-criticos",
+        "nombre": "Minerales críticos",
+        "slug": "minerales-criticos",
+        "estado": "activo",
+        "orden": 20
+      },
+      {
+        "id": "cadenas-suministro",
+        "nombre": "Cadenas de suministro",
+        "slug": "cadenas-suministro",
+        "estado": "activo",
+        "orden": 30
+      },
+      {
+        "id": "infraestructura-critica-resiliencia",
+        "nombre": "Infraestructura crítica y resiliencia",
+        "slug": "infraestructura-critica-resiliencia",
+        "estado": "activo",
+        "orden": 40
+      },
+      {
+        "id": "movilidad-militar-infraestructura-doble-uso",
+        "nombre": "Movilidad militar e infraestructura de doble uso",
+        "slug": "movilidad-militar-infraestructura-doble-uso",
+        "estado": "activo",
+        "orden": 50
+      },
+      {
+        "id": "cables-submarinos",
+        "nombre": "Cables submarinos",
+        "slug": "cables-submarinos",
+        "estado": "activo",
+        "orden": 60
+      },
+      {
+        "id": "puertos-estrategicos",
+        "nombre": "Puertos estratégicos",
+        "slug": "puertos-estrategicos",
+        "estado": "activo",
+        "orden": 70
+      },
+      {
+        "id": "rutas-maritimas-estrechos",
+        "nombre": "Rutas marítimas y estrechos",
+        "slug": "rutas-maritimas-estrechos",
+        "estado": "activo",
+        "orden": 80
+      }
+    ],
+    "regiones": [
+      {
+        "id": "oriente-medio",
+        "nombre": "Oriente Medio",
+        "slug": "oriente-medio",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "europa",
+        "nombre": "Europa",
+        "slug": "europa",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "africa",
+        "nombre": "África",
+        "slug": "africa",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "global",
+        "nombre": "Global",
+        "slug": "global",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "asia",
+        "nombre": "Asia",
+        "slug": "asia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "americas",
+        "nombre": "Américas",
+        "slug": "americas",
+        "estado": "activo",
+        "orden": 100
+      }
+    ],
+    "subregiones": [
+      {
+        "id": "africa-austral",
+        "nombre": "África austral",
+        "slug": "africa-austral",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "africa"
+      },
+      {
+        "id": "asia-central",
+        "nombre": "Asia Central",
+        "slug": "asia-central",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      },
+      {
+        "id": "caucaso-sur",
+        "nombre": "Cáucaso Sur",
+        "slug": "caucaso-sur",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      },
+      {
+        "id": "europa-oriental",
+        "nombre": "Europa oriental",
+        "slug": "europa-oriental",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "europa"
+      },
+      {
+        "id": "america-central",
+        "nombre": "América Central",
+        "slug": "america-central",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "americas"
+      },
+      {
+        "id": "caribe",
+        "nombre": "Caribe",
+        "slug": "caribe",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "americas"
+      },
+      {
+        "id": "africa-central",
+        "nombre": "África central",
+        "slug": "africa-central",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "africa"
+      },
+      {
+        "id": "asia-nororiental",
+        "nombre": "Asia nororiental",
+        "slug": "asia-nororiental",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      },
+      {
+        "id": "africa-oriental",
+        "nombre": "África oriental",
+        "slug": "africa-oriental",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "africa"
+      },
+      {
+        "id": "cuerno-de-africa",
+        "nombre": "Cuerno de África",
+        "slug": "cuerno-de-africa",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "africa"
+      },
+      {
+        "id": "grandes-lagos-africanos",
+        "nombre": "Grandes Lagos",
+        "slug": "grandes-lagos-africanos",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "africa"
+      },
+      {
+        "id": "magreb",
+        "nombre": "Magreb",
+        "slug": "magreb",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "africa"
+      },
+      {
+        "id": "sahel",
+        "nombre": "Sahel",
+        "slug": "sahel",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "africa"
+      },
+      {
+        "id": "africa-atlantica",
+        "nombre": "África atlántica",
+        "slug": "africa-atlantica",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "africa"
+      },
+      {
+        "id": "estados-balticos",
+        "nombre": "Estados bálticos",
+        "slug": "estados-balticos",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "europa"
+      },
+      {
+        "id": "europa-central",
+        "nombre": "Europa central",
+        "slug": "europa-central",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "europa"
+      },
+      {
+        "id": "china-occidental",
+        "nombre": "China occidental",
+        "slug": "china-occidental",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      },
+      {
+        "id": "sudeste-asiatico",
+        "nombre": "Sudeste Asiático",
+        "slug": "sudeste-asiatico",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      }
+    ],
+    "paises_territorios": [
+      {
+        "id": "TUR",
+        "nombre": "Turquía",
+        "slug": "turquia",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "oriente-medio"
+      },
+      {
+        "id": "IND",
+        "nombre": "India",
+        "slug": "india",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      },
+      {
+        "id": "RUS",
+        "nombre": "Rusia",
+        "slug": "rusia",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "europa"
+      },
+      {
+        "id": "IRQ",
+        "nombre": "Irak",
+        "slug": "irak",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "oriente-medio"
+      },
+      {
+        "id": "SYR",
+        "nombre": "Siria",
+        "slug": "siria",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "oriente-medio"
+      },
+      {
+        "id": "IRN",
+        "nombre": "Irán",
+        "slug": "iran",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "oriente-medio"
+      },
+      {
+        "id": "AZE",
+        "nombre": "Azerbaiyán",
+        "slug": "azerbaiyan",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      },
+      {
+        "id": "PER",
+        "nombre": "Perú",
+        "slug": "peru",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "americas"
+      },
+      {
+        "id": "BRA",
+        "nombre": "Brasil",
+        "slug": "brasil",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "americas"
+      },
+      {
+        "id": "BOL",
+        "nombre": "Bolivia",
+        "slug": "bolivia",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "americas"
+      },
+      {
+        "id": "CHL",
+        "nombre": "Chile",
+        "slug": "chile",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "americas"
+      },
+      {
+        "id": "PRY",
+        "nombre": "Paraguay",
+        "slug": "paraguay",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "americas"
+      },
+      {
+        "id": "CHN",
+        "nombre": "China",
+        "slug": "china",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      },
+      {
+        "id": "MMR",
+        "nombre": "Myanmar",
+        "slug": "myanmar",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      }
+    ],
+    "espacios_geopoliticos": [
+      {
+        "id": "mar-rojo",
+        "nombre": "Mar Rojo",
+        "slug": "mar-rojo",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "oriente-medio"
+      },
+      {
+        "id": "mediterraneo",
+        "nombre": "Mediterráneo",
+        "slug": "mediterraneo",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "europa"
+      },
+      {
+        "id": "mar-baltico",
+        "nombre": "Mar Báltico",
+        "slug": "mar-baltico",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "europa"
+      },
+      {
+        "id": "mar-del-norte",
+        "nombre": "Mar del Norte",
+        "slug": "mar-del-norte",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "europa"
+      },
+      {
+        "id": "mar-negro",
+        "nombre": "Mar Negro",
+        "slug": "mar-negro",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "europa"
+      },
+      {
+        "id": "mar-de-azov",
+        "nombre": "Mar de Azov",
+        "slug": "mar-de-azov",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "europa"
+      },
+      {
+        "id": "golfo-persico",
+        "nombre": "Golfo Pérsico",
+        "slug": "golfo-persico",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "oriente-medio"
+      },
+      {
+        "id": "levante-mediterraneo",
+        "nombre": "Levante mediterráneo",
+        "slug": "levante-mediterraneo",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "oriente-medio"
+      },
+      {
+        "id": "artico",
+        "nombre": "Ártico",
+        "slug": "artico",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "global"
+      },
+      {
+        "id": "mar-caspio",
+        "nombre": "Mar Caspio",
+        "slug": "mar-caspio",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      },
+      {
+        "id": "bahia-de-bengala",
+        "nombre": "Bahía de Bengala",
+        "slug": "bahia-de-bengala",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "asia"
+      }
+    ],
+    "actores": [
+      {
+        "id": "afc",
+        "nombre": "AFC",
+        "slug": "afc",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "afdb",
+        "nombre": "AfDB",
+        "slug": "afdb",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "angola",
+        "nombre": "Angola",
+        "slug": "angola",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "arabia-saudita",
+        "nombre": "Arabia Saudita",
+        "slug": "arabia-saudita",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "arakan-army",
+        "nombre": "Arakan Army",
+        "slug": "arakan-army",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "argelia",
+        "nombre": "Argelia",
+        "slug": "argelia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "armenia",
+        "nombre": "Armenia",
+        "slug": "armenia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "aseguradoras",
+        "nombre": "Aseguradoras",
+        "slug": "aseguradoras",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "azerbaiyan",
+        "nombre": "Azerbaiyán",
+        "slug": "azerbaiyan",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "bangladesh",
+        "nombre": "Bangladesh",
+        "slug": "bangladesh",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "brasil",
+        "nombre": "Brasil",
+        "slug": "brasil",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "burkina-faso",
+        "nombre": "Burkina Faso",
+        "slug": "burkina-faso",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "canada",
+        "nombre": "Canadá",
+        "slug": "canada",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "chile",
+        "nombre": "Chile",
+        "slug": "chile",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "china",
+        "nombre": "China",
+        "slug": "china",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "ck-hutchison",
+        "nombre": "CK Hutchison",
+        "slug": "ck-hutchison",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "comunidades-locales",
+        "nombre": "comunidades locales",
+        "slug": "comunidades-locales",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "cosco",
+        "nombre": "COSCO",
+        "slug": "cosco",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "dfc",
+        "nombre": "DFC",
+        "slug": "dfc",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "egipto",
+        "nombre": "Egipto",
+        "slug": "egipto",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "emiratos-arabes-unidos",
+        "nombre": "Emiratos Árabes Unidos",
+        "slug": "emiratos-arabes-unidos",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "estados-del-golfo",
+        "nombre": "Estados del Golfo",
+        "slug": "estados-del-golfo",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "estados-unidos",
+        "nombre": "Estados Unidos",
+        "slug": "estados-unidos",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "estonia",
+        "nombre": "Estonia",
+        "slug": "estonia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "etiopia",
+        "nombre": "Etiopía",
+        "slug": "etiopia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "exportadores-de-granos",
+        "nombre": "Exportadores de granos",
+        "slug": "exportadores-de-granos",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "exportadores-de-petroleo",
+        "nombre": "Exportadores de petróleo",
+        "slug": "exportadores-de-petroleo",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "flota-sombra",
+        "nombre": "Flota sombra",
+        "slug": "flota-sombra",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "francia",
+        "nombre": "Francia",
+        "slug": "francia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "georgia",
+        "nombre": "Georgia",
+        "slug": "georgia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "gobiernos-subnacionales",
+        "nombre": "Gobiernos subnacionales",
+        "slug": "gobiernos-subnacionales",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "grecia",
+        "nombre": "Grecia",
+        "slug": "grecia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "grupos-etnicos-armados",
+        "nombre": "Grupos étnicos armados",
+        "slug": "grupos-etnicos-armados",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "huties",
+        "nombre": "Hutíes",
+        "slug": "huties",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "hyperscalers",
+        "nombre": "Hyperscalers",
+        "slug": "hyperscalers",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "india",
+        "nombre": "India",
+        "slug": "india",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "inversores",
+        "nombre": "inversores",
+        "slug": "inversores",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "irak",
+        "nombre": "Irak",
+        "slug": "irak",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "iran",
+        "nombre": "Irán",
+        "slug": "iran",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "israel",
+        "nombre": "Israel",
+        "slug": "israel",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "italia",
+        "nombre": "Italia",
+        "slug": "italia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "japon",
+        "nombre": "Japón",
+        "slug": "japon",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "jordania",
+        "nombre": "Jordania",
+        "slug": "jordania",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "junta-de-myanmar",
+        "nombre": "Junta de Myanmar",
+        "slug": "junta-de-myanmar",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "kazajistan",
+        "nombre": "Kazajistán",
+        "slug": "kazajistan",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "kenia",
+        "nombre": "Kenia",
+        "slug": "kenia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "kirguistan",
+        "nombre": "Kirguistán",
+        "slug": "kirguistan",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "letonia",
+        "nombre": "Letonia",
+        "slug": "letonia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "lituania",
+        "nombre": "Lituania",
+        "slug": "lituania",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "malasia",
+        "nombre": "Malasia",
+        "slug": "malasia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "mali",
+        "nombre": "Mali",
+        "slug": "mali",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "marruecos",
+        "nombre": "Marruecos",
+        "slug": "marruecos",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "mota-engil",
+        "nombre": "Mota-Engil",
+        "slug": "mota-engil",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "navieras",
+        "nombre": "navieras",
+        "slug": "navieras",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "niger",
+        "nombre": "Níger",
+        "slug": "niger",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "operadores-de-telecomunicaciones",
+        "nombre": "Operadores de telecomunicaciones",
+        "slug": "operadores-de-telecomunicaciones",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "operadores-portuarios",
+        "nombre": "Operadores portuarios",
+        "slug": "operadores-portuarios",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "otan",
+        "nombre": "OTAN",
+        "slug": "otan",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "paises-nordicos",
+        "nombre": "Países nórdicos",
+        "slug": "paises-nordicos",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "panama",
+        "nombre": "Panamá",
+        "slug": "panama",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "peru",
+        "nombre": "Perú",
+        "slug": "peru",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "polonia",
+        "nombre": "Polonia",
+        "slug": "polonia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "qatar",
+        "nombre": "Qatar",
+        "slug": "qatar",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "rb-rail",
+        "nombre": "RB Rail",
+        "slug": "rb-rail",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "rdc",
+        "nombre": "RDC",
+        "slug": "rdc",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "reino-unido",
+        "nombre": "Reino Unido",
+        "slug": "reino-unido",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "rosatom",
+        "nombre": "Rosatom",
+        "slug": "rosatom",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "rusia",
+        "nombre": "Rusia",
+        "slug": "rusia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "rwanda",
+        "nombre": "Rwanda",
+        "slug": "rwanda",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "singapur",
+        "nombre": "Singapur",
+        "slug": "singapur",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "siria",
+        "nombre": "Siria",
+        "slug": "siria",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "somalilandia",
+        "nombre": "Somalilandia",
+        "slug": "somalilandia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "tailandia",
+        "nombre": "Tailandia",
+        "slug": "tailandia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "tanzania",
+        "nombre": "Tanzania",
+        "slug": "tanzania",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "trafigura",
+        "nombre": "Trafigura",
+        "slug": "trafigura",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "turquia",
+        "nombre": "Turquía",
+        "slug": "turquia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "ucrania",
+        "nombre": "Ucrania",
+        "slug": "ucrania",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "uganda",
+        "nombre": "Uganda",
+        "slug": "uganda",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "union-europea",
+        "nombre": "Unión Europea",
+        "slug": "union-europea",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "uzbekistan",
+        "nombre": "Uzbekistán",
+        "slug": "uzbekistan",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "yibuti",
+        "nombre": "Yibuti",
+        "slug": "yibuti",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "zambia",
+        "nombre": "Zambia",
+        "slug": "zambia",
+        "estado": "activo",
+        "orden": 100
+      }
+    ],
+    "etiquetas": [],
+    "autores": [
+      {
+        "id": "rete",
+        "nombre": "Rete",
+        "slug": "rete",
+        "estado": "activo",
+        "orden": 10
+      }
+    ]
+  }
+}

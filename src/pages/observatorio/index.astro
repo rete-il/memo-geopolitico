@@ -1,0 +1,223 @@
+---
+import ProcessCard from '../../components/ProcessCard.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import {
+  catalog,
+  editorialPreviewEnabled,
+  processes,
+} from '../../lib/data';
+import { getPublicationEntries } from '../../lib/publications';
+
+const regions = [
+  ...catalog('regiones'),
+  ...catalog('subregiones'),
+  ...catalog('paises_territorios'),
+  ...catalog('espacios_geopoliticos'),
+].filter((item) =>
+  processes.some((process) =>
+    [
+      ...process.clasificacion.geografia.region_ids,
+      ...process.clasificacion.geografia.subregion_ids,
+      ...process.clasificacion.geografia.pais_ids,
+      ...process.clasificacion.geografia.espacio_ids,
+    ].includes(item.id),
+  ),
+);
+
+const themes = [...catalog('temas'), ...catalog('subtemas')].filter((item) =>
+  processes.some((process) =>
+    [
+      process.clasificacion.tema_principal_id,
+      ...process.clasificacion.tema_secundario_ids,
+      ...process.clasificacion.subtema_ids,
+    ].includes(item.id),
+  ),
+);
+
+const actors = catalog('actores').filter((item) =>
+  processes.some((process) => process.clasificacion.actor_ids.includes(item.id)),
+);
+
+const publicationEntries = await getPublicationEntries({
+  includePreview: true,
+});
+const publicationStateByProcess = new Map(
+  publicationEntries.map(({ data }) => [
+    data.macroevento_principal_id,
+    data.publicacion.estado,
+  ]),
+);
+const stateFor = (process: (typeof processes)[number]) =>
+  publicationStateByProcess.get(process.macroevento_id) ||
+  process.publicacion.estado;
+const workflowCounts = {
+  borrador: processes.filter((item) => stateFor(item) === 'borrador').length,
+  en_revision: processes.filter((item) => stateFor(item) === 'en_revision').length,
+  listo: processes.filter((item) => stateFor(item) === 'listo').length,
+  publicado: processes.filter((item) => stateFor(item) === 'publicado').length,
+};
+---
+
+<SiteLayout
+  title="Observatorio"
+  description="Procesos geopolíticos de mediano y largo plazo, señales, fuentes y comparación entre relevancia y atención mediática."
+>
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Observatorio</p>
+        <h1>Procesos geopolíticos en evolución.</h1>
+      </div>
+      <p>
+        Cada expediente reúne señales fechadas, fuentes trazables, actores y
+        valoraciones editoriales. También permite seguir los expedientes en
+        desarrollo mediante una proyección pública que excluye notas internas y
+        material sin verificar.
+      </p>
+    </header>
+
+    <aside class="dashboard-entry" aria-labelledby="dashboard-entry-title">
+      <div>
+        <p class="eyebrow">Dashboard público · modo consulta</p>
+        <h2 id="dashboard-entry-title">Ver el Observatorio como tablero de seguimiento.</h2>
+        <p>
+          Panorama, matriz de relevancia y atención, procesos, señales, fuentes
+          y avances editoriales en una vista pública que no permite modificar
+          los datos.
+        </p>
+      </div>
+      <a class="button-primary" href="/observatorio/dashboard/">
+        Abrir dashboard
+      </a>
+    </aside>
+
+    <nav class="workflow-summary" aria-label="Estados de las publicaciones">
+      <a href="?editorial=en_curso#explorar">
+        <strong>{workflowCounts.borrador + workflowCounts.en_revision + workflowCounts.listo}</strong>
+        <span>Trabajo en curso</span>
+      </a>
+      <a href="?editorial=borrador#explorar">
+        <strong>{workflowCounts.borrador}</strong>
+        <span>En documentación</span>
+      </a>
+      <a href="?editorial=en_revision#explorar">
+        <strong>{workflowCounts.en_revision}</strong>
+        <span>En revisión editorial</span>
+      </a>
+      <a href="?editorial=publicado#explorar">
+        <strong>{workflowCounts.publicado}</strong>
+        <span>Publicados</span>
+      </a>
+    </nav>
+
+    <div class="filter-layout" id="explorar">
+      <form class="filter-panel" data-observatory-filters>
+        <h2>Filtrar procesos</h2>
+        <label>
+          Buscar
+          <input type="search" name="q" placeholder="Título, actor o término" />
+        </label>
+        <label>
+          Geografía
+          <select name="region">
+            <option value="">Todas</option>
+            {regions.map((item) => <option value={item.id}>{item.nombre}</option>)}
+          </select>
+        </label>
+        <label>
+          Tema
+          <select name="theme">
+            <option value="">Todos</option>
+            {themes.map((item) => <option value={item.id}>{item.nombre}</option>)}
+          </select>
+        </label>
+        <label>
+          Actor
+          <select name="actor">
+            <option value="">Todos</option>
+            {actors.map((item) => <option value={item.id}>{item.nombre}</option>)}
+          </select>
+        </label>
+        <label>
+          Estado de la publicación
+          <select name="editorial">
+            <option value="">Todos los estados</option>
+            <option value="en_curso">Todo el trabajo en curso</option>
+            <option value="borrador">Borrador · en documentación</option>
+            <option value="en_revision">En revisión editorial</option>
+            <option value="listo">Listo para publicación</option>
+            <option value="publicado">Publicado</option>
+          </select>
+        </label>
+        <label>
+          Estado de seguimiento
+          <select name="tracking">
+            <option value="">Todos los seguimientos</option>
+            <option value="en_seguimiento">En seguimiento</option>
+            <option value="pausado">Pausado</option>
+            <option value="archivado">Archivado</option>
+          </select>
+        </label>
+        <label>
+          Relevancia mínima
+          <select name="relevance">
+            <option value="">Cualquiera</option>
+            <option value="3">3 o más</option>
+            <option value="4">4 o más</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <label>
+          Atención máxima
+          <select name="attention">
+            <option value="">Cualquiera</option>
+            <option value="1">1</option>
+            <option value="2">2 o menos</option>
+            <option value="3">3 o menos</option>
+          </select>
+        </label>
+        <button type="reset">Restablecer filtros</button>
+      </form>
+
+      <div>
+        <div class="results-toolbar">
+          <p data-results-count>{processes.length} procesos</p>
+          <div class="view-switch" aria-label="Tipo de vista">
+            <button type="button" data-view="list" aria-pressed="true">Lista</button>
+            <button type="button" data-view="cards" aria-pressed="false">Tarjetas</button>
+          </div>
+        </div>
+
+        {
+          processes.length ? (
+            <>
+              <div class="process-results" data-process-results data-view="list">
+                {processes.map((process) => (
+                  <ProcessCard
+                    process={process}
+                    editorialPreview={editorialPreviewEnabled}
+                  />
+                ))}
+              </div>
+              <p class="empty-state" data-filter-empty hidden>
+                Ningún proceso coincide con los filtros activos.
+              </p>
+            </>
+          ) : (
+            <div class="empty-state">
+              <h2>No hay procesos publicados todavía</h2>
+              <p>
+                El sitio público permanecerá vacío hasta que un expediente sea
+                revisado y autorizado.
+              </p>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import '../../scripts/observatory-filters';
+  </script>
+</SiteLayout>

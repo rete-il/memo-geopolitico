@@ -1,0 +1,54 @@
+---
+import { sourceById } from '../lib/data';
+import { formatDate } from '../lib/text';
+import type { PublicSignal } from '../lib/types';
+
+interface Props {
+  signals: PublicSignal[];
+  processSlug?: string;
+}
+
+const { signals, processSlug } = Astro.props;
+---
+
+<ol class="signal-timeline">
+  {
+    signals.map((signal) => {
+      const signalSources = signal.fuente_ids
+        .map((id) => sourceById.get(id))
+        .filter(Boolean);
+      const href = processSlug
+        ? `/observatorio/${processSlug}/#${signal.senal_id}`
+        : undefined;
+      return (
+        <li id={processSlug ? signal.senal_id : undefined}>
+          <time datetime={signal.fecha}>{formatDate(signal.fecha)}</time>
+          <div>
+            <div class="signal-heading">
+              <h3>
+                {href ? <a href={href}>{signal.titulo}</a> : signal.titulo}
+              </h3>
+              <span class={`verification ${signal.estado_verificacion}`}>
+                {signal.estado_verificacion}
+              </span>
+            </div>
+            <p>{signal.resumen}</p>
+            {signalSources.length > 0 && (
+              <p class="signal-sources">
+                Fuentes:{' '}
+                {signalSources.map((source, index) => (
+                  <>
+                    {index > 0 && ', '}
+                    <a href={source?.url} target="_blank" rel="noopener noreferrer">
+                      {source?.medio || source?.titulo}
+                    </a>
+                  </>
+                ))}
+              </p>
+            )}
+          </div>
+        </li>
+      );
+    })
+  }
+</ol>

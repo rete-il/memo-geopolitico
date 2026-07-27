@@ -1,0 +1,73 @@
+---
+import { editorialStageLabel, formatDate, humanize } from '../lib/text';
+
+interface Props {
+  publication: {
+    slug: string;
+    titulo: string;
+    subtitulo: string;
+    resumen: string;
+    tipo_publicacion: string;
+    publicacion: {
+      estado: string;
+      publicado_el?: string | null;
+      actualizado_el: string;
+    };
+    macroevento_principal_id: string;
+  };
+  editorialPreview?: boolean;
+}
+
+const { publication, editorialPreview = false } = Astro.props;
+const isPublished = publication.publicacion.estado === 'publicado';
+const destination = isPublished
+  ? `/publicaciones/${publication.slug}/`
+  : `/observatorio/${publication.macroevento_principal_id}/`;
+---
+
+<article
+  class:list={[
+    'publication-card',
+    isPublished
+      ? 'publication-card--published'
+      : 'publication-card--in-progress',
+  ]}
+>
+  <div class="card-meta">
+    <span>{humanize(publication.tipo_publicacion)}</span>
+    {
+      isPublished ? (
+        <span class="published-chip">Publicado</span>
+      ) : (
+        <span class="draft-chip">
+          {editorialPreview && 'Vista local · '}
+          {editorialStageLabel(publication.publicacion.estado)}
+        </span>
+      )
+    }
+  </div>
+  <h2>
+    {
+      isPublished ? (
+        <a href={destination}>{publication.titulo}</a>
+      ) : (
+        <span>{publication.titulo}</span>
+      )
+    }
+  </h2>
+  {publication.subtitulo && <p class="publication-subtitle">{publication.subtitulo}</p>}
+  <p>{publication.resumen}</p>
+  <footer>
+    <span>
+      {
+        publication.publicacion.publicado_el
+          ? `Publicado ${formatDate(publication.publicacion.publicado_el)}`
+          : `Actualizado ${formatDate(publication.publicacion.actualizado_el)}`
+      }
+    </span>
+    <a href={destination}>
+      {isPublished ? 'Leer publicación' : 'Abrir expediente'}{' '}
+      <span aria-hidden="true">→</span>
+    </a>
+  </footer>
+</article>

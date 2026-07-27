@@ -1,0 +1,6 @@
+{
+  "observatorio": "../dashboards/observatorio/data/macroeventos.json",
+  "taxonomia": "../dashboards/observatorio/data/taxonomia-temas.json",
+  "medios": "../dashboards/medios/data/Medios_Geopolitica_con_ids.xlsx",
+  "publicaciones": "../archivo-editorial"
+}

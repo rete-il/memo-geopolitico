@@ -1,0 +1,34 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { catalog, processesForActor } from '../../lib/data';
+
+const items = catalog('actores').filter(
+  (item) => processesForActor(item.id).length > 0,
+);
+---
+
+<SiteLayout title="Actores" description="Actores vinculados con los procesos del Observatorio.">
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Explorar</p>
+        <h1>Actores dentro de procesos más amplios.</h1>
+      </div>
+      <p>
+        Estados, organismos, empresas y coaliciones se conectan automáticamente
+        con los expedientes donde intervienen.
+      </p>
+    </header>
+    <section class="section-shell">
+      <div class="explore-grid">
+        {items.map((item) => (
+          <article class="explore-card">
+            <h2><a href={`/actores/${item.slug}/`}>{item.nombre}</a></h2>
+            <p>{processesForActor(item.id).length} procesos relacionados.</p>
+            <a href={`/actores/${item.slug}/`}>Explorar actor</a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+</SiteLayout>

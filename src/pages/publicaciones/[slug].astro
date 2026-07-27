@@ -1,0 +1,139 @@
+---
+import { render } from 'astro:content';
+import SupportCTA from '../../components/SupportCTA.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import {
+  editorialPreviewEnabled,
+  processes,
+  sourceById,
+} from '../../lib/data';
+import {
+  editorialStageLabel,
+  formatDate,
+  humanize,
+} from '../../lib/text';
+import {
+  getPublicationEntries,
+  type PublicationEntry,
+} from '../../lib/publications';
+
+export async function getStaticPaths() {
+  const entries = await getPublicationEntries();
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: PublicationEntry;
+}
+
+const { entry } = Astro.props;
+const showFullPublication =
+  editorialPreviewEnabled || entry.data.publicacion.estado === 'publicado';
+const rendered = showFullPublication ? await render(entry) : null;
+const Content = rendered?.Content;
+const process = processes.find(
+  (item) => item.macroevento_id === entry.data.macroevento_principal_id,
+);
+const publicationSources = entry.data.fuente_ids
+  .map((id) => sourceById.get(id))
+  .filter(Boolean);
+---
+
+<SiteLayout
+  title={entry.data.titulo}
+  description={entry.data.resumen}
+  noindex={entry.data.publicacion.estado !== 'publicado'}
+>
+  <div class="page-shell">
+    <header class="publication-hero">
+      <p class="eyebrow">{humanize(entry.data.tipo_publicacion)}</p>
+      <h1>{entry.data.titulo}</h1>
+      {entry.data.subtitulo && <p class="lead">{entry.data.subtitulo}</p>}
+      <div class="hero-meta">
+        {
+          entry.data.publicacion.publicado_el && (
+            <span>Publicado {formatDate(entry.data.publicacion.publicado_el)}</span>
+          )
+        }
+        <span>Actualizado {formatDate(entry.data.publicacion.actualizado_el)}</span>
+        <span>Por {entry.data.autor_ids.join(', ')}</span>
+        {
+          entry.data.publicacion.estado !== 'publicado' && (
+            <span class="draft-chip">
+              {editorialPreviewEnabled && 'Vista local · '}
+              {editorialStageLabel(entry.data.publicacion.estado)}
+            </span>
+          )
+        }
+      </div>
+    </header>
+  </div>
+
+  <article class="article-shell">
+    {
+      entry.data.publicacion.estado !== 'publicado' && (
+        <p class="editorial-note">
+          {
+            editorialPreviewEnabled
+              ? 'Vista editorial local: el texto completo todavía puede cambiar antes de su autorización.'
+              : 'Publicación en preparación. Esta página permite seguir su estado, pero el texto completo permanecerá reservado hasta completar la revisión editorial.'
+          }
+        </p>
+      )
+    }
+
+    {
+      process && (
+        <aside class="sidebar-card">
+          <p class="eyebrow">Proceso principal</p>
+          <h2><a href={`/observatorio/${process.slug}/`}>{process.titulo}</a></h2>
+          <p>{process.sintesis}</p>
+        </aside>
+      )
+    }
+
+    {
+      showFullPublication && Content ? (
+        <div class="prose prose-slate max-w-none">
+          <Content />
+        </div>
+      ) : (
+        <section class="content-section publication-progress">
+          <h2>Sobre el análisis en preparación</h2>
+          <p>{entry.data.resumen}</p>
+          <p>
+            Estado actual: <strong>{editorialStageLabel(entry.data.publicacion.estado)}</strong>.
+            La fecha de actualización y el expediente relacionado permiten
+            seguir el avance sin presentar un borrador como texto publicado.
+          </p>
+        </section>
+      )
+    }
+
+    {
+      showFullPublication && publicationSources.length > 0 && (
+        <section class="content-section">
+          <h2>Fuentes vinculadas</h2>
+          <ol class="source-list">
+            {publicationSources.map((source) => (
+              <li>
+                <a href={source?.url} target="_blank" rel="noopener noreferrer">
+                  {source?.titulo || source?.medio}
+                </a>
+                <p>
+                  {source?.medio} · {formatDate(source?.fecha)} ·{' '}
+                  {source?.estado_verificacion}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
+
+    <SupportCTA />
+  </article>
+</SiteLayout>

@@ -1,0 +1,146 @@
+---
+import RatingPair from '../../../components/RatingPair.astro';
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import { processes } from '../../../lib/data';
+import { formatDate } from '../../../lib/text';
+import {
+  getPublicationEntries,
+  type PublicationEntry,
+} from '../../../lib/publications';
+import type { PublicProcess } from '../../../lib/types';
+
+export async function getStaticPaths() {
+  const publicationEntries = await getPublicationEntries({
+    includePreview: true,
+  });
+  return processes.map((process) => {
+    const publication = publicationEntries.find(
+      ({ data }) =>
+        data.macroevento_principal_id === process.macroevento_id ||
+        data.macroevento_secundario_ids.includes(process.macroevento_id),
+    );
+
+    return {
+      params: { slug: process.slug },
+      props: {
+        process,
+        publication: publication?.data || null,
+      },
+    };
+  });
+}
+
+interface Props {
+  process: PublicProcess;
+  publication: PublicationEntry['data'] | null;
+}
+
+const { process, publication } = Astro.props as Props;
+const publicationTitle = publication?.titulo || process.titulo;
+const isPublished = publication?.publicacion.estado === 'publicado';
+---
+
+<SiteLayout
+  title={`Cómo interpretar los valores de ${publicationTitle}`}
+  description={`Estado de desarrollo de los criterios de relevancia, atención mediática y brecha para ${publicationTitle}.`}
+>
+  <div class="page-shell">
+    <header class="methodology-note-hero">
+      <p class="eyebrow">Interpretación en desarrollo</p>
+      <h1>Cómo interpretar los valores de «{publicationTitle}».</h1>
+      <p class="lead">
+        Esta página reserva un espacio específico para documentar cómo se
+        asignaron y cómo deberán leerse las valoraciones de esta publicación.
+        Las indicaciones y la evidencia cuantitativa todavía están en
+        desarrollo.
+      </p>
+      <div class="hero-meta">
+        <span>Actualizado {formatDate(process.publicacion.actualizado_el)}</span>
+        <span>Escala editorial provisional de 1 a 5</span>
+      </div>
+    </header>
+
+    <div class="methodology-note-layout">
+      <article>
+        <aside class="editorial-note development-note">
+          <strong>Metodología en desarrollo.</strong>
+          <span>
+            Estos números son evaluaciones editoriales provisionales. Todavía no
+            constituyen un índice cuantitativo definitivo ni una medición
+            automatizada de cobertura.
+          </span>
+        </aside>
+
+        <section class="content-section">
+          <h2>Relevancia</h2>
+          <p>
+            Expresa una evaluación editorial de la importancia estructural del
+            proceso: su impacto potencial, alcance, persistencia y capacidad de
+            alterar relaciones de poder, seguridad, conectividad, comercio o
+            acceso a recursos.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Atención mediática</h2>
+          <p>
+            Expresa la atención periodística observada, considerando no solo el
+            volumen sino también la continuidad, diversidad y profundidad de la
+            cobertura. En esta etapa todavía depende de revisión editorial y no
+            de un recuento exhaustivo.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Brecha</h2>
+          <p>
+            Es la diferencia entre Relevancia y Atención mediática. Una brecha
+            positiva señala que el proceso parece recibir menos atención que la
+            que justificaría su importancia; una brecha negativa puede indicar
+            una exposición relativa mayor.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Qué falta implementar para esta publicación</h2>
+          <p>
+            Se incorporarán los cortes de cobertura utilizados, el universo de
+            fuentes observado, los criterios aplicados a cada dimensión, la
+            fecha de medición y las incertidumbres que afecten la comparación.
+            La página se actualizará junto con la publicación y su expediente.
+          </p>
+        </section>
+
+        <nav class="methodology-note-actions" aria-label="Enlaces relacionados">
+          {
+            isPublished && publication && (
+              <a class="button-primary" href={`/publicaciones/${publication.slug}/`}>
+                Leer publicación
+              </a>
+            )
+          }
+          <a class="button-secondary" href={`/observatorio/${process.slug}/`}>
+            Abrir expediente
+          </a>
+          <a class="button-secondary" href="/metodologia/relevancia-atencion-mediatica/">
+            Ver metodología general
+          </a>
+        </nav>
+      </article>
+
+      <aside class="methodology-note-rating">
+        <p class="eyebrow">Valores actuales</p>
+        <RatingPair
+          relevance={process.valoraciones.relevancia_geopolitica}
+          attention={process.valoraciones.atencion_mediatica}
+          publicationTitle={publicationTitle}
+          showMethodLink={false}
+        />
+        <p>
+          Se conservará un historial de cambios cuando la metodología de
+          respaldo quede implementada.
+        </p>
+      </aside>
+    </div>
+  </div>
+</SiteLayout>

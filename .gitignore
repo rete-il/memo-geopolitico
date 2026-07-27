@@ -24,3 +24,10 @@ pnpm-debug.log*
 .idea/
 
 ideas.md
+
+# local environment variables
+.env.development
+.env.preview
+
+# local preview generated data
+/local-preview/

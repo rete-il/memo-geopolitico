@@ -1,0 +1,53 @@
+---
+interface Props {
+  relevance: number;
+  attention: number;
+  compact?: boolean;
+  methodHref?: string;
+  publicationTitle?: string;
+  showMethodLink?: boolean;
+}
+
+const {
+  relevance,
+  attention,
+  compact = false,
+  methodHref = '/metodologia/relevancia-atencion-mediatica/',
+  publicationTitle = '',
+  showMethodLink = true,
+} = Astro.props;
+const gap = Number((relevance - attention).toFixed(1));
+
+const cells = (value: number) =>
+  Array.from({ length: 5 }, (_, index) => index + 1 <= Math.round(value));
+---
+
+<div
+  class:list={['rating-pair', { compact }]}
+  aria-label={`Relevancia, atención mediática y brecha, escala editorial de uno a cinco${publicationTitle ? ` para ${publicationTitle}` : ''}`}
+>
+  <div class="rating-row">
+    <span>Relevancia</span>
+    <span class="rating-cells" aria-hidden="true">
+      {cells(relevance).map((filled) => <i class:list={{ filled }}></i>)}
+    </span>
+    <strong>{relevance.toFixed(1)}</strong>
+  </div>
+  <div class="rating-row">
+    <span>Atención mediática</span>
+    <span class="rating-cells attention" aria-hidden="true">
+      {cells(attention).map((filled) => <i class:list={{ filled }}></i>)}
+    </span>
+    <strong>{attention.toFixed(1)}</strong>
+  </div>
+  <p class:list={['rating-gap', { negative: gap < 0 }]}>
+    Brecha {gap > 0 ? '+' : ''}{gap.toFixed(1)}
+  </p>
+  {
+    showMethodLink && (
+      <a class="rating-method-link" href={methodHref}>
+        Cómo interpretar estos valores
+      </a>
+    )
+  }
+</div>

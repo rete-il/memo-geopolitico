@@ -1,0 +1,46 @@
+---
+import SignalTimeline from '../../components/SignalTimeline.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { processes } from '../../lib/data';
+
+const signals = processes
+  .flatMap((process) =>
+    process.senales.map((signal) => ({
+      ...signal,
+      processSlug: process.slug,
+    })),
+  )
+  .sort((a, b) => b.fecha.localeCompare(a.fecha));
+---
+
+<SiteLayout
+  title="Señales del Observatorio"
+  description="Cronología conjunta de señales verificables asociadas con procesos geopolíticos."
+>
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Cronología</p>
+        <h1>Señales dentro de procesos.</h1>
+      </div>
+      <p>
+        Esta vista reúne hechos fechados y con fuentes vinculadas. Una señal no
+        es una publicación autónoma: adquiere sentido dentro del proceso que
+        ayuda a seguir.
+      </p>
+    </header>
+
+    <section class="section-shell">
+      {
+        signals.length ? (
+          <SignalTimeline signals={signals} />
+        ) : (
+          <div class="empty-state">
+            <h2>No hay señales públicas todavía</h2>
+            <p>Solo se muestran señales que conservan trazabilidad hacia sus fuentes.</p>
+          </div>
+        )
+      }
+    </section>
+  </div>
+</SiteLayout>

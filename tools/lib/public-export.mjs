@@ -1,0 +1,527 @@
+const THEME_DEFINITIONS = [
+  ['seguridad-conflicto', 'Seguridad y conflicto'],
+  ['diplomacia-gobernanza', 'Diplomacia y gobernanza'],
+  ['geoeconomia-comercio-sanciones', 'Geoeconomía, comercio y sanciones'],
+  ['infraestructura-conectividad', 'Infraestructura y conectividad'],
+  ['energia-recursos-estrategicos', 'Energía y recursos estratégicos'],
+  ['tecnologia-poder-digital', 'Tecnología y poder digital'],
+  ['clima-ambiente-seguridad-humana', 'Clima, ambiente y seguridad humana'],
+  ['sociedad-demografia-migraciones', 'Sociedad, demografía y migraciones'],
+];
+
+const SUBTHEME_DEFINITIONS = [
+  ['corredores-estrategicos', 'Corredores estratégicos'],
+  ['minerales-criticos', 'Minerales críticos'],
+  ['cadenas-suministro', 'Cadenas de suministro'],
+  ['infraestructura-critica-resiliencia', 'Infraestructura crítica y resiliencia'],
+  ['movilidad-militar-infraestructura-doble-uso', 'Movilidad militar e infraestructura de doble uso'],
+  ['cables-submarinos', 'Cables submarinos'],
+  ['puertos-estrategicos', 'Puertos estratégicos'],
+  ['rutas-maritimas-estrechos', 'Rutas marítimas y estrechos'],
+];
+
+const CATEGORY_THEME = {
+  seguridad_conflicto: 'seguridad-conflicto',
+  infraestructura_conectividad: 'infraestructura-conectividad',
+  infraestructura_energia: 'infraestructura-conectividad',
+  minerales_recursos_estrategicos: 'energia-recursos-estrategicos',
+  comercio_finanzas_sanciones: 'geoeconomia-comercio-sanciones',
+  tecnologia_soberania_digital: 'tecnologia-poder-digital',
+  clima_agua_seguridad_alimentaria: 'clima-ambiente-seguridad-humana',
+  potencias_bloques: 'diplomacia-gobernanza',
+};
+
+const GEOGRAPHY = {
+  Global: { type: 'region', id: 'global', nombre: 'Global' },
+  Europa: { type: 'region', id: 'europa', nombre: 'Europa' },
+  'Oriente Medio': { type: 'region', id: 'oriente-medio', nombre: 'Oriente Medio' },
+  'América Latina': { type: 'region', id: 'americas', nombre: 'Américas' },
+  'América Central': { type: 'subregion', id: 'america-central', nombre: 'América Central', parent_id: 'americas' },
+  Caribe: { type: 'subregion', id: 'caribe', nombre: 'Caribe', parent_id: 'americas' },
+  'Asia Central': { type: 'subregion', id: 'asia-central', nombre: 'Asia Central', parent_id: 'asia' },
+  'Asia central': { type: 'subregion', id: 'asia-central', nombre: 'Asia Central', parent_id: 'asia' },
+  'Asia nororiental': { type: 'subregion', id: 'asia-nororiental', nombre: 'Asia nororiental', parent_id: 'asia' },
+  'Sudeste Asiático': { type: 'subregion', id: 'sudeste-asiatico', nombre: 'Sudeste Asiático', parent_id: 'asia' },
+  'China occidental': { type: 'subregion', id: 'china-occidental', nombre: 'China occidental', parent_id: 'asia' },
+  'África atlántica': { type: 'subregion', id: 'africa-atlantica', nombre: 'África atlántica', parent_id: 'africa' },
+  'África austral': { type: 'subregion', id: 'africa-austral', nombre: 'África austral', parent_id: 'africa' },
+  'África central': { type: 'subregion', id: 'africa-central', nombre: 'África central', parent_id: 'africa' },
+  'África oriental': { type: 'subregion', id: 'africa-oriental', nombre: 'África oriental', parent_id: 'africa' },
+  'Cuerno de África': { type: 'subregion', id: 'cuerno-de-africa', nombre: 'Cuerno de África', parent_id: 'africa' },
+  'Grandes Lagos': { type: 'subregion', id: 'grandes-lagos-africanos', nombre: 'Grandes Lagos', parent_id: 'africa' },
+  Magreb: { type: 'subregion', id: 'magreb', nombre: 'Magreb', parent_id: 'africa' },
+  Sahel: { type: 'subregion', id: 'sahel', nombre: 'Sahel', parent_id: 'africa' },
+  'Cáucaso Sur': { type: 'subregion', id: 'caucaso-sur', nombre: 'Cáucaso Sur', parent_id: 'asia' },
+  'Estados bálticos': { type: 'subregion', id: 'estados-balticos', nombre: 'Estados bálticos', parent_id: 'europa' },
+  'Europa central': { type: 'subregion', id: 'europa-central', nombre: 'Europa central', parent_id: 'europa' },
+  'Europa oriental': { type: 'subregion', id: 'europa-oriental', nombre: 'Europa oriental', parent_id: 'europa' },
+  Azerbaiyán: { type: 'country', id: 'AZE', nombre: 'Azerbaiyán', parent_id: 'asia' },
+  Bolivia: { type: 'country', id: 'BOL', nombre: 'Bolivia', parent_id: 'americas' },
+  Brasil: { type: 'country', id: 'BRA', nombre: 'Brasil', parent_id: 'americas' },
+  Chile: { type: 'country', id: 'CHL', nombre: 'Chile', parent_id: 'americas' },
+  China: { type: 'country', id: 'CHN', nombre: 'China', parent_id: 'asia' },
+  India: { type: 'country', id: 'IND', nombre: 'India', parent_id: 'asia' },
+  Irak: { type: 'country', id: 'IRQ', nombre: 'Irak', parent_id: 'oriente-medio' },
+  Irán: { type: 'country', id: 'IRN', nombre: 'Irán', parent_id: 'oriente-medio' },
+  Myanmar: { type: 'country', id: 'MMR', nombre: 'Myanmar', parent_id: 'asia' },
+  Paraguay: { type: 'country', id: 'PRY', nombre: 'Paraguay', parent_id: 'americas' },
+  Perú: { type: 'country', id: 'PER', nombre: 'Perú', parent_id: 'americas' },
+  Rusia: { type: 'country', id: 'RUS', nombre: 'Rusia', parent_id: 'europa' },
+  Siria: { type: 'country', id: 'SYR', nombre: 'Siria', parent_id: 'oriente-medio' },
+  Turquía: { type: 'country', id: 'TUR', nombre: 'Turquía', parent_id: 'oriente-medio' },
+  'Bahía de Bengala': { type: 'space', id: 'bahia-de-bengala', nombre: 'Bahía de Bengala', parent_id: 'asia' },
+  Caspio: { type: 'space', id: 'mar-caspio', nombre: 'Mar Caspio', parent_id: 'asia' },
+  Golfo: { type: 'space', id: 'golfo-persico', nombre: 'Golfo Pérsico', parent_id: 'oriente-medio' },
+  Levante: { type: 'space', id: 'levante-mediterraneo', nombre: 'Levante mediterráneo', parent_id: 'oriente-medio' },
+  'Mar Báltico': { type: 'space', id: 'mar-baltico', nombre: 'Mar Báltico', parent_id: 'europa' },
+  'Mar Negro': { type: 'space', id: 'mar-negro', nombre: 'Mar Negro', parent_id: 'europa' },
+  'Mar Rojo': { type: 'space', id: 'mar-rojo', nombre: 'Mar Rojo', parent_id: 'oriente-medio' },
+  'Mar de Azov': { type: 'space', id: 'mar-de-azov', nombre: 'Mar de Azov', parent_id: 'europa' },
+  'Mar del Norte': { type: 'space', id: 'mar-del-norte', nombre: 'Mar del Norte', parent_id: 'europa' },
+  Mediterráneo: { type: 'space', id: 'mediterraneo', nombre: 'Mediterráneo', parent_id: 'europa' },
+  'Ártico': { type: 'space', id: 'artico', nombre: 'Ártico', parent_id: 'global' },
+};
+
+export function slugify(value) {
+  return String(value ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'item';
+}
+
+const unique = (items) => [...new Set(items.filter(Boolean))];
+
+function catalogItem(id, nombre, order = 100, extra = {}) {
+  return {
+    id,
+    nombre,
+    slug: /^[A-Z]{3}$/.test(id) ? slugify(nombre) : id,
+    estado: 'activo',
+    orden: order,
+    ...extra,
+  };
+}
+
+function themeFromInternalCategory(category) {
+  const name = String(category?.nombre || '').toLowerCase();
+  if (/seguridad|conflicto|militar|armamento/.test(name)) return 'seguridad-conflicto';
+  if (/infraestructura|conectividad|transporte/.test(name)) return 'infraestructura-conectividad';
+  if (/energ|mineral|recurso/.test(name)) return 'energia-recursos-estrategicos';
+  if (/tecnolog|digital|ciber/.test(name)) return 'tecnologia-poder-digital';
+  if (/comercio|finanza|sanci|geoeconom/.test(name)) return 'geoeconomia-comercio-sanciones';
+  if (/gobernanza|poder|potencia|alianza|diploma/.test(name)) return 'diplomacia-gobernanza';
+  if (/clima|agua|ambiente|aliment/.test(name)) return 'clima-ambiente-seguridad-humana';
+  if (/demograf|migra|sociedad/.test(name)) return 'sociedad-demografia-migraciones';
+  return null;
+}
+
+function subthemesFromTopics(topics) {
+  const text = topics.map((item) => item?.nombre || '').join(' ').toLowerCase();
+  const ids = [];
+  if (/corredor/.test(text)) ids.push('corredores-estrategicos');
+  if (/mineral|cobalto|cobre|litio|níquel|niquel|tierras raras/.test(text)) ids.push('minerales-criticos');
+  if (/cadena.*suministro|suministro/.test(text)) ids.push('cadenas-suministro');
+  if (/infraestructura crítica|infraestructura critica|resiliencia/.test(text)) ids.push('infraestructura-critica-resiliencia');
+  if (/movilidad militar|doble uso/.test(text)) ids.push('movilidad-militar-infraestructura-doble-uso');
+  if (/cable.*submarino/.test(text)) ids.push('cables-submarinos');
+  if (/puerto/.test(text)) ids.push('puertos-estrategicos');
+  if (/estrecho|ruta marítima|ruta maritima|canal/.test(text)) ids.push('rutas-maritimas-estrechos');
+  return unique(ids);
+}
+
+function normalizeSourceState(value) {
+  const state = String(value || '').toLowerCase();
+  if (state === 'verificada' || state === 'verificado') return 'verificada';
+  if (state === 'revisada' || state === 'revisado') return 'revisada';
+  return 'pendiente';
+}
+
+function sourceProjection(source) {
+  return {
+    fuente_id: slugify(source.id),
+    media_id: source.media_id ? slugify(source.media_id) : null,
+    medio: String(source.medio || ''),
+    titulo: String(source.titulo || ''),
+    fecha: String(source.fecha || ''),
+    idioma: String(source.idioma || ''),
+    tipo: String(source.tipo || ''),
+    url: String(source.url || ''),
+    estado_verificacion: normalizeSourceState(source.estado_verificacion),
+  };
+}
+
+function geographyProjection(labels) {
+  const regionIds = [];
+  const subregionIds = [];
+  const countryIds = [];
+  const spaceIds = [];
+  const catalogEntries = {
+    regiones: new Map(),
+    subregiones: new Map(),
+    paises_territorios: new Map(),
+    espacios_geopoliticos: new Map(),
+  };
+
+  for (const label of labels || []) {
+    const entry = GEOGRAPHY[label] || {
+      type: 'space',
+      id: slugify(label),
+      nombre: label,
+      parent_id: 'global',
+    };
+    const extra = entry.parent_id ? { parent_id: entry.parent_id } : {};
+    if (entry.type === 'region') {
+      regionIds.push(entry.id);
+      catalogEntries.regiones.set(entry.id, catalogItem(entry.id, entry.nombre, 100, extra));
+    }
+    if (entry.type === 'subregion') {
+      subregionIds.push(entry.id);
+      regionIds.push(entry.parent_id);
+      catalogEntries.subregiones.set(entry.id, catalogItem(entry.id, entry.nombre, 100, extra));
+    }
+    if (entry.type === 'country') {
+      countryIds.push(entry.id);
+      regionIds.push(entry.parent_id);
+      catalogEntries.paises_territorios.set(entry.id, catalogItem(entry.id, entry.nombre, 100, extra));
+    }
+    if (entry.type === 'space') {
+      spaceIds.push(entry.id);
+      regionIds.push(entry.parent_id);
+      catalogEntries.espacios_geopoliticos.set(entry.id, catalogItem(entry.id, entry.nombre, 100, extra));
+    }
+  }
+
+  const regionNames = {
+    global: 'Global',
+    africa: 'África',
+    americas: 'Américas',
+    asia: 'Asia',
+    europa: 'Europa',
+    'oriente-medio': 'Oriente Medio',
+  };
+  for (const id of unique(regionIds)) {
+    catalogEntries.regiones.set(id, catalogItem(id, regionNames[id] || id, 100));
+  }
+
+  const geographicCount = unique([...subregionIds, ...countryIds, ...spaceIds]).length;
+  const scope = countryIds.length === 1 && geographicCount === 1
+    ? 'nacional'
+    : countryIds.length > 1 || subregionIds.length > 1 || spaceIds.length > 1
+      ? 'transfronterizo'
+      : regionIds.includes('global')
+        ? 'global'
+        : 'regional';
+
+  return {
+    classification: {
+      alcance: scope,
+      region_ids: unique(regionIds),
+      subregion_ids: unique(subregionIds),
+      pais_ids: unique(countryIds),
+      espacio_ids: unique(spaceIds),
+    },
+    catalogEntries,
+  };
+}
+
+function averageScale(evaluation) {
+  const values = ['impacto', 'probabilidad', 'alcance', 'persistencia']
+    .map((key) => Number(evaluation?.[key]))
+    .filter(Number.isFinite);
+  if (!values.length) return 1;
+  return Number((values.reduce((sum, value) => sum + value, 0) / values.length).toFixed(1));
+}
+
+function publicationState(event) {
+  const explicit = event.publicacion?.estado;
+  if (['borrador', 'en_revision', 'listo', 'publicado'].includes(explicit)) return explicit;
+  if (event.estado_editorial === 'publicado') return 'publicado';
+  if (event.estado_editorial === 'revision') return 'en_revision';
+  if (event.estado_editorial === 'validado') return 'listo';
+  return 'borrador';
+}
+
+function trackingState(event) {
+  if (['en_seguimiento', 'pausado', 'archivado'].includes(event.estado_seguimiento)) {
+    return event.estado_seguimiento;
+  }
+  return event.estado_editorial === 'archivado' ? 'archivado' : 'en_seguimiento';
+}
+
+function nextEditorialStep(state) {
+  const steps = {
+    borrador: 'Completar la documentación y verificar las señales pendientes.',
+    en_revision: 'Revisar coherencia, fuentes y valoraciones antes de autorizar la publicación.',
+    listo: 'Realizar el control final y decidir la fecha de publicación.',
+    publicado: 'Mantener el seguimiento e incorporar nuevas señales verificadas.',
+  };
+  return steps[state] || steps.borrador;
+}
+
+export function buildPublicPackage(data, taxonomy = {}, options = {}) {
+  const includeUnpublished = Boolean(
+    options.includeUnpublished ?? options.includeDrafts,
+  );
+  const includeInternal = Boolean(
+    options.includeInternal ?? options.includeDrafts,
+  );
+  const allTopics = new Map(
+    (taxonomy.categorias || []).flatMap((category) =>
+      (category.temas || []).map((topic) => [
+        Number(topic.id),
+        { ...topic, categoria: category },
+      ]),
+    ),
+  );
+
+  const processes = [];
+  const globalSources = new Map();
+  const actors = new Map();
+  const geographyCatalog = {
+    regiones: new Map(),
+    subregiones: new Map(),
+    paises_territorios: new Map(),
+    espacios_geopoliticos: new Map(),
+  };
+  const usedThemes = new Set();
+  const usedSubthemes = new Set();
+
+  for (const event of data.macroeventos || []) {
+    const state = publicationState(event);
+    if (!includeUnpublished && state !== 'publicado') continue;
+
+    const eventTopics = (event.tema_ids || []).map((id) => allTopics.get(Number(id))).filter(Boolean);
+    const mappedTopicThemes = unique(
+      eventTopics.map((item) => themeFromInternalCategory(item.categoria)),
+    );
+    const primaryTheme = CATEGORY_THEME[event.categoria] || mappedTopicThemes[0] || null;
+    const secondaryThemes = mappedTopicThemes.filter((id) => id !== primaryTheme);
+    if (primaryTheme) usedThemes.add(primaryTheme);
+    secondaryThemes.forEach((id) => usedThemes.add(id));
+
+    const subthemes = subthemesFromTopics(eventTopics);
+    subthemes.forEach((id) => usedSubthemes.add(id));
+
+    const geography = geographyProjection(event.regiones || []);
+    for (const [key, map] of Object.entries(geography.catalogEntries)) {
+      for (const [id, item] of map) geographyCatalog[key].set(id, item);
+    }
+
+    const actorIds = unique((event.actores || []).map(slugify));
+    for (const actor of event.actores || []) {
+      const id = slugify(actor);
+      actors.set(id, catalogItem(id, actor, 100));
+    }
+
+    const sourceList = (event.fuentes || []).map(sourceProjection);
+    const allowedSources = includeInternal
+      ? sourceList
+      : sourceList.filter((source) => source.estado_verificacion === 'verificada');
+    const allowedSourceIds = new Set(allowedSources.map((source) => source.fuente_id));
+    allowedSources.forEach((source) => globalSources.set(source.fuente_id, source));
+
+    let signalsOmitted = 0;
+    const signals = [];
+    for (const signal of event.senales || []) {
+      const sourceIds = unique(
+        (signal.fuente_ids || []).map(slugify).filter((id) => allowedSourceIds.has(id)),
+      );
+      if (!sourceIds.length) {
+        signalsOmitted += 1;
+        continue;
+      }
+      const allVerified = sourceIds.every(
+        (id) => globalSources.get(id)?.estado_verificacion === 'verificada',
+      );
+      signals.push({
+        senal_id: slugify(signal.id),
+        fecha: String(signal.fecha || ''),
+        titulo: String(signal.titulo || ''),
+        resumen: String(signal.descripcion || ''),
+        fuente_ids: sourceIds,
+        estado_verificacion: allVerified
+          ? 'verificada'
+          : normalizeSourceState(signal.estado_revision),
+      });
+    }
+
+    const relevance = averageScale(event.evaluacion);
+    const attention = Number(event.evaluacion?.cobertura_observada || 1);
+    const sourceIds = allowedSources.map((source) => source.fuente_id);
+    const completedMilestones = [
+      'Expediente abierto y clasificado',
+      ...(sourceIds.length ? ['Fuentes verificadas incorporadas'] : []),
+      ...(signals.length ? ['Señales verificadas incorporadas'] : []),
+      ...(state === 'en_revision' || state === 'listo' || state === 'publicado'
+        ? ['Revisión editorial iniciada']
+        : []),
+      ...(state === 'listo' || state === 'publicado'
+        ? ['Control editorial completado']
+        : []),
+      ...(state === 'publicado' ? ['Publicación autorizada'] : []),
+    ];
+
+    processes.push({
+      schema_version: 2,
+      macroevento_id: slugify(event.id),
+      slug: slugify(event.slug || event.id),
+      titulo: String(event.titulo || ''),
+      sintesis: String(event.descripcion || ''),
+      estado_seguimiento: trackingState(event),
+      publicacion: {
+        estado: state,
+        publicado_el: event.publicacion?.publicado_el || null,
+        actualizado_el: String(
+          event.publicacion?.actualizado_el || event.fecha_corte || data.actualizado || '',
+        ),
+      },
+      progreso_publico: {
+        etapa: state,
+        proximo_paso: nextEditorialStep(state),
+        hitos_completados: completedMilestones,
+      },
+      clasificacion: {
+        tema_principal_id: primaryTheme,
+        tema_secundario_ids: secondaryThemes,
+        subtema_ids: subthemes,
+        geografia: geography.classification,
+        actor_ids: actorIds,
+        etiqueta_ids: [],
+      },
+      que_esta_ocurriendo: String(event.descripcion || ''),
+      por_que_importa: String(event.por_que_importa || ''),
+      claves_estructurales: Array.isArray(event.claves_estructurales)
+        ? event.claves_estructurales.map(String)
+        : [],
+      valoraciones: {
+        relevancia_geopolitica: relevance,
+        atencion_mediatica: attention,
+        brecha: Number((relevance - attention).toFixed(1)),
+        confianza: String(event.evaluacion?.confianza || 'media'),
+        incertidumbre: Number(event.evaluacion?.incertidumbre || 1),
+      },
+      senales: signals.sort((a, b) => b.fecha.localeCompare(a.fecha)),
+      cronologia: [],
+      fuente_ids: sourceIds,
+      recurso_visual_ids: [],
+      macroevento_relacionado_ids: Array.isArray(event.macroevento_relacionado_ids)
+        ? event.macroevento_relacionado_ids.map(slugify)
+        : [],
+      indicadores_seguimiento: Array.isArray(event.indicadores)
+        ? event.indicadores.map(String)
+        : [],
+      escenarios: {
+        base: String(event.escenarios?.base || ''),
+        adverso: String(event.escenarios?.adverso || ''),
+        transformador: String(event.escenarios?.transformador || ''),
+      },
+      ...(includeInternal
+        ? {
+            metricas_editoriales: {
+              senales_omitidas_sin_fuente: signalsOmitted,
+              fuentes_pendientes: sourceList.filter(
+                (source) => source.estado_verificacion !== 'verificada',
+              ).length,
+            },
+          }
+        : {}),
+    });
+  }
+
+  const themeCatalog = THEME_DEFINITIONS
+    .filter(([id]) => usedThemes.has(id))
+    .map(([id, name], index) => catalogItem(id, name, (index + 1) * 10));
+  const subthemeCatalog = SUBTHEME_DEFINITIONS
+    .filter(([id]) => usedSubthemes.has(id))
+    .map(([id, name], index) => catalogItem(id, name, (index + 1) * 10));
+
+  return {
+    formato: 'memo-geopolitico-publico',
+    schema_version: 2,
+    generado_el: String(options.generatedAt || new Date().toISOString().slice(0, 10)),
+    procesos: processes.sort((a, b) =>
+      b.publicacion.actualizado_el.localeCompare(a.publicacion.actualizado_el),
+    ),
+    fuentes: [...globalSources.values()].sort((a, b) =>
+      a.fuente_id.localeCompare(b.fuente_id),
+    ),
+    recursos_visuales: [],
+    catalogos: {
+      temas: themeCatalog,
+      subtemas: subthemeCatalog,
+      regiones: [...geographyCatalog.regiones.values()],
+      subregiones: [...geographyCatalog.subregiones.values()],
+      paises_territorios: [...geographyCatalog.paises_territorios.values()],
+      espacios_geopoliticos: [...geographyCatalog.espacios_geopoliticos.values()],
+      actores: [...actors.values()].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es')),
+      etiquetas: [],
+      autores: [catalogItem('rete', 'Rete', 10)],
+    },
+  };
+}
+
+export function validatePublicPackage(data, options = {}) {
+  const errors = [];
+  const warnings = [];
+  if (data?.formato !== 'memo-geopolitico-publico') errors.push('Formato público inválido.');
+  if (data?.schema_version !== 2) errors.push('El esquema público debe ser v2.');
+
+  const processIds = new Set();
+  const sourceIds = new Set((data?.fuentes || []).map((item) => item.fuente_id));
+  const themeIds = new Set((data?.catalogos?.temas || []).map((item) => item.id));
+  const subthemeIds = new Set((data?.catalogos?.subtemas || []).map((item) => item.id));
+  const actorIds = new Set((data?.catalogos?.actores || []).map((item) => item.id));
+
+  for (const process of data?.procesos || []) {
+    const label = process.titulo || process.macroevento_id;
+    if (!process.macroevento_id) errors.push(`${label}: falta macroevento_id.`);
+    if (processIds.has(process.macroevento_id)) errors.push(`${label}: ID duplicado.`);
+    processIds.add(process.macroevento_id);
+    if (!process.titulo || !process.sintesis) errors.push(`${label}: faltan título o síntesis.`);
+    if (process.clasificacion.tema_principal_id && !themeIds.has(process.clasificacion.tema_principal_id)) {
+      errors.push(`${label}: tema principal inexistente.`);
+    }
+    for (const id of process.clasificacion.tema_secundario_ids) {
+      if (!themeIds.has(id)) errors.push(`${label}: tema secundario inexistente (${id}).`);
+    }
+    for (const id of process.clasificacion.subtema_ids) {
+      if (!subthemeIds.has(id)) errors.push(`${label}: subtema inexistente (${id}).`);
+    }
+    for (const id of process.clasificacion.actor_ids) {
+      if (!actorIds.has(id)) errors.push(`${label}: actor inexistente (${id}).`);
+    }
+    for (const id of process.fuente_ids) {
+      if (!sourceIds.has(id)) errors.push(`${label}: fuente inexistente (${id}).`);
+    }
+    for (const signal of process.senales) {
+      if (!signal.fuente_ids.length) errors.push(`${label} / ${signal.titulo}: señal sin fuente.`);
+      for (const id of signal.fuente_ids) {
+        if (!sourceIds.has(id)) errors.push(`${label} / ${signal.titulo}: fuente inexistente (${id}).`);
+      }
+    }
+    if (process.publicacion.estado === 'publicado') {
+      if (!process.por_que_importa) errors.push(`${label}: un proceso publicado requiere “por qué importa”.`);
+      if (!process.clasificacion.tema_principal_id) errors.push(`${label}: un proceso publicado requiere tema principal.`);
+      if (!process.senales.length) errors.push(`${label}: un proceso publicado requiere señales.`);
+      if (!process.fuente_ids.length) errors.push(`${label}: un proceso publicado requiere fuentes.`);
+    } else if (!options.allowDrafts && !options.allowDevelopment) {
+      errors.push(`${label}: el paquete público contiene un proceso no publicado.`);
+    }
+  }
+
+  for (const source of data?.fuentes || []) {
+    if (!source.fuente_id || !source.titulo || !source.url) {
+      errors.push(`Fuente incompleta: ${source.fuente_id || '(sin ID)'}.`);
+    }
+    try {
+      const url = new URL(source.url);
+      if (url.protocol !== 'https:') warnings.push(`${source.fuente_id}: URL no HTTPS.`);
+    } catch {
+      errors.push(`${source.fuente_id}: URL inválida.`);
+    }
+  }
+
+  return { valid: errors.length === 0, errors, warnings };
+}

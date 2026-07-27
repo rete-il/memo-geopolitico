@@ -1,0 +1,80 @@
+---
+import PublicationCard from '../../components/PublicationCard.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getPublicationEntries } from '../../lib/publications';
+
+const published = await getPublicationEntries({
+  includePreview: false,
+  publishedOnly: true,
+});
+---
+
+<SiteLayout
+  title="Publicaciones"
+  description="Ensayos, análisis, explicadores, comparaciones y prospectiva conectados con procesos del Observatorio."
+>
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Publicaciones</p>
+        <h1>Análisis completos, sin categorías rígidas.</h1>
+      </div>
+      <p>
+        Ensayos, explicadores, comparaciones y ejercicios de prospectiva
+        comparten un mismo archivo. Cada texto conserva vínculos explícitos con
+        procesos, fuentes y clasificaciones.
+      </p>
+    </header>
+
+    <section
+      class="section-shell publication-section publication-section--published"
+      aria-labelledby="publicados-heading"
+    >
+      <div class="publication-section-heading">
+        <div>
+          <p class="eyebrow">Disponibles para lectura</p>
+          <h2 id="publicados-heading">Publicados</h2>
+          <p>
+            Análisis completos que ya atravesaron la revisión editorial y
+            factual.
+          </p>
+        </div>
+        <strong class="publication-count">
+          {published.length}
+          <span>{published.length === 1 ? 'publicación' : 'publicaciones'}</span>
+        </strong>
+      </div>
+      {
+        published.length ? (
+          <div class="publication-grid">
+            {published.map((publication) => (
+              <PublicationCard publication={publication.data} />
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <h2>No hay publicaciones autorizadas todavía</h2>
+            <p>
+              Los borradores permanecen fuera del build público hasta completar
+              la revisión editorial y factual.
+            </p>
+          </div>
+        )
+      }
+    </section>
+
+    <aside class="publications-observatory-link">
+      <div>
+        <p class="eyebrow">Trabajo editorial</p>
+        <h2>Los procesos todavía no publicados se siguen en el Observatorio.</h2>
+        <p>
+          Allí se muestran su estado, avances e hitos sin convertir borradores
+          en publicaciones.
+        </p>
+      </div>
+      <a class="button-secondary" href="/observatorio/?editorial=en_curso#explorar">
+        Ver trabajo en curso
+      </a>
+    </aside>
+  </div>
+</SiteLayout>
