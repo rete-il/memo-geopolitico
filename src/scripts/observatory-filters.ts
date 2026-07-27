@@ -1,4 +1,6 @@
-const form = document.querySelector<HTMLFormElement>('[data-observatory-filters]');
+const form = document.querySelector<HTMLFormElement>(
+  '[data-observatory-filters]',
+);
 const results = document.querySelector<HTMLElement>('[data-process-results]');
 const cards = [
   ...document.querySelectorAll<HTMLElement>('[data-process-card]'),
@@ -11,19 +13,23 @@ const viewButtons = [
 
 const readValue = (name: string) => {
   const element = form?.elements.namedItem(name);
-  return element instanceof HTMLInputElement || element instanceof HTMLSelectElement
+  return element instanceof HTMLInputElement ||
+    element instanceof HTMLSelectElement
     ? element.value.trim()
     : '';
 };
 
 const setValue = (name: string, value: string) => {
   const element = form?.elements.namedItem(name);
-  if (element instanceof HTMLInputElement || element instanceof HTMLSelectElement) {
+  if (
+    element instanceof HTMLInputElement ||
+    element instanceof HTMLSelectElement
+  ) {
     element.value = value;
   }
 };
 
-function applyFilters() {
+function applyFilters(updateUrl = true) {
   const query = readValue('q').toLowerCase();
   const region = readValue('region');
   const theme = readValue('theme');
@@ -51,29 +57,50 @@ function applyFilters() {
     if (matches) visible += 1;
   }
 
-  if (count) count.textContent = `${visible} ${visible === 1 ? 'proceso' : 'procesos'}`;
+  if (count)
+    count.textContent = `${visible} ${visible === 1 ? 'proceso' : 'procesos'}`;
   if (empty) empty.hidden = visible !== 0;
 
-  const params = new URLSearchParams();
-  for (const name of ['q', 'region', 'theme', 'actor', 'editorial', 'tracking', 'relevance', 'attention']) {
-    const value = readValue(name);
-    if (value) params.set(name, value);
+  if (updateUrl) {
+    const params = new URLSearchParams();
+    for (const name of [
+      'q',
+      'region',
+      'theme',
+      'actor',
+      'editorial',
+      'tracking',
+      'relevance',
+      'attention',
+    ]) {
+      const value = readValue(name);
+      if (value) params.set(name, value);
+    }
+    const url = `${window.location.pathname}${params.size ? `?${params}` : ''}#explorar`;
+    history.replaceState(null, '', url);
   }
-  const url = `${window.location.pathname}${params.size ? `?${params}` : ''}#explorar`;
-  history.replaceState(null, '', url);
 }
 
 if (form) {
   const params = new URLSearchParams(window.location.search);
-  for (const name of ['q', 'region', 'theme', 'actor', 'editorial', 'tracking', 'relevance', 'attention']) {
+  for (const name of [
+    'q',
+    'region',
+    'theme',
+    'actor',
+    'editorial',
+    'tracking',
+    'relevance',
+    'attention',
+  ]) {
     const value = params.get(name);
     if (value) setValue(name, value);
   }
-  applyFilters();
-  form.addEventListener('input', applyFilters);
-  form.addEventListener('change', applyFilters);
+  applyFilters(false);
+  form.addEventListener('input', () => applyFilters());
+  form.addEventListener('change', () => applyFilters());
   form.addEventListener('reset', () => {
-    window.setTimeout(applyFilters, 0);
+    window.setTimeout(() => applyFilters(), 0);
   });
 }
 
