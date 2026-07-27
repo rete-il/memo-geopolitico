@@ -198,6 +198,12 @@ const processCountLabel =
     transform: translateY(1px);
   }
 
+  @media (min-width: 900px) {
+    .home-intro h1 {
+      max-width: 19ch;
+      font-size: clamp(3.25rem, 5vw, 4.75rem);
+    }
+  }
   @media (max-width: 760px) {
     .home-shell {
       padding-block: 2.25rem 3.5rem;
