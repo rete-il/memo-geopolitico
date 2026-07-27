@@ -3,8 +3,7 @@
     "enabledInDevelopment": true,
     "enabledInProduction": false,
     "kofiUrl": "https://ko-fi.com/reteil",
-    "showOnAlerts": true,
-    "showOnEssays": true,
+    "showOnPublications": true,
     "showInFooter": true
   }
 }

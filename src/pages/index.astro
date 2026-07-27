@@ -1,145 +1,88 @@
 ---
-import Header from '../components/Header.astro';
-import Layout from '../layouts/Layout.astro';
-import SidebarAlertas from '../components/SidebarAlertas.astro';
-import MapaGlobal from '../components/MapaGlobal.astro';
-import ListaEnsayos from '../components/ListaEnsayos.astro';
-import PanelDerecho from '../components/PanelDerecho.astro';
-import { getCollection, render } from 'astro:content';
+import PublicationCard from '../components/PublicationCard.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { editorialPreviewEnabled } from '../lib/data';
+import { formatDate } from '../lib/text';
+import { getPublicationEntries } from '../lib/publications';
 
-const ensayos = await getCollection('ensayos');
-const alertasBrutas = await getCollection('alertas');
-
-// 1. Resolver asincronía
-const alertas = await Promise.all(
-  alertasBrutas.map(async (alerta) => {
-    const { Content } = await render(alerta);
-    return { ...alerta, Content };
-  }),
-);
-
-// 2. Ordenamiento Ensayos
-const ensayosOrdenados = ensayos.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
-const ensayosRecientes = ensayosOrdenados.slice(0, 5);
-
-// 3. Reglas de Renderizado Map Data (TTL Filter de 14 días)
-const FOURTEEN_DAYS_MS = 14 * 24 * 60 * 60 * 1000;
-const nowMs = Date.now();
-
-const mapAlertasData = alertas
-  .filter((alerta) => {
-    if (alerta.data.en_mapa === false) return false;
-    const eventTime = new Date(alerta.data.date).getTime();
-    return nowMs - eventTime <= FOURTEEN_DAYS_MS;
-  })
-  .flatMap((alerta) => {
-    const coords = alerta.data.coordenadas;
-
-    // Le indicamos explícitamente a TypeScript la estructura del array
-    const arrayDeCoords = Array.isArray(coords[0])
-      ? (coords as [number, number][])
-      : ([coords] as [number, number][]);
-
-    return arrayDeCoords.map((coord) => ({
-      id: alerta.id,
-      lat: coord[0],
-      lng: coord[1],
-      severity: alerta.data.severity,
-    }));
-  });
+const publications = await getPublicationEntries({
+  includePreview: false,
+  publishedOnly: true,
+});
+const latestPublications = publications.slice(0, 4);
+const hasMorePublications = publications.length > latestPublications.length;
+const latestUpdate = publications[0]?.data.publicacion.actualizado_el;
 ---
 
-<Layout>
-  <Header />
-  <!-- Dependencias Cartográficas (Leaflet & MarkerCluster) -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
-  />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" is:inline
-  ></script>
-  <script
-    src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
-    is:inline></script>
-
-  <!-- Estilos globales específicos del tablero -->
-  <style is:global>
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    .font-serif {
-      font-family: 'Playfair Display', serif;
-    }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* Personalización Spiderfy y Leaflet */
-    .leaflet-container {
-      background: #e2e8f0;
-      font-family: inherit;
-    }
-    .leaflet-spiderfied-leg {
-      stroke: #cbd5e1 !important;
-      stroke-width: 1.5px !important;
-    }
-
-    @keyframes leaflet-pulse {
-      0% {
-        transform: scale(0.8);
-        opacity: 0.8;
-        box-shadow: 0 0 0 0 rgba(inherit, 0.7);
-      }
-      70% {
-        transform: scale(1.5);
-        opacity: 0;
-        box-shadow: 0 0 0 15px rgba(inherit, 0);
-      }
-      100% {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-    }
-    .marker-pulse::after {
-      content: '';
-      position: absolute;
-      left: -100%;
-      top: -100%;
-      width: 300%;
-      height: 300%;
-      border-radius: 50%;
-      border: 2px solid currentColor;
-      animation: leaflet-pulse 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-      pointer-events: none;
-    }
-  </style>
-
-  <main
-    class="flex-1 max-w-screen-2xl mx-auto w-full px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-slate-100"
-  >
-    <!-- 1. COLUMNA IZQUIERDA -->
-    <SidebarAlertas alertas={alertas} />
-
-    <!-- 2. COLUMNA CENTRAL -->
-    <section class="lg:col-span-6 flex flex-col gap-6">
-      <MapaGlobal mapData={mapAlertasData} />
-      <ListaEnsayos ensayos={ensayosRecientes} />
+<SiteLayout>
+  <div class="page-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Prospectiva geopolítica</p>
+        <h1>Analizar procesos</h1>
+        <p>
+          Más allá de la actualidad inmediata, examinamos transformaciones de
+          mediano y largo plazo mediante expedientes, señales verificadas y
+          fuentes trazables.
+        </p>
+        <div class="hero-actions">
+          <a class="button-primary" href="/publicaciones/">Leer publicaciones</a
+          >
+          <a class="button-secondary" href="/observatorio/"
+            >Abrir el Observatorio</a
+          >
+        </div>
+      </div>
+      <aside class="hero-panel" aria-label="Archivo de publicaciones">
+        <p class="eyebrow">Archivo público</p>
+        <h2>Análisis disponibles para lectura</h2>
+        <div class="hero-metric">
+          <span>Publicaciones</span>
+          <strong>{publications.length}</strong>
+          <small>textos completos</small>
+        </div>
+        <div class="hero-metric">
+          <span>Última actualización</span>
+          <strong class="hero-metric-date">
+            {latestUpdate ? formatDate(latestUpdate) : '—'}
+          </strong>
+          <small>corte del archivo</small>
+        </div>
+      </aside>
     </section>
+  </div>
 
-    <!-- 3. COLUMNA DERECHA -->
-    <PanelDerecho />
-  </main>
-</Layout>
+  <section class="section-shell">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Últimas publicaciones</p>
+        <h2>Análisis completos, conectados con evidencia</h2>
+      </div>
+      {
+        hasMorePublications && (
+          <a href="/publicaciones/">Ver más…</a>
+        )
+      }
+    </div>
+    {
+      latestPublications.length ? (
+        <div class="publication-grid">
+          {latestPublications.map((publication) => (
+            <PublicationCard
+              publication={publication.data}
+              editorialPreview={editorialPreviewEnabled}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <h2>Las primeras publicaciones están en preparación</h2>
+          <p>
+            Los borradores permanecen fuera de Inicio hasta completar la
+            revisión editorial y factual.
+          </p>
+        </div>
+      )
+    }
+  </section>
+</SiteLayout>

@@ -1,357 +1,136 @@
 ---
-import { regionNavigation } from '../config/regions';
+const { pathname } = Astro.url;
 
-const pathname = Astro.url.pathname;
-
-interface NavItem {
-  label: string;
-  href: string;
-  aliases?: string[];
-}
-
-const primaryItems: NavItem[] = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Alertas', href: '/alertas/' },
-  { label: 'Focos', href: '/focos/', aliases: ['/ensayos/'] },
-  { label: 'Dossiers', href: '/dossiers/', aliases: ['/profundidad/'] },
-  { label: 'Acerca de', href: '/acerca-de/' },
+const navigation = [
+  { href: '/', label: 'Inicio' },
+  { href: '/observatorio/', label: 'Observatorio' },
+  { href: '/publicaciones/', label: 'Publicaciones' },
+  { href: '/recursos-visuales/', label: 'Recursos visuales' },
+  { href: '/acerca-de/', label: 'Acerca de' },
 ];
 
-const exploreItems: NavItem[] = [
-  { label: 'Temas', href: '/temas/' },
-  { label: 'Medios', href: '/medios/', aliases: ['/directorio/'] },
+const exploration = [
+  { href: '/regiones/', label: 'Regiones' },
+  { href: '/espacios-geopoliticos/', label: 'Espacios geopolíticos' },
+  { href: '/temas/', label: 'Temas' },
+  { href: '/actores/', label: 'Actores' },
+  { href: '/etiquetas/', label: 'Etiquetas' },
+  { href: '/medios/', label: 'Medios' },
 ];
 
-function pathMatches(value: string): boolean {
-  if (value === '/') return pathname === '/';
-  const normalized = value.replace(/\/$/, '');
-  return (
-    pathname === normalized ||
-    pathname === `${normalized}/` ||
-    pathname.startsWith(`${normalized}/`)
-  );
-}
-
-function isActive(item: NavItem): boolean {
-  return [item.href, ...(item.aliases || [])].some(pathMatches);
-}
-
-const updatedDisplay = new Date().toLocaleDateString('es-ES', {
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric',
-});
+const active = (href: string) =>
+  href === '/' ? pathname === '/' : pathname.startsWith(href);
 ---
 
-<header class="sticky top-0 z-50 border-b border-slate-200 bg-white text-slate-900 shadow-sm">
-  <div class="mx-auto grid h-16 max-w-screen-2xl grid-cols-[1fr_auto_1fr] items-center px-4 lg:px-6">
-    <div class="flex justify-start">
-      <button
-        id="site-menu-button"
-        type="button"
-        class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-transparent text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
-        aria-label="Abrir menú de exploración"
-        aria-controls="site-menu"
-        aria-expanded="false"
-      >
-        <i class="ph ph-list text-2xl" aria-hidden="true"></i>
-      </button>
-    </div>
-
-    <a
-      href="/"
-      class="flex items-center justify-center gap-2 rounded-sm text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
-      aria-label="Ir al inicio de Memo Geopolítico"
+<header class="site-header">
+  <div class="header-inner">
+    <button
+      class="menu-trigger"
+      type="button"
+      aria-label="Abrir menú de exploración"
+      aria-controls="site-menu"
+      aria-expanded="false"
+      data-menu-open
     >
-      <i class="ph-fill ph-globe-hemisphere-west text-2xl text-red-600" aria-hidden="true"></i>
-      <span class="text-base font-bold uppercase tracking-tight sm:text-xl">Memo Geopolítico</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </button>
+
+    <a class="brand" href="/" aria-label="Memo Geopolítico, inicio">
+      <span class="brand-mark" aria-hidden="true">MG</span>
+      <span>
+        <strong>Memo Geopolítico</strong>
+        <small>Procesos que exceden la coyuntura</small>
+      </span>
     </a>
 
-    <div class="flex justify-end">
-      <time class="hidden text-xs font-medium text-slate-500 sm:block" datetime={new Date().toISOString().slice(0, 10)}>
-        Actualizado: {updatedDisplay}
-      </time>
-    </div>
-  </div>
-
-  <nav class="hidden border-t border-slate-200 bg-white md:block" aria-label="Navegación principal">
-    <div class="mx-auto flex h-11 max-w-screen-2xl items-center justify-center gap-1 px-4 lg:px-6">
-      {primaryItems.map((item) => {
-        const active = isActive(item);
-        return (
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      {
+        navigation.map((item) => (
           <a
             href={item.href}
-            aria-current={active ? 'page' : undefined}
-            class:list={[
-              'rounded-sm px-4 py-2 text-sm transition-colors',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2',
-              active
-                ? 'font-bold text-blue-700'
-                : 'font-semibold text-slate-600 hover:text-slate-950',
-            ]}
+            aria-current={active(item.href) ? 'page' : undefined}
           >
             {item.label}
           </a>
-        );
-      })}
-    </div>
-  </nav>
+        ))
+      }
+    </nav>
+
+    <a class="search-shortcut" href="/observatorio/#explorar" aria-label="Buscar en el Observatorio">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.5"></circle>
+        <path d="m16 16 4 4"></path>
+      </svg>
+    </a>
+  </div>
 </header>
 
-<div
-  id="site-menu-overlay"
-  class="fixed inset-0 z-[60] bg-slate-950/50 transition-opacity duration-200"
-  aria-hidden="true"
-></div>
+<dialog id="site-menu" class="site-menu" aria-labelledby="menu-title">
+  <div class="menu-shell">
+    <div class="menu-heading">
+      <div>
+        <p class="eyebrow">Exploración</p>
+        <h2 id="menu-title">Explorar Memo Geopolítico</h2>
+      </div>
+      <button type="button" class="menu-close" aria-label="Cerrar menú" data-menu-close>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+    </div>
 
-<aside
-  id="site-menu"
-  class="fixed inset-y-0 left-0 z-[70] flex w-[min(92vw,400px)] flex-col bg-white text-slate-900 shadow-2xl transition-transform duration-200"
-  aria-label="Menú del sitio"
-  aria-hidden="true"
-  tabindex="-1"
->
-  <div class="flex h-16 items-center justify-between border-b border-slate-200 px-5">
-    <span class="text-sm font-bold uppercase tracking-wider">Memo Geopolítico</span>
-    <button
-      id="site-menu-close"
-      type="button"
-      class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-      aria-label="Cerrar menú"
-    >
-      <i class="ph ph-x text-2xl" aria-hidden="true"></i>
-    </button>
-  </div>
-
-  <div class="flex-1 overflow-y-auto px-5 py-6">
-    <nav class="md:hidden" aria-label="Secciones principales">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Secciones</p>
-      <ul class="space-y-1">
-        {primaryItems.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              aria-current={isActive(item) ? 'page' : undefined}
-              class:list={[
-                'flex min-h-11 items-center rounded-md px-3 text-base font-semibold transition-colors',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600',
-                isActive(item)
-                  ? 'bg-blue-50 text-blue-800'
-                  : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950',
-              ]}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+    <nav class="menu-primary" aria-label="Exploración transversal">
+      {
+        exploration.map((item) => (
+          <a href={item.href} aria-current={active(item.href) ? 'page' : undefined}>
+            <span>{item.label}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        ))
+      }
     </nav>
 
-    <nav class="mt-8 border-t border-slate-200 pt-6 md:mt-0 md:border-t-0 md:pt-0" aria-label="Explorar el sitio">
-      <p class="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Explorar</p>
-      <ul class="space-y-1">
-        <li class="rounded-md border border-slate-200 bg-slate-50/70">
-          <div class="flex min-h-12 items-center gap-1 px-1">
-            <a
-              href="/regiones/"
-              aria-current={pathMatches('/regiones/') ? 'page' : undefined}
-              class:list={[
-                'flex min-h-11 flex-1 items-center rounded-md px-3 text-base font-semibold transition-colors',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600',
-                pathMatches('/regiones/')
-                  ? 'text-blue-800'
-                  : 'text-slate-800 hover:bg-white hover:text-slate-950',
-              ]}
-            >
-              Regiones
-            </a>
-            <button
-              type="button"
-              class="regional-toggle inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-slate-600 hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-              aria-label="Mostrar regiones"
-              aria-controls="regional-navigation"
-              aria-expanded="false"
-            >
-              <i class="ph ph-caret-down transition-transform" aria-hidden="true"></i>
-            </button>
-          </div>
-
-          <ul id="regional-navigation" class="hidden space-y-1 border-t border-slate-200 px-2 py-2">
-            {regionNavigation.map((region) => {
-              const childrenId = `region-children-${region.id}`;
-              return (
-                <li>
-                  <div class="flex min-h-11 items-center gap-1">
-                    <a
-                      href={region.href}
-                      class="flex min-h-10 flex-1 items-center rounded-md px-3 text-sm font-bold text-slate-700 transition-colors hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-                    >
-                      {region.label}
-                    </a>
-                    {region.children?.length ? (
-                      <button
-                        type="button"
-                        class="regional-toggle inline-flex min-h-10 min-w-10 items-center justify-center rounded-md text-slate-500 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-                        aria-label={`Mostrar subregiones de ${region.label}`}
-                        aria-controls={childrenId}
-                        aria-expanded="false"
-                      >
-                        <i class="ph ph-caret-down text-sm transition-transform" aria-hidden="true"></i>
-                      </button>
-                    ) : (
-                      <span class="inline-flex min-h-10 min-w-10 items-center justify-center text-slate-300" aria-hidden="true">
-                        <i class="ph ph-arrow-right text-sm"></i>
-                      </span>
-                    )}
-                  </div>
-
-                  {region.children?.length ? (
-                    <ul id={childrenId} class="ml-4 hidden space-y-1 border-l border-slate-200 py-1 pl-3">
-                      {region.children.map((child) => (
-                        <li>
-                          <a
-                            href={child.href}
-                            class="flex min-h-10 items-center rounded-md px-3 text-sm text-slate-600 transition-colors hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-                          >
-                            {child.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </li>
-              );
-            })}
-          </ul>
-        </li>
-
-        {exploreItems.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              aria-current={isActive(item) ? 'page' : undefined}
-              class:list={[
-                'flex min-h-12 items-center justify-between rounded-md px-3 text-base font-semibold transition-colors',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600',
-                isActive(item)
-                  ? 'bg-blue-50 text-blue-800'
-                  : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950',
-              ]}
-            >
-              <span>{item.label}</span>
-              <i class="ph ph-arrow-right text-base" aria-hidden="true"></i>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <div class="menu-explore">
+      <p class="eyebrow">Seguimiento</p>
+      <div>
+        <a href="/observatorio/?editorial=en_curso#explorar">Trabajo en curso</a>
+        <a href="/observatorio/dashboard/">Dashboard público</a>
+        <a href="/observatorio/senales/">Señales</a>
+        <a href="/metodologia/relevancia-atencion-mediatica/">Metodología</a>
+      </div>
+    </div>
   </div>
-</aside>
-
-<style is:global>
-  #site-menu-overlay {
-    opacity: 0;
-    pointer-events: none;
-  }
-  #site-menu-overlay.is-open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  #site-menu {
-    transform: translateX(-100%);
-  }
-  #site-menu.is-open {
-    transform: translateX(0);
-  }
-  .regional-toggle[aria-expanded='true'] i {
-    transform: rotate(180deg);
-  }
-</style>
+</dialog>
 
 <script>
-  const menuButton = document.querySelector<HTMLButtonElement>('#site-menu-button');
-  const menuClose = document.querySelector<HTMLButtonElement>('#site-menu-close');
-  const menu = document.querySelector<HTMLElement>('#site-menu');
-  const overlay = document.querySelector<HTMLElement>('#site-menu-overlay');
-  let previousFocus: HTMLElement | null = null;
+  const dialog = document.querySelector<HTMLDialogElement>('#site-menu');
+  const openButton = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]');
 
-  const focusableSelector = [
-    'a[href]',
-    'button:not([disabled])',
-    '[tabindex]:not([tabindex="-1"])',
-  ].join(',');
+  const closeMenu = () => {
+    if (!dialog?.open) return;
+    dialog.close();
+    openButton?.setAttribute('aria-expanded', 'false');
+    openButton?.focus();
+  };
 
-  function setMenu(open: boolean) {
-    if (!menuButton || !menu || !overlay) return;
-
-    menuButton.setAttribute('aria-expanded', String(open));
-    menu.setAttribute('aria-hidden', String(!open));
-    overlay.setAttribute('aria-hidden', String(!open));
-    menu.classList.toggle('is-open', open);
-    overlay.classList.toggle('is-open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-
-    if (open) {
-      previousFocus = document.activeElement as HTMLElement;
-      const first = menu.querySelector<HTMLElement>(focusableSelector);
-      window.setTimeout(() => first?.focus(), 0);
-    } else {
-      (previousFocus || menuButton).focus();
-    }
-  }
-
-  function setExpanded(button: HTMLButtonElement, expanded: boolean) {
-    const targetId = button.getAttribute('aria-controls');
-    const target = targetId ? document.getElementById(targetId) : null;
-    if (!target) return;
-
-    button.setAttribute('aria-expanded', String(expanded));
-    target.classList.toggle('hidden', !expanded);
-
-    const label = button.getAttribute('aria-label') || '';
-    button.setAttribute(
-      'aria-label',
-      label.replace(expanded ? /^Mostrar/ : /^Ocultar/, expanded ? 'Ocultar' : 'Mostrar'),
-    );
-  }
-
-  menuButton?.addEventListener('click', () => setMenu(true));
-  menuClose?.addEventListener('click', () => setMenu(false));
-  overlay?.addEventListener('click', () => setMenu(false));
-
-  menu?.querySelectorAll<HTMLButtonElement>('.regional-toggle').forEach((button) => {
-    button.addEventListener('click', () => {
-      setExpanded(button, button.getAttribute('aria-expanded') !== 'true');
-    });
+  openButton?.addEventListener('click', () => {
+    dialog?.showModal();
+    document.documentElement.classList.add('menu-open');
+    openButton.setAttribute('aria-expanded', 'true');
+    closeButton?.focus();
   });
 
-  menu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => setMenu(false));
+  closeButton?.addEventListener('click', closeMenu);
+
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closeMenu();
   });
 
-  document.addEventListener('keydown', (event) => {
-    if (!menu?.classList.contains('is-open')) return;
-
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      setMenu(false);
-      return;
-    }
-
-    if (event.key !== 'Tab') return;
-    const focusable = [...menu.querySelectorAll<HTMLElement>(focusableSelector)].filter(
-      (element) => !element.closest('.hidden'),
-    );
-    if (!focusable.length) return;
-
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
+  dialog?.addEventListener('close', () => {
+    document.documentElement.classList.remove('menu-open');
+    openButton?.setAttribute('aria-expanded', 'false');
   });
 </script>

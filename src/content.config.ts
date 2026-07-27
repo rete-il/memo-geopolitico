@@ -1,55 +1,57 @@
 import { defineCollection } from 'astro:content';
-import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
+
+const classificationSchema = z.object({
+  tema_principal_id: z.string().nullable(),
+  tema_secundario_ids: z.array(z.string()).default([]),
+  subtema_ids: z.array(z.string()).default([]),
+  geografia: z.object({
+    alcance: z.enum(['global', 'regional', 'transfronterizo', 'nacional', 'local']),
+    region_ids: z.array(z.string()).default([]),
+    subregion_ids: z.array(z.string()).default([]),
+    pais_ids: z.array(z.string()).default([]),
+    espacio_ids: z.array(z.string()).default([]),
+  }),
+  actor_ids: z.array(z.string()).default([]),
+  etiqueta_ids: z.array(z.string()).default([]),
+});
 
 export const collections = {
-  ensayos: defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/ensayos' }),
-    schema: z.object({
-      title: z.string(),
-      description: z.string(),
-      homeSummary: z.string(),
-      listingSummary: z.string(),
-      date: z.coerce.date(),
-      updated: z.coerce.date().optional(),
-      author: z.string().default('Equipo Editorial'),
-      tags: z.array(z.string()).optional(),
-      coverImage: z.string().optional(),
+  publicaciones: defineCollection({
+    loader: glob({
+      pattern: '{publicadas,_preview}/**/*.md',
+      base: './src/content/publicaciones',
+      generateId: ({ entry }) => entry.replace(/\.md$/, ''),
     }),
-  }),
-  alertas: defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/alertas' }),
     schema: z.object({
-      title: z.string(),
-      region: z.string(),
-      date: z.coerce.date(),
-      coordenadas: z.union([
-        z.tuple([z.number(), z.number()]),
-        z.array(z.tuple([z.number(), z.number()])),
+      schema_version: z.literal(2),
+      post_id: z.string(),
+      slug: z.string(),
+      tipo_publicacion: z.enum([
+        'ensayo',
+        'analisis',
+        'explicador',
+        'analisis_cartografico',
+        'nota_coyuntura',
+        'comparacion',
+        'prospectiva',
       ]),
-      severity: z.enum(['critical', 'high', 'medium', 'low']),
-      en_mapa: z.boolean().optional(),
-      vinculo: z.string(),
-      listingSummary: z.string(),
-    }),
-  }),
-  profundidad: defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/profundidad' }),
-    schema: z.object({
-      title: z.string(),
-      description: z.string(),
-      listingSummary: z.string(),
-      date: z.coerce.date(),
-      severity: z.enum(['critical', 'high', 'medium', 'low']),
-      sources: z
-        .array(
-          z.object({
-            title: z.string(),
-            url: z.url(),
-            summary: z.string(),
-          }),
-        )
-        .optional(),
+      titulo: z.string(),
+      subtitulo: z.string().default(''),
+      resumen: z.string(),
+      autor_ids: z.array(z.string()).min(1),
+      publicacion: z.object({
+        estado: z.enum(['borrador', 'en_revision', 'listo', 'publicado']),
+        publicado_el: z.string().nullable(),
+        actualizado_el: z.string(),
+      }),
+      macroevento_principal_id: z.string(),
+      macroevento_secundario_ids: z.array(z.string()).default([]),
+      clasificacion: classificationSchema,
+      fuente_ids: z.array(z.string()).default([]),
+      recurso_visual_ids: z.array(z.string()).default([]),
+      post_relacionado_ids: z.array(z.string()).default([]),
     }),
   }),
 };

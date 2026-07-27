@@ -11,7 +11,6 @@ export const supportConfig = {
   enabledInDevelopment: config.enabledInDevelopment,
   enabledInProduction: config.enabledInProduction,
   url: config.kofiUrl,
-  showOnAlerts: config.showOnAlerts,
-  showOnEssays: config.showOnEssays,
+  showOnPublications: config.showOnPublications,
   showInFooter: config.showInFooter,
 } as const;

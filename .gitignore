@@ -1,33 +1,16 @@
-# build output
-dist/
-# generated types
-.astro/
-
-# dependencies
 node_modules/
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-
-# environment variables
+dist/
+dist-preview/
+.astro/
 .env
-.env.production
-
-# macOS-specific files
+.env.local
+local-sources.json
+local-preview/*
+!local-preview/.gitkeep
+src/content/publicaciones/_preview/
+*.log
 .DS_Store
-
-# jetbrains setting folder
-.idea/
-
-ideas.md
-
-# local environment variables
+Thumbs.db
 .env.development
 .env.preview
-
-# local preview generated data
 /local-preview/

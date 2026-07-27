@@ -1,25 +1,33 @@
 ---
 import { supportConfig } from '../config/support';
 
-const visible = supportConfig.enabled && supportConfig.showInFooter;
+const showSupport = supportConfig.enabled && supportConfig.showInFooter;
 ---
 
-{
-  visible && (
-    <footer class="border-t border-slate-800 bg-slate-900 text-slate-300">
-      <div class="mx-auto flex max-w-screen-2xl flex-col gap-4 px-6 py-8 text-sm sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} Memo Geopolítico</p>
-
-        <a
-          href={supportConfig.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-semibold text-slate-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-        >
-          Apoyar el proyecto
-          <span class="sr-only"> mediante Ko-fi</span>
-        </a>
-      </div>
-    </footer>
-  )
-}
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <a class="footer-brand" href="/">Memo Geopolítico</a>
+      <p>Análisis independiente de procesos geopolíticos de mediano y largo plazo.</p>
+    </div>
+    <nav aria-label="Navegación del pie">
+      <a href="/observatorio/">Observatorio</a>
+      <a href="/observatorio/dashboard/">Dashboard</a>
+      <a href="/publicaciones/">Publicaciones</a>
+      <a href="/medios/">Medios</a>
+      <a href="/metodologia/relevancia-atencion-mediatica/">Metodología</a>
+      <a href="/acerca-de/">Acerca de</a>
+      {
+        showSupport && (
+          <a href={supportConfig.url} target="_blank" rel="noopener noreferrer">
+            Apoyar el proyecto <span class="sr-only">mediante Ko-fi</span>
+          </a>
+        )
+      }
+    </nav>
+  </div>
+  <div class="footer-legal">
+    <span>© {new Date().getFullYear()} Memo Geopolítico</span>
+    <span>Sitio estático · Sin seguimiento publicitario</span>
+  </div>
+</footer>

@@ -1,26 +1,36 @@
 {
-  "name": "sitio-astro",
+  "name": "memo-geopolitico-redisenio",
+  "version": "0.4.1",
+  "private": true,
   "type": "module",
-  "version": "0.0.1",
   "engines": {
     "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
+    "dev:editorial": "astro dev --mode preview",
     "build": "astro build",
+    "build:preview": "astro build --mode preview --outDir dist-preview",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "test": "node --test",
+    "validate:data": "node tools/validate-public-data.mjs",
+    "validate:build": "node tools/validate-build.mjs",
+    "sync:local": "node tools/sync-local-data.mjs",
+    "qa": "npm run test && npm run validate:data && npm run check && npm run build && npm run build:preview && npm run validate:build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.7",
-    "nanostores": "^0.10.0",
-    "tailwindcss": "^4.3.2"
+    "gray-matter": "^4.0.3",
+    "tailwindcss": "^4.3.2",
+    "xlsx": "^0.18.5",
+    "yaml": "^2.8.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@tailwindcss/typography": "^0.5.20",
+    "@types/node": "^24.10.1",
     "typescript": "^6.0.3"
   }
 }
