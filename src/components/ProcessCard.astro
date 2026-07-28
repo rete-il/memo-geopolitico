@@ -86,9 +86,10 @@ const publicationEntries = await getPublicationEntries({
 const relatedPublication =
   suppliedRelatedPublication ||
   relatedPublicationForProcess(process, publicationEntries);
-const publicationHref = relatedPublication?.data.publicacion.estado === 'publicado'
-  ? `/publicaciones/${relatedPublication.data.slug}/`
-  : '';
+const publicationHref =
+  relatedPublication?.data.publicacion.estado === 'publicado'
+    ? `/publicaciones/${relatedPublication.data.slug}/`
+    : '';
 const editorialState =
   suppliedEditorialState ||
   effectiveEditorialState(process, publicationEntries);
@@ -104,7 +105,9 @@ const editorialState =
     ...labels.map(({ item }) => item.nombre),
     ...geography,
     ...process.clasificacion.actor_ids,
-  ].join(' ').toLowerCase()}
+  ]
+    .join(' ')
+    .toLowerCase()}
   data-region={[
     ...process.clasificacion.geografia.region_ids,
     ...process.clasificacion.geografia.subregion_ids,
@@ -115,7 +118,9 @@ const editorialState =
     process.clasificacion.tema_principal_id,
     ...process.clasificacion.tema_secundario_ids,
     ...process.clasificacion.subtema_ids,
-  ].filter(Boolean).join(' ')}
+  ]
+    .filter(Boolean)
+    .join(' ')}
   data-actor={process.clasificacion.actor_ids.join(' ')}
   data-label={process.clasificacion.etiqueta_ids.join(' ')}
   data-tracking-state={process.estado_seguimiento}
@@ -128,10 +133,7 @@ const editorialState =
       {
         contextualGeography &&
           (contextualGeography.id === currentGeographyId ? (
-            <span
-              class="meta-link meta-link--geography"
-              aria-current="page"
-            >
+            <span class="meta-link meta-link--geography" aria-current="page">
               {contextualGeography.item.nombre}
             </span>
           ) : (
@@ -150,8 +152,6 @@ const editorialState =
               class="meta-link meta-link--theme meta-link--primary"
               aria-current="page"
             >
-              <span class="meta-link-prefix">Tema</span>
-              <span aria-hidden="true">·</span>
               {primaryTopic.item.nombre}
             </span>
           ) : (
@@ -159,8 +159,6 @@ const editorialState =
               class="meta-link meta-link--theme meta-link--primary"
               href={topicHref(primaryTopic)}
             >
-              <span class="meta-link-prefix">Tema</span>
-              <span aria-hidden="true">·</span>
               {primaryTopic.item.nombre}
             </a>
           ))
@@ -168,17 +166,11 @@ const editorialState =
       {
         labels.map((label) =>
           label.id === currentLabelId ? (
-            <span
-              class="meta-link meta-link--label"
-              aria-current="page"
-            >
+            <span class="meta-link meta-link--label" aria-current="page">
               {label.item.nombre}
             </span>
           ) : (
-            <a
-              class="meta-link meta-link--label"
-              href={labelHref(label)}
-            >
+            <a class="meta-link meta-link--label" href={labelHref(label)}>
               {label.item.nombre}
             </a>
           ),
@@ -187,20 +179,14 @@ const editorialState =
       {
         editorialState === currentState ? (
           <span
-            class:list={[
-              'status-link',
-              `status-link--${editorialState}`,
-            ]}
+            class:list={['status-link', `status-link--${editorialState}`]}
             aria-current="page"
           >
             Estado: {editorialStageLabel(editorialState)}
           </span>
         ) : (
           <a
-            class:list={[
-              'status-link',
-              `status-link--${editorialState}`,
-            ]}
+            class:list={['status-link', `status-link--${editorialState}`]}
             href={`/observatorio/estado/${editorialStateSlug(editorialState)}/`}
             aria-label={`Ver expedientes con estado ${editorialStageLabel(editorialState)}`}
           >
@@ -214,7 +200,9 @@ const editorialState =
         publicationHref ? (
           <a href={publicationHref}>{process.titulo}</a>
         ) : (
-          <span title="El post todavía no está publicado">{process.titulo}</span>
+          <span title="El post todavía no está publicado">
+            {process.titulo}
+          </span>
         )
       }
     </h2>

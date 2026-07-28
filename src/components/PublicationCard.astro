@@ -60,8 +60,6 @@ const labels = cardLabelReferences(publication.clasificacion, catalogMaps);
             class="meta-link meta-link--theme meta-link--primary"
             aria-current="page"
           >
-            <span class="meta-link-prefix">Tema</span>
-            <span aria-hidden="true">·</span>
             {primaryTopic.item.nombre}
           </span>
         ) : (
@@ -69,8 +67,6 @@ const labels = cardLabelReferences(publication.clasificacion, catalogMaps);
             class="meta-link meta-link--theme meta-link--primary"
             href={topicHref(primaryTopic)}
           >
-            <span class="meta-link-prefix">Tema</span>
-            <span aria-hidden="true">·</span>
             {primaryTopic.item.nombre}
           </a>
         ))
@@ -78,17 +74,11 @@ const labels = cardLabelReferences(publication.clasificacion, catalogMaps);
     {
       labels.map((label) =>
         label.id === currentLabelId ? (
-          <span
-            class="meta-link meta-link--label"
-            aria-current="page"
-          >
+          <span class="meta-link meta-link--label" aria-current="page">
             {label.item.nombre}
           </span>
         ) : (
-          <a
-            class="meta-link meta-link--label"
-            href={labelHref(label)}
-          >
+          <a class="meta-link meta-link--label" href={labelHref(label)}>
             {label.item.nombre}
           </a>
         ),
@@ -117,7 +107,11 @@ const labels = cardLabelReferences(publication.clasificacion, catalogMaps);
       )
     }
   </h2>
-  {publication.subtitulo && <p class="publication-subtitle">{publication.subtitulo}</p>}
+  {
+    publication.subtitulo && (
+      <p class="publication-subtitle">{publication.subtitulo}</p>
+    )
+  }
   <p>{publication.resumen}</p>
   <footer>
     <span>
