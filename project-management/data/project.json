@@ -1,0 +1,29 @@
+{
+  "name": "Memo Geopolítico — Reacondicionamiento y expansión",
+  "version": "2.3",
+  "createdAt": "2026-07-17",
+  "lastUpdated": "2026-07-21",
+  "productionBranch": "main",
+  "workingBranch": "beta",
+  "productionUrl": "https://memogeopolitico.com",
+  "betaUrl": null,
+  "betaUrlNote": "La rama beta se mantiene en GitHub sin subdominio activo para evitar consumo innecesario de recursos.",
+  "currentRelease": "beta-0-baseline",
+  "baselineProductionCommit": "9b2b70d",
+  "statusVocabulary": [
+    "proposed",
+    "ready",
+    "in_progress",
+    "blocked",
+    "review",
+    "done",
+    "deferred"
+  ],
+  "sizeWeights": {
+    "XS": 1,
+    "S": 2,
+    "M": 3,
+    "L": 5,
+    "XL": 8
+  }
+}

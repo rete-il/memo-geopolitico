@@ -1,0 +1,107 @@
+[
+  {
+    "id": "beta-0-baseline",
+    "name": "Beta 0 — Baseline, seguridad y control",
+    "sequence": 0,
+    "goal": "Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Rama beta confirmada y vinculada a origin/beta.",
+      "Build reproducible con versión de Node documentada.",
+      "Rutas críticas, SEO básico y assets sociales corregidos.",
+      "astro check disponible y sin errores bloqueantes.",
+      "Baseline visual y técnico registrado."
+    ]
+  },
+  {
+    "id": "beta-1-foundations",
+    "name": "Beta 1 — Fundamentos y sistema de diseño",
+    "sequence": 1,
+    "goal": "Crear contratos, tokens, componentes UI y shell de sitio reutilizable.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Tokens visuales centralizados.",
+      "Componentes base documentados y accesibles.",
+      "Layout, header y SEO desacoplados.",
+      "Tipos principales y validaciones incorporados."
+    ]
+  },
+  {
+    "id": "beta-2-navigation-regions",
+    "name": "Beta 2 — Navegación y exploración temática",
+    "sequence": 2,
+    "goal": "Implementar la cabecera editorial, el menú hamburguesa y la navegación secundaria por regiones, temas y medios.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Cabecera editorial de dos niveles implementada.",
+      "Menú hamburguesa izquierdo accesible y funcional.",
+      "Navegación principal: Inicio, Alertas, Focos, Dossiers y Acerca de.",
+      "Navegación secundaria: Regiones, Temas y Medios.",
+      "Rutas activas y compatibilidad con URLs anteriores verificadas."
+    ]
+  },
+  {
+    "id": "beta-3-monitor-friction",
+    "name": "Beta 3 — Relevancia y atención mediática",
+    "sequence": 3,
+    "goal": "Consolidar la columna derecha como módulo editorial manual, administrable y enlazado a páginas temáticas.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Escalas editoriales de relevancia y atención de 1 a 5.",
+      "Clasificación automática de la brecha.",
+      "Datos manuales con fecha, fuente opcional y enlace interno.",
+      "Panel responsive, accesible y administrable desde el dashboard.",
+      "Cada tarjeta activa enlaza a una página temática publicada."
+    ]
+  },
+  {
+    "id": "beta-4-editorial",
+    "name": "Beta 4 — Alertas, Focos y Dossiers",
+    "sequence": 4,
+    "goal": "Normalizar los tres tipos editoriales, sus índices, metadatos, resúmenes diferenciados y lectura extensa.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Índices de Alertas, Focos y Dossiers completos.",
+      "Resúmenes de portada y de listado diferenciados.",
+      "Plantillas editoriales compartidas.",
+      "Fuentes, relacionados, metadatos y JSON-LD validados.",
+      "Lectura móvil y escritorio aprobada."
+    ]
+  },
+  {
+    "id": "beta-5-directory",
+    "name": "Beta 5 — Medios",
+    "sequence": 5,
+    "goal": "Modularizar la página Medios, preservar el directorio actual y mejorar filtros, móvil y accesibilidad.",
+    "target": "TBD",
+    "exitCriteria": [
+      "Página monolítica descompuesta.",
+      "Filtros compartibles mediante URL.",
+      "Tabla y tarjetas móviles equivalentes.",
+      "Estados vacíos, error y carga definidos.",
+      "Exportación y modal cubiertos por pruebas."
+    ]
+  },
+  {
+    "id": "beta-6-hardening",
+    "name": "Beta 6 — QA, rendimiento y preparación de release",
+    "sequence": 6,
+    "goal": "Cerrar calidad, accesibilidad, seguridad, rendimiento y documentación antes de fusionar a main.",
+    "target": "TBD",
+    "exitCriteria": [
+      "CI y pruebas automatizadas activas.",
+      "Lighthouse y presupuestos de rendimiento aceptados.",
+      "Cabeceras y política de seguridad revisadas.",
+      "Smoke test de producción definido.",
+      "Checklist de release aprobado y rollback documentado."
+    ]
+  },
+  {
+    "id": "future",
+    "name": "Futuro — Capacidades posteriores",
+    "sequence": 99,
+    "goal": "Funciones no bloqueantes para el reacondicionamiento inicial.",
+    "target": "Sin compromiso",
+    "exitCriteria": []
+  }
+]

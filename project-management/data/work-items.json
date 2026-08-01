@@ -1,0 +1,2034 @@
+[
+  {
+    "id": "PM-001",
+    "type": "PM",
+    "epic": "Gestión",
+    "title": "Separar documentación del estado actual y documentación de proyecto",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "docs/ conserva el estado verificable.",
+      "project-management/ contiene planificación futura."
+    ],
+    "notes": ""
+  },
+  {
+    "id": "PM-002",
+    "type": "PM",
+    "epic": "Gestión",
+    "title": "Crear sistema dinámico de project management",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "PM-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Existe dashboard generado.",
+      "Existe backlog canónico.",
+      "Existen plantillas y registros."
+    ],
+    "notes": ""
+  },
+  {
+    "id": "PM-003",
+    "type": "OPS",
+    "epic": "Git",
+    "title": "Confirmar rama beta local y upstream origin/beta",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "XS",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "git branch -vv muestra beta vinculada a origin/beta.",
+      "main no recibe el commit de project-management."
+    ],
+    "notes": "Rama beta confirmada y vinculada a origin/beta."
+  },
+  {
+    "id": "PM-004",
+    "type": "PM",
+    "epic": "Gestión",
+    "title": "Integrar project-management/ en la rama beta",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "XS",
+    "owner": "Rete",
+    "dependencies": [
+      "PM-002",
+      "PM-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La carpeta existe en la raíz del proyecto.",
+      "Los paneles se regeneran con Node.",
+      "El commit fue enviado a origin/beta y no a main."
+    ],
+    "notes": "project-management/ integrado y publicado únicamente en origin/beta."
+  },
+  {
+    "id": "DOC-001",
+    "type": "DOC",
+    "epic": "Baseline",
+    "title": "Incorporar documentación técnica v2 al repositorio",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La documentación técnica versión 2 está incorporada en docs/.",
+      "docs/README.md funciona como punto de entrada.",
+      "La arquitectura actual, rutas, contenidos y operación local están documentados.",
+      "El entorno de producción en Netlify está documentado.",
+      "Las evidencias de build, dominio y HTTPS están incorporadas.",
+      "La documentación distingue el estado actual de las propuestas futuras.",
+      "La incorporación documental no modifica el funcionamiento del sitio."
+    ],
+    "notes": "Documentación técnica v2 incorporada y verificada en la rama beta.\nLos planes futuros se administran separadamente desde project-management/.\n---\n\nDocumentación técnica v2 incorporada en la rama beta."
+  },
+  {
+    "id": "OPS-001",
+    "type": "OPS",
+    "epic": "Producción",
+    "title": "Registrar baseline de Netlify y producción",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Dominio, HTTPS, branch y commit registrados."
+    ],
+    "notes": ""
+  },
+  {
+    "id": "OPS-002",
+    "type": "OPS",
+    "epic": "Reproducibilidad",
+    "title": "Versionar Node con .nvmrc o .node-version",
+    "priority": "P1",
+    "status": "ready",
+    "release": "beta-0-baseline",
+    "size": "XS",
+    "owner": "TBD",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Netlify y local usan una versión compatible documentada."
+    ],
+    "notes": ""
+  },
+  {
+    "id": "OPS-003",
+    "type": "OPS",
+    "epic": "Reproducibilidad",
+    "title": "Versionar configuración Netlify en netlify.toml",
+    "priority": "P1",
+    "status": "ready",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "TBD",
+    "dependencies": [
+      "OPS-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "QA-001",
+    "type": "QA",
+    "epic": "Validación",
+    "title": "Agregar astro check y dependencias necesarias",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "npm run check finaliza sin errores bloqueantes."
+    ],
+    "notes": "Se instalaron @astrojs/check y TypeScript.\nSe agregó el script npm run check.\nAstro check analizó 23 archivos con 0 errores, 0 advertencias y 38 hints no bloqueantes.\nEl build de producción fue verificado correctamente.\nLos hints se gestionarán en una tarea separada de saneamiento técnico.\n\nSe inicia la incorporación de astro check para establecer la línea base de validación de Astro y TypeScript."
+  },
+  {
+    "id": "FIX-001",
+    "type": "FIX",
+    "epic": "Navegación",
+    "title": "Corregir rutas inexistentes del encabezado",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Ningún enlace principal devuelve 404."
+    ],
+    "notes": "La navegación principal quedó normalizada con rutas funcionales a Inicio, Directorio y Ensayos.\nLa marca enlaza al inicio.\nSe eliminaron rutas inexistentes.\nSe incorporaron estados activos y foco accesible.\nLa ruta /ensayos/ quedó implementada y validada.\nLa regresión temporal de MapaGlobal fue restaurada y verificada.\n---\nSe inicia la normalización de la navegación principal.\n\nObjetivos:\n- Eliminar enlaces hacia rutas inexistentes.\n- Sustituir las denominaciones provisionales por secciones editoriales claras.\n- Mantener compatibilidad con las rutas actualmente publicadas.\n- Preparar la navegación para el futuro menú regional y hamburguesa."
+  },
+  {
+    "id": "FIX-002",
+    "type": "FIX",
+    "epic": "Contenido",
+    "title": "Completar el índice /ensayos/",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": "Se implementó el índice funcional de /ensayos/.\n\nResultado:\n- La colección de ensayos se obtiene mediante Astro Content Collections.\n- Los ensayos se ordenan por fecha descendente.\n- Se muestran tarjetas editoriales con título, descripción, fecha y etiquetas.\n- Cada tarjeta enlaza correctamente con su ensayo individual.\n- Se incorporó paginación preparada para el crecimiento del archivo.\n- Se incorporó un estado vacío para ausencia de contenidos.\n- La sección Ensayos permanece resaltada en la navegación.\n- La portada y MapaGlobal continúan funcionando correctamente.\n\nValidación:\n- npm run check: 0 errores, 0 advertencias y 0 hints.\n- npm run build: correcto.\n- /ensayos/ validado visualmente.\n- Enlaces individuales comprobados.\n\n\nSe implementó el índice funcional de /ensayos/.\n\nLa página ahora:\n- obtiene la colección ensayos;\n- ordena los contenidos por fecha;\n- renderiza tarjetas editoriales;\n- enlaza con los ensayos individuales;\n- admite paginación;\n- contempla el estado sin resultados.\n\nPendiente:\n- validación visual;\n- Astro Check;\n- build;\n- comprobación de enlaces.\n\nDecisión posterior: /ensayos/ se conservará como compatibilidad durante la migración editorial a /focos/."
+  },
+  {
+    "id": "FIX-003",
+    "type": "FIX",
+    "epic": "Contenido",
+    "title": "Retirar o normalizar placeholder Indo-Pacífico",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La página provisional Indo-Pacífico fue retirada.",
+      "No quedan textos demostrativos ni fuentes ficticias asociadas.",
+      "No existen enlaces internos hacia /profundidad/indo-pacifico/.",
+      "El build ya no genera la ruta provisional.",
+      "monitores.json continúa alimentando la columna Fricción vs. Narrativa.",
+      "Las páginas reales de profundidad continúan funcionando.",
+      "Astro Check finaliza con 0 errores, 0 advertencias y 0 hints.",
+      "npm run build finaliza correctamente."
+    ],
+    "notes": "Se retiró la página provisional /profundidad/indo-pacifico/.\n\nSe comprobó que src/data/friccion.json ya no estaba presente ni rastreado por Git.\nSe conservó src/data/monitores.json, que alimenta la columna Fricción vs. Narrativa.\n\nLa documentación fue actualizada para eliminar referencias obsoletas al placeholder.\n\nValidación:\n- La ruta retirada devuelve 404.\n- Las páginas reales de profundidad funcionan.\n- La portada, el mapa y la columna derecha permanecen operativos.\n- npm run check y npm run build finalizaron correctamente.\n\nSe inicia la retirada del placeholder Indo-Pacífico.\n\nObjetivos:\n- Eliminar la página provisional.\n- Eliminar fuentes y textos demostrativos.\n- Comprobar que no existan enlaces hacia la ruta retirada.\n- Mantener operativas las páginas reales de profundidad."
+  },
+  {
+    "id": "FIX-004",
+    "type": "FIX",
+    "epic": "Conversión",
+    "title": "Configurar sistema modular de apoyo mediante Ko-fi",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La URL de Ko-fi está centralizada.",
+      "Existe un componente reutilizable para el CTA.",
+      "El CTA puede activarse o desactivarse sin editar las páginas.",
+      "El CTA puede mostrarse en localhost sin habilitarlo en producción.",
+      "El CTA completo aparece al final de alertas y ensayos cuando está activo.",
+      "El footer muestra un enlace discreto cuando está activo.",
+      "El encabezado no contiene solicitudes económicas.",
+      "La producción comienza con el sistema desactivado.",
+      "Astro Check y el build finalizan correctamente.",
+      "---",
+      "El CTA usa la URL real de Ko-fi.",
+      "El CTA completo aparece al final de alertas y ensayos.",
+      "Existe un enlace discreto en el footer global.",
+      "El encabezado principal no incorpora solicitudes económicas.",
+      "El texto utiliza la marca Memo Geopolítico.",
+      "La URL se encuentra centralizada en la configuración.",
+      "El componente es reutilizable.",
+      "La página de Ko-fi está alineada visual y lingüísticamente con el sitio.",
+      "---",
+      "El CTA utiliza la URL real https://ko-fi.com/reteil.",
+      "No quedan identificadores ficticios ni valores de muestra en el código, la configuración o la documentación.",
+      "El enlace abre la página pública en una pestaña nueva.",
+      "El enlace fue comprobado sin sesión iniciada.",
+      "Las páginas de profundidad conservan su estructura.",
+      "Ko-fi está documentado como servicio externo.",
+      "Astro Check finaliza con 0 errores, 0 advertencias y 0 hints.",
+      "npm run build finaliza correctamente."
+    ],
+    "notes": "Entornos actuales:\n- localhost para desarrollo y pruebas;\n- memogeopolitico.com para producción.\n\nEntorno reservado:\n- beta.memogeopolitico.com permanece inactivo y podrá utilizarse\n  posteriormente para validación multidispositivo y pruebas previas\n  a producción.\n---\nSe implementó un sistema modular de apoyo para Memo Geopolítico.\n\nConfiguración:\n- URL pública centralizada: https://ko-fi.com/reteil\n- visible durante el desarrollo local;\n- desactivado inicialmente en producción;\n- activación y desactivación controlables desde el dashboard.\n\nUbicaciones preparadas:\n- CTA completo al final de alertas en profundidad;\n- CTA completo al final de ensayos;\n- enlace discreto en el footer.\n\nImplementación:\n- componente reutilizable SupportCTA.astro;\n- componente Footer.astro;\n- configuración central en src/config/features.json;\n- resolución del entorno mediante import.meta.env.PROD;\n- controles incorporados al dashboard local.\n\nEntornos reales:\n- localhost para desarrollo y pruebas;\n- memogeopolitico.com para producción;\n- no existe un dominio beta público.\n\nTambién se corrigió la carga global de Phosphor Icons para mantener el icono de marca y los demás iconos en todas las páginas.\n\nEstado inicial:\n- desarrollo local: sistema visible;\n- producción: sistema oculto."
+  },
+  {
+    "id": "SEO-001",
+    "type": "SEO",
+    "epic": "Social",
+    "title": "Crear default-og.png y validar Open Graph",
+    "priority": "P1",
+    "status": "ready",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "TBD",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "SEO-002",
+    "type": "SEO",
+    "epic": "Indexación",
+    "title": "Publicar robots.txt seguro y sitemap",
+    "priority": "P1",
+    "status": "ready",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "OPS-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "UX-001",
+    "type": "UX",
+    "epic": "Errores",
+    "title": "Crear página 404 coherente con la marca",
+    "priority": "P1",
+    "status": "ready",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "TBD",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "A11Y-001",
+    "type": "A11Y",
+    "epic": "Baseline",
+    "title": "Registrar auditoría de teclado, contraste y headings",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "UI-001",
+    "type": "FIX",
+    "epic": "Iconos",
+    "title": "Cargar iconografía globalmente o empaquetarla",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La biblioteca de iconos se carga desde el layout global.",
+      "Los iconos aparecen en Inicio, Directorio, Ensayos y páginas de profundidad.",
+      "No existe una carga duplicada en index.astro.",
+      "El icono de marca aparece correctamente en todas las rutas.",
+      "Astro Check finaliza sin errores, advertencias ni hints.",
+      "El build finaliza correctamente."
+    ],
+    "notes": "La biblioteca Phosphor Icons estaba cargada únicamente en index.astro.\n\nComo consecuencia, los componentes que utilizaban clases ph-* funcionaban\nen la portada, pero mostraban espacios vacíos en las páginas interiores.\n\nSe trasladó la carga de @phosphor-icons/web a Layout.astro y se eliminó\nla referencia duplicada de index.astro.\n\nSe eligió la carga global mediante unpkg. El empaquetado local de la\nbiblioteca queda como posible optimización futura si se decide eliminar\nla dependencia del CDN externo.\n\nValidación:\n- icono de marca visible en todas las rutas;\n- páginas interiores verificadas;\n- Astro Check correcto;\n- build correcto."
+  },
+  {
+    "id": "IA-001",
+    "type": "UX",
+    "epic": "Arquitectura de información",
+    "title": "Aprobar arquitectura editorial Alertas, Focos, Dossiers, Medios y exploración secundaria",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "FIX-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Alertas identifica piezas breves y autónomas sobre hechos recientes.",
+      "Dossiers identifica profundizaciones autónomas relacionadas con una o varias alertas.",
+      "Focos identifica los contenidos estructurales situados debajo del mapa.",
+      "Medios identifica el actual directorio de medios geopolíticos.",
+      "La navegación principal contiene Inicio, Alertas, Focos, Dossiers y Acerca de.",
+      "El menú hamburguesa contiene Regiones, Temas y Medios.",
+      "Relevancia vs. atención mediática identifica la columna derecha."
+    ],
+    "notes": "Arquitectura y nomenclatura aprobadas el 19/07/2026."
+  },
+  {
+    "id": "DS-001",
+    "type": "REF",
+    "epic": "Sistema de diseño",
+    "title": "Centralizar tokens de color, espacio, tipografía y capas",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-1-foundations",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "IA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DS-002",
+    "type": "REF",
+    "epic": "Sistema de diseño",
+    "title": "Definir escala tipográfica editorial e interfaz",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-1-foundations",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "DS-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DS-003",
+    "type": "FEAT",
+    "epic": "Componentes UI",
+    "title": "Crear Container, Button, Badge, Card y SectionHeader",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-1-foundations",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "DS-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DS-004",
+    "type": "FEAT",
+    "epic": "Componentes UI",
+    "title": "Crear Drawer, Modal, Tooltip y estados de interfaz",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-1-foundations",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "DS-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REF-001",
+    "type": "REF",
+    "epic": "Shell",
+    "title": "Extraer SiteHeader, SiteFooter y Seo",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-1-foundations",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "DS-003",
+      "UI-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "TYPE-001",
+    "type": "REF",
+    "epic": "Tipos",
+    "title": "Crear contratos TypeScript para contenido, mapa, monitor y directorio",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-1-foundations",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "QA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DATA-001",
+    "type": "REF",
+    "epic": "Validación",
+    "title": "Validar JSON y frontmatter con esquemas",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-1-foundations",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "TYPE-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "A11Y-002",
+    "type": "A11Y",
+    "epic": "Componentes",
+    "title": "Definir patrones de foco, teclado y reduced motion",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-1-foundations",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "DS-003",
+      "A11Y-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REG-001",
+    "type": "FEAT",
+    "epic": "Regiones",
+    "title": "Aprobar taxonomía de regiones, subregiones y teatros",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "IA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REG-002",
+    "type": "REF",
+    "epic": "Regiones",
+    "title": "Crear fuente central src/config/regions.ts",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "REG-001",
+      "TYPE-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REG-003",
+    "type": "FEAT",
+    "epic": "Regiones",
+    "title": "Crear índice /regiones/ y rutas dinámicas",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "REG-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REG-004",
+    "type": "FEAT",
+    "epic": "Regiones",
+    "title": "Crear plantilla regional con datos e interpretación separados",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "REG-003",
+      "DS-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "NAV-001",
+    "type": "FEAT",
+    "epic": "Navegación",
+    "title": "Implementar cabecera editorial y menú hamburguesa izquierdo accesible",
+    "priority": "P0",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Rete",
+    "dependencies": [
+      "FIX-001",
+      "IA-001"
+    ],
+    "progress": 90,
+    "acceptanceCriteria": [
+      "La primera franja contiene hamburguesa a la izquierda, marca centrada y fecha de actualización a la derecha.",
+      "La segunda franja contiene Inicio, Alertas, Focos, Dossiers y Acerca de.",
+      "El panel lateral contiene Regiones, Temas y Medios.",
+      "En móvil, el panel incluye también las secciones principales.",
+      "El menú se abre y cierra con teclado, Escape, botón y clic exterior.",
+      "El foco se traslada al panel y vuelve al botón al cerrarse.",
+      "La cabecera conserva estado activo y funciona en todas las rutas."
+    ],
+    "notes": "Diseño aprobado a partir de una cabecera editorial de dos niveles inspirada en El País, simplificada para Memo Geopolítico.\n\nImplementación incorporada: cabecera de dos niveles, hamburguesa izquierda, panel lateral, estados activos y control de foco. La presentación fue verificada en escritorio, tablet y teléfono. Pendiente: comprobación manual completa de teclado, Escape y foco en todas las rutas."
+  },
+  {
+    "id": "NAV-002",
+    "type": "FEAT",
+    "epic": "Navegación",
+    "title": "Implementar mega-menú regional de escritorio",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "REF-001",
+      "REG-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "NAV-003",
+    "type": "FEAT",
+    "epic": "Navegación",
+    "title": "Crear acordeones regionales y estado activo",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "NAV-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "NAV-004",
+    "type": "FEAT",
+    "epic": "Navegación",
+    "title": "Crear breadcrumbs compartidos",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "REG-003",
+      "DS-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REG-005",
+    "type": "CONTENT",
+    "epic": "Regiones",
+    "title": "Crear contenido mínimo para Europa y subregiones prioritarias",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "REG-004"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REG-006",
+    "type": "CONTENT",
+    "epic": "Regiones",
+    "title": "Crear contenido mínimo para África y subregiones prioritarias",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "REG-004"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REG-007",
+    "type": "CONTENT",
+    "epic": "Regiones",
+    "title": "Crear páginas base para Asia, Américas y Oceanía",
+    "priority": "P2",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "REG-004"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REG-008",
+    "type": "CONTENT",
+    "epic": "Teatros",
+    "title": "Crear teatros transregionales iniciales",
+    "priority": "P2",
+    "status": "proposed",
+    "release": "beta-2-navigation-regions",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "REG-004"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "FRIC-001",
+    "type": "FEAT",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Revisar criterios editoriales y escala de relevancia y atención",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "IA-001",
+      "REG-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "FRIC-002",
+    "type": "DATA",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Evolucionar el modelo de datos con fuentes, confianza e historial",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "FRIC-001",
+      "TYPE-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "FRIC-003",
+    "type": "CONTENT",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Ampliar el dataset editorial de relevancia y atención",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "FRIC-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "FRIC-004",
+    "type": "FEAT",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Evolucionar el panel y las tarjetas responsive",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "FRIC-002",
+      "DS-004"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "FRIC-005",
+    "type": "A11Y",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Mantener representación textual de barras y estados",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "FRIC-004"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "FRIC-006",
+    "type": "CONTENT",
+    "epic": "Metodología",
+    "title": "Publicar nota metodológica del módulo editorial",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "FRIC-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "HOME-001",
+    "type": "UX",
+    "epic": "Portada",
+    "title": "Rediseñar jerarquía de portada",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "DS-003",
+      "FRIC-004"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "MAP-001",
+    "type": "REF",
+    "epic": "Mapa",
+    "title": "Conectar mapa con regiones, alertas y contenido",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "REG-002",
+      "TYPE-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "MAP-002",
+    "type": "FEAT",
+    "epic": "Mapa",
+    "title": "Añadir filtros por región, severidad, tipo y periodo",
+    "priority": "P2",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "MAP-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "MAP-003",
+    "type": "A11Y",
+    "epic": "Mapa",
+    "title": "Crear alternativa textual y vista lista móvil",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-3-monitor-friction",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "MAP-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "ED-001",
+    "type": "REF",
+    "epic": "Editorial",
+    "title": "Normalizar modelo de análisis y ensayo",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "DATA-001",
+      "IA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "ED-002",
+    "type": "FEAT",
+    "epic": "Editorial",
+    "title": "Crear ArticleHeader y MetadataRow compartidos",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "DS-003",
+      "ED-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "ED-003",
+    "type": "FEAT",
+    "epic": "Editorial",
+    "title": "Crear índice de contenidos y anclas",
+    "priority": "P2",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "ED-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "ED-004",
+    "type": "FEAT",
+    "epic": "Editorial",
+    "title": "Crear fuentes, notas y contenido relacionado",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "ED-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "ED-005",
+    "type": "SEO",
+    "epic": "Editorial",
+    "title": "Implementar canonical, Open Graph y JSON-LD por artículo",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "SEO-001",
+      "ED-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "ED-006",
+    "type": "UX",
+    "epic": "Editorial",
+    "title": "Diseñar lectura responsive y ancho editorial",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "DS-002",
+      "ED-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "ED-007",
+    "type": "FEAT",
+    "epic": "Editorial",
+    "title": "Crear navegación anterior/siguiente y compartir",
+    "priority": "P2",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "ED-004"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "TRUST-001",
+    "type": "CONTENT",
+    "epic": "Transparencia",
+    "title": "Crear Acerca de, Política editorial, Uso de IA y Correcciones",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "IA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DIR-001",
+    "type": "REF",
+    "epic": "Directorio",
+    "title": "Definir arquitectura modular y contratos",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-5-directory",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "TYPE-001",
+      "DS-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DIR-002",
+    "type": "REF",
+    "epic": "Directorio",
+    "title": "Extraer filtros, orden y paginación a módulos puros",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-5-directory",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "DIR-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DIR-003",
+    "type": "REF",
+    "epic": "Directorio",
+    "title": "Separar toolbar, filtros, KPIs, tabla y modal",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-5-directory",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "DIR-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DIR-004",
+    "type": "FEAT",
+    "epic": "Directorio",
+    "title": "Persistir filtros en URL",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-5-directory",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "DIR-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DIR-005",
+    "type": "UX",
+    "epic": "Directorio",
+    "title": "Crear filtros activos y estados vacíos/error",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-5-directory",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "DIR-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DIR-006",
+    "type": "UX",
+    "epic": "Directorio",
+    "title": "Crear tarjetas móviles equivalentes a la tabla",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-5-directory",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "DIR-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DIR-007",
+    "type": "A11Y",
+    "epic": "Directorio",
+    "title": "Corregir modal, foco y navegación por teclado",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-5-directory",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "DIR-003",
+      "A11Y-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DIR-008",
+    "type": "DATA",
+    "epic": "Directorio",
+    "title": "Definir fuente canónica Excel/JSON y pipeline de validación",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-5-directory",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "DATA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DIR-009",
+    "type": "QA",
+    "epic": "Directorio",
+    "title": "Probar filtros, URL, exportación y modal",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-5-directory",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "DIR-002",
+      "DIR-003",
+      "DIR-004",
+      "DIR-007"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "QA-002",
+    "type": "QA",
+    "epic": "Automatización",
+    "title": "Agregar lint, format y pruebas unitarias",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "QA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "QA-003",
+    "type": "QA",
+    "epic": "E2E",
+    "title": "Agregar Playwright para rutas y flujos críticos",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "QA-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "CI-001",
+    "type": "OPS",
+    "epic": "CI",
+    "title": "Configurar CI en pull requests a beta y main",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "QA-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "PERF-001",
+    "type": "PERF",
+    "epic": "Rendimiento",
+    "title": "Definir presupuesto Lighthouse y optimizar carga",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "HOME-001",
+      "DIR-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "SEC-001",
+    "type": "SEC",
+    "epic": "Seguridad",
+    "title": "Versionar cabeceras y evaluar CSP",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "OPS-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "SEO-003",
+    "type": "SEO",
+    "epic": "Validación",
+    "title": "Validar sitemap, robots, canonicals y previews sociales",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "SEO-002",
+      "ED-005"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "A11Y-003",
+    "type": "A11Y",
+    "epic": "Auditoría final",
+    "title": "Ejecutar auditoría WCAG de rutas críticas",
+    "priority": "P1",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "NAV-001",
+      "FRIC-004",
+      "ED-006",
+      "DIR-007"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "OPS-004",
+    "type": "OPS",
+    "epic": "Release",
+    "title": "Crear smoke test y procedimiento de rollback",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "M",
+    "owner": "TBD",
+    "dependencies": [
+      "CI-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "DOC-002",
+    "type": "DOC",
+    "epic": "Entrega",
+    "title": "Actualizar docs/ al estado implementado",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "OPS-004"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "REL-001",
+    "type": "PM",
+    "epic": "Release",
+    "title": "Aprobar merge beta → main",
+    "priority": "P0",
+    "status": "proposed",
+    "release": "beta-6-hardening",
+    "size": "S",
+    "owner": "TBD",
+    "dependencies": [
+      "QA-003",
+      "PERF-001",
+      "SEC-001",
+      "SEO-003",
+      "A11Y-003",
+      "DOC-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "SEARCH-001",
+    "type": "FEAT",
+    "epic": "Búsqueda",
+    "title": "Preparar metadatos para búsqueda global",
+    "priority": "P2",
+    "status": "proposed",
+    "release": "future",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [
+      "ED-001",
+      "REG-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "SEARCH-002",
+    "type": "FEAT",
+    "epic": "Búsqueda",
+    "title": "Implementar búsqueda transversal",
+    "priority": "P3",
+    "status": "proposed",
+    "release": "future",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "SEARCH-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "SUB-001",
+    "type": "FEAT",
+    "epic": "Suscripción",
+    "title": "Evaluar newsletter y alertas temáticas",
+    "priority": "P3",
+    "status": "deferred",
+    "release": "future",
+    "size": "L",
+    "owner": "TBD",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": ""
+  },
+  {
+    "id": "AUTO-001",
+    "type": "FEAT",
+    "epic": "Automatización",
+    "title": "Evaluar automatización de atención mediática",
+    "priority": "P3",
+    "status": "deferred",
+    "release": "future",
+    "size": "XL",
+    "owner": "TBD",
+    "dependencies": [
+      "FRIC-003",
+      "FRIC-006"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [],
+    "notes": "No automatizar hasta validar durante un período suficiente el modelo editorial manual. Los ensayos con GDELT se conservan solo como investigación."
+  },
+  {
+    "id": "PMAPP-001",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Definir arquitectura del dashboard local",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-002",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Crear servidor local restringido a 127.0.0.1",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-003",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar lectura y resumen de datos canónicos",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-004",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar editor de work items",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-005",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar validación y dependencias circulares",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-006",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Integrar regeneración automática de Markdown",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-004",
+      "PMAPP-005"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-007",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar releases y registro de actividad",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-003"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-008",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Implementar copias de seguridad locales",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La capacidad indicada fue incorporada y superó pruebas automatizadas de sintaxis y API."
+    ],
+    "notes": "Implementado en Project Dashboard v0.1."
+  },
+  {
+    "id": "PMAPP-009",
+    "type": "PMAPP",
+    "epic": "Dashboard de gestión",
+    "title": "Validar dashboard local en Windows y documentar resultados",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "PMAPP-004",
+      "PMAPP-006",
+      "PMAPP-007",
+      "PMAPP-008"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "El dashboard inicia y permite guardar una actualización real en Windows."
+    ],
+    "notes": "Dashboard instalado y validado en Windows. Se comprobaron la carga de datos, la detección de la rama beta, la persistencia de cambios y la regeneración documental.\n---\nDashboard instalado y ejecutado correctamente en Windows.\nLectura de datos, resumen, navegación y validación comprobados."
+  },
+  {
+    "id": "QA-004",
+    "type": "QA",
+    "epic": "Calidad Técnica",
+    "title": "Reducir hints de Astro Check",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "QA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Se completó el saneamiento de Astro Check.",
+      "Resultado final:",
+      "- 23 archivos analizados.",
+      "- 0 errores.",
+      "- 0 advertencias.",
+      "- 0 hints.",
+      "- npm run build finalizó correctamente.",
+      "Cambios realizados:",
+      "- Migración de astro:schema a astro/zod.",
+      "- Actualización del validador URL de Zod.",
+      "- Declaración explícita del bloque JSON inline de MapaGlobal.",
+      "- Eliminación de variables, imports y parámetros no utilizados.",
+      "- Eliminación de la desestructuración page no utilizada.",
+      "La implementación visual y funcional del archivo de Ensayos permanece en su work item específico.",
+      "---",
+      "Se inicia el saneamiento de los 38 hints detectados en la línea base de Astro Check.",
+      "Primera intervención:",
+      "- Migración de astro:schema a astro/zod.",
+      "- Actualización de validadores Zod obsoletos.",
+      "- Eliminación de parámetros no utilizados.",
+      "- Declaración explícita de scripts inline.",
+      "---",
+      "Astro Check finaliza con 0 errores.",
+      "Astro Check finaliza con 0 advertencias.",
+      "Los hints corregibles quedan eliminados.",
+      "Los hints que no se corrijan quedan justificados y documentados.",
+      "No se modifica el comportamiento funcional del sitio.",
+      "npm run build finaliza correctamente."
+    ],
+    "notes": "Objetivo: analizar y reducir los hints detectados por Astro Check sin modificar el comportamiento funcional del sitio.\n\nLínea base registrada: 23 archivos analizados, 0 errores, 0 advertencias y 38 hints.\n\nGrupos iniciales identificados:\n- APIs obsoletas de Astro y Zod.\n- Variables o parámetros no utilizados.\n- Script inline de MapaGlobal.\n- Página de ensayos incompleta."
+  },
+  {
+    "id": "INFRA-001",
+    "type": "INFRA",
+    "epic": "Infraestructura y despliegue",
+    "title": "Configurar entorno beta para validación multidispositivo",
+    "priority": "P2",
+    "status": "proposed",
+    "release": "future",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "beta.memogeopolitico.com funciona como entorno previo a producción.",
+      "El entorno puede abrirse desde teléfonos y tabletas reales.",
+      "Los feature flags distinguen localhost, beta y producción.",
+      "Activar funciones en beta no modifica memogeopolitico.com.",
+      "El entorno beta utiliza noindex y nofollow mientras sea de pruebas.",
+      "La configuración DNS y Netlify queda documentada.",
+      "El flujo de publicación desde la rama beta queda documentado."
+    ],
+    "notes": "El alias beta.memogeopolitico.com existe actualmente como reserva futura,\npero no se utiliza como entorno operativo.\n\nSu finalidad prevista es permitir pruebas reales desde dispositivos móviles\ny tabletas antes de publicar cambios en memogeopolitico.com.\n\nCuando se implemente deberán distinguirse tres entornos:\n- localhost: desarrollo;\n- beta.memogeopolitico.com: validación previa;\n- memogeopolitico.com: producción."
+  },
+  {
+    "id": "DATA-002",
+    "type": "FEATURE",
+    "epic": "Datos y Monitoreo",
+    "title": "Administrar la columna Relevancia vs. atención mediática desde el dashboard",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Los casos se administran desde el dashboard local.",
+      "Cada caso tiene ID estable, orden y estado activo.",
+      "Relevancia y atención aceptan valores de 1 a 5.",
+      "La brecha se clasifica automáticamente como subcubierta, equilibrada o sobrecubierta.",
+      "Cada caso incluye dato clave, insight y fecha de actualización.",
+      "La fuente externa y el enlace interno son opcionales.",
+      "La portada muestra como máximo cuatro casos activos y ordenados.",
+      "Los cambios generan una copia de seguridad.",
+      "Astro Check y el build finalizaron correctamente en la implementación instalada."
+    ],
+    "notes": "Completado con el modelo editorial simplificado. La automatización GDELT no forma parte del producto actual. La interfaz pública y el dashboard utilizan la denominación Relevancia vs. atención mediática."
+  },
+  {
+    "id": "DATA-003",
+    "type": "PM",
+    "epic": "Gestión",
+    "title": "Definir el modelo editorial de relevancia geopolítica y atención mediática",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Relevancia y atención se valoran editorialmente en una escala de 1 a 5.",
+      "La diferencia Atención menos Relevancia produce la clasificación visible.",
+      "No se presentan cifras automatizadas como mediciones concluyentes.",
+      "El capturador GDELT queda documentado como experimento y no bloquea la publicación.",
+      "La columna se actualiza manualmente algunas veces por semana."
+    ],
+    "notes": "Se cerró el alcance cuantitativo avanzado. Se adopta un modelo editorial simple, transparente y administrable. GDELT queda diferido como investigación."
+  },
+  {
+    "id": "HOME-002",
+    "type": "UX",
+    "epic": "Portada",
+    "title": "Normalizar la nomenclatura editorial de la portada",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "IA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Alertas y Focos se muestra como Alertas.",
+      "Análisis a Fondo se muestra como Focos.",
+      "Para profundizar se sustituye por Ver dossier o Profundizar en el tema.",
+      "La columna derecha se identifica como Relevancia vs. atención mediática.",
+      "No quedan denominaciones públicas contradictorias en la portada."
+    ],
+    "notes": "Nomenclatura pública normalizada y comprobada en localhost: Alertas, Focos, Dossiers, Medios y Relevancia vs. atención mediática."
+  },
+  {
+    "id": "ED-008",
+    "type": "FEAT",
+    "epic": "Editorial",
+    "title": "Crear índices de Alertas, Focos y Dossiers",
+    "priority": "P0",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Rete",
+    "dependencies": [
+      "IA-001"
+    ],
+    "progress": 90,
+    "acceptanceCriteria": [
+      "Existe /alertas/ con todas las alertas ordenadas por fecha.",
+      "Existe /focos/ con tarjetas de los contenidos estructurales.",
+      "Existe /dossiers/ con tarjetas de profundización.",
+      "Las tarjetas de los índices muestran un resumen editorial cercano a 50 palabras.",
+      "El resumen de listado puede diferir del texto breve utilizado en la portada.",
+      "Los estados vacíos están definidos."
+    ],
+    "notes": "Primera implementación reutilizará las colecciones actuales y añadirá campos opcionales para resúmenes diferenciados.\n\nSe crearon los índices /alertas/, /focos/ y /dossiers/ con estados vacíos y resúmenes editoriales diferenciados. Pendiente: revisión editorial final de todas las páginas índice."
+  },
+  {
+    "id": "ED-009",
+    "type": "REF",
+    "epic": "Editorial",
+    "title": "Migrar Ensayos a Focos y Profundidad a Dossiers sin romper URLs",
+    "priority": "P0",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Rete",
+    "dependencies": [
+      "ED-008"
+    ],
+    "progress": 90,
+    "acceptanceCriteria": [
+      "Las páginas públicas nuevas utilizan /focos/[slug]/ y /dossiers/[slug]/.",
+      "Las rutas /ensayos/ y /profundidad/[slug]/ conservan compatibilidad.",
+      "Las páginas individuales muestran las etiquetas Foco y Dossier.",
+      "Los enlaces internos apuntan preferentemente a las rutas nuevas.",
+      "No se duplica el contenido canónico."
+    ],
+    "notes": "La migración de nombres no requiere mover inmediatamente las carpetas de contenido internas.\n\nLas rutas públicas nuevas y las rutas heredadas fueron incorporadas al build. Pendiente: recorrido manual completo de enlaces y canonicals antes del cierre."
+  },
+  {
+    "id": "ED-010",
+    "type": "CONTENT",
+    "epic": "Transparencia",
+    "title": "Crear la página Acerca de Memo Geopolítico",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "IA-001"
+    ],
+    "progress": 80,
+    "acceptanceCriteria": [
+      "Existe /acerca-de/.",
+      "Explica propósito, tipos de contenido y criterios editoriales.",
+      "Incluye autoría, uso de fuentes, uso de IA y política de correcciones.",
+      "No contiene textos provisionales ni afirmaciones no aprobadas."
+    ],
+    "notes": "La redacción final deberá ser revisada por el editor antes de publicarse.\n\nLa página /acerca-de/ fue creada. Permanece en revisión hasta aprobar su redacción editorial definitiva."
+  },
+  {
+    "id": "DIR-010",
+    "type": "UX",
+    "epic": "Medios",
+    "title": "Renombrar Directorio como Medios y preservar la ruta anterior",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "NAV-001"
+    ],
+    "progress": 90,
+    "acceptanceCriteria": [
+      "El menú muestra Medios.",
+      "La ruta preferente es /medios/.",
+      "El título de página continúa siendo Directorio de medios geopolíticos.",
+      "/directorio/ permanece operativa como alias o redirección.",
+      "No se rompen descargas ni scripts del directorio."
+    ],
+    "notes": "El menú público usa Medios, existe /medios/ y se conserva /directorio/. Pendiente: recorrido manual de la página, descargas y scripts antes del cierre."
+  },
+  {
+    "id": "DATA-004",
+    "type": "DATA",
+    "epic": "Relevancia vs. atención mediática",
+    "title": "Enlazar cada tarjeta activa con una página temática publicada",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "DATA-002",
+      "ED-008"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Cada tarjeta activa tiene href interno válido.",
+      "La tarjeta completa o su llamada a la acción es navegable.",
+      "No se publican enlaces hacia páginas inexistentes.",
+      "El dashboard permite administrar el enlace.",
+      "Las páginas vinculadas aportan contexto adicional y no repiten únicamente el texto de la tarjeta."
+    ],
+    "notes": "Las tarjetas activas de Relevancia vs. atención mediática disponen de href internos válidos hacia fichas editoriales en /relevancia-atencion/[id]/. Los enlaces pueden administrarse desde la fuente de datos y no apuntan a rutas inexistentes."
+  },
+  {
+    "id": "QA-005",
+    "type": "QA",
+    "epic": "Navegación editorial",
+    "title": "Validar cabecera, índices, rutas heredadas y navegación por teclado",
+    "priority": "P0",
+    "status": "in_progress",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "NAV-001",
+      "HOME-002",
+      "ED-008",
+      "ED-009",
+      "DIR-010"
+    ],
+    "progress": 70,
+    "acceptanceCriteria": [
+      "npm run check finaliza sin errores, advertencias ni hints.",
+      "npm run build finaliza correctamente.",
+      "Inicio, Alertas, Focos, Dossiers, Acerca de y Medios no devuelven 404.",
+      "Las rutas heredadas continúan funcionando.",
+      "El menú hamburguesa funciona con teclado y Escape.",
+      "La cabecera y las páginas índice se revisan en móvil y escritorio."
+    ],
+    "notes": "Astro Check y build fueron validados en el paquete de implementación. La portada fue revisada simultáneamente en escritorio, tablet y teléfono mediante la herramienta local. Pendiente: comprobar todas las rutas heredadas y nuevas, además del ciclo completo de teclado, Escape y retorno de foco."
+  },
+  {
+    "id": "ED-011",
+    "type": "UX",
+    "epic": "Focos",
+    "title": "Recomponer tarjetas de Focos con resumen completo, fecha y enlace",
+    "priority": "P0",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "ED-008"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Cada tarjeta muestra un párrafo editorial completo de aproximadamente 50 palabras o más.",
+      "El texto no utiliza line-clamp ni truncamiento visual.",
+      "La portada utiliza homeSummary y el índice /focos/ utiliza listingSummary.",
+      "La tarjeta muestra fecha de actualización con fallback a la fecha de publicación.",
+      "Existe un enlace explícito Leer foco hacia la página completa.",
+      "La presentación es coherente con el sistema de tarjetas del sitio.",
+      "La vista fue comprobada en escritorio, tablet y teléfono."
+    ],
+    "notes": "Implementado y validado visualmente en localhost mediante la vista responsive multipanel."
+  },
+  {
+    "id": "QA-006",
+    "type": "QA",
+    "epic": "Validación responsive",
+    "title": "Incorporar vista local simultánea de escritorio, tablet y teléfono",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-0-baseline",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "QA-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La herramienta muestra simultáneamente escritorio, tablet y teléfono.",
+      "Los tres paneles cargan el mismo servidor Astro y admiten actualización en vivo.",
+      "Existe selector de rutas, recarga conjunta, rotación y apertura de la página real.",
+      "La herramienta reside fuera de src/pages y no se publica con el sitio.",
+      "El lanzador funciona en Windows con Node 22.",
+      "El inicio de Astro evita el error spawn EINVAL mediante cmd.exe.",
+      "La herramienta fue ejecutada y aprobada visualmente en localhost."
+    ],
+    "notes": "Responsive Preview v2 operativo en 127.0.0.1:4323. La primera versión produjo spawn EINVAL en Windows; se corrigió iniciando npm a través de cmd.exe."
+  },
+  {
+    "id": "OBS-001",
+    "type": "PMAPP",
+    "epic": "Observatorio editorial",
+    "title": "Consolidar el Observatorio autónomo de macroeventos y expedientes v0.3.0",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-3-monitor-friction",
+    "size": "XL",
+    "owner": "Rete",
+    "dependencies": [
+      "DATA-003"
+    ],
+    "progress": 90,
+    "acceptanceCriteria": [
+      "El Observatorio funciona como aplicación local autónoma fuera del repositorio y del build de Astro.",
+      "Macroeventos, señales, fuentes y expedientes usan IDs estables y persistencia JSON con backups.",
+      "Las fuentes se vinculan con el catálogo de medios y la diversidad de cobertura se muestra de forma explícita.",
+      "El flujo distingue encargo de investigación, encargo de redacción y revisión humana.",
+      "La suficiencia documental advierte cuando la evidencia no permite redactar responsablemente.",
+      "La interfaz muestra versión, ayuda general y estado del servidor local.",
+      "npm run check finaliza sin errores y el QA local cubre escritorio, tablet, teléfono, teclado y persistencia."
+    ],
+    "notes": "Versión autónoma v0.3.0 preparada fuera de D:\\Memo geopolitico, en D:\\Memo dashboards. Validación técnica ejecutada: esquema v2, 14 macroeventos, 26 señales, 20 fuentes, 1 expediente y catálogo de 92 medios, sin errores ni advertencias. El piloto del Corredor de Lobito confirmó el flujo fuente–señal–expediente y la separación entre investigación y redacción. Pendiente: cierre del QA local integral y aprobación operativa del usuario."
+  },
+  {
+    "id": "OBS-002",
+    "type": "CONTENT",
+    "epic": "Piloto editorial",
+    "title": "Completar el piloto del Corredor de Lobito hasta un Markdown publicable",
+    "priority": "P1",
+    "status": "in_progress",
+    "release": "beta-4-editorial",
+    "size": "L",
+    "owner": "Rete",
+    "dependencies": [
+      "OBS-001"
+    ],
+    "progress": 45,
+    "acceptanceCriteria": [
+      "El encargo de investigación se ejecuta con búsqueda web y produce una matriz de vacíos y fuentes candidatas.",
+      "Las fuentes candidatas se revisan manualmente y solo las pertinentes pasan a verificadas.",
+      "El expediente incorpora diversidad institucional, africana o regional y analítica suficiente.",
+      "Se regenera el encargo de redacción con evidencia suficiente y sin dependencias no autorizadas.",
+      "El borrador Markdown pasa revisión factual, editorial y de enlaces.",
+      "El frontmatter y la ubicación se adaptan al esquema local real de Astro.",
+      "npm run check, npm run build, git diff --check y QA responsive finalizan correctamente antes de publicar."
+    ],
+    "notes": "Piloto actual: dos fuentes Reuters verificadas y dos señales revisadas. El panel detecta correctamente baja diversidad y evidencia insuficiente. Ya se generaron y probaron los encargos de investigación y redacción; el encargo de redacción actual es solo una prueba y no debe publicarse. La siguiente acción es ejecutar el encargo de investigación y ampliar la evidencia."
+  },
+  {
+    "id": "OBS-003",
+    "type": "PM",
+    "epic": "Arquitectura editorial",
+    "title": "Definir la integración futura del Observatorio a partir del corpus piloto",
+    "priority": "P2",
+    "status": "deferred",
+    "release": "future",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "OBS-002"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "La decisión se basa en documentos piloto revisados y no en una taxonomía abstracta.",
+      "Se distingue la taxonomía interna amplia de la taxonomía pública estable.",
+      "Se define si el Observatorio permanece autónomo, se integra parcialmente o se incorpora como módulo del sitio.",
+      "La integración no convierte GDELT ni APIs externas en dependencias de producción.",
+      "Las rutas, el esquema de contenido y la navegación se validan contra la copia local de Astro."
+    ],
+    "notes": "Postergada hasta completar un corpus piloto suficiente de Movimientos, Focos y Dossiers y revisar la arquitectura del sitio con evidencia editorial real."
+  }
+]
