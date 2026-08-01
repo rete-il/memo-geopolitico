@@ -1,0 +1,4 @@
+backups/*.json
+!backups/.gitignore
+.DS_Store
+Thumbs.db

@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "titulo": "Configuración editorial del generador de búsquedas",
+  "descripcion": "Capa normalizada que vincula los ejes prioritarios, la taxonomía temática y el catálogo de fuentes del Observatorio.",
+  "limites_fuentes": {
+    "min": 15,
+    "recomendado": 20,
+    "max": 25
+  },
+  "valores_iniciales": {
+    "eje_editorial": "corredores-logisticos",
+    "region": "Global",
+    "horizonte_min_anios": 3,
+    "horizonte_max_anios": 10,
+    "periodo_dias": 90,
+    "max_eventos": 15,
+    "idiomas": [
+      "Español",
+      "Inglés",
+      "Francés",
+      "Árabe",
+      "Farsi"
+    ]
+  },
+  "regiones": [
+    "Global",
+    "África",
+    "África del Norte",
+    "África Occidental",
+    "África Central",
+    "África Oriental",
+    "África Austral",
+    "Sahel",
+    "América Latina",
+    "América del Norte",
+    "Asia Central",
+    "Asia-Pacífico",
+    "Asia del Sur",
+    "Cáucaso",
+    "Europa",
+    "Eurasia",
+    "Indo-Pacífico",
+    "Mediterráneo",
+    "Oriente Medio",
+    "Sur Global"
+  ],
+  "idiomas": [
+    "Español",
+    "Inglés",
+    "Francés",
+    "Árabe",
+    "Farsi",
+    "Portugués",
+    "Ruso",
+    "Chino",
+    "Turco",
+    "Hebreo"
+  ],
+  "fuentes_prioritarias": [
+    {
+      "id": "geopolitical-futures",
+      "nombre": "Geopolitical Futures",
+      "url": "https://geopoliticalfutures.com/",
+      "media_id": "",
+      "catalogada": false
+    },
+    {
+      "id": "chatham-house",
+      "nombre": "Chatham House",
+      "url": "https://www.chathamhouse.org/",
+      "media_id": "chatham-house",
+      "catalogada": true
+    },
+    {
+      "id": "le-grand-continent",
+      "nombre": "Le Grand Continent",
+      "url": "https://legrandcontinent.eu/",
+      "media_id": "le-grand-continent",
+      "catalogada": true
+    },
+    {
+      "id": "the-guardian",
+      "nombre": "The Guardian",
+      "url": "https://www.theguardian.com/",
+      "media_id": "the-guardian",
+      "catalogada": true
+    }
+  ],
+  "criterios_transversales": [
+    {
+      "id": "relevancia-vs-atencion",
+      "nombre": "Diferencia entre relevancia geopolítica y atención mediática",
+      "descripcion": "Evaluar la importancia estratégica independientemente del volumen de cobertura y señalar procesos subcubiertos."
+    }
+  ],
+  "ejes_editoriales": [
+    {
+      "id": "minerales-criticos",
+      "orden": 1,
+      "nombre": "Minerales críticos y competencia entre potencias",
+      "clase": "eje_tematico",
+      "tema_ids": [51, 52, 53, 54, 55, 56, 57, 58, 61, 62, 63, 64, 66],
+      "actores": ["China", "Estados Unidos", "Unión Europea", "India", "República Democrática del Congo", "Indonesia", "Australia", "Chile"],
+      "senal_ids": [299, 300, 301, 307, 308, 309],
+      "terminos_fuentes": ["minería", "recursos", "industria", "comercio", "energía"]
+    },
+    {
+      "id": "corredores-logisticos",
+      "orden": 2,
+      "nombre": "Corredores logísticos e infraestructura estratégica",
+      "clase": "eje_tematico",
+      "tema_ids": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 176, 180, 207, 271],
+      "actores": ["China", "Estados Unidos", "Unión Europea", "India", "Rusia", "Turquía", "Potencias del Golfo", "Bancos multilaterales de desarrollo"],
+      "senal_ids": [297, 305, 308, 311, 312, 314],
+      "terminos_fuentes": ["infraestructura", "transporte", "comercio", "desarrollo", "energía"]
+    },
+    {
+      "id": "alianzas-militares",
+      "orden": 3,
+      "nombre": "Reconfiguración de alianzas militares",
+      "clase": "eje_tematico",
+      "tema_ids": [1, 2, 8, 9, 17, 18, 181, 183, 186, 191, 198, 199, 286, 287],
+      "actores": ["Estados Unidos", "China", "Rusia", "OTAN", "Unión Europea", "India", "Japón", "Australia", "ASEAN"],
+      "senal_ids": [295, 296, 303, 304, 305, 306, 310],
+      "terminos_fuentes": ["seguridad", "defensa", "militar", "política exterior", "doctrina"]
+    },
+    {
+      "id": "cadenas-suministro",
+      "orden": 4,
+      "nombre": "Fragmentación de cadenas de suministro",
+      "clase": "eje_tematico",
+      "tema_ids": [87, 88, 89, 90, 93, 94, 95, 96, 97, 98, 99, 100, 290],
+      "actores": ["Estados Unidos", "China", "Unión Europea", "India", "Japón", "Corea del Sur", "México", "ASEAN", "Empresas multinacionales"],
+      "senal_ids": [300, 301, 307, 308, 314],
+      "terminos_fuentes": ["comercio", "economía", "industria", "manufactura", "cadenas de suministro"]
+    },
+    {
+      "id": "soberania-tecnologica",
+      "orden": 5,
+      "nombre": "Soberanía tecnológica y semiconductores",
+      "clase": "eje_tematico",
+      "tema_ids": [69, 70, 72, 75, 76, 77, 78, 79, 82, 83, 84, 86, 181, 291],
+      "actores": ["Estados Unidos", "China", "Taiwán", "Unión Europea", "Japón", "Corea del Sur", "Países Bajos", "Empresas de semiconductores"],
+      "senal_ids": [300, 301, 307, 308],
+      "terminos_fuentes": ["tecnología", "industria", "regulación", "comercio", "innovación"]
+    },
+    {
+      "id": "seguridad-energetica",
+      "orden": 6,
+      "nombre": "Seguridad energética y nuevas rutas de gas",
+      "clase": "eje_tematico",
+      "tema_ids": [24, 36, 38, 39, 40, 44, 45, 46, 47, 48, 49, 166, 250, 262],
+      "actores": ["OPEP+", "Rusia", "Unión Europea", "Estados Unidos", "China", "Qatar", "Arabia Saudita", "Turquía", "Azerbaiyán"],
+      "senal_ids": [300, 301, 306, 311, 312, 314],
+      "terminos_fuentes": ["energía", "petróleo", "gas", "mercados", "infraestructura"]
+    },
+    {
+      "id": "africa-competencia",
+      "orden": 7,
+      "nombre": "África como escenario de competencia estratégica",
+      "clase": "preset_regional",
+      "regiones_sugeridas": ["África"],
+      "tema_ids": [195, 196, 197, 204, 205, 206, 207, 208, 212, 215, 216, 217, 218, 222],
+      "actores": ["Unión Africana", "China", "Estados Unidos", "Rusia", "Unión Europea", "Turquía", "India", "Emiratos Árabes Unidos", "Arabia Saudita"],
+      "senal_ids": [297, 298, 305, 307, 308, 309, 310],
+      "terminos_fuentes": ["África", "desarrollo", "seguridad", "recursos", "infraestructura"]
+    },
+    {
+      "id": "sahel",
+      "orden": 8,
+      "nombre": "Golpes de Estado e insurgencias en el Sahel",
+      "clase": "preset_regional",
+      "regiones_sugeridas": ["Sahel", "África Occidental"],
+      "tema_ids": [14, 16, 110, 114, 201, 202, 203, 204, 220, 221],
+      "actores": ["Estados del Sahel", "CEDEAO", "Unión Africana", "Rusia", "Francia", "Estados Unidos", "Grupos insurgentes", "Comunidades locales"],
+      "senal_ids": [295, 303, 304, 305, 306, 310, 313],
+      "terminos_fuentes": ["Sahel", "África", "seguridad", "conflicto", "gobernanza"]
+    },
+    {
+      "id": "estres-hidrico",
+      "orden": 9,
+      "nombre": "Estrés hídrico y conflictos transfronterizos",
+      "clase": "eje_tematico",
+      "tema_ids": [145, 146, 147, 149, 158, 161, 211, 254, 284],
+      "actores": ["Estados ribereños", "Organismos de cuenca", "Unión Africana", "Naciones Unidas", "Agricultura", "Empresas hidroeléctricas", "Comunidades fronterizas"],
+      "senal_ids": [298, 306, 308, 313],
+      "terminos_fuentes": ["agua", "clima", "agricultura", "desarrollo", "conflicto"]
+    },
+    {
+      "id": "desdolarizacion",
+      "orden": 10,
+      "nombre": "Desdolarización y sistemas de pagos alternativos",
+      "clase": "eje_tematico",
+      "tema_ids": [91, 92, 101, 102, 103, 104, 107, 184, 185, 199],
+      "actores": ["BRICS", "China", "Rusia", "India", "Brasil", "Estados Unidos", "Bancos centrales", "Fondo Monetario Internacional"],
+      "senal_ids": [301, 302, 306],
+      "terminos_fuentes": ["finanzas", "moneda", "sanciones", "pagos", "bancos centrales"]
+    },
+    {
+      "id": "ia-seguridad",
+      "orden": 11,
+      "nombre": "Inteligencia artificial y seguridad nacional",
+      "clase": "eje_tematico",
+      "tema_ids": [11, 20, 71, 73, 76, 78, 79, 81, 82, 83, 85, 86, 181],
+      "actores": ["Estados Unidos", "China", "Unión Europea", "Empresas de IA", "Fuerzas armadas", "Agencias de inteligencia", "Proveedores de nube", "Organismos reguladores"],
+      "senal_ids": [295, 300, 301, 307, 308, 313],
+      "terminos_fuentes": ["inteligencia artificial", "tecnología", "seguridad", "defensa", "regulación"]
+    },
+    {
+      "id": "rutas-maritimas",
+      "orden": 12,
+      "nombre": "Militarización de rutas marítimas",
+      "clase": "eje_tematico",
+      "tema_ids": [7, 17, 47, 163, 164, 165, 166, 167, 169, 171, 173, 174, 175, 176, 177, 178, 249, 258, 276, 278],
+      "actores": ["Estados Unidos", "China", "Rusia", "India", "OTAN", "Irán", "Estados del Golfo", "Japón", "ASEAN", "Navieras"],
+      "senal_ids": [303, 304, 305, 310, 311, 312],
+      "terminos_fuentes": ["marítimo", "seguridad", "defensa", "comercio", "navegación"]
+    },
+    {
+      "id": "demografia-migraciones",
+      "orden": 13,
+      "nombre": "Demografía y migraciones como factores de poder",
+      "clase": "lente_transversal",
+      "tema_ids": [127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 161, 219, 220, 275],
+      "actores": ["Estados receptores", "Estados de origen", "Unión Europea", "Unión Africana", "Organización Internacional para las Migraciones", "Diásporas", "Ciudades"],
+      "senal_ids": [306, 313],
+      "terminos_fuentes": ["demografía", "migración", "sociedad", "empleo", "desarrollo"]
+    },
+    {
+      "id": "brics-sur-global",
+      "orden": 14,
+      "nombre": "Expansión de los BRICS y del Sur Global",
+      "clase": "preset_actores",
+      "tema_ids": [101, 102, 104, 184, 185, 186, 190, 193, 194, 199, 200],
+      "actores": ["BRICS", "China", "India", "Brasil", "Rusia", "Sudáfrica", "Arabia Saudita", "Emiratos Árabes Unidos", "Indonesia", "Nuevo Banco de Desarrollo"],
+      "senal_ids": [301, 302, 306, 310],
+      "terminos_fuentes": ["BRICS", "Sur Global", "finanzas", "diplomacia", "política exterior"]
+    },
+    {
+      "id": "puertos-cables",
+      "orden": 15,
+      "nombre": "Puertos, cables submarinos y nodos de conectividad",
+      "clase": "eje_tematico",
+      "tema_ids": [21, 25, 26, 28, 35, 78, 82, 176, 177, 180, 206, 230],
+      "actores": ["China", "Estados Unidos", "Unión Europea", "Operadores portuarios", "Empresas de telecomunicaciones", "Proveedores de nube", "Armadas", "Fondos de infraestructura"],
+      "senal_ids": [297, 305, 308, 311, 312],
+      "terminos_fuentes": ["infraestructura", "telecomunicaciones", "marítimo", "seguridad", "conectividad"]
+    },
+    {
+      "id": "nacionalismo-recursos",
+      "orden": 16,
+      "nombre": "Nacionalismo de recursos",
+      "clase": "eje_tematico",
+      "tema_ids": [39, 48, 51, 61, 63, 64, 66, 105, 154],
+      "actores": ["Estados productores", "Empresas mineras", "Empresas energéticas", "China", "Estados Unidos", "Unión Europea", "Comunidades locales", "Fondos soberanos"],
+      "senal_ids": [299, 300, 307, 308, 309],
+      "terminos_fuentes": ["recursos", "minería", "energía", "inversión", "nacionalización"]
+    },
+    {
+      "id": "clima-multiplicador",
+      "orden": 17,
+      "nombre": "Cambio climático como multiplicador de conflictos",
+      "clase": "lente_transversal",
+      "tema_ids": [132, 139, 145, 146, 148, 149, 150, 151, 154, 155, 156, 157, 158, 159, 160, 161, 221, 284],
+      "actores": ["Estados vulnerables", "Naciones Unidas", "Bancos multilaterales", "Fuerzas armadas", "Agricultura", "Aseguradoras", "Comunidades desplazadas"],
+      "senal_ids": [298, 306, 311, 313, 314],
+      "terminos_fuentes": ["clima", "agua", "alimentos", "migración", "seguridad"]
+    },
+    {
+      "id": "potencias-medias",
+      "orden": 18,
+      "nombre": "Potencias medias: India, Turquía, Arabia Saudita, Brasil e Indonesia",
+      "clase": "preset_actores",
+      "tema_ids": [186, 187, 190, 193, 194, 198, 222, 223, 255, 256, 257, 285],
+      "actores": ["India", "Turquía", "Arabia Saudita", "Brasil", "Indonesia", "Emiratos Árabes Unidos", "Sudáfrica", "México"],
+      "senal_ids": [297, 305, 306, 310, 314],
+      "terminos_fuentes": ["política exterior", "diplomacia", "economía", "seguridad", "regional"]
+    },
+    {
+      "id": "fragmentacion-orden",
+      "orden": 19,
+      "nombre": "Fragmentación del orden internacional",
+      "clase": "lente_transversal",
+      "tema_ids": [1, 12, 87, 88, 91, 92, 101, 102, 181, 182, 183, 184, 185, 186, 198, 199, 200],
+      "actores": ["Estados Unidos", "China", "Rusia", "Unión Europea", "India", "BRICS", "G7", "Naciones Unidas", "Organización de Cooperación de Shanghái"],
+      "senal_ids": [295, 300, 302, 306, 307, 310, 313],
+      "terminos_fuentes": ["orden internacional", "diplomacia", "sanciones", "comercio", "seguridad"]
+    }
+  ]
+}

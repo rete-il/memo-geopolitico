@@ -1,0 +1,214 @@
+{
+  "schema_version": "1.0",
+  "title": "Flujo editorial del Observatorio al Markdown definitivo",
+  "description": "Contrato operativo para transformar un macroevento investigado en un documento Markdown revisado y listo para incorporar manualmente a Memo Geopolítico.",
+  "status_options": [
+    { "id": "not_started", "label": "No iniciado" },
+    { "id": "in_progress", "label": "En curso" },
+    { "id": "blocked", "label": "Bloqueado" },
+    { "id": "done", "label": "Completado" },
+    { "id": "not_applicable", "label": "No aplica" }
+  ],
+  "document_types": [
+    { "id": "movimiento", "label": "Movimiento a observar" },
+    { "id": "foco", "label": "Foco" },
+    { "id": "dossier", "label": "Dossier" }
+  ],
+  "phases": [
+    {
+      "id": "detection",
+      "number": 1,
+      "title": "Detección y registro",
+      "purpose": "Convertir propuestas y señales dispersas en una unidad analítica identificable."
+    },
+    {
+      "id": "verification",
+      "number": 2,
+      "title": "Verificación y cobertura",
+      "purpose": "Revisar evidencia, calidad de fuentes, diversidad de perspectivas y vacíos."
+    },
+    {
+      "id": "editorial",
+      "number": 3,
+      "title": "Decisión editorial",
+      "purpose": "Definir qué documento se necesita, con qué tesis, alcance y materiales autorizados."
+    },
+    {
+      "id": "writing",
+      "number": 4,
+      "title": "Redacción y control",
+      "purpose": "Generar el borrador, revisarlo y consolidar el Markdown definitivo."
+    }
+  ],
+  "stages": [
+    {
+      "id": "proposal",
+      "number": 1,
+      "phase": "detection",
+      "title": "Propuesta de macroevento",
+      "summary": "Ingreso de una hipótesis, lista o señal generada por ChatGPT o detectada manualmente.",
+      "inputs": ["Prompt de exploración", "Notas del editor", "Listas preliminares"],
+      "actions": ["Separar hechos, hipótesis e interrogantes", "Eliminar duplicados evidentes", "Registrar procedencia de la propuesta"],
+      "outputs": ["Candidato de macroevento"],
+      "gate": "La propuesta describe un proceso geopolítico de mediano o largo plazo y no una noticia aislada sin continuidad.",
+      "responsible": "Editor",
+      "artifact": "candidato"
+    },
+    {
+      "id": "macroevent",
+      "number": 2,
+      "phase": "detection",
+      "title": "Registro del macroevento",
+      "summary": "Creación o actualización de la ficha analítica en el Observatorio.",
+      "inputs": ["Candidato de macroevento"],
+      "actions": ["Asignar ID estable", "Completar descripción y horizonte", "Registrar actores, intereses, escenarios e indicadores"],
+      "outputs": ["Macroevento en borrador"],
+      "gate": "La ficha posee identificación, descripción, horizonte, región y categoría mínimas.",
+      "responsible": "Editor",
+      "artifact": "macroevento.json"
+    },
+    {
+      "id": "classification",
+      "number": 3,
+      "phase": "detection",
+      "title": "Clasificación analítica",
+      "summary": "Asignación de geografías, temas internos, procesos y palabras clave de seguimiento.",
+      "inputs": ["Macroevento en borrador", "Taxonomía interna"],
+      "actions": ["Asignar temas de detección", "Normalizar geografías", "Definir procesos relacionados", "Registrar palabras clave"],
+      "outputs": ["Macroevento clasificado"],
+      "gate": "La clasificación permite recuperar el proceso sin depender exclusivamente del título.",
+      "responsible": "Editor",
+      "artifact": "clasificacion"
+    },
+    {
+      "id": "signals",
+      "number": 4,
+      "phase": "verification",
+      "title": "Señales estructuradas",
+      "summary": "Registro de señales fechadas que confirman, contradicen o modifican el macroevento.",
+      "inputs": ["Macroevento clasificado", "Noticias, informes y datos"],
+      "actions": ["Asignar ID a cada señal", "Registrar fecha, tipo y descripción", "Vincular fuentes", "Añadir intensidad o localización solo cuando aporten valor"],
+      "outputs": ["Conjunto de señales revisables"],
+      "gate": "Cada señal distingue con claridad el hecho observado de su interpretación.",
+      "responsible": "Editor",
+      "artifact": "signals[]"
+    },
+    {
+      "id": "sources",
+      "number": 5,
+      "phase": "verification",
+      "title": "Fuentes y catálogo de medios",
+      "summary": "Registro de publicaciones concretas y vinculación opcional con el catálogo clasificado de medios.",
+      "inputs": ["Artículos, informes y documentos", "Catálogo de 92 medios"],
+      "actions": ["Asignar ID a la fuente", "Seleccionar medio catalogado o registrar uno nuevo", "Revisar URL, fecha e idioma", "Aplicar estado de verificación"],
+      "outputs": ["Fuentes estructuradas"],
+      "gate": "Las fuentes que sustentarán el documento están abiertas, revisadas y correctamente identificadas.",
+      "responsible": "Editor",
+      "artifact": "sources[]"
+    },
+    {
+      "id": "diversity",
+      "number": 6,
+      "phase": "verification",
+      "title": "Diversidad y cobertura",
+      "summary": "Evaluación descriptiva del volumen, diversidad, concentración y necesidades de corroboración.",
+      "inputs": ["Fuentes estructuradas", "Clasificación de medios"],
+      "actions": ["Revisar regiones mediáticas", "Comparar familias y funciones", "Detectar dependencia de agencias", "Identificar perspectivas ausentes", "Justificar cobertura observada"],
+      "outputs": ["Resumen de diversidad", "Advertencias de cobertura"],
+      "gate": "La cobertura observada está explicada y no se confunde cantidad con diversidad o profundidad.",
+      "responsible": "Editor",
+      "artifact": "coverage-summary"
+    },
+    {
+      "id": "verification_gate",
+      "number": 7,
+      "phase": "verification",
+      "title": "Puerta de verificación",
+      "summary": "Decisión humana sobre qué señales y fuentes pueden usarse como evidencia editorial.",
+      "inputs": ["Señales", "Fuentes", "Resumen de diversidad"],
+      "actions": ["Marcar fuentes verificadas", "Descartar materiales inadecuados", "Registrar incertidumbres", "Definir faltantes de investigación"],
+      "outputs": ["Paquete de evidencia autorizado"],
+      "gate": "Existe evidencia suficiente para redactar sin inventar; los vacíos permanecen explícitos.",
+      "responsible": "Editor",
+      "artifact": "evidence-package"
+    },
+    {
+      "id": "candidate",
+      "number": 8,
+      "phase": "editorial",
+      "title": "Candidatura editorial",
+      "summary": "Decisión de convertir uno o varios macroeventos en una pieza publicable.",
+      "inputs": ["Paquete de evidencia autorizado"],
+      "actions": ["Elegir Movimiento, Foco o Dossier", "Definir pregunta editorial", "Delimitar alcance", "Determinar prioridad"],
+      "outputs": ["Candidato de publicación"],
+      "gate": "El tipo documental responde a la función editorial y no solo a la extensión deseada.",
+      "responsible": "Editor",
+      "artifact": "publication-candidate"
+    },
+    {
+      "id": "brief",
+      "number": 9,
+      "phase": "editorial",
+      "title": "Expediente editorial",
+      "summary": "Contrato que selecciona tesis, estructura, fuentes autorizadas, taxonomía pública e incertidumbres.",
+      "inputs": ["Candidato de publicación", "Paquete de evidencia"],
+      "actions": ["Redactar tesis de trabajo", "Seleccionar señales y fuentes", "Asignar geografías, temas y procesos públicos", "Registrar relaciones con otros documentos", "Definir extensión"],
+      "outputs": ["Expediente editorial listo"],
+      "gate": "El expediente puede ser entendido y auditado sin consultar toda la base del Observatorio.",
+      "responsible": "Editor",
+      "artifact": "brief.json"
+    },
+    {
+      "id": "prompt",
+      "number": 10,
+      "phase": "editorial",
+      "title": "Prompt controlado",
+      "summary": "Generación de instrucciones específicas para producir un borrador Markdown trazable.",
+      "inputs": ["Expediente editorial", "Plantilla por tipo documental"],
+      "actions": ["Incluir solo fuentes verificadas", "Definir frontmatter esperado", "Exigir enlaces integrados", "Marcar incertidumbres", "Prohibir completar vacíos con invenciones"],
+      "outputs": ["Prompt exportable"],
+      "gate": "El prompt contiene suficiente contexto, reglas y contrato de salida.",
+      "responsible": "Dashboard + editor",
+      "artifact": "prompt.md"
+    },
+    {
+      "id": "draft",
+      "number": 11,
+      "phase": "writing",
+      "title": "Borrador Markdown",
+      "summary": "Producción del primer documento mediante ChatGPT a partir del prompt aprobado.",
+      "inputs": ["Prompt exportable"],
+      "actions": ["Generar el texto", "Conservar frontmatter", "Integrar enlaces", "Marcar datos pendientes", "Guardar fuera del sitio"],
+      "outputs": ["Borrador .md"],
+      "gate": "El borrador respeta estructura, fuentes y limitaciones del expediente.",
+      "responsible": "ChatGPT + editor",
+      "artifact": "draft.md"
+    },
+    {
+      "id": "review",
+      "number": 12,
+      "phase": "writing",
+      "title": "Revisión editorial y factual",
+      "summary": "Edición humana del borrador, verificación de afirmaciones, fuentes, taxonomía y coherencia.",
+      "inputs": ["Borrador .md", "Expediente", "Fuentes verificadas"],
+      "actions": ["Corregir tesis y estructura", "Verificar cada afirmación sensible", "Eliminar redundancias", "Revisar enlaces", "Ajustar frontmatter", "Resolver marcadores pendientes"],
+      "outputs": ["Markdown revisado"],
+      "gate": "No quedan afirmaciones relevantes sin respaldo ni marcadores pendientes sin explicación.",
+      "responsible": "Editor",
+      "artifact": "reviewed.md"
+    },
+    {
+      "id": "final_md",
+      "number": 13,
+      "phase": "writing",
+      "title": "Markdown definitivo",
+      "summary": "Versión editorial aprobada, parametrizada y lista para incorporación manual al sitio.",
+      "inputs": ["Markdown revisado"],
+      "actions": ["Confirmar título y slug", "Validar frontmatter", "Confirmar taxonomías y relaciones", "Comprobar enlaces", "Registrar fecha y estado final"],
+      "outputs": ["Archivo .md definitivo"],
+      "gate": "El documento cumple el contrato editorial y puede pasar al repositorio sin cambios conceptuales pendientes.",
+      "responsible": "Editor",
+      "artifact": "final.md"
+    }
+  ]
+}

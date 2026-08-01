@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "nombre": "Observatorio de macroeventos geopolíticos y flujo editorial",
+  "host": "127.0.0.1",
+  "puerto": 4323,
+  "max_backups": 30,
+  "horizonte_minimo_anios": 3,
+  "horizonte_maximo_anios": 10,
+  "requiere_fuentes_para_validar": 2
+}

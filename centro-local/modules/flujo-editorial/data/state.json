@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-07-20T00:00:00.000Z",
+  "documents": [
+    {
+      "id": "doc-corredor-lobito",
+      "title": "El corredor de Lobito y la competencia por los minerales africanos",
+      "slug": "corredor-lobito-minerales-africanos",
+      "document_type": "foco",
+      "source_macroevents": ["corredor-lobito-plataforma-occidental"],
+      "owner": "Editor",
+      "priority": "alta",
+      "notes": "Caso piloto principal para probar el circuito completo.",
+      "stages": {
+        "proposal": { "status": "done", "note": "Candidato identificado.", "artifact": "" },
+        "macroevent": { "status": "done", "note": "Macroevento existente en el Observatorio.", "artifact": "data/macroeventos.json" },
+        "classification": { "status": "in_progress", "note": "Revisar taxonomía pública e interna.", "artifact": "" },
+        "signals": { "status": "not_started", "note": "", "artifact": "" },
+        "sources": { "status": "not_started", "note": "", "artifact": "" },
+        "diversity": { "status": "not_started", "note": "", "artifact": "" },
+        "verification_gate": { "status": "not_started", "note": "", "artifact": "" },
+        "candidate": { "status": "not_started", "note": "", "artifact": "" },
+        "brief": { "status": "not_started", "note": "", "artifact": "" },
+        "prompt": { "status": "not_started", "note": "", "artifact": "" },
+        "draft": { "status": "not_started", "note": "", "artifact": "" },
+        "review": { "status": "not_started", "note": "", "artifact": "" },
+        "final_md": { "status": "not_started", "note": "", "artifact": "" }
+      }
+    },
+    {
+      "id": "doc-imec",
+      "title": "La reconfiguración modular del corredor IMEC",
+      "slug": "reconfiguracion-modular-imec",
+      "document_type": "movimiento",
+      "source_macroevents": ["imec-reconfiguracion-modular"],
+      "owner": "Editor",
+      "priority": "media",
+      "notes": "Caso de control para comprobar el flujo con evidencia menos desarrollada.",
+      "stages": {
+        "proposal": { "status": "done", "note": "", "artifact": "" },
+        "macroevent": { "status": "in_progress", "note": "Completar ficha analítica.", "artifact": "" },
+        "classification": { "status": "not_started", "note": "", "artifact": "" },
+        "signals": { "status": "not_started", "note": "", "artifact": "" },
+        "sources": { "status": "not_started", "note": "", "artifact": "" },
+        "diversity": { "status": "not_started", "note": "", "artifact": "" },
+        "verification_gate": { "status": "not_started", "note": "", "artifact": "" },
+        "candidate": { "status": "not_started", "note": "", "artifact": "" },
+        "brief": { "status": "not_started", "note": "", "artifact": "" },
+        "prompt": { "status": "not_started", "note": "", "artifact": "" },
+        "draft": { "status": "not_started", "note": "", "artifact": "" },
+        "review": { "status": "not_started", "note": "", "artifact": "" },
+        "final_md": { "status": "not_started", "note": "", "artifact": "" }
+      }
+    }
+  ]
+}

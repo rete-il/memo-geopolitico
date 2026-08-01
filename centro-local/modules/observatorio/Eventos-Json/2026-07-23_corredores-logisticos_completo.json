@@ -1,0 +1,2202 @@
+{
+  "formato": "observatorio-candidatos",
+  "schema_version": 1,
+  "generado_el": "2026-07-23",
+  "consulta": "Macroprocesos geopolíticos vinculados con corredores logísticos, infraestructura estratégica, minerales críticos, energía, conectividad digital y competencia entre potencias.",
+  "candidatos": [
+    {
+      "id": "redundancia-logistica-hormuz-bab-el-mandeb",
+      "titulo": "Redundancia logística fuera de Hormuz y Bab el-Mandeb",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Golfo Pérsico",
+        "Mar Rojo"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "La vulnerabilidad simultánea de Hormuz y Bab el-Mandeb impulsa una arquitectura de puertos, oleoductos y enlaces terrestres alternativos. Su relevancia reside en la capacidad de sostener exportaciones durante crisis y ejercer influencia sobre seguros, almacenamiento y reexportación.",
+      "actores": [
+        "Emiratos Árabes Unidos",
+        "Arabia Saudita",
+        "Irán",
+        "Yemen",
+        "DP World",
+        "Saudi Aramco",
+        "hutíes",
+        "navieras",
+        "aseguradoras"
+      ],
+      "intereses": [
+        "Continuidad de las exportaciones energéticas",
+        "Reducción de la dependencia de chokepoints",
+        "Control de terminales y almacenamiento",
+        "Seguridad marítima",
+        "Influencia sobre seguros y reexportación"
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "EAU y Arabia Saudita desarrollan una red parcial de terminales, oleoductos y enlaces terrestres alternativos.",
+        "adverso": "Los corredores alternativos continúan expuestos al otro estrecho, a ataques regionales o a primas de seguro prohibitivas.",
+        "transformador": "Una red coordinada de puertos y conexiones terrestres permite mantener flujos energéticos relevantes durante crisis simultáneas."
+      },
+      "indicadores": [
+        "Tránsito por Hormuz y Bab el-Mandeb",
+        "Primas de riesgo de guerra",
+        "Capacidad y adjudicación de terminales orientales de EAU",
+        "Utilización del oleoducto saudí Este-Oeste",
+        "Inversión en almacenamiento y enlaces terrestres",
+        "Ataques contra terminales y buques"
+      ],
+      "palabras_clave": [
+        "Hormuz",
+        "Fujairah",
+        "Al Rugaylat",
+        "Dibba",
+        "Jebel Ali inland link",
+        "East-West Pipeline",
+        "Bab el-Mandeb",
+        "war-risk premium"
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 2,
+        "incertidumbre": 3,
+        "urgencia": 5,
+        "cobertura_observada": 5,
+        "confianza": "alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Reuters",
+          "titulo": "DP World to build two new terminals on UAE's eastern coast, reducing Hormuz reliance",
+          "fecha": "2026-07-22",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/world/middle-east/dp-world-build-two-new-terminals-uaes-eastern-coast-reducing-hormuz-reliance-2026-07-22/](https://www.reuters.com/world/middle-east/dp-world-build-two-new-terminals-uaes-eastern-coast-reducing-hormuz-reliance-2026-07-22/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "The Guardian",
+          "titulo": "Houthis threaten to attack tankers using Saudi Arabian ports",
+          "fecha": "2026-07-21",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.theguardian.com/world/2026/jul/21/houthis-threaten-attack-tankers-saudi-arabian-ports-red-sea-shipping](https://www.theguardian.com/world/2026/jul/21/houthis-threaten-attack-tankers-saudi-arabian-ports-red-sea-shipping)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "The Guardian",
+          "titulo": "Iran, the Strait of Hormuz, naval activity and the UAE",
+          "fecha": "2026-05-14",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.theguardian.com/world/2026/may/14/iran-strait-of-hormuz-navy-uae](https://www.theguardian.com/world/2026/may/14/iran-strait-of-hormuz-navy-uae)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-07-22",
+          "titulo": "DP World proyecta dos terminales en la costa oriental de EAU",
+          "tipo": "inversion_infraestructura",
+          "descripcion": "El proyecto apunta a ampliar la capacidad logística situada fuera del estrecho de Hormuz.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Emiratos Árabes Unidos"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-07-21",
+          "titulo": "Amenazas hutíes alcanzan rutas vinculadas con puertos saudíes",
+          "tipo": "riesgo_seguridad",
+          "descripcion": "La amenaza muestra que una salida alternativa a Hormuz puede conservar exposición a la inseguridad del mar Rojo.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Arabia Saudita",
+            "Mar Rojo"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-05-14",
+          "titulo": "La tensión naval mantiene la vulnerabilidad del estrecho de Hormuz",
+          "tipo": "riesgo_chokepoint",
+          "descripcion": "La actividad militar alrededor del estrecho refuerza el valor estratégico de terminales y oleoductos alternativos.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Estrecho de Hormuz",
+            "Irán",
+            "Emiratos Árabes Unidos"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "corredores-mundiales-cables-submarinos",
+      "titulo": "Corredores mundiales de cables submarinos",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Global",
+        "Atlántico",
+        "Mar Rojo",
+        "África oriental"
+      ],
+      "categoria": "tecnología_IA",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "La concentración de rutas, la escasez de buques de reparación, la propiedad de estaciones de amarre y las reglas de acceso convierten los cables submarinos en infraestructura geopolítica. Nuevas conexiones atlánticas y africanas pueden redistribuir centros de datos, servicios financieros, inteligencia y capacidad de nube.",
+      "actores": [
+        "Google",
+        "Meta",
+        "Orange",
+        "Alcatel Submarine Networks",
+        "e&",
+        "e-Marine",
+        "Portugal",
+        "Estados Unidos",
+        "Egipto",
+        "Yibuti",
+        "Arabia Saudita",
+        "Emiratos Árabes Unidos",
+        "India",
+        "Unión Europea"
+      ],
+      "intereses": [
+        "Resiliencia de Internet",
+        "Soberanía digital",
+        "Control de estaciones de amarre",
+        "Capacidad de reparación",
+        "Localización de centros de datos",
+        "Seguridad de servicios financieros y de nube"
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Las nuevas rutas atlánticas y africanas reducen parcialmente la concentración sin eliminar los cuellos de botella.",
+        "adverso": "Cortes simultáneos, falta de buques de reparación o restricciones de acceso producen interrupciones regionales prolongadas.",
+        "transformador": "Sines y otros nodos atlánticos integran cables, energía renovable y centros de datos, alterando la geografía digital entre Europa, África y América."
+      },
+      "indicadores": [
+        "Número de cortes simultáneos",
+        "Duración de las reparaciones",
+        "Disponibilidad de buques cableros",
+        "Capacidad de nuevas rutas atlánticas",
+        "Propiedad de estaciones de amarre",
+        "Regulación de protección y acceso",
+        "Inversión en centros de datos próximos a estaciones de cable"
+      ],
+      "palabras_clave": [
+        "Red Sea cable outage",
+        "repair vessel",
+        "Nuvem",
+        "Via Africa",
+        "Blue-Raman",
+        "Sines landing station",
+        "cable protection"
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 5,
+        "incertidumbre": 3,
+        "urgencia": 5,
+        "cobertura_observada": 2,
+        "confianza": "alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Chatham House",
+          "titulo": "The world's internet infrastructure is under threat. Who is going to protect it?",
+          "fecha": "2026-06-15",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://www.chathamhouse.org/publications/the-world-today/2026-06/worlds-internet-infrastructure-under-threat-who-going-protect](https://www.chathamhouse.org/publications/the-world-today/2026-06/worlds-internet-infrastructure-under-threat-who-going-protect)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Reuters",
+          "titulo": "Google connects new transatlantic cable between Portugal and the US",
+          "fecha": "2026-07-21",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/business/media-telecom/google-connects-new-transatlantic-cable-between-portugal-us-2026-07-21/](https://www.reuters.com/business/media-telecom/google-connects-new-transatlantic-cable-between-portugal-us-2026-07-21/)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "Submarine Networks",
+          "titulo": "EU grants €37 million to extend Blue-Raman cable into East Africa",
+          "fecha": "2026-06-13",
+          "idioma": "en",
+          "tipo": "noticia_sectorial",
+          "url": "[https://www.submarinenetworks.com/en/systems/asia-europe-africa/blue-raman/eu-grants-%E2%82%AC37-million-to-extend-blue-raman-cable-into-east-africa](https://www.submarinenetworks.com/en/systems/asia-europe-africa/blue-raman/eu-grants-%E2%82%AC37-million-to-extend-blue-raman-cable-into-east-africa)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-06-15",
+          "titulo": "Aumenta la atención sobre la protección de la infraestructura mundial de Internet",
+          "tipo": "gobernanza_infraestructura",
+          "descripcion": "El análisis destaca vulnerabilidades de protección, reparación y gobernanza que trascienden los cortes individuales.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": []
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-07-21",
+          "titulo": "Nuevo cable transatlántico conecta Portugal y Estados Unidos",
+          "tipo": "expansion_conectividad",
+          "descripcion": "La conexión refuerza la posición de Portugal como punto de entrada atlántico para datos y servicios digitales.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Portugal",
+            "Estados Unidos"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-06-13",
+          "titulo": "La UE financia la extensión de Blue-Raman hacia África oriental",
+          "tipo": "financiacion_infraestructura",
+          "descripcion": "La financiación europea apunta a diversificar la conectividad entre Europa, Asia y África oriental.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "África oriental"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "corredores-articos-doble-uso",
+      "titulo": "Corredores árticos de doble uso",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Ártico euroasiático",
+        "Ártico norteamericano"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "Canadá y Rusia conectan minas, puertos, carreteras, ferrocarriles y vías fluviales con objetivos simultáneamente económicos, soberanos y militares. La inversión puede persistir aunque la rentabilidad comercial sea incierta.",
+      "actores": [
+        "Canadá",
+        "Rusia",
+        "Estados Unidos",
+        "OTAN",
+        "Rosatom",
+        "Agnico Eagle",
+        "comunidades indígenas",
+        "empresas mineras"
+      ],
+      "intereses": [
+        "Minerales críticos",
+        "Soberanía territorial",
+        "Vigilancia",
+        "Acceso naval",
+        "Desarrollo regional",
+        "Alternativa estacional a Suez"
+      ],
+      "horizonte": {
+        "min_anios": 5,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Canadá y Rusia desarrollan corredores regionales subsidiados con funciones económicas y estratégicas.",
+        "adverso": "La militarización, los accidentes y los costes climáticos superan la rentabilidad económica.",
+        "transformador": "Servicios comerciales más regulares y nueva infraestructura dual convierten el Ártico en corredor logístico persistente."
+      },
+      "indicadores": [
+        "Inversión pública",
+        "Número y capacidad de rompehielos",
+        "Puertos de aguas profundas",
+        "Costes de seguros",
+        "Volúmenes de la Ruta Marítima del Norte",
+        "Infraestructura declarada de doble uso",
+        "Participación china"
+      ],
+      "palabras_clave": [
+        "Trans-Arctic Transport Corridor",
+        "Northern Sea Route",
+        "Grays Bay",
+        "Churchill",
+        "Hope Bay",
+        "dual-use Arctic infrastructure"
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 4,
+        "urgencia": 4,
+        "cobertura_observada": 3,
+        "confianza": "media-alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Reuters",
+          "titulo": "Agnico Eagle to redevelop Hope Bay gold mine in Canada's Arctic, government says",
+          "fecha": "2026-05-19",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/world/agnico-eagle-redevelop-hope-bay-gold-mine-canadas-arctic-government-says-2026-05-19/](https://www.reuters.com/world/agnico-eagle-redevelop-hope-bay-gold-mine-canadas-arctic-government-says-2026-05-19/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Gobiernos de Canadá occidental",
+          "titulo": "Economic Corridors Western Canada Report",
+          "fecha": "",
+          "idioma": "en",
+          "tipo": "informe",
+          "url": "[https://scics.ca/wp-content/uploads/2026/05/Economic-Corridors-Western-Canada-Report-WEB-1.pdf](https://scics.ca/wp-content/uploads/2026/05/Economic-Corridors-Western-Canada-Report-WEB-1.pdf)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "Kremlin",
+          "titulo": "Instructions on the development of the Trans-Arctic Transport Corridor",
+          "fecha": "2026-05-30",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
+          "url": "[https://en.kremlin.ru/acts/assignments/orders/79927](https://en.kremlin.ru/acts/assignments/orders/79927)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-05-19",
+          "titulo": "Canadá respalda la reactivación de Hope Bay",
+          "tipo": "inversion_minera",
+          "descripcion": "La reactivación minera refuerza la demanda de infraestructura permanente en el Ártico canadiense.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Nunavut",
+            "Canadá"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "",
+          "titulo": "Canadá occidental incorpora corredores árticos a su planificación económica",
+          "tipo": "planificacion_infraestructura",
+          "descripcion": "El informe publicado en mayo de 2026 da mayor peso a propuestas de conexión minera, portuaria y territorial como Grays Bay.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Canadá occidental",
+            "Ártico canadiense"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-05-30",
+          "titulo": "Rusia ordena integrar el Corredor Transártico",
+          "tipo": "politica_estatal",
+          "descripcion": "La orden propone vincular el corredor con redes ferroviarias y fluviales, ampliando su función logística y estratégica.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Rusia",
+            "Ártico ruso"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "competencia-lobito-tazara-copperbelt",
+      "titulo": "Competencia Lobito–TAZARA por el Copperbelt",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "África austral",
+        "África central"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "Los corredores Lobito y TAZARA compiten por orientar cobre y cobalto hacia el Atlántico o el Índico y por fijar modelos de financiación, trazabilidad, datos mineros, contratos de compra y procesamiento local.",
+      "actores": [
+        "Angola",
+        "Zambia",
+        "República Democrática del Congo",
+        "Tanzania",
+        "Estados Unidos",
+        "Unión Europea",
+        "China",
+        "Africa Finance Corporation",
+        "Trafigura",
+        "CCECC",
+        "DFC",
+        "DBSA"
+      ],
+      "intereses": [
+        "Acceso a cobre y cobalto",
+        "Diversificación respecto de China",
+        "Control de datos mineros",
+        "Trazabilidad",
+        "Rentas de tránsito",
+        "Procesamiento local",
+        "Desarrollo industrial africano"
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Lobito y TAZARA coexisten como corredores competitivos hacia costas diferentes.",
+        "adverso": "Ambos sistemas consolidan enclaves de exportación sin industrialización local y con fragmentación regulatoria.",
+        "transformador": "La competencia reduce costes y permite a Zambia y RDC negociar procesamiento local, energía, industria y mejores condiciones de financiación."
+      },
+      "indicadores": [
+        "Cierre financiero de Lobito",
+        "Construcción de ramales mineros",
+        "Tonelaje transportado",
+        "Contratos de offtake",
+        "Reglas sobre datos mineros",
+        "Capacidad de procesamiento local",
+        "Avance de la concesión TAZARA"
+      ],
+      "palabras_clave": [
+        "Lobito Atlantic Railway",
+        "TAZARA concession",
+        "MCC",
+        "DFC",
+        "DBSA",
+        "Mota-Engil",
+        "CCECC",
+        "copper traceability",
+        "mining cadastre"
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 3,
+        "urgencia": 4,
+        "cobertura_observada": 3,
+        "confianza": "alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Chatham House",
+          "titulo": "The Lobito Corridor shows how digitization is shaping critical minerals competition",
+          "fecha": "2026-07-20",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://www.chathamhouse.org/2026/07/lobito-corridor-shows-how-digitization-shaping-critical-minerals-competition](https://www.chathamhouse.org/2026/07/lobito-corridor-shows-how-digitization-shaping-critical-minerals-competition)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Geopolitical Futures",
+          "titulo": "Expanding the Copperbelt's Atlantic export routes",
+          "fecha": "2026-06-26",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://geopoliticalfutures.com/expanding-the-copperbelts-atlantic-export-routes/](https://geopoliticalfutures.com/expanding-the-copperbelts-atlantic-export-routes/)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "TAZARA",
+          "titulo": "TAZARA revitalisation moves from plans to visible action",
+          "fecha": "2026-07-17",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
+          "url": "[https://tazarasite.com/tazara-revitalisation-moves-plans-visible-action](https://tazarasite.com/tazara-revitalisation-moves-plans-visible-action)"
+        },
+        {
+          "id": "fuente-4",
+          "medio": "Reuters",
+          "titulo": "Zambia and US expand use of $491 million grant programme for critical metals infrastructure",
+          "fecha": "2026-06-18",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/world/africa/zambia-us-expand-use-491-million-grant-programme-critical-metals-infrastructure-2026-06-18/](https://www.reuters.com/world/africa/zambia-us-expand-use-491-million-grant-programme-critical-metals-infrastructure-2026-06-18/)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-07-20",
+          "titulo": "La digitalización entra en la competencia por minerales del corredor de Lobito",
+          "tipo": "estandares_digitales",
+          "descripcion": "El control de datos, catastros y trazabilidad aparece junto al transporte como dimensión estratégica del corredor.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Angola",
+            "Zambia",
+            "República Democrática del Congo"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-06-26",
+          "titulo": "Se expanden las opciones atlánticas de exportación del Copperbelt",
+          "tipo": "expansion_logistica",
+          "descripcion": "El desarrollo de rutas atlánticas amplía las alternativas de salida para cobre y cobalto.",
+          "fuente_ids": [
+            "fuente-2",
+            "fuente-4"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Copperbelt",
+            "Angola",
+            "Zambia"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-07-17",
+          "titulo": "La revitalización de TAZARA pasa a actuaciones visibles",
+          "tipo": "avance_infraestructura",
+          "descripcion": "Las actuaciones bajo el esquema de concesión china elevan la competencia entre las salidas atlántica e índica.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Zambia",
+            "Tanzania"
+          ]
+        },
+        {
+          "id": "senal-4",
+          "fecha": "2026-06-18",
+          "titulo": "Zambia y Estados Unidos amplían un programa para infraestructura de minerales críticos",
+          "tipo": "financiacion_infraestructura",
+          "descripcion": "La ampliación del uso de la subvención fortalece el componente occidental de la competencia por el Copperbelt.",
+          "fuente_ids": [
+            "fuente-4"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Zambia"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rail-baltica-movilidad-militar-europea",
+      "titulo": "Rail Baltica como columna de movilidad militar europea",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Estados bálticos",
+        "Europa central"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "Rail Baltica deja de ser solamente un proyecto de mercado único y se convierte en infraestructura potencial para el refuerzo militar del flanco oriental europeo. Su utilidad depende de la continuidad transfronteriza, la coordinación y la financiación.",
+      "actores": [
+        "Estonia",
+        "Letonia",
+        "Lituania",
+        "Polonia",
+        "Unión Europea",
+        "OTAN",
+        "RB Rail"
+      ],
+      "intereses": [
+        "Movilidad militar",
+        "Refuerzo rápido del flanco oriental",
+        "Autonomía respecto de la red ferroviaria rusa",
+        "Cohesión báltica",
+        "Integración europea",
+        "Credibilidad defensiva"
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 8
+      },
+      "escenarios": {
+        "base": "La primera fase queda incompleta, pero algunos tramos adquieren utilidad militar.",
+        "adverso": "La discontinuidad del tramo letón reduce el valor estratégico del sistema completo.",
+        "transformador": "La Unión Europea financia crecientemente Rail Baltica como infraestructura de defensa y garantiza su continuidad operacional."
+      },
+      "indicadores": [
+        "Asignaciones del marco financiero plurianual",
+        "Adjudicaciones de obra",
+        "Avance del tramo letón",
+        "Puente sobre el Daugava",
+        "Continuidad ferroviaria de ancho europeo",
+        "Uso durante ejercicios de la OTAN",
+        "Devolución de fondos europeos"
+      ],
+      "palabras_clave": [
+        "Rail Baltica Phase I",
+        "CEF",
+        "Military Mobility",
+        "Latvia mainline",
+        "Daugava",
+        "1435 mm",
+        "Suwałki corridor"
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 3,
+        "urgencia": 4,
+        "cobertura_observada": 3,
+        "confianza": "alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Rail Baltica",
+          "titulo": "Rail Baltica in focus: Brussels event spotlights Europe's strategic cross-border rail link",
+          "fecha": "2026-06-08",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
+          "url": "[https://www.railbaltica.org/news/rail-baltica-in-focus-brussels-event-spotlights-europes-strategic-cross-border-rail-link/](https://www.railbaltica.org/news/rail-baltica-in-focus-brussels-event-spotlights-europes-strategic-cross-border-rail-link/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "The Parliament Magazine",
+          "titulo": "Can the Baltics save the EU's largest infrastructure project?",
+          "fecha": "2026-04-28",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://www.theparliamentmagazine.eu/news/article/can-the-baltics-save-the-eus-largest-infrastructure-project](https://www.theparliamentmagazine.eu/news/article/can-the-baltics-save-the-eus-largest-infrastructure-project)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "LSM",
+          "titulo": "Latvia might lose EUR 50 million EU funding for Rail Baltica",
+          "fecha": "2026-06-01",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://eng.lsm.lv/article/economy/transport/01.06.2026-latvia-might-lose-eur50-million-eu-funding-for-rail-baltica.a649505/](https://eng.lsm.lv/article/economy/transport/01.06.2026-latvia-might-lose-eur50-million-eu-funding-for-rail-baltica.a649505/)"
+        },
+        {
+          "id": "fuente-4",
+          "medio": "Le Grand Continent",
+          "titulo": "La guerre qui vient",
+          "fecha": "2026-05-31",
+          "idioma": "fr",
+          "tipo": "análisis",
+          "url": "[https://legrandcontinent.eu/fr/2026/05/31/guerre-qui-vient/](https://legrandcontinent.eu/fr/2026/05/31/guerre-qui-vient/)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-06-08",
+          "titulo": "Rail Baltica se presenta como enlace transfronterizo estratégico europeo",
+          "tipo": "reposicionamiento_estrategico",
+          "descripcion": "El proyecto adquiere una justificación vinculada con la movilidad y la resiliencia europeas.",
+          "fuente_ids": [
+            "fuente-1",
+            "fuente-4"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Estonia",
+            "Letonia",
+            "Lituania",
+            "Polonia"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-04-28",
+          "titulo": "Persiste un déficit financiero cercano a EUR 10.000 millones",
+          "tipo": "riesgo_financiero",
+          "descripcion": "La brecha financiera amenaza la continuidad de la infraestructura y su futura utilidad estratégica.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Estados bálticos"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-06-01",
+          "titulo": "Letonia arriesga perder financiación europea",
+          "tipo": "riesgo_implementacion",
+          "descripcion": "La posible pérdida de fondos refuerza el riesgo de un cuello de botella en la sección letona.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Letonia"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "panama-puertos-registro-maritimo-coercion",
+      "titulo": "Canal de Panamá: puertos y registro marítimo como instrumentos de coerción",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Panamá",
+        "Caribe",
+        "Pacífico"
+      ],
+      "categoria": "comercio_sanciones",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "La competencia alrededor del Canal de Panamá se extiende a concesiones portuarias, arbitraje, registro de buques y presión regulatoria. El caso puede anticipar el uso de banderas, inspecciones y acceso portuario como instrumentos de coerción geoeconómica.",
+      "actores": [
+        "Panamá",
+        "China",
+        "Estados Unidos",
+        "CK Hutchison",
+        "navieras",
+        "operadores portuarios"
+      ],
+      "intereses": [
+        "Control operativo de puertos",
+        "Influencia sobre el canal",
+        "Registro marítimo",
+        "Acceso portuario",
+        "Señal regulatoria a Estados pequeños"
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 7
+      },
+      "escenarios": {
+        "base": "Panamá sustituye operadores por empresas políticamente aceptables y mantiene el registro bajo presión.",
+        "adverso": "La disputa provoca arbitrajes prolongados, sanciones portuarias y fragmentación del registro panameño.",
+        "transformador": "La presión sobre banderas, inspecciones y reconocimiento de registros se replica como nueva forma de coerción geoeconómica."
+      },
+      "indicadores": [
+        "Resultado del arbitraje",
+        "Selección de nuevos operadores",
+        "Cambios de bandera",
+        "Detenciones de buques",
+        "Sanciones y restricciones portuarias",
+        "Inversión estadounidense o china"
+      ],
+      "palabras_clave": [
+        "Panama Canal ports",
+        "Balboa",
+        "Cristóbal",
+        "CK Hutchison arbitration",
+        "Panama ship registry",
+        "flag detention",
+        "port sanctions"
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 4,
+        "propagacion": 5,
+        "subcobertura": 2,
+        "incertidumbre": 3,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Reuters",
+          "titulo": "China says Panama ties should not be subject to third-party interference",
+          "fecha": "2026-05-27",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/world/china/china-says-panama-ties-should-not-be-subject-third-party-interference-xinhua-2026-05-27/](https://www.reuters.com/world/china/china-says-panama-ties-should-not-be-subject-third-party-interference-xinhua-2026-05-27/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Financial Times",
+          "titulo": "",
+          "fecha": "",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.ft.com/content/1ea75a26-4594-48f0-a704-0721c29cf5eb](https://www.ft.com/content/1ea75a26-4594-48f0-a704-0721c29cf5eb)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-05-27",
+          "titulo": "China denuncia interferencia externa en sus relaciones con Panamá",
+          "tipo": "presion_diplomatica",
+          "descripcion": "La reacción china vincula la disputa portuaria con la competencia estratégica de terceros países.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Panamá",
+            "China"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "",
+          "titulo": "La disputa portuaria se extiende al arbitraje y al registro marítimo",
+          "tipo": "coercion_regulatoria",
+          "descripcion": "El análisis publicado en julio de 2026 relaciona las concesiones de Balboa y Cristóbal con arbitraje y presiones sobre buques de bandera panameña.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Panamá"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eje-mar-negro-danubio-constanta-ucrania",
+      "titulo": "Eje mar Negro–Danubio–Constanța como infraestructura de supervivencia ucraniana",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Ucrania",
+        "Rumanía",
+        "Bulgaria",
+        "Mar Negro"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "La guerra transforma la red Danubio–Constanța de alternativa temporal en un corredor permanente de resiliencia para las exportaciones ucranianas, la seguridad alimentaria y la logística de Europa oriental.",
+      "actores": [
+        "Ucrania",
+        "Rusia",
+        "Rumanía",
+        "Bulgaria",
+        "Turquía",
+        "Unión Europea",
+        "Maersk",
+        "navieras",
+        "aseguradoras"
+      ],
+      "intereses": [
+        "Exportaciones agrícolas",
+        "Ingresos ucranianos",
+        "Seguridad alimentaria",
+        "Control del litoral",
+        "Resiliencia logística",
+        "Poder portuario rumano"
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 7
+      },
+      "escenarios": {
+        "base": "Se consolida un sistema híbrido entre puertos ucranianos, el Danubio y Constanța.",
+        "adverso": "Rusia amplía los ataques a elevadores, puertos fluviales y nodos de transbordo.",
+        "transformador": "Rumanía adquiere poder logístico estructural y el corredor se integra de forma permanente en las redes europeas."
+      },
+      "indicadores": [
+        "Escalas en puertos ucranianos",
+        "Capacidad ferroviaria Danubio–Constanța",
+        "Primas de seguro",
+        "Dragado del Danubio",
+        "Ataques a elevadores y terminales",
+        "Volumen de exportación cerealista"
+      ],
+      "palabras_clave": [
+        "Ukraine Black Sea ports",
+        "Danube grain corridor",
+        "Constanța",
+        "Chornomorsk",
+        "war-risk insurance",
+        "Danube Black Sea synergies"
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 4,
+        "propagacion": 5,
+        "subcobertura": 2,
+        "incertidumbre": 4,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Chatham House",
+          "titulo": "How a Russia-Ukraine ceasefire could imperil Ukrainian and European security: Russia",
+          "fecha": "2026-05-28",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://www.chathamhouse.org/2026/05/how-russia-ukraine-ceasefire-could-imperil-ukrainian-and-european-security/03-russia](https://www.chathamhouse.org/2026/05/how-russia-ukraine-ceasefire-could-imperil-ukrainian-and-european-security/03-russia)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Reuters",
+          "titulo": "Shipowners halt vessel calls for farm exports from Ukraine's Black Sea ports, minister says",
+          "fecha": "2026-07-23",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/world/shipowners-halt-vessel-calls-farm-exports-ukraines-black-sea-ports-minister-says-2026-07-23/](https://www.reuters.com/world/shipowners-halt-vessel-calls-farm-exports-ukraines-black-sea-ports-minister-says-2026-07-23/)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "Reuters",
+          "titulo": "Maersk suspends service via Chornomorsk fishing port amid Russian attacks",
+          "fecha": "2026-07-22",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/world/maersk-suspends-service-via-chornomorsk-fishing-port-amid-russian-attacks-2026-07-22/](https://www.reuters.com/world/maersk-suspends-service-via-chornomorsk-fishing-port-amid-russian-attacks-2026-07-22/)"
+        },
+        {
+          "id": "fuente-4",
+          "medio": "Unión Europea",
+          "titulo": "Roundtable event: Danube and Black Sea synergies for regional development and connectivity",
+          "fecha": "2026-07-14",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
+          "url": "[https://black-sea-maritime-agenda.ec.europa.eu/roundtable-event-danube-and-black-sea-synergies-regional-development-and-connectivity](https://black-sea-maritime-agenda.ec.europa.eu/roundtable-event-danube-and-black-sea-synergies-regional-development-and-connectivity)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-07-23",
+          "titulo": "Armadores suspenden escalas para exportaciones agrícolas ucranianas",
+          "tipo": "interrupcion_logistica",
+          "descripcion": "La reducción de escalas en puertos del mar Negro eleva el valor de las rutas alternativas por el Danubio y Constanța.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Ucrania",
+            "Mar Negro"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-07-22",
+          "titulo": "Maersk suspende un servicio por Chornomorsk",
+          "tipo": "respuesta_empresarial",
+          "descripcion": "La suspensión vinculada con ataques rusos muestra la vulnerabilidad persistente de la logística portuaria ucraniana.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Chornomorsk",
+            "Ucrania"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-07-14",
+          "titulo": "La UE impulsa sinergias entre el Danubio y el mar Negro",
+          "tipo": "coordinacion_regional",
+          "descripcion": "La coordinación europea favorece la conversión de la ruta alternativa en infraestructura regional duradera.",
+          "fuente_ids": [
+            "fuente-4"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Danubio",
+            "Mar Negro"
+          ]
+        },
+        {
+          "id": "senal-4",
+          "fecha": "2026-05-28",
+          "titulo": "La seguridad portuaria permanece ligada al equilibrio militar con Rusia",
+          "tipo": "riesgo_estrategico",
+          "descripcion": "El análisis sitúa el acceso marítimo ucraniano dentro de una vulnerabilidad de seguridad más amplia y persistente.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Ucrania",
+            "Mar Negro"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maduracion-middle-corridor-transcaspiano",
+      "titulo": "Maduración incompleta del Middle Corridor transcaspiano",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Asia central",
+        "Cáucaso",
+        "Turquía",
+        "Unión Europea"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "El Middle Corridor crece como alternativa parcial a las rutas septentrionales, pero su consolidación depende de puertos caspios, interoperabilidad, política georgiana, conectividad armenia y resiliencia climática.",
+      "actores": [
+        "Kazajistán",
+        "Azerbaiyán",
+        "Georgia",
+        "Turquía",
+        "China",
+        "Unión Europea",
+        "Armenia"
+      ],
+      "intereses": [
+        "Bypass de Rusia",
+        "Acceso europeo a Asia central",
+        "Autonomía kazaja",
+        "Influencia turca",
+        "Diversificación logística",
+        "Competencia caucásica"
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "El Middle Corridor se consolida como corredor complementario, sin sustituir plenamente la ruta septentrional.",
+        "adverso": "Los transbordos, el nivel del Caspio, los retrasos en Anaklia y la política georgiana frenan su escala.",
+        "transformador": "Una segunda vía por Armenia y tarifas interoperables reducen cuellos de botella y elevan sustancialmente su participación."
+      },
+      "indicadores": [
+        "Tiempo puerta a puerta",
+        "Tonelaje anual",
+        "Tarifas unificadas",
+        "Avance del puerto de Anaklia",
+        "Nivel del mar Caspio",
+        "Conectividad armenia",
+        "Capacidad de puertos y ferris caspios"
+      ],
+      "palabras_clave": [
+        "Middle Corridor",
+        "Trans-Caspian International Transport Route",
+        "Anaklia",
+        "Caspian Sea level",
+        "TRIPP",
+        "Armenia transit",
+        "unified tariffs"
+      ],
+      "evaluacion": {
+        "impacto": 4,
+        "probabilidad": 5,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 4,
+        "urgencia": 4,
+        "cobertura_observada": 2,
+        "confianza": "alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Carnegie Endowment for International Peace",
+          "titulo": "The Middle Corridor's transport prospects",
+          "fecha": "2026-04-29",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://carnegieendowment.org/russia-eurasia/politika/2026/04/middle-corridor-transport-prospect](https://carnegieendowment.org/russia-eurasia/politika/2026/04/middle-corridor-transport-prospect)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "The Jamestown Foundation",
+          "titulo": "Middle Corridor makes progress toward operational reality",
+          "fecha": "2026-04-28",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://jamestown.org/middle-corridor-makes-progress-toward-operational-reality/](https://jamestown.org/middle-corridor-makes-progress-toward-operational-reality/)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "Caspian Policy Center",
+          "titulo": "How to maximize the Middle Corridor",
+          "fecha": "2026-06-10",
+          "idioma": "en",
+          "tipo": "informe",
+          "url": "[https://api.caspianpolicy.org/media/ckeditor_media/2026/06/10/how-to-maximize-the-middle-corridor-2026_gUPFnam.pdf](https://api.caspianpolicy.org/media/ckeditor_media/2026/06/10/how-to-maximize-the-middle-corridor-2026_gUPFnam.pdf)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-04-28",
+          "titulo": "El Middle Corridor avanza hacia una realidad operativa",
+          "tipo": "maduracion_logistica",
+          "descripcion": "El crecimiento del volumen y las mejoras institucionales indican progreso, aunque persisten cuellos de botella.",
+          "fuente_ids": [
+            "fuente-1",
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Asia central",
+            "Cáucaso"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-06-10",
+          "titulo": "Se proponen medidas para ampliar la escala del corredor",
+          "tipo": "propuesta_politica",
+          "descripcion": "El informe identifica interoperabilidad, puertos y coordinación como condiciones necesarias para maximizar el corredor.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Mar Caspio",
+            "Cáucaso",
+            "Asia central"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ferrocarril-china-kirguistan-uzbekistan",
+      "titulo": "Ferrocarril China–Kirguistán–Uzbekistán: bypass meridional de Eurasia",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "China occidental",
+        "Asia central"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito.",
+      "actores": [
+        "China",
+        "Kirguistán",
+        "Uzbekistán",
+        "Kazajistán",
+        "Rusia"
+      ],
+      "intereses": [
+        "Acceso chino a Asia occidental",
+        "Rentas de tránsito",
+        "Diversificación de rutas",
+        "Financiación y deuda",
+        "Equilibrio regional entre Rusia y China"
+      ],
+      "horizonte": {
+        "min_anios": 4,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "La construcción avanza lentamente, pero alcanza un grado difícil de revertir.",
+        "adverso": "Los costes, la seguridad, las expropiaciones y la oposición local retrasan o reducen el proyecto.",
+        "transformador": "El ferrocarril se conecta con el Caspio, Irán o Afganistán y crea un bypass meridional euroasiático."
+      },
+      "indicadores": [
+        "Porcentaje construido",
+        "Avance de túneles y puentes",
+        "Desembolsos de financiación",
+        "Solución al cambio de ancho ferroviario",
+        "Terminal de Makmal",
+        "Expropiaciones",
+        "Conexiones occidentales"
+      ],
+      "palabras_clave": [
+        "CKU railway",
+        "China Kyrgyzstan Uzbekistan railway",
+        "Makmal terminal",
+        "rail gauge change",
+        "Kyrgyzstan transit state",
+        "CKU tunnels"
+      ],
+      "evaluacion": {
+        "impacto": 4,
+        "probabilidad": 5,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 5,
+        "incertidumbre": 4,
+        "urgencia": 3,
+        "cobertura_observada": 1,
+        "confianza": "media-alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Kabar",
+          "titulo": "CKU railway project includes construction of 50 bridges and 29 tunnels",
+          "fecha": "2026-06-04",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://en.kabar.kg/news/cku-railway-project-includes-construction-of-50-bridges-and-29-tunnels/](https://en.kabar.kg/news/cku-railway-project-includes-construction-of-50-bridges-and-29-tunnels/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Kabar",
+          "titulo": "Ferrocarril China–Kirguistán–Uzbekistán y apertura de Kirguistán al mundo",
+          "fecha": "2026-07-21",
+          "idioma": "ar",
+          "tipo": "noticia",
+          "url": "[https://ar.kabar.kg/news/lrys-gbrof-sk-hdyd-lsynkrghyzstnaozbkstn-stfth-lkrghyzstn-bob-l-laalm/](https://ar.kabar.kg/news/lrys-gbrof-sk-hdyd-lsynkrghyzstnaozbkstn-stfth-lkrghyzstn-bob-l-laalm/)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "The Diplomat",
+          "titulo": "Progress on the China-Kyrgyzstan-Uzbekistan railway: Some challenges remain",
+          "fecha": "2026-07-17",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://thediplomat.com/2026/07/progress-on-the-china-kyrgyzstan-uzbekistan-railway-some-challenges-remain/](https://thediplomat.com/2026/07/progress-on-the-china-kyrgyzstan-uzbekistan-railway-some-challenges-remain/)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-06-04",
+          "titulo": "El tramo kirguís define una obra de gran complejidad física",
+          "tipo": "avance_infraestructura",
+          "descripcion": "El proyecto contempla 304 kilómetros, 50 puentes y 29 túneles, señal de transición desde la negociación hacia la ejecución física.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Kirguistán"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-07-21",
+          "titulo": "Kirguistán presenta el ferrocarril como apertura estratégica",
+          "tipo": "narrativa_estatal",
+          "descripcion": "El gobierno vincula la obra con la transformación del país en Estado de tránsito y con una mayor apertura internacional.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Kirguistán"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-07-17",
+          "titulo": "Persisten desafíos tras el inicio del proyecto CKU",
+          "tipo": "riesgo_implementacion",
+          "descripcion": "Los costes, la ingeniería, la financiación y la coordinación continúan condicionando el calendario del corredor.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "China",
+            "Kirguistán",
+            "Uzbekistán"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "doble-acceso-chino-indico-cpec-kyaukphyu",
+      "titulo": "Doble acceso chino al Índico: CPEC/Gwadar y Myanmar/Kyaukphyu",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Pakistán",
+        "Afganistán",
+        "Myanmar",
+        "Océano Índico"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "China intenta mantener dos corredores terrestres hacia el Índico mediante CPEC/Gwadar y Myanmar/Kyaukphyu, pese a insurgencias, golpes de Estado y fragilidad institucional. En conjunto forman una estrategia de redundancia parcial frente a Malaca.",
+      "actores": [
+        "China",
+        "Pakistán",
+        "Afganistán",
+        "Myanmar",
+        "India",
+        "grupos insurgentes",
+        "junta militar de Myanmar"
+      ],
+      "intereses": [
+        "Bypass parcial de Malaca",
+        "Acceso energético",
+        "Influencia china",
+        "Contención de India",
+        "Seguridad de inversiones",
+        "Acceso portuario al Índico"
+      ],
+      "horizonte": {
+        "min_anios": 4,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Los dos corredores avanzan de forma fragmentada y bajo fuerte protección.",
+        "adverso": "La insurgencia, la fragilidad estatal y los costes convierten puertos y ferrocarriles en activos varados.",
+        "transformador": "China integra ambos accesos en una estrategia de redundancia y prioriza control y seguridad sobre rentabilidad inmediata."
+      },
+      "indicadores": [
+        "Seguridad de trabajadores chinos",
+        "Avance del ferrocarril Muse–Mandalay",
+        "Tráfico de Gwadar",
+        "Garantías soberanas",
+        "Participación afgana",
+        "Avance de Kyaukphyu",
+        "Despliegues de protección"
+      ],
+      "palabras_clave": [
+        "CPEC",
+        "Gwadar",
+        "Karakoram Highway",
+        "CPEC Afghanistan extension",
+        "Kyaukphyu",
+        "Muse Mandalay railway",
+        "China Indian Ocean access"
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 4,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 4,
+        "cobertura_observada": 2,
+        "confianza": "media"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Reuters",
+          "titulo": "China and Pakistan reach new broad consensus on boosting ties",
+          "fecha": "2026-05-26",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/world/asia-pacific/china-pakistan-reach-new-broad-consensus-boosting-ties-2026-05-26/](https://www.reuters.com/world/asia-pacific/china-pakistan-reach-new-broad-consensus-boosting-ties-2026-05-26/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Institute for Security and Development Policy",
+          "titulo": "Policy Brief",
+          "fecha": "2026-05-18",
+          "idioma": "en",
+          "tipo": "informe",
+          "url": "[https://www.isdp.eu/wp-content/uploads/2026/05/Policy-Brief-Mehta-May-18-2026.pdf](https://www.isdp.eu/wp-content/uploads/2026/05/Policy-Brief-Mehta-May-18-2026.pdf)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "BNI",
+          "titulo": "China and junta agree to push ahead with Kyaukphyu deep-sea port project",
+          "fecha": "2026-06-19",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.bnionline.net/en/news/china-junta-agree-push-ahead-kyaukphyu-deep-sea-port-project](https://www.bnionline.net/en/news/china-junta-agree-push-ahead-kyaukphyu-deep-sea-port-project)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-05-26",
+          "titulo": "China y Pakistán acuerdan revitalizar su cooperación",
+          "tipo": "acuerdo_bilateral",
+          "descripcion": "El consenso incluye el impulso a CPEC, Gwadar y la carretera del Karakórum.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "China",
+            "Pakistán"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-05-18",
+          "titulo": "La fragilidad regional condiciona los corredores chinos hacia el Índico",
+          "tipo": "riesgo_estrategico",
+          "descripcion": "El análisis examina los límites de seguridad, viabilidad y competencia regional que afectan la estrategia china.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Asia meridional",
+            "Océano Índico"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-06-19",
+          "titulo": "China y la junta de Myanmar reimpulsan Kyaukphyu",
+          "tipo": "avance_portuario",
+          "descripcion": "El acuerdo para avanzar con el puerto de aguas profundas sostiene el segundo acceso chino al Índico.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Kyaukphyu",
+            "Myanmar"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "development-road-iraq-turquia-grand-faw",
+      "titulo": "Development Road iraquí–turca desde Grand Faw",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Iraq",
+        "Turquía",
+        "Golfo",
+        "Europa"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "Iraq busca convertir Grand Faw en puerta del Golfo hacia Turquía y Europa mediante un corredor ferroviario, viario y potencialmente energético. Su integración con redes turcas podría conectarlo con el Cáucaso y el Middle Corridor.",
+      "actores": [
+        "Iraq",
+        "Turquía",
+        "Emiratos Árabes Unidos",
+        "Qatar",
+        "Irán",
+        "Kuwait",
+        "Unión Europea"
+      ],
+      "intereses": [
+        "Rentas de tránsito",
+        "Diversificación económica iraquí",
+        "Influencia turca",
+        "Acceso del Golfo a Europa",
+        "Competencia con Suez e IMEC",
+        "Conexión energética"
+      ],
+      "horizonte": {
+        "min_anios": 4,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Iraq y Turquía ejecutan fases ferroviarias parciales del corredor.",
+        "adverso": "La fragmentación política, la inseguridad y la falta de financiación retrasan los enlaces esenciales.",
+        "transformador": "El corredor se conecta con el Cáucaso, Asia central y el Middle Corridor, creando una ruta continua entre el Golfo y Eurasia."
+      },
+      "indicadores": [
+        "Contratos EPC",
+        "Creación de una autoridad conjunta",
+        "Avance ferroviario hacia Turquía",
+        "Financiación emiratí o qatarí",
+        "Seguridad provincial",
+        "Integración con redes turcas",
+        "Operatividad de Grand Faw"
+      ],
+      "palabras_clave": [
+        "Iraq Development Road",
+        "Grand Faw Port",
+        "Development Road railway",
+        "Türkiye Iraq corridor",
+        "Middle Corridor integration",
+        "EPC contracts"
+      ],
+      "evaluacion": {
+        "impacto": 4,
+        "probabilidad": 4,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 5,
+        "incertidumbre": 4,
+        "urgencia": 3,
+        "cobertura_observada": 1,
+        "confianza": "media-alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Iraqi News",
+          "titulo": "Iraq to start implementing Development Road project within months",
+          "fecha": "2026-06-04",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.iraqinews.com/iraq/iraq-to-start-implementing-development-road-project-within-months/](https://www.iraqinews.com/iraq/iraq-to-start-implementing-development-road-project-within-months/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Anadolu Agency",
+          "titulo": "Development Road's first phase to prioritize railway as Middle East conflict disrupts trade",
+          "fecha": "2026-06-25",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.aa.com.tr/en/middle-east/development-road-s-1st-phase-to-prioritize-railway-as-middle-east-conflict-disrupts-trade/3977809](https://www.aa.com.tr/en/middle-east/development-road-s-1st-phase-to-prioritize-railway-as-middle-east-conflict-disrupts-trade/3977809)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "Middle East Institute",
+          "titulo": "The India-Middle East-Europe Economic Corridor",
+          "fecha": "2026-06-03",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://mei.edu/backgrounder/the-india-middle-east-europe-economic-corridor/](https://mei.edu/backgrounder/the-india-middle-east-europe-economic-corridor/)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-06-04",
+          "titulo": "Iraq anuncia el inicio próximo de la implementación",
+          "tipo": "anuncio_implementacion",
+          "descripcion": "El anuncio intenta trasladar el Development Road desde la planificación hacia las primeras fases ejecutivas.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Iraq"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-06-25",
+          "titulo": "La primera fase prioriza el ferrocarril",
+          "tipo": "priorizacion_infraestructura",
+          "descripcion": "La prioridad ferroviaria aumenta la posibilidad de una futura conexión operativa con Turquía y otras redes euroasiáticas.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Iraq",
+            "Turquía"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-06-03",
+          "titulo": "El corredor iraquí se desarrolla en competencia con IMEC",
+          "tipo": "competencia_corredores",
+          "descripcion": "El análisis de IMEC proporciona el contexto competitivo para las rutas que buscan conectar el Golfo con Europa.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Golfo",
+            "Oriente Medio",
+            "Europa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ejes-bioceanicos-sudamericanos-asia",
+      "titulo": "Ejes bioceánicos sudamericanos orientados hacia Asia",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Brasil",
+        "Paraguay",
+        "Argentina",
+        "Chile",
+        "Perú"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "El centro económico sudamericano se reorienta hacia puertos del Pacífico mediante el Corredor de Capricornio y propuestas ferroviarias hacia Chancay. La integración vial puede generar efectos antes que los proyectos ferroviarios más ambiciosos.",
+      "actores": [
+        "Brasil",
+        "Paraguay",
+        "Argentina",
+        "Chile",
+        "Perú",
+        "China",
+        "Banco Interamericano de Desarrollo",
+        "comunidades indígenas"
+      ],
+      "intereses": [
+        "Acceso a mercados asiáticos",
+        "Exportaciones agrícolas y mineras",
+        "Competencia portuaria",
+        "Integración regional",
+        "Rentas de tránsito",
+        "Protección ambiental y territorial"
+      ],
+      "horizonte": {
+        "min_anios": 4,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "El corredor vial de Capricornio entra en operación por etapas y mejora el acceso a puertos del Pacífico.",
+        "adverso": "Los impactos amazónicos, la oposición indígena, las aduanas y las licencias ambientales frenan el eje ferroviario.",
+        "transformador": "Brasil, Perú y China acuerdan un ferrocarril hacia Chancay con trazado y financiación definidos."
+      },
+      "indicadores": [
+        "Avance del puente bioceánico",
+        "Coordinación aduanera",
+        "Estudio ferroviario hacia Chancay",
+        "Participación peruana",
+        "Avance de FIOL y FICO",
+        "Licencias ambientales",
+        "Tiempos fronterizos"
+      ],
+      "palabras_clave": [
+        "Capricorn Bioceanic Corridor",
+        "Carmelo Peralta",
+        "Puerto Murtinho",
+        "Chancay Brazil railway",
+        "FIOL",
+        "FICO",
+        "bioceanic bridge"
+      ],
+      "evaluacion": {
+        "impacto": 4,
+        "probabilidad": 4,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 4,
+        "urgencia": 3,
+        "cobertura_observada": 2,
+        "confianza": "media-alta"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Dialogue Earth",
+          "titulo": "Brazil-Peru railway promises faster trade to China, but at what cost?",
+          "fecha": "2026-05-29",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://dialogue.earth/en/business/brazil-peru-railway-promises-faster-trade-to-china-but-at-what-cost/](https://dialogue.earth/en/business/brazil-peru-railway-promises-faster-trade-to-china-but-at-what-cost/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Banco Interamericano de Desarrollo",
+          "titulo": "Capricorn Bioceanic Corridor: Paraguay at the center of South American integration",
+          "fecha": "2026-06-09",
+          "idioma": "en",
+          "tipo": "análisis_institucional",
+          "url": "[https://www.iadb.org/en/blog/regional-integration/capricorn-bioceanic-corridor-paraguay-center-south-american-integration](https://www.iadb.org/en/blog/regional-integration/capricorn-bioceanic-corridor-paraguay-center-south-american-integration)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "Corredor Bioceánico",
+          "titulo": "The ends of the Bioceanic Bridge in the Chaco would be joined",
+          "fecha": "2026-07-14",
+          "idioma": "en",
+          "tipo": "noticia_sectorial",
+          "url": "[https://corredorbioceanico.org/en/en-wednesday-july-15-the-ends-of-the-bioceanic-bridge-in-the-chaco-would-be-joined/](https://corredorbioceanico.org/en/en-wednesday-july-15-the-ends-of-the-bioceanic-bridge-in-the-chaco-would-be-joined/)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-05-29",
+          "titulo": "Brasil y Perú consideran una conexión ferroviaria orientada a China",
+          "tipo": "propuesta_ferroviaria",
+          "descripcion": "La propuesta hacia Chancay podría ampliar la reorientación logística sudamericana, aunque enfrenta costes ambientales y territoriales.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Brasil",
+            "Perú"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-06-09",
+          "titulo": "El BID intensifica la coordinación del Corredor de Capricornio",
+          "tipo": "coordinacion_regional",
+          "descripcion": "La coordinación fronteriza puede permitir que el corredor vial produzca efectos antes que el proyecto ferroviario.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Paraguay",
+            "Brasil",
+            "Argentina",
+            "Chile"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-07-14",
+          "titulo": "Avanza la unión física del puente bioceánico",
+          "tipo": "avance_infraestructura",
+          "descripcion": "El avance del puente Carmelo Peralta–Puerto Murtinho constituye un hito físico del corredor vial.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Carmelo Peralta",
+            "Puerto Murtinho"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "corredor-electrico-magreb-europa-sahara",
+      "titulo": "Corredor eléctrico Magreb–Europa y diplomacia del Sáhara Occidental",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Marruecos",
+        "Francia",
+        "Portugal",
+        "Unión Europea"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "Marruecos intenta convertirse en plataforma energética europea mediante nuevos interconectores directos, capacidad renovable y alianzas diplomáticas. La infraestructura puede profundizar dependencias europeas y afectar la competencia regional vinculada con el Sáhara Occidental.",
+      "actores": [
+        "Marruecos",
+        "Francia",
+        "Portugal",
+        "España",
+        "Unión Europea",
+        "Argelia",
+        "inversores privados"
+      ],
+      "intereses": [
+        "Exportación de electricidad renovable",
+        "Autonomía energética",
+        "Influencia regional",
+        "Financiación europea",
+        "Reconocimiento diplomático",
+        "Competencia Marruecos–Argelia"
+      ],
+      "horizonte": {
+        "min_anios": 4,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Se construye o financia al menos un nuevo interconector entre Marruecos y Europa.",
+        "adverso": "La financiación, la tensión con Argelia o la disputa territorial bloquean o retrasan los proyectos.",
+        "transformador": "Marruecos se convierte en un hub de exportación eléctrica y acumula influencia diplomática mediante dependencias infraestructurales europeas."
+      },
+      "indicadores": [
+        "Estudios de viabilidad",
+        "Inclusión en proyectos europeos de interés común",
+        "Financiación pública y privada",
+        "Nueva capacidad renovable marroquí",
+        "Decisiones europeas sobre el Sáhara Occidental",
+        "Capacidad de interconexión"
+      ],
+      "palabras_clave": [
+        "France Morocco electricity link",
+        "Portugal Morocco power link",
+        "Morocco interconnector",
+        "EU PCI",
+        "Western Sahara diplomacy",
+        "Morocco renewable exports"
+      ],
+      "evaluacion": {
+        "impacto": 4,
+        "probabilidad": 4,
+        "alcance": 3,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 4,
+        "urgencia": 3,
+        "cobertura_observada": 2,
+        "confianza": "media"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Reuters",
+          "titulo": "France and Morocco plan direct electricity link",
+          "fecha": "2026-07-16",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/business/energy/france-morocco-plan-direct-electricity-link-2026-07-16/](https://www.reuters.com/business/energy/france-morocco-plan-direct-electricity-link-2026-07-16/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Reuters",
+          "titulo": "Portugal and Morocco push for EU funds and private investors for power link",
+          "fecha": "2026-07-20",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/business/energy/portugal-morocco-push-eu-funds-private-investors-power-link-2026-07-20/](https://www.reuters.com/business/energy/portugal-morocco-push-eu-funds-private-investors-power-link-2026-07-20/)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-07-16",
+          "titulo": "Francia y Marruecos estudian un enlace eléctrico directo",
+          "tipo": "cooperacion_energetica",
+          "descripcion": "El interés bilateral podría crear una nueva conexión directa entre la capacidad renovable marroquí y el mercado europeo.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Francia",
+            "Marruecos"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-07-20",
+          "titulo": "Portugal y Marruecos buscan fondos para otro interconector",
+          "tipo": "financiacion_infraestructura",
+          "descripcion": "La búsqueda de financiación europea y privada indica una posible acumulación de conexiones energéticas entre Marruecos y Europa.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Portugal",
+            "Marruecos"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "land-bridge-tailandes-malaca",
+      "titulo": "Land Bridge tailandés como alternativa parcial a Malaca",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Sudeste Asiático"
+      ],
+      "categoria": "infraestructura_energía",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local.",
+      "actores": [
+        "Tailandia",
+        "China",
+        "Singapur",
+        "Malasia",
+        "Japón",
+        "navieras",
+        "inversores",
+        "comunidades locales"
+      ],
+      "intereses": [
+        "Descongestión de Malaca",
+        "Desarrollo del sur de Tailandia",
+        "Influencia china",
+        "Competencia portuaria",
+        "Captación de tránsito marítimo"
+      ],
+      "horizonte": {
+        "min_anios": 5,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Tailandia adjudica una concesión reducida o desarrolla el proyecto por fases.",
+        "adverso": "Los costes de doble manipulación, la oposición local y la falta de demanda vuelven inviable el modelo.",
+        "transformador": "Un inversor ancla y la conexión con redes regionales convierten el Land Bridge en un nodo logístico de influencia china."
+      },
+      "indicadores": [
+        "Licitación",
+        "Selección de inversor ancla",
+        "Compromisos de navieras",
+        "Expropiaciones",
+        "Conexión ferroviaria con China",
+        "Resistencia local",
+        "Coste por contenedor"
+      ],
+      "palabras_clave": [
+        "Thailand Land Bridge",
+        "Malacca alternative",
+        "Ranong Chumphon ports",
+        "Thai coast-to-coast corridor",
+        "Land Bridge investors",
+        "shipping demand"
+      ],
+      "evaluacion": {
+        "impacto": 4,
+        "probabilidad": 3,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 3,
+        "incertidumbre": 5,
+        "urgencia": 3,
+        "cobertura_observada": 3,
+        "confianza": "media"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Reuters",
+          "titulo": "Thailand revives $30 billion coast-to-coast corridor to rival Malacca Strait",
+          "fecha": "2026-06-18",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/world/china/thailand-revives-30-bln-coast-to-coast-corridor-rival-malacca-strait-2026-06-18/](https://www.reuters.com/world/china/thailand-revives-30-bln-coast-to-coast-corridor-rival-malacca-strait-2026-06-18/)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "Reuters",
+          "titulo": "Thailand touts $31 billion Land Bridge plan amid Hormuz crisis, courts Singapore",
+          "fecha": "2026-04-27",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.reuters.com/world/asia-pacific/thailand-touts-31-billion-land-bridge-plan-amid-hormuz-crisis-courts-singapore-2026-04-27/](https://www.reuters.com/world/asia-pacific/thailand-touts-31-billion-land-bridge-plan-amid-hormuz-crisis-courts-singapore-2026-04-27/)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-06-18",
+          "titulo": "Tailandia reactiva el corredor de costa a costa",
+          "tipo": "reactivacion_proyecto",
+          "descripcion": "El gobierno vuelve a promover dos puertos conectados por infraestructura terrestre como alternativa parcial a Malaca.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Tailandia"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-04-27",
+          "titulo": "La crisis de chokepoints refuerza la promoción del Land Bridge",
+          "tipo": "impulso_geopolitico",
+          "descripcion": "Tailandia utiliza la vulnerabilidad de rutas marítimas para atraer a Singapur y potenciales inversores.",
+          "fuente_ids": [
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Tailandia",
+            "Singapur"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chabahar-instc-sanciones-guerra",
+      "titulo": "Chabahar–INSTC bajo presión simultánea de sanciones y guerra",
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "2026-07-23",
+      "regiones": [
+        "Irán",
+        "India",
+        "Afganistán",
+        "Asia central"
+      ],
+      "categoria": "comercio_sanciones",
+      "tema_ids": [],
+      "temas_internos": [],
+      "descripcion": "India intenta preservar Chabahar como acceso a Afganistán, Asia central y el International North-South Transport Corridor sin atravesar Pakistán, pero el proyecto depende de exenciones estadounidenses, seguros, inversión y estabilidad iraní.",
+      "actores": [
+        "India",
+        "Irán",
+        "Estados Unidos",
+        "Afganistán",
+        "Rusia",
+        "Pakistán",
+        "operadores portuarios",
+        "aseguradoras"
+      ],
+      "intereses": [
+        "Autonomía estratégica india",
+        "Conectividad con Afganistán",
+        "Acceso a Asia central",
+        "Cumplimiento de sanciones",
+        "Acceso ruso e iraní al Índico",
+        "Bypass de Pakistán"
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 8
+      },
+      "escenarios": {
+        "base": "La terminal continúa operando de forma restringida y mediante negociaciones caso por caso.",
+        "adverso": "Las sanciones, los ataques o la retirada de aseguradoras paralizan nuevas inversiones y reducen el tráfico.",
+        "transformador": "India preserva Chabahar mediante una nueva exención, o desplaza parte de su esfuerzo hacia rutas transcaspianas."
+      },
+      "indicadores": [
+        "Nueva exención estadounidense",
+        "Tráfico de Shahid Beheshti",
+        "Disponibilidad y coste de seguros",
+        "Inversiones indias",
+        "Ataques en torno a Chabahar",
+        "Avance del ferrocarril Chabahar–Zahedan",
+        "Conectividad con INSTC"
+      ],
+      "palabras_clave": [
+        "Chabahar sanctions waiver",
+        "Shahid Beheshti terminal",
+        "Chabahar Zahedan railway",
+        "INSTC",
+        "India Iran port",
+        "Chabahar attack",
+        "Central Asia access"
+      ],
+      "evaluacion": {
+        "impacto": 4,
+        "probabilidad": 3,
+        "alcance": 4,
+        "persistencia": 4,
+        "propagacion": 4,
+        "subcobertura": 3,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 3,
+        "confianza": "media"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "The Economic Times",
+          "titulo": "With Chabahar Port in limbo, can India still reach Central Asia and Russia?",
+          "fecha": "2026-05-14",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://m.economictimes.com/news/india/with-chabahar-port-in-limbo-can-india-still-reach-central-asia-and-russia/articleshow/131063419.cms](https://m.economictimes.com/news/india/with-chabahar-port-in-limbo-can-india-still-reach-central-asia-and-russia/articleshow/131063419.cms)"
+        },
+        {
+          "id": "fuente-2",
+          "medio": "IMPRI",
+          "titulo": "Chabahar Port: India's strategic connectivity gamble between Iran policy and US sanctions",
+          "fecha": "2026-07-14",
+          "idioma": "en",
+          "tipo": "análisis",
+          "url": "[https://www.impriindia.com/insights/policy-update/chabahar-port-indias-strategic-connectivity-gamble-between-iran-policy-and-us-sanctions/](https://www.impriindia.com/insights/policy-update/chabahar-port-indias-strategic-connectivity-gamble-between-iran-policy-and-us-sanctions/)"
+        },
+        {
+          "id": "fuente-3",
+          "medio": "The Guardian",
+          "titulo": "US marines board ship in Gulf of Oman amid expanded airstrikes on Iran",
+          "fecha": "2026-07-17",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "[https://www.theguardian.com/world/2026/jul/17/us-marines-board-ship-gulf-oman-expanded-airstrikes-iran](https://www.theguardian.com/world/2026/jul/17/us-marines-board-ship-gulf-oman-expanded-airstrikes-iran)"
+        },
+        {
+          "id": "fuente-4",
+          "medio": "The Economic Times",
+          "titulo": "MEA clarifies Chabahar Port terminal unharmed in US attack, rejects damage reports",
+          "fecha": "2026-07-17",
+          "idioma": "en",
+          "tipo": "declaracion_oficial_reportada",
+          "url": "[https://m.economictimes.com/news/india/mea-clarifies-chabahar-port-terminal-unharmed-in-us-attack-junks-damage-reports/articleshow/132461813.cms](https://m.economictimes.com/news/india/mea-clarifies-chabahar-port-terminal-unharmed-in-us-attack-junks-damage-reports/articleshow/132461813.cms)"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "2026-04-26",
+          "titulo": "Expira la exención estadounidense aplicable a Chabahar",
+          "tipo": "cambio_sanciones",
+          "descripcion": "La expiración aumenta la incertidumbre sobre inversiones, pagos, seguros y continuidad operativa del acceso indio.",
+          "fuente_ids": [
+            "fuente-1",
+            "fuente-2"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Chabahar",
+            "Irán"
+          ]
+        },
+        {
+          "id": "senal-2",
+          "fecha": "2026-07-17",
+          "titulo": "La guerra alcanza el entorno estratégico de Chabahar",
+          "tipo": "riesgo_seguridad",
+          "descripcion": "La ampliación de las operaciones militares en Irán y el golfo de Omán incrementa el riesgo físico y asegurador del corredor.",
+          "fuente_ids": [
+            "fuente-3"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Irán",
+            "Golfo de Omán"
+          ]
+        },
+        {
+          "id": "senal-3",
+          "fecha": "2026-07-17",
+          "titulo": "India afirma que su terminal de Chabahar permanece operativa y sin daños",
+          "tipo": "continuidad_operativa",
+          "descripcion": "La declaración india intenta preservar la confianza en la terminal frente a reportes de daños en el entorno portuario.",
+          "fuente_ids": [
+            "fuente-4"
+          ],
+          "intensidad": null,
+          "localizaciones": [
+            "Chabahar",
+            "Irán"
+          ]
+        }
+      ]
+    }
+  ]
+}

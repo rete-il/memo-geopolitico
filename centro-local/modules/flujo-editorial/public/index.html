@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Dashboard local para documentar y seguir el flujo editorial hasta el Markdown definitivo." />
+  <title>Flujo editorial · Memo Geopolítico</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand__eyebrow">Memo Geopolítico</span>
+        <strong>Flujo editorial</strong>
+        <small>Observatorio → Markdown definitivo</small>
+      </div>
+      <nav aria-label="Navegación principal">
+        <button class="nav-item is-active" data-view="overview">Resumen</button>
+        <button class="nav-item" data-view="flow">Flujo completo</button>
+        <button class="nav-item" data-view="documents">Documentos</button>
+        <button class="nav-item" data-view="data">Datos y exportación</button>
+      </nav>
+      <div class="sidebar__note">
+        <strong>Solo local</strong>
+        <span>Los cambios se guardan en archivos JSON y generan backups.</span>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="icon-button menu-button" id="menu-button" aria-label="Abrir navegación" aria-expanded="false">☰</button>
+        <div>
+          <p class="topbar__eyebrow">Dashboard de proceso</p>
+          <h1 id="view-title">Resumen</h1>
+        </div>
+        <div class="topbar__actions">
+          <span id="save-state" class="save-state">Sin cambios</span>
+          <button class="button button--ghost" id="reload-button">Recargar</button>
+          <button class="button button--primary" id="save-button">Guardar</button>
+        </div>
+      </header>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+      <main id="main" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <dialog id="stage-dialog" class="dialog">
+    <form method="dialog" class="dialog__shell">
+      <header class="dialog__header">
+        <div>
+          <span id="stage-phase" class="chip"></span>
+          <h2 id="stage-title"></h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="Cerrar">×</button>
+      </header>
+      <div id="stage-body" class="dialog__body"></div>
+      <footer class="dialog__footer">
+        <button class="button button--ghost" value="cancel">Cerrar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog id="document-dialog" class="dialog dialog--wide">
+    <form method="dialog" id="document-form" class="dialog__shell">
+      <header class="dialog__header">
+        <div>
+          <span class="chip">Seguimiento</span>
+          <h2 id="document-dialog-title">Documento</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="Cerrar">×</button>
+      </header>
+      <div id="document-form-body" class="dialog__body"></div>
+      <footer class="dialog__footer dialog__footer--spread">
+        <button type="button" class="button button--danger" id="delete-document">Eliminar</button>
+        <div>
+          <button class="button button--ghost" value="cancel">Cancelar</button>
+          <button type="submit" class="button button--primary" value="default">Aplicar cambios</button>
+        </div>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog id="confirm-dialog" class="dialog dialog--small">
+    <form method="dialog" class="dialog__shell">
+      <header class="dialog__header"><h2 id="confirm-title">Confirmar</h2></header>
+      <div class="dialog__body"><p id="confirm-text"></p></div>
+      <footer class="dialog__footer">
+        <button class="button button--ghost" value="cancel">Cancelar</button>
+        <button class="button button--danger" id="confirm-action" value="default">Confirmar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

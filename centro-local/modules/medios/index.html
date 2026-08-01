@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Dashboard interactivo de medios y fuentes para análisis geopolítico.">
+  <title>Directorio de medios geopolíticos</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#resultados">Saltar a resultados</a>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div>
+        <p class="eyebrow">Inteligencia de fuentes abiertas</p>
+        <h1>Directorio de medios geopolíticos</h1>
+        <p class="subtitle">
+          Explore y compare fuentes por región, función epistemológica, perspectiva,
+          credibilidad, utilidad analítica y necesidad de corroboración.
+        </p>
+      </div>
+      <div class="top-actions">
+        <a id="excel-download" class="btn btn--light" href="#">⬇ Descargar Excel</a>
+        <button id="export-csv" class="btn btn--light" type="button">⇩ Exportar filtrados</button>
+        <button id="theme-toggle" class="btn btn--light" type="button">🌙 Tema oscuro</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel filters" aria-label="Filtros">
+      <div class="field">
+        <label for="search">Buscar</label>
+        <input id="search" type="search" placeholder="Medio, región, uso, perspectiva…" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="region">Región</label>
+        <select id="region"></select>
+      </div>
+      <div class="field">
+        <label for="familia">Familia</label>
+        <select id="familia"></select>
+      </div>
+      <div class="field">
+        <label for="funcion">Función epistemológica</label>
+        <select id="funcion"></select>
+      </div>
+      <div class="field">
+        <label for="perspectiva">Perspectiva geopolítica</label>
+        <select id="perspectiva"></select>
+      </div>
+      <div class="field">
+        <label for="confianza">Confianza</label>
+        <select id="confianza"></select>
+      </div>
+      <div class="field">
+        <label for="estado">Estado de uso</label>
+        <select id="estado"></select>
+      </div>
+      <div class="field range-field">
+        <label for="min-score">Puntuación mínima</label>
+        <div class="range-row">
+          <input id="min-score" type="range" min="0" max="5" step="0.1" value="0">
+          <span id="min-score-value" class="range-value">0.0</span>
+        </div>
+      </div>
+      <div class="filter-actions">
+        <button id="reset-filters" class="btn btn--ghost" type="button">Limpiar filtros</button>
+      </div>
+      <div id="filtered-text" class="active-filter-summary" aria-live="polite"></div>
+    </section>
+
+    <section class="kpis" aria-label="Indicadores">
+      <article class="panel kpi">
+        <div class="kpi__label">Fuentes visibles</div>
+        <div id="kpi-total" class="kpi__value">0</div>
+        <div class="kpi__note">Resultado de los filtros actuales</div>
+      </article>
+      <article class="panel kpi">
+        <div class="kpi__label">Puntuación media</div>
+        <div id="kpi-score" class="kpi__value">0.0</div>
+        <div class="kpi__note">Promedio sobre 5</div>
+      </article>
+      <article class="panel kpi">
+        <div class="kpi__label">Confianza alta</div>
+        <div id="kpi-high" class="kpi__value">0</div>
+        <div class="kpi__note">Fuentes con nivel “Alta”</div>
+      </article>
+      <article class="panel kpi">
+        <div class="kpi__label">Activas o recomendadas</div>
+        <div id="kpi-usable" class="kpi__value">0</div>
+        <div class="kpi__note">Uso inmediato o incorporación sugerida</div>
+      </article>
+      <article class="panel kpi">
+        <div class="kpi__label">Foco africano</div>
+        <div id="kpi-africa" class="kpi__value">0</div>
+        <div class="kpi__note">Regiones cuyo nombre incluye África</div>
+      </article>
+    </section>
+
+    <section class="charts" aria-label="Resumen visual">
+      <article class="panel chart-card">
+        <h2 class="card-title">Distribución regional</h2>
+        <div class="card-subtitle">Principales regiones en el resultado actual</div>
+        <div id="region-bars" class="bar-list"></div>
+      </article>
+      <article class="panel chart-card">
+        <h2 class="card-title">Familias de fuente</h2>
+        <div class="card-subtitle">Tipos institucionales más representados</div>
+        <div id="family-bars" class="bar-list"></div>
+      </article>
+      <article class="panel chart-card">
+        <h2 class="card-title">Nivel de confianza</h2>
+        <div class="card-subtitle">Distribución de la evaluación global</div>
+        <div class="donut-wrap"><div id="confidence-donut" class="donut"></div></div>
+        <div id="confidence-legend" class="legend"></div>
+      </article>
+      <article class="panel chart-card">
+        <h2 class="card-title">Estado de uso</h2>
+        <div class="card-subtitle">Clasificación operacional de las fuentes</div>
+        <div class="donut-wrap"><div id="status-donut" class="donut"></div></div>
+        <div id="status-legend" class="legend"></div>
+      </article>
+    </section>
+
+    <section id="resultados" class="panel results-panel">
+      <div class="results-head">
+        <div>
+          <h2 class="results-title">Fuentes</h2>
+          <div id="results-meta" class="results-meta"></div>
+        </div>
+        <div class="field">
+          <label for="page-size">Filas por página</label>
+          <select id="page-size">
+            <option value="10">10</option>
+            <option value="25" selected>25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th><button type="button" data-sort="nombre">Medio</button></th>
+              <th><button type="button" data-sort="region">Región</button></th>
+              <th><button type="button" data-sort="familia">Familia</button></th>
+              <th><button type="button" data-sort="funcion">Función</button></th>
+              <th><button type="button" data-sort="perspectiva">Perspectiva</button></th>
+              <th><button type="button" data-sort="puntuacion">Puntuación</button></th>
+              <th><button type="button" data-sort="confianza">Confianza</button></th>
+              <th><button type="button" data-sort="estado">Estado</button></th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody id="results-body"></tbody>
+        </table>
+        <div id="empty-state" class="empty" hidden>
+          No hay medios que coincidan con la combinación de filtros.
+        </div>
+      </div>
+
+      <div class="pagination">
+        <div id="page-info" class="results-meta">Página 1 de 1</div>
+        <div class="pagination__buttons">
+          <button id="prev-page" class="btn btn--ghost btn--small" type="button">← Anterior</button>
+          <button id="next-page" class="btn btn--ghost btn--small" type="button">Siguiente →</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div id="data-updated"></div>
+    <div>
+      Las calificaciones son orientativas y contextuales. Una fuente oficial o estatal puede ser
+      valiosa como fuente primaria sin constituir verificación independiente.
+    </div>
+  </footer>
+
+  <div id="modal-backdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+    <article class="modal">
+      <header class="modal-head">
+        <h2 id="modal-title" class="modal-title">Ficha</h2>
+        <button id="modal-close" class="close-btn" type="button" aria-label="Cerrar">×</button>
+      </header>
+      <div id="modal-body" class="modal-body"></div>
+    </article>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="data/medios-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

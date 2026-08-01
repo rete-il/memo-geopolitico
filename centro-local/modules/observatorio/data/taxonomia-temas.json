@@ -1,0 +1,2091 @@
+{
+  "schema_version": 1,
+  "titulo": "Taxonomía para detectar macroeventos geopolíticos",
+  "categorias": [
+    {
+      "id": 1,
+      "nombre": "Seguridad y conflictos",
+      "temas": [
+        {
+          "id": 1,
+          "nombre": "Reconfiguración de alianzas militares",
+          "slug": "reconfiguracion-de-alianzas-militares",
+          "categoria_id": 1
+        },
+        {
+          "id": 2,
+          "nombre": "Expansión de la OTAN",
+          "slug": "expansion-de-la-otan",
+          "categoria_id": 1
+        },
+        {
+          "id": 3,
+          "nombre": "Militarización de fronteras",
+          "slug": "militarizacion-de-fronteras",
+          "categoria_id": 1
+        },
+        {
+          "id": 4,
+          "nombre": "Conflictos congelados",
+          "slug": "conflictos-congelados",
+          "categoria_id": 1
+        },
+        {
+          "id": 5,
+          "nombre": "Guerras de baja intensidad",
+          "slug": "guerras-de-baja-intensidad",
+          "categoria_id": 1
+        },
+        {
+          "id": 6,
+          "nombre": "Disputas territoriales",
+          "slug": "disputas-territoriales",
+          "categoria_id": 1
+        },
+        {
+          "id": 7,
+          "nombre": "Tensiones marítimas",
+          "slug": "tensiones-maritimas",
+          "categoria_id": 1
+        },
+        {
+          "id": 8,
+          "nombre": "Rearme global",
+          "slug": "rearme-global",
+          "categoria_id": 1
+        },
+        {
+          "id": 9,
+          "nombre": "Carrera armamentística regional",
+          "slug": "carrera-armamentistica-regional",
+          "categoria_id": 1
+        },
+        {
+          "id": 10,
+          "nombre": "Proliferación nuclear",
+          "slug": "proliferacion-nuclear",
+          "categoria_id": 1
+        },
+        {
+          "id": 11,
+          "nombre": "Drones y guerra autónoma",
+          "slug": "drones-y-guerra-autonoma",
+          "categoria_id": 1
+        },
+        {
+          "id": 12,
+          "nombre": "Guerra híbrida",
+          "slug": "guerra-hibrida",
+          "categoria_id": 1
+        },
+        {
+          "id": 13,
+          "nombre": "Empresas militares privadas",
+          "slug": "empresas-militares-privadas",
+          "categoria_id": 1
+        },
+        {
+          "id": 14,
+          "nombre": "Insurgencias y grupos armados",
+          "slug": "insurgencias-y-grupos-armados",
+          "categoria_id": 1
+        },
+        {
+          "id": 15,
+          "nombre": "Terrorismo transnacional",
+          "slug": "terrorismo-transnacional",
+          "categoria_id": 1
+        },
+        {
+          "id": 16,
+          "nombre": "Golpes de Estado",
+          "slug": "golpes-de-estado",
+          "categoria_id": 1
+        },
+        {
+          "id": 17,
+          "nombre": "Bases militares extranjeras",
+          "slug": "bases-militares-extranjeras",
+          "categoria_id": 1
+        },
+        {
+          "id": 18,
+          "nombre": "Industria de defensa",
+          "slug": "industria-de-defensa",
+          "categoria_id": 1
+        },
+        {
+          "id": 19,
+          "nombre": "Seguridad espacial",
+          "slug": "seguridad-espacial",
+          "categoria_id": 1
+        },
+        {
+          "id": 20,
+          "nombre": "Ciberconflictos entre Estados",
+          "slug": "ciberconflictos-entre-estados",
+          "categoria_id": 1
+        }
+      ],
+      "slug": "seguridad-y-conflictos"
+    },
+    {
+      "id": 2,
+      "nombre": "Infraestructura y conectividad estratégica",
+      "temas": [
+        {
+          "id": 21,
+          "nombre": "Puertos estratégicos",
+          "slug": "puertos-estrategicos",
+          "categoria_id": 2
+        },
+        {
+          "id": 22,
+          "nombre": "Corredores ferroviarios",
+          "slug": "corredores-ferroviarios",
+          "categoria_id": 2
+        },
+        {
+          "id": 23,
+          "nombre": "Corredores comerciales",
+          "slug": "corredores-comerciales",
+          "categoria_id": 2
+        },
+        {
+          "id": 24,
+          "nombre": "Gasoductos y oleoductos",
+          "slug": "gasoductos-y-oleoductos",
+          "categoria_id": 2
+        },
+        {
+          "id": 25,
+          "nombre": "Cables submarinos",
+          "slug": "cables-submarinos",
+          "categoria_id": 2
+        },
+        {
+          "id": 26,
+          "nombre": "Infraestructura digital",
+          "slug": "infraestructura-digital",
+          "categoria_id": 2
+        },
+        {
+          "id": 27,
+          "nombre": "Redes eléctricas transfronterizas",
+          "slug": "redes-electricas-transfronterizas",
+          "categoria_id": 2
+        },
+        {
+          "id": 28,
+          "nombre": "Canales y estrechos marítimos",
+          "slug": "canales-y-estrechos-maritimos",
+          "categoria_id": 2
+        },
+        {
+          "id": 29,
+          "nombre": "Rutas alternativas de transporte",
+          "slug": "rutas-alternativas-de-transporte",
+          "categoria_id": 2
+        },
+        {
+          "id": 30,
+          "nombre": "Belt and Road Initiative",
+          "slug": "belt-and-road-initiative",
+          "categoria_id": 2
+        },
+        {
+          "id": 31,
+          "nombre": "Corredor India–Oriente Medio–Europa",
+          "slug": "corredor-india-oriente-medio-europa",
+          "categoria_id": 2
+        },
+        {
+          "id": 32,
+          "nombre": "Corredor Medio euroasiático",
+          "slug": "corredor-medio-euroasiatico",
+          "categoria_id": 2
+        },
+        {
+          "id": 33,
+          "nombre": "Corredores africanos de exportación",
+          "slug": "corredores-africanos-de-exportacion",
+          "categoria_id": 2
+        },
+        {
+          "id": 34,
+          "nombre": "Infraestructura financiada por China",
+          "slug": "infraestructura-financiada-por-china",
+          "categoria_id": 2
+        },
+        {
+          "id": 35,
+          "nombre": "Control extranjero de infraestructura crítica",
+          "slug": "control-extranjero-de-infraestructura-critica",
+          "categoria_id": 2
+        }
+      ],
+      "slug": "infraestructura-y-conectividad-estrategica"
+    },
+    {
+      "id": 3,
+      "nombre": "Energía",
+      "temas": [
+        {
+          "id": 36,
+          "nombre": "Seguridad energética",
+          "slug": "seguridad-energetica",
+          "categoria_id": 3
+        },
+        {
+          "id": 37,
+          "nombre": "Transición energética",
+          "slug": "transicion-energetica",
+          "categoria_id": 3
+        },
+        {
+          "id": 38,
+          "nombre": "Dependencia del gas",
+          "slug": "dependencia-del-gas",
+          "categoria_id": 3
+        },
+        {
+          "id": 39,
+          "nombre": "Petróleo y geopolítica",
+          "slug": "petroleo-y-geopolitica",
+          "categoria_id": 3
+        },
+        {
+          "id": 40,
+          "nombre": "Gas natural licuado",
+          "slug": "gas-natural-licuado",
+          "categoria_id": 3
+        },
+        {
+          "id": 41,
+          "nombre": "Energía nuclear civil",
+          "slug": "energia-nuclear-civil",
+          "categoria_id": 3
+        },
+        {
+          "id": 42,
+          "nombre": "Uranio y cadenas de suministro",
+          "slug": "uranio-y-cadenas-de-suministro",
+          "categoria_id": 3
+        },
+        {
+          "id": 43,
+          "nombre": "Hidrógeno verde",
+          "slug": "hidrogeno-verde",
+          "categoria_id": 3
+        },
+        {
+          "id": 44,
+          "nombre": "Interconexiones eléctricas",
+          "slug": "interconexiones-electricas",
+          "categoria_id": 3
+        },
+        {
+          "id": 45,
+          "nombre": "OPEP y OPEP+",
+          "slug": "opep-y-opep",
+          "categoria_id": 3
+        },
+        {
+          "id": 46,
+          "nombre": "Sanciones energéticas",
+          "slug": "sanciones-energeticas",
+          "categoria_id": 3
+        },
+        {
+          "id": 47,
+          "nombre": "Rutas marítimas de hidrocarburos",
+          "slug": "rutas-maritimas-de-hidrocarburos",
+          "categoria_id": 3
+        },
+        {
+          "id": 48,
+          "nombre": "Nacionalismo energético",
+          "slug": "nacionalismo-energetico",
+          "categoria_id": 3
+        },
+        {
+          "id": 49,
+          "nombre": "Competencia por mercados energéticos",
+          "slug": "competencia-por-mercados-energeticos",
+          "categoria_id": 3
+        },
+        {
+          "id": 50,
+          "nombre": "Descarbonización y poder geopolítico",
+          "slug": "descarbonizacion-y-poder-geopolitico",
+          "categoria_id": 3
+        }
+      ],
+      "slug": "energia"
+    },
+    {
+      "id": 4,
+      "nombre": "Minerales y recursos estratégicos",
+      "temas": [
+        {
+          "id": 51,
+          "nombre": "Minerales críticos",
+          "slug": "minerales-criticos",
+          "categoria_id": 4
+        },
+        {
+          "id": 52,
+          "nombre": "Tierras raras",
+          "slug": "tierras-raras",
+          "categoria_id": 4
+        },
+        {
+          "id": 53,
+          "nombre": "Litio",
+          "slug": "litio",
+          "categoria_id": 4
+        },
+        {
+          "id": 54,
+          "nombre": "Cobalto",
+          "slug": "cobalto",
+          "categoria_id": 4
+        },
+        {
+          "id": 55,
+          "nombre": "Coltán",
+          "slug": "coltan",
+          "categoria_id": 4
+        },
+        {
+          "id": 56,
+          "nombre": "Cobre",
+          "slug": "cobre",
+          "categoria_id": 4
+        },
+        {
+          "id": 57,
+          "nombre": "Níquel",
+          "slug": "niquel",
+          "categoria_id": 4
+        },
+        {
+          "id": 58,
+          "nombre": "Grafito",
+          "slug": "grafito",
+          "categoria_id": 4
+        },
+        {
+          "id": 59,
+          "nombre": "Uranio",
+          "slug": "uranio",
+          "categoria_id": 4
+        },
+        {
+          "id": 60,
+          "nombre": "Fosfatos",
+          "slug": "fosfatos",
+          "categoria_id": 4
+        },
+        {
+          "id": 61,
+          "nombre": "Control de minas estratégicas",
+          "slug": "control-de-minas-estrategicas",
+          "categoria_id": 4
+        },
+        {
+          "id": 62,
+          "nombre": "Refinamiento de minerales",
+          "slug": "refinamiento-de-minerales",
+          "categoria_id": 4
+        },
+        {
+          "id": 63,
+          "nombre": "Nacionalismo de recursos",
+          "slug": "nacionalismo-de-recursos",
+          "categoria_id": 4
+        },
+        {
+          "id": 64,
+          "nombre": "Concesiones mineras extranjeras",
+          "slug": "concesiones-mineras-extranjeras",
+          "categoria_id": 4
+        },
+        {
+          "id": 65,
+          "nombre": "Trabajo infantil y minería",
+          "slug": "trabajo-infantil-y-mineria",
+          "categoria_id": 4
+        },
+        {
+          "id": 66,
+          "nombre": "Seguridad de cadenas minerales",
+          "slug": "seguridad-de-cadenas-minerales",
+          "categoria_id": 4
+        },
+        {
+          "id": 67,
+          "nombre": "Reciclaje de minerales críticos",
+          "slug": "reciclaje-de-minerales-criticos",
+          "categoria_id": 4
+        },
+        {
+          "id": 68,
+          "nombre": "Carteles de productores minerales",
+          "slug": "carteles-de-productores-minerales",
+          "categoria_id": 4
+        }
+      ],
+      "slug": "minerales-y-recursos-estrategicos"
+    },
+    {
+      "id": 5,
+      "nombre": "Tecnología y soberanía digital",
+      "temas": [
+        {
+          "id": 69,
+          "nombre": "Semiconductores",
+          "slug": "semiconductores",
+          "categoria_id": 5
+        },
+        {
+          "id": 70,
+          "nombre": "Controles de exportación tecnológica",
+          "slug": "controles-de-exportacion-tecnologica",
+          "categoria_id": 5
+        },
+        {
+          "id": 71,
+          "nombre": "Inteligencia artificial y seguridad nacional",
+          "slug": "inteligencia-artificial-y-seguridad-nacional",
+          "categoria_id": 5
+        },
+        {
+          "id": 72,
+          "nombre": "Soberanía digital",
+          "slug": "soberania-digital",
+          "categoria_id": 5
+        },
+        {
+          "id": 73,
+          "nombre": "Computación cuántica",
+          "slug": "computacion-cuantica",
+          "categoria_id": 5
+        },
+        {
+          "id": 74,
+          "nombre": "Telecomunicaciones 5G y 6G",
+          "slug": "telecomunicaciones-5g-y-6g",
+          "categoria_id": 5
+        },
+        {
+          "id": 75,
+          "nombre": "Dependencia de proveedores tecnológicos",
+          "slug": "dependencia-de-proveedores-tecnologicos",
+          "categoria_id": 5
+        },
+        {
+          "id": 76,
+          "nombre": "Chips avanzados",
+          "slug": "chips-avanzados",
+          "categoria_id": 5
+        },
+        {
+          "id": 77,
+          "nombre": "Equipos de fabricación de semiconductores",
+          "slug": "equipos-de-fabricacion-de-semiconductores",
+          "categoria_id": 5
+        },
+        {
+          "id": 78,
+          "nombre": "Centros de datos",
+          "slug": "centros-de-datos",
+          "categoria_id": 5
+        },
+        {
+          "id": 79,
+          "nombre": "Computación en la nube",
+          "slug": "computacion-en-la-nube",
+          "categoria_id": 5
+        },
+        {
+          "id": 80,
+          "nombre": "Satélites y constelaciones privadas",
+          "slug": "satelites-y-constelaciones-privadas",
+          "categoria_id": 5
+        },
+        {
+          "id": 81,
+          "nombre": "Vigilancia digital",
+          "slug": "vigilancia-digital",
+          "categoria_id": 5
+        },
+        {
+          "id": 82,
+          "nombre": "Ciberseguridad de infraestructura crítica",
+          "slug": "ciberseguridad-de-infraestructura-critica",
+          "categoria_id": 5
+        },
+        {
+          "id": 83,
+          "nombre": "Regulación tecnológica extraterritorial",
+          "slug": "regulacion-tecnologica-extraterritorial",
+          "categoria_id": 5
+        },
+        {
+          "id": 84,
+          "nombre": "Fragmentación de Internet",
+          "slug": "fragmentacion-de-internet",
+          "categoria_id": 5
+        },
+        {
+          "id": 85,
+          "nombre": "Inteligencia artificial militar",
+          "slug": "inteligencia-artificial-militar",
+          "categoria_id": 5
+        },
+        {
+          "id": 86,
+          "nombre": "Control de datos estratégicos",
+          "slug": "control-de-datos-estrategicos",
+          "categoria_id": 5
+        }
+      ],
+      "slug": "tecnologia-y-soberania-digital"
+    },
+    {
+      "id": 6,
+      "nombre": "Comercio, finanzas y sanciones",
+      "temas": [
+        {
+          "id": 87,
+          "nombre": "Desglobalización",
+          "slug": "desglobalizacion",
+          "categoria_id": 6
+        },
+        {
+          "id": 88,
+          "nombre": "Desacoplamiento económico",
+          "slug": "desacoplamiento-economico",
+          "categoria_id": 6
+        },
+        {
+          "id": 89,
+          "nombre": "Reducción de riesgos o de-risking",
+          "slug": "reduccion-de-riesgos-o-de-risking",
+          "categoria_id": 6
+        },
+        {
+          "id": 90,
+          "nombre": "Controles de exportación",
+          "slug": "controles-de-exportacion",
+          "categoria_id": 6
+        },
+        {
+          "id": 91,
+          "nombre": "Sanciones internacionales",
+          "slug": "sanciones-internacionales",
+          "categoria_id": 6
+        },
+        {
+          "id": 92,
+          "nombre": "Sanciones secundarias",
+          "slug": "sanciones-secundarias",
+          "categoria_id": 6
+        },
+        {
+          "id": 93,
+          "nombre": "Guerras comerciales",
+          "slug": "guerras-comerciales",
+          "categoria_id": 6
+        },
+        {
+          "id": 94,
+          "nombre": "Restricciones a inversiones extranjeras",
+          "slug": "restricciones-a-inversiones-extranjeras",
+          "categoria_id": 6
+        },
+        {
+          "id": 95,
+          "nombre": "Seguridad de cadenas de suministro",
+          "slug": "seguridad-de-cadenas-de-suministro",
+          "categoria_id": 6
+        },
+        {
+          "id": 96,
+          "nombre": "Relocalización industrial",
+          "slug": "relocalizacion-industrial",
+          "categoria_id": 6
+        },
+        {
+          "id": 97,
+          "nombre": "Friend-shoring",
+          "slug": "friend-shoring",
+          "categoria_id": 6
+        },
+        {
+          "id": 98,
+          "nombre": "Nearshoring",
+          "slug": "nearshoring",
+          "categoria_id": 6
+        },
+        {
+          "id": 99,
+          "nombre": "Subsidios industriales",
+          "slug": "subsidios-industriales",
+          "categoria_id": 6
+        },
+        {
+          "id": 100,
+          "nombre": "Competencia por manufactura estratégica",
+          "slug": "competencia-por-manufactura-estrategica",
+          "categoria_id": 6
+        },
+        {
+          "id": 101,
+          "nombre": "Desdolarización",
+          "slug": "desdolarizacion",
+          "categoria_id": 6
+        },
+        {
+          "id": 102,
+          "nombre": "Sistemas alternativos de pagos",
+          "slug": "sistemas-alternativos-de-pagos",
+          "categoria_id": 6
+        },
+        {
+          "id": 103,
+          "nombre": "Monedas digitales de bancos centrales",
+          "slug": "monedas-digitales-de-bancos-centrales",
+          "categoria_id": 6
+        },
+        {
+          "id": 104,
+          "nombre": "BRICS y arquitectura financiera",
+          "slug": "brics-y-arquitectura-financiera",
+          "categoria_id": 6
+        },
+        {
+          "id": 105,
+          "nombre": "Deuda soberana",
+          "slug": "deuda-soberana",
+          "categoria_id": 6
+        },
+        {
+          "id": 106,
+          "nombre": "Diplomacia de la deuda",
+          "slug": "diplomacia-de-la-deuda",
+          "categoria_id": 6
+        },
+        {
+          "id": 107,
+          "nombre": "Congelamiento de activos estatales",
+          "slug": "congelamiento-de-activos-estatales",
+          "categoria_id": 6
+        },
+        {
+          "id": 108,
+          "nombre": "Seguros marítimos y comercio global",
+          "slug": "seguros-maritimos-y-comercio-global",
+          "categoria_id": 6
+        }
+      ],
+      "slug": "comercio-finanzas-y-sanciones"
+    },
+    {
+      "id": 7,
+      "nombre": "Gobernanza y poder político",
+      "temas": [
+        {
+          "id": 109,
+          "nombre": "Crisis de legitimidad",
+          "slug": "crisis-de-legitimidad",
+          "categoria_id": 7
+        },
+        {
+          "id": 110,
+          "nombre": "Fragilidad estatal",
+          "slug": "fragilidad-estatal",
+          "categoria_id": 7
+        },
+        {
+          "id": 111,
+          "nombre": "Sucesiones políticas",
+          "slug": "sucesiones-politicas",
+          "categoria_id": 7
+        },
+        {
+          "id": 112,
+          "nombre": "Autoritarismo competitivo",
+          "slug": "autoritarismo-competitivo",
+          "categoria_id": 7
+        },
+        {
+          "id": 113,
+          "nombre": "Erosión democrática",
+          "slug": "erosion-democratica",
+          "categoria_id": 7
+        },
+        {
+          "id": 114,
+          "nombre": "Estados fallidos",
+          "slug": "estados-fallidos",
+          "categoria_id": 7
+        },
+        {
+          "id": 115,
+          "nombre": "Reformas constitucionales",
+          "slug": "reformas-constitucionales",
+          "categoria_id": 7
+        },
+        {
+          "id": 116,
+          "nombre": "Concentración de poder ejecutivo",
+          "slug": "concentracion-de-poder-ejecutivo",
+          "categoria_id": 7
+        },
+        {
+          "id": 117,
+          "nombre": "Crisis institucionales",
+          "slug": "crisis-institucionales",
+          "categoria_id": 7
+        },
+        {
+          "id": 118,
+          "nombre": "Separatismo",
+          "slug": "separatismo",
+          "categoria_id": 7
+        },
+        {
+          "id": 119,
+          "nombre": "Federalismo y tensiones territoriales",
+          "slug": "federalismo-y-tensiones-territoriales",
+          "categoria_id": 7
+        },
+        {
+          "id": 120,
+          "nombre": "Protestas masivas",
+          "slug": "protestas-masivas",
+          "categoria_id": 7
+        },
+        {
+          "id": 121,
+          "nombre": "Represión política",
+          "slug": "represion-politica",
+          "categoria_id": 7
+        },
+        {
+          "id": 122,
+          "nombre": "Influencia extranjera en elecciones",
+          "slug": "influencia-extranjera-en-elecciones",
+          "categoria_id": 7
+        },
+        {
+          "id": 123,
+          "nombre": "Interferencia electoral",
+          "slug": "interferencia-electoral",
+          "categoria_id": 7
+        },
+        {
+          "id": 124,
+          "nombre": "Redes clientelares transnacionales",
+          "slug": "redes-clientelares-transnacionales",
+          "categoria_id": 7
+        },
+        {
+          "id": 125,
+          "nombre": "Corrupción estratégica",
+          "slug": "corrupcion-estrategica",
+          "categoria_id": 7
+        },
+        {
+          "id": 126,
+          "nombre": "Uso geopolítico de la justicia",
+          "slug": "uso-geopolitico-de-la-justicia",
+          "categoria_id": 7
+        }
+      ],
+      "slug": "gobernanza-y-poder-politico"
+    },
+    {
+      "id": 8,
+      "nombre": "Demografía, migraciones y sociedad",
+      "temas": [
+        {
+          "id": 127,
+          "nombre": "Envejecimiento poblacional",
+          "slug": "envejecimiento-poblacional",
+          "categoria_id": 8
+        },
+        {
+          "id": 128,
+          "nombre": "Declive demográfico",
+          "slug": "declive-demografico",
+          "categoria_id": 8
+        },
+        {
+          "id": 129,
+          "nombre": "Crecimiento juvenil",
+          "slug": "crecimiento-juvenil",
+          "categoria_id": 8
+        },
+        {
+          "id": 130,
+          "nombre": "Desempleo juvenil",
+          "slug": "desempleo-juvenil",
+          "categoria_id": 8
+        },
+        {
+          "id": 131,
+          "nombre": "Migraciones masivas",
+          "slug": "migraciones-masivas",
+          "categoria_id": 8
+        },
+        {
+          "id": 132,
+          "nombre": "Refugiados climáticos",
+          "slug": "refugiados-climaticos",
+          "categoria_id": 8
+        },
+        {
+          "id": 133,
+          "nombre": "Fronteras y políticas migratorias",
+          "slug": "fronteras-y-politicas-migratorias",
+          "categoria_id": 8
+        },
+        {
+          "id": 134,
+          "nombre": "Urbanización acelerada",
+          "slug": "urbanizacion-acelerada",
+          "categoria_id": 8
+        },
+        {
+          "id": 135,
+          "nombre": "Diásporas como actores políticos",
+          "slug": "diasporas-como-actores-politicos",
+          "categoria_id": 8
+        },
+        {
+          "id": 136,
+          "nombre": "Remesas y dependencia económica",
+          "slug": "remesas-y-dependencia-economica",
+          "categoria_id": 8
+        },
+        {
+          "id": 137,
+          "nombre": "Fuga de cerebros",
+          "slug": "fuga-de-cerebros",
+          "categoria_id": 8
+        },
+        {
+          "id": 138,
+          "nombre": "Competencia por talento",
+          "slug": "competencia-por-talento",
+          "categoria_id": 8
+        },
+        {
+          "id": 139,
+          "nombre": "Crisis alimentarias",
+          "slug": "crisis-alimentarias",
+          "categoria_id": 8
+        },
+        {
+          "id": 140,
+          "nombre": "Desigualdad territorial",
+          "slug": "desigualdad-territorial",
+          "categoria_id": 8
+        },
+        {
+          "id": 141,
+          "nombre": "Polarización social",
+          "slug": "polarizacion-social",
+          "categoria_id": 8
+        },
+        {
+          "id": 142,
+          "nombre": "Nacionalismo identitario",
+          "slug": "nacionalismo-identitario",
+          "categoria_id": 8
+        },
+        {
+          "id": 143,
+          "nombre": "Conflictos étnicos",
+          "slug": "conflictos-etnicos",
+          "categoria_id": 8
+        },
+        {
+          "id": 144,
+          "nombre": "Conflictos religiosos",
+          "slug": "conflictos-religiosos",
+          "categoria_id": 8
+        }
+      ],
+      "slug": "demografia-migraciones-y-sociedad"
+    },
+    {
+      "id": 9,
+      "nombre": "Clima, agua y seguridad alimentaria",
+      "temas": [
+        {
+          "id": 145,
+          "nombre": "Estrés hídrico",
+          "slug": "estres-hidrico",
+          "categoria_id": 9
+        },
+        {
+          "id": 146,
+          "nombre": "Cuencas transfronterizas",
+          "slug": "cuencas-transfronterizas",
+          "categoria_id": 9
+        },
+        {
+          "id": 147,
+          "nombre": "Represas internacionales",
+          "slug": "represas-internacionales",
+          "categoria_id": 9
+        },
+        {
+          "id": 148,
+          "nombre": "Desertificación",
+          "slug": "desertificacion",
+          "categoria_id": 9
+        },
+        {
+          "id": 149,
+          "nombre": "Sequías prolongadas",
+          "slug": "sequias-prolongadas",
+          "categoria_id": 9
+        },
+        {
+          "id": 150,
+          "nombre": "Inundaciones estratégicas",
+          "slug": "inundaciones-estrategicas",
+          "categoria_id": 9
+        },
+        {
+          "id": 151,
+          "nombre": "Seguridad alimentaria",
+          "slug": "seguridad-alimentaria",
+          "categoria_id": 9
+        },
+        {
+          "id": 152,
+          "nombre": "Exportaciones de cereales",
+          "slug": "exportaciones-de-cereales",
+          "categoria_id": 9
+        },
+        {
+          "id": 153,
+          "nombre": "Fertilizantes",
+          "slug": "fertilizantes",
+          "categoria_id": 9
+        },
+        {
+          "id": 154,
+          "nombre": "Acaparamiento de tierras",
+          "slug": "acaparamiento-de-tierras",
+          "categoria_id": 9
+        },
+        {
+          "id": 155,
+          "nombre": "Pesca ilegal",
+          "slug": "pesca-ilegal",
+          "categoria_id": 9
+        },
+        {
+          "id": 156,
+          "nombre": "Recursos del Ártico",
+          "slug": "recursos-del-artico",
+          "categoria_id": 9
+        },
+        {
+          "id": 157,
+          "nombre": "Apertura de rutas árticas",
+          "slug": "apertura-de-rutas-articas",
+          "categoria_id": 9
+        },
+        {
+          "id": 158,
+          "nombre": "Conflictos por agua",
+          "slug": "conflictos-por-agua",
+          "categoria_id": 9
+        },
+        {
+          "id": 159,
+          "nombre": "Adaptación climática",
+          "slug": "adaptacion-climatica",
+          "categoria_id": 9
+        },
+        {
+          "id": 160,
+          "nombre": "Pérdida de tierras cultivables",
+          "slug": "perdida-de-tierras-cultivables",
+          "categoria_id": 9
+        },
+        {
+          "id": 161,
+          "nombre": "Migración climática",
+          "slug": "migracion-climatica",
+          "categoria_id": 9
+        },
+        {
+          "id": 162,
+          "nombre": "Geoingeniería",
+          "slug": "geoingenieria",
+          "categoria_id": 9
+        }
+      ],
+      "slug": "clima-agua-y-seguridad-alimentaria"
+    },
+    {
+      "id": 10,
+      "nombre": "Mares, océanos y rutas comerciales",
+      "temas": [
+        {
+          "id": 163,
+          "nombre": "Mar de China Meridional",
+          "slug": "mar-de-china-meridional",
+          "categoria_id": 10
+        },
+        {
+          "id": 164,
+          "nombre": "Estrecho de Taiwán",
+          "slug": "estrecho-de-taiwan",
+          "categoria_id": 10
+        },
+        {
+          "id": 165,
+          "nombre": "Mar Rojo",
+          "slug": "mar-rojo",
+          "categoria_id": 10
+        },
+        {
+          "id": 166,
+          "nombre": "Estrecho de Ormuz",
+          "slug": "estrecho-de-ormuz",
+          "categoria_id": 10
+        },
+        {
+          "id": 167,
+          "nombre": "Canal de Suez",
+          "slug": "canal-de-suez",
+          "categoria_id": 10
+        },
+        {
+          "id": 168,
+          "nombre": "Canal de Panamá",
+          "slug": "canal-de-panama",
+          "categoria_id": 10
+        },
+        {
+          "id": 169,
+          "nombre": "Mar Negro",
+          "slug": "mar-negro",
+          "categoria_id": 10
+        },
+        {
+          "id": 170,
+          "nombre": "Mediterráneo oriental",
+          "slug": "mediterraneo-oriental",
+          "categoria_id": 10
+        },
+        {
+          "id": 171,
+          "nombre": "Océano Índico",
+          "slug": "oceano-indico",
+          "categoria_id": 10
+        },
+        {
+          "id": 172,
+          "nombre": "Ruta marítima del Norte",
+          "slug": "ruta-maritima-del-norte",
+          "categoria_id": 10
+        },
+        {
+          "id": 173,
+          "nombre": "Seguridad de la navegación",
+          "slug": "seguridad-de-la-navegacion",
+          "categoria_id": 10
+        },
+        {
+          "id": 174,
+          "nombre": "Bloqueos marítimos",
+          "slug": "bloqueos-maritimos",
+          "categoria_id": 10
+        },
+        {
+          "id": 175,
+          "nombre": "Piratería",
+          "slug": "pirateria",
+          "categoria_id": 10
+        },
+        {
+          "id": 176,
+          "nombre": "Puertos de doble uso",
+          "slug": "puertos-de-doble-uso",
+          "categoria_id": 10
+        },
+        {
+          "id": 177,
+          "nombre": "Bases navales extranjeras",
+          "slug": "bases-navales-extranjeras",
+          "categoria_id": 10
+        },
+        {
+          "id": 178,
+          "nombre": "Disputas por zonas económicas exclusivas",
+          "slug": "disputas-por-zonas-economicas-exclusivas",
+          "categoria_id": 10
+        },
+        {
+          "id": 179,
+          "nombre": "Recursos submarinos",
+          "slug": "recursos-submarinos",
+          "categoria_id": 10
+        },
+        {
+          "id": 180,
+          "nombre": "Cables submarinos estratégicos",
+          "slug": "cables-submarinos-estrategicos",
+          "categoria_id": 10
+        }
+      ],
+      "slug": "mares-oceanos-y-rutas-comerciales"
+    },
+    {
+      "id": 11,
+      "nombre": "Potencias y bloques",
+      "temas": [
+        {
+          "id": 181,
+          "nombre": "Competencia Estados Unidos–China",
+          "slug": "competencia-estados-unidos-china",
+          "categoria_id": 11
+        },
+        {
+          "id": 182,
+          "nombre": "Relación China–Rusia",
+          "slug": "relacion-china-rusia",
+          "categoria_id": 11
+        },
+        {
+          "id": 183,
+          "nombre": "Autonomía estratégica europea",
+          "slug": "autonomia-estrategica-europea",
+          "categoria_id": 11
+        },
+        {
+          "id": 184,
+          "nombre": "Expansión de los BRICS",
+          "slug": "expansion-de-los-brics",
+          "categoria_id": 11
+        },
+        {
+          "id": 185,
+          "nombre": "Sur Global",
+          "slug": "sur-global",
+          "categoria_id": 11
+        },
+        {
+          "id": 186,
+          "nombre": "Ascenso de India",
+          "slug": "ascenso-de-india",
+          "categoria_id": 11
+        },
+        {
+          "id": 187,
+          "nombre": "Proyección regional de Turquía",
+          "slug": "proyeccion-regional-de-turquia",
+          "categoria_id": 11
+        },
+        {
+          "id": 188,
+          "nombre": "Influencia de Irán",
+          "slug": "influencia-de-iran",
+          "categoria_id": 11
+        },
+        {
+          "id": 189,
+          "nombre": "Rivalidad Arabia Saudita–Irán",
+          "slug": "rivalidad-arabia-saudita-iran",
+          "categoria_id": 11
+        },
+        {
+          "id": 190,
+          "nombre": "Potencias del Golfo",
+          "slug": "potencias-del-golfo",
+          "categoria_id": 11
+        },
+        {
+          "id": 191,
+          "nombre": "Japón y rearme",
+          "slug": "japon-y-rearme",
+          "categoria_id": 11
+        },
+        {
+          "id": 192,
+          "nombre": "Corea del Sur como potencia tecnológica",
+          "slug": "corea-del-sur-como-potencia-tecnologica",
+          "categoria_id": 11
+        },
+        {
+          "id": 193,
+          "nombre": "Indonesia como potencia emergente",
+          "slug": "indonesia-como-potencia-emergente",
+          "categoria_id": 11
+        },
+        {
+          "id": 194,
+          "nombre": "Brasil y liderazgo regional",
+          "slug": "brasil-y-liderazgo-regional",
+          "categoria_id": 11
+        },
+        {
+          "id": 195,
+          "nombre": "Rivalidades intraafricanas",
+          "slug": "rivalidades-intraafricanas",
+          "categoria_id": 11
+        },
+        {
+          "id": 196,
+          "nombre": "Integración africana",
+          "slug": "integracion-africana",
+          "categoria_id": 11
+        },
+        {
+          "id": 197,
+          "nombre": "Unión Africana",
+          "slug": "union-africana",
+          "categoria_id": 11
+        },
+        {
+          "id": 198,
+          "nombre": "ASEAN",
+          "slug": "asean",
+          "categoria_id": 11
+        },
+        {
+          "id": 199,
+          "nombre": "Organización de Cooperación de Shanghái",
+          "slug": "organizacion-de-cooperacion-de-shanghai",
+          "categoria_id": 11
+        },
+        {
+          "id": 200,
+          "nombre": "Fragmentación del orden internacional",
+          "slug": "fragmentacion-del-orden-internacional",
+          "categoria_id": 11
+        }
+      ],
+      "slug": "potencias-y-bloques"
+    },
+    {
+      "id": 12,
+      "nombre": "África",
+      "temas": [
+        {
+          "id": 201,
+          "nombre": "Golpes de Estado en el Sahel",
+          "slug": "golpes-de-estado-en-el-sahel",
+          "categoria_id": 12
+        },
+        {
+          "id": 202,
+          "nombre": "Expansión de insurgencias en África occidental",
+          "slug": "expansion-de-insurgencias-en-africa-occidental",
+          "categoria_id": 12
+        },
+        {
+          "id": 203,
+          "nombre": "Retirada de potencias occidentales del Sahel",
+          "slug": "retirada-de-potencias-occidentales-del-sahel",
+          "categoria_id": 12
+        },
+        {
+          "id": 204,
+          "nombre": "Presencia rusa en África",
+          "slug": "presencia-rusa-en-africa",
+          "categoria_id": 12
+        },
+        {
+          "id": 205,
+          "nombre": "Inversiones chinas en África",
+          "slug": "inversiones-chinas-en-africa",
+          "categoria_id": 12
+        },
+        {
+          "id": 206,
+          "nombre": "Puertos africanos estratégicos",
+          "slug": "puertos-africanos-estrategicos",
+          "categoria_id": 12
+        },
+        {
+          "id": 207,
+          "nombre": "Corredores mineros africanos",
+          "slug": "corredores-mineros-africanos",
+          "categoria_id": 12
+        },
+        {
+          "id": 208,
+          "nombre": "Competencia por coltán y cobalto",
+          "slug": "competencia-por-coltan-y-cobalto",
+          "categoria_id": 12
+        },
+        {
+          "id": 209,
+          "nombre": "Guerra en Sudán",
+          "slug": "guerra-en-sudan",
+          "categoria_id": 12
+        },
+        {
+          "id": 210,
+          "nombre": "Inestabilidad en el Cuerno de África",
+          "slug": "inestabilidad-en-el-cuerno-de-africa",
+          "categoria_id": 12
+        },
+        {
+          "id": 211,
+          "nombre": "Disputa por el Nilo",
+          "slug": "disputa-por-el-nilo",
+          "categoria_id": 12
+        },
+        {
+          "id": 212,
+          "nombre": "Etiopía y acceso al mar",
+          "slug": "etiopia-y-acceso-al-mar",
+          "categoria_id": 12
+        },
+        {
+          "id": 213,
+          "nombre": "Rivalidades en los Grandes Lagos",
+          "slug": "rivalidades-en-los-grandes-lagos",
+          "categoria_id": 12
+        },
+        {
+          "id": 214,
+          "nombre": "Seguridad en Mozambique",
+          "slug": "seguridad-en-mozambique",
+          "categoria_id": 12
+        },
+        {
+          "id": 215,
+          "nombre": "Recursos energéticos del África oriental",
+          "slug": "recursos-energeticos-del-africa-oriental",
+          "categoria_id": 12
+        },
+        {
+          "id": 216,
+          "nombre": "Integración continental africana",
+          "slug": "integracion-continental-africana",
+          "categoria_id": 12
+        },
+        {
+          "id": 217,
+          "nombre": "Zona de Libre Comercio Continental Africana",
+          "slug": "zona-de-libre-comercio-continental-africana",
+          "categoria_id": 12
+        },
+        {
+          "id": 218,
+          "nombre": "Deuda africana",
+          "slug": "deuda-africana",
+          "categoria_id": 12
+        },
+        {
+          "id": 219,
+          "nombre": "Demografía africana",
+          "slug": "demografia-africana",
+          "categoria_id": 12
+        },
+        {
+          "id": 220,
+          "nombre": "Migración africana",
+          "slug": "migracion-africana",
+          "categoria_id": 12
+        },
+        {
+          "id": 221,
+          "nombre": "Desertificación y seguridad alimentaria",
+          "slug": "desertificacion-y-seguridad-alimentaria",
+          "categoria_id": 12
+        },
+        {
+          "id": 222,
+          "nombre": "Influencia de Turquía y los países del Golfo en África",
+          "slug": "influencia-de-turquia-y-los-paises-del-golfo-en-africa",
+          "categoria_id": 12
+        }
+      ],
+      "slug": "africa"
+    },
+    {
+      "id": 13,
+      "nombre": "América Latina",
+      "temas": [
+        {
+          "id": 223,
+          "nombre": "Competencia China–Estados Unidos en América Latina",
+          "slug": "competencia-china-estados-unidos-en-america-latina",
+          "categoria_id": 13
+        },
+        {
+          "id": 224,
+          "nombre": "Litio sudamericano",
+          "slug": "litio-sudamericano",
+          "categoria_id": 13
+        },
+        {
+          "id": 225,
+          "nombre": "Amazonia y soberanía",
+          "slug": "amazonia-y-soberania",
+          "categoria_id": 13
+        },
+        {
+          "id": 226,
+          "nombre": "Crimen organizado transnacional",
+          "slug": "crimen-organizado-transnacional",
+          "categoria_id": 13
+        },
+        {
+          "id": 227,
+          "nombre": "Migración regional",
+          "slug": "migracion-regional",
+          "categoria_id": 13
+        },
+        {
+          "id": 228,
+          "nombre": "Nearshoring en México",
+          "slug": "nearshoring-en-mexico",
+          "categoria_id": 13
+        },
+        {
+          "id": 229,
+          "nombre": "Canal de Panamá",
+          "slug": "canal-de-panama",
+          "categoria_id": 13
+        },
+        {
+          "id": 230,
+          "nombre": "Puertos chinos en América Latina",
+          "slug": "puertos-chinos-en-america-latina",
+          "categoria_id": 13
+        },
+        {
+          "id": 231,
+          "nombre": "Deuda e infraestructura china",
+          "slug": "deuda-e-infraestructura-china",
+          "categoria_id": 13
+        },
+        {
+          "id": 232,
+          "nombre": "Recursos energéticos de Venezuela",
+          "slug": "recursos-energeticos-de-venezuela",
+          "categoria_id": 13
+        },
+        {
+          "id": 233,
+          "nombre": "Vaca Muerta",
+          "slug": "vaca-muerta",
+          "categoria_id": 13
+        },
+        {
+          "id": 234,
+          "nombre": "Integración sudamericana",
+          "slug": "integracion-sudamericana",
+          "categoria_id": 13
+        },
+        {
+          "id": 235,
+          "nombre": "Fragmentación política regional",
+          "slug": "fragmentacion-politica-regional",
+          "categoria_id": 13
+        },
+        {
+          "id": 236,
+          "nombre": "Antártida y proyección sudamericana",
+          "slug": "antartida-y-proyeccion-sudamericana",
+          "categoria_id": 13
+        },
+        {
+          "id": 237,
+          "nombre": "Seguridad marítima del Atlántico Sur",
+          "slug": "seguridad-maritima-del-atlantico-sur",
+          "categoria_id": 13
+        },
+        {
+          "id": 238,
+          "nombre": "Tierras raras en Brasil",
+          "slug": "tierras-raras-en-brasil",
+          "categoria_id": 13
+        },
+        {
+          "id": 239,
+          "nombre": "Inestabilidad institucional",
+          "slug": "inestabilidad-institucional",
+          "categoria_id": 13
+        },
+        {
+          "id": 240,
+          "nombre": "Militarización de la seguridad pública",
+          "slug": "militarizacion-de-la-seguridad-publica",
+          "categoria_id": 13
+        }
+      ],
+      "slug": "america-latina"
+    },
+    {
+      "id": 14,
+      "nombre": "Oriente Medio",
+      "temas": [
+        {
+          "id": 241,
+          "nombre": "Normalización árabe-israelí",
+          "slug": "normalizacion-arabe-israeli",
+          "categoria_id": 14
+        },
+        {
+          "id": 242,
+          "nombre": "Conflicto Israel–Irán",
+          "slug": "conflicto-israel-iran",
+          "categoria_id": 14
+        },
+        {
+          "id": 243,
+          "nombre": "Programa nuclear iraní",
+          "slug": "programa-nuclear-irani",
+          "categoria_id": 14
+        },
+        {
+          "id": 244,
+          "nombre": "Red de aliados regionales de Irán",
+          "slug": "red-de-aliados-regionales-de-iran",
+          "categoria_id": 14
+        },
+        {
+          "id": 245,
+          "nombre": "Reconfiguración de Siria",
+          "slug": "reconfiguracion-de-siria",
+          "categoria_id": 14
+        },
+        {
+          "id": 246,
+          "nombre": "Futuro político de Irak",
+          "slug": "futuro-politico-de-irak",
+          "categoria_id": 14
+        },
+        {
+          "id": 247,
+          "nombre": "Rivalidad Turquía–Kurdos",
+          "slug": "rivalidad-turquia-kurdos",
+          "categoria_id": 14
+        },
+        {
+          "id": 248,
+          "nombre": "Kurdistán y autonomía",
+          "slug": "kurdistan-y-autonomia",
+          "categoria_id": 14
+        },
+        {
+          "id": 249,
+          "nombre": "Seguridad del Golfo Pérsico",
+          "slug": "seguridad-del-golfo-persico",
+          "categoria_id": 14
+        },
+        {
+          "id": 250,
+          "nombre": "Rutas energéticas regionales",
+          "slug": "rutas-energeticas-regionales",
+          "categoria_id": 14
+        },
+        {
+          "id": 251,
+          "nombre": "Reconstrucción de Gaza",
+          "slug": "reconstruccion-de-gaza",
+          "categoria_id": 14
+        },
+        {
+          "id": 252,
+          "nombre": "Futuro político palestino",
+          "slug": "futuro-politico-palestino",
+          "categoria_id": 14
+        },
+        {
+          "id": 253,
+          "nombre": "Líbano y fragilidad estatal",
+          "slug": "libano-y-fragilidad-estatal",
+          "categoria_id": 14
+        },
+        {
+          "id": 254,
+          "nombre": "Agua y seguridad regional",
+          "slug": "agua-y-seguridad-regional",
+          "categoria_id": 14
+        },
+        {
+          "id": 255,
+          "nombre": "Arabia Saudita y diversificación económica",
+          "slug": "arabia-saudita-y-diversificacion-economica",
+          "categoria_id": 14
+        },
+        {
+          "id": 256,
+          "nombre": "Emiratos Árabes Unidos como potencia logística",
+          "slug": "emiratos-arabes-unidos-como-potencia-logistica",
+          "categoria_id": 14
+        },
+        {
+          "id": 257,
+          "nombre": "Qatar y diplomacia energética",
+          "slug": "qatar-y-diplomacia-energetica",
+          "categoria_id": 14
+        },
+        {
+          "id": 258,
+          "nombre": "Mar Rojo y Yemen",
+          "slug": "mar-rojo-y-yemen",
+          "categoria_id": 14
+        }
+      ],
+      "slug": "oriente-medio"
+    },
+    {
+      "id": 15,
+      "nombre": "Europa y Eurasia",
+      "temas": [
+        {
+          "id": 259,
+          "nombre": "Guerra de Ucrania",
+          "slug": "guerra-de-ucrania",
+          "categoria_id": 15
+        },
+        {
+          "id": 260,
+          "nombre": "Seguridad del flanco oriental europeo",
+          "slug": "seguridad-del-flanco-oriental-europeo",
+          "categoria_id": 15
+        },
+        {
+          "id": 261,
+          "nombre": "Rearme europeo",
+          "slug": "rearme-europeo",
+          "categoria_id": 15
+        },
+        {
+          "id": 262,
+          "nombre": "Dependencia energética europea",
+          "slug": "dependencia-energetica-europea",
+          "categoria_id": 15
+        },
+        {
+          "id": 263,
+          "nombre": "Ampliación de la Unión Europea",
+          "slug": "ampliacion-de-la-union-europea",
+          "categoria_id": 15
+        },
+        {
+          "id": 264,
+          "nombre": "Balcanes occidentales",
+          "slug": "balcanes-occidentales",
+          "categoria_id": 15
+        },
+        {
+          "id": 265,
+          "nombre": "Moldavia y Transnistria",
+          "slug": "moldavia-y-transnistria",
+          "categoria_id": 15
+        },
+        {
+          "id": 266,
+          "nombre": "Cáucaso Sur",
+          "slug": "caucaso-sur",
+          "categoria_id": 15
+        },
+        {
+          "id": 267,
+          "nombre": "Armenia–Azerbaiyán",
+          "slug": "armenia-azerbaiyan",
+          "categoria_id": 15
+        },
+        {
+          "id": 268,
+          "nombre": "Asia Central",
+          "slug": "asia-central",
+          "categoria_id": 15
+        },
+        {
+          "id": 269,
+          "nombre": "Influencia rusa en el espacio postsoviético",
+          "slug": "influencia-rusa-en-el-espacio-postsovietico",
+          "categoria_id": 15
+        },
+        {
+          "id": 270,
+          "nombre": "Influencia china en Asia Central",
+          "slug": "influencia-china-en-asia-central",
+          "categoria_id": 15
+        },
+        {
+          "id": 271,
+          "nombre": "Corredores euroasiáticos",
+          "slug": "corredores-euroasiaticos",
+          "categoria_id": 15
+        },
+        {
+          "id": 272,
+          "nombre": "Política del Ártico",
+          "slug": "politica-del-artico",
+          "categoria_id": 15
+        },
+        {
+          "id": 273,
+          "nombre": "Fragmentación política europea",
+          "slug": "fragmentacion-politica-europea",
+          "categoria_id": 15
+        },
+        {
+          "id": 274,
+          "nombre": "Extrema derecha europea",
+          "slug": "extrema-derecha-europea",
+          "categoria_id": 15
+        },
+        {
+          "id": 275,
+          "nombre": "Migración hacia Europa",
+          "slug": "migracion-hacia-europa",
+          "categoria_id": 15
+        },
+        {
+          "id": 276,
+          "nombre": "Seguridad del mar Báltico",
+          "slug": "seguridad-del-mar-baltico",
+          "categoria_id": 15
+        }
+      ],
+      "slug": "europa-y-eurasia"
+    },
+    {
+      "id": 16,
+      "nombre": "Asia-Pacífico",
+      "temas": [
+        {
+          "id": 277,
+          "nombre": "Taiwán",
+          "slug": "taiwan",
+          "categoria_id": 16
+        },
+        {
+          "id": 278,
+          "nombre": "Mar de China Meridional",
+          "slug": "mar-de-china-meridional",
+          "categoria_id": 16
+        },
+        {
+          "id": 279,
+          "nombre": "Península coreana",
+          "slug": "peninsula-coreana",
+          "categoria_id": 16
+        },
+        {
+          "id": 280,
+          "nombre": "Rearme japonés",
+          "slug": "rearme-japones",
+          "categoria_id": 16
+        },
+        {
+          "id": 281,
+          "nombre": "Disputa China–India",
+          "slug": "disputa-china-india",
+          "categoria_id": 16
+        },
+        {
+          "id": 282,
+          "nombre": "Frontera del Himalaya",
+          "slug": "frontera-del-himalaya",
+          "categoria_id": 16
+        },
+        {
+          "id": 283,
+          "nombre": "Myanmar",
+          "slug": "myanmar",
+          "categoria_id": 16
+        },
+        {
+          "id": 284,
+          "nombre": "Mekong y seguridad hídrica",
+          "slug": "mekong-y-seguridad-hidrica",
+          "categoria_id": 16
+        },
+        {
+          "id": 285,
+          "nombre": "ASEAN y competencia entre potencias",
+          "slug": "asean-y-competencia-entre-potencias",
+          "categoria_id": 16
+        },
+        {
+          "id": 286,
+          "nombre": "AUKUS",
+          "slug": "aukus",
+          "categoria_id": 16
+        },
+        {
+          "id": 287,
+          "nombre": "Quad",
+          "slug": "quad",
+          "categoria_id": 16
+        },
+        {
+          "id": 288,
+          "nombre": "Islas del Pacífico",
+          "slug": "islas-del-pacifico",
+          "categoria_id": 16
+        },
+        {
+          "id": 289,
+          "nombre": "Bases militares en el Pacífico",
+          "slug": "bases-militares-en-el-pacifico",
+          "categoria_id": 16
+        },
+        {
+          "id": 290,
+          "nombre": "Cadenas de suministro asiáticas",
+          "slug": "cadenas-de-suministro-asiaticas",
+          "categoria_id": 16
+        },
+        {
+          "id": 291,
+          "nombre": "Semiconductores de Taiwán",
+          "slug": "semiconductores-de-taiwan",
+          "categoria_id": 16
+        },
+        {
+          "id": 292,
+          "nombre": "Nacionalismo económico chino",
+          "slug": "nacionalismo-economico-chino",
+          "categoria_id": 16
+        },
+        {
+          "id": 293,
+          "nombre": "Seguridad marítima japonesa",
+          "slug": "seguridad-maritima-japonesa",
+          "categoria_id": 16
+        },
+        {
+          "id": 294,
+          "nombre": "Filipinas y acceso militar estadounidense",
+          "slug": "filipinas-y-acceso-militar-estadounidense",
+          "categoria_id": 16
+        }
+      ],
+      "slug": "asia-pacifico"
+    },
+    {
+      "id": 17,
+      "nombre": "Señales tempranas específicas",
+      "temas": [
+        {
+          "id": 295,
+          "nombre": "Cambios en doctrina militar",
+          "slug": "cambios-en-doctrina-militar",
+          "categoria_id": 17
+        },
+        {
+          "id": 296,
+          "nombre": "Aumento del gasto de defensa",
+          "slug": "aumento-del-gasto-de-defensa",
+          "categoria_id": 17
+        },
+        {
+          "id": 297,
+          "nombre": "Nuevos acuerdos de acceso a puertos",
+          "slug": "nuevos-acuerdos-de-acceso-a-puertos",
+          "categoria_id": 17
+        },
+        {
+          "id": 298,
+          "nombre": "Compras de tierras por actores extranjeros",
+          "slug": "compras-de-tierras-por-actores-extranjeros",
+          "categoria_id": 17
+        },
+        {
+          "id": 299,
+          "nombre": "Nacionalización de recursos",
+          "slug": "nacionalizacion-de-recursos",
+          "categoria_id": 17
+        },
+        {
+          "id": 300,
+          "nombre": "Restricciones repentinas a exportaciones",
+          "slug": "restricciones-repentinas-a-exportaciones",
+          "categoria_id": 17
+        },
+        {
+          "id": 301,
+          "nombre": "Acumulación de reservas estratégicas",
+          "slug": "acumulacion-de-reservas-estrategicas",
+          "categoria_id": 17
+        },
+        {
+          "id": 302,
+          "nombre": "Nuevos controles de capital",
+          "slug": "nuevos-controles-de-capital",
+          "categoria_id": 17
+        },
+        {
+          "id": 303,
+          "nombre": "Ensayos militares cerca de fronteras",
+          "slug": "ensayos-militares-cerca-de-fronteras",
+          "categoria_id": 17
+        },
+        {
+          "id": 304,
+          "nombre": "Movilización de tropas",
+          "slug": "movilizacion-de-tropas",
+          "categoria_id": 17
+        },
+        {
+          "id": 305,
+          "nombre": "Nuevas bases militares",
+          "slug": "nuevas-bases-militares",
+          "categoria_id": 17
+        },
+        {
+          "id": 306,
+          "nombre": "Ruptura de acuerdos diplomáticos",
+          "slug": "ruptura-de-acuerdos-diplomaticos",
+          "categoria_id": 17
+        },
+        {
+          "id": 307,
+          "nombre": "Expulsión de empresas extranjeras",
+          "slug": "expulsion-de-empresas-extranjeras",
+          "categoria_id": 17
+        },
+        {
+          "id": 308,
+          "nombre": "Cambios en leyes de inversión",
+          "slug": "cambios-en-leyes-de-inversion",
+          "categoria_id": 17
+        },
+        {
+          "id": 309,
+          "nombre": "Renegociación de concesiones mineras",
+          "slug": "renegociacion-de-concesiones-mineras",
+          "categoria_id": 17
+        },
+        {
+          "id": 310,
+          "nombre": "Acuerdos de defensa poco cubiertos",
+          "slug": "acuerdos-de-defensa-poco-cubiertos",
+          "categoria_id": 17
+        },
+        {
+          "id": 311,
+          "nombre": "Cambios en seguros y tarifas marítimas",
+          "slug": "cambios-en-seguros-y-tarifas-maritimas",
+          "categoria_id": 17
+        },
+        {
+          "id": 312,
+          "nombre": "Incremento de sabotajes a infraestructura",
+          "slug": "incremento-de-sabotajes-a-infraestructura",
+          "categoria_id": 17
+        },
+        {
+          "id": 313,
+          "nombre": "Campañas coordinadas de desinformación",
+          "slug": "campanas-coordinadas-de-desinformacion",
+          "categoria_id": 17
+        },
+        {
+          "id": 314,
+          "nombre": "Aparición de rutas comerciales alternativas",
+          "slug": "aparicion-de-rutas-comerciales-alternativas",
+          "categoria_id": 17
+        }
+      ],
+      "slug": "senales-tempranas-especificas"
+    }
+  ],
+  "prioridades_editoriales": [
+    {
+      "orden": 1,
+      "nombre": "Minerales críticos y competencia entre potencias."
+    },
+    {
+      "orden": 2,
+      "nombre": "Corredores logísticos e infraestructura estratégica."
+    },
+    {
+      "orden": 3,
+      "nombre": "Reconfiguración de alianzas militares."
+    },
+    {
+      "orden": 4,
+      "nombre": "Fragmentación de cadenas de suministro."
+    },
+    {
+      "orden": 5,
+      "nombre": "Soberanía tecnológica y semiconductores."
+    },
+    {
+      "orden": 6,
+      "nombre": "Seguridad energética y nuevas rutas de gas."
+    },
+    {
+      "orden": 7,
+      "nombre": "África como escenario de competencia estratégica."
+    },
+    {
+      "orden": 8,
+      "nombre": "Golpes de Estado e insurgencias en el Sahel."
+    },
+    {
+      "orden": 9,
+      "nombre": "Estrés hídrico y conflictos transfronterizos."
+    },
+    {
+      "orden": 10,
+      "nombre": "Desdolarización y sistemas de pagos alternativos."
+    },
+    {
+      "orden": 11,
+      "nombre": "Inteligencia artificial y seguridad nacional."
+    },
+    {
+      "orden": 12,
+      "nombre": "Militarización de rutas marítimas."
+    },
+    {
+      "orden": 13,
+      "nombre": "Demografía y migraciones como factores de poder."
+    },
+    {
+      "orden": 14,
+      "nombre": "Expansión de los BRICS y del Sur Global."
+    },
+    {
+      "orden": 15,
+      "nombre": "Puertos, cables submarinos y nodos de conectividad."
+    },
+    {
+      "orden": 16,
+      "nombre": "Nacionalismo de recursos."
+    },
+    {
+      "orden": 17,
+      "nombre": "Cambio climático como multiplicador de conflictos."
+    },
+    {
+      "orden": 18,
+      "nombre": "Potencias medias: India, Turquía, Arabia Saudita, Brasil e Indonesia."
+    },
+    {
+      "orden": 19,
+      "nombre": "Fragmentación del orden internacional."
+    },
+    {
+      "orden": 20,
+      "nombre": "Diferencia entre relevancia geopolítica y atención mediática."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "formato": "observatorio-candidatos",
+  "schema_version": 2,
+  "generado_el": "AAAA-MM-DD",
+  "consulta": "Descripción breve de la búsqueda realizada",
+  "candidatos": [
+    {
+      "id": "identificador-estable-del-proceso",
+      "titulo": "Título descriptivo del macroevento",
+      "accion_sugerida": "nuevo",
+      "macroevento_existente_id": "",
+      "tipo_evolucion": "",
+      "justificacion_tratamiento": "Por qué es nuevo, actualización, sin novedad, relacionado o compuesto.",
+      "cambios_propuestos": {},
+      "tipo_proceso": "macroproceso_emergente",
+      "fecha_corte": "AAAA-MM-DD",
+      "regiones": [
+        "Región principal"
+      ],
+      "categoria": "categoria_interna",
+      "tema_ids": [],
+      "temas_internos": [
+        "Nombre exacto del tema si se conoce"
+      ],
+      "descripcion": "Explicación estratégica del proceso y de su relevancia a mediano o largo plazo.",
+      "actores": [
+        "Actor relevante"
+      ],
+      "intereses": [
+        "Interés en juego"
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Escenario base.",
+        "adverso": "Escenario adverso.",
+        "transformador": "Escenario transformador."
+      },
+      "indicadores": [
+        "Variable observable de seguimiento"
+      ],
+      "palabras_clave": [
+        "término de búsqueda"
+      ],
+      "evaluacion": {
+        "impacto": 3,
+        "probabilidad": 3,
+        "alcance": 3,
+        "persistencia": 3,
+        "propagacion": 3,
+        "subcobertura": 3,
+        "incertidumbre": 3,
+        "urgencia": 3,
+        "cobertura_observada": 3,
+        "confianza": "media"
+      },
+      "fuentes": [
+        {
+          "id": "fuente-1",
+          "medio": "Medio o institución",
+          "titulo": "Título de la publicación",
+          "fecha": "AAAA-MM-DD",
+          "idioma": "es",
+          "tipo": "análisis",
+          "url": "https://ejemplo.org/publicacion"
+        }
+      ],
+      "senales": [
+        {
+          "id": "senal-1",
+          "fecha": "AAAA-MM-DD",
+          "titulo": "Señal observable",
+          "tipo": "tipo_de_senal",
+          "descripcion": "Qué ocurrió y por qué importa.",
+          "fuente_ids": [
+            "fuente-1"
+          ],
+          "intensidad": null,
+          "localizaciones": []
+        }
+      ]
+    }
+  ]
+}

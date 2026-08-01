@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Centro local integrado de Memo Geopolítico.">
+  <title>Centro local · Memo Geopolítico</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Saltar al contenido</a>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegación del Centro">
+      <div class="brand">
+        <span class="brand__eyebrow">Memo Geopolítico</span>
+        <strong>Centro local</strong>
+        <span class="local-badge"><span aria-hidden="true"></span> Solo en esta computadora</span>
+      </div>
+
+      <nav class="primary-nav" aria-label="Secciones principales">
+        <p class="nav-label">Centro de trabajo</p>
+        <button class="nav-item is-active" type="button" data-view="inicio" aria-current="page">
+          <span class="nav-icon" aria-hidden="true">⌂</span>
+          <span>Inicio</span>
+        </button>
+        <button class="nav-item" type="button" data-view="observatorio">
+          <span class="nav-icon" aria-hidden="true">◉</span>
+          <span>Observatorio</span>
+          <span class="nav-state" id="nav-state-observatorio" aria-label="Comprobando"></span>
+        </button>
+        <button class="nav-item" type="button" data-view="medios">
+          <span class="nav-icon" aria-hidden="true">▤</span>
+          <span>Medios</span>
+          <span class="nav-state" id="nav-state-medios" aria-label="Comprobando"></span>
+        </button>
+        <button class="nav-item" type="button" data-view="workflow">
+          <span class="nav-icon" aria-hidden="true">◇</span>
+          <span>Flujo editorial</span>
+          <span class="nav-state" id="nav-state-workflow" aria-label="Comprobando"></span>
+        </button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <p><strong>Producción separada</strong></p>
+        <p>El sitio público sigue siendo de solo consulta. Este Centro no forma parte de Netlify.</p>
+        <span>Fase 1 integrada · v0.2.3</span>
+      </div>
+    </aside>
+
+    <button class="sidebar-overlay" id="sidebar-overlay" type="button" aria-label="Cerrar navegación"></button>
+
+    <div class="workspace-shell">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Abrir navegación">☰</button>
+        <div class="topbar__titles">
+          <p id="page-eyebrow">Estado general</p>
+          <h1 id="page-title">Inicio</h1>
+        </div>
+        <div class="topbar__status" id="topbar-status" role="status" aria-live="polite">
+          <span class="status-dot is-pending" aria-hidden="true"></span>
+          <span>Comprobando módulos</span>
+        </div>
+      </header>
+
+      <main id="workspace" tabindex="-1">
+        <section class="view is-active" data-panel="inicio" aria-labelledby="home-title">
+          <div class="home">
+            <header class="hero">
+              <div>
+                <p class="section-kicker">Un único espacio local</p>
+                <h2 id="home-title">Tu mesa de trabajo para Memo Geopolítico</h2>
+                <p>Entrá al Observatorio, consultá Medios o continuá el Flujo editorial sin cambiar de carpeta, servidor o ventana.</p>
+              </div>
+              <button class="button button--secondary" id="refresh-status" type="button">Actualizar estado</button>
+            </header>
+
+            <div class="notice notice--local">
+              <span class="notice__icon" aria-hidden="true">✓</span>
+              <div>
+                <strong>Este espacio no se publica</strong>
+                <p>Trabaja en <code>127.0.0.1</code>. La sincronización, el QA y Git continúan siendo acciones manuales desde VS Code.</p>
+              </div>
+            </div>
+
+            <section aria-labelledby="modules-title">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">Trabajo actual</p>
+                  <h2 id="modules-title">Módulos integrados</h2>
+                </div>
+                <button class="text-button" id="retry-modules" type="button">Reintentar inicio</button>
+              </div>
+              <div class="module-grid">
+                <article class="module-card" id="card-observatorio">
+                  <div class="module-card__head">
+                    <span class="module-symbol module-symbol--obs" aria-hidden="true">◉</span>
+                    <span class="pill is-pending" id="pill-observatorio">Comprobando</span>
+                  </div>
+                  <h3>Observatorio</h3>
+                  <p>Importación, macroeventos, expedientes públicos, señales, fuentes y encargos editoriales.</p>
+                  <dl class="module-facts">
+                    <div><dt>Macroeventos</dt><dd id="count-macroeventos">—</dd></div>
+                    <div><dt>Temas internos</dt><dd id="count-temas">—</dd></div>
+                    <div><dt>Expedientes públicos</dt><dd id="count-public-expedients">—</dd></div>
+                    <div><dt>Encargos editoriales</dt><dd id="count-editorial-assignments">—</dd></div>
+                  </dl>
+                  <button class="button button--primary" type="button" data-open-view="observatorio">Entrar al Observatorio</button>
+                </article>
+
+                <article class="module-card" id="card-medios">
+                  <div class="module-card__head">
+                    <span class="module-symbol module-symbol--media" aria-hidden="true">▤</span>
+                    <span class="pill is-pending" id="pill-medios">Comprobando</span>
+                  </div>
+                  <h3>Medios</h3>
+                  <p>Consulta y comparación del catálogo geopolítico desde la misma interfaz.</p>
+                  <dl class="module-facts">
+                    <div><dt>Excel canónico</dt><dd id="count-media-canonical">—</dd></div>
+                    <div><dt>Vista actual</dt><dd id="count-media-derived">—</dd></div>
+                  </dl>
+                  <p class="inline-warning" id="media-warning" hidden></p>
+                  <button class="button button--primary" type="button" data-open-view="medios">Entrar a Medios</button>
+                </article>
+
+                <article class="module-card" id="card-workflow">
+                  <div class="module-card__head">
+                    <span class="module-symbol module-symbol--flow" aria-hidden="true">◇</span>
+                    <span class="pill is-pending" id="pill-workflow">Comprobando</span>
+                  </div>
+                  <h3>Flujo editorial</h3>
+                  <p>Seguimiento del avance de expedientes, análisis y piezas editoriales.</p>
+                  <dl class="module-facts">
+                    <div><dt>Etapas</dt><dd id="count-stages">—</dd></div>
+                    <div><dt>Documentos</dt><dd id="count-documents">—</dd></div>
+                  </dl>
+                  <button class="button button--primary" type="button" data-open-view="workflow">Entrar al Flujo editorial</button>
+                </article>
+              </div>
+            </section>
+
+            <section class="next-flow" aria-labelledby="next-title">
+              <div>
+                <p class="section-kicker">Unificación progresiva</p>
+                <h2 id="next-title">Qué resuelve esta fase</h2>
+              </div>
+              <ol class="flow-list">
+                <li><span>1</span><div><strong>Un solo inicio</strong><p>Ejecutás un archivo y el Centro prepara los módulos.</p></div></li>
+                <li><span>2</span><div><strong>Una sola navegación</strong><p>Todo el trabajo queda dentro de esta ventana.</p></div></li>
+                <li><span>3</span><div><strong>Datos locales juntos</strong><p>Los módulos y sus archivos viven bajo <code>centro-local</code>.</p></div></li>
+                <li><span>4</span><div><strong>Publicación bajo control</strong><p>Nada pasa al sitio hasta que ejecutes sincronización, QA y Git.</p></div></li>
+              </ol>
+            </section>
+          </div>
+        </section>
+
+        <section class="view module-view" data-panel="observatorio" aria-label="Observatorio integrado">
+          <div class="module-toolbar">
+            <div><strong>Observatorio local v0.6.3</strong><span>Edición y mantenimiento de datos estructurados</span></div>
+            <button class="text-button" type="button" data-reload-frame="frame-observatorio">Recargar módulo</button>
+          </div>
+          <iframe id="frame-observatorio" title="Observatorio local" data-src="http://127.0.0.1:4323" sandbox="allow-downloads allow-forms allow-modals allow-same-origin allow-scripts"></iframe>
+        </section>
+
+        <section class="view module-view" data-panel="medios" aria-label="Directorio de Medios integrado">
+          <div class="module-toolbar">
+            <div><strong>Directorio de Medios</strong><span>Vista local del catálogo geopolítico</span></div>
+            <button class="text-button" type="button" data-reload-frame="frame-medios">Recargar módulo</button>
+          </div>
+          <iframe id="frame-medios" title="Directorio de Medios" data-src="/modules/medios/index.html" sandbox="allow-downloads allow-forms allow-modals allow-same-origin allow-scripts"></iframe>
+        </section>
+
+        <section class="view module-view" data-panel="workflow" aria-label="Flujo editorial integrado">
+          <div class="module-toolbar">
+            <div><strong>Flujo editorial</strong><span>Seguimiento de etapas y documentos</span></div>
+            <button class="text-button" type="button" data-reload-frame="frame-workflow">Recargar módulo</button>
+          </div>
+          <iframe id="frame-workflow" title="Flujo editorial" data-src="http://127.0.0.1:4324" sandbox="allow-downloads allow-forms allow-modals allow-same-origin allow-scripts"></iframe>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

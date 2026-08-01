@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Observatorio de macroeventos · gestión editorial</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Menú del Observatorio">
+      <button id="menu" class="icon mobile nav-toggle" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false"><span aria-hidden="true">☰</span></button>
+      <div class="brand"><span>MG</span><div><strong>Observatorio</strong><small>Macroeventos y encargos</small></div></div>
+      <nav id="nav" aria-label="Navegación principal">
+        <button class="nav-item active" data-view="overview">Resumen</button>
+        <button class="nav-item" data-view="events">Macroeventos</button>
+        <button class="nav-item" data-view="matrix">Matriz</button>
+        <button class="nav-item" data-view="taxonomy">Taxonomía</button>
+        <button class="nav-item" data-view="search">Generador de búsqueda</button>
+        <button class="nav-item" data-view="public-expedients">Expedientes</button>
+        <button class="nav-item" data-view="expedients">Encargos editoriales</button>
+        <button class="nav-item" data-view="data">Datos y backups</button>
+      </nav>
+      <footer><b>Solo local</b><small>127.0.0.1 · sin APIs externas</small><small id="app-version-label">Observatorio v0.6.3</small></footer>
+    </aside>
+    <button id="nav-overlay" class="nav-overlay" type="button" aria-label="Cerrar menú" tabindex="-1" hidden></button>
+
+    <main id="main">
+      <header class="topbar">
+        <span class="mobile menu-spacer" aria-hidden="true"></span>
+        <div><p class="eyebrow">PROSPECTIVA E INTELIGENCIA ESTRATÉGICA</p><h1 id="page-title">Resumen del Observatorio</h1></div>
+        <div class="actions"><span id="server-status" class="server-status checking" role="status">Comprobando servidor…</span><span id="save-state">Sin cambios</span><button id="open-help" class="btn ghost">Ayuda</button><button id="reload" class="btn ghost">Recargar</button><button id="save" class="btn primary">Guardar</button></div>
+      </header>
+      <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+
+      <section id="overview" class="view active">
+        <div id="cards" class="cards"></div>
+        <div class="grid">
+          <section class="panel wide ranking-panel">
+            <header><div><p class="eyebrow">PRIORIDAD</p><h2>Ranking estratégico</h2></div><button data-go="events" class="link">Ver todos</button></header>
+            <div class="overview-search">
+              <label class="field grow"><span>Buscar macroevento</span><input id="o-search" type="search" placeholder="Título, ID o tema interno"></label>
+              <label class="field"><span>Tipo</span><select id="o-type"><option value="">Todos</option></select></label>
+              <label class="field"><span>Estado</span><select id="o-status"><option value="">Todos</option></select></label>
+              <button id="clear-overview-search" class="btn ghost">Limpiar</button>
+            </div>
+            <p id="ranking-meta" class="ranking-meta" role="status" aria-live="polite"></p>
+            <div id="ranking"></div>
+          </section>
+          <section class="panel"><header><h2>Por región</h2></header><div id="regions" class="bars"></div></section>
+          <section class="panel"><header><h2>Por categoría</h2></header><div id="categories" class="bars"></div></section>
+          <section class="panel wide"><header><h2>Calidad y preparación editorial</h2></header><div id="quality"></div></section>
+        </div>
+      </section>
+
+      <section id="events" class="view">
+        <div class="heading"><div><p class="eyebrow">GESTIÓN ANALÍTICA</p><h2>Macroeventos</h2></div><div class="button-row"><button id="open-candidate-import" class="btn ghost">Importar candidatos</button><button id="new-event" class="btn primary">Nuevo macroevento</button></div></div>
+        <div class="panel filters">
+          <label class="field grow"><span>Buscar</span><input id="f-search" type="search" placeholder="Título, actor, región o palabra clave"></label>
+          <label class="field"><span>Región</span><select id="f-region"><option value="">Todas</option></select></label>
+          <label class="field"><span>Categoría</span><select id="f-category"><option value="">Todas</option></select></label>
+          <label class="field"><span>Tipo</span><select id="f-type"><option value="">Todos</option></select></label>
+          <label class="field"><span>Estado</span><select id="f-status"><option value="">Todos</option></select></label>
+          <label class="field"><span>Gap mínimo</span><select id="f-gap"><option value="">Cualquiera</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option></select></label>
+          <label class="field"><span>Ordenar</span><select id="f-sort"><option value="rel">Relevancia ↓</option><option value="gap">Gap ↓</option><option value="title">Título A–Z</option><option value="date">Fecha ↓</option></select></label>
+          <button id="clear-filters" class="btn ghost">Limpiar</button>
+        </div>
+        <section class="panel table-panel">
+          <div class="table-meta"><span id="event-count">0 macroeventos</span><span>Editar el macroevento o iniciar un encargo editorial</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Macroevento</th><th>Región</th><th>Fuentes</th><th>Relevancia</th><th>Gap</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="event-rows"></tbody></table></div>
+          <div id="event-empty" class="empty" hidden>No hay resultados.</div>
+        </section>
+      </section>
+
+      <section id="matrix" class="view">
+        <div class="heading"><div><p class="eyebrow">RELEVANCIA VS. COBERTURA</p><h2>Matriz de gap mediático</h2></div></div>
+        <section class="panel"><p class="muted">Arriba a la izquierda aparecen los procesos de mayor relevancia y menor cobertura observada. El tamaño representa el alcance geográfico.</p><div id="matrix-chart" class="matrix"></div><div id="matrix-table"></div></section>
+      </section>
+
+      <section id="taxonomy" class="view">
+        <div class="heading"><div><p class="eyebrow">TAXONOMÍA INTERNA DE DETECCIÓN</p><h2>Temas de investigación</h2></div></div>
+        <div class="panel filters">
+          <label class="field grow"><span>Buscar tema</span><input id="t-search" type="search" placeholder="Minerales, Sahel, cables..."></label>
+          <label class="field"><span>Área</span><select id="t-category"><option value="">Todas</option></select></label>
+          <button id="clear-taxonomy" class="btn ghost">Limpiar</button>
+        </div>
+        <div id="taxonomy-grid" class="taxonomy-grid"></div>
+      </section>
+
+      <section id="search" class="view">
+        <div class="heading"><div><p class="eyebrow">BÚSQUEDA CONTEXTUAL Y REVISABLE</p><h2>Generador de prompt de búsqueda</h2></div><button id="sg-generate" class="btn primary">Generar prompt</button></div>
+        <p class="assisted-output-note">El generador combina los 20 ejes editoriales, la taxonomía de 314 temas, el catálogo de 92 fuentes y el índice de macroeventos existentes. La selección es local y siempre puede revisarse antes de copiar el prompt.</p>
+        <div class="grid search-generator-grid">
+          <section class="panel full">
+            <header><div><p class="eyebrow">1 · ALCANCE</p><h2>Parámetros de investigación</h2></div><span id="sg-axis-class" class="badge info">Eje temático</span></header>
+            <div class="form-grid search-parameter-grid">
+              <label class="field span2"><span>Eje editorial principal</span><select id="sg-axis"></select></label>
+              <label class="field"><span>Región o ámbito</span><select id="sg-region"></select></label>
+              <label class="field"><span>Período de publicaciones, días</span><input id="sg-period" type="number" min="1" max="730"></label>
+              <label class="field"><span>Horizonte mínimo, años</span><input id="sg-hmin" type="number" min="1" max="30"></label>
+              <label class="field"><span>Horizonte máximo, años</span><input id="sg-hmax" type="number" min="1" max="30"></label>
+              <label class="field"><span>Máximo de macroeventos</span><input id="sg-max-events" type="number" min="1" max="50"></label>
+              <label class="field"><span>Cantidad de fuentes</span><input id="sg-source-limit" type="number" min="15" max="25"></label>
+              <label class="field span2"><span>Tipo de salida</span><select id="sg-output-mode"><option value="analysis">Investigación analítica · matriz y secciones A–E</option><option value="json">JSON importable · candidatos y actualizaciones</option></select></label>
+            </div>
+            <fieldset class="compact-fieldset"><legend>Idiomas</legend><div id="sg-languages" class="inline-checks"></div></fieldset>
+          </section>
+
+          <section class="panel">
+            <header><div><p class="eyebrow">2 · TAXONOMÍA</p><h2>Subtemas relacionados</h2></div><span id="sg-topic-count" class="badge info">0 seleccionados</span></header>
+            <p class="help">La propuesta proviene del eje editorial. Podés quitar o agregar temas antes de generar.</p>
+            <label class="field"><span>Buscar en los 314 temas</span><input id="sg-topic-search" type="search" placeholder="Puertos, minerales, Sahel…"></label>
+            <div id="sg-topic-options" class="generator-options"></div>
+          </section>
+
+          <section class="panel">
+            <header><div><p class="eyebrow">2 · CONTEXTO</p><h2>Actores y señales</h2></div></header>
+            <label class="field"><span>Actores prioritarios, uno por línea</span><textarea id="sg-actors" rows="8"></textarea></label>
+            <fieldset class="compact-fieldset"><legend>Señales tempranas</legend><div id="sg-signal-options" class="generator-options compact"></div></fieldset>
+          </section>
+
+          <section class="panel full">
+            <header><div><p class="eyebrow">3 · FUENTES</p><h2>Selección contextual</h2></div><div class="button-row"><button id="sg-recommend-sources" class="btn ghost">Recalcular propuesta</button><button id="sg-clear-sources" class="btn ghost">Quitar selección</button></div></header>
+            <div id="sg-source-summary" class="quality-summary" aria-live="polite"></div>
+            <div class="source-picker-tools">
+              <label class="field grow"><span>Buscar en el catálogo</span><input id="sg-source-search" type="search" placeholder="África, francés, fuente primaria, Chatham…"></label>
+              <div class="external-source-row">
+                <label class="field"><span>Fuente externa</span><input id="sg-external-name" placeholder="Nombre"></label>
+                <label class="field grow"><span>URL HTTPS</span><input id="sg-external-url" type="url" placeholder="https://…"></label>
+                <button id="sg-add-source" class="btn ghost" type="button">Agregar</button>
+              </div>
+            </div>
+            <div id="sg-source-options" class="source-selection-list"></div>
+          </section>
+
+          <section class="panel full">
+            <header><div><p class="eyebrow">4 · SALIDA</p><h2>Prompt generado</h2></div><div class="button-row"><button id="sg-copy-prompt" class="btn ghost" disabled>Copiar prompt</button><button id="sg-download-prompt" class="btn ghost" disabled>Descargar .md</button></div></header>
+            <p id="sg-prompt-status" class="help">Revisá la selección y pulsá “Generar prompt”.</p>
+            <textarea id="sg-prompt-preview" rows="28" readonly spellcheck="false"></textarea>
+          </section>
+        </div>
+      </section>
+
+      <section id="public-expedients" class="view">
+        <div class="heading"><div><p class="eyebrow">SEGUIMIENTO ESTRUCTURADO</p><h2>Expedientes públicos</h2></div><span id="public-expedient-count" class="badge info">0 expedientes</span></div>
+        <p class="assisted-output-note">Cada expediente se genera directamente desde un macroevento. Editar un expediente abre la ficha estructurada del macroevento correspondiente; no crea un encargo editorial.</p>
+        <div id="public-expedient-list" class="public-expedient-list"></div>
+      </section>
+
+      <section id="expedients" class="view">
+        <div class="heading"><div><p class="eyebrow">PUENTE HACIA EL MARKDOWN</p><h2>Encargos editoriales</h2></div><button id="new-expedient" class="btn primary">Nuevo encargo</button></div>
+        <p class="assisted-output-note">Los encargos editoriales son trabajos internos de redacción iniciados desde uno o más macroeventos. No son los expedientes públicos del Observatorio: esos se generan directamente desde los macroeventos.</p>
+        <div class="panel filters">
+          <label class="field grow"><span>Buscar</span><input id="x-search" type="search" placeholder="Título o pregunta editorial"></label>
+          <label class="field"><span>Tipo</span><select id="x-type"><option value="">Todos</option><option value="movimiento">Movimiento</option><option value="foco">Foco</option><option value="dossier">Dossier</option></select></label>
+          <label class="field"><span>Estado</span><select id="x-status"><option value="">Todos</option></select></label>
+          <label class="field"><span>Macroevento</span><select id="x-event"><option value="">Todos</option></select></label>
+          <button id="clear-expedients" class="btn ghost">Limpiar</button>
+        </div>
+        <section class="panel table-panel">
+          <div class="table-meta"><span id="expedient-count">0 encargos editoriales</span><span>Solo fuentes verificadas pueden alimentar un encargo</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Encargo</th><th>Tipo</th><th>Macroeventos</th><th>Fuentes</th><th>Estado</th><th>Actualizado</th><th>Acciones</th></tr></thead><tbody id="expedient-rows"></tbody></table></div>
+          <div id="expedient-empty" class="empty" hidden>No hay encargos editoriales.</div>
+        </section>
+      </section>
+
+      <section id="data" class="view">
+        <div class="heading"><div><p class="eyebrow">PERSISTENCIA LOCAL</p><h2>Datos, catálogo y backups</h2></div></div>
+        <div class="grid">
+          <section class="panel"><h2>Archivo editorial</h2><dl id="data-summary"></dl><div class="button-row"><a class="btn ghost" href="/api/export">Exportar JSON</a><label class="btn ghost file">Importar JSON<input id="import" type="file" accept=".json,application/json"></label><button id="validate" class="btn primary">Validar</button></div></section>
+          <section class="panel"><h2>Resultado de validación</h2><div id="validation"></div></section>
+          <section class="panel"><h2>Catálogo de fuentes</h2><dl id="catalog-summary"></dl><div class="button-row"><a class="btn ghost" href="/api/catalog/export">Exportar catálogo</a><label class="btn ghost file">Importar catálogo<input id="import-catalog" type="file" accept=".json,application/json"></label></div><div id="catalog-validation"></div></section>
+          <section class="panel full"><header><h2>Copias de seguridad</h2><button id="refresh-backups" class="link">Actualizar</button></header><div class="backup-columns"><div><h3>Datos editoriales</h3><div id="backups"></div></div><div><h3>Catálogo de fuentes</h3><div id="catalog-backups"></div></div></div></section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="candidate-import-editor" class="large-dialog">
+    <div class="dialog-shell">
+      <header class="dialog-head"><div><p class="eyebrow">ENTRADA ASISTIDA</p><h2>Importar candidatos desde ChatGPT</h2></div><button type="button" id="close-candidate-import" class="icon" aria-label="Cerrar importación">×</button></header>
+      <div class="dialog-body">
+        <p class="assisted-output-note">La importación distingue procesos nuevos, actualizaciones, duplicados sin novedad y candidatos ambiguos. Las fuentes y señales nuevas quedan pendientes; ningún cambio se guarda en disco hasta que pulses <b>Guardar</b>.</p>
+
+        <fieldset><legend>1. Preparar la salida del prompt</legend>
+          <p class="help">Añadí estas instrucciones al prompt de búsqueda para recibir un JSON compatible. También podés descargar una plantilla de referencia.</p>
+          <div class="button-row">
+            <button type="button" id="copy-candidate-format" class="btn ghost">Copiar instrucciones de formato</button>
+            <button type="button" id="download-candidate-template" class="btn ghost">Descargar plantilla JSON</button>
+          </div>
+          <details class="import-contract"><summary>Ver reglas del formato</summary><ul><li>Un objeto con la lista <code>candidatos</code>.</li><li>Fuentes y señales vinculadas por IDs internos del candidato.</li><li>Evaluaciones 1–5 como propuestas analíticas.</li><li>Campos desconocidos vacíos, nunca inventados.</li></ul></details>
+        </fieldset>
+
+        <fieldset><legend>2. Pegar o cargar la respuesta</legend>
+          <label class="field"><span>Respuesta JSON de ChatGPT</span><textarea id="candidate-json" rows="13" spellcheck="false" placeholder='{"formato":"observatorio-candidatos","schema_version":1,"candidatos":[…]}'></textarea></label>
+          <div class="button-row">
+            <label class="btn ghost file">Cargar archivo .json<input id="candidate-file" type="file" accept=".json,application/json"></label>
+            <button type="button" id="analyze-candidates" class="btn primary">Analizar candidatos</button>
+            <button type="button" id="clear-candidate-import" class="btn ghost">Limpiar</button>
+          </div>
+        </fieldset>
+
+        <fieldset id="candidate-preview-section" hidden><legend>3. Revisar y seleccionar</legend>
+          <div id="candidate-import-summary" class="quality-summary" role="status" aria-live="polite"></div>
+          <div class="section-tools">
+            <p class="help">Los duplicados sin novedad y los candidatos compuestos quedan bloqueados. En las actualizaciones podés aceptar fuentes, señales y cada cambio principal por separado.</p>
+            <div class="button-row"><button type="button" id="select-importable-candidates" class="btn small ghost">Seleccionar acciones propuestas</button><button type="button" id="clear-candidate-selection" class="btn small ghost">Quitar selección</button></div>
+          </div>
+          <div id="candidate-preview-list" class="candidate-preview-list"></div>
+          <label class="review-confirmation"><input id="candidate-import-confirmed" type="checkbox"><span>Revisé las acciones seleccionadas. Los candidatos nuevos se incorporarán como <b>Borrador</b>; las actualizaciones conservarán el ID y el estado del macroevento existente, y sus nuevas fuentes y señales quedarán <b>Pendientes</b>.</span></label>
+        </fieldset>
+      </div>
+      <footer class="dialog-foot"><span id="candidate-selection-count" class="muted">Ninguna acción seleccionada</span><div><button type="button" id="cancel-candidate-import" class="btn ghost">Cancelar</button><button type="button" id="apply-candidate-import" class="btn primary" disabled>Aplicar decisiones</button></div></footer>
+    </div>
+  </dialog>
+
+  <dialog id="event-editor" class="large-dialog">
+    <form id="event-form">
+      <header class="dialog-head"><div><p class="eyebrow">FICHA ANALÍTICA</p><h2 id="event-editor-title">Macroevento</h2></div><button type="button" id="close-event-editor" class="icon" aria-label="Cerrar">×</button></header>
+      <div class="dialog-body">
+        <input id="event-original-id" type="hidden">
+        <fieldset><legend>Identificación</legend><div class="form-grid">
+          <label class="field span2"><span>Título</span><input id="e-title" required></label>
+          <label class="field"><span>ID</span><input id="e-id" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*"></label>
+          <label class="field"><span>Fecha de corte</span><input id="e-date" type="date" required></label>
+          <label class="field"><span>Tipo</span><select id="e-type"><option value="evento_puntual">Evento puntual</option><option value="tendencia_recurrente">Tendencia recurrente</option><option value="tendencia_estructural">Tendencia estructural</option><option value="macroproceso_emergente">Macroproceso emergente</option><option value="macroproceso_en_maduracion">Macroproceso en maduración</option><option value="macroproceso_estructural">Macroproceso estructural</option></select></label>
+          <label class="field"><span>Estado editorial</span><select id="e-status"><option value="borrador">Borrador</option><option value="revision">Revisión</option><option value="validado">Validado</option><option value="archivado">Archivado</option></select></label>
+          <label class="field"><span>Verificación general</span><select id="e-verification"><option value="pendiente">Pendiente</option><option value="parcial">Parcial</option><option value="verificado">Verificado</option></select></label>
+          <label class="field"><span>Categoría interna</span><input id="e-category" required></label>
+          <label class="field span2"><span>Regiones, separadas por coma</span><input id="e-regions" required></label>
+          <div class="field span2 taxonomy-editor">
+            <span>Temas internos</span>
+            <p class="help">Buscá y seleccioná temas por nombre. El Observatorio conserva sus IDs estables internamente.</p>
+            <input id="e-theme-search" type="search" placeholder="Minerales críticos, corredores, Sahel…">
+            <div id="e-theme-selected" class="topic-chips" aria-live="polite"></div>
+            <div id="e-theme-options" class="topic-picker" aria-label="Selector de temas internos"></div>
+            <div class="form-grid theme-review-grid">
+              <label class="field"><span>Origen de la clasificación</span><select id="e-theme-origin"><option value="ia">Propuesta por IA</option><option value="humano">Creada por humano</option><option value="mixto">Mixta</option></select></label>
+              <label class="field"><span>Revisión temática</span><select id="e-theme-review"><option value="pendiente">Pendiente de revisión</option><option value="revisada">Revisada por editor</option></select></label>
+              <label class="field"><span>Revisada el</span><input id="e-theme-reviewed" type="date"></label>
+              <div class="field"><span>Versión de taxonomía</span><output id="e-theme-version" class="field-output">1</output></div>
+            </div>
+          </div>
+        </div></fieldset>
+
+        <fieldset><legend>Proceso estructural</legend>
+          <label class="field"><span>Descripción</span><textarea id="e-description" rows="5" required></textarea></label>
+          <div class="form-grid">
+            <label class="field"><span>Actores, uno por línea</span><textarea id="e-actors" rows="5"></textarea></label>
+            <label class="field"><span>Intereses, uno por línea</span><textarea id="e-interests" rows="5"></textarea></label>
+            <label class="field"><span>Indicadores, uno por línea</span><textarea id="e-indicators" rows="5"></textarea></label>
+            <label class="field"><span>Palabras clave, una por línea</span><textarea id="e-keywords" rows="5"></textarea></label>
+          </div>
+        </fieldset>
+
+        <fieldset><legend>Horizonte y escenarios</legend><div class="form-grid">
+          <label class="field"><span>Mínimo, años</span><input id="e-hmin" type="number" min="1" max="30"></label>
+          <label class="field"><span>Máximo, años</span><input id="e-hmax" type="number" min="1" max="30"></label>
+          <label class="field"><span>Escenario base</span><textarea id="e-base" rows="4"></textarea></label>
+          <label class="field"><span>Escenario adverso</span><textarea id="e-adverse" rows="4"></textarea></label>
+          <label class="field span2"><span>Escenario transformador</span><textarea id="e-transform" rows="4"></textarea></label>
+        </div></fieldset>
+
+        <fieldset><legend>Evaluación editorial 1–5</legend><div class="scores">
+          <label class="field"><span>Impacto</span><input id="s-impact" type="number" min="1" max="5"></label>
+          <label class="field"><span>Probabilidad</span><input id="s-prob" type="number" min="1" max="5"></label>
+          <label class="field"><span>Alcance</span><input id="s-reach" type="number" min="1" max="5"></label>
+          <label class="field"><span>Persistencia</span><input id="s-persistence" type="number" min="1" max="5"></label>
+          <label class="field"><span>Propagación</span><input id="s-spread" type="number" min="1" max="5"></label>
+          <label class="field"><span>Subcobertura</span><input id="s-gap" type="number" min="1" max="5"></label>
+          <label class="field"><span>Incertidumbre</span><input id="s-uncertainty" type="number" min="1" max="5"></label>
+          <label class="field"><span>Urgencia</span><input id="s-urgency" type="number" min="1" max="5"></label>
+          <label class="field"><span>Cobertura observada</span><input id="s-coverage" type="number" min="1" max="5"></label>
+          <label class="field"><span>Confianza</span><select id="s-confidence"><option value="baja">Baja</option><option value="media">Media</option><option value="media-alta">Media-alta</option><option value="alta">Alta</option></select></label>
+        </div><div class="calc">Relevancia: <strong id="calc-rel">—</strong> · Gap bruto: <strong id="calc-gap">—</strong></div></fieldset>
+
+        <fieldset><legend>Señales estructuradas</legend><div class="section-tools"><p class="help">Cada señal conserva ID, estado de revisión, origen, fuentes y localizaciones opcionales.</p><button type="button" id="add-signal" class="btn ghost">+ Agregar señal</button></div><div id="signal-cards" class="item-cards"></div></fieldset>
+        <fieldset><legend>Fuentes estructuradas</legend><div class="section-tools"><p class="help">Cada publicación puede vincularse con uno de los 92 medios clasificados.</p><button type="button" id="add-source" class="btn ghost">+ Agregar fuente</button></div><div id="source-cards" class="item-cards"></div></fieldset>
+        <fieldset id="event-update-history-section" hidden><legend>Historial de actualizaciones</legend><p class="help">Trazabilidad de lotes incorporados sin reemplazar la identidad ni el estado editorial del macroevento.</p><div id="event-update-history" class="update-history"></div></fieldset>
+        <fieldset><legend>Diversidad de cobertura</legend><div id="event-diversity"></div></fieldset>
+      </div>
+      <footer class="dialog-foot"><button type="button" id="delete-event" class="btn danger">Eliminar</button><div><button type="button" id="duplicate-event" class="btn ghost">Duplicar</button><button type="button" id="cancel-event-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar cambios</button></div></footer>
+    </form>
+  </dialog>
+
+  <dialog id="signal-editor">
+    <form id="signal-form">
+      <header class="dialog-head"><div><p class="eyebrow">SEÑAL</p><h2 id="signal-editor-title">Editar señal</h2></div><button type="button" id="close-signal-editor" class="icon" aria-label="Cerrar">×</button></header>
+      <div class="dialog-body">
+        <input id="signal-index" type="hidden">
+        <div class="form-grid">
+          <label class="field"><span>ID</span><input id="sig-id" required></label>
+          <label class="field"><span>Fecha</span><input id="sig-date" type="date"></label>
+          <label class="field span2"><span>Título</span><input id="sig-title" required></label>
+          <label class="field"><span>Tipo</span><input id="sig-type"></label>
+          <label class="field"><span>Estado de revisión</span><select id="sig-status"><option value="pendiente">Pendiente</option><option value="revisada">Revisada</option><option value="verificada">Verificada</option><option value="descartada">Descartada</option></select></label>
+          <label class="field"><span>Origen</span><select id="sig-origin"><option value="ia">IA</option><option value="humano">Humano</option><option value="fuente">Fuente</option><option value="mixto">Mixto</option></select></label>
+          <label class="field"><span>Intensidad opcional</span><input id="sig-intensity" type="number" min="1" max="5"></label>
+          <label class="field span2"><span>Descripción</span><textarea id="sig-description" rows="5"></textarea></label>
+        </div>
+        <section><h3>Fuentes relacionadas</h3><div id="sig-source-options" class="check-grid"></div></section>
+        <section><div class="section-tools"><h3>Localizaciones opcionales</h3><button type="button" id="add-location" class="btn ghost small">+ Localización</button></div><div id="location-rows" class="location-list"></div></section>
+      </div>
+      <footer class="dialog-foot"><span></span><div><button type="button" id="cancel-signal-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar señal</button></div></footer>
+    </form>
+  </dialog>
+
+  <dialog id="source-editor">
+    <form id="source-form">
+      <header class="dialog-head"><div><p class="eyebrow">FUENTE</p><h2 id="source-editor-title">Editar fuente</h2></div><button type="button" id="close-source-editor" class="icon" aria-label="Cerrar">×</button></header>
+      <div class="dialog-body">
+        <input id="source-index" type="hidden">
+        <div class="form-grid">
+          <label class="field"><span>ID</span><input id="src-id" required></label>
+          <label class="field"><span>Estado de verificación</span><select id="src-status"><option value="pendiente">Pendiente</option><option value="revisada">Revisada</option><option value="verificada">Verificada</option><option value="descartada">Descartada</option></select></label>
+          <label class="field span2"><span>Buscar fuente catalogada</span><input id="src-catalog-search" type="search" placeholder="Reuters, ISS Africa, institución local..."></label>
+          <label class="field span2"><span>Fuente del catálogo</span><select id="src-media-id"><option value="">Fuente no catalogada</option></select></label>
+          <div class="catalog-assist-row span2">
+            <p id="src-catalog-meta" class="help" role="status" aria-live="polite"></p>
+            <button type="button" id="open-catalog-entry" class="btn ghost" hidden>Crear fuente en el catálogo</button>
+          </div>
+          <label class="field span2"><span>Nombre de la fuente o institución</span><input id="src-medium" required></label>
+          <label class="field span2"><span>Título de la publicación</span><input id="src-title" required></label>
+          <label class="field"><span>Fecha</span><input id="src-date" type="date"></label>
+          <label class="field"><span>Revisada el</span><input id="src-reviewed" type="date"></label>
+          <label class="field"><span>Idioma</span><input id="src-language"></label>
+          <label class="field"><span>Tipo</span><input id="src-type"></label>
+          <div class="field span2"><span>URL HTTPS</span><div class="url-row"><input id="src-url" type="url" placeholder="https://..."><button type="button" id="open-source-url" class="btn ghost">Abrir fuente ↗</button><button type="button" id="copy-source-url" class="btn ghost">Copiar URL</button></div><small id="source-url-help" class="help">La fuente se abre en una pestaña nueva.</small></div>
+          <label class="field span2"><span>Observaciones editoriales</span><textarea id="src-notes" rows="4"></textarea></label>
+        </div>
+        <div id="catalog-preview" class="catalog-preview"></div>
+      </div>
+      <footer class="dialog-foot"><span></span><div><button type="button" id="cancel-source-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar fuente</button></div></footer>
+    </form>
+  </dialog>
+
+  <dialog id="catalog-entry-editor" class="large-dialog">
+    <form id="catalog-entry-form">
+      <header class="dialog-head"><div><p class="eyebrow">ALTA ASISTIDA</p><h2>Crear fuente en el catálogo</h2></div><button type="button" id="close-catalog-entry" class="icon" aria-label="Cerrar alta asistida">×</button></header>
+      <div class="dialog-body">
+        <p class="assisted-output-note">El sistema completa lo deducible de la publicación actual y separa datos verificados, propuestas editoriales y campos sin determinar. Ninguna clasificación se valida automáticamente.</p>
+        <div id="catalog-duplicate-warning" class="issue warning" hidden></div>
+
+        <fieldset><legend>Datos identificativos</legend>
+          <div class="assisted-grid">
+            <label class="field assisted-field span2"><span>Nombre oficial</span><input id="cat-name" data-catalog-field="nombre" required><select class="catalog-field-state" data-state-for="nombre" aria-label="Condición de nombre oficial"><option value="verificado">Verificado</option><option value="propuesto" selected>Propuesto</option><option value="sin_determinar">Sin determinar</option></select></label>
+            <label class="field assisted-field span2"><span>Sitio institucional</span><input id="cat-url" data-catalog-field="url" type="url" placeholder="https://..." required><select class="catalog-field-state" data-state-for="url" aria-label="Condición del sitio institucional"><option value="verificado">Verificado</option><option value="propuesto" selected>Propuesto</option><option value="sin_determinar">Sin determinar</option></select></label>
+            <label class="field assisted-field"><span>País o sede</span><input id="cat-headquarters" data-catalog-field="sede"><select class="catalog-field-state" data-state-for="sede" aria-label="Condición de país o sede"><option value="verificado">Verificado</option><option value="propuesto">Propuesto</option><option value="sin_determinar" selected>Sin determinar</option></select></label>
+            <label class="field assisted-field"><span>Región de origen</span><input id="cat-region" data-catalog-field="region"><select class="catalog-field-state" data-state-for="region" aria-label="Condición de región de origen"><option value="verificado">Verificado</option><option value="propuesto">Propuesto</option><option value="sin_determinar" selected>Sin determinar</option></select></label>
+            <label class="field assisted-field"><span>Idioma</span><input id="cat-language" data-catalog-field="idioma"><select class="catalog-field-state" data-state-for="idioma" aria-label="Condición de idioma"><option value="verificado">Verificado</option><option value="propuesto" selected>Propuesto</option><option value="sin_determinar">Sin determinar</option></select></label>
+            <label class="field assisted-field"><span>Familia o tipo de fuente</span><input id="cat-family" data-catalog-field="familia"><select class="catalog-field-state" data-state-for="familia" aria-label="Condición de familia o tipo"><option value="verificado">Verificado</option><option value="propuesto" selected>Propuesto</option><option value="sin_determinar">Sin determinar</option></select></label>
+            <label class="field assisted-field span2"><span>Referencia consultable</span><input id="cat-reference" data-catalog-field="referencia" type="url" placeholder="Página institucional o evidencia"><select class="catalog-field-state" data-state-for="referencia" aria-label="Condición de referencia consultable"><option value="verificado" selected>Verificado</option><option value="propuesto">Propuesto</option><option value="sin_determinar">Sin determinar</option></select></label>
+          </div>
+        </fieldset>
+
+        <fieldset><legend>Clasificación editorial propuesta</legend>
+          <p class="help">Revisá cada propuesta. Si no existe evidencia suficiente, dejá el campo vacío y marcá “Sin determinar”.</p>
+          <div class="assisted-grid">
+            <label class="field assisted-field"><span>Función epistemológica</span><input id="cat-function" data-catalog-field="funcion"><select class="catalog-field-state" data-state-for="funcion" aria-label="Condición de función epistemológica"><option value="verificado">Verificado</option><option value="propuesto" selected>Propuesto</option><option value="sin_determinar">Sin determinar</option></select></label>
+            <label class="field assisted-field"><span>Propiedad</span><input id="cat-property" data-catalog-field="propiedad"><select class="catalog-field-state" data-state-for="propiedad" aria-label="Condición de propiedad"><option value="verificado">Verificado</option><option value="propuesto">Propuesto</option><option value="sin_determinar" selected>Sin determinar</option></select></label>
+            <label class="field assisted-field"><span>Control</span><input id="cat-control" data-catalog-field="control"><select class="catalog-field-state" data-state-for="control" aria-label="Condición de control"><option value="verificado">Verificado</option><option value="propuesto">Propuesto</option><option value="sin_determinar" selected>Sin determinar</option></select></label>
+            <label class="field assisted-field"><span>Orientación</span><input id="cat-orientation" data-catalog-field="orientacion"><select class="catalog-field-state" data-state-for="orientacion" aria-label="Condición de orientación"><option value="verificado">Verificado</option><option value="propuesto">Propuesto</option><option value="sin_determinar" selected>Sin determinar</option></select></label>
+            <label class="field assisted-field span2"><span>Perspectiva</span><input id="cat-perspective" data-catalog-field="perspectiva"><select class="catalog-field-state" data-state-for="perspectiva" aria-label="Condición de perspectiva"><option value="verificado">Verificado</option><option value="propuesto">Propuesto</option><option value="sin_determinar" selected>Sin determinar</option></select></label>
+            <label class="field assisted-field"><span>Confianza</span><input id="cat-confidence" data-catalog-field="confianza"><select class="catalog-field-state" data-state-for="confianza" aria-label="Condición de confianza"><option value="verificado">Verificado</option><option value="propuesto">Propuesto</option><option value="sin_determinar" selected>Sin determinar</option></select></label>
+            <label class="field assisted-field"><span>Nivel de corroboración</span><input id="cat-corroboration" data-catalog-field="corroboracion"><select class="catalog-field-state" data-state-for="corroboracion" aria-label="Condición de corroboración"><option value="verificado">Verificado</option><option value="propuesto">Propuesto</option><option value="sin_determinar" selected>Sin determinar</option></select></label>
+            <label class="field span2"><span>Corroborar con</span><input id="cat-corroborate-with"></label>
+            <label class="field span2"><span>Uso recomendado</span><textarea id="cat-use" rows="3"></textarea></label>
+            <label class="field span2"><span>Observaciones</span><textarea id="cat-observations" rows="4"></textarea></label>
+          </div>
+        </fieldset>
+
+        <fieldset><legend>Investigación asistida</legend>
+          <p class="help">Generá un encargo para investigar la fuente en ChatGPT. La respuesta debe volver como JSON; al aplicarla, los campos seguirán pendientes de tu confirmación.</p>
+          <div class="button-row">
+            <button type="button" id="generate-catalog-research" class="btn ghost">Generar encargo de investigación</button>
+            <button type="button" id="copy-catalog-research" class="btn ghost" disabled>Copiar encargo</button>
+          </div>
+          <label class="field"><span>Encargo</span><textarea id="catalog-research-prompt" rows="12" readonly></textarea></label>
+          <label class="field"><span>Pegar respuesta JSON de la investigación</span><textarea id="catalog-research-response" rows="10" placeholder='{"nombre":"…","estados":{"nombre":"verificado"},"evidencias":[…]}'></textarea></label>
+          <button type="button" id="apply-catalog-research" class="btn ghost">Aplicar respuesta al formulario</button>
+        </fieldset>
+
+        <label class="review-confirmation"><input id="catalog-review-confirmed" type="checkbox" required><span>Revisé los datos y las propuestas. Confirmo que los campos interpretativos no se consideran verificados automáticamente.</span></label>
+      </div>
+      <footer class="dialog-foot"><span></span><div><button type="button" id="cancel-catalog-entry" class="btn ghost">Cancelar</button><button class="btn primary">Crear y vincular fuente</button></div></footer>
+    </form>
+  </dialog>
+
+  <dialog id="expedient-editor" class="large-dialog">
+    <form id="expedient-form">
+      <header class="dialog-head"><div><p class="eyebrow">ENCARGO EDITORIAL</p><h2 id="expedient-editor-title">Preparar encargo</h2></div><button type="button" id="close-expedient-editor" class="icon" aria-label="Cerrar">×</button></header>
+      <div class="dialog-body">
+        <input id="exp-original-id" type="hidden">
+        <fieldset><legend>Identificación</legend><div class="form-grid">
+          <label class="field"><span>ID</span><input id="x-id" required></label>
+          <label class="field"><span>Tipo documental</span><select id="x-doc-type"><option value="movimiento">Movimiento</option><option value="foco">Foco</option><option value="dossier">Dossier</option></select></label>
+          <label class="field"><span>Estado</span><select id="x-editor-status"><option value="borrador">Borrador</option><option value="fuentes_pendientes">Fuentes pendientes</option><option value="listo_para_prompt">Listo para encargo de redacción</option><option value="prompt_exportado">Encargo exportado</option><option value="borrador_recibido">Borrador recibido</option><option value="revision_editorial">Revisión editorial</option><option value="aprobado">Aprobado</option><option value="publicado">Publicado</option><option value="archivado">Archivado</option></select></label>
+          <label class="field"><span>Extensión objetivo</span><input id="x-length" type="number" min="300" max="10000" step="100"></label>
+          <label class="field span2"><span>Título de trabajo</span><input id="x-title" required></label>
+          <label class="field span2"><span>Pregunta editorial</span><textarea id="x-question" rows="3" required></textarea></label>
+          <label class="field span2"><span>Tesis central</span><textarea id="x-thesis" rows="4" required></textarea></label>
+        </div></fieldset>
+        <fieldset><legend>Macroeventos de origen</legend><div id="x-event-options" class="check-grid"></div></fieldset>
+        <fieldset><legend>Señales seleccionadas</legend><div id="x-signal-options" class="check-grid"></div></fieldset>
+        <fieldset><legend>Fuentes autorizadas</legend><p class="help">Solo aparecen como autorizables las fuentes verificadas. Las demás se muestran como pendientes.</p><div id="x-source-options" class="check-grid"></div></fieldset>
+        <fieldset><legend>Clasificación pública</legend><div class="form-grid">
+          <label class="field span2"><span>Geografías públicas, separadas por coma</span><input id="x-geographies"></label>
+          <label class="field span2"><span>Temas públicos, separados por coma</span><input id="x-topics" placeholder="infraestructura-estrategica, energia-recursos"></label>
+          <label class="field span2"><span>Procesos públicos, separados por coma</span><input id="x-processes"></label>
+          <label class="field"><span>Incertidumbres, una por línea</span><textarea id="x-uncertainties" rows="5"></textarea></label>
+          <label class="field"><span>Documentos relacionados, uno por línea</span><textarea id="x-related" rows="5"></textarea></label>
+        </div></fieldset>
+        <fieldset><legend>Diversidad y cobertura</legend><div id="exp-diversity"></div></fieldset>
+        <fieldset><legend>Suficiencia documental</legend><div id="exp-sufficiency"></div></fieldset>
+        <fieldset id="chatgpt-briefs"><legend>Encargos para ChatGPT</legend>
+          <p class="assisted-output-note">Este panel genera instrucciones para ChatGPT. No redacta ni descarga automáticamente el artículo final.</p>
+          <div class="prompt-workspace">
+            <div class="prompt-status-block">
+              <div id="prompt-mode-label" class="prompt-local-status neutral" role="status" aria-live="polite"><b>Sin encargo generado.</b><span>Elegí investigación para ampliar evidencia o redacción para preparar el futuro borrador.</span></div>
+              <p id="prompt-editorial-state-note" class="help">Las acciones de generar, copiar o descargar no cambian automáticamente el estado editorial del encargo.</p>
+              <div id="prompt-state-suggestion" class="prompt-state-suggestion" hidden>
+                <span>El encargo fue descargado. El estado editorial continúa sin cambios.</span>
+                <button type="button" id="mark-prompt-exported" class="btn ghost small">Marcar como “Encargo exportado”</button>
+              </div>
+              <label class="field prompt-filename"><span>Nombre del archivo</span><input id="prompt-filename" type="text" placeholder="Se completa al generar un encargo" disabled></label>
+            </div>
+            <div class="prompt-actions" aria-label="Acciones del encargo">
+              <button type="button" id="generate-research-plan" class="btn primary">Generar encargo de investigación</button>
+              <button type="button" id="generate-draft-prompt" class="btn ghost">Generar encargo de redacción</button>
+              <button type="button" id="copy-prompt" class="btn ghost" disabled>Copiar encargo</button>
+              <button type="button" id="download-prompt" class="btn ghost" disabled>Descargar encargo .md</button>
+            </div>
+          </div>
+          <textarea id="prompt-preview" rows="20" readonly aria-label="Contenido del encargo generado"></textarea>
+        </fieldset>
+      </div>
+      <footer class="dialog-foot"><button type="button" id="delete-expedient" class="btn danger">Eliminar</button><div><button type="button" id="duplicate-expedient" class="btn ghost">Duplicar</button><button type="button" id="cancel-expedient-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar encargo</button></div></footer>
+    </form>
+  </dialog>
+
+  <dialog id="help-dialog" class="help-dialog">
+    <div class="help-dialog-shell">
+      <header class="dialog-head"><div><p class="eyebrow">INFORMACIÓN Y OPERACIÓN</p><h2>Ayuda del Observatorio</h2></div><button type="button" id="close-help-dialog" class="icon" aria-label="Cerrar ayuda general">×</button></header>
+      <div class="dialog-body help-general-body">
+        <section class="help-version-card">
+          <div><span>Versión instalada</span><strong id="help-version">v0.6.3</strong></div>
+          <div><span>Servidor</span><strong id="help-server-state">Comprobando…</strong></div>
+          <div><span>Esquema de datos</span><strong id="help-schema-version">—</strong></div>
+          <div><span>Taxonomía</span><strong id="help-taxonomy-version">—</strong></div>
+        </section>
+        <section><h3>Qué es esta aplicación</h3><p>Dashboard local y autónomo para generar búsquedas, revisar macroeventos, incorporar su evolución y preparar encargos editoriales internos. No publica en Memo Geopolítico, no usa APIs externas y no modifica GitHub.</p></section>
+        <section><h3>Expedientes públicos y encargos editoriales</h3><p>Cada macroevento genera directamente un expediente público del Observatorio. Un encargo editorial es un trabajo interno y opcional para investigar o redactar una publicación a partir de uno o más macroeventos.</p></section>
+        <section><h3>Datos activos</h3><dl class="help-data-list"><dt>Archivo editorial</dt><dd>data/macroeventos.json</dd><dt>Catálogo de fuentes</dt><dd>data/catalogo-medios.json</dd><dt>Taxonomía</dt><dd>data/taxonomia-temas.json</dd><dt>Generador</dt><dd>data/configuracion-busqueda.json</dd><dt>Configuración</dt><dd>data/config.json</dd></dl><div id="help-counts" class="help-counts"></div></section>
+        <section><h3>Flujo editorial</h3><ol><li>Configurar y generar un prompt de búsqueda contextual.</li><li>Ejecutarlo en ChatGPT e importar el lote JSON completo.</li><li>Revisar candidatos nuevos, actualizaciones, casos sin novedad y compuestos.</li><li>Aplicar las decisiones y guardar con backup.</li><li>Crear o actualizar un encargo editorial y evaluar suficiencia documental.</li><li>Generar el encargo de redacción y revisar el Markdown antes de incorporarlo al sitio.</li></ol></section>
+        <section><h3>Guardar y recuperar</h3><p><b>Aplicar cambios</b> actualiza la memoria de la pestaña. <b>Guardar</b> persiste en JSON y crea un backup. Si el servidor se desconecta, mantené la pestaña abierta, reiniciá <code>npm run start</code> y volvé a guardar.</p></section>
+        <section><h3>Cambios principales de v0.6.3</h3><ul><li>Expedientes reproduce el estado público efectivo usado por el sitio.</li><li>Las publicaciones relacionadas tienen prioridad sobre el estado base del expediente.</li><li>La consulta es de solo lectura y no modifica macroeventos ni publicaciones.</li><li>Expedientes y Encargos editoriales permanecen como funciones separadas.</li></ul></section>
+      </div>
+      <footer class="dialog-foot"><span></span><button type="button" id="close-help-dialog-footer" class="btn primary">Cerrar</button></footer>
+    </div>
+  </dialog>
+</body>
+</html>

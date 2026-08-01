@@ -1,0 +1,9 @@
+node_modules/
+data/sesiones/*
+!data/sesiones/.gitkeep
+data/backups/*
+!data/backups/.gitkeep
+modules/observatorio/backups/*.json
+modules/flujo-editorial/backups/*.json
+*.log
+*.tmp

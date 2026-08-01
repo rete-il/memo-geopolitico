@@ -1,0 +1,19 @@
+{
+  "name": "memo-geopolitico-centro-local-integrado",
+  "version": "0.2.3",
+  "private": true,
+  "type": "module",
+  "description": "Espacio local único para operar Observatorio, Medios y Flujo editorial.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "open": "node server.mjs --open",
+    "test": "node --test",
+    "check": "node --test && node server.mjs --check"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
