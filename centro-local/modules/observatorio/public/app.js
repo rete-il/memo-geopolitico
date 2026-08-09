@@ -49,6 +49,9 @@ const S = {
   catalogBackups: [],
   changed: false,
   eventDraft: null,
+  eventDraftChanged: false,
+  eventEditorMode: '',
+  lastEditedEventId: '',
   expDraft: null,
   currentPrompt: '',
   currentPromptMode: '',
@@ -188,9 +191,16 @@ function notificationNode() {
   return node;
 }
 
-function message(text, type = 'success', persistent = false) {
+function message(text, type = 'success', persistent = false, action = null) {
   const node = notificationNode();
-  node.textContent = text;
+  node.replaceChildren(document.createTextNode(text));
+  if (action?.href && action?.label) {
+    const link = document.createElement('a');
+    link.className = 'message-action';
+    link.href = action.href;
+    link.textContent = action.label;
+    node.append(link);
+  }
   node.className = `${node.classList.contains('dialog-message') ? 'dialog-message ' : ''}message ${type}${persistent ? ' persistent' : ''}`;
   node.hidden = false;
   const prior = notificationTimers.get(node);
@@ -205,6 +215,50 @@ function dirty(value = true) {
   S.changed = value;
   $('#save-state').textContent = value ? 'Cambios sin guardar' : 'Sin cambios';
   $('#save-state').classList.toggle('dirty', value);
+  refreshPreparationAction();
+}
+
+function preparationEnabled() {
+  return S.config?.features?.preparacion_analisis_seguimiento === true;
+}
+
+function preparationUrl(eventId) {
+  return `/preparacion.html?macroevento_id=${encodeURIComponent(eventId)}`;
+}
+
+function preparationBlockReason(eventId) {
+  if (!preparationEnabled()) return 'La función está deshabilitada en la configuración local.';
+  if (!eventId || !byId(eventId)) return 'La preparación requiere un macroevento existente y guardado.';
+  if (S.changed) return 'Guardá primero los cambios pendientes del Observatorio.';
+  if (S.eventDraftChanged) return 'Aplicá o cancelá los cambios de esta ficha antes de preparar.';
+  return '';
+}
+
+function refreshPreparationAction() {
+  const entry = $('#event-preparation-action');
+  const button = $('#prepare-analysis-followup');
+  const help = $('#prepare-analysis-help');
+  if (!entry || !button || !help) return;
+  const eventId = $('#event-original-id')?.value || '';
+  const visible = preparationEnabled() && S.eventEditorMode === 'edit' && Boolean(eventId);
+  entry.hidden = !visible;
+  if (!visible) return;
+  const reason = preparationBlockReason(eventId);
+  button.disabled = Boolean(reason);
+  button.title = reason;
+  help.textContent = reason || 'Genera los prompts, propuestas de archivos e informe de trazabilidad para este macroevento.';
+}
+
+function markEventDraftChanged() {
+  if (!S.eventDraft || S.eventEditorMode !== 'edit') return;
+  S.eventDraftChanged = true;
+  refreshPreparationAction();
+}
+
+function openPreparation(eventId) {
+  const reason = preparationBlockReason(eventId);
+  if (reason) return message(reason, 'warning');
+  window.location.assign(preparationUrl(eventId));
 }
 
 window.addEventListener('beforeunload', (event) => {
@@ -229,6 +283,16 @@ async function bootstrap() {
   fillFilters();
   renderAll();
   renderHelp();
+  openRequestedLocation();
+}
+
+function openRequestedLocation() {
+  const params = new URLSearchParams(window.location.search);
+  const requestedView = params.get('view');
+  const allowedViews = new Set(['overview', 'events', 'matrix', 'taxonomy', 'search', 'public-expedients', 'expedients', 'data']);
+  if (allowedViews.has(requestedView)) view(requestedView);
+  const eventId = params.get('macroevento_id')?.trim() || '';
+  if (eventId && byId(eventId)) openEvent(eventId);
 }
 
 function view(id) {
@@ -824,7 +888,10 @@ function openEvent(id = '', mode = 'edit') {
     S.eventDraft.fuentes = S.eventDraft.fuentes.map((source, index) => ({ ...source, id: `src-${base}-${String(index + 1).padStart(3, '0')}`, estado_verificacion: 'pendiente' }));
     S.eventDraft.senales.forEach((signal) => { signal.fuente_ids = []; });
   }
+  S.eventEditorMode = mode;
+  S.eventDraftChanged = false;
   fillEventFields(S.eventDraft, mode);
+  refreshPreparationAction();
   $('#event-editor').showModal();
   $('#e-title').focus();
 }
@@ -1718,6 +1785,7 @@ function downloadText(filename, content, type = 'text/markdown;charset=utf-8') {
 }
 
 async function save() {
+  const savedEventId = S.lastEditedEventId;
   try {
     const response = await api('/api/data', { method: 'PUT', body: JSON.stringify(S.data) });
     S.data = response.data;
@@ -1726,7 +1794,11 @@ async function save() {
     await refreshBackups();
     fillFilters();
     renderAll();
-    message(`Guardado. Backup: ${response.backup || 'no creado'}.`);
+    const action = preparationEnabled() && savedEventId && byId(savedEventId)
+      ? { label: 'Preparar análisis y seguimiento', href: preparationUrl(savedEventId) }
+      : null;
+    message(`Guardado. Backup: ${response.backup || 'no creado'}.`, 'success', false, action);
+    S.lastEditedEventId = '';
   } catch (error) {
     S.validation = error.payload || S.validation;
     dirty(true);
@@ -2081,6 +2153,7 @@ document.addEventListener('click', (event) => {
   if (deleteSignal && confirm('¿Eliminar esta señal del macroevento?')) {
     S.eventDraft.senales.splice(Number(deleteSignal.dataset.deleteSignal), 1);
     renderSignalCards();
+    markEventDraftChanged();
   }
   const editSource = event.target.closest('[data-edit-source]');
   if (editSource) openSource(Number(editSource.dataset.editSource));
@@ -2091,6 +2164,7 @@ document.addEventListener('click', (event) => {
     S.eventDraft.senales.forEach((signal) => { signal.fuente_ids = signal.fuente_ids.filter((id) => id !== source.id); });
     renderSourceCards();
     renderSignalCards();
+    markEventDraftChanged();
   }
 });
 
@@ -2216,7 +2290,10 @@ $('#sg-download-prompt').onclick = () => {
 $('#clear-expedients').onclick = () => { ['#x-search', '#x-type', '#x-status', '#x-event'].forEach((selector) => { $(selector).value = ''; }); renderExpedients(); };
 
 // Editor de macroeventos
-$('#close-event-editor').onclick = $('#cancel-event-editor').onclick = () => { closeContextHelp(false); $('#event-editor').close(); };
+$('#close-event-editor').onclick = $('#cancel-event-editor').onclick = () => { closeContextHelp(false); S.eventDraftChanged = false; $('#event-editor').close(); };
+$('#event-form').addEventListener('input', markEventDraftChanged);
+$('#event-form').addEventListener('change', markEventDraftChanged);
+$('#prepare-analysis-followup').onclick = () => openPreparation($('#event-original-id').value);
 $('#e-theme-search').addEventListener('input', renderThemeEditor);
 $('#e-theme-review').addEventListener('change', () => { if ($('#e-theme-review').value === 'revisada' && !$('#e-theme-reviewed').value) $('#e-theme-reviewed').value = today(); });
 $('#add-signal').onclick = () => openSignal();
@@ -2232,6 +2309,8 @@ $('#event-form').addEventListener('submit', (event) => {
     S.data.macroeventos[index] = value;
     S.data.expedientes_editoriales.forEach((exp) => { exp.macroevento_ids = exp.macroevento_ids.map((id) => id === originalId ? value.id : id); });
   } else S.data.macroeventos.push(value);
+  S.lastEditedEventId = value.id;
+  S.eventDraftChanged = false;
   $('#event-editor').close();
   dirty(true);
   fillFilters();
@@ -2261,6 +2340,7 @@ $('#signal-form').addEventListener('submit', (event) => {
   if (index >= 0) S.eventDraft.senales[index] = value; else S.eventDraft.senales.push(value);
   $('#signal-editor').close();
   renderSignalCards();
+  markEventDraftChanged();
 });
 
 // Editor de fuentes
@@ -2311,6 +2391,7 @@ $('#source-form').addEventListener('submit', (event) => {
   $('#source-editor').close();
   renderSourceCards();
   renderSignalCards();
+  markEventDraftChanged();
 });
 
 // Encargos editoriales (el esquema conserva la clave histórica expedientes_editoriales)

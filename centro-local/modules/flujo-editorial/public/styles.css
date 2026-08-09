@@ -49,6 +49,9 @@ button { cursor: pointer; }
 .button:focus-visible, .icon-button:focus-visible, .nav-item:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(45,111,166,.27); outline-offset: 2px; }
 .save-state { font-size: .82rem; color: var(--muted); padding: 7px 9px; border-radius: 999px; background: var(--surface-alt); }
 .save-state.is-dirty { color: var(--warning); background: #fff4d8; }
+.save-state.is-saving { color: #1d6293; background: #e3f1fb; }
+.save-state.is-saved { color: var(--success); background: #e6f4e8; }
+.save-state.is-error { color: var(--danger); background: #fff0ee; }
 .message { min-height: 0; margin: 0 clamp(18px, 3vw, 40px); border-radius: 10px; overflow: hidden; }
 .message.is-visible { margin-top: 14px; padding: 11px 14px; background: #e9f3ff; color: #174c79; border: 1px solid #c8def3; }
 .message.is-error { background: #fff0ee; color: #8a2d25; border-color: #efc7c2; }
@@ -150,8 +153,10 @@ td { font-size: .86rem; }
   .sidebar { position: fixed; left: 0; transform: translateX(-102%); transition: transform .2s ease; width: 270px; }
   .sidebar.is-open { transform: translateX(0); }
   .menu-button { display: inline-grid; place-items: center; }
-  .topbar { padding-inline: 14px; }
-  .topbar__actions .save-state, #reload-button { display: none; }
+  .topbar { padding-inline: 14px; display: grid; grid-template-columns: auto minmax(0, 1fr); }
+  .topbar__actions { grid-column: 1 / -1; width: 100%; margin-left: 0; display: grid; grid-template-columns: 1fr 1fr; }
+  .topbar__actions .save-state { grid-column: 1 / -1; justify-self: start; }
+  .topbar__actions .button { min-height: 44px; }
   main { padding-inline: 14px; }
   .metric-grid { grid-template-columns: repeat(2, 1fr); }
   .document-row { grid-template-columns: 1fr; }
@@ -165,4 +170,6 @@ td { font-size: .86rem; }
   .metric-grid { grid-template-columns: 1fr; }
   .topbar h1 { font-size: 1.2rem; }
   .button { padding: 9px 11px; }
+  .topbar__actions { grid-template-columns: 1fr; }
+  .topbar__actions .save-state { grid-column: auto; }
 }

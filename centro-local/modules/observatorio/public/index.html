@@ -282,7 +282,14 @@
         <fieldset id="event-update-history-section" hidden><legend>Historial de actualizaciones</legend><p class="help">Trazabilidad de lotes incorporados sin reemplazar la identidad ni el estado editorial del macroevento.</p><div id="event-update-history" class="update-history"></div></fieldset>
         <fieldset><legend>Diversidad de cobertura</legend><div id="event-diversity"></div></fieldset>
       </div>
-      <footer class="dialog-foot"><button type="button" id="delete-event" class="btn danger">Eliminar</button><div><button type="button" id="duplicate-event" class="btn ghost">Duplicar</button><button type="button" id="cancel-event-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar cambios</button></div></footer>
+      <footer class="dialog-foot event-dialog-foot">
+        <button type="button" id="delete-event" class="btn danger">Eliminar</button>
+        <div id="event-preparation-action" class="preparation-entry" hidden>
+          <button type="button" id="prepare-analysis-followup" class="btn preparation" aria-describedby="prepare-analysis-help">Preparar análisis y seguimiento</button>
+          <small id="prepare-analysis-help">Genera los prompts, propuestas de archivos e informe de trazabilidad para este macroevento.</small>
+        </div>
+        <div class="event-standard-actions"><button type="button" id="duplicate-event" class="btn ghost">Duplicar</button><button type="button" id="cancel-event-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar cambios</button></div>
+      </footer>
     </form>
   </dialog>
 

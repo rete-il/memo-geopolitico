@@ -14,3 +14,13 @@ Thumbs.db
 .env.development
 .env.preview
 /local-preview/
+
+# Resguardos e informes operativos locales
+/backups-instalacion/
+/centro-local/backups-instalacion/
+/check-fase*.txt
+/errores-test.txt
+/qa-*.txt
+/resultado-test-vigente.txt
+/revision-cambios-*.txt
+/staging-*.txt

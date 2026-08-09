@@ -45,6 +45,7 @@ macroevento_secundario_ids: []
   assert.equal(snapshot.by_event['rail-baltica'].estado, 'publicado');
   assert.equal(snapshot.by_event['rail-baltica'].actualizado_el, '2026-07-23');
   assert.equal(snapshot.by_event['land-bridge'].estado, 'en_revision');
+  assert.equal(snapshot.process_by_event['rail-baltica'].macroevento_id, 'rail-baltica');
   assert.deepEqual(snapshot.warnings, []);
 });
 
@@ -52,5 +53,6 @@ test('degrada de forma segura cuando el sitio público no está disponible', () 
   const snapshot = loadPublicExpedientStates(path.join(os.tmpdir(), 'memo-public-states-inexistente'));
   assert.equal(snapshot.available, false);
   assert.deepEqual(snapshot.by_event, {});
+  assert.deepEqual(snapshot.process_by_event, {});
   assert.deepEqual(snapshot.warnings, []);
 });

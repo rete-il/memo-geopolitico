@@ -1,6 +1,16 @@
 node_modules/
 data/sesiones/*
 !data/sesiones/.gitkeep
+data/paquetes/*
+!data/paquetes/.gitkeep
+data/aplicaciones/*
+!data/aplicaciones/.gitkeep
+data/integraciones/*
+!data/integraciones/.gitkeep
+data/promociones/*
+!data/promociones/.gitkeep
+data/publicaciones/borradores/*
+!data/publicaciones/borradores/.gitkeep
 data/backups/*
 !data/backups/.gitkeep
 modules/observatorio/backups/*.json

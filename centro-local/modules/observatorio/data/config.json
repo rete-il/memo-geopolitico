@@ -6,5 +6,8 @@
   "max_backups": 30,
   "horizonte_minimo_anios": 3,
   "horizonte_maximo_anios": 10,
-  "requiere_fuentes_para_validar": 2
+  "requiere_fuentes_para_validar": 2,
+  "features": {
+    "preparacion_analisis_seguimiento": true
+  }
 }

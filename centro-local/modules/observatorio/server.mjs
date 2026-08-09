@@ -3,7 +3,29 @@ import http from 'node:http';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { createAnalysisPromptSession, loadAnalysisPromptSession } from './lib/analysis-prompt.mjs';
+import { approveAnalysisResponse, saveAnalysisResponse } from './lib/analysis-response.mjs';
+import { generateFollowupProposal } from './lib/followup-proposal.mjs';
+import {
+  applyLocalApplication,
+  planLocalApplication,
+  rollbackLocalApplication,
+  serializeApplicationPlan,
+} from './lib/local-application.mjs';
+import {
+  applyLocalIntegration,
+  planLocalIntegration,
+  rollbackLocalIntegration,
+  serializeIntegrationPlan,
+} from './lib/local-integration.mjs';
+import {
+  applyLocalPublication,
+  planLocalPublication,
+  rollbackLocalPublication,
+  serializePublicationPlan,
+} from './lib/local-publication.mjs';
 import { loadPublicExpedientStates } from './lib/public-expedients.mjs';
+import { generateReviewPackage, resolvePreparedReviewPackage } from './lib/review-package.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const root = path.dirname(__filename);
@@ -15,8 +37,16 @@ const catalogPath = path.join(root, 'data', 'catalogo-medios.json');
 const searchConfigPath = path.join(root, 'data', 'configuracion-busqueda.json');
 const configPath = path.join(root, 'data', 'config.json');
 const backupsDir = path.join(root, 'backups');
+const sessionsDir = path.resolve(root, '..', '..', 'data', 'sesiones');
+const packagesDir = path.resolve(root, '..', '..', 'data', 'paquetes');
+const centerRoot = path.resolve(root, '..', '..');
+const draftsDir = path.join(centerRoot, 'data', 'publicaciones', 'borradores');
+const applicationsDir = path.join(centerRoot, 'data', 'aplicaciones');
+const integrationsDir = path.join(centerRoot, 'data', 'integraciones');
+const publicationsDir = path.join(centerRoot, 'data', 'promociones');
+const commonBackupsDir = path.join(centerRoot, 'data', 'backups');
 const config = readJson(configPath);
-const APP_VERSION = '0.6.3';
+const APP_VERSION = '0.9.1';
 
 const HOST = process.env.OBSERVATORIO_HOST || config.host || '127.0.0.1';
 const PORT = Number(process.env.OBSERVATORIO_PORT || config.puerto || 4323);
@@ -582,6 +612,299 @@ const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, `http://${req.headers.host || `${HOST}:${PORT}`}`);
 
     if (req.method === 'GET' && url.pathname === '/api/health') return sendJson(res, 200, { ok: true, version: APP_VERSION });
+
+    if (req.method === 'GET' && url.pathname === '/api/followup-proposal') {
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const proposal = await generateFollowupProposal({
+        projectRoot,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        eventId: url.searchParams.get('macroevento_id'),
+        publicExpedients: loadPublicExpedientStates(projectRoot),
+      });
+      return sendJson(res, proposal.status === 'ready' ? 200 : 422, proposal);
+    }
+
+    if (req.method === 'GET' && url.pathname === '/api/preparation-session') {
+      const result = loadAnalysisPromptSession({
+        sessionsDir,
+        eventId: url.searchParams.get('macroevento_id'),
+      });
+      return sendJson(res, result.status === 'blocked' ? 422 : 200, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/analysis-prompt') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const publicExpedients = loadPublicExpedientStates(projectRoot);
+      const followupProposal = await generateFollowupProposal({
+        projectRoot,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        eventId,
+        publicExpedients,
+      });
+      const result = createAnalysisPromptSession({
+        sessionsDir,
+        data,
+        catalog,
+        eventId,
+        followupProposal,
+        publicExpedients,
+        editorialFocus: text(input.enfoque_editorial, 3000),
+        warningJustification: text(input.justificacion_advertencias, 5000),
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/analysis-response') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const result = saveAnalysisResponse({
+        sessionsDir,
+        data,
+        projectRoot,
+        eventId,
+        markdown: String(input.markdown ?? '').slice(0, MAX_BODY),
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/analysis-response/approve') {
+      const input = await readBody(req);
+      const result = approveAnalysisResponse({
+        sessionsDir,
+        eventId: text(input.macroevento_id, 220),
+        expectedHash: text(input.hash_sha256, 128),
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/review-package') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const publicExpedients = loadPublicExpedientStates(projectRoot);
+      const currentFollowupProposal = await generateFollowupProposal({
+        projectRoot,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        eventId,
+        publicExpedients,
+      });
+      const result = generateReviewPackage({
+        sessionsDir,
+        packagesDir,
+        data,
+        projectRoot,
+        eventId,
+        currentFollowupProposal,
+      });
+      if (result.status === 'ready') {
+        result.download_url = `/api/review-package/download?macroevento_id=${encodeURIComponent(eventId)}`;
+      }
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'GET' && url.pathname === '/api/review-package/download') {
+      const result = resolvePreparedReviewPackage({
+        sessionsDir,
+        packagesDir,
+        eventId: url.searchParams.get('macroevento_id'),
+      });
+      if (result.status !== 'ready') return sendJson(res, 404, result);
+      res.writeHead(200, {
+        'Content-Type': 'application/zip',
+        'Content-Disposition': `attachment; filename="${result.filename}"`,
+        'Content-Length': result.content.length,
+        'Cache-Control': 'no-store',
+      });
+      return res.end(result.content);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-application/plan') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const currentFollowupProposal = await generateFollowupProposal({
+        projectRoot,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        eventId,
+        publicExpedients: loadPublicExpedientStates(projectRoot),
+      });
+      const result = planLocalApplication({
+        centerRoot,
+        sessionsDir,
+        packagesDir,
+        draftsDir,
+        applicationsDir,
+        backupsDir: commonBackupsDir,
+        data,
+        projectRoot,
+        eventId,
+        currentFollowupProposal,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, serializeApplicationPlan(result));
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-application/apply') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const currentFollowupProposal = await generateFollowupProposal({
+        projectRoot,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        eventId,
+        publicExpedients: loadPublicExpedientStates(projectRoot),
+      });
+      const result = applyLocalApplication({
+        centerRoot,
+        sessionsDir,
+        packagesDir,
+        draftsDir,
+        applicationsDir,
+        backupsDir: commonBackupsDir,
+        data,
+        projectRoot,
+        eventId,
+        currentFollowupProposal,
+        expectedPlanId: text(input.plan_id, 128),
+        confirmed: input.confirmado === true,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-application/rollback') {
+      const input = await readBody(req);
+      const result = rollbackLocalApplication({
+        centerRoot,
+        sessionsDir,
+        applicationsDir,
+        eventId: text(input.macroevento_id, 220),
+        applicationId: text(input.application_id, 240),
+        confirmed: input.confirmado === true,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-integration/plan') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const currentFollowupProposal = await generateFollowupProposal({
+        projectRoot,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        eventId,
+        publicExpedients: loadPublicExpedientStates(projectRoot),
+      });
+      const result = planLocalIntegration({
+        centerRoot,
+        siteRoot: projectRoot,
+        sessionsDir,
+        integrationsDir,
+        backupsDir: commonBackupsDir,
+        eventId,
+        currentFollowupProposal,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, serializeIntegrationPlan(result));
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-integration/apply') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const currentFollowupProposal = await generateFollowupProposal({
+        projectRoot,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        eventId,
+        publicExpedients: loadPublicExpedientStates(projectRoot),
+      });
+      const result = applyLocalIntegration({
+        centerRoot,
+        siteRoot: projectRoot,
+        sessionsDir,
+        integrationsDir,
+        backupsDir: commonBackupsDir,
+        eventId,
+        currentFollowupProposal,
+        expectedPlanId: text(input.plan_id, 128),
+        confirmed: input.confirmado === true,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-integration/rollback') {
+      const input = await readBody(req);
+      const result = rollbackLocalIntegration({
+        centerRoot,
+        siteRoot: projectRoot,
+        sessionsDir,
+        integrationsDir,
+        eventId: text(input.macroevento_id, 220),
+        integrationId: text(input.integration_id, 240),
+        confirmed: input.confirmado === true,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-publication/plan') {
+      const input = await readBody(req);
+      const result = planLocalPublication({
+        centerRoot,
+        siteRoot: projectRoot,
+        sessionsDir,
+        publicationsDir,
+        backupsDir: commonBackupsDir,
+        eventId: text(input.macroevento_id, 220),
+        publishedOn: text(input.publicado_el, 10),
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, serializePublicationPlan(result));
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-publication/apply') {
+      const input = await readBody(req);
+      const result = applyLocalPublication({
+        centerRoot,
+        siteRoot: projectRoot,
+        sessionsDir,
+        publicationsDir,
+        backupsDir: commonBackupsDir,
+        eventId: text(input.macroevento_id, 220),
+        publishedOn: text(input.publicado_el, 10),
+        expectedPlanId: text(input.plan_id, 128),
+        confirmed: input.confirmado === true,
+        reviewConfirmed: input.revision_confirmada === true,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-publication/rollback') {
+      const input = await readBody(req);
+      const result = rollbackLocalPublication({
+        centerRoot,
+        siteRoot: projectRoot,
+        sessionsDir,
+        publicationsDir,
+        eventId: text(input.macroevento_id, 220),
+        publicationId: text(input.publication_id, 240),
+        confirmed: input.confirmado === true,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
 
     if (req.method === 'GET' && url.pathname === '/api/bootstrap') {
       const catalog = normalizeCatalog(readJson(catalogPath));

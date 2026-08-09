@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Preparar análisis y seguimiento · Observatorio</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/preparacion.js" type="module"></script>
+</head>
+<body class="preparation-page">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <main id="main" class="preparation-shell">
+    <header class="preparation-header">
+      <div>
+        <p class="eyebrow">CIRCUITO ACELERADO · PREPARACIÓN LOCAL</p>
+        <h1 id="preparation-title">Cargando macroevento…</h1>
+        <div class="preparation-identity">
+          <span id="preparation-status" class="badge info" role="status" aria-live="polite">Comprobando datos</span>
+          <code id="preparation-event-id" class="preparation-id"></code>
+        </div>
+      </div>
+      <a id="back-to-observatory" class="btn ghost" href="/?view=events">Volver al Observatorio</a>
+    </header>
+
+    <section class="panel preparation-intro" aria-labelledby="preparation-heading">
+      <p class="eyebrow">FASE 7 · APLICACIÓN LOCAL CONTROLADA</p>
+      <h2 id="preparation-heading">Aplicar únicamente los archivos validados</h2>
+      <p>Esta vista conserva la revisión y descarga de la Fase 6. Ahora también puede comprobar destinos, preparar un backup y aplicar el análisis aprobado como borrador canónico local. El preflight no aplica el análisis, no modifica los datos canónicos y cada escritura posterior requiere confirmación explícita. La aplicación es reversible y no modifica archivos públicos ni ejecuta Git.</p>
+    </section>
+
+    <div id="preparation-content" hidden>
+      <div class="preparation-results" aria-label="Resultados previstos">
+        <section class="panel preparation-result">
+          <header><h2>Proceso en evolución</h2><span class="badge good">Seleccionado</span></header>
+          <p>Actualizará el mismo macroevento y conservará su <code>macroevento_id</code>.</p>
+          <ul><li>No crea Markdown.</li><li>No duplica el proceso.</li><li>La propuesta y sus diferencias se generan primero en memoria.</li></ul>
+        </section>
+        <section class="panel preparation-result">
+          <header><h2>Análisis completo</h2><span class="badge good">Seleccionado</span></header>
+          <p>Preparará una publicación autónoma vinculada con el macroevento.</p>
+          <ul><li>Puede haber varios análisis por proceso.</li><li>ChatGPT se utiliza mediante copiar y pegar.</li><li>El prompt y su estado se guardan en una sesión local reanudable.</li></ul>
+        </section>
+      </div>
+
+      <section class="panel preflight-panel" aria-labelledby="preflight-heading">
+        <header class="preflight-header">
+          <div>
+            <p class="eyebrow">CONTROL ORIENTADO A EXCEPCIONES</p>
+            <h2 id="preflight-heading">Preflight del macroevento</h2>
+          </div>
+          <button id="rerun-preflight" class="btn small ghost" type="button">Revisar de nuevo</button>
+        </header>
+
+        <div id="preflight-overview" class="preflight-kpis" aria-label="Resumen del preflight"></div>
+
+        <section id="preflight-blocks" class="preflight-level preflight-level-block" aria-labelledby="preflight-blocks-heading" hidden>
+          <header><span aria-hidden="true">×</span><h3 id="preflight-blocks-heading">Bloqueos <b id="preflight-block-count">0</b></h3></header>
+          <div id="preflight-block-list"></div>
+        </section>
+
+        <section id="preflight-warnings" class="preflight-level preflight-level-warning" aria-labelledby="preflight-warnings-heading" hidden>
+          <header><span aria-hidden="true">!</span><h3 id="preflight-warnings-heading">Advertencias <b id="preflight-warning-count">0</b></h3></header>
+          <div id="preflight-warning-list"></div>
+        </section>
+
+        <section id="preflight-information" class="preflight-level preflight-level-info" aria-labelledby="preflight-information-heading" hidden>
+          <header><span aria-hidden="true">i</span><h3 id="preflight-information-heading">Información <b id="preflight-information-count">0</b></h3></header>
+          <div id="preflight-information-list"></div>
+        </section>
+
+        <details id="preflight-passed" class="preflight-passed">
+          <summary><span id="preflight-passed-summary">Controles superados</span></summary>
+          <ul id="preflight-passed-list"></ul>
+        </details>
+      </section>
+
+      <section id="warning-decision" class="panel warning-decision" aria-labelledby="warning-decision-heading" hidden>
+        <div>
+          <p class="eyebrow">DECISIÓN HUMANA</p>
+          <h2 id="warning-decision-heading">Continuar con advertencias</h2>
+          <p id="warning-decision-help">Explicá brevemente por qué el alcance puede continuar sin ocultar los pendientes.</p>
+        </div>
+        <label for="warning-justification">Justificación</label>
+        <textarea id="warning-justification" rows="3" minlength="12" aria-describedby="warning-decision-help" placeholder="Ej.: Preparar un seguimiento limitado a la evidencia verificada y reservar los pendientes para futuras actualizaciones."></textarea>
+        <div class="warning-decision-actions">
+          <button id="confirm-warnings" class="btn preparation" type="button" disabled>Continuar con advertencias</button>
+          <span id="warning-decision-status" class="muted" role="status" aria-live="polite">La justificación se conserva solo durante esta vista; todavía no se crea una sesión.</span>
+        </div>
+      </section>
+
+      <section id="followup-action" class="panel followup-action" aria-labelledby="followup-action-heading">
+        <div>
+          <p class="eyebrow">PROCESO EN EVOLUCIÓN</p>
+          <h2 id="followup-action-heading">Preparar propuesta de seguimiento</h2>
+          <p id="followup-action-help">La propuesta utiliza la transformación canónica del sitio, conserva la identidad del proceso y compara el resultado con la versión pública local.</p>
+        </div>
+        <div class="followup-action-controls">
+          <button id="generate-followup-proposal" class="btn preparation" type="button" aria-describedby="followup-action-help" disabled>Generar propuesta de seguimiento</button>
+          <span id="followup-action-status" class="muted" role="status" aria-live="polite">Completá el preflight antes de generar la propuesta.</span>
+        </div>
+      </section>
+
+      <section id="followup-workspace" class="panel followup-workspace" aria-labelledby="followup-workspace-heading" hidden>
+        <header class="followup-workspace-header">
+          <div>
+            <p class="eyebrow">PROPUESTA GENERADA · SIN APLICAR</p>
+            <h2 id="followup-workspace-heading">Revisión del proceso en evolución</h2>
+          </div>
+          <span id="followup-operation" class="badge info">Preparada</span>
+        </header>
+
+        <div id="followup-metrics" class="followup-metrics" aria-label="Resumen de la propuesta"></div>
+        <p id="followup-safety-note" class="followup-safety-note" role="status" aria-live="polite"></p>
+
+        <div class="followup-review-grid">
+          <details id="followup-diff-details" class="followup-review-card" open>
+            <summary><span><b>Ver diferencias</b><small id="followup-diff-summary">Calculando…</small></span></summary>
+            <div id="followup-diff-list" class="followup-diff-list"></div>
+          </details>
+
+          <details id="followup-proposal-details" class="followup-review-card">
+            <summary><span><b>Ver propuesta estructurada</b><small>JSON de revisión</small></span></summary>
+            <pre id="followup-proposal-json" class="followup-json" tabindex="0"></pre>
+          </details>
+        </div>
+      </section>
+
+      <section id="analysis-prompt-action" class="panel analysis-prompt-action" aria-labelledby="analysis-prompt-action-heading">
+        <div>
+          <p class="eyebrow">ANÁLISIS COMPLETO</p>
+          <h2 id="analysis-prompt-action-heading">Preparar prompt para ChatGPT</h2>
+          <p id="analysis-prompt-action-help">El prompt utilizará únicamente fuentes verificadas, reservará la evidencia pendiente y conservará el <code>macroevento_id</code>. Podés precisar un enfoque o reutilizar el expediente editorial previo.</p>
+        </div>
+        <label class="analysis-focus" for="analysis-editorial-focus">
+          <span>Enfoque editorial opcional</span>
+          <textarea id="analysis-editorial-focus" rows="3" maxlength="3000" placeholder="Dejalo vacío para reutilizar la pregunta editorial vinculada al macroevento."></textarea>
+        </label>
+        <div class="analysis-prompt-action-controls">
+          <button id="generate-analysis-prompt" class="btn preparation" type="button" aria-describedby="analysis-prompt-action-help" disabled>Generar prompt de análisis</button>
+          <span id="analysis-prompt-action-status" class="muted" role="status" aria-live="polite">Generá primero la propuesta de seguimiento.</span>
+        </div>
+      </section>
+
+      <section id="analysis-prompt-workspace" class="panel analysis-prompt-workspace" aria-labelledby="analysis-prompt-workspace-heading" hidden>
+        <header class="analysis-prompt-workspace-header">
+          <div>
+            <p class="eyebrow">PROMPT LISTO · SESIÓN GUARDADA</p>
+            <h2 id="analysis-prompt-workspace-heading">Intercambio manual con ChatGPT</h2>
+          </div>
+          <span id="analysis-prompt-state" class="badge warn">Esperando respuesta</span>
+        </header>
+
+        <div id="analysis-prompt-metadata" class="analysis-prompt-metadata" aria-label="Datos del prompt"></div>
+
+        <div class="analysis-prompt-layout">
+          <section class="analysis-prompt-copy-panel" aria-labelledby="analysis-prompt-copy-heading">
+            <div class="analysis-prompt-copy-header">
+              <div>
+                <h3 id="analysis-prompt-copy-heading">Prompt completo</h3>
+                <p>Copialo y pegalo en un chat nuevo de ChatGPT.</p>
+              </div>
+              <button id="copy-analysis-prompt" class="btn preparation" type="button">Copiar prompt de análisis</button>
+            </div>
+            <textarea id="analysis-prompt-content" rows="24" readonly spellcheck="false" aria-label="Prompt completo para ChatGPT"></textarea>
+          </section>
+
+          <aside class="analysis-prompt-instructions" aria-labelledby="analysis-prompt-instructions-heading">
+            <h3 id="analysis-prompt-instructions-heading">Cómo continuar</h3>
+            <ol>
+              <li>Copiá el prompt.</li>
+              <li>Abrí un chat nuevo en ChatGPT.</li>
+              <li>Pegá el prompt y esperá el Markdown.</li>
+              <li>Volvé a esta preparación. La sesión puede retomarse.</li>
+              <li>Cargá o pegá la respuesta en la Fase 5.</li>
+            </ol>
+            <p id="analysis-session-file" class="analysis-session-file"></p>
+            <p id="analysis-copy-status" class="muted" role="status" aria-live="polite">El prompt todavía no fue copiado en esta vista.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="analysis-response-action" class="panel analysis-response-action" aria-labelledby="analysis-response-action-heading">
+        <div>
+          <p class="eyebrow">RESPUESTA DE CHATGPT</p>
+          <h2 id="analysis-response-action-heading">Recibir y validar el Markdown</h2>
+          <p id="analysis-response-action-help">Podés cargar el archivo <code>.md</code> recibido o pegar su contenido. La validación comprueba identidad, frontmatter, vínculo con el macroevento, fuentes autorizadas, estructura y enlaces.</p>
+        </div>
+        <div class="analysis-response-action-controls">
+          <button id="open-analysis-response" class="btn preparation" type="button" aria-describedby="analysis-response-action-help" disabled>Pegar respuesta de ChatGPT</button>
+          <span id="analysis-response-action-status" class="muted" role="status" aria-live="polite">Generá o recuperá primero el prompt.</span>
+        </div>
+      </section>
+
+      <section id="analysis-response-workspace" class="panel analysis-response-workspace" aria-labelledby="analysis-response-workspace-heading" hidden>
+        <header class="analysis-response-workspace-header">
+          <div>
+            <p class="eyebrow">RECEPCIÓN LOCAL · SIN PUBLICAR</p>
+            <h2 id="analysis-response-workspace-heading">Respuesta Markdown</h2>
+          </div>
+          <span id="analysis-response-state" class="badge warn">Esperando respuesta</span>
+        </header>
+
+        <div class="analysis-response-input-grid">
+          <section class="analysis-response-editor" aria-labelledby="analysis-response-editor-heading">
+            <div class="analysis-response-editor-header">
+              <div>
+                <h3 id="analysis-response-editor-heading">Contenido recibido</h3>
+                <p>La copia original se conservará dentro del archivo de sesión.</p>
+              </div>
+              <label class="btn ghost response-file-label" for="analysis-response-file">Cargar archivo .md</label>
+              <input id="analysis-response-file" type="file" accept=".md,text/markdown,text/plain" hidden>
+            </div>
+            <textarea id="analysis-response-content" rows="26" spellcheck="false" aria-label="Respuesta Markdown de ChatGPT" placeholder="Pegá aquí el Markdown completo, incluido el frontmatter entre líneas ---."></textarea>
+          </section>
+
+          <aside class="analysis-response-controls" aria-labelledby="analysis-response-controls-heading">
+            <h3 id="analysis-response-controls-heading">Control antes de aprobar</h3>
+            <ul>
+              <li>Identidad nueva del análisis.</li>
+              <li>Vínculo exacto con el macroevento.</li>
+              <li>Solo fuentes y enlaces autorizados.</li>
+              <li>Frontmatter y cuerpo Markdown completos.</li>
+            </ul>
+            <button id="validate-analysis-response" class="btn preparation" type="button" disabled>Validar respuesta</button>
+            <p id="analysis-response-file-status" class="muted" role="status" aria-live="polite">Todavía no se cargó contenido.</p>
+            <p id="analysis-response-session-file" class="analysis-response-safety">La validación actualiza únicamente el archivo de esta sesión. No escribe en <code>src\content</code>.</p>
+          </aside>
+        </div>
+
+        <section id="analysis-response-results" class="analysis-response-results" aria-labelledby="analysis-response-results-heading" hidden>
+          <header class="analysis-response-results-header">
+            <div>
+              <p class="eyebrow">RESULTADO DE VALIDACIÓN</p>
+              <h3 id="analysis-response-results-heading">Controles del borrador</h3>
+            </div>
+            <span id="analysis-response-validation-state" class="badge neutral">Sin validar</span>
+          </header>
+
+          <div id="analysis-response-metrics" class="analysis-response-metrics" aria-label="Resumen de la respuesta"></div>
+
+          <section id="analysis-response-blocks" class="preflight-level preflight-level-block" aria-labelledby="analysis-response-blocks-heading" hidden>
+            <header><span aria-hidden="true">×</span><h3 id="analysis-response-blocks-heading">Bloqueos <b id="analysis-response-block-count">0</b></h3></header>
+            <div id="analysis-response-block-list"></div>
+          </section>
+
+          <section id="analysis-response-warnings" class="preflight-level preflight-level-warning" aria-labelledby="analysis-response-warnings-heading" hidden>
+            <header><span aria-hidden="true">!</span><h3 id="analysis-response-warnings-heading">Advertencias <b id="analysis-response-warning-count">0</b></h3></header>
+            <div id="analysis-response-warning-list"></div>
+          </section>
+
+          <div class="analysis-response-preview-grid">
+            <aside class="analysis-response-metadata" aria-labelledby="analysis-response-metadata-heading">
+              <h3 id="analysis-response-metadata-heading">Metadatos propuestos</h3>
+              <dl id="analysis-response-metadata-list"></dl>
+              <button id="approve-analysis-response" class="btn preparation" type="button" disabled>Aprobar respuesta validada</button>
+              <p id="analysis-response-approval-status" class="muted" role="status" aria-live="polite">La aprobación requiere una validación sin bloqueos.</p>
+            </aside>
+
+            <article class="analysis-response-preview" aria-labelledby="analysis-response-preview-heading">
+              <header>
+                <p class="eyebrow">VISTA PREVIA SEGURA</p>
+                <h2 id="analysis-response-preview-heading">Análisis propuesto</h2>
+                <p id="analysis-response-preview-subtitle"></p>
+              </header>
+              <div id="analysis-response-preview-body" class="markdown-preview"></div>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <details id="editorial-trace" class="panel editorial-trace">
+        <summary>
+          <span><b>Trazabilidad editorial</b><small id="trace-summary">13 pasos internos</small></span>
+        </summary>
+        <p class="help">Este diagnóstico no modifica el módulo de Flujo editorial. Los estados describen únicamente esta preparación.</p>
+        <ol id="trace-steps" class="trace-steps"></ol>
+      </details>
+
+      <section id="review-package-action" class="panel preparation-next review-package-action" aria-labelledby="preparation-next-heading">
+        <div>
+          <p class="eyebrow">PAQUETE DE REVISIÓN · SIN APLICAR</p>
+          <h2 id="preparation-next-heading">Preparar archivos para VS Code</h2>
+          <p>Creará un ZIP con manifiesto, checksums, propuesta, diferencias, análisis aprobado, prompt, trazabilidad e instrucciones. Solo escribirá el ZIP y actualizará esta sesión local.</p>
+        </div>
+        <div class="review-package-action-controls">
+          <button id="generate-review-package" class="btn preparation" type="button" disabled>Generar paquete para VS Code</button>
+          <span id="review-package-action-status" class="muted" role="status" aria-live="polite">Requiere una respuesta validada y aprobada.</span>
+        </div>
+      </section>
+
+      <section id="review-package-workspace" class="panel review-package-workspace" aria-labelledby="review-package-workspace-heading" hidden>
+        <header class="review-package-workspace-header">
+          <div>
+            <p class="eyebrow">ARCHIVOS PREPARADOS · NO PUBLICADOS</p>
+            <h2 id="review-package-workspace-heading">Contenido del paquete de revisión</h2>
+          </div>
+          <span id="review-package-state" class="badge good">Preparado</span>
+        </header>
+
+        <div id="review-package-metrics" class="review-package-metrics" aria-label="Resumen del paquete"></div>
+        <p id="review-package-safety" class="review-package-safety" role="status" aria-live="polite"></p>
+
+        <div class="review-package-layout">
+          <section class="review-package-files-panel" aria-labelledby="review-package-files-heading">
+            <header>
+              <div>
+                <h3 id="review-package-files-heading">Artefactos incluidos</h3>
+                <p id="review-package-file-path"></p>
+              </div>
+            </header>
+            <ul id="review-package-files" class="review-package-files"></ul>
+          </section>
+
+          <aside class="review-package-download" aria-labelledby="review-package-download-heading">
+            <h3 id="review-package-download-heading">Descarga y siguiente control</h3>
+            <p>Descargá el ZIP, extraelo en una carpeta temporal y comenzá por <code>MANIFIESTO.json</code> e <code>INSTRUCCIONES-VSCODE.md</code>.</p>
+            <a id="download-review-package" class="btn preparation" href="#" download>Descargar paquete ZIP</a>
+            <p id="review-package-download-status" class="muted" role="status" aria-live="polite"></p>
+          </aside>
+        </div>
+
+        <details class="review-package-manifest-card">
+          <summary><span><b>Ver resumen técnico</b><small>Identidades, hash y límites de aplicación</small></span></summary>
+          <pre id="review-package-manifest" class="followup-json" tabindex="0"></pre>
+        </details>
+      </section>
+
+      <section id="local-application-action" class="panel preparation-next local-application-action" aria-labelledby="local-application-action-heading">
+        <div>
+          <p class="eyebrow">APLICACIÓN LOCAL · CON BACKUP</p>
+          <h2 id="local-application-action-heading">Comprobar destinos antes de escribir</h2>
+          <p>Verificará nuevamente el ZIP, la respuesta aprobada, la identidad del análisis y el estado actual del destino. Todavía no escribirá ningún archivo.</p>
+        </div>
+        <div class="local-application-action-controls">
+          <button id="prepare-local-application" class="btn preparation" type="button" disabled>Preparar aplicación local</button>
+          <span id="local-application-action-status" class="muted" role="status" aria-live="polite">Requiere un paquete de revisión preparado.</span>
+        </div>
+      </section>
+
+      <section id="local-application-workspace" class="panel local-application-workspace" aria-labelledby="local-application-workspace-heading" hidden>
+        <header class="local-application-workspace-header">
+          <div>
+            <p id="local-application-eyebrow" class="eyebrow">PLAN VERIFICADO · TODAVÍA SIN ESCRIBIR</p>
+            <h2 id="local-application-workspace-heading">Confirmación de aplicación local</h2>
+          </div>
+          <span id="local-application-state" class="badge warn">Pendiente de confirmación</span>
+        </header>
+
+        <div id="local-application-metrics" class="local-application-metrics" aria-label="Resumen de la aplicación"></div>
+        <p id="local-application-safety" class="local-application-safety" role="status" aria-live="polite"></p>
+
+        <div class="local-application-layout">
+          <section class="local-application-files-panel" aria-labelledby="local-application-files-heading">
+            <h3 id="local-application-files-heading">Archivos y operaciones</h3>
+            <ul id="local-application-files" class="local-application-files"></ul>
+          </section>
+          <aside class="local-application-backup" aria-labelledby="local-application-backup-heading">
+            <h3 id="local-application-backup-heading">Backup y reversión</h3>
+            <p id="local-application-backup-path"></p>
+            <p id="local-application-followup-note" class="muted"></p>
+          </aside>
+        </div>
+
+        <div id="local-application-confirmation" class="local-application-confirmation">
+          <label for="confirm-local-application">
+            <input id="confirm-local-application" type="checkbox">
+            <span>Confirmo los destinos y autorizo esta escritura únicamente en la copia local.</span>
+          </label>
+          <button id="apply-local-application" class="btn preparation" type="button" disabled>Aplicar archivos validados</button>
+          <p id="local-application-apply-status" class="muted" role="status" aria-live="polite">La aplicación no modifica <code>src</code>, producción ni GitHub.</p>
+        </div>
+
+        <section id="local-application-result" class="local-application-result" aria-labelledby="local-application-result-heading" hidden>
+          <header>
+            <div>
+              <p class="eyebrow">APLICACIÓN COMPLETADA</p>
+              <h3 id="local-application-result-heading">Borrador canónico guardado</h3>
+            </div>
+            <span class="badge good">Aplicado localmente</span>
+          </header>
+          <p id="local-application-result-message"></p>
+          <ul id="local-application-result-files" class="local-application-files"></ul>
+          <div id="local-application-rollback" class="local-application-rollback">
+            <label for="confirm-local-rollback">
+              <input id="confirm-local-rollback" type="checkbox">
+              <span>Confirmo que quiero restaurar el estado anterior de esta aplicación.</span>
+            </label>
+            <button id="rollback-local-application" class="btn ghost" type="button" disabled>Restaurar estado anterior</button>
+            <p id="local-application-rollback-status" class="muted" role="status" aria-live="polite">La restauración solo estará disponible mientras el borrador aplicado no haya sido editado.</p>
+          </div>
+        </section>
+      </section>
+
+      <section id="local-integration-action" class="panel preparation-next local-integration-action" aria-labelledby="local-integration-action-heading">
+        <div>
+          <p class="eyebrow">INTEGRACIÓN LOCAL · PREVIEW DEL SITIO</p>
+          <h2 id="local-integration-action-heading">Integrar y comprobar en localhost</h2>
+          <p>Preparará el análisis aprobado dentro de <code>src\content\publicaciones\_preview</code> y aplicará el seguimiento solo si existen diferencias. El plan no escribe, no ejecuta Git y no publica.</p>
+        </div>
+        <div class="local-integration-action-controls">
+          <button id="prepare-local-integration" class="btn preparation" type="button" disabled>Preparar integración local</button>
+          <span id="local-integration-action-status" class="muted" role="status" aria-live="polite">Requiere la aplicación local completada.</span>
+        </div>
+      </section>
+
+      <section id="local-integration-workspace" class="panel local-integration-workspace" aria-labelledby="local-integration-workspace-heading" hidden>
+        <header class="local-integration-workspace-header">
+          <div>
+            <p id="local-integration-eyebrow" class="eyebrow">PLAN VERIFICADO · TODAVÍA SIN INTEGRAR</p>
+            <h2 id="local-integration-workspace-heading">Confirmación de integración local</h2>
+          </div>
+          <span id="local-integration-state" class="badge warn">Pendiente de confirmación</span>
+        </header>
+
+        <div id="local-integration-metrics" class="local-integration-metrics" aria-label="Resumen de la integración"></div>
+        <p id="local-integration-safety" class="local-integration-safety" role="status" aria-live="polite"></p>
+
+        <div class="local-integration-layout">
+          <section class="local-integration-files-panel" aria-labelledby="local-integration-files-heading">
+            <h3 id="local-integration-files-heading">Destinos del sitio local</h3>
+            <ul id="local-integration-files" class="local-integration-files"></ul>
+          </section>
+          <aside class="local-integration-backup" aria-labelledby="local-integration-backup-heading">
+            <h3 id="local-integration-backup-heading">Backup y límites</h3>
+            <p id="local-integration-backup-path"></p>
+            <p class="muted">El análisis seguirá siendo <code>borrador</code> y llevará <code>noindex,nofollow</code> en la vista editorial. No se crea una publicación de producción.</p>
+          </aside>
+        </div>
+
+        <div id="local-integration-confirmation" class="local-integration-confirmation">
+          <label for="confirm-local-integration">
+            <input id="confirm-local-integration" type="checkbox">
+            <span>Confirmo estos destinos y autorizo la integración únicamente en la copia local del sitio.</span>
+          </label>
+          <button id="apply-local-integration" class="btn preparation" type="button" disabled>Integrar archivos en localhost</button>
+          <p id="local-integration-apply-status" class="muted" role="status" aria-live="polite">La integración no ejecuta check, build, Git ni despliegue.</p>
+        </div>
+
+        <section id="local-integration-result" class="local-integration-result" aria-labelledby="local-integration-result-heading" hidden>
+          <header>
+            <div>
+              <p class="eyebrow">INTEGRACIÓN LOCAL COMPLETADA</p>
+              <h3 id="local-integration-result-heading">Preview preparado para QA</h3>
+            </div>
+            <span class="badge good">Integrado localmente</span>
+          </header>
+          <p id="local-integration-result-message"></p>
+          <ul id="local-integration-result-files" class="local-integration-files"></ul>
+
+          <div class="local-integration-qa" aria-labelledby="local-integration-qa-heading">
+            <div>
+              <h3 id="local-integration-qa-heading">Comprobación manual</h3>
+              <p>Desde <code>D:\Memo geopolitico</code> ejecutá estos controles antes de revisar las dos páginas.</p>
+            </div>
+            <pre id="local-integration-commands" tabindex="0"></pre>
+            <div class="local-integration-links">
+              <a id="open-analysis-preview" class="btn preparation" href="#" target="_blank" rel="noreferrer">Abrir análisis en preview</a>
+              <a id="open-followup-preview" class="btn ghost" href="#" target="_blank" rel="noreferrer">Abrir expediente en preview</a>
+            </div>
+            <p class="muted">Los enlaces requieren que <code>npm run dev:editorial</code> esté activo en otra terminal.</p>
+          </div>
+
+          <div id="local-integration-rollback" class="local-integration-rollback">
+            <label for="confirm-local-integration-rollback">
+              <input id="confirm-local-integration-rollback" type="checkbox">
+              <span>Confirmo que quiero restaurar el estado anterior de esta integración.</span>
+            </label>
+            <button id="rollback-local-integration" class="btn ghost" type="button" disabled>Restaurar integración anterior</button>
+            <p id="local-integration-rollback-status" class="muted" role="status" aria-live="polite">La reversión solo estará disponible mientras los archivos integrados no hayan sido editados.</p>
+          </div>
+        </section>
+      </section>
+
+      <section id="local-publication-action" class="panel preparation-next local-integration-action local-publication-action" aria-labelledby="local-publication-action-heading">
+        <div>
+          <p class="eyebrow">PUBLICACIÓN LOCAL · FUENTE DE PRODUCCIÓN</p>
+          <h2 id="local-publication-action-heading">Preparar la publicación para el QA final</h2>
+          <p>Creará o actualizará deliberadamente el Markdown bajo <code>src\content\publicaciones\publicadas</code>. Esto lo incorpora al próximo build de producción local, pero no ejecuta Git, no lo sube a GitHub y no modifica el sitio de Internet.</p>
+        </div>
+        <div class="local-integration-action-controls local-publication-action-controls">
+          <label for="local-publication-date">
+            <span>Fecha pública</span>
+            <input id="local-publication-date" type="date" required>
+          </label>
+          <button id="prepare-local-publication" class="btn preparation" type="button" disabled>Preparar publicación local</button>
+          <span id="local-publication-action-status" class="muted" role="status" aria-live="polite">Requiere la integración local y su revisión en preview.</span>
+        </div>
+      </section>
+
+      <section id="local-publication-workspace" class="panel local-integration-workspace local-publication-workspace" aria-labelledby="local-publication-workspace-heading" hidden>
+        <header class="local-integration-workspace-header">
+          <div>
+            <p id="local-publication-eyebrow" class="eyebrow">PLAN VERIFICADO · TODAVÍA SIN PUBLICAR LOCALMENTE</p>
+            <h2 id="local-publication-workspace-heading">Confirmación de publicación local</h2>
+          </div>
+          <span id="local-publication-state" class="badge warn">Pendiente de confirmación</span>
+        </header>
+
+        <div id="local-publication-metrics" class="local-integration-metrics" aria-label="Resumen de la publicación local"></div>
+        <p id="local-publication-safety" class="local-integration-safety" role="status" aria-live="polite"></p>
+
+        <div class="local-integration-layout">
+          <section class="local-integration-files-panel" aria-labelledby="local-publication-files-heading">
+            <h3 id="local-publication-files-heading">Origen, destino y registro</h3>
+            <ul id="local-publication-files" class="local-integration-files"></ul>
+          </section>
+          <aside class="local-integration-backup" aria-labelledby="local-publication-backup-heading">
+            <h3 id="local-publication-backup-heading">Puerta editorial y backup</h3>
+            <p id="local-publication-backup-path"></p>
+            <p class="muted">Los marcadores <code>[VERIFICAR]</code>, <code>[COMPLETAR]</code> y <code>[PENDIENTE]</code> bloquean la publicación. El borrador canónico y el preview se conservan.</p>
+          </aside>
+        </div>
+
+        <div id="local-publication-confirmation" class="local-integration-confirmation">
+          <label for="confirm-local-publication">
+            <input id="confirm-local-publication" type="checkbox">
+            <span>Confirmo que revisé íntegramente el texto, sus fuentes y su visualización, y autorizo crear o actualizar únicamente la publicación local indicada.</span>
+          </label>
+          <button id="apply-local-publication" class="btn preparation" type="button" disabled>Publicar en la copia local</button>
+          <p id="local-publication-apply-status" class="muted" role="status" aria-live="polite">Esta acción no ejecuta QA, Git, GitHub ni despliegue.</p>
+        </div>
+
+        <section id="local-publication-result" class="local-integration-result" aria-labelledby="local-publication-result-heading" hidden>
+          <header>
+            <div>
+              <p class="eyebrow">PUBLICACIÓN LOCAL COMPLETADA</p>
+              <h3 id="local-publication-result-heading">Fuente pública preparada para QA</h3>
+            </div>
+            <span class="badge good">Publicada solo localmente</span>
+          </header>
+          <p id="local-publication-result-message"></p>
+          <ul id="local-publication-result-files" class="local-integration-files"></ul>
+
+          <div class="local-integration-qa" aria-labelledby="local-publication-qa-heading">
+            <div>
+              <h3 id="local-publication-qa-heading">QA final obligatorio</h3>
+              <p>Ejecutá los controles desde <code>D:\Memo geopolitico</code>. Git seguirá fuera de esta operación.</p>
+            </div>
+            <pre id="local-publication-commands" tabindex="0"></pre>
+            <div class="local-integration-links">
+              <a id="open-local-publication" class="btn preparation" href="#" target="_blank" rel="noreferrer">Abrir publicación local</a>
+              <a id="open-local-publications-index" class="btn ghost" href="http://127.0.0.1:4321/publicaciones/" target="_blank" rel="noreferrer">Abrir índice local</a>
+            </div>
+            <p class="muted">Los enlaces requieren que <code>npm run dev</code> esté activo en otra terminal.</p>
+          </div>
+
+          <div id="local-publication-rollback" class="local-integration-rollback">
+            <label for="confirm-local-publication-rollback">
+              <input id="confirm-local-publication-rollback" type="checkbox">
+              <span>Confirmo que quiero restaurar el estado público local anterior.</span>
+            </label>
+            <button id="rollback-local-publication" class="btn ghost" type="button" disabled>Restaurar publicación local anterior</button>
+            <p id="local-publication-rollback-status" class="muted" role="status" aria-live="polite">La reversión solo estará disponible mientras el Markdown público no haya sido editado.</p>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <section id="preparation-message" class="panel preparation-phase-note" role="status" aria-live="polite">
+      Verificando la identidad del macroevento guardado…
+    </section>
+  </main>
+</body>
+</html>

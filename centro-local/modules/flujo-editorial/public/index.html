@@ -19,7 +19,7 @@
       <nav aria-label="Navegación principal">
         <button class="nav-item is-active" data-view="overview">Resumen</button>
         <button class="nav-item" data-view="flow">Flujo completo</button>
-        <button class="nav-item" data-view="documents">Documentos</button>
+        <button class="nav-item" data-view="documents">Piezas editoriales</button>
         <button class="nav-item" data-view="data">Datos y exportación</button>
       </nav>
       <div class="sidebar__note">
@@ -36,9 +36,9 @@
           <h1 id="view-title">Resumen</h1>
         </div>
         <div class="topbar__actions">
-          <span id="save-state" class="save-state">Sin cambios</span>
-          <button class="button button--ghost" id="reload-button">Recargar</button>
-          <button class="button button--primary" id="save-button">Guardar</button>
+          <span id="save-state" class="save-state" role="status" aria-live="polite">Sin cambios</span>
+          <button class="button button--ghost" id="reload-button">Recargar datos guardados</button>
+          <button class="button button--primary" id="save-button">Guardar en archivo</button>
         </div>
       </header>
       <div id="message" class="message" role="status" aria-live="polite"></div>
@@ -67,13 +67,13 @@
       <header class="dialog__header">
         <div>
           <span class="chip">Seguimiento</span>
-          <h2 id="document-dialog-title">Documento</h2>
+          <h2 id="document-dialog-title">Pieza editorial</h2>
         </div>
         <button class="icon-button" value="cancel" aria-label="Cerrar">×</button>
       </header>
       <div id="document-form-body" class="dialog__body"></div>
       <footer class="dialog__footer dialog__footer--spread">
-        <button type="button" class="button button--danger" id="delete-document">Eliminar</button>
+        <button type="button" class="button button--danger" id="delete-document">Eliminar seguimiento</button>
         <div>
           <button class="button button--ghost" value="cancel">Cancelar</button>
           <button type="submit" class="button button--primary" value="default">Aplicar cambios</button>

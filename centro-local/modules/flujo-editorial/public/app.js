@@ -6,6 +6,7 @@ const app = {
   currentView: 'overview',
   editingId: null,
   filters: { search: '', type: '', status: '' },
+  lastSave: null,
 };
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -32,10 +33,30 @@ function showMessage(text, error = false) {
 }
 
 function serialize() { return JSON.stringify(app.state); }
+function saveTime(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  return new Intl.DateTimeFormat('es', { hour: '2-digit', minute: '2-digit' }).format(date);
+}
+
+function setSaveStatus(status, details = {}) {
+  const labels = {
+    clean: 'Sin cambios',
+    dirty: 'Cambios sin guardar',
+    saving: 'Guardando…',
+    saved: `Guardado a las ${saveTime(details.updatedAt)} · backup creado`,
+    error: 'Error al guardar'
+  };
+  saveState.textContent = labels[status];
+  saveState.className = `save-state is-${status}`;
+  saveState.title = details.backup ? `Backup creado: ${details.backup}` : '';
+}
+
 function setDirty() {
   const dirty = serialize() !== app.savedSnapshot;
-  saveState.textContent = dirty ? 'Cambios sin guardar' : 'Sin cambios';
-  saveState.classList.toggle('is-dirty', dirty);
+  if (dirty) setSaveStatus('dirty');
+  else if (app.lastSave) setSaveStatus('saved', app.lastSave);
+  else setSaveStatus('clean');
   return dirty;
 }
 
@@ -75,7 +96,7 @@ function renderOverview() {
   const avg = docs.length ? Math.round(docs.reduce((sum, doc) => sum + progressFor(doc), 0) / docs.length) : 0;
   main.innerHTML = `
     <section class="metric-grid">
-      ${metric('Documentos', docs.length, 'Piezas en seguimiento')}
+      ${metric('Piezas editoriales', docs.length, 'En seguimiento')}
       ${metric('Etapas', app.workflow.stages.length, 'Hasta el Markdown definitivo')}
       ${metric('Progreso medio', `${avg}%`, 'Sobre etapas aplicables')}
       ${metric('En revisión', inReview, 'Borrador o revisión editorial')}
@@ -83,13 +104,13 @@ function renderOverview() {
     </section>
     <section class="overview-grid">
       <article class="panel card">
-        <div class="section-heading"><div><h2>Documentos activos</h2><p>Estado de los casos piloto y nuevas piezas.</p></div><button class="button button--primary button--small" id="new-doc-overview">Nuevo documento</button></div>
+        <div class="section-heading"><div><h2>Piezas editoriales activas</h2><p>Estado de los casos piloto y nuevas piezas.</p></div><button class="button button--primary button--small" id="new-doc-overview">Iniciar pieza editorial</button></div>
         <div class="document-list">
           ${docs.length ? docs.map((doc) => {
             const progress = progressFor(doc);
             const stage = currentStage(doc);
             return `<div class="document-row"><div><div class="document-row__title">${escapeHtml(doc.title)}</div><div class="document-row__meta">${escapeHtml(typeLabels()[doc.document_type])} · Etapa ${stage.number}: ${escapeHtml(stage.title)}</div></div><div><div class="progress"><span style="width:${progress}%"></span></div><div class="progress-label">${progress}% completado</div></div><button class="button button--ghost button--small edit-document" data-id="${escapeHtml(doc.id)}">Abrir</button></div>`;
-          }).join('') : '<div class="empty-state">Todavía no hay documentos.</div>'}
+          }).join('') : '<div class="empty-state">Todavía no hay piezas editoriales.</div>'}
         </div>
       </article>
       <aside class="panel card">
@@ -111,7 +132,7 @@ function renderFlow() {
   main.innerHTML = `
     <div class="flow-toolbar">
       <div class="flow-legend">${app.workflow.status_options.map((item) => statusBadge(item.id)).join('')}</div>
-      <label class="field"><span class="sr-only">Documento</span><select id="flow-document-select"><option value="">Vista del proceso</option>${docOptions}</select></label>
+      <label class="field"><span class="sr-only">Pieza editorial</span><select id="flow-document-select"><option value="">Vista del proceso</option>${docOptions}</select></label>
     </div>
     <div id="flow-content"></div>`;
   $('#flow-document-select').addEventListener('change', renderFlowContent);
@@ -139,7 +160,7 @@ function openStage(stageId, doc = null) {
   const docStep = doc?.stages[stage.id];
   $('#stage-body').innerHTML = `
     <p>${escapeHtml(stage.summary)}</p>
-    ${doc ? `<p><strong>Documento:</strong> ${escapeHtml(doc.title)} · ${statusBadge(docStep.status)}</p>` : ''}
+    ${doc ? `<p><strong>Pieza editorial:</strong> ${escapeHtml(doc.title)} · ${statusBadge(docStep.status)}</p>` : ''}
     <div class="detail-grid">
       <section class="detail-block"><h3>Entradas</h3><ul>${stage.inputs.map((x) => `<li>${escapeHtml(x)}</li>`).join('')}</ul></section>
       <section class="detail-block"><h3>Acciones</h3><ul>${stage.actions.map((x) => `<li>${escapeHtml(x)}</li>`).join('')}</ul></section>
@@ -159,9 +180,9 @@ function renderDocuments() {
       <label class="field"><span>Buscar</span><input id="doc-search" type="search" placeholder="Título, slug o macroevento" value="${escapeHtml(app.filters.search)}"></label>
       <label class="field"><span>Tipo</span><select id="doc-type"><option value="">Todos</option>${types}</select></label>
       <label class="field"><span>Estado</span><select id="doc-status"><option value="">Todos</option>${statuses}</select></label>
-      <button class="button button--primary" id="new-document">Nuevo documento</button>
+      <button class="button button--primary" id="new-document">Iniciar pieza editorial</button>
     </section>
-    <section class="panel table-wrap"><table><thead><tr><th>Documento</th><th>Tipo</th><th>Etapa actual</th><th>Progreso</th><th>Estado</th><th>Acción</th></tr></thead><tbody id="documents-body"></tbody></table><div id="documents-empty" class="empty-state" hidden>No hay documentos para los filtros seleccionados.</div></section>`;
+    <section class="panel table-wrap"><table><thead><tr><th>Pieza editorial</th><th>Tipo</th><th>Etapa actual</th><th>Progreso</th><th>Estado</th><th>Acción</th></tr></thead><tbody id="documents-body"></tbody></table><div id="documents-empty" class="empty-state" hidden>No hay piezas editoriales para los filtros seleccionados.</div></section>`;
   $('#doc-type').value = app.filters.type;
   $('#doc-status').value = app.filters.status;
   const update = () => {
@@ -204,7 +225,7 @@ function openDocumentEditor(id = null) {
   const doc = id ? clone(app.state.documents.find((item) => item.id === id)) : {
     id: '', title: '', slug: '', document_type: 'movimiento', source_macroevents: [], owner: 'Editor', priority: 'media', notes: '', stages: blankStages()
   };
-  $('#document-dialog-title').textContent = id ? 'Editar documento' : 'Nuevo documento';
+  $('#document-dialog-title').textContent = id ? 'Editar pieza editorial' : 'Iniciar pieza editorial';
   $('#delete-document').hidden = !id;
   $('#document-form-body').innerHTML = `
     <div class="document-form-grid">
@@ -219,7 +240,7 @@ function openDocumentEditor(id = null) {
         </div>
         <label class="field" style="margin-top:12px"><span>Notas generales</span><textarea name="notes">${escapeHtml(doc.notes)}</textarea></label>
       </section>
-      <aside class="detail-block"><h3>Uso de esta ficha</h3><p>Registra el avance de una pieza desde la propuesta hasta el archivo Markdown definitivo. “Aplicar cambios” modifica la sesión; “Guardar” escribe el JSON local y crea un backup.</p></aside>
+      <aside class="detail-block"><h3>Uso de esta ficha</h3><p>Registra el avance de una pieza desde la propuesta hasta el archivo Markdown definitivo. “Aplicar cambios” actualiza la sesión y aún no guarda en archivo. “Guardar en archivo” escribe el JSON local y crea un backup.</p></aside>
     </div>
     <div class="stage-editor-list">${app.workflow.stages.map((stage) => {
       const step = doc.stages[stage.id] || { status: 'not_started', note: '', artifact: '' };
@@ -238,7 +259,7 @@ $('#document-form').addEventListener('submit', (event) => {
   event.preventDefault();
   const form = new FormData(event.currentTarget);
   const id = String(form.get('id')).trim();
-  if (!app.editingId && app.state.documents.some((doc) => doc.id === id)) return showMessage('Ya existe un documento con ese ID.', true);
+  if (!app.editingId && app.state.documents.some((doc) => doc.id === id)) return showMessage('Ya existe una pieza editorial con ese ID.', true);
   const next = {
     id,
     title: String(form.get('title')).trim(),
@@ -264,16 +285,18 @@ $('#document-form').addEventListener('submit', (event) => {
   documentDialog.close();
   setDirty();
   renderCurrentView();
+  showMessage('Cambios aplicados a la sesión. Aún no guardados en archivo.');
 });
 
 $('#delete-document').addEventListener('click', () => {
   if (!app.editingId) return;
   const doc = app.state.documents.find((item) => item.id === app.editingId);
-  confirmAction('Eliminar documento', `Se eliminará “${doc.title}” del estado de trabajo. La eliminación no será permanente hasta pulsar Guardar.`, () => {
+  confirmAction('Eliminar seguimiento', `Se eliminará el seguimiento de “${doc.title}”. No se eliminarán el macroevento, el expediente público ni ningún archivo Markdown. El cambio no será permanente hasta pulsar Guardar en archivo.`, () => {
     app.state.documents = app.state.documents.filter((item) => item.id !== app.editingId);
     documentDialog.close();
     setDirty();
     renderCurrentView();
+    showMessage('Seguimiento eliminado de la sesión. Aún no guardado en archivo.');
   });
 });
 
@@ -281,16 +304,15 @@ function confirmAction(title, text, action) {
   $('#confirm-title').textContent = title;
   $('#confirm-text').textContent = text;
   const button = $('#confirm-action');
-  const handler = (event) => { event.preventDefault(); button.removeEventListener('click', handler); confirmDialog.close(); action(); };
-  button.addEventListener('click', handler);
+  button.onclick = (event) => { event.preventDefault(); button.onclick = null; confirmDialog.close(); action(); };
   confirmDialog.showModal();
 }
 
 function renderData() {
   main.innerHTML = `
     <section class="data-grid">
-      <article class="panel action-card"><h2>Exportaciones</h2><p>Descargá el estado de seguimiento o una documentación Markdown que incluye el diagrama Mermaid, las trece etapas y el estado de cada documento.</p><div style="display:flex;gap:9px;flex-wrap:wrap"><a class="button button--primary" href="/api/export">Exportar JSON</a><a class="button button--ghost" href="/api/export-markdown">Exportar FLUJO_EDITORIAL.md</a></div></article>
-      <article class="panel action-card"><h2>Validación</h2><p>Comprueba IDs, tipos documentales, etapas y estados antes de guardar.</p><button class="button button--ghost" id="validate-button">Validar estado actual</button><div id="validation-output" style="margin-top:12px"></div></article>
+      <article class="panel action-card"><h2>Exportaciones</h2><p>Descargá el estado de seguimiento o una documentación Markdown que incluye el diagrama Mermaid, las trece etapas y el estado de cada pieza editorial.</p><div style="display:flex;gap:9px;flex-wrap:wrap"><a class="button button--primary" href="/api/export">Exportar JSON</a><a class="button button--ghost" href="/api/export-markdown">Exportar FLUJO_EDITORIAL.md</a></div></article>
+      <article class="panel action-card"><h2>Validación</h2><p>Comprueba IDs, tipos documentales, etapas y estados antes de guardar en archivo.</p><button class="button button--ghost" id="validate-button">Validar estado actual</button><div id="validation-output" style="margin-top:12px"></div></article>
     </section>
     <section class="panel action-card" style="margin-top:16px"><div class="section-heading"><div><h2>Backups</h2><p>Se conserva una copia previa a cada guardado o restauración.</p></div><button class="button button--ghost button--small" id="refresh-backups">Actualizar</button></div><div class="backup-list" id="backup-list"></div></section>`;
   $('#validate-button').addEventListener('click', validateCurrent);
@@ -338,7 +360,7 @@ async function restoreBackup(name) {
 }
 
 function renderCurrentView() {
-  const titles = { overview: 'Resumen', flow: 'Flujo completo', documents: 'Documentos', data: 'Datos y exportación' };
+  const titles = { overview: 'Resumen', flow: 'Flujo completo', documents: 'Piezas editoriales', data: 'Datos y exportación' };
   $('#view-title').textContent = titles[app.currentView];
   $$('.nav-item').forEach((button) => button.classList.toggle('is-active', button.dataset.view === app.currentView));
   ({ overview: renderOverview, flow: renderFlow, documents: renderDocuments, data: renderData })[app.currentView]();
@@ -346,17 +368,27 @@ function renderCurrentView() {
 }
 
 async function save() {
+  const saveButton = $('#save-button');
+  if (saveButton.disabled) return;
+  setSaveStatus('saving');
+  saveButton.disabled = true;
   try {
     const response = await fetch('/api/state', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(app.state) });
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.errors?.join(' ') || payload.error || 'No se pudo guardar.');
     app.state.updated_at = payload.updated_at;
     app.backups = payload.backups;
+    app.lastSave = { updatedAt: payload.updated_at, backup: payload.backup_created };
     app.savedSnapshot = serialize();
     setDirty();
-    showMessage('Cambios guardados y backup creado.');
+    showMessage(`Guardado en archivo a las ${saveTime(payload.updated_at)}. Backup creado: ${payload.backup_created}.`);
     if (app.currentView === 'data') renderData();
-  } catch (error) { showMessage(error.message, true); }
+  } catch (error) {
+    setSaveStatus('error');
+    showMessage(error.message, true);
+  } finally {
+    saveButton.disabled = false;
+  }
 }
 
 async function bootstrap() {
@@ -383,7 +415,7 @@ $('#menu-button').addEventListener('click', () => {
 });
 $('#save-button').addEventListener('click', save);
 $('#reload-button').addEventListener('click', () => {
-  if (setDirty()) return confirmAction('Recargar datos', 'Se descartarán los cambios sin guardar de esta sesión.', () => location.reload());
+  if (setDirty()) return confirmAction('Recargar datos guardados', 'Se descartarán los cambios sin guardar de esta sesión y se volverá al último estado guardado en archivo.', () => location.reload());
   location.reload();
 });
 window.addEventListener('beforeunload', (event) => { if (setDirty()) { event.preventDefault(); event.returnValue = ''; } });

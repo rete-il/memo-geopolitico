@@ -1,4 +1,4 @@
-# Workflow Editorial Dashboard
+# Flujo editorial 0.1.1
 
 Dashboard local autónomo para documentar y seguir el proceso completo desde una propuesta de macroevento hasta un archivo Markdown definitivo.
 
@@ -6,13 +6,13 @@ Dashboard local autónomo para documentar y seguir el proceso completo desde una
 
 - diagrama visual de 13 etapas agrupadas en 4 fases;
 - detalle de entradas, acciones, salidas, responsables y puertas de control;
-- seguimiento de múltiples documentos;
+- seguimiento de múltiples piezas editoriales;
 - estados por etapa, notas y rutas de artefactos;
 - dos casos piloto: Corredor de Lobito e IMEC;
 - validación local;
 - guardado atómico y backups;
 - exportación JSON;
-- exportación de `FLUJO_EDITORIAL.md` con diagrama Mermaid y estado de documentos.
+- exportación de `FLUJO_EDITORIAL.md` con diagrama Mermaid y estado de piezas editoriales.
 
 ## Inicio
 
@@ -59,8 +59,9 @@ workflow-editorial-dashboard/
 ## Persistencia
 
 - `data/workflow.json` define el contrato del proceso.
-- `data/state.json` contiene los documentos y sus avances.
+- `data/state.json` conserva las piezas editoriales bajo la clave histórica `documents`; la interfaz usa la nomenclatura vigente sin migrar el esquema en esta versión.
 - Cada guardado crea una copia previa en `backups/`.
+- `Aplicar cambios` actualiza la sesión; `Guardar en archivo` persiste `state.json` y confirma la hora y el backup creado.
 - El dashboard no se conecta a Memo Geopolítico ni al Observatorio.
 
 ## Alcance

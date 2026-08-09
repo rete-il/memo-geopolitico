@@ -29,7 +29,7 @@ function validateState(state) {
   }
   const ids = new Set();
   state.documents.forEach((doc, index) => {
-    const prefix = `Documento ${index + 1}`;
+    const prefix = `Pieza editorial ${index + 1}`;
     if (!doc.id || !/^[a-z0-9-]+$/.test(doc.id)) errors.push(`${prefix}: ID inválido.`);
     if (ids.has(doc.id)) errors.push(`${prefix}: ID duplicado ${doc.id}.`);
     ids.add(doc.id);
@@ -115,7 +115,7 @@ function buildMarkdown(state) {
       lines.push(`#### ${stage.number}. ${stage.title}`, '', stage.summary, '', `**Entrada:** ${stage.inputs.join('; ')}.`, '', `**Salida:** ${stage.outputs.join('; ')}.`, '', `**Puerta:** ${stage.gate}`, '');
     });
   });
-  lines.push('## Estado de documentos', '', '| Documento | Tipo | Progreso | Etapa actual |', '|---|---|---:|---|');
+  lines.push('## Estado de piezas editoriales', '', '| Pieza editorial | Tipo | Progreso | Etapa actual |', '|---|---|---:|---|');
   state.documents.forEach((doc) => {
     const applicable = workflow.stages.filter((stage) => doc.stages[stage.id]?.status !== 'not_applicable');
     const done = applicable.filter((stage) => doc.stages[stage.id]?.status === 'done').length;
@@ -182,10 +182,10 @@ const server = http.createServer(async (req, res) => {
       const state = JSON.parse(await readBody(req));
       const validation = validateState(state);
       if (!validation.valid) return sendJson(res, 422, validation);
-      backupCurrent('save');
+      const backupCreated = backupCurrent('save');
       state.updated_at = new Date().toISOString();
       writeJsonAtomic(statePath, state);
-      return sendJson(res, 200, { ok: true, updated_at: state.updated_at, backups: listBackups(), validation });
+      return sendJson(res, 200, { ok: true, updated_at: state.updated_at, backup_created: backupCreated, backups: listBackups(), validation });
     }
     if (req.method === 'GET' && url.pathname === '/api/export') {
       const body = fs.readFileSync(statePath);

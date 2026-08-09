@@ -98,6 +98,7 @@ function readPublicData(projectRoot) {
 
 export function loadPublicExpedientStates(projectRoot) {
   const byEvent = {};
+  const processByEvent = {};
   const warnings = [];
   let publicDataAvailable = false;
   let publicationsAvailable = false;
@@ -106,6 +107,7 @@ export function loadPublicExpedientStates(projectRoot) {
     const processes = readPublicData(projectRoot);
     publicDataAvailable = processes.length > 0;
     for (const process of processes) {
+      if (process.macroevento_id) processByEvent[process.macroevento_id] = process;
       if (!process.macroevento_id || !(process.publicacion?.estado in STATE_PRIORITY)) continue;
       byEvent[process.macroevento_id] = {
         estado: process.publicacion.estado,
@@ -146,6 +148,7 @@ export function loadPublicExpedientStates(projectRoot) {
   return {
     available: publicDataAvailable || publicationsAvailable,
     by_event: byEvent,
+    process_by_event: processByEvent,
     warnings,
   };
 }
