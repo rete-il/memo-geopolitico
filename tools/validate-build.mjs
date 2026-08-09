@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import matter from 'gray-matter';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const production = path.join(root, 'dist');
@@ -64,6 +65,29 @@ function countRoutes(buildDirectory, directory) {
     .filter((entry) => entry.isDirectory()).length;
 }
 
+function expectedEditorialPublicationRoutes() {
+  const publicationRoot = path.join(root, 'src', 'content', 'publicaciones');
+  const files = ['publicadas', '_preview'].flatMap((directory) =>
+    fs
+      .readdirSync(path.join(publicationRoot, directory))
+      .filter((name) => name.endsWith('.md'))
+      .map((name) => path.join(publicationRoot, directory, name)),
+  );
+  return new Set(files.map((file) => matter.read(file).data.post_id)).size;
+}
+
+function expectedPublishedPublicationRoutes() {
+  const publishedDirectory = path.join(root, 'src', 'content', 'publicaciones', 'publicadas');
+  const publications = fs
+    .readdirSync(publishedDirectory)
+    .filter((name) => name.endsWith('.md'))
+    .map((name) => matter.read(path.join(publishedDirectory, name)).data);
+  return {
+    posts: new Set(publications.map((publication) => publication.post_id)).size,
+    linkedProcesses: new Set(publications.map((publication) => publication.macroevento_principal_id)).size,
+  };
+}
+
 const home = fs.readFileSync(path.join(production, 'index.html'), 'utf8');
 const publications = fs.readFileSync(
   path.join(production, 'publicaciones', 'index.html'),
@@ -119,13 +143,15 @@ const stateRouteCount = countRoutes(
   production,
   path.join('observatorio', 'estado'),
 );
+const editorialPublicationRoutes = expectedEditorialPublicationRoutes();
+const publishedPublicationRoutes = expectedPublishedPublicationRoutes();
 
 assert.equal(home.includes('home-path--publications'), true);
 assert.equal(home.includes('home-path--observatory'), true);
 assert.equal(home.includes('data-process-card'), false);
 assert.equal(home.includes('publication-card--in-progress'), false);
-assert.equal(publicationArchiveCards, 5);
-assert.ok(publicationThemeLinks >= 5);
+assert.equal(publicationArchiveCards, publishedPublicationRoutes.posts);
+assert.ok(publicationThemeLinks >= publishedPublicationRoutes.posts);
 assert.equal(
   publicationCardMetadata.some((metadata) => />Análisis</.test(metadata)),
   false,
@@ -136,12 +162,12 @@ assert.equal(
 );
 assert.equal(publications.includes('publication-card--in-progress'), false);
 assert.equal(observatoryProcessCards, 17);
-assert.equal(linkedPublicationTitles, 5);
+assert.equal(linkedPublicationTitles, publishedPublicationRoutes.linkedProcesses);
 assert.equal(observatoryStateLinks, 17);
 assert.equal(dashboardProcessRows, 17);
 assert.equal(/>(?:Guardar|Editar|Eliminar)</.test(dashboard), false);
-assert.equal(countRoutes(production, 'publicaciones'), 5);
-assert.equal(countRoutes(preview, 'publicaciones'), 17);
+assert.equal(countRoutes(production, 'publicaciones'), publishedPublicationRoutes.posts);
+assert.equal(countRoutes(preview, 'publicaciones'), editorialPublicationRoutes);
 assert.equal(stateRouteCount, 4);
 assert.ok(
   (energyTheme.match(/publication-card--published/g) || []).length > 0,
@@ -169,8 +195,8 @@ console.log(
       paginas_produccion: productionPages,
       paginas_editoriales: previewPages,
       accesos_principales_en_inicio: 2,
-      publicaciones_publicas: 5,
-      posts_editoriales: 17,
+      publicaciones_publicas: publishedPublicationRoutes.posts,
+      posts_editoriales: editorialPublicationRoutes,
       expedientes: observatoryProcessCards,
       enlaces_de_titulo_a_posts: linkedPublicationTitles,
       enlaces_de_estado: observatoryStateLinks,

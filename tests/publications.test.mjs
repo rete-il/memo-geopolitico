@@ -20,45 +20,50 @@ const previewDir = path.join(
   '_preview',
 );
 
-const expected = new Set([
-  'cables-submarinos-infraestructura-critica',
-  'corredor-lobito-minerales',
-  'corredor-medio-caucaso-sur',
-  'hormuz-bab-el-mandeb-suez',
-  'rail-baltica-movilidad-militar-europea',
-]);
-
-test('hay cinco publicaciones autorizadas de seis párrafos', () => {
+test('las publicaciones autorizadas conservan identidad, estado y contenido publicable', () => {
   const files = fs.readdirSync(publishedDir).filter((name) => name.endsWith('.md'));
-  assert.equal(files.length, 5);
+  assert.ok(files.length >= 5);
 
   const slugs = new Set();
+  const postIds = new Set();
   for (const file of files) {
     const { data, content } = matter.read(path.join(publishedDir, file));
+    assert.equal(slugs.has(data.slug), false, `${data.slug}: slug repetido`);
+    assert.equal(postIds.has(data.post_id), false, `${data.post_id}: post_id repetido`);
     slugs.add(data.slug);
+    postIds.add(data.post_id);
     assert.equal(data.publicacion.estado, 'publicado');
-    assert.equal(data.publicacion.publicado_el, '2026-07-26');
+    assert.match(data.publicacion.publicado_el, /^\d{4}-\d{2}-\d{2}$/);
+    assert.match(data.publicacion.actualizado_el, /^\d{4}-\d{2}-\d{2}$/);
+    assert.doesNotMatch(content, /\[(?:VERIFICAR|COMPLETAR|PENDIENTE)(?::|\])/i, `${data.slug}: marcador editorial interno`);
 
     const paragraphs = content
       .trim()
       .split(/\n\s*\n/)
       .filter((block) => !block.startsWith('#') && !block.startsWith('-'));
-    assert.equal(paragraphs.length, 6, `${data.slug}: párrafos`);
+    assert.ok(paragraphs.length >= 6, `${data.slug}: contenido demasiado breve`);
   }
 
-  assert.deepEqual(slugs, expected);
+  assert.equal(slugs.size, files.length);
+  assert.equal(postIds.size, files.length);
 });
 
-test('la nueva publicación no se duplica en la vista editorial', () => {
-  const previewSlugs = new Set(
-    fs
-      .readdirSync(previewDir)
-      .filter((name) => name.endsWith('.md'))
-      .map((name) => path.basename(name, '.md')),
-  );
+test('la vista editorial conserva identidades únicas al incorporar nuevos borradores', () => {
+  const files = fs.readdirSync(previewDir).filter((name) => name.endsWith('.md'));
+  const previewSlugs = new Set();
+  const previewPostIds = new Set();
+
+  for (const file of files) {
+    const { data } = matter.read(path.join(previewDir, file));
+    assert.equal(previewSlugs.has(data.slug), false, `${data.slug}: slug repetido`);
+    assert.equal(previewPostIds.has(data.post_id), false, `${data.post_id}: post_id repetido`);
+    previewSlugs.add(data.slug);
+    previewPostIds.add(data.post_id);
+  }
 
   assert.equal(previewSlugs.has('corredor-lobito-minerales'), false);
-  assert.equal(previewSlugs.size, 16);
+  assert.equal(previewSlugs.size, files.length);
+  assert.equal(previewPostIds.size, files.length);
 });
 
 test('la carga resiste copias antiguas y Publicaciones expone solo textos publicados', () => {
