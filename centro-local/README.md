@@ -23,7 +23,8 @@ No es un selector de instalaciones externas. Observatorio, Medios y Flujo editor
 ## Qué no hace todavía
 
 - no unifica los formularios internos de los módulos;
-- no actualiza automáticamente el Excel ni sus derivados;
+- no modifica el Excel maestro; sus derivados se regeneran deliberadamente
+  desde la raíz del proyecto;
 - no ejecuta por sí solo el servidor ni el QA del sitio;
 - no realiza operaciones Git;
 - no se comunica con ChatGPT ni con servicios externos.
@@ -81,7 +82,9 @@ El usuario no necesita abrir ni recordar esos puertos internos.
 - Cada integración local registra su transacción en `data\integraciones` y su respaldo en `data\backups\integraciones`.
 - La Fase 8 copia el borrador canónico aprobado a `src\content\publicaciones\_preview` para verlo en el sitio editorial local. Solo actualiza `src\data\public\observatorio.json` cuando la propuesta de seguimiento aprobada contiene diferencias.
 - La Fase 9 crea o actualiza deliberadamente `src\content\publicaciones\publicadas\<slug>.md` después de comprobar el preview, las identidades, las fuentes y la ausencia de marcadores editoriales internos. Registra la operación en `data\promociones` y el respaldo en `data\backups\publicaciones`.
-- El dashboard de Medios conserva por ahora su vista derivada de 92 registros. La integración editable del Excel corresponde a la Fase 3.
+- El dashboard de Medios, el Observatorio y el sitio público comparten una
+  derivación de 93 registros generada desde el Excel maestro. Para
+  resincronizarlos se ejecuta `npm run sync:media` desde la raíz del proyecto.
 
 ## Límites de seguridad
 

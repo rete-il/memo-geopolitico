@@ -2,10 +2,10 @@
   "schema_version": 2,
   "metadata": {
     "titulo": "Directorio profesional de medios geopolíticos",
-    "archivo_fuente": "Medios_Geopolitica_con_ids.xlsx",
+    "archivo_fuente": "Medios_Matriz_Geopolitica_Navegacion_actualizado.xlsx",
     "hoja_fuente": "Matriz profesional",
-    "total_medios": 92,
-    "ultima_revision": "2026-07-15",
+    "total_medios": 93,
+    "ultima_revision": "2026-07-26",
     "descripcion": "Matriz de fuentes clasificada por región, función epistemológica, perspectiva geopolítica y criterios de calidad."
   },
   "columns": [
@@ -2882,6 +2882,36 @@
       "referencia": "https://www.namibian.com.na/about-us/",
       "fecha_revision": "2026-07-15",
       "media_id": "the-namibian"
+    },
+    {
+      "id": 93,
+      "nombre": "Geopolitical Futures",
+      "url": "https://geopoliticalfutures.com/",
+      "sede": "Estados Unidos; sede en Austin, Texas; alcance global",
+      "region": "Global/Occidente",
+      "idioma": "Inglés",
+      "familia": "Publicación especializada de análisis geopolítico",
+      "funcion": "Análisis estratégico, prospectiva y evaluación de riesgos geopolíticos",
+      "propiedad": "Empresa privada; modelo de suscripción y apoyo de lectores",
+      "control": "Privado",
+      "orientacion": "Realista / pragmático",
+      "perspectiva": "Estadounidense / realista geoestratégica",
+      "fiabilidad": 4,
+      "independencia": 4,
+      "transparencia": 3,
+      "rigor": 4,
+      "correcciones": 3,
+      "separacion": 4,
+      "puntuacion": 3.7,
+      "confianza": "Media-alta",
+      "uso": "Escenarios, análisis estructural y seguimiento de riesgos geopolíticos",
+      "corroboracion": "Moderada-alta",
+      "corroborar_con": "Reuters/AP, fuentes primarias, think tanks de perspectivas distintas y medios locales",
+      "estado": "Nuevo recomendado",
+      "observaciones": "Fundada por George Friedman. Ofrece análisis y previsiones mediante un modelo propio; sus interpretaciones y pronósticos deben contrastarse con datos, fuentes primarias y perspectivas regionales. No usar como confirmación única de hechos.",
+      "referencia": "https://geopoliticalfutures.com/analysis/",
+      "fecha_revision": "2026-07-26",
+      "media_id": "geopolitical-futures"
     }
   ]
 }

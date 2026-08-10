@@ -46,8 +46,8 @@ test('propone 20 fuentes diversas y conserva las cuatro prioritarias', () => {
     'Le Grand Continent',
     'The Guardian',
   ]);
-  assert.equal(sources.filter((item) => item.catalogada).length, 19);
-  assert.equal(sources.filter((item) => !item.catalogada).length, 1);
+  assert.equal(sources.filter((item) => item.catalogada).length, 20);
+  assert.equal(sources.filter((item) => !item.catalogada).length, 0);
   assert.ok(new Set(sources.map((item) => item.region)).size >= 4);
   assert.ok(new Set(sources.map((item) => item.funcion || item.familia)).size >= 8);
 });

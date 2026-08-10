@@ -85,7 +85,7 @@ No requiere `npm install`: utiliza Node.js, HTML, CSS y JavaScript nativo.
 
 ```text
 data/macroeventos.json             Macroeventos, historial y expedientes
-data/catalogo-medios.json          Catálogo normalizado de 92 fuentes
+data/catalogo-medios.json          Catálogo normalizado de 93 fuentes
 data/taxonomia-temas.json          Taxonomía de 17 grupos y 314 entradas
 data/configuracion-busqueda.json   Ejes editoriales y reglas del generador
 data/config.json                   Servidor y validación

@@ -1,8 +1,11 @@
 # Dashboard de medios geopolíticos
 
-Dashboard estático y responsivo generado a partir de:
+Dashboard estático y responsivo derivado del Excel maestro:
 
-`data/Medios_Matriz_Geopolitica_Navegacion_corregido.xlsx`
+`..\..\data\medios\Medios_Matriz_Geopolitica_Navegacion_actualizado.xlsx`
+
+La copia `data/Medios_Matriz_Geopolitica_Navegacion_corregido.xlsx` se conserva
+como archivo descargable del dashboard y se reemplaza durante la sincronización.
 
 ## Publicación
 
@@ -42,18 +45,23 @@ También se incluye `dashboard-standalone.html`, que contiene estilos, datos y a
 
 ## Actualizar el dashboard al cambiar el Excel
 
-Reemplace el archivo Excel en `data/` y ejecute desde la carpeta del dashboard:
+Desde la raíz de `D:\Memo geopolitico`, ejecute:
 
-```bash
-python tools/actualizar_datos.py "data/Medios_Matriz_Geopolitica_Navegacion_corregido.xlsx"
+```powershell
+npm run sync:media
 ```
 
-El script utiliza solamente la biblioteca estándar de Python y vuelve a generar:
+El comando vuelve a generar:
 
 - `data/medios.json`
 - `data/medios-data.js`
+- `dashboard-standalone.html`
+- el catálogo del Observatorio
+- el catálogo público del sitio
+- la copia descargable del Excel
 
-Después suba al servidor los archivos actualizados. Si cambia el nombre del Excel, actualice también el archivo que está en `data/`; el enlace de descarga se toma automáticamente de los metadatos.
+`tools/actualizar_datos.py` permanece como utilidad aislada del módulo, pero el
+procedimiento normal es `npm run sync:media` para evitar divergencias.
 
 ## Estructura
 

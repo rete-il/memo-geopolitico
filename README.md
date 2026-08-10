@@ -60,8 +60,17 @@ La sincronización:
 3. Genera una vista editorial local con las fuentes, señales y posts pendientes.
 4. Conserva las publicaciones autorizadas en `publicadas/` y migra los
    Markdown restantes al contrato de Publicaciones v2.
-5. Regenera el catálogo público de Medios desde el Excel canónico.
+5. Regenera desde el Excel canónico el catálogo público de Medios, la vista
+   local, el catálogo del Observatorio, el Excel descargable y el dashboard
+   autónomo.
 6. Valida IDs, relaciones entre señales y fuentes y estados de publicación.
+
+Para actualizar solamente los catálogos de Medios, sin regenerar publicaciones
+ni expedientes:
+
+```powershell
+npm run sync:media
+```
 
 Los archivos de vista local se guardan en rutas ignoradas por Git. El build de
 producción no los incluye.

@@ -9,8 +9,8 @@ test('reconoce los datos reales incluidos en el Centro', () => {
   assert.equal(health.observatorio.macroeventos, 17);
   assert.equal(health.observatorio.temas, 314);
   assert.equal(health.medios.canonical, 93);
-  assert.equal(health.medios.derived, 92);
-  assert.equal(health.medios.in_sync, false);
+  assert.equal(health.medios.derived, 93);
+  assert.equal(health.medios.in_sync, true);
   assert.equal(health.workflow.etapas, 13);
   assert.equal(health.workflow.documentos, 2);
 });
@@ -22,8 +22,7 @@ test('la instalación integrada no requiere configuración de rutas', () => {
   assert.deepEqual(report.missing, []);
 });
 
-test('la diferencia entre Excel y vista de Medios queda como advertencia', () => {
+test('el Excel y la vista de Medios permanecen sincronizados', () => {
   const health = collectDataHealth();
-  assert.match(health.medios.warning, /93 medios/);
-  assert.match(health.medios.warning, /92/);
+  assert.equal(health.medios.warning, null);
 });
