@@ -152,6 +152,18 @@ test('publica localmente con estado y fechas públicas sin modificar el preview'
   assert.equal(result.reused, false);
   assert.equal(fs.readFileSync(fixture.publishedFile, 'utf8'), publicMarkdown());
   assert.deepEqual(fs.readFileSync(fixture.previewFile), previewBefore);
+  const publicData = JSON.parse(fs.readFileSync(fixture.publicFile, 'utf8'));
+  const publicProcess = publicData.procesos.find((process) => process.macroevento_id === EVENT_ID);
+  assert.equal(publicProcess.publicacion.estado, 'publicado');
+  assert.equal(publicProcess.publicacion.publicado_el, PUBLISHED_ON);
+  assert.equal(publicProcess.publicacion.actualizado_el, PUBLISHED_ON);
+  assert.equal(publicProcess.progreso_publico.etapa, 'publicado');
+  assert.equal(publicProcess.progreso_publico.proximo_paso, 'Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.');
+  assert.deepEqual(publicProcess.progreso_publico.hitos_completados, [
+    'Expediente abierto y clasificado',
+    'Revisión editorial completada',
+    'Análisis publicado',
+  ]);
   assert.equal(fs.existsSync(plan.publication_record.file), true);
   assert.equal(fs.existsSync(path.join(plan.backup.directory, 'MANIFIESTO.json')), true);
   assert.equal(result.session.estado, 'publicacion_local_completada');
@@ -159,6 +171,28 @@ test('publica localmente con estado y fechas públicas sin modificar el preview'
   assert.equal(result.session.integracion_local.rollback_estado, 'bloqueada_por_publicacion');
   assert.equal(result.safety.publicacion_internet_realizada, false);
   assert.equal(result.safety.git_ejecutado, false);
+});
+
+test('repara el expediente público aunque el Markdown de producción ya coincida', (context) => {
+  const fixture = makeFixture(context);
+  fs.writeFileSync(fixture.publishedFile, publicMarkdown());
+  const plan = planLocalPublication(fixture);
+  assert.equal(plan.status, 'ready');
+  assert.equal(plan.analysis.operation, 'sin_cambios');
+  assert.equal(plan.public_expedient.operation, 'modificar');
+  const result = applyLocalPublication({
+    ...fixture,
+    expectedPlanId: plan.plan_id,
+    confirmed: true,
+    reviewConfirmed: true,
+  });
+  assert.equal(result.status, 'ready');
+  assert.equal(result.reused, false);
+  const publicData = JSON.parse(fs.readFileSync(fixture.publicFile, 'utf8'));
+  const publicProcess = publicData.procesos.find((process) => process.macroevento_id === EVENT_ID);
+  assert.equal(publicProcess.publicacion.estado, 'publicado');
+  assert.equal(result.session.publicacion_local.operation, 'sin_cambios');
+  assert.equal(result.session.publicacion_local.public_expedient_operation, 'modificar');
 });
 
 test('exige una confirmación humana que incluya la revisión editorial, factual y visual', (context) => {
@@ -236,8 +270,9 @@ test('rechaza post_id duplicado en otra publicación activa', (context) => {
   assert.equal(result.blocks[0].code, 'duplicate-publication-post-id');
 });
 
-test('la reversión elimina una publicación nueva y rehabilita la reversión de Fase 8', (context) => {
+test('la reversión elimina una publicación nueva, restaura el expediente y rehabilita la reversión de Fase 8', (context) => {
   const fixture = makeFixture(context);
+  const publicBefore = fs.readFileSync(fixture.publicFile, 'utf8');
   const plan = planLocalPublication(fixture);
   const applied = applyLocalPublication({
     ...fixture,
@@ -257,6 +292,7 @@ test('la reversión elimina una publicación nueva y rehabilita la reversión de
   });
   assert.equal(result.status, 'ready');
   assert.equal(fs.existsSync(fixture.publishedFile), false);
+  assert.equal(fs.readFileSync(fixture.publicFile, 'utf8'), publicBefore);
   assert.equal(result.session.estado, 'integracion_local_completada');
   assert.equal(result.session.integracion_local.rollback_estado, 'disponible');
   assert.equal(result.session.publicacion_local.estado, 'revertida');
@@ -284,6 +320,32 @@ test('la reversión protege una edición posterior del Markdown público', (cont
   assert.equal(result.status, 'blocked');
   assert.equal(result.blocks[0].code, 'publication-changed-after-apply');
   assert.match(fs.readFileSync(fixture.publishedFile, 'utf8'), /Edición posterior/);
+});
+
+test('la reversión protege cambios posteriores del expediente público', (context) => {
+  const fixture = makeFixture(context);
+  const plan = planLocalPublication(fixture);
+  const applied = applyLocalPublication({
+    ...fixture,
+    expectedPlanId: plan.plan_id,
+    confirmed: true,
+    reviewConfirmed: true,
+  });
+  const publicData = JSON.parse(fs.readFileSync(fixture.publicFile, 'utf8'));
+  publicData.procesos[0].progreso_publico.proximo_paso = 'Actualización editorial posterior';
+  fs.writeFileSync(fixture.publicFile, `${JSON.stringify(publicData, null, 2)}\n`);
+  const result = rollbackLocalPublication({
+    centerRoot: fixture.centerRoot,
+    siteRoot: fixture.siteRoot,
+    sessionsDir: fixture.sessionsDir,
+    publicationsDir: fixture.publicationsDir,
+    eventId: EVENT_ID,
+    publicationId: applied.publication.publication_id,
+    confirmed: true,
+  });
+  assert.equal(result.status, 'blocked');
+  assert.equal(result.blocks[0].code, 'public-expedient-changed-after-apply');
+  assert.match(fs.readFileSync(fixture.publicFile, 'utf8'), /Actualización editorial posterior/);
 });
 
 test('actualiza una publicación de la misma identidad y la reversión restaura la versión anterior', (context) => {

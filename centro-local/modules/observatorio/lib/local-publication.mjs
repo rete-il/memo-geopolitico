@@ -202,6 +202,57 @@ function validatePublicReferences(publicFile, metadata) {
   const sourceIds = new Set((data.fuentes || []).map((source) => clean(source?.fuente_id)).filter(Boolean));
   const missing = metadata.source_ids.filter((sourceId) => !sourceIds.has(sourceId));
   if (missing.length) throw new Error(`Faltan fuentes públicas vinculadas: ${missing.join(', ')}.`);
+  return { data, process: processMatches[0] };
+}
+
+function promotedPublicProcess(process, publishedOn) {
+  const candidate = JSON.parse(JSON.stringify(process));
+  candidate.publicacion = {
+    ...(candidate.publicacion || {}),
+    estado: 'publicado',
+    publicado_el: publishedOn,
+    actualizado_el: publishedOn,
+  };
+
+  const milestones = Array.isArray(candidate.progreso_publico?.hitos_completados)
+    ? candidate.progreso_publico.hitos_completados.filter((item) => clean(item) && clean(item) !== 'Revisión editorial iniciada')
+    : [];
+  const addMilestone = (label) => {
+    if (!milestones.includes(label)) milestones.push(label);
+  };
+  addMilestone('Expediente abierto y clasificado');
+  if (Array.isArray(candidate.fuente_ids) && candidate.fuente_ids.length) addMilestone('Fuentes verificadas incorporadas');
+  if (Array.isArray(candidate.senales)
+      && candidate.senales.some((signal) => clean(signal?.estado_verificacion) === 'verificada')) {
+    addMilestone('Señales verificadas incorporadas');
+  }
+  addMilestone('Revisión editorial completada');
+  addMilestone('Análisis publicado');
+
+  candidate.progreso_publico = {
+    ...(candidate.progreso_publico || {}),
+    etapa: 'publicado',
+    proximo_paso: 'Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.',
+    hitos_completados: milestones,
+  };
+  return candidate;
+}
+
+function publicDataCandidate(data, eventId, processCandidate) {
+  const candidate = JSON.parse(JSON.stringify(data));
+  const matches = (candidate.procesos || [])
+    .map((process, index) => ({ process, index }))
+    .filter(({ process }) => clean(process?.macroevento_id) === eventId);
+  if (matches.length !== 1) throw new Error('El macroevento principal no aparece una sola vez en la proyección pública.');
+  candidate.procesos[matches[0].index] = processCandidate;
+  return Buffer.from(jsonText(candidate), 'utf8');
+}
+
+function processFromPublicDataBuffer(buffer, eventId) {
+  const data = JSON.parse(buffer.toString('utf8'));
+  const matches = (data.procesos || []).filter((process) => clean(process?.macroevento_id) === eventId);
+  if (matches.length !== 1) throw new Error('El macroevento principal no aparece una sola vez en la proyección pública.');
+  return matches[0];
 }
 
 function operationFor(previous, candidate) {
@@ -209,13 +260,24 @@ function operationFor(previous, candidate) {
   return sha256(previous) === sha256(candidate) ? 'sin_cambios' : 'modificar';
 }
 
-function publicationFingerprint({ eventId, integrationId, sourceHash, previousHash, candidateHash, publishedOn }) {
+function publicationFingerprint({
+  eventId,
+  integrationId,
+  sourceHash,
+  previousHash,
+  candidateHash,
+  publicDataPreviousHash,
+  publicDataCandidateHash,
+  publishedOn,
+}) {
   return sha256(jsonText({
     eventId,
     integrationId,
     sourceHash,
     previousHash: previousHash || null,
     candidateHash,
+    publicDataPreviousHash,
+    publicDataCandidateHash,
     publishedOn,
   }));
 }
@@ -280,19 +342,33 @@ export function planLocalPublication({
   }
   let metadata;
   let candidate;
+  let publicPrevious;
+  let publicCandidate;
+  let processPrevious;
+  let processCandidate;
   try {
     metadata = publicationIdentity(source.toString('utf8'));
     if (metadata.post_id !== postId || metadata.slug !== slug || metadata.macroevento_id !== id) {
       throw new Error('post_id, slug o macroevento_principal_id no coinciden con la respuesta aprobada.');
     }
     if (!metadata.source_ids.length) throw new Error('El análisis no contiene fuente_ids.');
-    validatePublicReferences(publicFile, metadata);
+    const publicReferences = validatePublicReferences(publicFile, metadata);
+    processPrevious = publicReferences.process;
+    processCandidate = promotedPublicProcess(processPrevious, publicationDate);
+    publicPrevious = fs.readFileSync(publicFile);
+    publicCandidate = publicDataCandidate(publicReferences.data, id, processCandidate);
     candidate = publicationCandidate(source.toString('utf8'), publicationDate);
     const candidateMetadata = publicationIdentity(candidate.toString('utf8'));
     if (candidateMetadata.publication.estado !== 'publicado'
         || candidateMetadata.publication.publicado_el !== publicationDate
         || candidateMetadata.publication.actualizado_el !== publicationDate) {
       throw new Error('La transformación del estado público no pudo verificarse.');
+    }
+    if (processCandidate.publicacion?.estado !== 'publicado'
+        || processCandidate.publicacion?.publicado_el !== publicationDate
+        || processCandidate.publicacion?.actualizado_el !== publicationDate
+        || processCandidate.progreso_publico?.etapa !== 'publicado') {
+      throw new Error('La promoción del expediente público no pudo verificarse.');
     }
   } catch (error) {
     return { status: 'blocked', blocks: [issue('invalid-publication-content', 'El análisis no cumple el contrato de publicación', error.message)] };
@@ -320,12 +396,15 @@ export function planLocalPublication({
     }
   }
   const operation = operationFor(previous, candidate);
+  const publicDataOperation = operationFor(publicPrevious, publicCandidate);
   const fingerprint = publicationFingerprint({
     eventId: id,
     integrationId: session.integracion_local.integration_id,
     sourceHash,
     previousHash: previous ? sha256(previous) : '',
     candidateHash: sha256(candidate),
+    publicDataPreviousHash: sha256(publicPrevious),
+    publicDataCandidateHash: sha256(publicCandidate),
     publishedOn: publicationDate,
   });
   const publicationId = `publicacion-${id}-${fingerprint.slice(0, 12)}`;
@@ -358,6 +437,19 @@ export function planLocalPublication({
       previous_existed: Boolean(previous),
       public_url: `/publicaciones/${slug}/`,
     },
+    public_expedient: {
+      file: publicFile,
+      relative: relativeWindows(siteRoot, publicFile),
+      operation: publicDataOperation,
+      previous_sha256: sha256(publicPrevious),
+      candidate_sha256: sha256(publicCandidate),
+      previous_process_sha256: sha256(Buffer.from(jsonText(processPrevious), 'utf8')),
+      candidate_process_sha256: sha256(Buffer.from(jsonText(processCandidate), 'utf8')),
+      state_before: clean(processPrevious.publicacion?.estado),
+      state_after: 'publicado',
+      progress_before: clean(processPrevious.progreso_publico?.etapa),
+      progress_after: 'publicado',
+    },
     editorial_gate: {
       unresolved_markers: 0,
       linked_sources: metadata.source_ids.length,
@@ -368,7 +460,8 @@ export function planLocalPublication({
       directory: backupDirectory,
       directory_relative: relativeWindows(centerRoot, backupDirectory),
       previous_file_will_be_copied: Boolean(previous) && operation === 'modificar',
-      rollback_available: operation !== 'sin_cambios',
+      previous_public_data_will_be_copied: publicDataOperation !== 'sin_cambios',
+      rollback_available: operation !== 'sin_cambios' || publicDataOperation !== 'sin_cambios',
     },
     publication_record: {
       file: publicationRecord,
@@ -378,7 +471,9 @@ export function planLocalPublication({
       production_markdown_created: operation === 'crear' ? 1 : 0,
       production_markdown_modified: operation === 'modificar' ? 1 : 0,
       production_markdown_unchanged: operation === 'sin_cambios' ? 1 : 0,
-      publication_records: operation === 'sin_cambios' ? 0 : 1,
+      public_data_modified: publicDataOperation === 'modificar' ? 1 : 0,
+      public_data_unchanged: publicDataOperation === 'sin_cambios' ? 1 : 0,
+      publication_records: operation === 'sin_cambios' && publicDataOperation === 'sin_cambios' ? 0 : 1,
       git_operations: 0,
     },
     checks: [
@@ -397,6 +492,7 @@ export function planLocalPublication({
       references_verified: true,
       rollback_guarded_by_hash: true,
       production_markdown_created: operation === 'crear',
+      public_expedient_promoted: publicDataOperation !== 'sin_cambios',
       internet_published: false,
       git_executed: false,
       build_executed: false,
@@ -405,12 +501,26 @@ export function planLocalPublication({
     _source: source,
     _candidate: candidate,
     _previous: previous,
+    _public_previous: publicPrevious,
+    _public_candidate: publicCandidate,
+    _process_previous: processPrevious,
+    _process_candidate: processCandidate,
     _session_file: loaded.file,
   };
 }
 
 function publicPlan(plan) {
-  const { _source, _candidate, _previous, _session_file, ...safe } = plan;
+  const {
+    _source,
+    _candidate,
+    _previous,
+    _public_previous,
+    _public_candidate,
+    _process_previous,
+    _process_candidate,
+    _session_file,
+    ...safe
+  } = plan;
   return safe;
 }
 
@@ -423,7 +533,7 @@ export function applyLocalPublication(options = {}) {
   if (options.confirmed !== true || options.reviewConfirmed !== true) {
     return { status: 'blocked', blocks: [issue('publication-confirmation-required', 'Falta confirmar la revisión editorial, factual y visual')] };
   }
-  if (plan.analysis.operation === 'sin_cambios') {
+  if (plan.analysis.operation === 'sin_cambios' && plan.public_expedient.operation === 'sin_cambios') {
     return {
       status: 'ready',
       reused: true,
@@ -438,6 +548,7 @@ export function applyLocalPublication(options = {}) {
   const appliedAt = options.appliedAt || new Date().toISOString();
   const backupFiles = path.join(plan.backup.directory, 'files');
   const previousBackupFile = path.join(backupFiles, 'publicacion-anterior.md');
+  const previousPublicDataBackupFile = path.join(backupFiles, 'observatorio-anterior.json');
   const record = {
     schema_version: 1,
     tipo: 'publicacion-local-controlada',
@@ -460,8 +571,22 @@ export function applyLocalPublication(options = {}) {
       candidate_sha256: plan.analysis.candidate_sha256,
       previous_sha256: plan.analysis.previous_sha256,
       previous_existed: plan.analysis.previous_existed,
-      previous_backup_file: plan.analysis.previous_existed ? previousBackupFile : null,
+      previous_backup_file: plan.analysis.previous_existed && plan.analysis.operation !== 'sin_cambios' ? previousBackupFile : null,
       public_url: plan.analysis.public_url,
+    },
+    public_expedient: {
+      file: plan.public_expedient.file,
+      relative: plan.public_expedient.relative,
+      operation: plan.public_expedient.operation,
+      previous_sha256: plan.public_expedient.previous_sha256,
+      candidate_sha256: plan.public_expedient.candidate_sha256,
+      previous_process_sha256: plan.public_expedient.previous_process_sha256,
+      candidate_process_sha256: plan.public_expedient.candidate_process_sha256,
+      previous_backup_file: plan.public_expedient.operation !== 'sin_cambios' ? previousPublicDataBackupFile : null,
+      state_before: plan.public_expedient.state_before,
+      state_after: plan.public_expedient.state_after,
+      progress_before: plan.public_expedient.progress_before,
+      progress_after: plan.public_expedient.progress_after,
     },
     review: {
       editorial_factual_visual_confirmed: true,
@@ -483,14 +608,25 @@ export function applyLocalPublication(options = {}) {
   };
 
   let targetWritten = false;
+  let publicDataWritten = false;
   try {
     fs.mkdirSync(backupFiles, { recursive: true });
-    if (plan._previous) writeAtomic(previousBackupFile, plan._previous);
+    if (plan._previous && plan.analysis.operation !== 'sin_cambios') writeAtomic(previousBackupFile, plan._previous);
+    if (plan.public_expedient.operation !== 'sin_cambios') writeAtomic(previousPublicDataBackupFile, plan._public_previous);
     writeAtomic(record.backup.manifest, Buffer.from(jsonText(record), 'utf8'));
-    writeAtomic(plan.analysis.target_file, plan._candidate);
-    targetWritten = true;
-    if (sha256(fs.readFileSync(plan.analysis.target_file)) !== plan.analysis.candidate_sha256) {
-      throw new Error('La verificación posterior del Markdown público no coincide.');
+    if (plan.analysis.operation !== 'sin_cambios') {
+      writeAtomic(plan.analysis.target_file, plan._candidate);
+      targetWritten = true;
+      if (sha256(fs.readFileSync(plan.analysis.target_file)) !== plan.analysis.candidate_sha256) {
+        throw new Error('La verificación posterior del Markdown público no coincide.');
+      }
+    }
+    if (plan.public_expedient.operation !== 'sin_cambios') {
+      writeAtomic(plan.public_expedient.file, plan._public_candidate);
+      publicDataWritten = true;
+      if (sha256(fs.readFileSync(plan.public_expedient.file)) !== plan.public_expedient.candidate_sha256) {
+        throw new Error('La verificación posterior del expediente público no coincide.');
+      }
     }
     writeAtomic(plan.publication_record.file, Buffer.from(jsonText(record), 'utf8'));
     const session = loaded.session;
@@ -515,6 +651,9 @@ export function applyLocalPublication(options = {}) {
       target_relative: plan.analysis.target_relative,
       operation: plan.analysis.operation,
       candidate_sha256: plan.analysis.candidate_sha256,
+      public_expedient_relative: plan.public_expedient.relative,
+      public_expedient_operation: plan.public_expedient.operation,
+      public_expedient_candidate_sha256: plan.public_expedient.candidate_sha256,
       backup_relative: plan.backup.directory_relative,
       publication_record_relative: plan.publication_record.relative,
       rollback_estado: 'disponible',
@@ -527,6 +666,7 @@ export function applyLocalPublication(options = {}) {
       archivos_markdown_publicos_creados: plan.writes.production_markdown_created,
       archivos_markdown_publicos_modificados: plan.writes.production_markdown_modified,
       archivos_publicacion_creados: 1,
+      archivos_datos_publicos_modificados: plan.writes.public_data_modified,
       backups_publicacion_creados: 1,
       publicacion_internet_realizada: false,
       git_ejecutado: false,
@@ -544,6 +684,7 @@ export function applyLocalPublication(options = {}) {
     };
   } catch (error) {
     if (targetWritten) restoreFile(plan.analysis.target_file, plan._previous);
+    if (publicDataWritten) writeAtomic(plan.public_expedient.file, plan._public_previous);
     return { status: 'blocked', blocks: [issue('publication-write-failed', 'No se pudo completar la publicación local', error.message)] };
   }
 }
@@ -591,7 +732,9 @@ export function rollbackLocalPublication({
   }
 
   let targetFile;
+  let publicFile;
   let previousBackupFile;
+  let previousPublicDataBackupFile;
   try {
     const slug = clean(record.analysis?.slug);
     if (!VALID_ID.test(slug)) throw new Error('El slug guardado no es válido.');
@@ -599,29 +742,77 @@ export function rollbackLocalPublication({
     if (path.resolve(clean(record.analysis?.target_file)) !== targetFile) {
       throw new Error('El destino guardado no coincide con la carpeta pública autorizada.');
     }
+    publicFile = safeChild(siteRoot, 'src', 'data', 'public', 'observatorio.json');
+    if (record.public_expedient
+        && path.resolve(clean(record.public_expedient?.file)) !== publicFile) {
+      throw new Error('El expediente público guardado no coincide con el destino autorizado.');
+    }
     const backupRoot = safeChild(centerRoot, 'data', 'backups', 'publicaciones', recordId, 'files');
     previousBackupFile = path.join(backupRoot, 'publicacion-anterior.md');
+    previousPublicDataBackupFile = path.join(backupRoot, 'observatorio-anterior.json');
     if (record.analysis.previous_existed
+        && record.analysis.operation !== 'sin_cambios'
         && path.resolve(clean(record.analysis?.previous_backup_file)) !== previousBackupFile) {
       throw new Error('La copia anterior no coincide con el backup autorizado.');
+    }
+    if (record.public_expedient?.operation !== 'sin_cambios'
+        && path.resolve(clean(record.public_expedient?.previous_backup_file)) !== previousPublicDataBackupFile) {
+      throw new Error('La copia anterior del expediente público no coincide con el backup autorizado.');
     }
   } catch (error) {
     return { status: 'blocked', blocks: [issue('unsafe-publication-rollback-record', 'El registro contiene rutas no autorizadas', error.message)] };
   }
-  if (!fs.existsSync(targetFile)
-      || sha256(fs.readFileSync(targetFile)) !== record.analysis.candidate_sha256) {
+  if (record.analysis.operation !== 'sin_cambios'
+      && (!fs.existsSync(targetFile)
+        || sha256(fs.readFileSync(targetFile)) !== record.analysis.candidate_sha256)) {
     return { status: 'blocked', blocks: [issue('publication-changed-after-apply', 'La publicación local cambió después de crearla', 'No se restauró para evitar perder ediciones posteriores.')] };
   }
+  if (record.public_expedient?.operation !== 'sin_cambios') {
+    if (!fs.existsSync(publicFile)) {
+      return { status: 'blocked', blocks: [issue('public-expedient-missing-after-apply', 'No se encontró la proyección pública después de la publicación')] };
+    }
+    let currentProcess;
+    try {
+      currentProcess = processFromPublicDataBuffer(fs.readFileSync(publicFile), id);
+    } catch (error) {
+      return { status: 'blocked', blocks: [issue('public-expedient-invalid-after-apply', 'No se pudo comprobar el expediente público actual', error.message)] };
+    }
+    const currentProcessHash = sha256(Buffer.from(jsonText(currentProcess), 'utf8'));
+    if (currentProcessHash !== record.public_expedient.candidate_process_sha256) {
+      return { status: 'blocked', blocks: [issue('public-expedient-changed-after-apply', 'El expediente público cambió después de publicarlo', 'No se restauró para evitar perder actualizaciones posteriores.')] };
+    }
+  }
 
-  const targetCurrent = fs.readFileSync(targetFile);
+  const targetCurrent = fs.existsSync(targetFile) ? fs.readFileSync(targetFile) : null;
+  const publicCurrent = fs.existsSync(publicFile) ? fs.readFileSync(publicFile) : null;
   try {
-    if (record.analysis.previous_existed) {
-      if (!fs.existsSync(previousBackupFile)) throw new Error('No se encontró la copia pública anterior.');
-      const previous = fs.readFileSync(previousBackupFile);
-      if (sha256(previous) !== record.analysis.previous_sha256) throw new Error('El hash de la publicación anterior no coincide.');
-      writeAtomic(targetFile, previous);
-    } else {
-      fs.unlinkSync(targetFile);
+    if (record.analysis.operation !== 'sin_cambios') {
+      if (record.analysis.previous_existed) {
+        if (!fs.existsSync(previousBackupFile)) throw new Error('No se encontró la copia pública anterior.');
+        const previous = fs.readFileSync(previousBackupFile);
+        if (sha256(previous) !== record.analysis.previous_sha256) throw new Error('El hash de la publicación anterior no coincide.');
+        writeAtomic(targetFile, previous);
+      } else {
+        fs.unlinkSync(targetFile);
+      }
+    }
+    if (record.public_expedient?.operation !== 'sin_cambios') {
+      if (!fs.existsSync(previousPublicDataBackupFile)) throw new Error('No se encontró la copia anterior del expediente público.');
+      const previousPublicData = fs.readFileSync(previousPublicDataBackupFile);
+      if (sha256(previousPublicData) !== record.public_expedient.previous_sha256) {
+        throw new Error('El hash de la proyección pública anterior no coincide.');
+      }
+      const previousProcess = processFromPublicDataBuffer(previousPublicData, id);
+      if (sha256(Buffer.from(jsonText(previousProcess), 'utf8')) !== record.public_expedient.previous_process_sha256) {
+        throw new Error('El hash del expediente público anterior no coincide.');
+      }
+      const currentPublicData = JSON.parse(fs.readFileSync(publicFile, 'utf8'));
+      const matches = (currentPublicData.procesos || [])
+        .map((process, index) => ({ process, index }))
+        .filter(({ process }) => clean(process?.macroevento_id) === id);
+      if (matches.length !== 1) throw new Error('El macroevento principal no aparece una sola vez en la proyección pública actual.');
+      currentPublicData.procesos[matches[0].index] = previousProcess;
+      writeAtomic(publicFile, Buffer.from(jsonText(currentPublicData), 'utf8'));
     }
     record.estado = 'revertida';
     record.rollback = { estado: 'completada', ejecutado_el: rolledBackAt };
@@ -648,6 +839,7 @@ export function rollbackLocalPublication({
       ...(session.seguridad || {}),
       archivos_markdown_publicos_creados: 0,
       archivos_markdown_publicos_modificados: 0,
+      archivos_datos_publicos_modificados: 0,
       publicacion_internet_realizada: false,
       git_ejecutado: false,
       build_ejecutado: false,
@@ -659,12 +851,19 @@ export function rollbackLocalPublication({
       publication: record,
       session,
       restored: {
-        action: record.analysis.previous_existed ? 'archivo_anterior_restaurado' : 'archivo_publico_creado_eliminado',
+        action: record.analysis.operation === 'sin_cambios'
+          ? 'markdown_sin_cambios'
+          : (record.analysis.previous_existed ? 'archivo_anterior_restaurado' : 'archivo_publico_creado_eliminado'),
+        public_expedient: record.public_expedient?.operation === 'sin_cambios'
+          ? 'sin_cambios'
+          : 'estado_publico_anterior_restaurado',
       },
       safety: { internet_published: false, git_executed: false, build_executed: false, deploy_executed: false },
     };
   } catch (error) {
-    restoreFile(targetFile, targetCurrent);
+    if (targetCurrent) restoreFile(targetFile, targetCurrent);
+    else if (fs.existsSync(targetFile)) fs.unlinkSync(targetFile);
+    if (publicCurrent) writeAtomic(publicFile, publicCurrent);
     return { status: 'blocked', blocks: [issue('publication-rollback-failed', 'No se pudo restaurar la publicación local', error.message)] };
   }
 }

@@ -2032,6 +2032,10 @@ a:active {
   font-size: 1.1rem;
 }
 
+.article-shell > .sidebar-card + .prose {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
 .progress-card h3 {
   margin: 1rem 0 0.3rem;
   font-size: 0.73rem;
@@ -2127,7 +2131,8 @@ a:active {
 .article-shell {
   width: min(760px, calc(100% - 2rem));
   margin-inline: auto;
-  padding-block: clamp(2.5rem, 6vw, 5rem);
+  padding-top: clamp(1.5rem, 3vw, 2.75rem);
+  padding-bottom: clamp(2.5rem, 6vw, 5rem);
 }
 
 .prose {

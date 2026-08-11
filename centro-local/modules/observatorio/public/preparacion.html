@@ -476,7 +476,7 @@
         <div>
           <p class="eyebrow">PUBLICACIÓN LOCAL · FUENTE DE PRODUCCIÓN</p>
           <h2 id="local-publication-action-heading">Preparar la publicación para el QA final</h2>
-          <p>Creará o actualizará deliberadamente el Markdown bajo <code>src\content\publicaciones\publicadas</code>. Esto lo incorpora al próximo build de producción local, pero no ejecuta Git, no lo sube a GitHub y no modifica el sitio de Internet.</p>
+          <p>Creará o actualizará deliberadamente el Markdown bajo <code>src\content\publicaciones\publicadas</code> y promoverá el expediente relacionado en <code>src\data\public\observatorio.json</code> a estado publicado. Esto los incorpora al próximo build de producción local. El procedimiento no ejecuta Git, no lo sube a GitHub y no modifica el sitio de Internet.</p>
         </div>
         <div class="local-integration-action-controls local-publication-action-controls">
           <label for="local-publication-date">
@@ -515,7 +515,7 @@
         <div id="local-publication-confirmation" class="local-integration-confirmation">
           <label for="confirm-local-publication">
             <input id="confirm-local-publication" type="checkbox">
-            <span>Confirmo que revisé íntegramente el texto, sus fuentes y su visualización, y autorizo crear o actualizar únicamente la publicación local indicada.</span>
+            <span>Confirmo que revisé íntegramente el texto, sus fuentes y su visualización, y autorizo crear o actualizar únicamente el análisis y el expediente público relacionados indicados en este plan.</span>
           </label>
           <button id="apply-local-publication" class="btn preparation" type="button" disabled>Publicar en la copia local</button>
           <p id="local-publication-apply-status" class="muted" role="status" aria-live="polite">Esta acción no ejecuta QA, Git, GitHub ni despliegue.</p>

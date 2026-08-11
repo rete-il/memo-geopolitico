@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "titulo": "Observatorio de macroeventos geopolíticos",
-  "actualizado": "2026-07-24",
+  "actualizado": "2026-08-11",
   "notas": "Datos iniciales derivados del análisis del chat. Todas las fuentes comienzan como no verificadas.",
   "macroeventos": [
     {
@@ -1050,8 +1050,8 @@
         },
         {
           "id": "fuente-2-7",
-          "media_id": "",
-          "medio_catalogado": false,
+          "media_id": "geopolitical-futures",
+          "medio_catalogado": true,
           "medio": "Geopolitical Futures",
           "titulo": "Expanding the Copperbelt's Atlantic export routes",
           "fecha": "2026-06-26",
@@ -2646,7 +2646,7 @@
       "titulo": "Land Bridge tailandés como alternativa parcial a Malaca",
       "tipo_proceso": "macroproceso_emergente",
       "estado_editorial": "borrador",
-      "estado_verificacion": "pendiente",
+      "estado_verificacion": "verificado",
       "fecha_corte": "2026-07-23",
       "regiones": [
         "Sudeste Asiático"
@@ -2667,7 +2667,7 @@
           "titulo": "Tailandia reactiva el corredor de costa a costa",
           "tipo": "reactivacion_proyecto",
           "descripcion": "El gobierno vuelve a promover dos puertos conectados por infraestructura terrestre como alternativa parcial a Malaca.",
-          "estado_revision": "pendiente",
+          "estado_revision": "revisada",
           "origen": "ia",
           "fuente_ids": [
             "fuente-1-3"
@@ -2688,7 +2688,7 @@
           "titulo": "La crisis de chokepoints refuerza la promoción del Land Bridge",
           "tipo": "impulso_geopolitico",
           "descripcion": "Tailandia utiliza la vulnerabilidad de rutas marítimas para atraer a Singapur y potenciales inversores.",
-          "estado_revision": "pendiente",
+          "estado_revision": "revisada",
           "origen": "ia",
           "fuente_ids": [
             "fuente-2-3"
@@ -2776,7 +2776,7 @@
           "idioma": "en",
           "tipo": "noticia",
           "url": "https://www.reuters.com/world/china/thailand-revives-30-bln-coast-to-coast-corridor-rival-malacca-strait-2026-06-18/",
-          "estado_verificacion": "pendiente",
+          "estado_verificacion": "verificada",
           "observaciones": "",
           "revisada_el": ""
         },
@@ -2790,7 +2790,7 @@
           "idioma": "en",
           "tipo": "noticia",
           "url": "https://www.reuters.com/world/asia-pacific/thailand-touts-31-billion-land-bridge-plan-amid-hormuz-crisis-courts-singapore-2026-04-27/",
-          "estado_verificacion": "pendiente",
+          "estado_verificacion": "verificada",
           "observaciones": "",
           "revisada_el": ""
         }

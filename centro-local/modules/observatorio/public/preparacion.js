@@ -1351,7 +1351,7 @@ function configureLocalPublicationAvailability(session) {
 function renderLocalPublicationPlan(plan, { scroll = true } = {}) {
   currentLocalPublicationPlan = plan;
   currentLocalPublication = null;
-  const changed = plan.analysis.operation !== 'sin_cambios';
+  const changed = plan.analysis.operation !== 'sin_cambios' || plan.public_expedient?.operation !== 'sin_cambios';
   const values = [
     ['Operación', localOperationLabel(plan.analysis.operation), changed ? 'info' : 'good'],
     ['Fecha', plan.published_on, 'info'],
@@ -1365,9 +1365,10 @@ function renderLocalPublicationPlan(plan, { scroll = true } = {}) {
   $('#local-publication-files').innerHTML = `
     <li><div><b>${esc(plan.analysis.source_relative)}</b><small>Preview verificado · no se modificará</small></div><span>Origen</span></li>
     <li><div><b>${esc(plan.analysis.target_relative)}</b><small>Fuente del próximo build público local · ${esc(plan.analysis.post_id)}</small></div><span>${esc(localOperationLabel(plan.analysis.operation))}</span></li>
+    <li><div><b>${esc(plan.public_expedient.relative)}</b><small>Expediente público · estado, fecha, próximo paso e hitos</small></div><span>${esc(localOperationLabel(plan.public_expedient.operation))}</span></li>
     <li><div><b>${esc(plan.publication_record.relative)}</b><small>Registro transaccional y reversión</small></div><span>${changed ? 'Crear' : 'No crear'}</span></li>
   `;
-  $('#local-publication-backup-path').innerHTML = `<b>Backup:</b> <code>${esc(plan.backup.directory_relative)}</code>. ${plan.backup.previous_file_will_be_copied ? 'Se conservará la versión pública anterior.' : 'El manifiesto registrará que no existía una publicación anterior con esta identidad.'}`;
+  $('#local-publication-backup-path').innerHTML = `<b>Backup:</b> <code>${esc(plan.backup.directory_relative)}</code>. ${plan.backup.previous_file_will_be_copied ? 'Se conservará la versión pública anterior. ' : ''}${plan.backup.previous_public_data_will_be_copied ? 'Se conservará también la proyección pública anterior del expediente.' : 'La proyección pública del expediente ya coincide.'}`;
   $('#local-publication-safety').textContent = `Plan ${plan.publication_id}: identidades, referencias, hash del preview y marcadores editoriales verificados. Se ejecutarán 0 operaciones Git y 0 despliegues.`;
   $('#local-publication-state').className = changed ? 'badge warn' : 'badge good';
   $('#local-publication-state').textContent = changed ? 'Pendiente de confirmación' : 'El destino ya coincide';
@@ -1386,7 +1387,7 @@ function renderLocalPublicationPlan(plan, { scroll = true } = {}) {
   $('#preparation-status').textContent = changed ? 'Publicación local pendiente' : 'Publicación local comprobada';
   $('#preparation-message').className = `panel preparation-phase-note issue ${changed ? 'warning' : 'success'}`;
   $('#preparation-message').textContent = changed
-    ? 'Plan de Fase 9 preparado: todavía no se creó ni actualizó ningún Markdown público. La operación exige tu confirmación explícita.'
+    ? 'Plan de Fase 9 preparado: todavía no se creó ni actualizó ningún Markdown ni expediente público. La operación exige tu confirmación explícita.'
     : 'Fase 9 comprobada: la fuente pública local ya coincide y no se escribió ningún archivo.';
   if (scroll) $('#local-publication-workspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -1402,6 +1403,8 @@ function renderAppliedLocalPublication(session, publication = null, plan = null,
   const backup = plan?.backup?.directory_relative || saved.backup_relative || 'data\\backups\\publicaciones';
   const record = plan?.publication_record?.relative || saved.publication_record_relative || 'data\\promociones';
   const publicUrl = plan?.analysis?.public_url || saved.public_url || publication?.analysis?.public_url || '/publicaciones/';
+  const publicExpedient = plan?.public_expedient?.relative || saved.public_expedient_relative || publication?.public_expedient?.relative || 'src\\data\\public\\observatorio.json';
+  const publicExpedientOperation = plan?.public_expedient?.operation || saved.public_expedient_operation || publication?.public_expedient?.operation || 'modificar';
   $('#local-publication-date').value = publishedOn;
   $('#local-publication-date').disabled = true;
   const values = [
@@ -1416,6 +1419,7 @@ function renderAppliedLocalPublication(session, publication = null, plan = null,
   `).join('');
   $('#local-publication-files').innerHTML = `
     <li><div><b>${esc(target)}</b><small>Markdown incluido en el próximo build público local</small></div><span>${esc(localOperationLabel(operation))}</span></li>
+    <li><div><b>${esc(publicExpedient)}</b><small>Expediente público promovido a publicado</small></div><span>${esc(localOperationLabel(publicExpedientOperation))}</span></li>
     <li><div><b>${esc(record)}</b><small>Registro de publicación controlada</small></div><span>Creado</span></li>
   `;
   $('#local-publication-backup-path').innerHTML = `<b>Backup:</b> <code>${esc(backup)}</code>`;
@@ -1433,7 +1437,8 @@ function renderAppliedLocalPublication(session, publication = null, plan = null,
     : 'El Markdown público ya existe en tu copia local. Todavía falta el QA final y no se ejecutó ninguna operación Git.';
   $('#local-publication-result-files').innerHTML = `
     <li><div><b>${esc(target)}</b><small>Fuente pública local</small></div><span>Preparada</span></li>
-    <li><div><b>${esc(backup)}</b><small>Manifiesto y versión anterior cuando correspondía</small></div><span>Disponible</span></li>
+    <li><div><b>${esc(publicExpedient)}</b><small>Estado público del expediente</small></div><span>Publicado</span></li>
+    <li><div><b>${esc(backup)}</b><small>Manifiesto y versiones anteriores cuando correspondía</small></div><span>Disponible</span></li>
   `;
   $('#local-publication-commands').textContent = 'npm.cmd run test\nnpm.cmd run validate:data\nnpm.cmd run check\nnpm.cmd run build\nnpm.cmd run build:preview\nnpm.cmd run validate:build\ngit --no-pager diff --check\nnpm.cmd run dev';
   $('#open-local-publication').href = `http://127.0.0.1:4321${publicUrl}`;
@@ -1475,9 +1480,11 @@ async function prepareLocalPublication() {
       throw new Error(result.blocks?.[0]?.detail || result.blocks?.[0]?.title || `El servidor respondió con error ${response.status}.`);
     }
     renderLocalPublicationPlan(result);
-    status.textContent = result.analysis.operation === 'sin_cambios'
-      ? 'La fuente pública local ya coincide exactamente.'
-      : 'Plan verificado. Revisá origen, destino, fecha y confirmación.';
+    const publicationMatches = result.analysis.operation === 'sin_cambios'
+      && result.public_expedient?.operation === 'sin_cambios';
+    status.textContent = publicationMatches
+      ? 'La fuente pública local y el expediente ya coinciden exactamente.'
+      : 'Plan verificado. Revisá origen, destinos, fecha y confirmación.';
   } catch (error) {
     status.textContent = `No se pudo preparar la publicación: ${error.message}`;
     $('#local-publication-workspace').hidden = true;
