@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "titulo": "Observatorio de macroeventos geopolíticos",
-  "actualizado": "2026-08-11",
+  "actualizado": "2026-08-13",
   "notas": "Datos iniciales derivados del análisis del chat. Todas las fuentes comienzan como no verificadas.",
   "macroeventos": [
     {
@@ -2466,7 +2466,7 @@
           "titulo": "El tramo kirguís define una obra de gran complejidad física",
           "tipo": "avance_infraestructura",
           "descripcion": "El proyecto contempla 304 kilómetros, 50 puentes y 29 túneles, señal de transición desde la negociación hacia la ejecución física.",
-          "estado_revision": "pendiente",
+          "estado_revision": "verificada",
           "origen": "ia",
           "fuente_ids": [
             "fuente-1-2"
@@ -2487,7 +2487,7 @@
           "titulo": "Kirguistán presenta el ferrocarril como apertura estratégica",
           "tipo": "narrativa_estatal",
           "descripcion": "El gobierno vincula la obra con la transformación del país en Estado de tránsito y con una mayor apertura internacional.",
-          "estado_revision": "pendiente",
+          "estado_revision": "verificada",
           "origen": "ia",
           "fuente_ids": [
             "fuente-2-2"
@@ -2508,7 +2508,7 @@
           "titulo": "Persisten desafíos tras el inicio del proyecto CKU",
           "tipo": "riesgo_implementacion",
           "descripcion": "Los costes, la ingeniería, la financiación y la coordinación continúan condicionando el calendario del corredor.",
-          "estado_revision": "pendiente",
+          "estado_revision": "verificada",
           "origen": "ia",
           "fuente_ids": [
             "fuente-3-2"
@@ -2599,9 +2599,9 @@
           "idioma": "en",
           "tipo": "noticia",
           "url": "https://en.kabar.kg/news/cku-railway-project-includes-construction-of-50-bridges-and-29-tunnels/",
-          "estado_verificacion": "pendiente",
+          "estado_verificacion": "verificada",
           "observaciones": "",
-          "revisada_el": ""
+          "revisada_el": "2026-08-13"
         },
         {
           "id": "fuente-2-2",
@@ -2613,9 +2613,9 @@
           "idioma": "ar",
           "tipo": "noticia",
           "url": "https://ar.kabar.kg/news/lrys-gbrof-sk-hdyd-lsynkrghyzstnaozbkstn-stfth-lkrghyzstn-bob-l-laalm/",
-          "estado_verificacion": "pendiente",
+          "estado_verificacion": "verificada",
           "observaciones": "",
-          "revisada_el": ""
+          "revisada_el": "2026-08-13"
         },
         {
           "id": "fuente-3-2",
@@ -2627,9 +2627,9 @@
           "idioma": "en",
           "tipo": "análisis",
           "url": "https://thediplomat.com/2026/07/progress-on-the-china-kyrgyzstan-uzbekistan-railway-some-challenges-remain/",
-          "estado_verificacion": "pendiente",
+          "estado_verificacion": "verificada",
           "observaciones": "",
-          "revisada_el": ""
+          "revisada_el": "2026-08-13"
         }
       ],
       "actualizaciones": [],

@@ -1,7 +1,7 @@
 {
   "formato": "memo-geopolitico-publico",
   "schema_version": 2,
-  "generado_el": "2026-08-11",
+  "generado_el": "2026-08-13",
   "procesos": [
     {
       "schema_version": 2,
@@ -87,15 +87,19 @@
       "sintesis": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-07-23"
+        "estado": "publicado",
+        "publicado_el": "2026-08-13",
+        "actualizado_el": "2026-08-13"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
@@ -133,9 +137,44 @@
         "confianza": "media-alta",
         "incertidumbre": 4
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "senal-2-2",
+          "fecha": "2026-07-21",
+          "titulo": "Kirguistán presenta el ferrocarril como apertura estratégica",
+          "resumen": "El gobierno vincula la obra con la transformación del país en Estado de tránsito y con una mayor apertura internacional.",
+          "fuente_ids": [
+            "fuente-2-2"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "senal-3-2",
+          "fecha": "2026-07-17",
+          "titulo": "Persisten desafíos tras el inicio del proyecto CKU",
+          "resumen": "Los costes, la ingeniería, la financiación y la coordinación continúan condicionando el calendario del corredor.",
+          "fuente_ids": [
+            "fuente-3-2"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "senal-1-2",
+          "fecha": "2026-06-04",
+          "titulo": "El tramo kirguís define una obra de gran complejidad física",
+          "resumen": "El proyecto contempla 304 kilómetros, 50 puentes y 29 túneles, señal de transición desde la negociación hacia la ejecución física.",
+          "fuente_ids": [
+            "fuente-1-2"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "fuente-1-2",
+        "fuente-2-2",
+        "fuente-3-2"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [],
       "indicadores_seguimiento": [
@@ -1505,6 +1544,17 @@
   ],
   "fuentes": [
     {
+      "fuente_id": "fuente-1-2",
+      "media_id": null,
+      "medio": "Kabar",
+      "titulo": "CKU railway project includes construction of 50 bridges and 29 tunnels",
+      "fecha": "2026-06-04",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://en.kabar.kg/news/cku-railway-project-includes-construction-of-50-bridges-and-29-tunnels/",
+      "estado_verificacion": "verificada"
+    },
+    {
       "fuente_id": "fuente-1-3",
       "media_id": "reuters",
       "medio": "Reuters",
@@ -1516,6 +1566,17 @@
       "estado_verificacion": "verificada"
     },
     {
+      "fuente_id": "fuente-2-2",
+      "media_id": null,
+      "medio": "Kabar",
+      "titulo": "Ferrocarril China–Kirguistán–Uzbekistán y apertura de Kirguistán al mundo",
+      "fecha": "2026-07-21",
+      "idioma": "ar",
+      "tipo": "noticia",
+      "url": "https://ar.kabar.kg/news/lrys-gbrof-sk-hdyd-lsynkrghyzstnaozbkstn-stfth-lkrghyzstn-bob-l-laalm/",
+      "estado_verificacion": "verificada"
+    },
+    {
       "fuente_id": "fuente-2-3",
       "media_id": "reuters",
       "medio": "Reuters",
@@ -1524,6 +1585,17 @@
       "idioma": "en",
       "tipo": "noticia",
       "url": "https://www.reuters.com/world/asia-pacific/thailand-touts-31-billion-land-bridge-plan-amid-hormuz-crisis-courts-singapore-2026-04-27/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "fuente-3-2",
+      "media_id": null,
+      "medio": "The Diplomat",
+      "titulo": "Progress on the China-Kyrgyzstan-Uzbekistan railway: Some challenges remain",
+      "fecha": "2026-07-17",
+      "idioma": "en",
+      "tipo": "análisis",
+      "url": "https://thediplomat.com/2026/07/progress-on-the-china-kyrgyzstan-uzbekistan-railway-some-challenges-remain/",
       "estado_verificacion": "verificada"
     },
     {
