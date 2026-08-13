@@ -24,3 +24,8 @@ Thumbs.db
 /resultado-test-vigente.txt
 /revision-cambios-*.txt
 /staging-*.txt
+
+# Herramientas y capturas técnicas locales
+/ACTUALIZAR-GITHUB-BETA*.bat
+/memo-geopolitico-centro-local-*.zip
+/centro-local/modules/observatorio.zip
