@@ -1709,9 +1709,11 @@
           "titulo": "Debate sobre respuesta estratégica a Chancay",
           "tipo": "politica_infraestructura",
           "descripcion": "Actores regionales evalúan cómo adaptar hubs existentes.",
-          "estado_revision": "pendiente",
+          "estado_revision": "verificada",
           "origen": "ia",
-          "fuente_ids": [],
+          "fuente_ids": [
+            "src-chancay-corredores-bioceanicos-001"
+          ],
           "intensidad": null,
           "localizaciones": []
         },
@@ -1721,9 +1723,11 @@
           "titulo": "Nuevas propuestas de conexión bioceánica",
           "tipo": "planificacion",
           "descripcion": "Estudios reactivan la integración con Brasil.",
-          "estado_revision": "pendiente",
+          "estado_revision": "verificada",
           "origen": "ia",
-          "fuente_ids": [],
+          "fuente_ids": [
+            "src-chancay-corredores-bioceanicos-001"
+          ],
           "intensidad": null,
           "localizaciones": []
         }
@@ -1792,9 +1796,9 @@
           "idioma": "es",
           "tipo": "análisis",
           "url": "https://revistamarina.cl/es/articulo/hub-norte-una-respuesta-estrategica-ante-el-desafio-de-chancay/es",
-          "estado_verificacion": "pendiente",
+          "estado_verificacion": "verificada",
           "observaciones": "",
-          "revisada_el": ""
+          "revisada_el": "2026-08-13"
         }
       ],
       "actualizaciones": [],

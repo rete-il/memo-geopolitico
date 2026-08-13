@@ -1206,15 +1206,19 @@
       "sintesis": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-07-19"
+        "estado": "publicado",
+        "publicado_el": "2026-08-13",
+        "actualizado_el": "2026-08-13"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
@@ -1267,9 +1271,32 @@
         "confianza": "media",
         "incertidumbre": 4
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "sig-chancay-corredores-bioceanicos-001",
+          "fecha": "2026-04-30",
+          "titulo": "Debate sobre respuesta estratégica a Chancay",
+          "resumen": "Actores regionales evalúan cómo adaptar hubs existentes.",
+          "fuente_ids": [
+            "src-chancay-corredores-bioceanicos-001"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-chancay-corredores-bioceanicos-002",
+          "fecha": "2026-05-29",
+          "titulo": "Nuevas propuestas de conexión bioceánica",
+          "resumen": "Estudios reactivan la integración con Brasil.",
+          "fuente_ids": [
+            "src-chancay-corredores-bioceanicos-001"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "src-chancay-corredores-bioceanicos-001"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [],
       "indicadores_seguimiento": [
@@ -1596,6 +1623,17 @@
       "idioma": "en",
       "tipo": "análisis",
       "url": "https://thediplomat.com/2026/07/progress-on-the-china-kyrgyzstan-uzbekistan-railway-some-challenges-remain/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-chancay-corredores-bioceanicos-001",
+      "media_id": null,
+      "medio": "Revista de Marina de Chile",
+      "titulo": "Hub norte: una respuesta estratégica ante el desafío de Chancay",
+      "fecha": "2026-04-30",
+      "idioma": "es",
+      "tipo": "análisis",
+      "url": "https://revistamarina.cl/es/articulo/hub-norte-una-respuesta-estrategica-ante-el-desafio-de-chancay/es",
       "estado_verificacion": "verificada"
     },
     {
