@@ -30,6 +30,26 @@
     </section>
 
     <div id="preparation-content" hidden>
+      <section id="global-status-panel" class="panel global-status-panel" aria-labelledby="global-status-heading">
+        <header class="preflight-header">
+          <div>
+            <p class="eyebrow">ESTADO GLOBAL DEL CIRCUITO</p>
+            <h2 id="global-status-heading">Qué está listo y qué falta</h2>
+          </div>
+          <span id="sync-readiness" class="badge neutral" role="status" aria-live="polite">No listo para sincronizar</span>
+        </header>
+        <div id="global-status-items" class="global-status-items" aria-label="Controles globales"></div>
+        <p id="global-status-help" class="muted">La sincronización solo se habilita conceptualmente cuando datos y sitio superan QA. Git continúa siendo manual.</p>
+        <div class="final-qa-controls">
+          <label for="confirm-responsive-qa">
+            <input id="confirm-responsive-qa" type="checkbox">
+            Confirmo revisión en escritorio, tablet y móvil, navegación por teclado, foco visible y persistencia tras recargar.
+          </label>
+          <button id="run-final-qa" class="btn preparation" type="button" disabled>Ejecutar QA técnico final</button>
+          <p id="final-qa-status" class="muted" role="status" aria-live="polite">Requiere una salida local con QA de datos válido y la confirmación manual anterior.</p>
+        </div>
+      </section>
+
       <div class="preparation-results" aria-label="Resultados previstos">
         <section class="panel preparation-result">
           <header><h2>Proceso en evolución</h2><span class="badge good">Seleccionado</span></header>
@@ -123,6 +143,38 @@
             <summary><span><b>Ver propuesta estructurada</b><small>JSON de revisión</small></span></summary>
             <pre id="followup-proposal-json" class="followup-json" tabindex="0"></pre>
           </details>
+        </div>
+      </section>
+
+      <section id="process-update-action" class="panel preparation-next process-update-action" aria-labelledby="process-update-action-heading">
+        <div>
+          <p class="eyebrow">RUTA CORTA · SIN REAPROBAR EL ANÁLISIS</p>
+          <h2 id="process-update-action-heading">Actualizar proceso en evolución</h2>
+          <p>Aplica únicamente la propuesta pública actual a <code>src\data\public\observatorio.json</code>. Valida el paquete completo, crea backup y conserva intactos el Markdown y su aprobación.</p>
+        </div>
+        <div class="local-integration-action-controls">
+          <button id="prepare-process-update" class="btn preparation" type="button" disabled>Comprobar actualización del proceso</button>
+          <span id="process-update-action-status" class="muted" role="status" aria-live="polite">Generá primero la propuesta y recuperá una sesión aprobada.</span>
+        </div>
+      </section>
+
+      <section id="process-update-workspace" class="panel local-integration-workspace" aria-labelledby="process-update-workspace-heading" hidden>
+        <header class="local-integration-workspace-header">
+          <div>
+            <p class="eyebrow">PROYECCIÓN COMPLETA VALIDADA · TODAVÍA SIN ESCRIBIR</p>
+            <h2 id="process-update-workspace-heading">Confirmación de actualización del proceso</h2>
+          </div>
+          <span id="process-update-state" class="badge warn">Pendiente de confirmación</span>
+        </header>
+        <div id="process-update-metrics" class="local-integration-metrics" aria-label="Resumen de la actualización"></div>
+        <p id="process-update-validation" class="local-integration-safety" role="status" aria-live="polite"></p>
+        <div id="process-update-confirmation" class="local-integration-confirmation">
+          <label for="confirm-process-update">
+            <input id="confirm-process-update" type="checkbox">
+            Confirmo que deseo actualizar solo el proceso público, conservando el análisis aprobado.
+          </label>
+          <button id="apply-process-update" class="btn preparation" type="button" disabled>Actualizar proceso local</button>
+          <p id="process-update-apply-status" class="muted" role="status" aria-live="polite">No se modificará ningún Markdown ni se ejecutará Git.</p>
         </div>
       </section>
 

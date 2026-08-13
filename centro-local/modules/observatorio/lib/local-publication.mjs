@@ -3,6 +3,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { sessionFileFor } from './analysis-prompt.mjs';
+import {
+  assertValidPublicProjection,
+  promotePublicProcess,
+} from './public-projection.mjs';
 
 const clean = (value) => String(value ?? '').trim();
 const VALID_ID = /^[a-z0-9](?:[a-z0-9-]{0,198}[a-z0-9])?$/;
@@ -205,39 +209,6 @@ function validatePublicReferences(publicFile, metadata) {
   return { data, process: processMatches[0] };
 }
 
-function promotedPublicProcess(process, publishedOn) {
-  const candidate = JSON.parse(JSON.stringify(process));
-  candidate.publicacion = {
-    ...(candidate.publicacion || {}),
-    estado: 'publicado',
-    publicado_el: publishedOn,
-    actualizado_el: publishedOn,
-  };
-
-  const milestones = Array.isArray(candidate.progreso_publico?.hitos_completados)
-    ? candidate.progreso_publico.hitos_completados.filter((item) => clean(item) && clean(item) !== 'Revisión editorial iniciada')
-    : [];
-  const addMilestone = (label) => {
-    if (!milestones.includes(label)) milestones.push(label);
-  };
-  addMilestone('Expediente abierto y clasificado');
-  if (Array.isArray(candidate.fuente_ids) && candidate.fuente_ids.length) addMilestone('Fuentes verificadas incorporadas');
-  if (Array.isArray(candidate.senales)
-      && candidate.senales.some((signal) => clean(signal?.estado_verificacion) === 'verificada')) {
-    addMilestone('Señales verificadas incorporadas');
-  }
-  addMilestone('Revisión editorial completada');
-  addMilestone('Análisis publicado');
-
-  candidate.progreso_publico = {
-    ...(candidate.progreso_publico || {}),
-    etapa: 'publicado',
-    proximo_paso: 'Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.',
-    hitos_completados: milestones,
-  };
-  return candidate;
-}
-
 function publicDataCandidate(data, eventId, processCandidate) {
   const candidate = JSON.parse(JSON.stringify(data));
   const matches = (candidate.procesos || [])
@@ -346,6 +317,7 @@ export function planLocalPublication({
   let publicCandidate;
   let processPrevious;
   let processCandidate;
+  let publicValidation;
   try {
     metadata = publicationIdentity(source.toString('utf8'));
     if (metadata.post_id !== postId || metadata.slug !== slug || metadata.macroevento_id !== id) {
@@ -354,9 +326,13 @@ export function planLocalPublication({
     if (!metadata.source_ids.length) throw new Error('El análisis no contiene fuente_ids.');
     const publicReferences = validatePublicReferences(publicFile, metadata);
     processPrevious = publicReferences.process;
-    processCandidate = promotedPublicProcess(processPrevious, publicationDate);
+    processCandidate = promotePublicProcess(processPrevious, publicationDate);
     publicPrevious = fs.readFileSync(publicFile);
     publicCandidate = publicDataCandidate(publicReferences.data, id, processCandidate);
+    publicValidation = assertValidPublicProjection(
+      JSON.parse(publicCandidate.toString('utf8')),
+      { eventId: id, allowDevelopment: true },
+    );
     candidate = publicationCandidate(source.toString('utf8'), publicationDate);
     const candidateMetadata = publicationIdentity(candidate.toString('utf8'));
     if (candidateMetadata.publication.estado !== 'publicado'
@@ -371,7 +347,17 @@ export function planLocalPublication({
       throw new Error('La promoción del expediente público no pudo verificarse.');
     }
   } catch (error) {
-    return { status: 'blocked', blocks: [issue('invalid-publication-content', 'El análisis no cumple el contrato de publicación', error.message)] };
+    const projectionInvalid = error.code === 'PUBLIC_PROJECTION_INVALID';
+    return {
+      status: 'blocked',
+      blocks: [issue(
+        projectionInvalid ? 'public-projection-invalid' : 'invalid-publication-content',
+        projectionInvalid
+          ? 'La proyección pública completa no supera la validación canónica'
+          : 'El análisis no cumple el contrato de publicación',
+        error.message,
+      )],
+    };
   }
   const markers = unresolvedMarkers(source.toString('utf8'));
   if (markers.length) {
@@ -449,12 +435,14 @@ export function planLocalPublication({
       state_after: 'publicado',
       progress_before: clean(processPrevious.progreso_publico?.etapa),
       progress_after: 'publicado',
+      validation: publicValidation,
     },
     editorial_gate: {
       unresolved_markers: 0,
       linked_sources: metadata.source_ids.length,
       macroevent_verified: true,
       requires_human_confirmation: operation !== 'sin_cambios',
+      public_data_valid: true,
     },
     backup: {
       directory: backupDirectory,
@@ -600,6 +588,7 @@ export function applyLocalPublication(options = {}) {
     seguridad: {
       escritura_atomica: true,
       fuente_preview_verificada: true,
+      proyeccion_publica_validada: true,
       publicacion_internet_realizada: false,
       git_ejecutado: false,
       build_ejecutado: false,
@@ -628,6 +617,11 @@ export function applyLocalPublication(options = {}) {
         throw new Error('La verificación posterior del expediente público no coincide.');
       }
     }
+    assertValidPublicProjection(
+      JSON.parse(fs.readFileSync(plan.public_expedient.file, 'utf8')),
+      { eventId: plan.macroevento_id, allowDevelopment: true },
+    );
+    if (typeof options.afterTargetWrite === 'function') options.afterTargetWrite(plan);
     writeAtomic(plan.publication_record.file, Buffer.from(jsonText(record), 'utf8'));
     const session = loaded.session;
     session.estado = 'publicacion_local_completada';
@@ -659,6 +653,8 @@ export function applyLocalPublication(options = {}) {
       rollback_estado: 'disponible',
       public_url: plan.analysis.public_url,
       qa_estado: 'pendiente',
+      qa_datos: 'valido',
+      validacion_publica: plan.public_expedient.validation,
       git_estado: 'no_iniciado',
     };
     session.seguridad = {
@@ -685,6 +681,15 @@ export function applyLocalPublication(options = {}) {
   } catch (error) {
     if (targetWritten) restoreFile(plan.analysis.target_file, plan._previous);
     if (publicDataWritten) writeAtomic(plan.public_expedient.file, plan._public_previous);
+    record.estado = 'fallida_revertida';
+    record.error = { mensaje: error.message, revertida_el: new Date().toISOString() };
+    record.rollback = { estado: 'automatica_completada', ejecutado_el: record.error.revertida_el };
+    try {
+      writeAtomic(record.backup.manifest, Buffer.from(jsonText(record), 'utf8'));
+      writeAtomic(plan.publication_record.file, Buffer.from(jsonText(record), 'utf8'));
+    } catch {
+      // La restauración de los destinos tiene prioridad; se conserva el error original.
+    }
     return { status: 'blocked', blocks: [issue('publication-write-failed', 'No se pudo completar la publicación local', error.message)] };
   }
 }

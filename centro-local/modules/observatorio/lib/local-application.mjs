@@ -5,6 +5,7 @@ import path from 'node:path';
 import { validateAnalysisResponse } from './analysis-response.mjs';
 import { sessionFileFor } from './analysis-prompt.mjs';
 import { resolvePreparedReviewPackage } from './review-package.mjs';
+import { processRevision } from './revisions.mjs';
 
 const clean = (value) => String(value ?? '').trim();
 const VALID_ID = /^[a-z0-9](?:[a-z0-9-]{0,198}[a-z0-9])?$/;
@@ -218,8 +219,7 @@ export function planLocalApplication({
   const loaded = sessionFromFile(sessionsDir, id);
   if (loaded.status !== 'ready') return loaded;
   const { session } = loaded;
-  if (!['respuesta_aprobada', 'paquete_preparado', 'aplicacion_local_completada'].includes(session.estado)
-      || session.respuesta_chatgpt?.validacion?.estado !== 'ready'
+  if (session.respuesta_chatgpt?.validacion?.estado !== 'ready'
       || !session.respuesta_chatgpt?.aprobada_el) {
     return { status: 'blocked', blocks: [issue('response-not-approved', 'La respuesta todavía no está aprobada')] };
   }
@@ -228,7 +228,17 @@ export function planLocalApplication({
   }
   if (currentFollowupProposal?.status !== 'ready'
       || !equal(proposalComparable(currentFollowupProposal), proposalComparable(session.propuesta_seguimiento))) {
-    return { status: 'blocked', blocks: [issue('followup-proposal-stale', 'La propuesta cambió desde que se preparó el paquete', 'Volvé a preparar el circuito antes de aplicar.')] };
+    return {
+      status: 'blocked',
+      analysis_approval_preserved: true,
+      analysis_revision: session.revisiones?.analysis_revision || session.respuesta_chatgpt?.hash_sha256,
+      process_revision: currentFollowupProposal?.status === 'ready' ? processRevision(currentFollowupProposal) : null,
+      blocks: [issue(
+        'process-revision-changed',
+        'Cambió la revisión del proceso desde que se preparó el paquete',
+        'El análisis aprobado continúa válido. Regenerá solo el paquete; no hace falta volver a aprobar el Markdown.',
+      )],
+    };
   }
 
   const resolved = resolvePreparedReviewPackage({ sessionsDir, packagesDir, eventId: id });

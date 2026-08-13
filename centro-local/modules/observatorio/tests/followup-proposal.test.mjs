@@ -92,6 +92,10 @@ test('genera una propuesta de actualización sin alterar la identidad ni los est
   assert.deepEqual(result.proposed_process.recurso_visual_ids, current.recurso_visual_ids);
   assert.ok(result.diff.some((change) => change.field === 'senales'));
   assert.ok(result.diff.some((change) => change.field === 'fuente_ids'));
+  assert.equal(result.metrics.signals_verified, 1);
+  assert.equal(result.metrics.signals_exportable, 1);
+  assert.equal(result.metrics.sources_verified, 1);
+  assert.equal(result.metrics.sources_exportable, 1);
   assert.equal(result.metrics.pending_sources_excluded, 1);
   assert.equal(result.metrics.signals_without_verified_source_excluded, 1);
   assert.deepEqual(data, original, 'La generación no debe mutar los datos canónicos en memoria.');

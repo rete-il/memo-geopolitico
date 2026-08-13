@@ -3,6 +3,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { sessionFileFor } from './analysis-prompt.mjs';
+import {
+  assertValidPublicProjection,
+  mergeFollowupProjection,
+} from './public-projection.mjs';
+import { processRevision } from './revisions.mjs';
 
 const clean = (value) => String(value ?? '').trim();
 const VALID_ID = /^[a-z0-9](?:[a-z0-9-]{0,198}[a-z0-9])?$/;
@@ -125,52 +130,6 @@ function duplicatePublication(siteRoot, targetFile, metadata) {
   return null;
 }
 
-function mergeFollowupProjection(current, proposal) {
-  const candidate = structuredClone(current);
-  const proposedProcess = structuredClone(proposal.proposed_process);
-  const eventId = clean(proposal.macroevento_id);
-  if (clean(proposedProcess?.macroevento_id) !== eventId) {
-    throw new Error('La propuesta de seguimiento alteró el macroevento_id.');
-  }
-  const matches = candidate.procesos
-    .map((process, index) => ({ process, index }))
-    .filter(({ process }) => process?.macroevento_id === eventId);
-  if (matches.length > 1) throw new Error('El JSON público contiene el macroevento_id repetido.');
-  if (matches.length === 1) candidate.procesos[matches[0].index] = proposedProcess;
-  else candidate.procesos.push(proposedProcess);
-
-  const sources = new Map((candidate.fuentes || []).map((source) => [source.fuente_id, source]));
-  for (const source of proposal.proposed_sources || []) sources.set(source.fuente_id, structuredClone(source));
-  candidate.fuentes = [...sources.values()].sort((left, right) => left.fuente_id.localeCompare(right.fuente_id));
-  candidate.generado_el = clean(proposal.generado_el) || candidate.generado_el;
-  return candidate;
-}
-
-function validateProjection(data, eventId) {
-  if (data?.formato !== 'memo-geopolitico-publico' || data?.schema_version !== 2) {
-    throw new Error('El JSON público no cumple el formato memo-geopolitico-publico v2.');
-  }
-  if (!Array.isArray(data.procesos) || !Array.isArray(data.fuentes)) {
-    throw new Error('El JSON público no contiene procesos y fuentes válidos.');
-  }
-  const processIds = new Set();
-  const sourceIds = new Set(data.fuentes.map((source) => clean(source?.fuente_id)).filter(Boolean));
-  for (const process of data.procesos) {
-    const id = clean(process?.macroevento_id);
-    if (!id || processIds.has(id)) throw new Error(`Identidad pública inválida o repetida: ${id || '(vacía)'}.`);
-    processIds.add(id);
-    for (const sourceId of process.fuente_ids || []) {
-      if (!sourceIds.has(sourceId)) throw new Error(`${id}: falta la fuente pública ${sourceId}.`);
-    }
-    for (const signal of process.senales || []) {
-      for (const sourceId of signal.fuente_ids || []) {
-        if (!sourceIds.has(sourceId)) throw new Error(`${id}: una señal referencia la fuente inexistente ${sourceId}.`);
-      }
-    }
-  }
-  if (!processIds.has(eventId)) throw new Error('La propuesta no quedó representada en el JSON público.');
-}
-
 function operationFor(previous, candidate) {
   if (!previous) return 'crear';
   return sha256(previous) === sha256(candidate) ? 'sin_cambios' : 'modificar';
@@ -218,7 +177,17 @@ export function planLocalIntegration({
   }
   if (currentFollowupProposal?.status !== 'ready'
       || !equal(proposalComparable(currentFollowupProposal), proposalComparable(session.propuesta_seguimiento))) {
-    return { status: 'blocked', blocks: [issue('followup-proposal-stale', 'La propuesta cambió antes de la integración', 'Volvé a preparar el circuito antes de integrar.')] };
+    return {
+      status: 'blocked',
+      analysis_approval_preserved: true,
+      analysis_revision: session.revisiones?.analysis_revision || session.respuesta_chatgpt?.hash_sha256,
+      process_revision: currentFollowupProposal?.status === 'ready' ? processRevision(currentFollowupProposal) : null,
+      blocks: [issue(
+        'process-revision-changed',
+        'Cambió la revisión del proceso antes de la integración',
+        'El análisis aprobado continúa válido. Actualizá únicamente la revisión del proceso; no hace falta volver a aprobar el Markdown.',
+      )],
+    };
   }
 
   const metadata = session.respuesta_chatgpt?.validacion?.metadata || {};
@@ -305,11 +274,11 @@ export function planLocalIntegration({
   try {
     publicCurrent = fs.readFileSync(publicFile);
     const parsed = JSON.parse(publicCurrent.toString('utf8'));
-    validateProjection(parsed, id);
+    assertValidPublicProjection(parsed, { eventId: id });
     publicCandidateData = currentFollowupProposal.diff?.length
       ? mergeFollowupProjection(parsed, currentFollowupProposal)
       : parsed;
-    validateProjection(publicCandidateData, id);
+    assertValidPublicProjection(publicCandidateData, { eventId: id });
   } catch (error) {
     return { status: 'blocked', blocks: [issue('invalid-public-projection', 'El seguimiento público local no puede integrarse', error.message)] };
   }
@@ -368,6 +337,7 @@ export function planLocalIntegration({
       candidate_sha256: sha256(publicCandidate),
       previous_sha256: sha256(publicCurrent),
       preview_url: `/observatorio/${processSlug}/`,
+      validation: assertValidPublicProjection(publicCandidateData, { eventId: id }),
     },
     backup: {
       directory: backupDirectory,
@@ -517,6 +487,11 @@ export function applyLocalIntegration(options = {}) {
     if (sha256(fs.readFileSync(plan.followup.target_file)) !== plan.followup.candidate_sha256) {
       throw new Error('La verificación posterior del seguimiento integrado no coincide.');
     }
+    assertValidPublicProjection(
+      JSON.parse(fs.readFileSync(plan.followup.target_file, 'utf8')),
+      { eventId: plan.macroevento_id },
+    );
+    if (typeof options.afterTargetWrite === 'function') options.afterTargetWrite(plan);
     writeAtomic(plan.integration_record.file, Buffer.from(jsonText(record), 'utf8'));
     const session = loaded.session;
     session.estado = 'integracion_local_completada';
@@ -547,6 +522,8 @@ export function applyLocalIntegration(options = {}) {
       analysis_preview_url: plan.analysis.preview_url,
       followup_preview_url: plan.followup.preview_url,
       qa_estado: 'pendiente',
+      qa_datos: 'valido',
+      validacion_publica: plan.followup.validation,
     };
     session.seguridad = {
       ...(session.seguridad || {}),
@@ -571,6 +548,15 @@ export function applyLocalIntegration(options = {}) {
   } catch (error) {
     if (publicWritten) restoreFile(plan.followup.target_file, plan._public_previous);
     if (previewWritten) restoreFile(plan.analysis.target_file, plan._preview_previous);
+    record.estado = 'fallida_revertida';
+    record.error = { mensaje: error.message, revertida_el: new Date().toISOString() };
+    record.rollback = { estado: 'automatica_completada', ejecutado_el: record.error.revertida_el };
+    try {
+      writeAtomic(record.backup.manifest, Buffer.from(jsonText(record), 'utf8'));
+      writeAtomic(plan.integration_record.file, Buffer.from(jsonText(record), 'utf8'));
+    } catch {
+      // La restauración de los destinos tiene prioridad; se conserva el error original.
+    }
     return { status: 'blocked', blocks: [issue('integration-write-failed', 'No se pudo completar la integración local', error.message)] };
   }
 }

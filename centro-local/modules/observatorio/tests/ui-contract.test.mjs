@@ -14,6 +14,7 @@ const analysisResponse = fs.readFileSync(new URL('../lib/analysis-response.mjs',
 const localApplication = fs.readFileSync(new URL('../lib/local-application.mjs', import.meta.url), 'utf8');
 const localIntegration = fs.readFileSync(new URL('../lib/local-integration.mjs', import.meta.url), 'utf8');
 const localPublication = fs.readFileSync(new URL('../lib/local-publication.mjs', import.meta.url), 'utf8');
+const localProcessUpdate = fs.readFileSync(new URL('../lib/local-process-update.mjs', import.meta.url), 'utf8');
 const reviewPackage = fs.readFileSync(new URL('../lib/review-package.mjs', import.meta.url), 'utf8');
 const server = fs.readFileSync(new URL('../server.mjs', import.meta.url), 'utf8');
 const config = JSON.parse(fs.readFileSync(new URL('../data/config.json', import.meta.url), 'utf8'));
@@ -403,4 +404,34 @@ test('la Fase 9 comunica el límite entre publicación local e Internet y conser
   assert.match(preparationHtml, /role="status"[^>]*aria-live="polite"/);
   assert.match(styles, /\.local-publication-action-controls label/);
   assert.match(styles, /@media\(max-width:700px\)[\s\S]*\.local-publication-action-controls label\{grid-template-columns:1fr\}/);
+});
+
+test('la ruta corta separa el proceso del análisis y valida el paquete completo', () => {
+  for (const id of [
+    'global-status-panel',
+    'global-status-items',
+    'sync-readiness',
+    'process-update-action',
+    'prepare-process-update',
+    'process-update-workspace',
+    'confirm-process-update',
+    'apply-process-update',
+    'confirm-responsive-qa',
+    'run-final-qa',
+  ]) {
+    assert.match(preparationHtml, new RegExp(`id="${id}"`), `Falta #${id}`);
+  }
+  assert.match(preparationApp, /Señales exportables/);
+  assert.match(preparationApp, /\/api\/local-process-update\/plan/);
+  assert.match(preparationApp, /\/api\/local-process-update\/apply/);
+  assert.match(preparationApp, /\/api\/final-qa/);
+  assert.match(server, /url\.pathname === '\/api\/local-process-update\/plan'/);
+  assert.match(server, /url\.pathname === '\/api\/local-process-update\/apply'/);
+  assert.match(server, /url\.pathname === '\/api\/final-qa'/);
+  assert.match(localProcessUpdate, /assertValidPublicProjection/);
+  assert.match(localProcessUpdate, /analysis_approval_preserved/);
+  assert.match(localProcessUpdate, /writeAtomic/);
+  assert.doesNotMatch(localProcessUpdate, /child_process|execSync|spawnSync|\bgit\s+(?:add|commit|push)/i);
+  assert.match(styles, /\.global-status-items/);
+  assert.match(styles, /@media\(max-width:560px\)[\s\S]*\.global-status-items\{grid-template-columns:1fr\}/);
 });

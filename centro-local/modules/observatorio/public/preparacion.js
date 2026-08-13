@@ -42,6 +42,7 @@ let currentLocalIntegrationPlan = null;
 let currentLocalIntegration = null;
 let currentLocalPublicationPlan = null;
 let currentLocalPublication = null;
+let currentProcessUpdatePlan = null;
 
 function approvedState(value) {
   return ['respuesta_aprobada', 'paquete_preparado', 'aplicacion_local_completada', 'integracion_local_completada', 'publicacion_local_completada'].includes(value);
@@ -49,6 +50,63 @@ function approvedState(value) {
 
 function validatedState(value) {
   return ['respuesta_validada', 'respuesta_aprobada', 'paquete_preparado', 'aplicacion_local_completada', 'integracion_local_completada', 'publicacion_local_completada'].includes(value);
+}
+
+function refreshGlobalStatus(session = currentAnalysisSession) {
+  const proposal = currentFollowupProposal;
+  const approved = Boolean(session?.respuesta_chatgpt?.aprobada_el && session?.respuesta_chatgpt?.validacion?.estado === 'ready');
+  const application = session?.aplicacion_local?.estado === 'aplicada';
+  const integration = session?.integracion_local?.estado === 'aplicada';
+  const publication = session?.publicacion_local?.estado === 'aplicada';
+  const processUpdate = session?.actualizacion_proceso?.estado === 'aplicada';
+  const dataQa = session?.actualizacion_proceso?.qa_datos === 'valido'
+    || session?.publicacion_local?.qa_datos === 'valido'
+    || session?.integracion_local?.qa_datos === 'valido';
+  const siteQa = session?.actualizacion_proceso?.qa_sitio === 'valido'
+    || session?.publicacion_local?.qa_estado === 'valido';
+  const gitState = session?.actualizacion_proceso?.git_estado
+    || session?.publicacion_local?.git_estado
+    || 'no_iniciado';
+  const signalsVerified = proposal?.metrics?.signals_verified ?? 0;
+  const signalsExportable = proposal?.metrics?.signals_exportable ?? proposal?.metrics?.signals ?? 0;
+  const statuses = [
+    ['Análisis', approved ? 'Aprobado' : 'Pendiente', approved ? 'good' : 'neutral', approved ? 'Revisión editorial vigente.' : 'Falta validación y aprobación humana.'],
+    ['Proceso', proposal ? `${signalsExportable}/${signalsVerified}` : 'Sin propuesta', proposal && signalsExportable === signalsVerified ? 'good' : proposal ? 'warn' : 'neutral', 'Señales exportables / verificadas.'],
+    ['Borrador canónico', application ? 'Aplicado' : 'Pendiente', application ? 'good' : 'neutral', 'Estado de Fase 7.'],
+    ['Preview', integration ? 'Integrado' : 'Pendiente', integration ? 'good' : 'neutral', 'Estado de Fase 8.'],
+    ['Fuente pública', publication || processUpdate ? 'Local actualizada' : 'Pendiente', publication || processUpdate ? 'good' : 'neutral', 'Publicación o ruta corta aplicada.'],
+    ['QA de datos', dataQa ? 'Válido' : 'Pendiente', dataQa ? 'good' : 'warn', 'Validación canónica del paquete completo.'],
+    ['QA del sitio', siteQa ? 'Válido' : 'Pendiente', siteQa ? 'good' : 'warn', 'Test, build y revisión visual.'],
+    ['Git', gitState === 'sin_cambios' ? 'Sin cambios' : gitState === 'listo_para_sincronizar' ? 'Listo' : 'Pendiente', gitState === 'listo_para_sincronizar' || gitState === 'sin_cambios' ? 'good' : 'neutral', 'Git continúa siendo una acción manual.'],
+  ];
+  $('#global-status-items').innerHTML = statuses.map(([label, value, state, note]) => `
+    <span class="global-status-item"><b>${esc(label)}</b><span class="badge ${state}">${esc(value)}</span><small>${esc(note)}</small></span>
+  `).join('');
+  const ready = Boolean((publication || processUpdate) && dataQa && siteQa
+    && ['listo_para_sincronizar', 'sin_cambios'].includes(gitState));
+  $('#sync-readiness').className = ready ? 'badge good' : 'badge neutral';
+  $('#sync-readiness').textContent = ready ? 'Listo para sincronizar' : 'No listo para sincronizar';
+  $('#global-status-help').textContent = ready
+    ? 'Datos y sitio superaron QA. La eventual operación Git sigue requiriendo autorización separada.'
+    : 'Faltan controles: el Centro no considera completa ni sincronizable una salida inválida o sin QA del sitio.';
+  const qaButton = $('#run-final-qa');
+  const manualConfirmed = $('#confirm-responsive-qa').checked;
+  qaButton.disabled = siteQa || !((publication || processUpdate) && dataQa && manualConfirmed);
+  qaButton.textContent = siteQa ? 'QA final superado' : 'Ejecutar QA técnico final';
+}
+
+function configureProcessUpdateAvailability(session = currentAnalysisSession) {
+  const button = $('#prepare-process-update');
+  const status = $('#process-update-action-status');
+  currentProcessUpdatePlan = null;
+  const approved = Boolean(session?.respuesta_chatgpt?.aprobada_el);
+  const hasProposal = currentFollowupProposal?.status === 'ready';
+  const hasChanges = Boolean(currentFollowupProposal?.diff?.length);
+  button.disabled = !(approved && hasProposal && hasChanges);
+  if (!hasProposal) status.textContent = 'Generá primero la propuesta actual del proceso.';
+  else if (!approved) status.textContent = 'La ruta corta se habilita cuando existe una sesión con análisis aprobado.';
+  else if (!hasChanges) status.textContent = 'La proyección pública local ya coincide; no hay cambios que aplicar.';
+  else status.textContent = 'El análisis aprobado se conservará. El plan validará el paquete público completo antes de escribir.';
 }
 
 function localDate() {
@@ -277,8 +335,10 @@ function renderFollowupProposal(proposal, { scroll = true, announce = true } = {
   currentFollowupProposal = proposal;
   const metrics = [
     ['Diferencias', proposal.metrics.changes, proposal.metrics.changes ? 'info' : 'good'],
-    ['Señales verificadas', proposal.metrics.signals, 'good'],
-    ['Fuentes verificadas', proposal.metrics.sources, 'good'],
+    ['Señales verificadas', proposal.metrics.signals_verified ?? proposal.metrics.signals, 'good'],
+    ['Señales exportables', proposal.metrics.signals_exportable ?? proposal.metrics.signals, proposal.metrics.verified_signals_not_exportable ? 'warn' : 'good'],
+    ['Fuentes verificadas', proposal.metrics.sources_verified ?? proposal.metrics.sources, 'good'],
+    ['Fuentes exportables', proposal.metrics.sources_exportable ?? proposal.metrics.sources, 'good'],
     ['Señales reservadas', proposal.metrics.signals_without_verified_source_excluded, proposal.metrics.signals_without_verified_source_excluded ? 'warn' : 'good'],
     ['Fuentes reservadas', proposal.metrics.pending_sources_excluded, proposal.metrics.pending_sources_excluded ? 'warn' : 'good'],
   ];
@@ -287,7 +347,10 @@ function renderFollowupProposal(proposal, { scroll = true, announce = true } = {
   `).join('');
   $('#followup-operation').className = 'badge info';
   $('#followup-operation').textContent = proposal.operation === 'crear' ? 'Nuevo proceso público' : 'Actualización propuesta';
-  $('#followup-safety-note').textContent = `Identidad conservada: ${proposal.macroevento_id}. Propuesta generada en memoria; 0 archivos creados, 0 modificados y ningún Markdown generado.`;
+  const verifiedNotExportable = proposal.metrics.verified_signals_not_exportable || 0;
+  $('#followup-safety-note').textContent = verifiedNotExportable
+    ? `${verifiedNotExportable} señal(es) verificadas no son exportables porque no enlazan una fuente pública verificada. Corregí ese vínculo antes de publicar.`
+    : `Identidad conservada: ${proposal.macroevento_id}. Propuesta generada en memoria; 0 archivos creados, 0 modificados y ningún Markdown generado.`;
   renderFollowupDiff(proposal.diff || []);
   $('#followup-proposal-json').textContent = JSON.stringify({
     schema_version: proposal.schema_version,
@@ -306,6 +369,8 @@ function renderFollowupProposal(proposal, { scroll = true, announce = true } = {
   $('#followup-workspace').hidden = false;
   markFollowupPrepared();
   configureAnalysisPromptAvailability(true);
+  configureProcessUpdateAvailability();
+  refreshGlobalStatus();
   if (scroll) $('#followup-workspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -330,6 +395,141 @@ async function generateFollowupProposal() {
     button.textContent = 'Intentar nuevamente';
   } finally {
     button.disabled = false;
+  }
+}
+
+function renderProcessUpdatePlan(plan, { scroll = true } = {}) {
+  currentProcessUpdatePlan = plan;
+  const values = [
+    ['Diferencias', plan.metrics.differences, plan.metrics.differences ? 'info' : 'good'],
+    ['Señales verificadas', plan.metrics.signals_verified, 'good'],
+    ['Señales exportables', plan.metrics.signals_exportable, plan.metrics.signals_verified === plan.metrics.signals_exportable ? 'good' : 'warn'],
+    ['Fuentes exportables', plan.metrics.sources_exportable, 'good'],
+    ['Markdown', 0, 'good'],
+  ];
+  $('#process-update-metrics').innerHTML = values.map(([label, value, state]) => `
+    <span class="preflight-kpi ${state}"><b>${esc(value)}</b><small>${esc(label)}</small></span>
+  `).join('');
+  $('#process-update-validation').textContent = `Validador canónico: ${plan.validation.validator}. ${plan.validation.errors.length} errores; ${plan.validation.warnings.length} advertencias. Backup: ${plan.backup.relative}.`;
+  $('#process-update-state').className = plan.operation === 'sin_cambios' ? 'badge good' : 'badge warn';
+  $('#process-update-state').textContent = plan.operation === 'sin_cambios' ? 'Sin cambios' : 'Pendiente de confirmación';
+  $('#process-update-workspace').classList.remove('applied');
+  $('#process-update-workspace').hidden = false;
+  $('#process-update-confirmation').hidden = plan.operation === 'sin_cambios';
+  $('#confirm-process-update').checked = false;
+  $('#apply-process-update').disabled = true;
+  $('#process-update-apply-status').textContent = plan.operation === 'sin_cambios'
+    ? 'La proyección actual ya coincide; no se escribirá ningún archivo.'
+    : 'El plan está validado. Marcá la confirmación para actualizar solo el proceso público.';
+  if (scroll) $('#process-update-workspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function prepareProcessUpdate() {
+  const button = $('#prepare-process-update');
+  const status = $('#process-update-action-status');
+  button.disabled = true;
+  button.textContent = 'Validando proyección…';
+  status.textContent = 'Reconstruyendo y validando el paquete público completo en memoria…';
+  try {
+    const response = await fetch('/api/local-process-update/plan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ macroevento_id: currentEventId }),
+    });
+    const result = await response.json();
+    if (!response.ok || result.status !== 'ready') {
+      throw new Error(result.blocks?.[0]?.detail || result.blocks?.[0]?.title || `El servidor respondió con error ${response.status}.`);
+    }
+    renderProcessUpdatePlan(result);
+    status.textContent = 'Proyección completa válida. Todavía no se escribió ningún archivo.';
+    button.textContent = 'Volver a comprobar actualización';
+  } catch (error) {
+    $('#process-update-workspace').hidden = true;
+    status.textContent = `Actualización bloqueada: ${error.message}`;
+    button.textContent = 'Intentar nuevamente';
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function applyProcessUpdate() {
+  if (!currentProcessUpdatePlan || !$('#confirm-process-update').checked) return;
+  const button = $('#apply-process-update');
+  const status = $('#process-update-apply-status');
+  button.disabled = true;
+  button.textContent = 'Actualizando proceso…';
+  status.textContent = 'Creando backup, escribiendo de forma atómica y revalidando el resultado…';
+  try {
+    const response = await fetch('/api/local-process-update/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        macroevento_id: currentEventId,
+        plan_id: currentProcessUpdatePlan.plan_id,
+        confirmado: true,
+      }),
+    });
+    const result = await response.json();
+    if (!response.ok || result.status !== 'ready') {
+      throw new Error(result.blocks?.[0]?.detail || result.blocks?.[0]?.title || `El servidor respondió con error ${response.status}.`);
+    }
+    currentAnalysisSession = result.session;
+    currentProcessUpdatePlan = result.plan;
+    $('#process-update-workspace').classList.add('applied');
+    $('#process-update-state').className = 'badge good';
+    $('#process-update-state').textContent = 'Proceso actualizado';
+    $('#process-update-confirmation').hidden = true;
+    $('#process-update-validation').textContent = 'Actualización aplicada y revalidada. El análisis aprobado no cambió. Falta QA del sitio; Git no fue ejecutado.';
+    status.textContent = 'Proceso público actualizado con backup y validación posterior.';
+    button.textContent = 'Proceso actualizado';
+    $('#preparation-status').className = 'badge good';
+    $('#preparation-status').textContent = 'Datos válidos · QA pendiente';
+    $('#preparation-message').className = 'panel preparation-phase-note issue success';
+    $('#preparation-message').textContent = 'La ruta corta actualizó únicamente el proceso en evolución. El Markdown y su aprobación se conservaron; falta QA del sitio antes de sincronizar.';
+    configureProcessUpdateAvailability(result.session);
+    refreshGlobalStatus(result.session);
+  } catch (error) {
+    status.textContent = `No se pudo actualizar: ${error.message}`;
+    $('#confirm-process-update').checked = false;
+    button.disabled = true;
+    button.textContent = 'Actualizar proceso local';
+  }
+}
+
+async function runFinalQa() {
+  const button = $('#run-final-qa');
+  const status = $('#final-qa-status');
+  if (!$('#confirm-responsive-qa').checked) return;
+  button.disabled = true;
+  button.textContent = 'Ejecutando QA…';
+  status.textContent = 'Ejecutando pruebas, validación de datos, checks, builds y diff --check. Puede tardar varios minutos…';
+  try {
+    const response = await fetch('/api/final-qa', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        macroevento_id: currentEventId,
+        revision_responsive_confirmada: true,
+      }),
+    });
+    const result = await response.json();
+    if (result.session) {
+      currentAnalysisSession = result.session;
+      refreshGlobalStatus(result.session);
+    }
+    if (!response.ok || result.status !== 'ready') {
+      const failed = result.qa?.results?.find((item) => !item.ok);
+      throw new Error(result.blocks?.[0]?.detail || failed?.label || `El servidor respondió con error ${response.status}.`);
+    }
+    const labels = result.qa.results.map((item) => item.label).join(', ');
+    status.textContent = `QA final superado: ${labels}. La copia local está lista para revisión y sincronización Git manual.`;
+    button.textContent = 'QA final superado';
+    $('#preparation-status').className = 'badge good';
+    $('#preparation-status').textContent = 'Listo para sincronizar';
+  } catch (error) {
+    status.textContent = `QA final bloqueado: ${error.message}. Revisá el registro de la sesión, corregí y ejecutá nuevamente.`;
+    button.textContent = 'Reintentar QA técnico final';
+    refreshGlobalStatus(currentAnalysisSession);
   }
 }
 
@@ -411,6 +611,8 @@ function renderAnalysisPromptSession(result, { restored = false, scroll = true }
       : `Fase 4 completada: el prompt está listo y la sesión local fue ${result.file?.operation || 'guardada'}. Se escribió 1 archivo de sesión y 0 archivos canónicos.`;
   markPromptReady();
   configureAnalysisResponseAvailability(session, result.file);
+  configureProcessUpdateAvailability(session);
+  refreshGlobalStatus(session);
   if (scroll) $('#analysis-prompt-workspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -974,6 +1176,8 @@ function renderAppliedLocalApplication(session, application = null, plan = null,
   $('#preparation-message').className = 'panel preparation-phase-note issue success';
   $('#preparation-message').textContent = `Fase 7 completada: ${target} fue ${operation === 'modificar' ? 'actualizado' : 'creado'} con backup y escritura atómica. Se modificaron 0 archivos públicos y no se ejecutó Git.`;
   configureLocalIntegrationAvailability(session);
+  configureProcessUpdateAvailability(session);
+  refreshGlobalStatus(session);
 }
 
 function renderRestoredLocalApplication(session) {
@@ -1214,6 +1418,8 @@ function renderAppliedLocalIntegration(session, integration = null, plan = null,
   $('#preparation-message').className = 'panel preparation-phase-note issue success';
   $('#preparation-message').textContent = 'Fase 8 completada localmente: el preview quedó preparado con backup. Falta ejecutar check, build, build:preview y la revisión visual; Git no fue ejecutado.';
   configureLocalPublicationAvailability(session);
+  configureProcessUpdateAvailability(session);
+  refreshGlobalStatus(session);
 }
 
 async function prepareLocalIntegration() {
@@ -1456,6 +1662,8 @@ function renderAppliedLocalPublication(session, publication = null, plan = null,
   $('#preparation-status').textContent = 'Publicada solo localmente';
   $('#preparation-message').className = 'panel preparation-phase-note issue success';
   $('#preparation-message').textContent = 'Fase 9 completada en la copia local: falta ejecutar el QA final. Git, GitHub, beta, main y memogeopolitico.com no fueron modificados.';
+  configureProcessUpdateAvailability(session);
+  refreshGlobalStatus(session);
 }
 
 async function prepareLocalPublication() {
@@ -1662,6 +1870,7 @@ async function bootstrap() {
   $('#preparation-event-id').textContent = `macroevento_id: ${macroevent.id}`;
   $('#preparation-content').hidden = false;
   renderPreflight(result);
+  refreshGlobalStatus(null);
 
   if (result.status === 'blocked') {
     $('#preparation-status').className = 'badge bad';
@@ -1695,6 +1904,21 @@ $('#rerun-preflight').onclick = async () => {
 };
 
 $('#generate-followup-proposal').onclick = generateFollowupProposal;
+$('#prepare-process-update').onclick = prepareProcessUpdate;
+$('#confirm-process-update').onchange = () => {
+  $('#apply-process-update').disabled = !$('#confirm-process-update').checked;
+  $('#process-update-apply-status').textContent = $('#confirm-process-update').checked
+    ? 'Confirmación registrada. Se actualizará únicamente la proyección pública del proceso.'
+    : 'Marcá la confirmación para habilitar la actualización corta.';
+};
+$('#apply-process-update').onclick = applyProcessUpdate;
+$('#confirm-responsive-qa').onchange = () => {
+  refreshGlobalStatus(currentAnalysisSession);
+  $('#final-qa-status').textContent = $('#confirm-responsive-qa').checked
+    ? 'Revisión manual confirmada. El QA técnico se habilitará cuando exista una salida local con datos válidos.'
+    : 'Requiere una salida local con QA de datos válido y la confirmación manual anterior.';
+};
+$('#run-final-qa').onclick = runFinalQa;
 $('#generate-analysis-prompt').onclick = generateAnalysisPrompt;
 $('#copy-analysis-prompt').onclick = copyAnalysisPrompt;
 $('#open-analysis-response').onclick = openAnalysisResponse;

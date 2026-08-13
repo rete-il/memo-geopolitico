@@ -683,3 +683,27 @@ dialog{position:relative}
   .local-integration-files li{grid-template-columns:1fr;gap:5px}
   .local-integration-files li>span{white-space:normal}
 }
+
+/* Estado global y actualización corta del proceso */
+.global-status-panel{display:grid;gap:14px;border-left:5px solid var(--accent)}
+.global-status-items{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.global-status-item{display:grid;gap:5px;min-height:82px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--surface2)}
+.global-status-item b{font-size:.8rem;line-height:1.35}
+.global-status-item small{color:var(--muted);font-size:.73rem;line-height:1.4}
+.global-status-item .badge{justify-self:start}
+.final-qa-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--surface2)}
+.final-qa-controls label{display:flex;min-height:44px;align-items:center;gap:11px;font-size:.83rem;font-weight:740;line-height:1.45;cursor:pointer}
+.final-qa-controls input{width:20px;height:20px;flex:0 0 auto;accent-color:var(--primary)}
+.final-qa-controls .muted{grid-column:1/-1;margin:0;font-size:.76rem}
+.process-update-action{border-left:5px solid var(--accent)}
+#process-update-workspace.applied{border-left-color:var(--good)}
+
+@media(max-width:900px){
+  .global-status-items{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:560px){
+  .global-status-items{grid-template-columns:1fr}
+  .final-qa-controls{grid-template-columns:1fr}
+  .final-qa-controls .btn{width:100%}
+}

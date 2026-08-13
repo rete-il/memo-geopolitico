@@ -4,6 +4,12 @@ import path from 'node:path';
 
 import { validateAnalysisResponse } from './analysis-response.mjs';
 import { sessionFileFor } from './analysis-prompt.mjs';
+import {
+  analysisRevision,
+  equalRevision,
+  processRevision,
+  proposalComparable,
+} from './revisions.mjs';
 
 const clean = (value) => String(value ?? '').trim();
 const VALID_ID = /^[a-z0-9](?:[a-z0-9-]{0,198}[a-z0-9])?$/;
@@ -37,29 +43,6 @@ function jsonText(value) {
 
 function finalNewline(value) {
   return `${String(value ?? '').replace(/\r\n?/g, '\n').trimEnd()}\n`;
-}
-
-function stable(value) {
-  if (Array.isArray(value)) return value.map(stable);
-  if (value && typeof value === 'object') {
-    return Object.fromEntries(Object.keys(value).sort().map((key) => [key, stable(value[key])]));
-  }
-  return value;
-}
-
-function equal(left, right) {
-  return JSON.stringify(stable(left)) === JSON.stringify(stable(right));
-}
-
-function proposalComparable(proposal = {}) {
-  return {
-    macroevento_id: proposal.macroevento_id,
-    operation: proposal.operation,
-    identity_preserved: proposal.identity_preserved,
-    proposed_process: proposal.proposed_process,
-    proposed_sources: proposal.proposed_sources,
-    diff: proposal.diff,
-  };
 }
 
 function fileRecord(filePath, content, role) {
@@ -292,8 +275,7 @@ export function generateReviewPackage({
   const loaded = sessionFromFile(sessionsDir, id);
   if (loaded.status !== 'ready') return loaded;
   const { file: sessionFile, session } = loaded;
-  if (!['respuesta_aprobada', 'paquete_preparado', 'aplicacion_local_completada'].includes(session.estado)
-      || !session.respuesta_chatgpt?.aprobada_el
+  if (!session.respuesta_chatgpt?.aprobada_el
       || session.respuesta_chatgpt?.validacion?.estado !== 'ready') {
     return { status: 'blocked', blocks: [issue('response-not-approved', 'La respuesta todavía no está aprobada', 'Validá y aprobá el Markdown antes de generar el paquete.')] };
   }
@@ -305,9 +287,8 @@ export function generateReviewPackage({
       || session.propuesta_seguimiento?.identity_preserved !== true) {
     return { status: 'blocked', blocks: [issue('invalid-followup-proposal', 'La propuesta de seguimiento no es compatible', 'Regenerá la preparación desde el mismo macroevento.')] };
   }
-  if (currentFollowupProposal?.status !== 'ready'
-      || !equal(proposalComparable(currentFollowupProposal), proposalComparable(session.propuesta_seguimiento))) {
-    return { status: 'blocked', blocks: [issue('followup-proposal-stale', 'La propuesta cambió desde que se generó el prompt', 'Volvé a preparar el análisis con los datos actuales antes de empaquetar.')] };
+  if (currentFollowupProposal?.status !== 'ready') {
+    return { status: 'blocked', blocks: [issue('invalid-current-followup-proposal', 'No se pudo reconstruir la propuesta actual del proceso', 'Corregí los datos del proceso; el análisis aprobado se conserva.')] };
   }
 
   const validation = validateAnalysisResponse({
@@ -318,10 +299,16 @@ export function generateReviewPackage({
     projectRoot,
     receivedAt: generatedAt,
   });
-  if (validation.status !== 'ready' || validation.hash_sha256 !== session.respuesta_chatgpt.hash_sha256) {
+  if (validation.status !== 'ready') {
     return {
       status: 'blocked',
-      blocks: validation.blocks.length ? validation.blocks : [issue('approved-response-changed', 'El análisis aprobado cambió', 'Volvé a validarlo y aprobarlo antes de empaquetar.')],
+      blocks: validation.blocks.length ? validation.blocks : [issue('analysis-validation-failed', 'El análisis aprobado dejó de ser válido', 'Corregí, validá y aprobá nuevamente el Markdown.')],
+    };
+  }
+  if (validation.hash_sha256 !== session.respuesta_chatgpt.hash_sha256) {
+    return {
+      status: 'blocked',
+      blocks: [issue('analysis-revision-changed', 'Cambió el contenido del análisis aprobado', 'Validá y aprobá nuevamente el Markdown. El estado del proceso no causó esta invalidación.')],
     };
   }
   const metadata = validation.metadata || {};
@@ -329,10 +316,48 @@ export function generateReviewPackage({
     return { status: 'blocked', blocks: [issue('invalid-analysis-identity', 'La identidad del análisis no puede empaquetarse')] };
   }
 
+  const nextAnalysisRevision = analysisRevision({ markdown: validation.normalized_markdown, metadata });
+  const previousProcessRevision = processRevision(session.propuesta_seguimiento);
+  const nextProcessRevision = processRevision(currentFollowupProposal);
+  const processChanged = !equalRevision(
+    proposalComparable(currentFollowupProposal),
+    proposalComparable(session.propuesta_seguimiento),
+  );
+  if (processChanged && (session.integracion_local?.estado === 'aplicada' || session.publicacion_local?.estado === 'aplicada')) {
+    return {
+      status: 'blocked',
+      analysis_approval_preserved: true,
+      analysis_revision: nextAnalysisRevision,
+      process_revision: nextProcessRevision,
+      blocks: [issue(
+        'process-revision-changed',
+        'Cambió únicamente la revisión del proceso',
+        'El análisis aprobado continúa válido. Usá “Actualizar proceso en evolución”; no hace falta volver a aprobar el Markdown.',
+      )],
+    };
+  }
+  if (processChanged) {
+    if (session.paquete_revision) {
+      session.paquete_revision = {
+        ...session.paquete_revision,
+        estado: 'obsoleto_por_revision_proceso',
+        process_revision_anterior: previousProcessRevision,
+        process_revision_actual: nextProcessRevision,
+      };
+    }
+    session.propuesta_seguimiento = structuredClone(currentFollowupProposal);
+  }
+  session.revisiones = {
+    analysis_revision: nextAnalysisRevision,
+    process_revision: nextProcessRevision,
+  };
+
   fs.mkdirSync(packagesDir, { recursive: true });
   const previous = session.paquete_revision;
   if (previous?.estado === 'archivos_preparados'
       && previous?.response_hash === validation.hash_sha256
+      && previous?.analysis_revision === nextAnalysisRevision
+      && previous?.process_revision === nextProcessRevision
       && previous?.filename
       && fs.existsSync(path.join(packagesDir, path.basename(previous.filename)))) {
     return {
@@ -405,6 +430,8 @@ export function generateReviewPackage({
       respuesta_aprobada_el: session.respuesta_chatgpt.aprobada_el,
       hash_sha256: validation.hash_sha256,
       advertencias_conservadas: validation.warnings.length,
+      analysis_revision: nextAnalysisRevision,
+      process_revision: nextProcessRevision,
     },
     destinos: {
       seguimiento: {
@@ -456,6 +483,8 @@ export function generateReviewPackage({
     generated_at: generatedAt,
     estado: 'archivos_preparados',
     response_hash: validation.hash_sha256,
+    analysis_revision: nextAnalysisRevision,
+    process_revision: nextProcessRevision,
     archive_sha256: sha256(zip),
     archive_bytes: zip.length,
     root_folder: rootFolder,
@@ -488,7 +517,8 @@ export function resolvePreparedReviewPackage({ sessionsDir, packagesDir, eventId
   const loaded = sessionFromFile(sessionsDir, eventId);
   if (loaded.status !== 'ready') return loaded;
   const metadata = loaded.session.paquete_revision;
-  if (!['respuesta_aprobada', 'paquete_preparado', 'aplicacion_local_completada'].includes(loaded.session.estado)
+  if (!loaded.session.respuesta_chatgpt?.aprobada_el
+      || loaded.session.respuesta_chatgpt?.validacion?.estado !== 'ready'
       || metadata?.estado !== 'archivos_preparados'
       || !metadata?.filename) {
     return { status: 'blocked', blocks: [issue('package-not-prepared', 'Todavía no existe un paquete preparado')] };

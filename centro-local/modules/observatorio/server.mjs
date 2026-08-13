@@ -24,6 +24,11 @@ import {
   rollbackLocalPublication,
   serializePublicationPlan,
 } from './lib/local-publication.mjs';
+import {
+  applyLocalProcessUpdate,
+  planLocalProcessUpdate,
+  serializeProcessUpdatePlan,
+} from './lib/local-process-update.mjs';
 import { loadPublicExpedientStates } from './lib/public-expedients.mjs';
 import { generateReviewPackage, resolvePreparedReviewPackage } from './lib/review-package.mjs';
 
@@ -44,9 +49,10 @@ const draftsDir = path.join(centerRoot, 'data', 'publicaciones', 'borradores');
 const applicationsDir = path.join(centerRoot, 'data', 'aplicaciones');
 const integrationsDir = path.join(centerRoot, 'data', 'integraciones');
 const publicationsDir = path.join(centerRoot, 'data', 'promociones');
+const processUpdatesDir = path.join(centerRoot, 'data', 'actualizaciones-proceso');
 const commonBackupsDir = path.join(centerRoot, 'data', 'backups');
 const config = readJson(configPath);
-const APP_VERSION = '0.9.1';
+const APP_VERSION = '0.10.0';
 
 const HOST = process.env.OBSERVATORIO_HOST || config.host || '127.0.0.1';
 const PORT = Number(process.env.OBSERVATORIO_PORT || config.puerto || 4323);
@@ -581,6 +587,60 @@ function openBrowser(url) {
   child.unref();
 }
 
+function runQaCommand({ label, command, args = [], windowsCommand = '' }) {
+  return new Promise((resolve) => {
+    const executable = process.platform === 'win32' ? 'cmd.exe' : command;
+    const commandArgs = process.platform === 'win32'
+      ? ['/d', '/s', '/c', windowsCommand]
+      : args;
+    const child = spawn(executable, commandArgs, {
+      cwd: projectRoot,
+      env: process.env,
+      windowsHide: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let output = '';
+    let truncated = false;
+    const append = (chunk) => {
+      if (output.length >= 120000) {
+        truncated = true;
+        return;
+      }
+      output += chunk.toString('utf8').slice(0, 120000 - output.length);
+    };
+    child.stdout.on('data', append);
+    child.stderr.on('data', append);
+    child.on('error', (error) => resolve({ label, ok: false, exit_code: null, output: error.message }));
+    child.on('close', (code) => resolve({
+      label,
+      ok: code === 0,
+      exit_code: code,
+      output: `${output.trim()}${truncated ? '\n[Salida truncada por el Centro Local.]' : ''}`,
+    }));
+  });
+}
+
+async function runFinalQa() {
+  const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+  const commands = [
+    ['Pruebas', npm, ['run', 'test'], 'npm.cmd run test'],
+    ['Datos públicos', npm, ['run', 'validate:data'], 'npm.cmd run validate:data'],
+    ['Comprobación Astro', npm, ['run', 'check'], 'npm.cmd run check'],
+    ['Build público', npm, ['run', 'build'], 'npm.cmd run build'],
+    ['Build preview', npm, ['run', 'build:preview'], 'npm.cmd run build:preview'],
+    ['Validación del build', npm, ['run', 'validate:build'], 'npm.cmd run validate:build'],
+    ['Centro Local', npm, ['--prefix', 'centro-local/modules/observatorio', 'run', 'check'], 'npm.cmd --prefix centro-local\\modules\\observatorio run check'],
+    ['Diferencias Git', 'git', ['--no-pager', 'diff', '--check'], 'git --no-pager diff --check'],
+  ];
+  const results = [];
+  for (const [label, command, args, windowsCommand] of commands) {
+    const result = await runQaCommand({ label, command, args, windowsCommand });
+    results.push(result);
+    if (!result.ok) break;
+  }
+  return { valid: results.length === commands.length && results.every((result) => result.ok), results };
+}
+
 function loadNormalizedData() {
   const catalog = normalizeCatalog(readJson(catalogPath));
   return normalizeData(readJson(dataPath), catalog);
@@ -904,6 +964,126 @@ const server = http.createServer(async (req, res) => {
         confirmed: input.confirmado === true,
       });
       return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-process-update/plan') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const currentFollowupProposal = await generateFollowupProposal({
+        projectRoot,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        eventId,
+        publicExpedients: loadPublicExpedientStates(projectRoot),
+      });
+      const result = planLocalProcessUpdate({
+        centerRoot,
+        siteRoot: projectRoot,
+        sessionsDir,
+        processUpdatesDir,
+        backupsDir: commonBackupsDir,
+        eventId,
+        currentFollowupProposal,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, serializeProcessUpdatePlan(result));
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/local-process-update/apply') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const currentFollowupProposal = await generateFollowupProposal({
+        projectRoot,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        eventId,
+        publicExpedients: loadPublicExpedientStates(projectRoot),
+      });
+      const result = applyLocalProcessUpdate({
+        centerRoot,
+        siteRoot: projectRoot,
+        sessionsDir,
+        processUpdatesDir,
+        backupsDir: commonBackupsDir,
+        eventId,
+        currentFollowupProposal,
+        expectedPlanId: text(input.plan_id, 128),
+        confirmed: input.confirmado === true,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/final-qa') {
+      const input = await readBody(req);
+      const eventId = text(input.macroevento_id, 220);
+      if (input.revision_responsive_confirmada !== true) {
+        return sendJson(res, 422, {
+          status: 'blocked',
+          blocks: [{
+            code: 'responsive-review-required',
+            title: 'Falta confirmar el QA manual responsive y de interacción',
+            detail: 'Revisá escritorio, tablet, móvil, teclado, foco y persistencia antes de ejecutar el cierre técnico.',
+          }],
+        });
+      }
+      const loaded = loadAnalysisPromptSession({ sessionsDir, eventId });
+      if (loaded.status !== 'ready' || !loaded.session) {
+        return sendJson(res, 422, { status: 'blocked', blocks: [{ code: 'missing-session', title: 'No existe una sesión activa para registrar el QA' }] });
+      }
+      const hasLocalOutput = loaded.session.publicacion_local?.estado === 'aplicada'
+        || loaded.session.actualizacion_proceso?.estado === 'aplicada';
+      const dataValid = loaded.session.publicacion_local?.qa_datos === 'valido'
+        || loaded.session.actualizacion_proceso?.qa_datos === 'valido';
+      if (!hasLocalOutput || !dataValid) {
+        return sendJson(res, 422, {
+          status: 'blocked',
+          blocks: [{
+            code: 'valid-local-output-required',
+            title: 'Falta una salida local con QA de datos válido',
+            detail: 'Publicá localmente o aplicá la actualización corta antes de ejecutar el QA final.',
+          }],
+        });
+      }
+      const qa = await runFinalQa();
+      const session = loaded.session;
+      const completedAt = new Date().toISOString();
+      session.qa_final = {
+        estado: qa.valid ? 'valido' : 'fallido',
+        completado_el: completedAt,
+        revision_responsive_confirmada: true,
+        resultados: qa.results.map(({ output, ...result }) => ({
+          ...result,
+          output_tail: output.slice(-4000),
+        })),
+      };
+      if (session.actualizacion_proceso?.estado === 'aplicada') {
+        session.actualizacion_proceso.qa_sitio = qa.valid ? 'valido' : 'fallido';
+        session.actualizacion_proceso.git_estado = qa.valid ? 'listo_para_sincronizar' : 'bloqueado_por_qa';
+      }
+      if (session.publicacion_local?.estado === 'aplicada') {
+        session.publicacion_local.qa_estado = qa.valid ? 'valido' : 'fallido';
+        session.publicacion_local.git_estado = qa.valid ? 'listo_para_sincronizar' : 'bloqueado_por_qa';
+      }
+      session.actualizado_el = completedAt;
+      session.trazabilidad = {
+        ...(session.trazabilidad || {}),
+        siguiente_paso: qa.valid ? 'revision_y_sincronizacion_git_manual' : 'corregir_qa_final',
+        estado: qa.valid ? 'listo_para_revision_git' : 'qa_final_fallido',
+      };
+      writeJsonAtomic(path.join(sessionsDir, loaded.file.name), session);
+      return sendJson(res, qa.valid ? 200 : 422, {
+        status: qa.valid ? 'ready' : 'blocked',
+        qa,
+        session,
+        blocks: qa.valid ? [] : [{
+          code: 'final-qa-failed',
+          title: 'El QA final detectó un fallo',
+          detail: qa.results.find((result) => !result.ok)?.label || 'Control técnico fallido.',
+        }],
+      });
     }
 
     if (req.method === 'GET' && url.pathname === '/api/bootstrap') {

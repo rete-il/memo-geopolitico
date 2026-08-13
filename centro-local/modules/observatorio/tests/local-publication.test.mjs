@@ -78,8 +78,42 @@ function makeFixture(context) {
     formato: 'memo-geopolitico-publico',
     schema_version: 2,
     generado_el: '2026-08-08',
-    procesos: [{ macroevento_id: EVENT_ID, slug: EVENT_ID, titulo: 'Corredor de Lobito' }],
-    fuentes: [{ fuente_id: 'src-verificada', titulo: 'Fuente', url: 'https://example.com/fuente' }],
+    procesos: [{
+      schema_version: 2,
+      macroevento_id: EVENT_ID,
+      slug: EVENT_ID,
+      titulo: 'Corredor de Lobito',
+      sintesis: 'Seguimiento público del corredor.',
+      publicacion: { estado: 'borrador', publicado_el: null, actualizado_el: '2026-08-08' },
+      progreso_publico: { etapa: 'borrador', proximo_paso: 'Completar revisión.', hitos_completados: [] },
+      clasificacion: {
+        tema_principal_id: 'infraestructura-conectividad',
+        tema_secundario_ids: [],
+        subtema_ids: [],
+        geografia: { alcance: 'transfronterizo', region_ids: [], subregion_ids: [], pais_ids: [], espacio_ids: [] },
+        actor_ids: [],
+        etiqueta_ids: [],
+      },
+      por_que_importa: 'Reordena corredores logísticos y cadenas de suministro.',
+      senales: [{
+        senal_id: 'senal-lobito-1',
+        titulo: 'Avance ferroviario verificable',
+        fuente_ids: ['src-verificada'],
+        estado_verificacion: 'verificada',
+      }],
+      fuente_ids: ['src-verificada'],
+    }],
+    fuentes: [{
+      fuente_id: 'src-verificada',
+      titulo: 'Fuente',
+      url: 'https://example.com/fuente',
+      estado_verificacion: 'verificada',
+    }],
+    catalogos: {
+      temas: [{ id: 'infraestructura-conectividad', nombre: 'Infraestructura y conectividad', slug: 'infraestructura-conectividad' }],
+      subtemas: [],
+      actores: [],
+    },
   }, null, 2)}\n`);
   const session = {
     schema_version: 1,
@@ -161,6 +195,8 @@ test('publica localmente con estado y fechas públicas sin modificar el preview'
   assert.equal(publicProcess.progreso_publico.proximo_paso, 'Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.');
   assert.deepEqual(publicProcess.progreso_publico.hitos_completados, [
     'Expediente abierto y clasificado',
+    'Fuentes verificadas incorporadas',
+    'Señales verificadas incorporadas',
     'Revisión editorial completada',
     'Análisis publicado',
   ]);
@@ -171,6 +207,26 @@ test('publica localmente con estado y fechas públicas sin modificar el preview'
   assert.equal(result.session.integracion_local.rollback_estado, 'bloqueada_por_publicacion');
   assert.equal(result.safety.publicacion_internet_realizada, false);
   assert.equal(result.safety.git_ejecutado, false);
+});
+
+test('un fallo posterior a escribir restaura Markdown y expediente y marca la publicación fallida', (context) => {
+  const fixture = makeFixture(context);
+  const publicBefore = fs.readFileSync(fixture.publicFile);
+  const plan = planLocalPublication(fixture);
+  const result = applyLocalPublication({
+    ...fixture,
+    expectedPlanId: plan.plan_id,
+    confirmed: true,
+    reviewConfirmed: true,
+    afterTargetWrite() { throw new Error('fallo inducido de publicación'); },
+  });
+  assert.equal(result.status, 'blocked');
+  assert.equal(result.blocks[0].code, 'publication-write-failed');
+  assert.equal(fs.existsSync(fixture.publishedFile), false);
+  assert.deepEqual(fs.readFileSync(fixture.publicFile), publicBefore);
+  const record = JSON.parse(fs.readFileSync(plan.publication_record.file, 'utf8'));
+  assert.equal(record.estado, 'fallida_revertida');
+  assert.equal(record.rollback.estado, 'automatica_completada');
 });
 
 test('repara el expediente público aunque el Markdown de producción ya coincida', (context) => {
@@ -259,6 +315,30 @@ test('rechaza una fuente vinculada que no existe en la proyección pública', (c
   assert.equal(result.status, 'blocked');
   assert.equal(result.blocks[0].code, 'invalid-publication-content');
   assert.match(result.blocks[0].detail, /src-inexistente/);
+});
+
+test('bloquea antes de escribir si la promoción dejaría un proceso publicado sin señales', (context) => {
+  const fixture = makeFixture(context);
+  const data = JSON.parse(fs.readFileSync(fixture.publicFile, 'utf8'));
+  data.procesos[0].senales = [];
+  fs.writeFileSync(fixture.publicFile, `${JSON.stringify(data, null, 2)}\n`);
+  const result = planLocalPublication(fixture);
+  assert.equal(result.status, 'blocked');
+  assert.equal(result.blocks[0].code, 'public-projection-invalid');
+  assert.match(result.blocks[0].detail, /un proceso publicado requiere señales/);
+  assert.equal(fs.existsSync(fixture.publishedFile), false);
+  assert.equal(fs.existsSync(fixture.publicationsDir), false);
+});
+
+test('bloquea una señal pública enlazada a una fuente no verificada', (context) => {
+  const fixture = makeFixture(context);
+  const data = JSON.parse(fs.readFileSync(fixture.publicFile, 'utf8'));
+  data.fuentes[0].estado_verificacion = 'pendiente';
+  fs.writeFileSync(fixture.publicFile, `${JSON.stringify(data, null, 2)}\n`);
+  const result = planLocalPublication(fixture);
+  assert.equal(result.status, 'blocked');
+  assert.equal(result.blocks[0].code, 'public-projection-invalid');
+  assert.match(result.blocks[0].detail, /no está verificada/);
 });
 
 test('rechaza post_id duplicado en otra publicación activa', (context) => {

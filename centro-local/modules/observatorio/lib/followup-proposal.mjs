@@ -185,6 +185,14 @@ export async function generateFollowupProposal({
 
   const changes = diffFollowupProcesses(current, proposed);
   const sources = (packageData?.fuentes || []).filter((source) => proposed.fuente_ids?.includes(source.fuente_id));
+  const canonicalSignals = matches[0].senales || [];
+  const verifiedSignals = canonicalSignals.filter((signal) => (
+    ['revisada', 'verificada', 'confirmada'].includes(clean(signal?.estado_revision).toLowerCase())
+  )).length;
+  const exportableSignals = proposed.senales?.length || 0;
+  const verifiedSources = (matches[0].fuentes || []).filter((source) => (
+    clean(source?.estado_verificacion).toLowerCase() === 'verificada'
+  )).length;
   return {
     status: 'ready',
     schema_version: 1,
@@ -202,10 +210,15 @@ export async function generateFollowupProposal({
     diff: changes,
     metrics: {
       changes: changes.length,
-      signals: proposed.senales?.length || 0,
+      signals: exportableSignals,
+      signals_verified: verifiedSignals,
+      signals_exportable: exportableSignals,
       sources: proposed.fuente_ids?.length || 0,
+      sources_verified: verifiedSources,
+      sources_exportable: proposed.fuente_ids?.length || 0,
       pending_sources_excluded: (matches[0].fuentes || []).filter((source) => source.estado_verificacion !== 'verificada').length,
-      signals_without_verified_source_excluded: Math.max(0, (matches[0].senales || []).length - (proposed.senales?.length || 0)),
+      signals_without_verified_source_excluded: Math.max(0, canonicalSignals.length - exportableSignals),
+      verified_signals_not_exportable: Math.max(0, verifiedSignals - exportableSignals),
     },
     safety: {
       files_created: 0,

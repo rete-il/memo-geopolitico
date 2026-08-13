@@ -177,13 +177,36 @@ test('bloquea una respuesta que no fue aprobada', (context) => {
   assert.equal(result.blocks[0].code, 'response-not-approved');
 });
 
-test('bloquea si la propuesta actual difiere de la conservada en la sesión', (context) => {
+test('actualiza solo la revisión del proceso y conserva el análisis aprobado antes de integrar', (context) => {
   const fixture = makeFixture(context);
   const changed = structuredClone(fixture.proposal);
   changed.proposed_process.titulo = 'Título actualizado después del prompt';
   const result = generateReviewPackage({ ...fixture, eventId: EVENT_ID, currentFollowupProposal: changed });
+  assert.equal(result.status, 'ready');
+  assert.equal(result.session.respuesta_chatgpt.aprobada_el, '2026-08-08T12:00:00.000Z');
+  assert.equal(result.session.propuesta_seguimiento.proposed_process.titulo, changed.proposed_process.titulo);
+  assert.match(result.session.revisiones.analysis_revision, /^[a-f0-9]{64}$/);
+  assert.match(result.session.revisiones.process_revision, /^[a-f0-9]{64}$/);
+  assert.equal(result.package.analysis_revision, result.session.revisiones.analysis_revision);
+  assert.equal(result.package.process_revision, result.session.revisiones.process_revision);
+});
+
+test('deriva un cambio posterior a integración a la actualización corta sin invalidar el análisis', (context) => {
+  const fixture = makeFixture(context);
+  const file = sessionFileFor(fixture.sessionsDir, EVENT_ID);
+  const session = JSON.parse(fs.readFileSync(file, 'utf8'));
+  session.estado = 'publicacion_local_completada';
+  session.integracion_local = { estado: 'aplicada' };
+  session.publicacion_local = { estado: 'aplicada' };
+  fs.writeFileSync(file, `${JSON.stringify(session, null, 2)}\n`, 'utf8');
+  const changed = structuredClone(fixture.proposal);
+  changed.proposed_process.titulo = 'Título actualizado después de publicar';
+  const result = generateReviewPackage({ ...fixture, eventId: EVENT_ID, currentFollowupProposal: changed });
   assert.equal(result.status, 'blocked');
-  assert.equal(result.blocks[0].code, 'followup-proposal-stale');
+  assert.equal(result.analysis_approval_preserved, true);
+  assert.equal(result.blocks[0].code, 'process-revision-changed');
+  assert.match(result.blocks[0].detail, /continúa válido/);
+  assert.match(result.blocks[0].detail, /Actualizar proceso en evolución/);
 });
 
 test('revalida que post_id y slug continúen siendo únicos antes de empaquetar', (context) => {

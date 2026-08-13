@@ -55,9 +55,9 @@ function publicProcess(title = 'Corredor de Lobito') {
     titulo: title,
     sintesis: 'Seguimiento público.',
     publicacion: { estado: 'publicado', publicado_el: '2026-07-26', actualizado_el: '2026-07-26' },
-    clasificacion: { tema_principal_id: null, tema_secundario_ids: [], subtema_ids: [], geografia: { alcance: 'transfronterizo', region_ids: [], subregion_ids: [], pais_ids: [], espacio_ids: [] }, actor_ids: [], etiqueta_ids: [] },
+    clasificacion: { tema_principal_id: 'infraestructura-conectividad', tema_secundario_ids: [], subtema_ids: [], geografia: { alcance: 'transfronterizo', region_ids: [], subregion_ids: [], pais_ids: [], espacio_ids: [] }, actor_ids: [], etiqueta_ids: [] },
     por_que_importa: 'Importa.',
-    senales: [{ senal_id: 'senal-1', fuente_ids: ['src-verificada'] }],
+    senales: [{ senal_id: 'senal-1', titulo: 'Avance ferroviario', fuente_ids: ['src-verificada'], estado_verificacion: 'verificada' }],
     fuente_ids: ['src-verificada'],
   };
 }
@@ -91,9 +91,13 @@ function makeFixture(context, { differences = 0 } = {}) {
     schema_version: 2,
     generado_el: '2026-08-01',
     procesos: [currentProcess],
-    fuentes: [{ fuente_id: 'src-verificada', titulo: 'Fuente', url: 'https://example.com/verified' }],
+    fuentes: [{ fuente_id: 'src-verificada', titulo: 'Fuente', url: 'https://example.com/verified', estado_verificacion: 'verificada' }],
     recursos_visuales: [],
-    catalogos: {},
+    catalogos: {
+      temas: [{ id: 'infraestructura-conectividad', nombre: 'Infraestructura y conectividad', slug: 'infraestructura-conectividad' }],
+      subtemas: [],
+      actores: [],
+    },
   };
   fs.writeFileSync(publicFile, `${JSON.stringify(publicData, null, 2)}\n`);
   const proposedProcess = differences ? publicProcess('Corredor de Lobito actualizado') : currentProcess;
@@ -225,6 +229,25 @@ test('integra el análisis en preview, conserva el seguimiento y actualiza la se
   assert.equal(result.session.aplicacion_local.rollback_estado, 'bloqueada_por_integracion');
   assert.equal(result.safety.git_ejecutado, false);
   assert.equal(result.safety.build_ejecutado, false);
+});
+
+test('un fallo posterior a escribir restaura ambos destinos y marca la integración fallida', (context) => {
+  const fixture = makeFixture(context, { differences: 1 });
+  const publicBefore = fs.readFileSync(fixture.publicFile);
+  const plan = planLocalIntegration(fixture);
+  const result = applyLocalIntegration({
+    ...fixture,
+    expectedPlanId: plan.plan_id,
+    confirmed: true,
+    afterTargetWrite() { throw new Error('fallo inducido de integración'); },
+  });
+  assert.equal(result.status, 'blocked');
+  assert.equal(result.blocks[0].code, 'integration-write-failed');
+  assert.equal(fs.existsSync(fixture.previewFile), false);
+  assert.deepEqual(fs.readFileSync(fixture.publicFile), publicBefore);
+  const record = JSON.parse(fs.readFileSync(plan.integration_record.file, 'utf8'));
+  assert.equal(record.estado, 'fallida_revertida');
+  assert.equal(record.rollback.estado, 'automatica_completada');
 });
 
 test('bloquea la integración si el destino cambió después de preparar el plan', (context) => {
