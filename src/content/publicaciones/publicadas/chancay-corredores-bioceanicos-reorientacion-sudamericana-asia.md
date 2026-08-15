@@ -56,8 +56,6 @@ recurso_visual_ids: []
 post_relacionado_ids: []
 ---
 
-## Un puerto que importa por las redes que podría reorganizar
-
 La importancia geopolítica de Chancay no depende solamente de lo que ocurra dentro de su recinto portuario. El interrogante estratégico es más amplio: si el puerto puede transformarse en un punto de articulación entre la costa pacífica sudamericana, las economías del interior del continente y los mercados asiáticos.
 
 Ese escenario todavía no puede darse por demostrado. Con la evidencia autorizada disponible para este análisis no es posible afirmar que exista actualmente una red bioceánica integrada alrededor de Chancay, ni que los proyectos terrestres necesarios para sostenerla hayan alcanzado un grado suficiente de ejecución. La evidencia autorizada disponible no permite establecer el estado efectivo de las conexiones ferroviarias y viales proyectadas entre Brasil, Bolivia, Paraguay, Perú y los puertos del Pacífico.

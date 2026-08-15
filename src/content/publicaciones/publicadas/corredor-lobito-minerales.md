@@ -51,8 +51,6 @@ recurso_visual_ids: []
 post_relacionado_ids: []
 ---
 
-## Una salida atlántica para el Copperbelt
-
 El Corredor de Lobito conecta el puerto angoleño del mismo nombre con las zonas mineras de la República Democrática del Congo y proyecta una futura extensión hacia Zambia. Su atractivo inmediato es logístico: ofrecer al cobre y al cobalto del Copperbelt una salida atlántica que complemente las rutas hacia el océano Índico. Pero su importancia geopolítica es mayor. Estados Unidos y la Unión Europea lo apoyan como parte de su esfuerzo por diversificar cadenas de minerales críticos, mientras China conserva una posición dominante en la minería y el procesamiento regional.
 
 En julio de 2026, Africa Finance Corporation anunció el cierre financiero de US$753 millones para rehabilitar, modernizar y operar durante largo plazo unos 1.300 kilómetros de la línea entre Lobito y la frontera congoleña. La operación convierte una promesa en un compromiso material y reduce una de las principales incertidumbres del componente ferroviario. Sin embargo, no equivale a financiar todo el corredor: la extensión hacia Zambia, las conexiones energéticas, los pasos fronterizos y otras infraestructuras complementarias siguen trayectorias diferentes.

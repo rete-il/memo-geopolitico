@@ -52,8 +52,6 @@ recurso_visual_ids: []
 post_relacionado_ids: []
 ---
 
-## Una alternativa que atraviesa demasiadas fronteras
-
 El Corredor Medio enlaza Asia Central con Europa mediante una sucesión de ferrocarriles, puertos y cruces terrestres a través del mar Caspio, el Cáucaso Sur, Turquía y el mar Negro. Su atractivo aumentó después de la invasión rusa de Ucrania, cuando empresas y gobiernos comenzaron a buscar rutas menos expuestas a Rusia. Sin embargo, no es un reemplazo directo del corredor septentrional: cada transbordo agrega tiempo, cada frontera introduce reglas distintas y cada desacuerdo político puede interrumpir la continuidad que el mapa parece prometer.
 
 La infraestructura física es solo una parte del problema. Para que el corredor funcione como sistema, los horarios portuarios, las tarifas ferroviarias, los documentos aduaneros y el intercambio de datos deben coordinarse entre países con capacidades e intereses diferentes. El [Banco Mundial](https://www.worldbank.org/en/region/eca/publication/middle-trade-and-transport-corridor) estimó que una combinación de inversiones y mejoras de eficiencia podría reducir a la mitad los tiempos de viaje y triplicar los flujos comerciales para 2030. Esa proyección no es un pronóstico automático: muestra cuánto depende el resultado de reformas operativas además de obras.

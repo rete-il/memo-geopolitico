@@ -47,8 +47,6 @@ recurso_visual_ids: []
 post_relacionado_ids: []
 ---
 
-## De la negociación prolongada a la ejecución física
-
 El ferrocarril China–Kirguistán–Uzbekistán (CKU) importa, ante todo, porque el proyecto parece haber cruzado un umbral que durante años resultó difícil de alcanzar: pasar de la negociación a la obra. La evidencia autorizada no permite afirmar todavía que el corredor vaya a cumplir todas las funciones estratégicas que se le atribuyen, pero sí muestra que ya existen trabajos físicos y problemas propios de una infraestructura en ejecución.
 
 El dato más concreto proviene de [Kabar, en su información del 4 de junio de 2026](https://en.kabar.kg/news/cku-railway-project-includes-construction-of-50-bridges-and-29-tunnels/). La agencia informó sobre una visita oficial a la obra en la región de Jalal-Abad, incluida una inspección al sitio de construcción de un túnel. También señaló que se discutieron compensaciones y cuestiones de tierras para residentes afectados por el trazado. Es decir, la evidencia ya no se limita a declaraciones diplomáticas sobre la conveniencia del proyecto: aparecen excavaciones, infraestructura compleja y conflictos de implementación territorial.

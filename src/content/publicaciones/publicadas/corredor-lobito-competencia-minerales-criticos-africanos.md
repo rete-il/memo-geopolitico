@@ -58,8 +58,6 @@ recurso_visual_ids: []
 post_relacionado_ids: []
 ---
 
-## Una infraestructura que empieza a adquirir peso estratégico
-
 El Corredor de Lobito ocupa un lugar creciente en la discusión sobre cómo conectar las zonas productoras de minerales de África central y austral con mercados internacionales. La evidencia verificada permite afirmar que el componente ferroviario existente en Angola ha alcanzado un hito financiero relevante, pero no que el conjunto del corredor esté ya plenamente financiado ni asegurado.
 
 Según [Mining Weekly](https://www.miningweekly.com/article/lobito-corridor-railway-project-achieves-753m-financial-close-2026-07-03), Africa Finance Corporation anunció en julio de 2026 un cierre financiero de US$753 millones destinado a la rehabilitación, modernización y operación de largo plazo del corredor ferroviario existente de 1.300 km entre el Puerto de Lobito y la frontera con la República Democrática del Congo. Este dato confirma que una parte sustancial de la infraestructura ferroviaria dispone de financiación identificada y cerrada.

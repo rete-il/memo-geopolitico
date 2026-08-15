@@ -50,8 +50,6 @@ recurso_visual_ids: []
 post_relacionado_ids: []
 ---
 
-## Tres estrechos, una misma cadena
-
 Hormuz, Bab el‑Mandeb y Suez suelen aparecer como crisis separadas, aunque para una parte esencial del comercio energético forman una misma cadena. Hormuz concentra la salida marítima del Golfo Pérsico; Bab el‑Mandeb conecta el océano Índico con el mar Rojo; y Suez permite continuar hacia el Mediterráneo sin rodear África. Una perturbación aislada encarece el transporte. Dos pasos degradados al mismo tiempo pueden inutilizar rutas alternativas, elevar las primas de seguro y trasladar el impacto desde la navegación hacia los inventarios, los contratos de suministro y los precios internos de numerosos países.
 
 La crisis de la primera mitad de 2026 mostró con particular claridad esa correlación. Un análisis de [Chatham House](https://www.chathamhouse.org/2026/06/next-strait-hormuz-crisis-could-be-even-worse) señaló que la reapertura de Hormuz requería desminado, garantías de seguridad y recuperación de la confianza aseguradora, mientras la capacidad hutí de volver a presionar Bab el‑Mandeb permanecía activa. El punto no era solamente la continuidad de cada amenaza, sino su interacción: parte de las salidas terrestres utilizadas para reducir la exposición a Hormuz terminan en el mar Rojo y vuelven a depender de Bab el‑Mandeb y Suez.

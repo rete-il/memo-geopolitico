@@ -53,8 +53,6 @@ recurso_visual_ids: []
 post_relacionado_ids: []
 ---
 
-## Una red global anclada en territorios nacionales
-
 Los cables submarinos sostienen la circulación internacional de datos, pero su aparente condición global oculta una dependencia profundamente territorial. Cada sistema necesita puntos de amarre, permisos, energía, estaciones terrestres y acceso a barcos capaces de localizar y reparar daños en el fondo marino. Una rotura puede ocurrir lejos de la costa y, sin embargo, su resolución depende de decisiones administrativas tomadas en uno o varios Estados. Esa combinación convierte a una infraestructura operada en gran medida por empresas privadas en un asunto de soberanía, continuidad económica y seguridad nacional.
 
 La vulnerabilidad no se explica solamente por posibles actos de sabotaje. Pesca, anclas, movimientos del lecho marino, fenómenos meteorológicos y errores operativos producen incidentes con mucha mayor frecuencia. El problema estratégico aparece cuando las rutas están concentradas, faltan alternativas y la reparación se demora. En su reunión de 2026, el [International Cable Protection Committee](https://www.iscpc.org/events/2026-plenary-meeting/) informó 178 reparaciones durante 2025 y un promedio de 23,4 días entre la notificación y la partida del barco; el caso más extremo acumuló 947 días de demora. La resiliencia depende, por lo tanto, tanto de la redundancia como de la capacidad de respuesta.

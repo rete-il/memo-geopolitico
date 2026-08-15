@@ -43,8 +43,6 @@ recurso_visual_ids: []
 post_relacionado_ids: []
 ---
 
-## Una conexión civil con valor estratégico
-
 Rail Baltica nació como un proyecto de integración europea: una línea de ancho estándar destinada a conectar Estonia, Letonia y Lituania con Polonia y el resto de la red de la Unión Europea. Esa diferencia técnica es central, porque las redes bálticas heredaron el ancho ruso y mantienen una orientación histórica este‑oeste. Tras la invasión rusa de Ucrania, la nueva conexión norte‑sur adquirió una función adicional. Ya no se evalúa solamente por pasajeros, carga o cohesión regional, sino también por su capacidad para trasladar personal, equipos y suministros hacia el flanco oriental.
 
 La doble función civil y militar modifica la justificación financiera del proyecto. Una línea preparada para cargas pesadas, terminales intermodales y conexiones con puertos y carreteras puede servir tanto al comercio como a la defensa colectiva. En junio de 2026, [RB Rail](https://www.railbaltica.org/news/rail-baltica-in-focus-brussels-event-spotlights-europes-strategic-cross-border-rail-link/) presentó cuatro objetivos estratégicos: integrar los países bálticos en la red europea, generar beneficios económicos, reforzar la movilidad militar y cumplir la red transeuropea de transporte. La seguridad pasa así a formar parte explícita del argumento, no como un uso excepcional añadido después.
