@@ -52,39 +52,44 @@ const primaryTopic = topics.find((topic) => topic.primary);
   description={entry.data.resumen}
   noindex={entry.data.publicacion.estado !== 'publicado'}
 >
-  <div class="page-shell">
-    <header class="publication-hero">
-      <p class="eyebrow detail-kicker">
-        <span>{humanize(entry.data.tipo_publicacion)}</span>
-        {
-          primaryTopic && (
-            <>
-              <span aria-hidden="true">·</span>
-              <a href={topicHref(primaryTopic)}>
-                {primaryTopic.item.nombre}
-              </a>
-            </>
-          )
-        }
-      </p>
-      <h1>{entry.data.titulo}</h1>
-      {entry.data.subtitulo && <p class="lead">{entry.data.subtitulo}</p>}
-      <div class="hero-meta">
-        {
-          entry.data.publicacion.publicado_el && (
-            <span>Publicado {formatDate(entry.data.publicacion.publicado_el)}</span>
-          )
-        }
-        <span>Actualizado {formatDate(entry.data.publicacion.actualizado_el)}</span>
-        <span>Por {entry.data.autor_ids.join(', ')}</span>
-        {
-          entry.data.publicacion.estado !== 'publicado' && (
-            <span class="draft-chip">
-              {editorialPreviewEnabled && 'Vista local · '}
-              {editorialStageLabel(entry.data.publicacion.estado)}
-            </span>
-          )
-        }
+  <div class="page-shell publication-page-shell">
+    <header class="publication-hero publication-hero--editorial">
+      <div class="publication-hero__primary">
+        <p class="eyebrow detail-kicker">
+          <span>{humanize(entry.data.tipo_publicacion)}</span>
+          {
+            primaryTopic && (
+              <>
+                <span aria-hidden="true">·</span>
+                <a href={topicHref(primaryTopic)}>
+                  {primaryTopic.item.nombre}
+                </a>
+              </>
+            )
+          }
+        </p>
+        <h1>{entry.data.titulo}</h1>
+      </div>
+
+      <div class="publication-hero__secondary">
+        {entry.data.subtitulo && <p class="lead">{entry.data.subtitulo}</p>}
+        <div class="hero-meta">
+          {
+            entry.data.publicacion.publicado_el && (
+              <span>Publicado {formatDate(entry.data.publicacion.publicado_el)}</span>
+            )
+          }
+          <span>Actualizado {formatDate(entry.data.publicacion.actualizado_el)}</span>
+          <span>Por {entry.data.autor_ids.join(', ')}</span>
+          {
+            entry.data.publicacion.estado !== 'publicado' && (
+              <span class="draft-chip">
+                {editorialPreviewEnabled && 'Vista local · '}
+                {editorialStageLabel(entry.data.publicacion.estado)}
+              </span>
+            )
+          }
+        </div>
       </div>
     </header>
   </div>

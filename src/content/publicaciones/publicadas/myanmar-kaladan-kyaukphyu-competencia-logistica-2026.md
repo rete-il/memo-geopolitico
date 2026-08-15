@@ -70,9 +70,54 @@ La evidencia disponible no permite afirmar que Nueva Delhi y Pekín hayan defini
 
 Lo que vuelve especialmente importante este proceso es que ambos corredores atraviesan un Myanmar territorialmente fragmentado. Puertos, carreteras, ductos y terminales pueden existir físicamente y, sin embargo, depender de actores armados distintos para funcionar. La guerra civil ha convertido así el control territorial en una variable logística tan importante como la propia infraestructura.
 
+
+<figure class="article-map article-map--column article-map--principal">
+  <a class="article-map__zoom" href="/visualizaciones/myanmar/myanmar-kaladan-kyaukphyu-principal-final.png" target="_blank" rel="noopener" aria-label="Abrir mapa Myanmar entre Kaladan y Kyaukphyu en tamaño completo">
+  <picture>
+    <source srcset="/visualizaciones/myanmar/myanmar-kaladan-kyaukphyu-principal-final.webp" type="image/webp" />
+    <img
+      src="/visualizaciones/myanmar/myanmar-kaladan-kyaukphyu-principal-final.png"
+      alt="Infografía editorial Myanmar entre Kaladan y Kyaukphyu, con el corredor Kaladan, el corredor CMEC hacia Yunnan, contexto regional y mapa de riesgo."
+      width="1536"
+      height="1024"
+      loading="eager"
+      decoding="async"
+    />
+  </picture>
+  <span class="article-map__zoom-hint">Abrir mapa en tamaño completo ↗</span>
+  </a>
+  <figcaption>
+    <strong>Myanmar entre Kaladan y Kyaukphyu.</strong>
+    Dos accesos estratégicos al océano Índico atravesados por una geografía de guerra, control territorial fragmentado y continuidad logística incierta.
+    <span>Infografía editorial · Memo Geopolítico.</span>
+  </figcaption>
+</figure>
+
 ## Kaladan: una conexión india todavía incompleta
 
 El Kaladan Multi-Modal Transit Transport Project busca conectar el noreste de India con la bahía de Bengala mediante una combinación de transporte marítimo, fluvial y terrestre. Su nodo marítimo es el puerto de Sittwe; desde allí la conexión continúa por el río Kaladan hacia Paletwa y posteriormente por carretera hasta la frontera con Mizoram.
+
+<figure class="article-map article-map--inset article-map--right">
+  <a class="article-map__zoom" href="/visualizaciones/myanmar/myanmar-kaladan-detalle-final.png" target="_blank" rel="noopener" aria-label="Abrir mapa detallado del corredor Kaladan en tamaño completo">
+  <picture>
+    <source srcset="/visualizaciones/myanmar/myanmar-kaladan-detalle-final.webp" type="image/webp" />
+    <img
+      src="/visualizaciones/myanmar/myanmar-kaladan-detalle-final.png"
+      alt="Esquema editorial del corredor Kaladan desde Kolkata y Sittwe hasta Paletwa, Zorinpui y Mizoram."
+      width="1536"
+      height="1024"
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+  <span class="article-map__zoom-hint">Ampliar mapa ↗</span>
+  </a>
+  <figcaption>
+    <strong>Kaladan: mar, río y carretera.</strong>
+    La continuidad depende especialmente del tramo Paletwa–frontera india y de las condiciones de seguridad.
+    <span>Esquema editorial · Memo Geopolítico.</span>
+  </figcaption>
+</figure>
 
 En julio de 2025, el ministro indio Sarbananda Sonowal estimó que el proyecto podría estar plenamente operativo en 2027. Según [Times of India](https://timesofindia.indiatimes.com/city/guwahati/kaladan-project-to-be-operational-by-27-will-unlock-trade-opportunities-sonowal/articleshow/122304171.cms), Sittwe ya estaba preparado mientras continuaba la construcción de la conexión vial entre Paletwa y Zorinpui.
 
@@ -82,9 +127,33 @@ La infraestructura existente tampoco debe confundirse con una ruta plenamente in
 
 Esto confirma que Sittwe no era simplemente una instalación terminada sobre el papel. Pero actividad portuaria no equivale a continuidad logística completa hasta Mizoram.
 
+<div class="article-map-clear"></div>
+
 ## El corredor chino: ductos operativos y un puerto profundo todavía en desarrollo
 
 El caso chino presenta una configuración diferente. Kyaukphyu funciona como punto de conexión entre la costa birmana y Yunnan y forma parte del CMEC. Su importancia no depende exclusivamente del futuro puerto de aguas profundas: China dispone ya de una infraestructura energética operativa que atraviesa Myanmar.
+
+<figure class="article-map article-map--inset article-map--left">
+  <a class="article-map__zoom" href="/visualizaciones/myanmar/myanmar-kyaukphyu-cmec-final.png" target="_blank" rel="noopener" aria-label="Abrir mapa del corredor Kyaukphyu y CMEC en tamaño completo">
+  <picture>
+    <source srcset="/visualizaciones/myanmar/myanmar-kyaukphyu-cmec-final.webp" type="image/webp" />
+    <img
+      src="/visualizaciones/myanmar/myanmar-kyaukphyu-cmec-final.png"
+      alt="Esquema editorial del corredor chino entre Kyaukphyu y Yunnan, con los ductos China-Myanmar y el eje terrestre del CMEC."
+      width="1536"
+      height="1024"
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+  <span class="article-map__zoom-hint">Ampliar mapa ↗</span>
+  </a>
+  <figcaption>
+    <strong>Kyaukphyu y el eje chino hacia Yunnan.</strong>
+    Los ductos ya son operativos; el resto del CMEC presenta un desarrollo desigual.
+    <span>Esquema editorial · Memo Geopolítico.</span>
+  </figcaption>
+</figure>
 
 Un informe del [Center for Strategic and International Studies](https://www.csis.org/analysis/chinese-energy-investments-southeast-asia) describe aproximadamente 793 kilómetros de oleoductos y gasoductos entre Kyaukphyu y Yunnan. El gasoducto funciona desde 2013 y el sistema petrolero comenzó a operar posteriormente. Las capacidades máximas señaladas son de 12.000 millones de metros cúbicos anuales para gas y 22 millones de toneladas anuales para petróleo, aunque CSIS indica que ambos sistemas operan significativamente por debajo de esos máximos.
 
@@ -95,6 +164,8 @@ En junio de ese año, Xi Jinping instó a Min Aung Hlaing a avanzar con los proy
 El comunicado conjunto entre China y Myanmar publicado posteriormente por el [Ministerio de Relaciones Exteriores chino](https://www.mfa.gov.cn/eng/xw/zyxw/202606/t20260617_11947840.html) reafirmó el compromiso con el CMEC, con el proyecto del puerto de aguas profundas de Kyaukphyu y con el aprovechamiento de los oleoductos y gasoductos existentes.
 
 La distinción es esencial: **los ductos son infraestructura operativa; el puerto profundo de Kyaukphyu continúa siendo un proyecto cuyo desarrollo debe seguir siendo promovido**. La evidencia autorizada no permite describirlo como una terminal plenamente realizada.
+
+<div class="article-map-clear"></div>
 
 ## El acceso al Índico y la dimensión de Malaca
 

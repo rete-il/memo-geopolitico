@@ -1206,25 +1206,75 @@ a:active {
   display: none;
 }
 
-.process-hero,
-.publication-hero {
+.process-hero {
   padding: 0 0 clamp(2rem, 4vw, 3.5rem);
   border-bottom: 1px solid var(--line-strong);
 }
 
-.process-hero h1,
-.publication-hero h1 {
+.process-hero h1 {
   max-width: 20ch;
   font-size: clamp(2.45rem, 5.2vw, 4.8rem);
 }
 
-.process-hero .lead,
-.publication-hero .lead {
+.process-hero .lead {
   max-width: 50rem;
   margin: 1.5rem 0 0;
   color: var(--ink-700);
   font-family: var(--serif);
   font-size: clamp(1.1rem, 2vw, 1.38rem);
+}
+
+/* Publicaciones · cabecera editorial en dos columnas.
+   Inspiración: revista de análisis, adaptada a la identidad de Memo Geopolítico. */
+.publication-page-shell {
+  padding-top: clamp(2.75rem, 5vw, 5.25rem);
+  padding-bottom: 0;
+}
+
+.publication-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.72fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: end;
+  width: 100%;
+  padding: 0 0 clamp(2.25rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.publication-hero__primary,
+.publication-hero__secondary {
+  min-width: 0;
+}
+
+.publication-hero__primary .detail-kicker {
+  margin-bottom: 1rem;
+}
+
+.publication-hero h1 {
+  max-width: 13.5ch;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5.4vw, 5.3rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.publication-hero .lead {
+  max-width: 27rem;
+  margin: 0;
+  color: var(--ink-600);
+  font-family: var(--sans);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.58;
+}
+
+.publication-hero__secondary .hero-meta {
+  display: grid;
+  gap: 0.38rem;
+  margin-top: 1.25rem;
+  color: var(--ink-600);
+  font-size: 0.73rem;
 }
 
 .hero-meta {
@@ -2032,8 +2082,13 @@ a:active {
   font-size: 1.1rem;
 }
 
+.publication-page-shell + .article-shell {
+  --publication-process-gap: clamp(2rem, 3vw, 2.5rem);
+  padding-top: var(--publication-process-gap);
+}
+
 .article-shell > .sidebar-card + .prose {
-  margin-top: clamp(1.5rem, 3vw, 2rem);
+  margin-top: var(--publication-process-gap, clamp(2rem, 3vw, 2.5rem));
 }
 
 .progress-card h3 {
@@ -2391,9 +2446,61 @@ a:active {
   }
 }
 
+
+@media (max-width: 920px) {
+  .publication-page-shell {
+    padding-top: clamp(2.25rem, 5vw, 3.75rem);
+  }
+
+  .publication-hero {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .publication-hero h1 {
+    max-width: 16ch;
+  }
+
+  .publication-hero .lead {
+    max-width: 44rem;
+  }
+
+  .publication-hero__secondary .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+  }
+}
+
 @media (max-width: 760px) {
   :root {
     --content: min(100% - 1.25rem, 1200px);
+  }
+
+  .publication-page-shell {
+    padding-top: 2rem;
+    padding-bottom: 0;
+  }
+
+  .publication-hero {
+    gap: 1.15rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .publication-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.45rem, 12vw, 3.7rem);
+    line-height: 0.99;
+  }
+
+  .publication-hero .lead {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  .publication-hero__secondary .hero-meta {
+    margin-top: 1rem;
   }
 
   .preview-banner {
@@ -2656,6 +2763,149 @@ a:active {
   .filter-panel h2,
   .filter-panel button {
     grid-column: auto;
+  }
+}
+
+/* Visualizaciones editoriales de artículos · composición magazine */
+.prose .article-map {
+  margin-block: clamp(2rem, 4vw, 3.25rem);
+  font-family: var(--sans);
+}
+
+.prose .article-map picture,
+.prose .article-map img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.prose .article-map img {
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 0.1rem);
+  background: var(--surface);
+  box-shadow: 0 16px 40px rgb(16 28 44 / 9%);
+}
+
+/* Principal: centrado y exactamente del ancho de la columna. */
+.prose .article-map--column {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.prose .article-map--principal {
+  margin-top: clamp(2.2rem, 5vw, 3.8rem);
+  margin-bottom: clamp(2.6rem, 5vw, 4rem);
+}
+
+/* Secundarios: insets editoriales con texto alrededor. */
+.prose .article-map--inset {
+  width: min(46%, 22rem);
+  margin-top: 0.45rem;
+  margin-bottom: 1.35rem;
+}
+
+.prose .article-map--right {
+  float: right;
+  margin-left: 1.7rem;
+}
+
+.prose .article-map--left {
+  float: left;
+  margin-right: 1.7rem;
+}
+
+
+.prose .article-map__zoom {
+  position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: zoom-in;
+}
+
+.prose .article-map__zoom:focus-visible {
+  border-radius: calc(var(--radius) + 0.1rem);
+  outline: 3px solid var(--amber);
+  outline-offset: 4px;
+}
+
+.prose .article-map__zoom-hint {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  display: inline-flex;
+  padding: 0.34rem 0.55rem;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 999px;
+  background: rgb(16 28 44 / 82%);
+  color: white;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 750;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 160ms ease;
+  pointer-events: none;
+}
+
+.prose .article-map__zoom:hover .article-map__zoom-hint,
+.prose .article-map__zoom:focus-visible .article-map__zoom-hint {
+  opacity: 1;
+}
+
+.prose .article-map figcaption {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.7rem 0 0;
+  color: var(--ink-700);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.prose .article-map figcaption strong {
+  color: var(--ink-900);
+  font-weight: 800;
+}
+
+.prose .article-map figcaption span {
+  color: var(--ink-500);
+  font-size: 0.64rem;
+}
+
+.prose .article-map-clear {
+  clear: both;
+  height: 0;
+}
+
+@media (max-width: 760px) {
+  .prose .article-map,
+  .prose .article-map--principal {
+    margin-block: 2rem 2.5rem;
+  }
+
+  .prose .article-map--inset,
+  .prose .article-map--right,
+  .prose .article-map--left {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 2rem auto 2.5rem;
+  }
+
+  .prose .article-map img {
+    border-radius: 0.7rem;
+  }
+
+  .prose .article-map figcaption {
+    font-size: 0.7rem;
+  }
+
+  .prose .article-map figcaption span {
+    font-size: 0.63rem;
   }
 }
 
