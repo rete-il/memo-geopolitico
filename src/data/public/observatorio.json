@@ -1,7 +1,7 @@
 {
   "formato": "memo-geopolitico-publico",
   "schema_version": 2,
-  "generado_el": "2026-08-13",
+  "generado_el": "2026-08-15",
   "procesos": [
     {
       "schema_version": 2,
@@ -1321,15 +1321,19 @@
       "sintesis": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-07-19"
+        "estado": "publicado",
+        "publicado_el": "2026-08-15",
+        "actualizado_el": "2026-08-15"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
@@ -1380,9 +1384,44 @@
         "confianza": "media-alta",
         "incertidumbre": 4
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "sig-myanmar-corredores-china-india-002",
+          "fecha": "2026-06-16",
+          "titulo": "China insta a avanzar con el CMEC",
+          "resumen": "Xi Jinping insta a Myanmar a avanzar con los proyectos estratégicos del CMEC, con Kyaukphyu entre sus componentes prioritarios.",
+          "fuente_ids": [
+            "src-myanmar-corredores-china-india-003"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-myanmar-corredores-china-india-001",
+          "fecha": "2026-06-02",
+          "titulo": "India pide acelerar Kaladan",
+          "resumen": "Nueva presión para completar la conexión Sittwe–Mizoram.",
+          "fuente_ids": [
+            "src-myanmar-corredores-china-india-002"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "src-myanmar-corredores-china-india-001",
+        "src-myanmar-corredores-china-india-002",
+        "src-myanmar-corredores-china-india-003",
+        "src-myanmar-corredores-china-india-004",
+        "src-myanmar-corredores-china-india-005",
+        "src-myanmar-corredores-china-india-006",
+        "src-myanmar-corredores-china-india-007",
+        "src-myanmar-corredores-china-india-008",
+        "src-myanmar-corredores-china-india-009",
+        "src-myanmar-corredores-china-india-010",
+        "src-myanmar-corredores-china-india-011",
+        "src-myanmar-corredores-china-india-012",
+        "src-myanmar-corredores-china-india-013"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [],
       "indicadores_seguimiento": [
@@ -1667,6 +1706,149 @@
       "idioma": "Inglés",
       "tipo": "Medio periodístico",
       "url": "https://www.miningweekly.com/article/lobito-corridor-railway-project-achieves-753m-financial-close-2026-07-03",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-001",
+      "media_id": null,
+      "medio": "Times of India",
+      "titulo": "Kaladan project to be operational by '27, will unlock trade opportunities: Sonowal",
+      "fecha": "2025-07-07",
+      "idioma": "en",
+      "tipo": "análisis",
+      "url": "https://timesofindia.indiatimes.com/city/guwahati/kaladan-project-to-be-operational-by-27-will-unlock-trade-opportunities-sonowal/articleshow/122304171.cms",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-002",
+      "media_id": null,
+      "medio": "The Times of India",
+      "titulo": "PM urges Myanmar to fast-track Kaladan corridor linking Sittwe & Mizoram",
+      "fecha": "2026-06-02",
+      "idioma": "Inglés",
+      "tipo": "noticia",
+      "url": "https://timesofindia.indiatimes.com/city/guwahati/pm-urges-myanmar-to-fasttrack-kaladan-corridor-linking-sittwe-mizoram/articleshow/131469001.cms",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-003",
+      "media_id": "financial-times",
+      "medio": "Financial Times",
+      "titulo": "China’s Xi Jinping urges Myanmar’s coup leader to push ahead with strategic project",
+      "fecha": "2026-06-16",
+      "idioma": "Inglés",
+      "tipo": "Noticia",
+      "url": "https://www.ft.com/content/c2b5b90b-cc3b-4a1b-bdb2-c2520adad51d",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-004",
+      "media_id": null,
+      "medio": "Ministry of Information, Myanmar",
+      "titulo": "India Cargo Vessel MV Taw Win Thiri arrives at Sittway Port under Kaladan Project",
+      "fecha": "2026-05-18",
+      "idioma": "Inglés",
+      "tipo": "fuente oficial",
+      "url": "https://www.moi.gov.mm/moi%3Aeng/news/21001",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-005",
+      "media_id": null,
+      "medio": "Ministry of Foreign Affairs of the People's Republic of China",
+      "titulo": "Joint Statement of the People’s Republic of China and the Republic of the Union of Myanmar on Accelerating the Building of a China-Myanmar Community with a Shared Future",
+      "fecha": "2026-06-17",
+      "idioma": "Inglés",
+      "tipo": "fuente oficial",
+      "url": "https://hk.ocmfa.gov.cn/eng/xjpzxzywshd/202606/t20260617_11947840.htm",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-006",
+      "media_id": null,
+      "medio": "SAGE Open",
+      "titulo": "Kyaukphyu Seaport Project: Analysing Its Key Characteristics and Potential Implications",
+      "fecha": "2026-01-13",
+      "idioma": "Inglés",
+      "tipo": "artículo académico",
+      "url": "https://journals.sagepub.com/doi/10.1177/21582440251411377",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-007",
+      "media_id": null,
+      "medio": "Ministry of Foreign Affairs of the People's Republic of China",
+      "titulo": "Joint Statement of the People’s Republic of China and the Republic of the Union of Myanmar on Accelerating the Building of a China-Myanmar Community with a Shared Future",
+      "fecha": "2026-06-17",
+      "idioma": "",
+      "tipo": "",
+      "url": "https://www.mfa.gov.cn/eng/xw/zyxw/202606/t20260617_11947840.html",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-008",
+      "media_id": null,
+      "medio": "Center for Strategic and International Studies (CSIS)",
+      "titulo": "Chinese Energy Investments in Southeast Asia",
+      "fecha": "2025-12-17",
+      "idioma": "Inglés",
+      "tipo": "informe",
+      "url": "https://www.csis.org/analysis/chinese-energy-investments-southeast-asia",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-009",
+      "media_id": null,
+      "medio": "SAGE Open",
+      "titulo": "Kyaukphyu Seaport Project: Analysing Its Key Characteristics and Potential Implications",
+      "fecha": "2026-01-15",
+      "idioma": "Inglés",
+      "tipo": "artículo académico",
+      "url": "https://journals.sagepub.com/doi/10.1177/21582440251411377",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-010",
+      "media_id": null,
+      "medio": "Myanmar Peace Monitor",
+      "titulo": "The Arakan Army and the Quest for Total Control of Arakan State: How Close?",
+      "fecha": "2026-06-03",
+      "idioma": "Inglés",
+      "tipo": "análisis",
+      "url": "https://mmpeacemonitor.org/en/eng-cover-story/the-arakan-army-and-the-quest-for-total-control-of-arakan-state-how-close/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-011",
+      "media_id": null,
+      "medio": "Burma News International",
+      "titulo": "Junta erects new fences around Sittwe, tightens security measures",
+      "fecha": "2026-05-18",
+      "idioma": "Inglés",
+      "tipo": "noticia",
+      "url": "https://www.bnionline.net/en/news/junta-erects-new-fences-around-sittwe-tightens-security-measures",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-012",
+      "media_id": null,
+      "medio": "Burma News International",
+      "titulo": "Criticism grows as AA detains traders and young people at Paletwa checkpoints",
+      "fecha": "2026-04-29",
+      "idioma": "Inglés",
+      "tipo": "noticia",
+      "url": "https://www.bnionline.net/en/news/criticism-grows-aa-detains-traders-and-young-people-paletwa-checkpoints",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-myanmar-corredores-china-india-013",
+      "media_id": null,
+      "medio": "The Irrawaddy",
+      "titulo": "Arakan Army Surrounds Myanmar’s Western Naval Bases, Sparking Intense Battles",
+      "fecha": "2026-06-02",
+      "idioma": "Inglés",
+      "tipo": "noticia",
+      "url": "https://www.irrawaddy.com/news/war-against-the-junta/arakan-army-surrounds-myanmars-western-naval-bases-sparking-intense-battles.html",
       "estado_verificacion": "verificada"
     }
   ],
