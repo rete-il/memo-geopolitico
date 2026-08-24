@@ -1,8 +1,956 @@
 {
   "formato": "memo-geopolitico-publico",
   "schema_version": 2,
-  "generado_el": "2026-08-15",
+  "generado_el": "2026-08-23",
   "procesos": [
+    {
+      "schema_version": 2,
+      "macroevento_id": "corredor-medio-caucaso-sur",
+      "slug": "corredor-medio-caucaso-sur",
+      "titulo": "Institucionalización del Corredor Medio y conversión del Cáucaso Sur en bisagra euroasiática",
+      "sintesis": "La Unión Europea, Turquía, Estados Unidos y los Estados de Asia Central intentan consolidar una ruta China–Europa que reduzca la exposición a Rusia, Irán y los estrechos de Oriente Medio.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [
+          "geoeconomia-comercio-sanciones",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "cadenas-suministro",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "asia",
+            "oriente-medio",
+            "europa"
+          ],
+          "subregion_ids": [
+            "asia-central",
+            "caucaso-sur"
+          ],
+          "pais_ids": [
+            "TUR"
+          ],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "union-europea",
+          "turquia",
+          "azerbaiyan",
+          "armenia",
+          "georgia",
+          "kazajistan",
+          "uzbekistan",
+          "estados-unidos",
+          "china"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "La Unión Europea, Turquía, Estados Unidos y los Estados de Asia Central intentan consolidar una ruta China–Europa que reduzca la exposición a Rusia, Irán y los estrechos de Oriente Medio.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 2,
+        "brecha": 2.8,
+        "confianza": "alta",
+        "incertidumbre": 3
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Tiempo puerta a puerta",
+        "Capacidad de ferris del Caspio",
+        "Ampliación de Alat, Aktau y Kuryk",
+        "Frontera Turquía–Armenia",
+        "Volúmenes TITR"
+      ],
+      "escenarios": {
+        "base": "Crecimiento gradual y menor fricción aduanera.",
+        "adverso": "Disputas de soberanía y nuevos bloqueos.",
+        "transformador": "Corredor ferroviario, energético y digital integrado."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "iraq-development-road",
+      "slug": "iraq-development-road",
+      "titulo": "Iraq Development Road y reapertura de salidas energéticas hacia Siria y Turquía",
+      "sintesis": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "en_revision",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "en_revision",
+        "proximo_paso": "Revisar coherencia, fuentes y valoraciones antes de autorizar la publicación.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado",
+          "Revisión editorial iniciada"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [
+          "energia-recursos-estrategicos",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "oriente-medio"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "IRQ",
+            "TUR",
+            "SYR"
+          ],
+          "espacio_ids": [
+            "golfo-persico"
+          ]
+        },
+        "actor_ids": [
+          "irak",
+          "turquia",
+          "qatar",
+          "emiratos-arabes-unidos",
+          "siria",
+          "estados-unidos",
+          "rusia"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo.",
+      "por_que_importa": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo. El puerto de Grand Faw y el Development Road prometen llevar carga desde el Golfo hasta Turquía y Europa. A la vez, la reapertura de salidas energéticas hacia el Mediterráneo ampliaría opciones iraquíes. El corredor atraviesa un espacio donde compiten agendas nacionales, milicias, vecinos y grandes potencias. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.3,
+        "atencion_mediatica": 2,
+        "brecha": 2.3,
+        "confianza": "media-alta",
+        "incertidumbre": 4
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Avance de Grand Faw",
+        "Contratos ferroviarios",
+        "Acuerdos fronterizos",
+        "Financiación catarí y emiratí",
+        "Rehabilitación Baniyas y Ceyhan"
+      ],
+      "escenarios": {
+        "base": "Construcción por tramos.",
+        "adverso": "Fragmentación por inseguridad, rivalidades y financiación.",
+        "transformador": "Corredor integrado puerto–ferrocarril–oleoducto."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "turquia-arabia-saudita-pakistan-defensa",
+      "slug": "turquia-arabia-saudita-pakistan-defensa",
+      "titulo": "Pacto de defensa Turquía–Arabia Saudita–Pakistán y formación de una arquitectura de seguridad regional",
+      "sintesis": "Consolidación de una arquitectura de defensa entre Turquía, Arabia Saudita y Pakistán mediante el Acuerdo de Defensa Conjunta de La Meca. El proceso puede generar mecanismos militares permanentes, ejercicios, cooperación en sistemas no tripulados, guerra electrónica, inteligencia artificial y coproducción de defensa. Turquía participa como potencia militar de la OTAN con capacidad industrial propia y como actor de una estructura regional de disuasión que no depende exclusivamente del paraguas estadounidense.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "publicado",
+        "publicado_el": "2026-08-23",
+        "actualizado_el": "2026-08-23"
+      },
+      "progreso_publico": {
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "seguridad-conflicto",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [],
+          "espacio_ids": [
+            "medio-oriente"
+          ]
+        },
+        "actor_ids": [
+          "turquia",
+          "arabia-saudita",
+          "pakistan"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Consolidación de una arquitectura de defensa entre Turquía, Arabia Saudita y Pakistán mediante el Acuerdo de Defensa Conjunta de La Meca. El proceso puede generar mecanismos militares permanentes, ejercicios, cooperación en sistemas no tripulados, guerra electrónica, inteligencia artificial y coproducción de defensa. Turquía participa como potencia militar de la OTAN con capacidad industrial propia y como actor de una estructura regional de disuasión que no depende exclusivamente del paraguas estadounidense.",
+      "por_que_importa": "El pacto conecta la arquitectura de seguridad de Medio Oriente con Asia meridional a través de Turquía, miembro de la OTAN y aliado de Estados Unidos, sin convertir el acuerdo en una extensión automática de la Alianza. Su institucionalización podría consolidar un nuevo polo de disuasión y cooperación militar entre Ankara, Riad e Islamabad, alterar los cálculos estratégicos de Israel, India e Irán y ampliar la autonomía regional de los tres participantes. El seguimiento debe distinguir entre el compromiso político de defensa colectiva y su traducción efectiva en órganos permanentes, ejercicios, coproducción y asistencia ante una crisis.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.5,
+        "atencion_mediatica": 4,
+        "brecha": 0.5,
+        "confianza": "media",
+        "incertidumbre": 4
+      },
+      "senales": [
+        {
+          "senal_id": "sig-turquia-pacto-reaccion-trump-20260816",
+          "fecha": "2026-08-16",
+          "titulo": "Trump recibe favorablemente el pacto",
+          "resumen": "Donald Trump expresó satisfacción por la firma y vinculó el acuerdo con una mayor capacidad regional de autodefensa. La declaración reduce la hipótesis de una oposición presidencial inmediata, pero no equivale a una aprobación institucional de Estados Unidos.",
+          "fuente_ids": [
+            "src-turquia-pacto-aljazeera-20260817"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-pacto-ampliacion-20260812",
+          "fecha": "2026-08-12",
+          "titulo": "Turquía y Pakistán confirman que el mecanismo podrá ampliarse",
+          "resumen": "Fuentes turcas y pakistaníes confirmaron que otros Estados podrían incorporarse con consentimiento del núcleo fundador. Fidan mencionó a Egipto como posible candidato, sin que exista todavía una solicitud o adhesión formal.",
+          "fuente_ids": [
+            "src-turquia-pacto-aa-fidan-20260808",
+            "src-turquia-pacto-pakistan-mofa-20260812"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-pacto-evaluacion-india-20260812",
+          "fecha": "2026-08-12",
+          "titulo": "India inicia una evaluación de seguridad nacional",
+          "resumen": "El Ministerio de Asuntos Exteriores de India anunció que examina las implicaciones del acuerdo para la seguridad nacional y la estabilidad regional. No se ha documentado todavía una contramedida concreta atribuible al pacto.",
+          "fuente_ids": [
+            "src-turquia-pacto-india-today-20260812"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-pacto-consulta-iran-20260810",
+          "fecha": "2026-08-10",
+          "titulo": "Pakistán consulta con Irán después de la firma",
+          "resumen": "Ishaq Dar y Abbas Araghchi trataron específicamente el Acuerdo Conjunto de Defensa de La Meca. La consulta muestra una gestión diplomática temprana del pacto ante un actor regional directamente afectado por la nueva arquitectura.",
+          "fuente_ids": [
+            "src-turquia-pacto-pakistan-mofa-20260812"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-pacto-reaccion-iran-20260810",
+          "fecha": "2026-08-10",
+          "titulo": "Irán adopta públicamente una posición no hostil",
+          "resumen": "El portavoz iraní afirmó que Teherán estaba aproximadamente informado y que no considera que el pacto esté dirigido contra Irán. La posición reduce por ahora la probabilidad de una oposición iraní abierta, sin anticipar su conducta futura.",
+          "fuente_ids": [
+            "src-turquia-pacto-aa-iran-20260810"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-pacto-estructura-permanente-20260808",
+          "fecha": "2026-08-08",
+          "titulo": "Ankara anuncia una estructura política y militar permanente",
+          "resumen": "Hakan Fidan anunció un comité político-militar de alto nivel y una futura secretaría encargada de implementar las decisiones, con sede prevista en Arabia Saudita. La señal confirma un diseño institucional, aunque los órganos todavía no estaban constituidos.",
+          "fuente_ids": [
+            "src-turquia-pacto-aa-fidan-20260808"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-pacto-asistencia-escalonada-20260808",
+          "fecha": "2026-08-08",
+          "titulo": "Turquía detalla una escala de asistencia ante un ataque",
+          "resumen": "Fidan explicó que el Estado atacado deberá solicitar ayuda y definir sus necesidades, que podrían abarcar inteligencia, logística, municiones y, en una fase superior, unidades militares. La asistencia no implica un despliegue automático.",
+          "fuente_ids": [
+            "src-turquia-pacto-aa-fidan-20260808"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "senal-1-4",
+          "fecha": "2026-08-07",
+          "titulo": "Firma del acuerdo trilateral de defensa en La Meca",
+          "resumen": "Arabia Saudita, Turquía y Pakistán firmaron un acuerdo según el cual un ataque armado contra uno de ellos será considerado un ataque contra todos. La formulación abre la posibilidad de una estructura de disuasión colectiva y aumenta el peso militar y político de Turquía dentro de la seguridad regional.",
+          "fuente_ids": [
+            "fuente-1-4"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
+      "cronologia": [],
+      "fuente_ids": [
+        "fuente-1-4",
+        "src-turquia-pacto-aa-fidan-20260808",
+        "src-turquia-pacto-pakistan-mofa-20260812",
+        "src-turquia-pacto-aljazeera-20260817",
+        "src-turquia-pacto-india-today-20260812",
+        "src-turquia-pacto-aa-iran-20260810",
+        "src-turquia-pacto-jpost-opinion-20260810"
+      ],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Creación de mecanismos políticos o militares permanentes derivados del acuerdo.",
+        "Realización de ejercicios militares conjuntos.",
+        "Contratos o programas de coproducción de defensa.",
+        "Definición práctica de las obligaciones de asistencia ante un ataque a uno de los firmantes.",
+        "Participación efectiva de Turquía ante crisis de seguridad que involucren a Arabia Saudita o Pakistán."
+      ],
+      "escenarios": {
+        "base": "El acuerdo se desarrolla como un mecanismo gradual de coordinación política, cooperación militar e industria de defensa entre Turquía, Arabia Saudita y Pakistán. Turquía aporta su capacidad militar, su industria de defensa y su condición de miembro de la OTAN y aliado de Estados Unidos dentro de esa organización, pero el pacto no se convierte automáticamente en una extensión de la OTAN ni de la política estadounidense. Los tres participantes mantienen posiciones diferenciadas frente a Israel, India e Irán, mientras utilizan el acuerdo para ampliar su capacidad de disuasión y su autonomía estratégica regional.",
+        "adverso": "Israel, India o Irán interpretan la consolidación del pacto como la formación de un bloque de contrapeso y responden mediante nuevas alianzas, cooperación militar o mecanismos de disuasión. Esta dinámica aumenta la polarización regional y expone a Turquía a tensiones entre su pertenencia a la OTAN, su alianza institucional con Estados Unidos y sus compromisos emergentes con Arabia Saudita y Pakistán.",
+        "transformador": "El acuerdo evoluciona hacia un bloque de seguridad interregional que conecta, a través de Turquía, las capacidades y doctrinas de un miembro de la OTAN —y aliado de Estados Unidos dentro de esa organización— con Arabia Saudita y Pakistán. Esta articulación proyecta el pacto simultáneamente sobre Medio Oriente y Asia meridional y modifica los equilibrios estratégicos con Israel, India e Irán, aunque no implica automáticamente una política común frente a los tres actores."
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "siria-turquia-israel-reordenamiento",
+      "slug": "siria-turquia-israel-reordenamiento",
+      "titulo": "Reordenamiento de Siria y competencia estratégica entre Turquía e Israel",
+      "sintesis": "Reconfiguración del equilibrio externo en Siria tras la caída del orden anterior, con Turquía como uno de los principales aliados del gobierno sirio, participante en entrenamiento militar, reconstrucción institucional e infraestructura. La expansión de esa influencia genera fricción creciente con Israel y ha obligado a Estados Unidos a trabajar en mecanismos de desconflicción entre Turquía, Israel y Siria. El proceso puede determinar la futura arquitectura militar y política siria y el grado de presencia turca en el país.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "seguridad-conflicto",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [],
+          "espacio_ids": [
+            "medio-oriente"
+          ]
+        },
+        "actor_ids": [
+          "turquia",
+          "siria",
+          "israel",
+          "estados-unidos"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Reconfiguración del equilibrio externo en Siria tras la caída del orden anterior, con Turquía como uno de los principales aliados del gobierno sirio, participante en entrenamiento militar, reconstrucción institucional e infraestructura. La expansión de esa influencia genera fricción creciente con Israel y ha obligado a Estados Unidos a trabajar en mecanismos de desconflicción entre Turquía, Israel y Siria. El proceso puede determinar la futura arquitectura militar y política siria y el grado de presencia turca en el país.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 5,
+        "brecha": -0.2,
+        "confianza": "media",
+        "incertidumbre": 4
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Formalización de un mecanismo de desconflicción Turquía–Israel–Siria.",
+        "Despliegues militares turcos confirmados en bases sirias.",
+        "Acuerdos de entrenamiento, infraestructura o reconstrucción militar entre Turquía y Siria.",
+        "Ataques israelíes contra instalaciones vinculadas con una eventual presencia turca.",
+        "Cambios en la presencia militar rusa que amplíen o reduzcan el margen de maniobra de Turquía."
+      ],
+      "escenarios": {
+        "base": "",
+        "adverso": "",
+        "transformador": ""
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "pkk-sdf-transformacion-cuestion-kurda",
+      "slug": "pkk-sdf-transformacion-cuestion-kurda",
+      "titulo": "Transformación del conflicto PKK y repercusiones sobre el sistema kurdo transfronterizo",
+      "sintesis": "Proceso de desarme, disolución y reintegración del PKK mediante un nuevo marco legal turco, con posibles efectos sobre el norte de Irak y sobre la relación entre las SDF y Damasco. Turquía busca convertir un conflicto armado de décadas en un arreglo institucional y reducir la dimensión transfronteriza de la amenaza kurda, mientras permanece abierta la cuestión más amplia de los derechos políticos y culturales kurdos y de la situación de las fuerzas kurdas sirias.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "seguridad-conflicto",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [],
+          "espacio_ids": [
+            "medio-oriente"
+          ]
+        },
+        "actor_ids": [
+          "turquia",
+          "pkk",
+          "sdf",
+          "siria"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Proceso de desarme, disolución y reintegración del PKK mediante un nuevo marco legal turco, con posibles efectos sobre el norte de Irak y sobre la relación entre las SDF y Damasco. Turquía busca convertir un conflicto armado de décadas en un arreglo institucional y reducir la dimensión transfronteriza de la amenaza kurda, mientras permanece abierta la cuestión más amplia de los derechos políticos y culturales kurdos y de la situación de las fuerzas kurdas sirias.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.5,
+        "atencion_mediatica": 3,
+        "brecha": 1.5,
+        "confianza": "media",
+        "incertidumbre": 4
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Aplicación efectiva del marco legal de desarme y reintegración.",
+        "Certificación del desarme y disolución del PKK.",
+        "Cantidad y modalidad de retornos o reintegraciones desde el norte de Irak.",
+        "Cambios en la relación entre Turquía, Damasco y las SDF.",
+        "Acuerdos efectivos de integración de las SDF en estructuras estatales sirias."
+      ],
+      "escenarios": {
+        "base": "",
+        "adverso": "",
+        "transformador": ""
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "hormuz-turquia-corredor-energia-mediacion",
+      "slug": "hormuz-turquia-corredor-energia-mediacion",
+      "titulo": "Crisis de Hormuz y aumento del valor estratégico de Turquía como corredor energético y mediador",
+      "sintesis": "La interrupción o amenaza persistente sobre el estrecho de Hormuz refuerza la búsqueda de corredores energéticos alternativos y aumenta el valor de las infraestructuras terrestres conectadas con Turquía. Paralelamente, Ankara mantiene contactos con Estados Unidos, Irán, Pakistán y Qatar y ofrece apoyo a negociaciones, intentando combinar su función de corredor energético con una posición diplomática de mediación regional.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [],
+          "espacio_ids": [
+            "medio-oriente"
+          ]
+        },
+        "actor_ids": [
+          "turquia",
+          "iran",
+          "estados-unidos",
+          "irak",
+          "pakistan",
+          "qatar"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "La interrupción o amenaza persistente sobre el estrecho de Hormuz refuerza la búsqueda de corredores energéticos alternativos y aumenta el valor de las infraestructuras terrestres conectadas con Turquía. Paralelamente, Ankara mantiene contactos con Estados Unidos, Irán, Pakistán y Qatar y ofrece apoyo a negociaciones, intentando combinar su función de corredor energético con una posición diplomática de mediación regional.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 4,
+        "brecha": 0.8,
+        "confianza": "media",
+        "incertidumbre": 5
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Duración y severidad de las interrupciones de navegación por Hormuz.",
+        "Aumento de volúmenes energéticos desviados hacia rutas terrestres conectadas con Turquía.",
+        "Nuevas inversiones en oleoductos, gasoductos o redes eléctricas que reduzcan dependencia de Hormuz.",
+        "Participación turca en mecanismos de mediación entre Irán, Estados Unidos y países del Golfo.",
+        "Cambios persistentes en precios y flujos regionales de energía."
+      ],
+      "escenarios": {
+        "base": "",
+        "adverso": "",
+        "transformador": ""
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "turquia-iran-competencia-coexistencia",
+      "slug": "turquia-iran-competencia-coexistencia",
+      "titulo": "Competencia y coexistencia estratégica entre Turquía e Irán",
+      "sintesis": "Turquía e Irán mantienen una relación de competencia y coexistencia en la que Ankara busca evitar tanto el colapso iraní como una hegemonía regional de Teherán. Turquía preserva comercio, energía y estabilidad fronteriza mientras compite con Irán por influencia en Siria, Irak y otros espacios regionales y mantiene capacidad de interlocución con Estados Unidos y los Estados del Golfo.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "diplomacia-gobernanza",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [],
+          "espacio_ids": [
+            "medio-oriente"
+          ]
+        },
+        "actor_ids": [
+          "turquia",
+          "iran",
+          "estados-unidos"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Turquía e Irán mantienen una relación de competencia y coexistencia en la que Ankara busca evitar tanto el colapso iraní como una hegemonía regional de Teherán. Turquía preserva comercio, energía y estabilidad fronteriza mientras compite con Irán por influencia en Siria, Irak y otros espacios regionales y mantiene capacidad de interlocución con Estados Unidos y los Estados del Golfo.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.5,
+        "atencion_mediatica": 3,
+        "brecha": 1.5,
+        "confianza": "media",
+        "incertidumbre": 5
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Volumen y composición del comercio Turquía–Irán.",
+        "Continuidad o interrupción de suministros energéticos iraníes hacia Turquía.",
+        "Sanciones que afecten empresas o redes comerciales turcas vinculadas con Irán.",
+        "Cooperación o competencia turco-iraní en Siria e Irak.",
+        "Iniciativas diplomáticas turcas entre Irán y Estados Unidos o Estados del Golfo."
+      ],
+      "escenarios": {
+        "base": "",
+        "adverso": "",
+        "transformador": ""
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "industria-defensa-turca-proyeccion-regional",
+      "slug": "industria-defensa-turca-proyeccion-regional",
+      "titulo": "Industria de defensa turca como instrumento de proyección geopolítica",
+      "sintesis": "Expansión acelerada de las exportaciones de defensa turcas y de los programas de cooperación, coproducción y suministro militar. Turquía utiliza drones, plataformas, sistemas electrónicos y otros productos de defensa para crear relaciones de largo plazo basadas en entrenamiento, repuestos, munición, actualizaciones e interoperabilidad. El proceso aumenta su autonomía estratégica y su capacidad de construir vínculos políticos y militares duraderos dentro y fuera de Medio Oriente.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "tecnologia-poder-digital",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [],
+          "espacio_ids": [
+            "medio-oriente"
+          ]
+        },
+        "actor_ids": [
+          "turquia"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Expansión acelerada de las exportaciones de defensa turcas y de los programas de cooperación, coproducción y suministro militar. Turquía utiliza drones, plataformas, sistemas electrónicos y otros productos de defensa para crear relaciones de largo plazo basadas en entrenamiento, repuestos, munición, actualizaciones e interoperabilidad. El proceso aumenta su autonomía estratégica y su capacidad de construir vínculos políticos y militares duraderos dentro y fuera de Medio Oriente.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 3,
+        "brecha": 1.8,
+        "confianza": "media",
+        "incertidumbre": 3
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Valor anual de las exportaciones turcas de defensa y aeroespacio.",
+        "Número de países clientes y distribución regional de las ventas.",
+        "Contratos de coproducción y transferencia industrial.",
+        "Entrega de drones, plataformas y sistemas electrónicos.",
+        "Acuerdos de entrenamiento, mantenimiento, municiones y actualización asociados a las exportaciones."
+      ],
+      "escenarios": {
+        "base": "",
+        "adverso": "",
+        "transformador": ""
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "mediterraneo-oriental-cronos-turquia",
+      "slug": "mediterraneo-oriental-cronos-turquia",
+      "titulo": "Consolidación de una ruta de gas del Mediterráneo Oriental hacia Europa que evita Turquía",
+      "sintesis": "Desarrollo comercial del yacimiento Cronos frente a Chipre mediante conexión con infraestructura egipcia y exportación de GNL hacia Europa. El proceso demuestra la viabilidad de una ruta energética del Mediterráneo Oriental que no necesita atravesar Turquía, lo que puede limitar el grado en que Ankara sea considerada un corredor inevitable para los recursos gasíferos de la región.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [],
+          "espacio_ids": [
+            "medio-oriente"
+          ]
+        },
+        "actor_ids": [
+          "turquia",
+          "chipre",
+          "egipto",
+          "totalenergies",
+          "eni"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Desarrollo comercial del yacimiento Cronos frente a Chipre mediante conexión con infraestructura egipcia y exportación de GNL hacia Europa. El proceso demuestra la viabilidad de una ruta energética del Mediterráneo Oriental que no necesita atravesar Turquía, lo que puede limitar el grado en que Ankara sea considerada un corredor inevitable para los recursos gasíferos de la región.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4,
+        "atencion_mediatica": 2,
+        "brecha": 2,
+        "confianza": "media",
+        "incertidumbre": 3
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Cumplimiento del calendario de desarrollo de Cronos.",
+        "Construcción de la conexión submarina hacia infraestructura egipcia.",
+        "Inicio de producción previsto para 2028.",
+        "Volumen de GNL destinado a mercados europeos.",
+        "Desarrollo de nuevos campos del Mediterráneo Oriental mediante rutas que eviten Turquía."
+      ],
+      "escenarios": {
+        "base": "",
+        "adverso": "",
+        "transformador": ""
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "somalia-turquia-energia-seguridad",
+      "slug": "somalia-turquia-energia-seguridad",
+      "titulo": "Proyección energética y de seguridad de Turquía en Somalia y el Cuerno de África",
+      "sintesis": "Expansión de la presencia turca en Somalia mediante exploración energética offshore, cooperación militar y una infraestructura de entrenamiento y apoyo logístico. La perforación del primer pozo turco de aguas profundas en el exterior extiende la proyección de Ankara desde la seguridad hacia los recursos estratégicos. El proceso permanece sujeto a elevada incertidumbre geológica y de seguridad.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "infraestructura-conectividad",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "regional",
+          "region_ids": [
+            "africa"
+          ],
+          "subregion_ids": [
+            "cuerno-de-africa"
+          ],
+          "pais_ids": [],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "turquia",
+          "somalia"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Expansión de la presencia turca en Somalia mediante exploración energética offshore, cooperación militar y una infraestructura de entrenamiento y apoyo logístico. La perforación del primer pozo turco de aguas profundas en el exterior extiende la proyección de Ankara desde la seguridad hacia los recursos estratégicos. El proceso permanece sujeto a elevada incertidumbre geológica y de seguridad.",
+      "por_que_importa": "",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 3.8,
+        "atencion_mediatica": 1,
+        "brecha": 2.8,
+        "confianza": "media",
+        "incertidumbre": 5
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Resultados del pozo offshore Curad-1.",
+        "Nuevos pozos o contratos de exploración y producción.",
+        "Acuerdos turco-somalíes adicionales en minería o energía.",
+        "Expansión de instalaciones militares o de entrenamiento turcas.",
+        "Continuidad y seguridad de la logística destinada a la presencia turca en Somalia."
+      ],
+      "escenarios": {
+        "base": "",
+        "adverso": "",
+        "transformador": ""
+      }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "corredor-lobito-minerales",
+      "slug": "corredor-lobito-minerales",
+      "titulo": "Corredor de Lobito como plataforma occidental de minerales críticos y energía",
+      "sintesis": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "publicado",
+        "publicado_el": "2026-07-26",
+        "actualizado_el": "2026-07-26"
+      },
+      "progreso_publico": {
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "energia-recursos-estrategicos",
+        "tema_secundario_ids": [
+          "infraestructura-conectividad",
+          "geoeconomia-comercio-sanciones",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos",
+          "minerales-criticos",
+          "cadenas-suministro",
+          "puertos-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "africa"
+          ],
+          "subregion_ids": [
+            "africa-austral",
+            "africa-central"
+          ],
+          "pais_ids": [],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "angola",
+          "rdc",
+          "zambia",
+          "estados-unidos",
+          "union-europea",
+          "afc",
+          "dfc",
+          "afdb",
+          "trafigura",
+          "mota-engil",
+          "china"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos.",
+      "por_que_importa": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos. El ferrocarril de Benguela conecta el puerto angoleño de Lobito con la República Democrática del Congo y proyecta una futura extensión hacia Zambia. La rehabilitación ferroviaria crea una salida occidental para el Copperbelt, pero el corredor más amplio depende de componentes eléctricos, fronterizos, digitales y productivos que no avanzan al mismo ritmo. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.5,
+        "atencion_mediatica": 2,
+        "brecha": 2.5,
+        "confianza": "alta",
+        "incertidumbre": 3
+      },
+      "senales": [
+        {
+          "senal_id": "sig-corredor-lobito-minerales-002",
+          "fecha": "2026-07-15",
+          "titulo": "Riesgo en infraestructura eléctrica",
+          "resumen": "La retirada de Trafigura de una propuesta de línea de transmisión entre\nAngola y las zonas mineras de la RDC y Zambia introduce incertidumbre\nfinanciera y de ejecución sobre ese proyecto específico.\n\nLa señal no implica la cancelación del conjunto de la infraestructura\neléctrica vinculada al Corredor de Lobito, ya que existen otras iniciativas\ny líneas de transmisión en desarrollo.",
+          "fuente_ids": [
+            "src-corredor-lobito-minerales-002"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-corredor-lobito-minerales-003",
+          "fecha": "2026-07-03",
+          "titulo": "Cierre financiero de US$753 millones para Lobito Atlantic Railway",
+          "resumen": "Africa Finance Corporation anunció el cierre financiero de US$753 millones para Lobito Atlantic Railway.\n\nLos fondos se destinan a la rehabilitación, modernización y operación a largo plazo del corredor ferroviario existente de 1.300 km entre el Puerto de Lobito, en Angola, y la frontera con la República Democrática del Congo.\n\nLa evidencia disponible confirma la financiación de este componente ferroviario. No permite afirmar que esté financiada la totalidad del Corredor de Lobito.",
+          "fuente_ids": [
+            "src-corredor-lobito-minerales-004"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-corredor-lobito-minerales-001",
+          "fecha": "2026-04-30",
+          "titulo": "AFC busca financiadores para el Corredor de Lobito",
+          "resumen": "Africa Finance Corporation (AFC) avanzó en la identificación y coordinación de prestamistas regionales e internacionales para financiar componentes del Corredor de Lobito. La financiación completa del proyecto no debe considerarse cerrada.",
+          "fuente_ids": [
+            "src-corredor-lobito-minerales-001"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
+      "cronologia": [],
+      "fuente_ids": [
+        "src-corredor-lobito-minerales-001",
+        "src-corredor-lobito-minerales-002",
+        "src-corredor-lobito-minerales-004"
+      ],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [],
+      "indicadores_seguimiento": [
+        "Cierre financiero de extensión a Zambia",
+        "Capacidad Kolwezi–Lobito",
+        "Líneas eléctricas",
+        "Contenido local",
+        "Procesamiento mineral",
+        "Reasentamientos"
+      ],
+      "escenarios": {
+        "base": "Corredor minero funcional.",
+        "adverso": "Cuellos eléctricos, captura de rentas y rechazo social.",
+        "transformador": "Procesamiento local y diversificación productiva."
+      }
+    },
     {
       "schema_version": 2,
       "macroevento_id": "rail-baltica-movilidad-militar-europea",
@@ -468,108 +1416,25 @@
     },
     {
       "schema_version": 2,
-      "macroevento_id": "corredor-medio-caucaso-sur",
-      "slug": "corredor-medio-caucaso-sur",
-      "titulo": "Institucionalización del Corredor Medio y conversión del Cáucaso Sur en bisagra euroasiática",
-      "sintesis": "La Unión Europea, Turquía, Estados Unidos y los Estados de Asia Central intentan consolidar una ruta China–Europa que reduzca la exposición a Rusia, Irán y los estrechos de Oriente Medio.",
-      "estado_seguimiento": "en_seguimiento",
-      "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-07-19"
-      },
-      "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
-        "hitos_completados": [
-          "Expediente abierto y clasificado"
-        ]
-      },
-      "clasificacion": {
-        "tema_principal_id": "infraestructura-conectividad",
-        "tema_secundario_ids": [
-          "geoeconomia-comercio-sanciones",
-          "diplomacia-gobernanza"
-        ],
-        "subtema_ids": [
-          "corredores-estrategicos",
-          "cadenas-suministro",
-          "puertos-estrategicos"
-        ],
-        "geografia": {
-          "alcance": "transfronterizo",
-          "region_ids": [
-            "asia",
-            "oriente-medio",
-            "europa"
-          ],
-          "subregion_ids": [
-            "asia-central",
-            "caucaso-sur"
-          ],
-          "pais_ids": [
-            "TUR"
-          ],
-          "espacio_ids": []
-        },
-        "actor_ids": [
-          "union-europea",
-          "turquia",
-          "azerbaiyan",
-          "armenia",
-          "georgia",
-          "kazajistan",
-          "uzbekistan",
-          "estados-unidos",
-          "china"
-        ],
-        "etiqueta_ids": []
-      },
-      "que_esta_ocurriendo": "La Unión Europea, Turquía, Estados Unidos y los Estados de Asia Central intentan consolidar una ruta China–Europa que reduzca la exposición a Rusia, Irán y los estrechos de Oriente Medio.",
-      "por_que_importa": "",
-      "claves_estructurales": [],
-      "valoraciones": {
-        "relevancia_geopolitica": 4.8,
-        "atencion_mediatica": 2,
-        "brecha": 2.8,
-        "confianza": "alta",
-        "incertidumbre": 3
-      },
-      "senales": [],
-      "cronologia": [],
-      "fuente_ids": [],
-      "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
-      "indicadores_seguimiento": [
-        "Tiempo puerta a puerta",
-        "Capacidad de ferris del Caspio",
-        "Ampliación de Alat, Aktau y Kuryk",
-        "Frontera Turquía–Armenia",
-        "Volúmenes TITR"
-      ],
-      "escenarios": {
-        "base": "Crecimiento gradual y menor fricción aduanera.",
-        "adverso": "Disputas de soberanía y nuevos bloqueos.",
-        "transformador": "Corredor ferroviario, energético y digital integrado."
-      }
-    },
-    {
-      "schema_version": 2,
       "macroevento_id": "mar-negro-azov-guerra-logistica",
       "slug": "mar-negro-azov-guerra-logistica",
       "titulo": "Guerra contra la infraestructura logística del mar Negro y mar de Azov",
       "sintesis": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-07-19"
+        "estado": "publicado",
+        "publicado_el": "2026-08-21",
+        "actualizado_el": "2026-08-21"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
@@ -620,9 +1485,35 @@
         "confianza": "alta",
         "incertidumbre": 2
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "sig-mar-negro-azov-guerra-logistica-001",
+          "fecha": "2026-07-10",
+          "titulo": "Suspensión de navegación en Azov",
+          "resumen": "Reuters informó, citando tres fuentes del sector exportador de granos, que Rusia suspendió temporalmente la navegación por el canal Don-Azov el 10 de julio de 2026, después de ataques contra embarcaciones en el mar de Azov. The Guardian reprodujo posteriormente la información.",
+          "fuente_ids": [
+            "src-mar-negro-azov-guerra-logistica-001",
+            "src-mar-negro-azov-guerra-logistica-002"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-mar-negro-azov-guerra-logistica-002",
+          "fecha": "2026-07-10",
+          "titulo": "Ataques contra infraestructura portuaria",
+          "resumen": "Reuters informó que el 10 de julio de 2026 fueron atacadas 13 embarcaciones rusas en el mar de Azov, incluidos 10 petroleros. The Guardian informó posteriormente nuevos ataques contra embarcaciones en la zona. Se considera verificada la existencia de los ataques, pero permanecen pendientes de corroboración independiente el número acumulado de buques afectados, la magnitud de los daños y todas las atribuciones operativas.",
+          "fuente_ids": [
+            "src-mar-negro-azov-guerra-logistica-001",
+            "src-mar-negro-azov-guerra-logistica-002"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "src-mar-negro-azov-guerra-logistica-001",
+        "src-mar-negro-azov-guerra-logistica-002"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [],
       "indicadores_seguimiento": [
@@ -718,133 +1609,6 @@
         "base": "Nuevo operador bajo mayor supervisión política.",
         "adverso": "Coerción comercial china sostenida.",
         "transformador": "Securitización regional de puertos vinculados a China."
-      }
-    },
-    {
-      "schema_version": 2,
-      "macroevento_id": "corredor-lobito-minerales",
-      "slug": "corredor-lobito-minerales",
-      "titulo": "Corredor de Lobito como plataforma occidental de minerales críticos y energía",
-      "sintesis": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos.",
-      "estado_seguimiento": "en_seguimiento",
-      "publicacion": {
-        "estado": "publicado",
-        "publicado_el": "2026-07-26",
-        "actualizado_el": "2026-07-26"
-      },
-      "progreso_publico": {
-        "etapa": "publicado",
-        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
-        "hitos_completados": [
-          "Expediente abierto y clasificado",
-          "Fuentes verificadas incorporadas",
-          "Señales verificadas incorporadas",
-          "Revisión editorial completada",
-          "Análisis publicado"
-        ]
-      },
-      "clasificacion": {
-        "tema_principal_id": "energia-recursos-estrategicos",
-        "tema_secundario_ids": [
-          "infraestructura-conectividad",
-          "geoeconomia-comercio-sanciones",
-          "diplomacia-gobernanza"
-        ],
-        "subtema_ids": [
-          "corredores-estrategicos",
-          "minerales-criticos",
-          "cadenas-suministro",
-          "puertos-estrategicos"
-        ],
-        "geografia": {
-          "alcance": "transfronterizo",
-          "region_ids": [
-            "africa"
-          ],
-          "subregion_ids": [
-            "africa-austral",
-            "africa-central"
-          ],
-          "pais_ids": [],
-          "espacio_ids": []
-        },
-        "actor_ids": [
-          "angola",
-          "rdc",
-          "zambia",
-          "estados-unidos",
-          "union-europea",
-          "afc",
-          "dfc",
-          "afdb",
-          "trafigura",
-          "mota-engil",
-          "china"
-        ],
-        "etiqueta_ids": []
-      },
-      "que_esta_ocurriendo": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos.",
-      "por_que_importa": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos. El ferrocarril de Benguela conecta el puerto angoleño de Lobito con la República Democrática del Congo y proyecta una futura extensión hacia Zambia. La rehabilitación ferroviaria crea una salida occidental para el Copperbelt, pero el corredor más amplio depende de componentes eléctricos, fronterizos, digitales y productivos que no avanzan al mismo ritmo. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
-      "claves_estructurales": [],
-      "valoraciones": {
-        "relevancia_geopolitica": 4.5,
-        "atencion_mediatica": 2,
-        "brecha": 2.5,
-        "confianza": "alta",
-        "incertidumbre": 3
-      },
-      "senales": [
-        {
-          "senal_id": "sig-corredor-lobito-minerales-002",
-          "fecha": "2026-07-15",
-          "titulo": "Riesgo en infraestructura eléctrica",
-          "resumen": "La retirada de Trafigura de una propuesta de línea de transmisión entre\nAngola y las zonas mineras de la RDC y Zambia introduce incertidumbre\nfinanciera y de ejecución sobre ese proyecto específico.\n\nLa señal no implica la cancelación del conjunto de la infraestructura\neléctrica vinculada al Corredor de Lobito, ya que existen otras iniciativas\ny líneas de transmisión en desarrollo.",
-          "fuente_ids": [
-            "src-corredor-lobito-minerales-002"
-          ],
-          "estado_verificacion": "verificada"
-        },
-        {
-          "senal_id": "sig-corredor-lobito-minerales-003",
-          "fecha": "2026-07-03",
-          "titulo": "Cierre financiero de US$753 millones para Lobito Atlantic Railway",
-          "resumen": "Africa Finance Corporation anunció el cierre financiero de US$753 millones para Lobito Atlantic Railway.\n\nLos fondos se destinan a la rehabilitación, modernización y operación a largo plazo del corredor ferroviario existente de 1.300 km entre el Puerto de Lobito, en Angola, y la frontera con la República Democrática del Congo.\n\nLa evidencia disponible confirma la financiación de este componente ferroviario. No permite afirmar que esté financiada la totalidad del Corredor de Lobito.",
-          "fuente_ids": [
-            "src-corredor-lobito-minerales-004"
-          ],
-          "estado_verificacion": "verificada"
-        },
-        {
-          "senal_id": "sig-corredor-lobito-minerales-001",
-          "fecha": "2026-04-30",
-          "titulo": "AFC busca financiadores para el Corredor de Lobito",
-          "resumen": "Africa Finance Corporation (AFC) avanzó en la identificación y coordinación de prestamistas regionales e internacionales para financiar componentes del Corredor de Lobito. La financiación completa del proyecto no debe considerarse cerrada.",
-          "fuente_ids": [
-            "src-corredor-lobito-minerales-001"
-          ],
-          "estado_verificacion": "verificada"
-        }
-      ],
-      "cronologia": [],
-      "fuente_ids": [
-        "src-corredor-lobito-minerales-001",
-        "src-corredor-lobito-minerales-002",
-        "src-corredor-lobito-minerales-004"
-      ],
-      "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
-      "indicadores_seguimiento": [
-        "Cierre financiero de extensión a Zambia",
-        "Capacidad Kolwezi–Lobito",
-        "Líneas eléctricas",
-        "Contenido local",
-        "Procesamiento mineral",
-        "Reasentamientos"
-      ],
-      "escenarios": {
-        "base": "Corredor minero funcional.",
-        "adverso": "Cuellos eléctricos, captura de rentas y rechazo social.",
-        "transformador": "Procesamiento local y diversificación productiva."
       }
     },
     {
@@ -1027,90 +1791,6 @@
         "base": "Corredor regional energético y estacional.",
         "adverso": "Militarización, accidentes y sanciones crecientes.",
         "transformador": "Servicio estacional Asia–Europa respaldado por flotas estatales."
-      }
-    },
-    {
-      "schema_version": 2,
-      "macroevento_id": "iraq-development-road",
-      "slug": "iraq-development-road",
-      "titulo": "Iraq Development Road y reapertura de salidas energéticas hacia Siria y Turquía",
-      "sintesis": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo.",
-      "estado_seguimiento": "en_seguimiento",
-      "publicacion": {
-        "estado": "en_revision",
-        "publicado_el": null,
-        "actualizado_el": "2026-07-19"
-      },
-      "progreso_publico": {
-        "etapa": "en_revision",
-        "proximo_paso": "Revisar coherencia, fuentes y valoraciones antes de autorizar la publicación.",
-        "hitos_completados": [
-          "Expediente abierto y clasificado",
-          "Revisión editorial iniciada"
-        ]
-      },
-      "clasificacion": {
-        "tema_principal_id": "infraestructura-conectividad",
-        "tema_secundario_ids": [
-          "energia-recursos-estrategicos",
-          "diplomacia-gobernanza"
-        ],
-        "subtema_ids": [
-          "corredores-estrategicos",
-          "puertos-estrategicos"
-        ],
-        "geografia": {
-          "alcance": "transfronterizo",
-          "region_ids": [
-            "oriente-medio"
-          ],
-          "subregion_ids": [],
-          "pais_ids": [
-            "IRQ",
-            "TUR",
-            "SYR"
-          ],
-          "espacio_ids": [
-            "golfo-persico"
-          ]
-        },
-        "actor_ids": [
-          "irak",
-          "turquia",
-          "qatar",
-          "emiratos-arabes-unidos",
-          "siria",
-          "estados-unidos",
-          "rusia"
-        ],
-        "etiqueta_ids": []
-      },
-      "que_esta_ocurriendo": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo.",
-      "por_que_importa": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo. El puerto de Grand Faw y el Development Road prometen llevar carga desde el Golfo hasta Turquía y Europa. A la vez, la reapertura de salidas energéticas hacia el Mediterráneo ampliaría opciones iraquíes. El corredor atraviesa un espacio donde compiten agendas nacionales, milicias, vecinos y grandes potencias. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
-      "claves_estructurales": [],
-      "valoraciones": {
-        "relevancia_geopolitica": 4.3,
-        "atencion_mediatica": 2,
-        "brecha": 2.3,
-        "confianza": "media-alta",
-        "incertidumbre": 4
-      },
-      "senales": [],
-      "cronologia": [],
-      "fuente_ids": [],
-      "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
-      "indicadores_seguimiento": [
-        "Avance de Grand Faw",
-        "Contratos ferroviarios",
-        "Acuerdos fronterizos",
-        "Financiación catarí y emiratí",
-        "Rehabilitación Baniyas y Ceyhan"
-      ],
-      "escenarios": {
-        "base": "Construcción por tramos.",
-        "adverso": "Fragmentación por inseguridad, rivalidades y financiación.",
-        "transformador": "Corredor integrado puerto–ferrocarril–oleoducto."
       }
     },
     {
@@ -1632,6 +2312,17 @@
       "estado_verificacion": "verificada"
     },
     {
+      "fuente_id": "fuente-1-4",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Saudi Arabia, Turkey, Pakistan sign joint defence deal amid regional turmoil",
+      "fecha": "2026-08-07",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/world/asia-pacific/saudi-arabia-turkey-pakistan-sign-joint-defence-deal-amid-regional-turmoil-2026-08-07/",
+      "estado_verificacion": "verificada"
+    },
+    {
       "fuente_id": "fuente-2-2",
       "media_id": null,
       "medio": "Kabar",
@@ -1706,6 +2397,28 @@
       "idioma": "Inglés",
       "tipo": "Medio periodístico",
       "url": "https://www.miningweekly.com/article/lobito-corridor-railway-project-achieves-753m-financial-close-2026-07-03",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-mar-negro-azov-guerra-logistica-001",
+      "media_id": "the-guardian",
+      "medio": "The Guardian",
+      "titulo": "Ukrainian drone strikes force Russia to suspend shipping in Sea of Azov",
+      "fecha": "2026-07-12",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.theguardian.com/world/2026/jul/12/ukrainian-drone-strikes-force-russia-to-suspend-shipping-in-sea-of-azov",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-mar-negro-azov-guerra-logistica-002",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Russia halts Don-Azov channel shipping, affecting grain trade, after Ukraine attacks",
+      "fecha": "2026-07-10",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/business/rpt-russia-halts-don-azov-channel-shipping-affecting-grain-trade-after-ukraine-2026-07-10/",
       "estado_verificacion": "verificada"
     },
     {
@@ -1850,6 +2563,72 @@
       "tipo": "noticia",
       "url": "https://www.irrawaddy.com/news/war-against-the-junta/arakan-army-surrounds-myanmars-western-naval-bases-sparking-intense-battles.html",
       "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-pacto-aa-fidan-20260808",
+      "media_id": null,
+      "medio": "Anadolu Ajansı",
+      "titulo": "Dışişleri Bakanı Fidan: (Mekke Anlaşması) Bize saldırmayan hiçbir ülke hedefimizde değil",
+      "fecha": "2026-08-08",
+      "idioma": "tr",
+      "tipo": "noticia",
+      "url": "https://www.aa.com.tr/tr/gundem/disisleri-bakani-fidan-mekke-anlasmasi-bize-saldirmayan-hicbir-ulke-hedefimizde-degil/4021924",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-pacto-aa-iran-20260810",
+      "media_id": null,
+      "medio": "Anadolu Ajansı – فارسی",
+      "titulo": "بقائی: توافق مکه نشان‌دهنده تغییر نگاه کشورهای منطقه به تأمین امنیت است",
+      "fecha": "2026-08-10",
+      "idioma": "fa",
+      "tipo": "noticia",
+      "url": "https://www.aa.com.tr/fa/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/%D8%A8%D9%82%D8%A7%D8%A6%DB%8C-%D8%AA%D9%88%D8%A7%D9%81%D9%82-%D9%85%DA%A9%D9%87-%D9%86%D8%B4%D8%A7%D9%86-%D8%AF%D9%87%D9%86%D8%AF%D9%87-%D8%AA%D8%BA%DB%8C%DB%8C%D8%B1-%D9%86%DA%AF%D8%A7%D9%87-%DA%A9%D8%B4%D9%88%D8%B1%D9%87%D8%A7%DB%8C-%D9%85%D9%86%D8%B7%D9%82%D9%87-%D8%A8%D9%87-%D8%AA%D8%A3%D9%85%DB%8C%D9%86-%D8%A7%D9%85%D9%86%DB%8C%D8%AA-%D8%A7%D8%B3%D8%AA/4023001",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-pacto-aljazeera-20260817",
+      "media_id": "al-jazeera-english",
+      "medio": "Al Jazeera English",
+      "titulo": "Trump hails Mecca pact: Can it replace the region’s US security umbrella?",
+      "fecha": "2026-08-17",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://www.aljazeera.com/news/2026/8/17/trump-hails-mecca-pact-can-it-replace-the-regions-us-security-umbrella",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-pacto-india-today-20260812",
+      "media_id": null,
+      "medio": "India Today",
+      "titulo": "Examining implications for national security: MEA on Pak-Saudi-Turkey defence pact",
+      "fecha": "2026-08-12",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.indiatoday.in/amp/india/story/pakistan-saudi-arabia-turkey-defence-pact-india-examining-implications-for-national-security-2969068-2026-08-12",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-pacto-jpost-opinion-20260810",
+      "media_id": null,
+      "medio": "The Jerusalem Post",
+      "titulo": "Saudi Arabia's new agreement with Turkey, Pakistan puts stability on dangerous ground - editorial",
+      "fecha": "2026-08-10",
+      "idioma": "en",
+      "tipo": "opinion",
+      "url": "https://www.jpost.com/opinion/article-905018",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-pacto-pakistan-mofa-20260812",
+      "media_id": null,
+      "medio": "Ministry of Foreign Affairs of Pakistan",
+      "titulo": "Transcript of the Press Briefing by the Spokesperson on Wednesday 12th August 2026",
+      "fecha": "2026-08-12",
+      "idioma": "en",
+      "tipo": "comunicado_oficial",
+      "url": "https://mofa.gov.pk/press-releases/transcript-of-the-press-briefing-by-the-spokesperson-on-wednesday-12th-august-2026",
+      "estado_verificacion": "verificada"
     }
   ],
   "recursos_visuales": [],
@@ -1903,6 +2682,13 @@
         "slug": "clima-ambiente-seguridad-humana",
         "estado": "activo",
         "orden": 70
+      },
+      {
+        "id": "sociedad-demografia-migraciones",
+        "nombre": "Sociedad, demografía y migraciones",
+        "slug": "sociedad-demografia-migraciones",
+        "estado": "activo",
+        "orden": 80
       }
     ],
     "subtemas": [
@@ -2355,6 +3141,14 @@
         "estado": "activo",
         "orden": 100,
         "parent_id": "asia"
+      },
+      {
+        "id": "medio-oriente",
+        "nombre": "Medio Oriente",
+        "slug": "medio-oriente",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "global"
       }
     ],
     "actores": [
@@ -2464,6 +3258,13 @@
         "orden": 100
       },
       {
+        "id": "chipre",
+        "nombre": "Chipre",
+        "slug": "chipre",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
         "id": "ck-hutchison",
         "nombre": "CK Hutchison",
         "slug": "ck-hutchison",
@@ -2502,6 +3303,13 @@
         "id": "emiratos-arabes-unidos",
         "nombre": "Emiratos Árabes Unidos",
         "slug": "emiratos-arabes-unidos",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "eni",
+        "nombre": "Eni",
+        "slug": "eni",
         "estado": "activo",
         "orden": 100
       },
@@ -2772,6 +3580,13 @@
         "orden": 100
       },
       {
+        "id": "pakistan",
+        "nombre": "Pakistán",
+        "slug": "pakistan",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
         "id": "panama",
         "nombre": "Panamá",
         "slug": "panama",
@@ -2782,6 +3597,13 @@
         "id": "peru",
         "nombre": "Perú",
         "slug": "peru",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "pkk",
+        "nombre": "PKK",
+        "slug": "pkk",
         "estado": "activo",
         "orden": 100
       },
@@ -2842,6 +3664,13 @@
         "orden": 100
       },
       {
+        "id": "sdf",
+        "nombre": "SDF",
+        "slug": "sdf",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
         "id": "singapur",
         "nombre": "Singapur",
         "slug": "singapur",
@@ -2852,6 +3681,13 @@
         "id": "siria",
         "nombre": "Siria",
         "slug": "siria",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "somalia",
+        "nombre": "Somalia",
+        "slug": "somalia",
         "estado": "activo",
         "orden": 100
       },
@@ -2873,6 +3709,13 @@
         "id": "tanzania",
         "nombre": "Tanzania",
         "slug": "tanzania",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "totalenergies",
+        "nombre": "TotalEnergies",
+        "slug": "totalenergies",
         "estado": "activo",
         "orden": 100
       },
