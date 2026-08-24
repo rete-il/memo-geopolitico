@@ -49,6 +49,13 @@ La integración regional depende de componentes adicionales.${extra}
 ## Fuentes
 
 - [Fuente autorizada](https://example.com/verified)
+
+<!-- MEMO_ADVERTENCIAS_V1
+{
+  "schema_version": 1,
+  "advertencias_nuevas": []
+}
+-->
 `;
 }
 
@@ -98,7 +105,7 @@ function makeFixture(context) {
     decision_advertencias: { justificacion: 'Continuar solo con la evidencia verificada disponible.' },
     propuesta_seguimiento: proposal,
     prompt_analisis: {
-      template: { id: 'memo-analisis-completo', version: '1.0' },
+      template: { id: 'memo-analisis-completo', version: '1.1' },
       variables: { fuentes_verificadas: ['src-verificada'], fuentes_reservadas: [] },
       content: 'Prompt exacto de prueba',
     },
@@ -166,7 +173,8 @@ test('aplica el análisis como borrador canónico con registro, backup y sesión
   assert.equal(result.status, 'ready');
   assert.equal(result.reused, false);
   assert.equal(fs.existsSync(plan.analysis.target_file), true);
-  assert.equal(fs.readFileSync(plan.analysis.target_file, 'utf8'), markdown());
+  const expectedMarkdown = `${markdown().replace(/\n<!-- MEMO_ADVERTENCIAS_V1[\s\S]*$/, '').trimEnd()}\n`;
+  assert.equal(fs.readFileSync(plan.analysis.target_file, 'utf8'), expectedMarkdown);
   assert.equal(fs.existsSync(plan.application_record.file), true);
   assert.equal(fs.existsSync(path.join(plan.backup.directory, 'MANIFIESTO.json')), true);
   assert.equal(result.session.estado, 'aplicacion_local_completada');

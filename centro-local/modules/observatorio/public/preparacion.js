@@ -571,6 +571,7 @@ function renderAnalysisPromptSession(result, { restored = false, scroll = true }
   const prompt = session.prompt_analisis;
   const variables = prompt.variables || {};
   const hasResponse = Boolean(session.respuesta_chatgpt);
+  const obsoletePrompt = hasResponse && prompt.template?.version !== '1.1';
   const approved = approvedState(session.estado);
   const validated = validatedState(session.estado);
   const metadata = [
@@ -594,9 +595,11 @@ function renderAnalysisPromptSession(result, { restored = false, scroll = true }
       ? 'Preparación pendiente recuperada. Podés volver a copiar el prompt.'
       : 'El prompt está listo para copiar. La sesión ya quedó guardada.';
   $('#analysis-prompt-workspace').hidden = false;
-  $('#generate-analysis-prompt').disabled = hasResponse;
-  $('#generate-analysis-prompt').textContent = hasResponse ? 'Prompt conservado' : 'Regenerar prompt y actualizar sesión';
-  $('#analysis-prompt-action-status').textContent = hasResponse
+  $('#generate-analysis-prompt').disabled = hasResponse && !obsoletePrompt;
+  $('#generate-analysis-prompt').textContent = obsoletePrompt ? 'Generar prompt corregido v1.1' : hasResponse ? 'Prompt conservado' : 'Regenerar prompt y actualizar sesión';
+  $('#analysis-prompt-action-status').textContent = obsoletePrompt
+    ? 'La respuesta pertenece al contrato anterior. Al generar el prompt v1.1 se conservará una copia de la sesión anterior.'
+    : hasResponse
     ? 'La sesión ya contiene una respuesta; el prompt no puede regenerarse sin perder trazabilidad.'
     : restored
       ? 'Sesión pendiente recuperada desde el archivo local.'
@@ -755,9 +758,61 @@ function responseValidationFromSession(session) {
     information: stored.informacion || [],
     metadata: stored.metadata || {},
     metrics: stored.metricas || {},
+    warning_candidates: response.advertencias_propuestas || [],
     normalized_markdown: response.contenido_normalizado || '',
     preview_html: stored.preview_html || '',
   };
+}
+
+function warningDecisionComplete(candidate) {
+  return ['guardada', 'descartada', 'ya_existente'].includes(candidate?.decision?.estado);
+}
+
+function renderAnalysisWarningDecisions(candidates = [], approved = false) {
+  const section = $('#analysis-warning-decisions');
+  const list = $('#analysis-warning-decision-list');
+  if (!candidates.length) {
+    section.hidden = true;
+    list.innerHTML = '';
+    return { complete: true, decided: 0, total: 0 };
+  }
+  const decided = candidates.filter(warningDecisionComplete).length;
+  section.hidden = false;
+  $('#analysis-warning-decision-progress').className = decided === candidates.length ? 'badge good' : 'badge warn';
+  $('#analysis-warning-decision-progress').textContent = `${decided}/${candidates.length} gestionadas`;
+  const treatmentOptions = [
+    ['bloqueante', 'Bloqueante'],
+    ['relevante', 'Relevante'],
+    ['observacion_posterior', 'Observación posterior'],
+    ['irrelevante', 'Irrelevante'],
+  ];
+  const priorityOptions = [['alta', 'Alta'], ['media', 'Media'], ['baja', 'Baja']];
+  list.innerHTML = candidates.map((candidate, index) => {
+    const complete = warningDecisionComplete(candidate);
+    const decision = candidate.decision || {};
+    const savedLabel = decision.estado === 'ya_existente'
+      ? `Ya existe como ${decision.advertencia_id || candidate.advertencia_existente_id}`
+      : decision.estado === 'descartada' ? 'Descartada con trazabilidad' : decision.estado === 'guardada' ? 'Incorporada al expediente' : '';
+    return `
+      <article class="analysis-warning-decision-card ${complete ? 'decided' : ''}" data-analysis-warning-card="${esc(candidate.advertencia_id)}">
+        <header>
+          <div><span class="badge ${complete ? 'good' : 'warn'}">${complete ? 'Gestionada' : `Advertencia ${index + 1}`}</span><code>${esc(candidate.advertencia_id)}</code></div>
+          <small>${esc(candidate.tipo)}</small>
+        </header>
+        <p>${esc(candidate.descripcion)}</p>
+        <dl><div><dt>Señales</dt><dd>${esc(candidate.signal_ids?.join(', ') || 'Ninguna')}</dd></div><div><dt>Fuentes</dt><dd>${esc(candidate.fuente_ids?.join(', ') || 'Ninguna')}</dd></div></dl>
+        ${complete ? `<p class="analysis-warning-decision-saved">${esc(savedLabel)}. La gestión posterior queda disponible en la pestaña Advertencias del macroevento.</p>` : `
+          <div class="analysis-warning-decision-controls">
+            <label><span>Decisión</span><select data-warning-action><option value="incorporar">Incorporar al expediente</option><option value="descartar">Descartar con registro</option></select></label>
+            <label><span>Tratamiento</span><select data-warning-treatment>${treatmentOptions.map(([value, label]) => `<option value="${value}" ${value === candidate.tratamiento_sugerido ? 'selected' : ''}>${label}</option>`).join('')}</select></label>
+            <label><span>Prioridad</span><select data-warning-priority>${priorityOptions.map(([value, label]) => `<option value="${value}" ${value === candidate.prioridad_sugerida ? 'selected' : ''}>${label}</option>`).join('')}</select></label>
+            <label class="analysis-warning-notes"><span>Justificación de la decisión</span><textarea data-warning-notes rows="2" placeholder="Explicá brevemente por qué se incorpora o descarta."></textarea></label>
+            <button class="btn preparation" type="button" data-save-analysis-warning="${esc(candidate.advertencia_id)}" ${approved ? 'disabled' : ''}>Guardar decisión</button>
+            <p class="muted" data-warning-decision-status role="status" aria-live="polite">Todavía no se modificó el expediente.</p>
+          </div>`}
+      </article>`;
+  }).join('');
+  return { complete: decided === candidates.length, decided, total: candidates.length };
 }
 
 function renderAnalysisResponseValidation(validation, session, { restored = false, scroll = true } = {}) {
@@ -780,6 +835,7 @@ function renderAnalysisResponseValidation(validation, session, { restored = fals
   `).join('');
   renderIssues('#analysis-response-blocks', '#analysis-response-block-count', '#analysis-response-block-list', validation.blocks || []);
   renderIssues('#analysis-response-warnings', '#analysis-response-warning-count', '#analysis-response-warning-list', validation.warnings || []);
+  const warningDecisionState = renderAnalysisWarningDecisions(validation.warning_candidates || [], approved);
 
   const metadata = validation.metadata || {};
   const metadataValues = [
@@ -799,12 +855,14 @@ function renderAnalysisResponseValidation(validation, session, { restored = fals
   $('#analysis-response-validation-state').textContent = approved ? 'Aprobada' : ready ? 'Validada' : 'Con bloqueos';
   $('#analysis-response-state').className = approved ? 'badge good' : ready ? 'badge info' : 'badge bad';
   $('#analysis-response-state').textContent = approved ? 'Respuesta aprobada' : ready ? 'Respuesta validada' : 'Requiere corrección';
-  $('#approve-analysis-response').disabled = !ready || approved;
+  $('#approve-analysis-response').disabled = !ready || approved || !warningDecisionState.complete;
   $('#approve-analysis-response').textContent = approved ? 'Respuesta aprobada' : 'Aprobar respuesta validada';
   $('#analysis-response-approval-status').textContent = approved
     ? 'Aprobación guardada. La Fase 6 podrá preparar el paquete sin modificar archivos públicos.'
-    : ready
-      ? 'Revisá la vista previa y las advertencias antes de aprobar.'
+    : ready && !warningDecisionState.complete
+      ? `Gestioná las ${warningDecisionState.total - warningDecisionState.decided} advertencia(s) pendientes antes de aprobar.`
+      : ready
+      ? 'Revisá la vista previa; todas las advertencias ya tienen decisión.'
       : 'Corregí los bloqueos y validá nuevamente; las advertencias por sí solas no impiden aprobar.';
   $('#analysis-response-file-status').textContent = restored
     ? 'Respuesta y validación recuperadas desde la sesión local.'
@@ -821,11 +879,47 @@ function renderAnalysisResponseValidation(validation, session, { restored = fals
       ? 'Fase 6 recuperada: los archivos están preparados y el ZIP continúa disponible. No se aplicó ningún archivo canónico.'
       : 'Fase 5 completada: la respuesta fue validada y aprobada. Se actualizó 1 archivo de sesión y 0 archivos canónicos.'
     : ready
-      ? `Respuesta validada con ${validation.warnings?.length || 0} advertencias. Revisá la vista previa antes de aprobar. Se actualizó 1 archivo de sesión y 0 archivos canónicos.`
+      ? `Respuesta validada con ${warningDecisionState.total} advertencia(s) estructurada(s); ${warningDecisionState.decided} ya fueron gestionadas. Se actualizó 1 archivo de sesión.`
       : `La respuesta se recibió, pero tiene ${validation.blocks?.length || 0} bloqueos. No puede aprobarse. Se actualizó 1 archivo de sesión y 0 archivos canónicos.`;
   markAnalysisResponseState(session);
   configureReviewPackageAvailability(session);
   if (scroll) $('#analysis-response-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function saveAnalysisWarningDecision(button) {
+  const card = button.closest('[data-analysis-warning-card]');
+  if (!card || !currentResponseHash) return;
+  const status = card.querySelector('[data-warning-decision-status]');
+  const action = card.querySelector('[data-warning-action]').value;
+  const treatment = card.querySelector('[data-warning-treatment]').value;
+  const priority = card.querySelector('[data-warning-priority]').value;
+  const notes = card.querySelector('[data-warning-notes]').value.trim();
+  button.disabled = true;
+  button.textContent = 'Guardando…';
+  status.textContent = 'Validando y registrando la decisión con backup…';
+  try {
+    const response = await fetch('/api/analysis-response/warning-decision', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        macroevento_id: currentEventId,
+        advertencia_id: button.dataset.saveAnalysisWarning,
+        hash_sha256: currentResponseHash,
+        accion: action,
+        tratamiento: treatment,
+        prioridad: priority,
+        notas: notes,
+      }),
+    });
+    const result = await response.json();
+    if (!response.ok || result.status !== 'ready') throw new Error(result.blocks?.[0]?.detail || result.blocks?.[0]?.title || `Error ${response.status}`);
+    const validation = responseValidationFromSession(result.session);
+    renderAnalysisResponseValidation(validation, result.session, { scroll: false });
+  } catch (error) {
+    status.textContent = `No se guardó: ${error.message}`;
+    button.disabled = false;
+    button.textContent = 'Guardar decisión';
+  }
 }
 
 function renderStoredAnalysisResponse(session, { restored = false } = {}) {
@@ -1936,6 +2030,10 @@ $('#analysis-response-content').oninput = () => {
 };
 $('#validate-analysis-response').onclick = validateAnalysisResponse;
 $('#approve-analysis-response').onclick = approveAnalysisResponse;
+$('#analysis-warning-decision-list').onclick = (event) => {
+  const button = event.target.closest('[data-save-analysis-warning]');
+  if (button) saveAnalysisWarningDecision(button);
+};
 $('#generate-review-package').onclick = generateReviewPackage;
 $('#download-review-package').onclick = () => {
   $('#review-package-download-status').textContent = 'Descarga solicitada. Conservá el ZIP sin mezclarlo todavía con las carpetas canónicas.';

@@ -4,7 +4,11 @@ import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { createAnalysisPromptSession, loadAnalysisPromptSession } from './lib/analysis-prompt.mjs';
-import { approveAnalysisResponse, saveAnalysisResponse } from './lib/analysis-response.mjs';
+import {
+  approveAnalysisResponse,
+  saveAnalysisResponse,
+  saveAnalysisWarningDecision,
+} from './lib/analysis-response.mjs';
 import { generateFollowupProposal } from './lib/followup-proposal.mjs';
 import {
   applyLocalApplication,
@@ -30,7 +34,17 @@ import {
   serializeProcessUpdatePlan,
 } from './lib/local-process-update.mjs';
 import { loadPublicExpedientStates } from './lib/public-expedients.mjs';
+import {
+  applyPublicSync,
+  planPublicSync,
+  serializePublicSyncPlan,
+} from './lib/public-sync.mjs';
 import { generateReviewPackage, resolvePreparedReviewPackage } from './lib/review-package.mjs';
+import {
+  INTERNAL_SCHEMA_VERSION,
+  normalizeWarningContainers,
+  validateEventWarnings,
+} from './lib/warnings-contract.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const root = path.dirname(__filename);
@@ -52,7 +66,7 @@ const publicationsDir = path.join(centerRoot, 'data', 'promociones');
 const processUpdatesDir = path.join(centerRoot, 'data', 'actualizaciones-proceso');
 const commonBackupsDir = path.join(centerRoot, 'data', 'backups');
 const config = readJson(configPath);
-const APP_VERSION = '0.10.0';
+const APP_VERSION = '0.10.1';
 
 const HOST = process.env.OBSERVATORIO_HOST || config.host || '127.0.0.1';
 const PORT = Number(process.env.OBSERVATORIO_PORT || config.puerto || 4323);
@@ -134,6 +148,9 @@ function normalizeSignal(signal = {}, eventId = 'evento', index = 0) {
     estado_revision: text(signal.estado_revision === 'confirmada' ? 'verificada' : (signal.estado_revision || 'pendiente'), 40),
     origen: text(signal.origen || 'ia', 40),
     fuente_ids: stringArray(signal.fuente_ids, 500).map(slug),
+    ...(Array.isArray(signal.vinculos_pendientes_fuente_ids) ? {
+      vinculos_pendientes_fuente_ids: stringArray(signal.vinculos_pendientes_fuente_ids, 500),
+    } : {}),
     intensidad: optionalNumber(signal.intensidad, 1, 5),
     localizaciones: Array.isArray(signal.localizaciones)
       ? signal.localizaciones.map(normalizeLocation).filter((item) => item.etiqueta || item.pais || item.latitud !== null || item.longitud !== null)
@@ -176,7 +193,31 @@ function normalizeUpdateRecord(record = {}) {
     justificacion: text(record.justificacion),
     fuente_ids_agregadas: stringArray(record.fuente_ids_agregadas, 500).map(slug),
     senal_ids_agregadas: stringArray(record.senal_ids_agregadas, 500).map(slug),
+    advertencia_ids_agregadas: stringArray(record.advertencia_ids_agregadas, 500).map(slug),
     campos_modificados: stringArray(record.campos_modificados, 100),
+  };
+}
+
+function jsonClone(value, fallback) {
+  try {
+    return JSON.parse(JSON.stringify(value));
+  } catch {
+    return fallback;
+  }
+}
+
+function normalizeCandidateImportRecord(record = {}) {
+  return {
+    lote_id: slug(record.lote_id || `lote-${new Date().toISOString().slice(0, 10)}`),
+    importado_el: text(record.importado_el || new Date().toISOString().slice(0, 10), 20),
+    importado_en: text(record.importado_en || new Date().toISOString(), 40),
+    formato_version: Number(record.formato_version || 1),
+    consulta: text(record.consulta, 1000),
+    respuesta_original: text(record.respuesta_original, 5_000_000),
+    resultado_normalizado: Array.isArray(record.resultado_normalizado)
+      ? jsonClone(record.resultado_normalizado, [])
+      : [],
+    decisiones: Array.isArray(record.decisiones) ? jsonClone(record.decisiones, []) : [],
   };
 }
 
@@ -213,6 +254,7 @@ function normalizeEvent(event = {}, index = 0, catalog = {}) {
   for (const signal of signals) {
     signal.fuente_ids = signal.fuente_ids.filter((sourceId) => sourceIds.has(sourceId));
   }
+  const warningContainers = normalizeWarningContainers(event);
   return {
     id,
     titulo: text(event.titulo, 1000),
@@ -265,12 +307,15 @@ function normalizeEvent(event = {}, index = 0, catalog = {}) {
     historial_evaluacion: Array.isArray(event.historial_evaluacion)
       ? event.historial_evaluacion.map(normalizeEvaluationHistory)
       : [],
+    advertencias: warningContainers.advertencias,
+    excepciones_advertencias: warningContainers.excepciones_advertencias,
     ...(event.importacion && typeof event.importacion === 'object' ? {
       importacion: {
         origen: text(event.importacion.origen || 'chatgpt', 100),
         formato_version: Number(event.importacion.formato_version || 1),
         lote_id: slug(event.importacion.lote_id || `lote-${new Date().toISOString().slice(0, 10)}`),
         importado_el: text(event.importacion.importado_el || new Date().toISOString().slice(0, 10), 20),
+        advertencia_ids_agregadas: stringArray(event.importacion.advertencia_ids_agregadas, 500).map(slug),
       },
     } : {}),
   };
@@ -302,13 +347,19 @@ function normalizeExpedient(item = {}, index = 0) {
 function normalizeData(payload = {}, catalog = readJson(catalogPath)) {
   const events = Array.isArray(payload.macroeventos) ? payload.macroeventos : [];
   const expedients = Array.isArray(payload.expedientes_editoriales) ? payload.expedientes_editoriales : [];
+  const incomingSchema = Number(payload.schema_version);
   return {
-    schema_version: 2,
+    schema_version: incomingSchema === 2 || incomingSchema === INTERNAL_SCHEMA_VERSION
+      ? INTERNAL_SCHEMA_VERSION
+      : (Number.isFinite(incomingSchema) ? incomingSchema : INTERNAL_SCHEMA_VERSION),
     titulo: text(payload.titulo || 'Observatorio de macroeventos geopolíticos', 500),
     actualizado: text(payload.actualizado || new Date().toISOString().slice(0, 10), 20),
     notas: text(payload.notas),
     macroeventos: events.map((event, index) => normalizeEvent(event, index, catalog)),
     expedientes_editoriales: expedients.map(normalizeExpedient),
+    importaciones_candidatos: Array.isArray(payload.importaciones_candidatos)
+      ? payload.importaciones_candidatos.map(normalizeCandidateImportRecord)
+      : [],
   };
 }
 
@@ -408,7 +459,7 @@ function validateData(data, catalog = readJson(catalogPath), taxonomy = readJson
   const mediaIds = new Set((catalog.records || []).map((item) => item.media_id));
   const eventMap = new Map();
 
-  if (data.schema_version !== 2) errors.push('El esquema debe ser v2.');
+  if (data.schema_version !== INTERNAL_SCHEMA_VERSION) errors.push(`El esquema interno debe ser v${INTERNAL_SCHEMA_VERSION}.`);
   if (!Array.isArray(data.macroeventos)) errors.push('macroeventos debe ser una lista.');
   if (!Array.isArray(data.expedientes_editoriales)) errors.push('expedientes_editoriales debe ser una lista.');
 
@@ -467,6 +518,9 @@ function validateData(data, catalog = readJson(catalogPath), taxonomy = readJson
         if (location.longitud !== null && (location.longitud < -180 || location.longitud > 180)) errors.push(`${signalLabel}: longitud inválida.`);
       }
     }
+
+    const warningValidation = validateEventWarnings(event, { path: label });
+    errors.push(...warningValidation.errors);
 
     if (!event.fuentes?.length) warnings.push(`${label}: no tiene fuentes.`);
     if (!event.senales?.length) warnings.push(`${label}: no tiene señales.`);
@@ -659,6 +713,8 @@ if (checkOnly) {
     encargos_editoriales: data.expedientes_editoriales.length,
     senales: data.macroeventos.reduce((sum, item) => sum + item.senales.length, 0),
     fuentes: data.macroeventos.reduce((sum, item) => sum + item.fuentes.length, 0),
+    advertencias: data.macroeventos.reduce((sum, item) => sum + item.advertencias.length, 0),
+    excepciones_advertencias: data.macroeventos.reduce((sum, item) => sum + item.excepciones_advertencias.length, 0),
     catalogo_medios: catalog.records.length,
     valid: validation.valid && catalogValidation.valid,
     errors: [...catalogValidation.errors, ...validation.errors],
@@ -742,6 +798,33 @@ const server = http.createServer(async (req, res) => {
         eventId: text(input.macroevento_id, 220),
         expectedHash: text(input.hash_sha256, 128),
       });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/analysis-response/warning-decision') {
+      const input = await readBody(req);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const result = saveAnalysisWarningDecision({
+        sessionsDir,
+        dataPath,
+        backupsDir,
+        data,
+        eventId: text(input.macroevento_id, 220),
+        warningId: text(input.advertencia_id, 240),
+        expectedHash: text(input.hash_sha256, 128),
+        action: text(input.accion, 40),
+        treatment: text(input.tratamiento, 80),
+        priority: text(input.prioridad, 40),
+        notes: text(input.notas, 5000),
+        actor: 'usuario-local',
+      });
+      if (result.status === 'ready' && result.data) {
+        const validation = validateData(result.data, catalog);
+        if (!validation.valid) {
+          return sendJson(res, 422, { status: 'blocked', blocks: [{ code: 'invalid-data-after-warning', title: 'Los datos no superaron la validación completa', detail: validation.errors.join(' · ') }] });
+        }
+      }
       return sendJson(res, result.status === 'ready' ? 200 : 422, result);
     }
 
@@ -923,12 +1006,15 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === 'POST' && url.pathname === '/api/local-publication/plan') {
       const input = await readBody(req);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
       const result = planLocalPublication({
         centerRoot,
         siteRoot: projectRoot,
         sessionsDir,
         publicationsDir,
         backupsDir: commonBackupsDir,
+        data,
         eventId: text(input.macroevento_id, 220),
         publishedOn: text(input.publicado_el, 10),
       });
@@ -937,12 +1023,15 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === 'POST' && url.pathname === '/api/local-publication/apply') {
       const input = await readBody(req);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
       const result = applyLocalPublication({
         centerRoot,
         siteRoot: projectRoot,
         sessionsDir,
         publicationsDir,
         backupsDir: commonBackupsDir,
+        data,
         eventId: text(input.macroevento_id, 220),
         publishedOn: text(input.publicado_el, 10),
         expectedPlanId: text(input.plan_id, 128),
@@ -1084,6 +1173,39 @@ const server = http.createServer(async (req, res) => {
           detail: qa.results.find((result) => !result.ok)?.label || 'Control técnico fallido.',
         }],
       });
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/public-sync/plan') {
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const result = await planPublicSync({
+        centerRoot,
+        siteRoot: projectRoot,
+        backupsDir: commonBackupsDir,
+        data,
+        taxonomy: readJson(taxonomyPath),
+      });
+      return sendJson(
+        res,
+        result.status === 'ready' ? 200 : 422,
+        serializePublicSyncPlan(result),
+      );
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/public-sync/apply') {
+      const input = await readBody(req);
+      const catalog = normalizeCatalog(readJson(catalogPath));
+      const data = normalizeData(readJson(dataPath), catalog);
+      const result = await applyPublicSync({
+        centerRoot,
+        siteRoot: projectRoot,
+        backupsDir: commonBackupsDir,
+        data,
+        taxonomy: readJson(taxonomyPath),
+        expectedPlanId: text(input.plan_id, 100),
+        confirmed: input.confirmed === true,
+      });
+      return sendJson(res, result.status === 'ready' ? 200 : 422, result);
     }
 
     if (req.method === 'GET' && url.pathname === '/api/bootstrap') {

@@ -94,8 +94,11 @@ test('genera un prompt JSON con taxonomía, fuentes e índice de los 17 macroeve
   });
   assert.match(prompt, /Corredores logísticos e infraestructura estratégica/);
   assert.match(prompt, /Geopolitical Futures/);
-  assert.match(prompt, /"schema_version": 2/);
+  assert.match(prompt, /"schema_version": 3/);
   assert.match(prompt, /"accion_sugerida"/);
+  assert.match(prompt, /"advertencias"/);
+  assert.match(prompt, /"advertencia_id"/);
+  assert.match(prompt, /Toda advertencia generada entra con "estado": "pendiente"/);
   assert.match(prompt, /actualizacion/);
   for (const event of data.macroeventos) assert.match(prompt, new RegExp(event.id));
 });

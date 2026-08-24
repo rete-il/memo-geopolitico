@@ -1,8 +1,20 @@
 # Observatorio de macroeventos geopolíticos
 
-Versión local autónoma **0.6.0**. No utiliza APIs externas, no depende de Memo Geopolítico y no modifica GitHub.
+Versión local autónoma **0.6.0**. No utiliza APIs externas y no modifica GitHub. La sincronización pública, cuando el usuario la confirma, escribe únicamente la proyección local de datos del sitio.
 
 La base entregada contiene **17 macroeventos, 35 señales, 31 publicaciones, 92 fuentes catalogadas, 314 temas internos y un expediente editorial**.
+
+## Fase 3 · alimentación automática de advertencias
+
+El modo **JSON importable** del Generador de búsqueda ahora solicita a ChatGPT, dentro de cada candidato:
+
+- publicaciones iniciales;
+- señales vinculadas;
+- advertencias con identidad estable, descripción, tipo, referencias, prioridad y tratamiento propuesto.
+
+La respuesta sigue copiándose manualmente desde ChatGPT: no se añadió ninguna API externa. Al pegarla en **Macroeventos → Importar candidatos**, la vista previa permite confirmar cada advertencia por separado. Un ID duplicado bloquea sólo la advertencia afectada; una referencia desconocida queda conservada y visible como vínculo pendiente.
+
+Las advertencias importadas entran siempre en estado **Pendiente**. Si ChatGPT omite estado o tratamiento, el ítem no puede aplicarse hasta que una persona complete esa decisión. La respuesta original, el resultado normalizado y las decisiones se guardan por separado en `importaciones_candidatos` para mantener trazabilidad.
 
 ## Novedades de la versión 0.6.0
 
@@ -30,7 +42,7 @@ El importador distingue:
 
 Para una actualización permite seleccionar individualmente publicaciones, señales y cambios de ficha. Conserva el ID, la fecha de creación, el estado editorial y la verificación del macroevento. Las nuevas evidencias ingresan como pendientes y cada operación queda registrada en `actualizaciones`.
 
-El formato recomendado de candidatos pasa a `schema_version: 2`. Los lotes v1 siguen siendo compatibles y se clasifican localmente.
+El formato recomendado de candidatos pasa a `schema_version: 3`. Los lotes v1 y v2 siguen siendo compatibles y se clasifican localmente.
 
 ## Ejecución
 
@@ -67,9 +79,25 @@ No requiere `npm install`: utiliza Node.js, HTML, CSS y JavaScript nativo.
    - bloquear por falta de novedad;
    - separar un compuesto;
    - resolver manualmente una coincidencia.
-10. Para cada actualización, elegir publicaciones, señales y, si corresponde, cambios de ficha.
+10. Para cada candidato, revisar publicaciones y señales y confirmar cada advertencia por separado. En las actualizaciones, elegir también los cambios de ficha.
 11. Confirmar la revisión humana y pulsar **Aplicar decisiones**.
 12. Revisar las fichas y pulsar **Guardar** para validar, crear el backup y persistir.
+13. Cuando el sistema detecte macroeventos nuevos, pulsar **Sincronizar _N_ nuevos**, revisar el resumen y confirmar para actualizar la proyección pública local.
+
+## Sincronización del sitio local
+
+El control de sincronización solo funciona con datos previamente guardados y permanece desactivado salvo que detecte uno o más identificadores de macroeventos ausentes de la proyección pública. Las actualizaciones de procesos ya existentes no lo habilitan. Antes de escribir:
+
+- genera una propuesta con la herramienta pública canónica;
+- compara los macroeventos guardados con `src/data/public/observatorio.json`;
+- bloquea eliminaciones automáticas y las identidades duplicadas;
+- conserva estados de publicación, progreso editorial y contenido público independiente;
+- muestra cuántos procesos se crearán, actualizarán o conservarán;
+- exige confirmación explícita;
+- crea un respaldo y un manifiesto en `centro-local/data/backups/sincronizacion-observatorio`;
+- escribe de forma atómica, vuelve a validar y restaura el respaldo si falla.
+
+La operación actualiza el sitio servido en `localhost`, pero no ejecuta Git, no sube archivos a GitHub y no despliega Netlify.
 
 ## Reglas de actualización
 
@@ -80,6 +108,8 @@ No requiere `npm install`: utiliza Node.js, HTML, CSS y JavaScript nativo.
 - Una ficha verificada no pierde su estado por recibir evidencia pendiente.
 - Una evaluación reemplazada conserva la versión anterior en `historial_evaluacion`.
 - Cada actualización registra lote, fecha, candidato de origen, tipo de evolución y elementos agregados.
+- Las advertencias no confirmadas se registran como no aplicadas; nunca se incorporan por una selección masiva implícita.
+- Los vínculos desconocidos de una advertencia se conservan en `vinculos_pendientes` y no se inventan ni se descartan en silencio.
 
 ## Archivos canónicos
 
@@ -108,7 +138,7 @@ Los documentos originales —el XLSX de medios y los dos PDF temáticos— son l
 - no envía prompts directamente;
 - la recomendación de fuentes es heurística y siempre revisable;
 - la clasificación de un candidato es una ayuda local, no reemplaza la decisión editorial;
-- no publica artículos ni modifica Memo Geopolítico;
+- no publica artículos ni modifica GitHub; la sincronización solo actualiza la proyección pública local después de una confirmación explícita;
 - no incluye mapa ni integración con GDELT.
 
 ## Backups

@@ -1,12 +1,13 @@
 {
   "name": "observatorio-macroeventos",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "private": true,
   "type": "module",
   "description": "Dashboard local para generar búsquedas geopolíticas, importar candidatos, actualizar macroeventos y gestionar encargos editoriales con trazabilidad.",
   "scripts": {
     "start": "node server.mjs",
     "open": "node server.mjs --open",
+    "migrate:advertencias:v3": "node tools/migrate-advertencias-v3.mjs",
     "test": "node --test",
     "check": "node --test && node server.mjs --check"
   },

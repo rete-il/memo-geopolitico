@@ -1,6 +1,10 @@
-export const CANDIDATE_FORMAT_VERSION = 2;
-export const SUPPORTED_CANDIDATE_FORMAT_VERSIONS = new Set([1, 2]);
+export const CANDIDATE_FORMAT_VERSION = 3;
+export const SUPPORTED_CANDIDATE_FORMAT_VERSIONS = new Set([1, 2, 3]);
 const MAX_CANDIDATE_INPUT_CHARS = 5_000_000;
+
+const WARNING_STATES = new Set(['pendiente', 'resuelta', 'descartada']);
+const WARNING_TREATMENTS = new Set(['bloqueante', 'relevante', 'observacion_posterior', 'irrelevante']);
+const WARNING_PRIORITIES = new Set(['alta', 'media', 'baja']);
 
 const PROCESS_TYPES = new Set([
   'evento_puntual',
@@ -135,6 +139,7 @@ function unwrapJsonText(raw) {
 }
 
 export function parseCandidateText(raw) {
+  const originalText = String(raw ?? '').trim();
   const input = unwrapJsonText(raw);
   if (!input) throw new Error('Pegá una respuesta JSON o cargá un archivo .json.');
   let payload;
@@ -161,6 +166,7 @@ export function parseCandidateText(raw) {
   if (!candidates) throw new Error('El JSON debe contener una lista “candidatos” o “macroeventos”.');
   if (!candidates.length) throw new Error('La respuesta no contiene candidatos.');
   return {
+    original_text: originalText,
     metadata: Array.isArray(payload) ? {} : {
       formato: text(payload.formato, 100),
       schema_version: Number(payload.schema_version || 0) || null,
@@ -289,6 +295,106 @@ function normalizeSignal(signal, eventId, signalIndex, sourceMap, context, warni
   };
 }
 
+function isoTimestamp(value) {
+  const raw = text(value, 40);
+  if (raw && !Number.isNaN(Date.parse(raw))) return new Date(raw).toISOString();
+  return new Date().toISOString();
+}
+
+function warningConflict(code, detail, { blocking = false, pendingLink = false, decision = false } = {}) {
+  return { code, detail, blocking, pending_link: pendingLink, decision_required: decision };
+}
+
+function normalizeCandidateWarning(rawWarning, eventId, warningIndex, sourceMap, signalMap, context) {
+  const rawId = text(first(rawWarning.advertencia_id, rawWarning.id), 220);
+  const warningId = candidateSlug(first(rawId, `adv-${eventId}-${String(warningIndex + 1).padStart(3, '0')}`));
+  const description = text(first(rawWarning.descripcion, rawWarning.detalle, rawWarning.advertencia));
+  const rawType = text(first(rawWarning.tipo, rawWarning.clase), 200);
+  const type = candidateSlug(rawType);
+  const requestedSignalIds = stringArray(first(rawWarning.signal_ids, rawWarning.senal_ids));
+  const requestedSourceIds = stringArray(first(rawWarning.fuente_ids, rawWarning.source_ids));
+  const knownSignalIds = [];
+  const knownSourceIds = [];
+  const pendingSignalIds = [];
+  const pendingSourceIds = [];
+  for (const requested of requestedSignalIds) {
+    const mapped = signalMap.get(candidateSlug(requested));
+    if (mapped) knownSignalIds.push(mapped);
+    else pendingSignalIds.push(requested);
+  }
+  for (const requested of requestedSourceIds) {
+    const mapped = sourceMap.get(candidateSlug(requested));
+    if (mapped) knownSourceIds.push(mapped);
+    else pendingSourceIds.push(requested);
+  }
+
+  const rawState = normalizeText(rawWarning.estado).replace(/\s+/g, '_');
+  const rawTreatment = normalizeText(first(rawWarning.tratamiento, rawWarning.tratamiento_sugerido)).replace(/\s+/g, '_');
+  const rawPriority = normalizeText(rawWarning.prioridad).replace(/\s+/g, '_');
+  const state = rawState === 'pendiente' ? 'pendiente' : '';
+  const treatment = WARNING_TREATMENTS.has(rawTreatment) ? rawTreatment : '';
+  const priority = WARNING_PRIORITIES.has(rawPriority) ? rawPriority : 'media';
+  const conflicts = [];
+  if (!rawId) conflicts.push(warningConflict('warning.missing_id', 'Falta advertencia_id; corregí el JSON para identificar esta advertencia.', { blocking: true }));
+  else if (rawId !== warningId) conflicts.push(warningConflict('warning.normalized_id', `El ID se normalizó como “${warningId}”.`));
+  if (!description) conflicts.push(warningConflict('warning.missing_description', 'Falta la descripción de la advertencia.', { blocking: true }));
+  if (!rawType) conflicts.push(warningConflict('warning.missing_type', 'Falta el tipo de advertencia.', { blocking: true }));
+  if (rawState && WARNING_STATES.has(rawState) && rawState !== 'pendiente') {
+    conflicts.push(warningConflict('warning.non_pending_state', `ChatGPT propuso estado “${rawState}”; una advertencia importada debe confirmarse como pendiente.`, { decision: true }));
+  } else if (!state) {
+    conflicts.push(warningConflict('warning.missing_state', 'Falta confirmar el estado Pendiente antes de incorporar esta advertencia.', { decision: true }));
+  }
+  if (!treatment) conflicts.push(warningConflict('warning.missing_treatment', 'Falta elegir el tratamiento editorial antes de incorporar esta advertencia.', { decision: true }));
+  if (!rawPriority || !WARNING_PRIORITIES.has(rawPriority)) conflicts.push(warningConflict('warning.default_priority', 'Prioridad ausente o inválida; se propone Media para revisión.'));
+  if (pendingSignalIds.length) conflicts.push(warningConflict(
+    'warning.pending_signal_links',
+    `Vínculos pendientes con señales: ${pendingSignalIds.join(' · ')}.`,
+    { pendingLink: true },
+  ));
+  if (pendingSourceIds.length) conflicts.push(warningConflict(
+    'warning.pending_source_links',
+    `Vínculos pendientes con fuentes: ${pendingSourceIds.join(' · ')}.`,
+    { pendingLink: true },
+  ));
+  const createdAt = context.importedTimestamp;
+  return {
+    index: warningIndex,
+    raw: rawWarning,
+    value: {
+      advertencia_id: warningId,
+      descripcion: description,
+      tipo: type,
+      signal_ids: [...new Set(knownSignalIds)],
+      fuente_ids: [...new Set(knownSourceIds)],
+      estado: state,
+      tratamiento: treatment,
+      prioridad: priority,
+      notas_editoriales: text(rawWarning.notas_editoriales) || null,
+      creada_el: createdAt,
+      actualizada_el: createdAt,
+      resuelta_el: null,
+      resuelta_con_fuente_ids: [],
+      resolucion: null,
+      historial: [{
+        cambio_id: candidateSlug(`import-${context.batchId}-${warningId}`),
+        accion: 'importada',
+        detalle: 'Advertencia incorporada desde una respuesta manual de ChatGPT y confirmada por una persona.',
+        realizada_por: 'rete',
+        realizada_el: createdAt,
+      }],
+      vinculos_pendientes: {
+        signal_ids: pendingSignalIds,
+        fuente_ids: pendingSourceIds,
+      },
+    },
+    requested_signal_ids: requestedSignalIds,
+    requested_source_ids: requestedSourceIds,
+    conflicts,
+    blocked: conflicts.some((item) => item.blocking),
+    selected: false,
+  };
+}
+
 function resolveTopics(raw, taxonomy, warnings) {
   const resolved = new Set();
   const unknown = [];
@@ -352,7 +458,39 @@ function normalizeCandidate(raw, index, context) {
     return normalized.value;
   });
   const rawSignals = Array.isArray(raw.senales) ? raw.senales : [];
-  const signals = rawSignals.map((signal, signalIndex) => normalizeSignal(signal || {}, id, signalIndex, sourceMap, context, warnings));
+  const signalMap = new Map();
+  const signals = rawSignals.map((signal, signalIndex) => {
+    const normalized = normalizeSignal(signal || {}, id, signalIndex, sourceMap, context, warnings);
+    signalMap.set(candidateSlug(first(signal?.id, `senal-${signalIndex + 1}`)), normalized.id);
+    return normalized;
+  });
+  const rawWarnings = Array.isArray(raw.advertencias)
+    ? raw.advertencias
+    : Array.isArray(raw.warnings)
+      ? raw.warnings
+      : [];
+  const warningItems = rawWarnings.map((warning, warningIndex) => normalizeCandidateWarning(
+    warning || {},
+    id,
+    warningIndex,
+    sourceMap,
+    signalMap,
+    context,
+  ));
+  const seenWarningIds = new Map();
+  for (const item of warningItems) {
+    const previous = seenWarningIds.get(item.value.advertencia_id);
+    if (previous !== undefined) {
+      item.conflicts.push(warningConflict(
+        'warning.duplicate_id',
+        `advertencia_id repetido dentro del candidato (también aparece en la advertencia ${previous + 1}).`,
+        { blocking: true },
+      ));
+      item.blocked = true;
+    } else {
+      seenWarningIds.set(item.value.advertencia_id, item.index);
+    }
+  }
   const horizon = raw.horizonte || {};
   const minYears = Number(first(horizon.min_anios, raw.horizonte_min_anios, context.config.horizonte_minimo_anios, 3));
   const maxYears = Number(first(horizon.max_anios, raw.horizonte_max_anios, context.config.horizonte_maximo_anios, 10));
@@ -396,6 +534,8 @@ function normalizeCandidate(raw, index, context) {
     ]),
     palabras_clave: stringArray(first(raw.palabras_clave, raw.terminos_busqueda)),
     fuentes: sources,
+    advertencias: warningItems.map((item) => item.value),
+    excepciones_advertencias: [],
     importacion: {
       origen: 'chatgpt',
       formato_version: CANDIDATE_FORMAT_VERSION,
@@ -436,6 +576,11 @@ function normalizeCandidate(raw, index, context) {
     action: 'review',
     target_id: '',
     update_plan: null,
+    item_plan: {
+      sources: sources.map((source) => ({ value: source, selected: true })),
+      signals: signals.map((signal) => ({ value: signal, selected: true })),
+      warnings: warningItems,
+    },
     blocked: false,
     selected: false,
   };
@@ -632,7 +777,7 @@ function buildFieldChanges(candidate, target) {
   return changes;
 }
 
-function buildUpdatePlan(candidate, target) {
+function buildUpdatePlan(candidate, target, warningItems = []) {
   const sourceMap = new Map();
   const newSources = [];
   for (const source of candidate.fuentes || []) {
@@ -643,19 +788,72 @@ function buildUpdatePlan(candidate, target) {
       newSources.push({ value: source, selected: true });
     }
   }
+  const signalMap = new Map();
   const newSignals = [];
   for (const signal of candidate.senales || []) {
-    if (matchingExistingSignal(signal, target)) continue;
+    const existing = matchingExistingSignal(signal, target);
+    if (existing) {
+      signalMap.set(signal.id, existing.id);
+      continue;
+    }
     const value = {
       ...signal,
       fuente_ids: [...new Set((signal.fuente_ids || []).map((id) => sourceMap.get(id)).filter(Boolean))],
     };
+    signalMap.set(signal.id, value.id);
     newSignals.push({ value, selected: true });
   }
+  const targetSourceIds = new Set((target.fuentes || []).map((item) => item.id));
+  const targetSignalIds = new Set((target.senales || []).map((item) => item.id));
+  const targetWarningIds = new Set((target.advertencias || []).map((item) => item.advertencia_id));
+  const newWarnings = warningItems.map((item) => {
+    const next = JSON.parse(JSON.stringify(item));
+    const mappedSources = [];
+    const mappedSignals = [];
+    const pendingSources = [];
+    const pendingSignals = [];
+    for (const requested of item.requested_source_ids || []) {
+      const key = candidateSlug(requested);
+      const mapped = sourceMap.get(key) || (targetSourceIds.has(key) ? key : '');
+      if (mapped) mappedSources.push(mapped);
+      else pendingSources.push(requested);
+    }
+    for (const requested of item.requested_signal_ids || []) {
+      const key = candidateSlug(requested);
+      const mapped = signalMap.get(key) || (targetSignalIds.has(key) ? key : '');
+      if (mapped) mappedSignals.push(mapped);
+      else pendingSignals.push(requested);
+    }
+    next.value.fuente_ids = [...new Set(mappedSources)];
+    next.value.signal_ids = [...new Set(mappedSignals)];
+    next.value.vinculos_pendientes = { fuente_ids: pendingSources, signal_ids: pendingSignals };
+    next.conflicts = next.conflicts.filter((conflict) => !['warning.pending_source_links', 'warning.pending_signal_links'].includes(conflict.code));
+    if (pendingSources.length) next.conflicts.push(warningConflict(
+      'warning.pending_source_links',
+      `Vínculos pendientes con fuentes: ${pendingSources.join(' · ')}.`,
+      { pendingLink: true },
+    ));
+    if (pendingSignals.length) next.conflicts.push(warningConflict(
+      'warning.pending_signal_links',
+      `Vínculos pendientes con señales: ${pendingSignals.join(' · ')}.`,
+      { pendingLink: true },
+    ));
+    if (targetWarningIds.has(next.value.advertencia_id)) {
+      next.conflicts.push(warningConflict(
+        'warning.existing_id',
+        `advertencia_id ya existe en el macroevento de destino (${next.value.advertencia_id}).`,
+        { blocking: true },
+      ));
+    }
+    next.blocked = next.conflicts.some((conflict) => conflict.blocking);
+    next.selected = false;
+    return next;
+  });
   return {
     target_id: target.id,
     new_sources: newSources,
     new_signals: newSignals,
+    new_warnings: newWarnings,
     field_changes: buildFieldChanges(candidate, target),
   };
 }
@@ -704,11 +902,13 @@ function assessCandidate(report, existingEvents, seen) {
     report.errors.push('El candidato está marcado como compuesto y debe separarse antes de importarlo.');
   } else if (target) {
     report.target_id = target.id;
-    report.update_plan = buildUpdatePlan(report.value, target);
-    const evidenceCount = report.update_plan.new_sources.length + report.update_plan.new_signals.length;
+    report.update_plan = buildUpdatePlan(report.value, target, report.item_plan.warnings);
+    const evidenceCount = report.update_plan.new_sources.length
+      + report.update_plan.new_signals.length
+      + report.update_plan.new_warnings.filter((item) => !item.blocked).length;
     if (!evidenceCount) {
       report.action = 'no_change';
-      report.errors.push('Coincide con un macroevento existente y no aporta señales ni publicaciones nuevas.');
+      report.errors.push('Coincide con un macroevento existente y no aporta señales ni publicaciones nuevas ni advertencias nuevas.');
     } else if (report.classification.suggested_action === 'related' && !exact) {
       report.action = 'review';
       report.warnings.push('La respuesta lo considera relacionado; elegí si debe actualizar el expediente sugerido o crear un proceso autónomo.');
@@ -721,7 +921,7 @@ function assessCandidate(report, existingEvents, seen) {
   } else if (top) {
     report.action = 'review';
     report.target_id = top.event.id;
-    report.update_plan = buildUpdatePlan(report.value, top.event);
+    report.update_plan = buildUpdatePlan(report.value, top.event, report.item_plan.warnings);
     report.warnings.push(ambiguous
       ? 'Hay más de una coincidencia posible; elegí el expediente correcto.'
       : 'La coincidencia no es concluyente; elegí entre crear o actualizar.');
@@ -742,6 +942,7 @@ export function prepareCandidateBatch(parsed, options = {}) {
   const catalog = options.catalog || { records: [] };
   const config = options.config || {};
   const importedAt = validDate(options.importedAt) || new Date().toISOString().slice(0, 10);
+  const importedTimestamp = isoTimestamp(options.importedTimestamp || `${importedAt}T12:00:00.000Z`);
   const batchId = candidateSlug(first(options.batchId, parsed.metadata?.consulta, `lote-${importedAt}`));
   const reservedSourceIds = new Set(existingEvents.flatMap((event) => (event.fuentes || []).map((source) => source.id)));
   const reservedSignalIds = new Set(existingEvents.flatMap((event) => (event.senales || []).map((signal) => signal.id)));
@@ -750,6 +951,7 @@ export function prepareCandidateBatch(parsed, options = {}) {
     catalog,
     config,
     importedAt,
+    importedTimestamp,
     batchId,
     taxonomyIndexes: taxonomyIndexes(taxonomy),
     catalogIndexes: catalogIndexes(catalog),
@@ -760,7 +962,13 @@ export function prepareCandidateBatch(parsed, options = {}) {
   const seen = { ids: new Map(), titles: new Map() };
   for (const report of reports) assessCandidate(report, existingEvents, seen);
   return {
-    metadata: { ...parsed.metadata, batch_id: batchId, imported_at: importedAt },
+    metadata: {
+      ...parsed.metadata,
+      batch_id: batchId,
+      imported_at: importedAt,
+      imported_timestamp: importedTimestamp,
+      original_text: text(parsed.original_text, MAX_CANDIDATE_INPUT_CHARS),
+    },
     candidates: reports,
     summary: {
       total: reports.length,
@@ -771,6 +979,9 @@ export function prepareCandidateBatch(parsed, options = {}) {
       no_change: reports.filter((item) => item.action === 'no_change').length,
       composite: reports.filter((item) => item.action === 'composite').length,
       blocked: reports.filter((item) => item.blocked).length,
+      warnings: reports.reduce((sum, item) => sum + item.item_plan.warnings.length, 0),
+      warning_conflicts: reports.reduce((sum, item) => sum + item.item_plan.warnings.filter((warning) => warning.conflicts.length).length, 0),
+      pending_links: reports.reduce((sum, item) => sum + item.item_plan.warnings.filter((warning) => warning.conflicts.some((conflict) => conflict.pending_link)).length, 0),
     },
   };
 }
@@ -793,7 +1004,7 @@ export function configureCandidateAction(report, action, target = null) {
   } else if (action === 'update' && target) {
     report.action = 'update';
     report.target_id = target.id;
-    report.update_plan = buildUpdatePlan(report.value, target);
+    report.update_plan = buildUpdatePlan(report.value, target, report.item_plan.warnings);
   } else {
     report.action = 'review';
   }
@@ -801,16 +1012,115 @@ export function configureCandidateAction(report, action, target = null) {
   return report;
 }
 
+export function warningDecisionReady(item) {
+  return Boolean(
+    item
+    && !item.blocked
+    && item.value?.estado === 'pendiente'
+    && WARNING_TREATMENTS.has(item.value?.tratamiento)
+    && WARNING_PRIORITIES.has(item.value?.prioridad),
+  );
+}
+
+export function configureCandidateWarning(item, changes = {}) {
+  if (!item || item.blocked) return item;
+  if (Object.prototype.hasOwnProperty.call(changes, 'estado')) {
+    item.value.estado = changes.estado === 'pendiente' ? 'pendiente' : '';
+  }
+  if (Object.prototype.hasOwnProperty.call(changes, 'tratamiento')) {
+    item.value.tratamiento = WARNING_TREATMENTS.has(changes.tratamiento) ? changes.tratamiento : '';
+  }
+  if (Object.prototype.hasOwnProperty.call(changes, 'prioridad')) {
+    item.value.prioridad = WARNING_PRIORITIES.has(changes.prioridad) ? changes.prioridad : 'media';
+  }
+  item.conflicts = item.conflicts.filter((conflict) => {
+    if (['warning.missing_state', 'warning.non_pending_state'].includes(conflict.code)) return item.value.estado !== 'pendiente';
+    if (conflict.code === 'warning.missing_treatment') return !WARNING_TREATMENTS.has(item.value.tratamiento);
+    if (conflict.code === 'warning.default_priority') return !WARNING_PRIORITIES.has(item.value.prioridad);
+    return true;
+  });
+  item.selected = item.selected && warningDecisionReady(item);
+  return item;
+}
+
+function materializeWarnings(items, allowedSourceIds, allowedSignalIds) {
+  return items
+    .filter((item) => item.selected && warningDecisionReady(item))
+    .map((item) => {
+      const value = JSON.parse(JSON.stringify(item.value));
+      const pendingSources = new Set(value.vinculos_pendientes?.fuente_ids || []);
+      const pendingSignals = new Set(value.vinculos_pendientes?.signal_ids || []);
+      for (const id of value.fuente_ids || []) if (!allowedSourceIds.has(id)) pendingSources.add(id);
+      for (const id of value.signal_ids || []) if (!allowedSignalIds.has(id)) pendingSignals.add(id);
+      value.fuente_ids = (value.fuente_ids || []).filter((id) => allowedSourceIds.has(id));
+      value.signal_ids = (value.signal_ids || []).filter((id) => allowedSignalIds.has(id));
+      value.vinculos_pendientes = {
+        fuente_ids: [...pendingSources],
+        signal_ids: [...pendingSignals],
+      };
+      return value;
+    });
+}
+
+function importDecisionRecord(report) {
+  const plan = report.action === 'update' && report.update_plan ? report.update_plan : report.item_plan;
+  const warnings = report.action === 'update' ? plan.new_warnings : plan.warnings;
+  return {
+    candidato_id: report.value.id,
+    candidato_titulo: report.value.titulo,
+    accion: report.action,
+    destino_id: report.target_id || '',
+    decision: report.selected && !report.blocked && ['new', 'update'].includes(report.action) ? 'aplicada' : 'no_aplicada',
+    bloqueado: Boolean(report.blocked),
+    fuente_ids_confirmadas: (report.action === 'update' ? plan.new_sources : plan.sources).filter((item) => item.selected).map((item) => item.value.id),
+    senal_ids_confirmadas: (report.action === 'update' ? plan.new_signals : plan.signals).filter((item) => item.selected).map((item) => item.value.id),
+    advertencias: warnings.map((item) => ({
+      advertencia_id: item.value.advertencia_id,
+      decision: item.selected && warningDecisionReady(item) ? 'aplicada' : item.blocked ? 'bloqueada' : 'no_aplicada',
+      conflictos: item.conflicts.map((conflict) => conflict.code),
+      vinculos_pendientes: JSON.parse(JSON.stringify(item.value.vinculos_pendientes || { fuente_ids: [], signal_ids: [] })),
+    })),
+  };
+}
+
 export function applyCandidateDecisions(data, reports, {
   batchId = `lote-${new Date().toISOString().slice(0, 10)}`,
   importedAt = new Date().toISOString().slice(0, 10),
+  importedTimestamp = `${importedAt}T12:00:00.000Z`,
+  originalText = '',
+  formatVersion = CANDIDATE_FORMAT_VERSION,
+  query = '',
 } = {}) {
   const next = JSON.parse(JSON.stringify(data));
-  const applied = { new: 0, updates: 0, sources: 0, signals: 0, field_changes: 0 };
+  const applied = { new: 0, updates: 0, sources: 0, signals: 0, warnings: 0, warning_rejections: 0, pending_links: 0, field_changes: 0 };
   for (const report of reports.filter((item) => item.selected && !item.blocked)) {
     if (report.action === 'new') {
-      next.macroeventos.push(JSON.parse(JSON.stringify(report.value)));
+      const selectedSources = report.item_plan.sources.filter((item) => item.selected).map((item) => JSON.parse(JSON.stringify(item.value)));
+      const allowedSourceIds = new Set(selectedSources.map((source) => source.id));
+      const selectedSignals = report.item_plan.signals.filter((item) => item.selected).map((item) => {
+        const value = JSON.parse(JSON.stringify(item.value));
+        const pending = (value.fuente_ids || []).filter((id) => !allowedSourceIds.has(id));
+        value.fuente_ids = (value.fuente_ids || []).filter((id) => allowedSourceIds.has(id));
+        if (pending.length) value.vinculos_pendientes_fuente_ids = pending;
+        return value;
+      });
+      const allowedSignalIds = new Set(selectedSignals.map((signal) => signal.id));
+      const selectedWarnings = materializeWarnings(report.item_plan.warnings, allowedSourceIds, allowedSignalIds);
+      const nextEvent = JSON.parse(JSON.stringify(report.value));
+      nextEvent.fuentes = selectedSources;
+      nextEvent.senales = selectedSignals;
+      nextEvent.advertencias = selectedWarnings;
+      nextEvent.importacion = {
+        ...nextEvent.importacion,
+        advertencia_ids_agregadas: selectedWarnings.map((warning) => warning.advertencia_id),
+      };
+      next.macroeventos.push(nextEvent);
       applied.new += 1;
+      applied.sources += selectedSources.length;
+      applied.signals += selectedSignals.length;
+      applied.warnings += selectedWarnings.length;
+      applied.warning_rejections += report.item_plan.warnings.length - selectedWarnings.length;
+      applied.pending_links += selectedWarnings.filter((warning) => warning.vinculos_pendientes?.fuente_ids?.length || warning.vinculos_pendientes?.signal_ids?.length).length;
       continue;
     }
     if (report.action !== 'update' || !report.target_id || !report.update_plan) continue;
@@ -818,12 +1128,18 @@ export function applyCandidateDecisions(data, reports, {
     if (!target) throw new Error(`No se encontró el macroevento de destino ${report.target_id}.`);
     const selectedSources = report.update_plan.new_sources.filter((item) => item.selected).map((item) => JSON.parse(JSON.stringify(item.value)));
     const allowedSourceIds = new Set([...(target.fuentes || []).map((source) => source.id), ...selectedSources.map((source) => source.id)]);
-    const selectedSignals = report.update_plan.new_signals.filter((item) => item.selected).map((item) => ({
-      ...JSON.parse(JSON.stringify(item.value)),
-      fuente_ids: (item.value.fuente_ids || []).filter((id) => allowedSourceIds.has(id)),
-    }));
+    const selectedSignals = report.update_plan.new_signals.filter((item) => item.selected).map((item) => {
+      const value = JSON.parse(JSON.stringify(item.value));
+      const pending = (value.fuente_ids || []).filter((id) => !allowedSourceIds.has(id));
+      value.fuente_ids = (value.fuente_ids || []).filter((id) => allowedSourceIds.has(id));
+      if (pending.length) value.vinculos_pendientes_fuente_ids = pending;
+      return value;
+    });
+    const allowedSignalIds = new Set([...(target.senales || []).map((signal) => signal.id), ...selectedSignals.map((signal) => signal.id)]);
+    const selectedWarnings = materializeWarnings(report.update_plan.new_warnings, allowedSourceIds, allowedSignalIds);
     target.fuentes = [...(target.fuentes || []), ...selectedSources];
     target.senales = [...(target.senales || []), ...selectedSignals];
+    target.advertencias = [...(target.advertencias || []), ...selectedWarnings];
     const appliedChanges = [];
     for (const change of report.update_plan.field_changes.filter((item) => item.selected)) {
       if (change.mode === 'replace_evaluation') {
@@ -846,13 +1162,27 @@ export function applyCandidateDecisions(data, reports, {
       justificacion: report.classification.justification,
       fuente_ids_agregadas: selectedSources.map((source) => source.id),
       senal_ids_agregadas: selectedSignals.map((signal) => signal.id),
+      advertencia_ids_agregadas: selectedWarnings.map((warning) => warning.advertencia_id),
       campos_modificados: appliedChanges,
     }];
     applied.updates += 1;
     applied.sources += selectedSources.length;
     applied.signals += selectedSignals.length;
+    applied.warnings += selectedWarnings.length;
+    applied.warning_rejections += report.update_plan.new_warnings.length - selectedWarnings.length;
+    applied.pending_links += selectedWarnings.filter((warning) => warning.vinculos_pendientes?.fuente_ids?.length || warning.vinculos_pendientes?.signal_ids?.length).length;
     applied.field_changes += appliedChanges.length;
   }
+  next.importaciones_candidatos = [...(next.importaciones_candidatos || []), {
+    lote_id: batchId,
+    importado_el: importedAt,
+    importado_en: isoTimestamp(importedTimestamp),
+    formato_version: Number(formatVersion || CANDIDATE_FORMAT_VERSION),
+    consulta: text(query, 1000),
+    respuesta_original: text(originalText, MAX_CANDIDATE_INPUT_CHARS),
+    resultado_normalizado: reports.map((report) => JSON.parse(JSON.stringify(report.value))),
+    decisiones: reports.map(importDecisionRecord),
+  }];
   return { data: next, applied };
 }
 
@@ -918,6 +1248,17 @@ export function candidateExample() {
         intensidad: null,
         localizaciones: [],
       }],
+      advertencias: [{
+        advertencia_id: 'adv-identificador-estable-1',
+        descripcion: 'Limitación, contradicción, laguna de evidencia o inferencia que requiere decisión editorial.',
+        tipo: 'laguna_evidencia',
+        signal_ids: ['senal-1'],
+        fuente_ids: ['fuente-1'],
+        estado: 'pendiente',
+        tratamiento: 'relevante',
+        prioridad: 'media',
+        notas_editoriales: '',
+      }],
     }],
   };
 }
@@ -946,6 +1287,12 @@ Condiciones editoriales:
 10. Si es una actualización, incluye el "macroevento_existente_id" exacto y conserva las nuevas señales y fuentes.
 11. Usa "tipo_evolucion": "continuidad", "avance", "aceleracion", "bloqueo", "reversion", "cambio_alcance", "cambio_actores", "contradiccion" o "sin_novedad".
 12. En "cambios_propuestos", incluye únicamente cambios materiales de los campos principales; no propongas simples reformulaciones.
+13. Incluí en cada candidato una lista "advertencias", aunque esté vacía. Detectá contradicciones, lagunas de evidencia, inferencias frágiles, ambigüedades y riesgos editoriales; no inventes problemas para completar una cuota.
+14. Cada advertencia debe tener un "advertencia_id" único dentro del candidato, descripción concreta, tipo estable, prioridad y vínculos explícitos mediante "signal_ids" y "fuente_ids".
+15. Las listas "signal_ids" y "fuente_ids" pueden quedar vacías. No inventes IDs: usá únicamente IDs presentes en el candidato o dejá el vínculo vacío.
+16. Toda advertencia generada entra con "estado": "pendiente". El "tratamiento" debe ser una propuesta entre "bloqueante", "relevante", "observacion_posterior" o "irrelevante" y será confirmado por una persona.
+17. Una advertencia bloqueante debe describir exactamente qué afirmación, alcance o paso editorial no puede continuar y qué evidencia o decisión permitiría resolverla.
+18. No marques advertencias como resueltas o descartadas: esas decisiones pertenecen al flujo editorial humano del Observatorio.
 
 ESTRUCTURA DE REFERENCIA
 ${JSON.stringify(candidateExample(), null, 2)}`;

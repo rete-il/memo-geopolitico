@@ -171,6 +171,28 @@ test('prepara la publicación local sin escribir archivos ni carpetas transaccio
   assert.equal(fs.existsSync(path.join(fixture.backupsDir, 'publicaciones')), false);
 });
 
+test('bloquea la publicación cuando el expediente conserva una advertencia bloqueante pendiente', (context) => {
+  const fixture = makeFixture(context);
+  const data = {
+    schema_version: 3,
+    macroeventos: [{
+      id: EVENT_ID,
+      advertencias: [{
+        advertencia_id: 'adv-lobito-bloqueo-001',
+        descripcion: 'Falta evidencia necesaria para publicar.',
+        tipo: 'insuficiencia_evidencia',
+        estado: 'pendiente',
+        tratamiento: 'bloqueante',
+      }],
+      excepciones_advertencias: [],
+    }],
+  };
+  const result = planLocalPublication({ ...fixture, data });
+  assert.equal(result.status, 'blocked');
+  assert.equal(result.blocks[0].code, 'unresolved-blocking-warnings');
+  assert.match(result.blocks[0].detail, /adv-lobito-bloqueo-001/);
+});
+
 test('publica localmente con estado y fechas públicas sin modificar el preview', (context) => {
   const fixture = makeFixture(context);
   const previewBefore = fs.readFileSync(fixture.previewFile);

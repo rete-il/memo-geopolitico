@@ -7,6 +7,7 @@ import {
   assertValidPublicProjection,
   promotePublicProcess,
 } from './public-projection.mjs';
+import { hasUnresolvedBlockingWarning } from './warnings-contract.mjs';
 
 const clean = (value) => String(value ?? '').trim();
 const VALID_ID = /^[a-z0-9](?:[a-z0-9-]{0,198}[a-z0-9])?$/;
@@ -264,6 +265,7 @@ export function planLocalPublication({
   sessionsDir,
   publicationsDir,
   backupsDir,
+  data,
   eventId,
   publishedOn,
 } = {}) {
@@ -281,6 +283,26 @@ export function planLocalPublication({
   }
   if (session.macroevento_id !== id) {
     return { status: 'blocked', blocks: [issue('session-identity-mismatch', 'La sesión pertenece a otro macroevento')] };
+  }
+  const event = data ? (data.macroeventos || []).find((item) => clean(item?.id) === id) : null;
+  if (data && !event) {
+    return { status: 'blocked', blocks: [issue('publication-event-missing', 'No se encontró el expediente interno del macroevento')] };
+  }
+  if (event && hasUnresolvedBlockingWarning(event, { sessionId: session.session_id })) {
+    const blockingIds = (event.advertencias || [])
+      .filter((warning) => (
+        warning?.estado === 'pendiente'
+        && warning?.tratamiento === 'bloqueante'
+        && !(event.excepciones_advertencias || []).some((exception) => (
+          clean(exception?.advertencia_id) === clean(warning?.advertencia_id)
+          && clean(exception?.session_id) === clean(session.session_id)
+        ))
+      ))
+      .map((warning) => warning.advertencia_id);
+    return {
+      status: 'blocked',
+      blocks: [issue('unresolved-blocking-warnings', 'La publicación está bloqueada por advertencias pendientes', `Gestioná o resolvé estas advertencias en el expediente: ${blockingIds.join(', ')}.`)],
+    };
   }
   const approved = session.respuesta_chatgpt?.validacion?.metadata || {};
   const slug = clean(approved.slug);
@@ -439,6 +461,7 @@ export function planLocalPublication({
     },
     editorial_gate: {
       unresolved_markers: 0,
+      unresolved_blocking_warnings: 0,
       linked_sources: metadata.source_ids.length,
       macroevent_verified: true,
       requires_human_confirmation: operation !== 'sin_cambios',

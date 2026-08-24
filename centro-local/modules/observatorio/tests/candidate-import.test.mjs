@@ -7,9 +7,12 @@ import {
   candidateExample,
   candidateFormatInstructions,
   configureCandidateAction,
+  configureCandidateWarning,
   parseCandidateText,
   prepareCandidateBatch,
+  warningDecisionReady,
 } from '../public/candidate-import.js';
+import { validateWarningsData } from '../lib/warnings-contract.mjs';
 
 const taxonomy = {
   schema_version: 1,
@@ -76,6 +79,20 @@ function baseCandidate(overrides = {}) {
       descripcion: 'Se anuncia una inversión plurianual.',
       fuente_ids: ['fuente-1'],
     }],
+    ...overrides,
+  };
+}
+
+function baseWarning(overrides = {}) {
+  return {
+    advertencia_id: 'adv-evidencia-1',
+    descripcion: 'La conclusión depende de una sola publicación y requiere corroboración.',
+    tipo: 'laguna_evidencia',
+    signal_ids: ['senal-1'],
+    fuente_ids: ['fuente-1'],
+    estado: 'pendiente',
+    tratamiento: 'relevante',
+    prioridad: 'media',
     ...overrides,
   };
 }
@@ -261,6 +278,9 @@ test('la plantilla y las instrucciones declaran el contrato vigente', () => {
   assert.match(instructions, /"candidatos"/);
   assert.match(instructions, /"accion_sugerida"/);
   assert.match(instructions, /"macroevento_existente_id"/);
+  assert.match(instructions, /"advertencias"/);
+  assert.match(instructions, /advertencia_id/);
+  assert.match(instructions, /observacion_posterior/);
 });
 
 test('aplica una actualización selectiva sin cambiar identidad ni estado editorial', () => {
@@ -353,4 +373,130 @@ test('permite resolver manualmente una coincidencia dudosa', () => {
   assert.equal(report.action, 'update');
   assert.equal(report.target_id, target.id);
   assert.ok(report.update_plan);
+});
+
+test('normaliza advertencias con vínculos válidos y exige confirmación individual', () => {
+  const report = prepare([baseCandidate({ advertencias: [baseWarning()] })]).candidates[0];
+  const item = report.item_plan.warnings[0];
+  assert.equal(report.blocked, false);
+  assert.equal(report.value.advertencias.length, 1);
+  assert.deepEqual(item.value.signal_ids, [report.value.senales[0].id]);
+  assert.deepEqual(item.value.fuente_ids, [report.value.fuentes[0].id]);
+  assert.equal(item.value.estado, 'pendiente');
+  assert.equal(item.value.tratamiento, 'relevante');
+  assert.equal(warningDecisionReady(item), true);
+  assert.equal(item.selected, false);
+});
+
+test('una advertencia sin estado o tratamiento no se aplica hasta la decisión humana', () => {
+  const report = prepare([baseCandidate({
+    advertencias: [baseWarning({ estado: '', tratamiento: '' })],
+  })]).candidates[0];
+  const item = report.item_plan.warnings[0];
+  assert.equal(report.blocked, false);
+  assert.equal(warningDecisionReady(item), false);
+  assert.ok(item.conflicts.some((conflict) => conflict.code === 'warning.missing_state'));
+  assert.ok(item.conflicts.some((conflict) => conflict.code === 'warning.missing_treatment'));
+  configureCandidateWarning(item, { estado: 'pendiente' });
+  configureCandidateWarning(item, { tratamiento: 'bloqueante' });
+  assert.equal(warningDecisionReady(item), true);
+  assert.equal(item.conflicts.some((conflict) => conflict.decision_required), false);
+});
+
+test('un advertencia_id duplicado bloquea sólo el ítem afectado', () => {
+  const report = prepare([baseCandidate({
+    advertencias: [baseWarning(), baseWarning({ descripcion: 'Segunda advertencia con el mismo ID.' })],
+  })]).candidates[0];
+  assert.equal(report.blocked, false);
+  assert.equal(report.item_plan.warnings[0].blocked, false);
+  assert.equal(report.item_plan.warnings[1].blocked, true);
+  assert.ok(report.item_plan.warnings[1].conflicts.some((conflict) => conflict.code === 'warning.duplicate_id'));
+});
+
+test('conserva referencias desconocidas como vínculos pendientes sin inventarlas', () => {
+  const report = prepare([baseCandidate({
+    advertencias: [baseWarning({ signal_ids: ['senal-inexistente'], fuente_ids: ['fuente-inexistente'] })],
+  })]).candidates[0];
+  const item = report.item_plan.warnings[0];
+  assert.deepEqual(item.value.signal_ids, []);
+  assert.deepEqual(item.value.fuente_ids, []);
+  assert.deepEqual(item.value.vinculos_pendientes.signal_ids, ['senal-inexistente']);
+  assert.deepEqual(item.value.vinculos_pendientes.fuente_ids, ['fuente-inexistente']);
+  assert.equal(item.blocked, false);
+  report.selected = true;
+  item.selected = true;
+  const result = applyCandidateDecisions({ schema_version: 3, macroeventos: [], expedientes_editoriales: [] }, [report]);
+  const imported = result.data.macroeventos[0].advertencias[0];
+  assert.deepEqual(imported.vinculos_pendientes.signal_ids, ['senal-inexistente']);
+  assert.deepEqual(imported.vinculos_pendientes.fuente_ids, ['fuente-inexistente']);
+  assert.equal(result.applied.pending_links, 1);
+  assert.equal(validateWarningsData(result.data).valid, true);
+});
+
+test('en una actualización el ID ya existente afecta sólo esa advertencia', () => {
+  const existing = prepare([baseCandidate()]).candidates[0].value;
+  existing.advertencias = [{
+    ...baseWarning(),
+    tipo: 'laguna-evidencia',
+    creada_el: '2026-07-20T12:00:00.000Z',
+    actualizada_el: '2026-07-20T12:00:00.000Z',
+    resuelta_el: null,
+    resuelta_con_fuente_ids: [],
+    resolucion: null,
+  }];
+  const report = prepare([baseCandidate({
+    advertencias: [
+      baseWarning(),
+      baseWarning({ advertencia_id: 'adv-evidencia-2', descripcion: 'Otra limitación independiente.' }),
+    ],
+  })], [existing]).candidates[0];
+  assert.equal(report.action, 'update');
+  assert.equal(report.blocked, false);
+  assert.equal(report.update_plan.new_warnings[0].blocked, true);
+  assert.equal(report.update_plan.new_warnings[1].blocked, false);
+});
+
+test('un lote de 15 aísla candidatos e ítems defectuosos', () => {
+  const candidates = Array.from({ length: 15 }, (_, index) => baseCandidate({
+    id: `macroevento-lote-${index + 1}`,
+    titulo: index === 7 ? '' : `Macroevento de prueba ${index + 1}`,
+    advertencias: index === 4
+      ? [baseWarning({ advertencia_id: 'adv-duplicada' }), baseWarning({ advertencia_id: 'adv-duplicada', descripcion: 'Duplicada.' })]
+      : [baseWarning({ advertencia_id: `adv-lote-${index + 1}` })],
+  }));
+  const batch = prepare(candidates);
+  assert.equal(batch.summary.total, 15);
+  assert.equal(batch.summary.blocked, 1);
+  assert.equal(batch.candidates[4].blocked, false);
+  assert.equal(batch.candidates[4].item_plan.warnings.filter((item) => item.blocked).length, 1);
+  assert.equal(batch.candidates.filter((item) => !item.blocked).length, 14);
+});
+
+test('registra por separado respuesta original, normalización y decisiones no aplicadas', () => {
+  const raw = JSON.stringify({
+    formato: 'observatorio-candidatos',
+    schema_version: 3,
+    consulta: 'prueba de trazabilidad',
+    candidatos: [baseCandidate({ advertencias: [baseWarning()] })],
+  }, null, 2);
+  const parsed = parseCandidateText(raw);
+  const batch = prepareCandidateBatch(parsed, {
+    existingEvents: [], taxonomy, catalog,
+    config: { horizonte_minimo_anios: 3, horizonte_maximo_anios: 10 },
+    importedAt: '2026-07-23', batchId: 'lote-trazable',
+  });
+  batch.candidates[0].selected = true;
+  const result = applyCandidateDecisions({ schema_version: 3, macroeventos: [], expedientes_editoriales: [] }, batch.candidates, {
+    batchId: batch.metadata.batch_id,
+    importedAt: batch.metadata.imported_at,
+    importedTimestamp: batch.metadata.imported_timestamp,
+    originalText: batch.metadata.original_text,
+    formatVersion: batch.metadata.schema_version,
+    query: batch.metadata.consulta,
+  });
+  const trace = result.data.importaciones_candidatos[0];
+  assert.equal(trace.respuesta_original, raw);
+  assert.equal(trace.resultado_normalizado.length, 1);
+  assert.equal(trace.decisiones[0].advertencias[0].decision, 'no_aplicada');
+  assert.equal(result.data.macroeventos[0].advertencias.length, 0);
 });

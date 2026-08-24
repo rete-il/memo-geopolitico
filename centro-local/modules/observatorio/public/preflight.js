@@ -126,10 +126,10 @@ export function runPreflight({
   if (!data || typeof data !== 'object' || Array.isArray(data)) {
     blocks.push(item('invalid-data', 'Datos canónicos ilegibles', 'La respuesta del Observatorio no contiene un objeto JSON válido.'));
   }
-  if (data?.schema_version !== 2) {
-    blocks.push(item('invalid-schema', 'Esquema de datos incompatible', `Se esperaba schema_version 2 y se recibió ${data?.schema_version ?? 'ninguno'}.`));
+  if (data?.schema_version !== 3) {
+    blocks.push(item('invalid-schema', 'Esquema de datos incompatible', `Se esperaba el esquema interno schema_version 3 y se recibió ${data?.schema_version ?? 'ninguno'}.`));
   } else {
-    passed.push('Esquema canónico v2 reconocido.');
+    passed.push('Esquema interno v3 reconocido.');
   }
   if (!Array.isArray(data?.macroeventos)) {
     blocks.push(item('invalid-event-list', 'Lista de macroeventos inválida', 'macroeventos debe ser una lista.'));

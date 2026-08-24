@@ -4,8 +4,10 @@ import {
   candidateFormatInstructions,
   applyCandidateDecisions,
   configureCandidateAction,
+  configureCandidateWarning,
   parseCandidateText,
   prepareCandidateBatch,
+  warningDecisionReady,
 } from './candidate-import.js';
 import {
   buildSearchPrompt,
@@ -13,8 +15,18 @@ import {
   suggestSources,
   topicsForProfile,
 } from './search-generator.js';
+import {
+  WARNING_EDITOR_ACTOR,
+  WARNING_PRIORITY_LABELS,
+  WARNING_STATE_LABELS,
+  WARNING_TREATMENT_LABELS,
+  filterAndSortWarnings,
+  warningChangeSummary,
+  warningPromptDecision,
+  warningSummary,
+} from './warnings-ui.js';
 
-const APP_VERSION = '0.6.3';
+const APP_VERSION = '0.7.0';
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
@@ -47,11 +59,14 @@ const S = {
   publicExpedients: { available: false, by_event: {}, warnings: [] },
   backups: [],
   catalogBackups: [],
+  publicSyncPlan: null,
   changed: false,
   eventDraft: null,
   eventDraftChanged: false,
   eventEditorMode: '',
   lastEditedEventId: '',
+  warningSelectedId: '',
+  warningRadar: false,
   expDraft: null,
   currentPrompt: '',
   currentPromptMode: '',
@@ -215,6 +230,7 @@ function dirty(value = true) {
   S.changed = value;
   $('#save-state').textContent = value ? 'Cambios sin guardar' : 'Sin cambios';
   $('#save-state').classList.toggle('dirty', value);
+  renderPublicSyncReadiness();
   refreshPreparationAction();
 }
 
@@ -249,7 +265,8 @@ function refreshPreparationAction() {
   help.textContent = reason || 'Genera los prompts, propuestas de archivos e informe de trazabilidad para este macroevento.';
 }
 
-function markEventDraftChanged() {
+function markEventDraftChanged(event) {
+  if (event?.target?.closest('.warning-toolbar, .event-record-tabs')) return;
   if (!S.eventDraft || S.eventEditorMode !== 'edit') return;
   S.eventDraftChanged = true;
   refreshPreparationAction();
@@ -279,11 +296,13 @@ async function bootstrap() {
   S.publicExpedients = payload.public_expedients || S.publicExpedients;
   S.backups = payload.backups || [];
   S.catalogBackups = payload.catalog_backups || [];
+  S.publicSyncPlan = null;
   dirty(false);
   fillFilters();
   renderAll();
   renderHelp();
   openRequestedLocation();
+  await refreshPublicSyncReadiness();
 }
 
 function openRequestedLocation() {
@@ -778,7 +797,7 @@ function renderData() {
 }
 
 function blankEvent() {
-  return { id: '', titulo: '', tipo_proceso: 'macroproceso_estructural', estado_editorial: 'borrador', estado_verificacion: 'pendiente', fecha_corte: today(), regiones: [], categoria: 'infraestructura_conectividad', tema_ids: [], clasificacion_tematica: { origen: 'humano', estado_revision: 'pendiente', taxonomy_version: Number(S.taxonomy.schema_version || 1), revisada_el: null }, descripcion: '', senales: [], actores: [], intereses: [], horizonte: { min_anios: 3, max_anios: 10 }, escenarios: { base: '', adverso: '', transformador: '' }, indicadores: [], evaluacion: { impacto: 3, probabilidad: 3, alcance: 3, persistencia: 3, propagacion: 3, subcobertura: 3, incertidumbre: 3, urgencia: 3, cobertura_observada: 3, confianza: 'media' }, palabras_clave: [], fuentes: [] };
+  return { id: '', titulo: '', tipo_proceso: 'macroproceso_estructural', estado_editorial: 'borrador', estado_verificacion: 'pendiente', fecha_corte: today(), regiones: [], categoria: 'infraestructura_conectividad', tema_ids: [], clasificacion_tematica: { origen: 'humano', estado_revision: 'pendiente', taxonomy_version: Number(S.taxonomy.schema_version || 1), revisada_el: null }, descripcion: '', senales: [], actores: [], intereses: [], horizonte: { min_anios: 3, max_anios: 10 }, escenarios: { base: '', adverso: '', transformador: '' }, indicadores: [], evaluacion: { impacto: 3, probabilidad: 3, alcance: 3, persistencia: 3, propagacion: 3, subcobertura: 3, incertidumbre: 3, urgencia: 3, cobertura_observada: 3, confianza: 'media' }, palabras_clave: [], fuentes: [], advertencias: [], excepciones_advertencias: [] };
 }
 
 function uniqueId(base, existing) {
@@ -859,6 +878,11 @@ function fillEventFields(event, mode) {
   $('#duplicate-event').hidden = mode !== 'edit';
   renderSignalCards();
   renderSourceCards();
+  S.warningRadar = false;
+  S.warningSelectedId = '';
+  clearWarningFilters(false);
+  renderWarningCards();
+  activateEventRecordTab('signals');
   calcEvent();
 }
 
@@ -879,6 +903,8 @@ function openEvent(id = '', mode = 'edit') {
   S.eventDraft = deep(original);
   if (mode === 'duplicate') {
     const base = uniqueId(`${original.id}-copia`, new Set(S.data.macroeventos.map((item) => item.id)));
+    const originalSignalIds = S.eventDraft.senales.map((signal) => signal.id);
+    const originalSourceIds = S.eventDraft.fuentes.map((source) => source.id);
     S.eventDraft.id = base;
     S.eventDraft.titulo = `${original.titulo} (copia)`;
     S.eventDraft.estado_editorial = 'borrador';
@@ -886,7 +912,21 @@ function openEvent(id = '', mode = 'edit') {
     S.eventDraft.clasificacion_tematica = { ...(S.eventDraft.clasificacion_tematica || {}), estado_revision: 'pendiente', revisada_el: null };
     S.eventDraft.senales = S.eventDraft.senales.map((signal, index) => ({ ...signal, id: `sig-${base}-${String(index + 1).padStart(3, '0')}` }));
     S.eventDraft.fuentes = S.eventDraft.fuentes.map((source, index) => ({ ...source, id: `src-${base}-${String(index + 1).padStart(3, '0')}`, estado_verificacion: 'pendiente' }));
+    const signalIdMap = new Map(originalSignalIds.map((id, index) => [id, S.eventDraft.senales[index].id]));
+    const sourceIdMap = new Map(originalSourceIds.map((id, index) => [id, S.eventDraft.fuentes[index].id]));
     S.eventDraft.senales.forEach((signal) => { signal.fuente_ids = []; });
+    S.eventDraft.advertencias = (S.eventDraft.advertencias || []).map((warning, index) => ({
+      ...warning,
+      advertencia_id: `adv-${base}-${String(index + 1).padStart(3, '0')}`,
+      signal_ids: (warning.signal_ids || []).map((id) => signalIdMap.get(id)).filter(Boolean),
+      fuente_ids: (warning.fuente_ids || []).map((id) => sourceIdMap.get(id)).filter(Boolean),
+      resuelta_con_fuente_ids: (warning.resuelta_con_fuente_ids || []).map((id) => sourceIdMap.get(id)).filter(Boolean),
+      resolucion: warning.resolucion ? {
+        ...warning.resolucion,
+        fuente_ids: (warning.resolucion.fuente_ids || []).map((id) => sourceIdMap.get(id)).filter(Boolean),
+      } : warning.resolucion,
+    }));
+    S.eventDraft.excepciones_advertencias = [];
   }
   S.eventEditorMode = mode;
   S.eventDraftChanged = false;
@@ -919,6 +959,8 @@ function gatherEvent() {
     evaluacion: { impacto: Number($('#s-impact').value), probabilidad: Number($('#s-prob').value), alcance: Number($('#s-reach').value), persistencia: Number($('#s-persistence').value), propagacion: Number($('#s-spread').value), subcobertura: Number($('#s-gap').value), incertidumbre: Number($('#s-uncertainty').value), urgencia: Number($('#s-urgency').value), cobertura_observada: Number($('#s-coverage').value), confianza: $('#s-confidence').value },
     senales: S.eventDraft.senales,
     fuentes: S.eventDraft.fuentes,
+    advertencias: S.eventDraft.advertencias || [],
+    excepciones_advertencias: S.eventDraft.excepciones_advertencias || [],
   };
 }
 
@@ -931,6 +973,7 @@ function calcEvent() {
 
 function renderSignalCards() {
   const items = S.eventDraft?.senales || [];
+  $('#event-tab-signals-count').textContent = String(items.length);
   $('#signal-cards').innerHTML = items.length ? items.map((signal, index) => `<article class="item-card"><div><span class="badge ${signal.estado_revision === 'confirmada' ? 'good' : signal.estado_revision === 'descartada' ? 'bad' : 'warn'}">${esc(human(signal.estado_revision))}</span><h3>${esc(signal.titulo)}</h3><p>${esc(signal.fecha || 'Sin fecha')} · ${esc(signal.tipo || 'Sin tipo')} · origen ${esc(signal.origen)}</p><small>${esc(signal.descripcion || 'Sin descripción')}</small></div><div class="item-actions"><button type="button" class="btn small ghost" data-edit-signal="${index}">Editar</button><button type="button" class="btn small danger" data-delete-signal="${index}">Eliminar</button></div></article>`).join('') : '<p class="muted">Todavía no hay señales.</p>';
 }
 
@@ -940,11 +983,296 @@ function sourceCatalogMeta(source) {
 
 function renderSourceCards() {
   const items = S.eventDraft?.fuentes || [];
+  $('#event-tab-sources-count').textContent = String(items.length);
   $('#source-cards').innerHTML = items.length ? items.map((source, index) => {
     const media = sourceCatalogMeta(source);
     return `<article class="item-card"><div><span class="badge ${source.estado_verificacion === 'verificada' ? 'good' : source.estado_verificacion === 'descartada' ? 'bad' : source.estado_verificacion === 'revisada' ? 'info' : 'warn'}">${esc(human(source.estado_verificacion))}</span><span class="badge ${media ? 'info' : 'warn'}">${media ? 'Catalogada' : 'No catalogada'}</span><h3>${esc(source.medio || 'Fuente sin identificar')}</h3><p>${esc(source.titulo || 'Sin título')}</p><small>${esc(source.fecha || 'Sin fecha')} · ${esc(media?.familia || source.tipo || 'Sin clasificación')} · ${esc(media?.perspectiva || '')}</small>${source.url ? `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">Abrir fuente ↗</a>` : ''}</div><div class="item-actions"><button type="button" class="btn small ghost" data-edit-source="${index}">Editar</button><button type="button" class="btn small danger" data-delete-source="${index}">Eliminar</button></div></article>`;
   }).join('') : '<p class="muted">Todavía no hay fuentes.</p>';
   calcEvent();
+}
+
+function warningNow() {
+  return new Date().toISOString();
+}
+
+function displayWarningDate(value) {
+  if (!value || Number.isNaN(Date.parse(value))) return 'Sin fecha';
+  return new Intl.DateTimeFormat('es', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
+}
+
+function warningDateTimeLocal(value = warningNow()) {
+  const date = new Date(value);
+  const offset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() - offset).toISOString().slice(0, 16);
+}
+
+function warningHistoryEntry(warning, action, detail, actor, timestamp = warningNow()) {
+  const existing = new Set((warning.historial || []).map((item) => item.cambio_id));
+  const base = `hist-${slug(timestamp)}-${slug(action)}`;
+  return {
+    cambio_id: uniqueId(base, existing),
+    accion: action,
+    detalle: detail,
+    realizada_el: timestamp,
+    realizada_por: actor || WARNING_EDITOR_ACTOR,
+  };
+}
+
+function warningOptions(labels, selected) {
+  return Object.entries(labels).map(([value, label]) => `<option value="${value}" ${value === selected ? 'selected' : ''}>${esc(label)}</option>`).join('');
+}
+
+function activateEventRecordTab(name, { focus = false } = {}) {
+  const tabs = $$('[data-event-tab]', $('#event-record-tabs'));
+  const available = tabs.map((tab) => tab.dataset.eventTab);
+  const next = available.includes(name) ? name : available[0];
+  tabs.forEach((tab) => {
+    const active = tab.dataset.eventTab === next;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
+    if (active && focus) tab.focus();
+  });
+  $$('[data-event-panel]', $('.event-records')).forEach((panel) => { panel.hidden = panel.dataset.eventPanel !== next; });
+}
+
+function clearWarningFilters(render = true) {
+  for (const id of ['#warning-filter-state', '#warning-filter-treatment', '#warning-filter-priority', '#warning-filter-signal', '#warning-filter-source', '#warning-filter-prompt']) {
+    if ($(id)) $(id).value = '';
+  }
+  S.warningRadar = false;
+  if (render) renderWarningCards();
+}
+
+function warningFilters() {
+  return {
+    estado: $('#warning-filter-state').value,
+    tratamiento: $('#warning-filter-treatment').value,
+    prioridad: $('#warning-filter-priority').value,
+    signal: $('#warning-filter-signal').value,
+    source: $('#warning-filter-source').value,
+    prompt: $('#warning-filter-prompt').value,
+    radar: S.warningRadar,
+  };
+}
+
+function warningExceptions(warningId) {
+  return (S.eventDraft?.excepciones_advertencias || []).filter((item) => item.advertencia_id === warningId);
+}
+
+function renderWarningSummary() {
+  const summary = warningSummary(S.eventDraft?.advertencias || []);
+  $('#warning-summary').innerHTML = [
+    ['Pendientes bloqueantes', summary.pendingBlocking, 'bad'],
+    ['Pendientes relevantes', summary.pendingRelevant, 'warn'],
+    ['Resueltas', summary.resolved, 'good'],
+    ['Descartadas', summary.discarded, 'neutral'],
+    ['Radar', summary.radar, 'info'],
+  ].map(([label, value, tone]) => `<article class="warning-metric ${tone}"><span>${label}</span><strong>${value}</strong></article>`).join('');
+  $('#warning-radar-count').textContent = String(summary.radar);
+  $('#event-tab-warnings-count').textContent = String(summary.total);
+}
+
+function renderWarningCards() {
+  if (!S.eventDraft) return;
+  const warnings = S.eventDraft.advertencias || [];
+  renderWarningSummary();
+  const items = filterAndSortWarnings(warnings, warningFilters());
+  const radarButton = $('#warning-radar');
+  radarButton.setAttribute('aria-pressed', String(S.warningRadar));
+  radarButton.classList.toggle('active', S.warningRadar);
+  for (const selector of ['#warning-filter-state', '#warning-filter-treatment']) $(selector).disabled = S.warningRadar;
+  $('#warning-list-status').textContent = S.warningRadar
+    ? `${items.length} advertencia${items.length === 1 ? '' : 's'} pendiente${items.length === 1 ? '' : 's'} en Observación posterior, ordenadas por prioridad y antigüedad.`
+    : `${items.length} de ${warnings.length} advertencia${warnings.length === 1 ? '' : 's'}. La selección se conserva al cambiar filtros.`;
+  $('#warning-cards').innerHTML = items.length ? items.map((warning) => {
+    const index = warnings.indexOf(warning);
+    const prompt = warningPromptDecision(warning);
+    const history = warning.historial || [];
+    const last = history.at(-1);
+    const exceptions = warningExceptions(warning.advertencia_id);
+    const selected = S.warningSelectedId === warning.advertencia_id;
+    return `<article class="warning-card ${selected ? 'selected' : ''}" data-warning-card="${esc(warning.advertencia_id)}">
+      <header><div><span class="badge ${warning.estado === 'resuelta' ? 'good' : warning.estado === 'descartada' ? 'neutral' : warning.tratamiento === 'bloqueante' ? 'bad' : 'warn'}">${esc(WARNING_STATE_LABELS[warning.estado] || warning.estado)}</span><span class="badge info">${esc(WARNING_TREATMENT_LABELS[warning.tratamiento] || warning.tratamiento)}</span><span class="badge ${warning.prioridad === 'alta' ? 'bad' : warning.prioridad === 'media' ? 'warn' : 'info'}">Prioridad ${esc(WARNING_PRIORITY_LABELS[warning.prioridad] || warning.prioridad)}</span></div><small>${esc(warning.advertencia_id)}</small></header>
+      <p class="warning-description">${esc(warning.descripcion)}</p>
+      <dl class="warning-card-meta"><div><dt>Señales</dt><dd>${(warning.signal_ids || []).length || 'Sin vínculo'}</dd></div><div><dt>Fuentes</dt><dd>${(warning.fuente_ids || []).length || 'Sin vínculo'}</dd></div><div><dt>Regla derivada</dt><dd><span class="prompt-rule ${prompt.included ? 'included' : 'excluded'}">${esc(prompt.label)}</span></dd></div><div><dt>Última decisión</dt><dd>${last ? `${esc(displayWarningDate(last.realizada_el))} · ${esc(last.realizada_por)}` : esc(displayWarningDate(warning.actualizada_el))}</dd></div></dl>
+      ${exceptions.length ? `<p class="warning-exception-note">${exceptions.length} excepción${exceptions.length === 1 ? '' : 'es'} de sesión registrada${exceptions.length === 1 ? '' : 's'}.</p>` : ''}
+      <div class="warning-quick-actions">
+        <label class="field"><span>Tratamiento</span><select data-warning-field="tratamiento" data-warning-index="${index}" aria-label="Tratamiento de ${esc(warning.advertencia_id)}">${warningOptions(WARNING_TREATMENT_LABELS, warning.tratamiento)}</select></label>
+        <label class="field"><span>Prioridad</span><select data-warning-field="prioridad" data-warning-index="${index}" aria-label="Prioridad de ${esc(warning.advertencia_id)}">${warningOptions(WARNING_PRIORITY_LABELS, warning.prioridad)}</select></label>
+        <label class="field"><span>Estado</span><select data-warning-field="estado" data-warning-index="${index}" aria-label="Estado de ${esc(warning.advertencia_id)}">${warningOptions(WARNING_STATE_LABELS, warning.estado)}</select></label>
+        <button type="button" class="btn small ghost" data-edit-warning="${index}">Abrir detalle</button>
+        ${S.warningRadar ? `<button type="button" class="btn small primary" data-reactivate-warning="${index}">Reabrir para revisión</button>` : ''}
+      </div>
+    </article>`;
+  }).join('') : `<div class="empty warning-empty"><strong>${warnings.length ? 'No hay coincidencias.' : 'Todavía no hay advertencias.'}</strong><p>${warnings.length ? 'Modificá o limpiá los filtros.' : 'Creá la primera advertencia para registrar un límite, faltante o contradicción.'}</p></div>`;
+}
+
+function blankWarning() {
+  const eventId = slug($('#e-id').value || S.eventDraft.id || $('#e-title').value || 'evento');
+  const existing = new Set((S.eventDraft.advertencias || []).map((item) => item.advertencia_id));
+  const timestamp = warningNow();
+  return {
+    advertencia_id: uniqueId(`adv-${eventId}-${String((S.eventDraft.advertencias || []).length + 1).padStart(3, '0')}`, existing),
+    descripcion: '',
+    tipo: 'evidencia_insuficiente',
+    signal_ids: [],
+    fuente_ids: [],
+    estado: 'pendiente',
+    tratamiento: 'relevante',
+    prioridad: 'media',
+    creada_el: timestamp,
+    actualizada_el: timestamp,
+    resuelta_el: null,
+    resuelta_con_fuente_ids: [],
+    resolucion: null,
+    notas_editoriales: '',
+    historial: [],
+  };
+}
+
+function renderWarningLinkOptions(warning) {
+  $('#warning-signal-options').innerHTML = (S.eventDraft.senales || []).length
+    ? S.eventDraft.senales.map((signal) => `<label class="check-card"><input type="checkbox" value="${esc(signal.id)}" ${warning.signal_ids?.includes(signal.id) ? 'checked' : ''}><span><strong>${esc(signal.titulo || signal.id)}</strong><small>${esc(signal.id)}</small></span></label>`).join('')
+    : '<p class="muted">No hay señales en este expediente.</p>';
+  $('#warning-source-options').innerHTML = (S.eventDraft.fuentes || []).length
+    ? S.eventDraft.fuentes.map((source) => `<label class="check-card"><input type="checkbox" value="${esc(source.id)}" ${warning.fuente_ids?.includes(source.id) ? 'checked' : ''}><span><strong>${esc(source.medio || source.id)}</strong><small>${esc(source.titulo || source.id)}</small></span></label>`).join('')
+    : '<p class="muted">No hay fuentes en este expediente.</p>';
+  $('#warning-resolution-source-options').innerHTML = (S.eventDraft.fuentes || []).length
+    ? S.eventDraft.fuentes.map((source) => `<label class="check-card"><input type="checkbox" value="${esc(source.id)}" ${warning.resolucion?.fuente_ids?.includes(source.id) ? 'checked' : ''}><span><strong>${esc(source.medio || source.id)}</strong><small>${esc(source.titulo || source.id)}</small></span></label>`).join('')
+    : '<p class="muted">Agregá una fuente antes de resolver por evidencia.</p>';
+}
+
+function renderWarningTrace(warning) {
+  const history = warning.historial || [];
+  $('#warning-history').innerHTML = history.length ? [...history].reverse().map((item) => `<article><strong>${esc(human(item.accion))}</strong><p>${esc(item.detalle)}</p><small>${esc(displayWarningDate(item.realizada_el))} · ${esc(item.realizada_por)}</small></article>`).join('') : '<p class="muted">El primer registro se creará al aplicar la advertencia.</p>';
+  const exceptions = warningExceptions(warning.advertencia_id);
+  $('#warning-exceptions').innerHTML = exceptions.length ? [...exceptions].reverse().map((item) => `<article><strong>${esc(human(item.alcance))}</strong><p>${esc(item.motivo)}</p><small>${esc(displayWarningDate(item.decidida_el))} · ${esc(item.decidida_por)} · sesión ${esc(item.session_id)}</small></article>`).join('') : '<p class="muted">Sin excepciones de sesión.</p>';
+  const sessions = unique(exceptions.map((item) => item.session_id));
+  $('#warning-generations').innerHTML = sessions.length ? sessions.map((session) => `<article><strong>${esc(session)}</strong><p>La excepción de sesión afectó esta preparación o generación.</p></article>`).join('') : '<p class="muted">No hay generaciones o sesiones afectadas registradas.</p>';
+}
+
+function updateWarningEditorRule() {
+  const decision = warningPromptDecision({ estado: $('#warning-state').value, tratamiento: $('#warning-treatment').value });
+  $('#warning-prompt-rule').textContent = decision.label;
+  $('#warning-prompt-rule').className = decision.included ? 'included' : 'excluded';
+  $('#warning-prompt-help').textContent = decision.help;
+}
+
+function updateWarningResolutionFields() {
+  const state = $('#warning-state').value;
+  const section = $('#warning-resolution-section');
+  section.hidden = state === 'pendiente';
+  const discarded = state === 'descartada';
+  if (discarded) $('#warning-resolution-type').value = 'decision_editorial';
+  $('#warning-resolution-type').disabled = discarded;
+  $('#warning-resolution-legend').textContent = discarded ? 'Decisión de descarte' : 'Resolución';
+  $('#warning-resolution-help').textContent = discarded
+    ? 'Descartar exige una decisión editorial motivada; no equivale a resolver por evidencia.'
+    : 'Resolver exige motivo, actor, fecha y, si corresponde, las fuentes que aportan la evidencia.';
+  const needsDecision = state !== 'pendiente';
+  $('#warning-resolution-reason').required = needsDecision;
+  $('#warning-resolution-date').required = needsDecision;
+  const evidence = !discarded && $('#warning-resolution-type').value === 'evidencia';
+  $('#warning-resolution-sources-wrap').hidden = !evidence;
+  updateWarningEditorRule();
+}
+
+function openWarning(index = -1, { proposedState = '' } = {}) {
+  const warning = index >= 0 ? deep(S.eventDraft.advertencias[index]) : blankWarning();
+  if (proposedState) warning.estado = proposedState;
+  S.warningSelectedId = warning.advertencia_id;
+  renderWarningCards();
+  $('#warning-index').value = String(index);
+  $('#warning-editor-title').textContent = index >= 0 ? 'Editar advertencia' : 'Nueva advertencia';
+  $('#warning-id').value = warning.advertencia_id;
+  $('#warning-type').value = warning.tipo;
+  $('#warning-description').value = warning.descripcion;
+  $('#warning-state').value = warning.estado;
+  $('#warning-treatment').value = warning.tratamiento;
+  $('#warning-priority').value = warning.prioridad;
+  $('#warning-actor').value = warning.resolucion?.decidida_por || warning.historial?.at(-1)?.realizada_por || WARNING_EDITOR_ACTOR;
+  $('#warning-notes').value = warning.notas_editoriales || '';
+  $('#warning-resolution-type').value = warning.estado === 'descartada' ? 'decision_editorial' : warning.resolucion?.tipo || 'evidencia';
+  $('#warning-resolution-date').value = warningDateTimeLocal(warning.resolucion?.decidida_el || warningNow());
+  $('#warning-resolution-reason').value = warning.resolucion?.motivo || '';
+  $('#warning-confirmed').checked = false;
+  $('#warning-editor-status').textContent = proposedState ? `Completá y confirmá la decisión para pasar a ${WARNING_STATE_LABELS[proposedState]}.` : 'Cada aplicación agrega fecha y actor al historial.';
+  renderWarningLinkOptions(warning);
+  renderWarningTrace(warning);
+  updateWarningResolutionFields();
+  $('#warning-editor').showModal();
+  (index >= 0 ? $('#warning-description') : $('#warning-id')).focus();
+}
+
+function checkedWarningValues(selector) {
+  return $$('input:checked', $(selector)).map((input) => input.value);
+}
+
+function gatherWarning() {
+  const index = Number($('#warning-index').value);
+  const original = index >= 0 ? S.eventDraft.advertencias[index] : null;
+  const timestamp = warningNow();
+  const state = $('#warning-state').value;
+  const actor = $('#warning-actor').value.trim();
+  const linkedSources = checkedWarningValues('#warning-source-options');
+  const resolutionType = state === 'descartada' ? 'decision_editorial' : $('#warning-resolution-type').value;
+  const resolutionSources = state === 'resuelta' && resolutionType === 'evidencia'
+    ? checkedWarningValues('#warning-resolution-source-options')
+    : [];
+  const decidedAt = state === 'pendiente' ? null : new Date($('#warning-resolution-date').value).toISOString();
+  const next = {
+    ...(original || blankWarning()),
+    advertencia_id: slug($('#warning-id').value),
+    tipo: slug($('#warning-type').value),
+    descripcion: $('#warning-description').value.trim(),
+    estado: state,
+    tratamiento: $('#warning-treatment').value,
+    prioridad: $('#warning-priority').value,
+    signal_ids: checkedWarningValues('#warning-signal-options'),
+    fuente_ids: unique([...linkedSources, ...resolutionSources]),
+    notas_editoriales: $('#warning-notes').value.trim(),
+    creada_el: original?.creada_el || timestamp,
+    actualizada_el: timestamp,
+    resuelta_el: state === 'resuelta' ? decidedAt : null,
+    resuelta_con_fuente_ids: state === 'resuelta' ? resolutionSources : [],
+    resolucion: state === 'pendiente' ? null : {
+      tipo: resolutionType,
+      motivo: $('#warning-resolution-reason').value.trim(),
+      decidida_el: decidedAt,
+      decidida_por: actor,
+      fuente_ids: resolutionSources,
+    },
+    historial: deep(original?.historial || []),
+  };
+  delete next.incluir_en_prompt;
+  const change = warningChangeSummary(original, next);
+  next.historial.push(warningHistoryEntry(next, change.action, change.detail, actor, timestamp));
+  return next;
+}
+
+function quickWarningChange(index, field, value) {
+  const warning = S.eventDraft.advertencias[index];
+  if (!warning || warning[field] === value) return renderWarningCards();
+  if (field === 'estado' && ['resuelta', 'descartada'].includes(value)) {
+    openWarning(index, { proposedState: value });
+    return;
+  }
+  const before = deep(warning);
+  const label = field === 'estado' ? WARNING_STATE_LABELS[value] : field === 'tratamiento' ? WARNING_TREATMENT_LABELS[value] : WARNING_PRIORITY_LABELS[value];
+  if (!confirm(`¿Confirmar ${human(field)} “${label}” para ${warning.advertencia_id}? La decisión quedará fechada y firmada por ${WARNING_EDITOR_ACTOR}.`)) return renderWarningCards();
+  warning[field] = value;
+  if (field === 'estado' && value === 'pendiente') {
+    warning.resolucion = null;
+    warning.resuelta_el = null;
+    warning.resuelta_con_fuente_ids = [];
+  }
+  const timestamp = warningNow();
+  warning.actualizada_el = timestamp;
+  const change = warningChangeSummary(before, warning);
+  warning.historial = [...(warning.historial || []), warningHistoryEntry(warning, change.action, change.detail, WARNING_EDITOR_ACTOR, timestamp)];
+  markEventDraftChanged();
+  renderWarningCards();
 }
 
 function blankSignal() {
@@ -1790,10 +2118,12 @@ async function save() {
     const response = await api('/api/data', { method: 'PUT', body: JSON.stringify(S.data) });
     S.data = response.data;
     S.validation = response.validation;
+    S.publicSyncPlan = null;
     dirty(false);
     await refreshBackups();
     fillFilters();
     renderAll();
+    await refreshPublicSyncReadiness();
     const action = preparationEnabled() && savedEventId && byId(savedEventId)
       ? { label: 'Preparar análisis y seguimiento', href: preparationUrl(savedEventId) }
       : null;
@@ -1809,6 +2139,139 @@ async function save() {
     renderData();
     message(error.message, 'error');
     view('data');
+  }
+}
+
+function publicSyncProblem(error) {
+  const block = error?.payload?.blocks?.[0];
+  return block?.detail || block?.title || error.message || 'La sincronización no pudo completarse.';
+}
+
+function renderPublicSyncReadiness({ checking = false, unavailable = '' } = {}) {
+  const button = $('#sync-public');
+  if (!button) return;
+  if (checking) {
+    button.disabled = true;
+    button.textContent = 'Comprobando…';
+    button.title = 'Comparando los macroeventos guardados con la proyección pública local.';
+    return;
+  }
+  if (S.changed) {
+    button.disabled = true;
+    button.textContent = 'Guardá para sincronizar';
+    button.title = 'La detección de eventos nuevos se ejecuta sobre los datos guardados.';
+    return;
+  }
+  if (unavailable || !S.publicSyncPlan) {
+    button.disabled = true;
+    button.textContent = 'Sincronización no disponible';
+    button.title = unavailable || 'No se pudo comprobar la proyección pública local.';
+    return;
+  }
+
+  const created = Number(S.publicSyncPlan.counts?.created || 0);
+  const updated = Number(S.publicSyncPlan.counts?.updated || 0);
+  if (created > 0) {
+    button.disabled = false;
+    button.textContent = `Sincronizar ${created} ${created === 1 ? 'nuevo' : 'nuevos'}`;
+    button.title = `Se detectaron ${created} macroevento${created === 1 ? '' : 's'} nuevo${created === 1 ? '' : 's'} para incorporar al sitio local.`;
+    return;
+  }
+
+  button.disabled = true;
+  if (updated > 0) {
+    button.textContent = 'Sin eventos nuevos';
+    button.title = `Hay ${updated} actualización${updated === 1 ? '' : 'es'}, pero este botón solo se habilita cuando se agregan macroeventos.`;
+  } else {
+    button.textContent = 'Sitio sincronizado';
+    button.title = `La proyección pública ya contiene los ${S.publicSyncPlan.counts?.after || 0} macroeventos guardados.`;
+  }
+}
+
+async function refreshPublicSyncReadiness({ silent = true } = {}) {
+  renderPublicSyncReadiness({ checking: true });
+  try {
+    S.publicSyncPlan = await api('/api/public-sync/plan', {
+      method: 'POST',
+      body: JSON.stringify({}),
+    });
+    renderPublicSyncReadiness();
+    return S.publicSyncPlan;
+  } catch (error) {
+    S.publicSyncPlan = null;
+    const problem = publicSyncProblem(error);
+    renderPublicSyncReadiness({ unavailable: problem });
+    if (!silent) message(problem, 'error', true);
+    return null;
+  }
+}
+
+async function syncPublicProjection() {
+  const button = $('#sync-public');
+  const originalLabel = button.textContent;
+  if (S.changed) {
+    return message('Guardá primero los cambios pendientes y luego pulsá “Sincronizar sitio”.', 'warning');
+  }
+  if (S.eventDraftChanged) {
+    return message('Aplicá o cancelá los cambios abiertos en la ficha antes de sincronizar.', 'warning');
+  }
+
+  button.disabled = true;
+  button.setAttribute('aria-busy', 'true');
+  button.textContent = 'Analizando…';
+  try {
+    const plan = await api('/api/public-sync/plan', {
+      method: 'POST',
+      body: JSON.stringify({}),
+    });
+    S.publicSyncPlan = plan;
+    if (Number(plan.counts?.created || 0) < 1) {
+      renderPublicSyncReadiness();
+      message('No se detectaron macroeventos nuevos para sincronizar.', 'warning');
+      return;
+    }
+    if (plan.operation === 'sin_cambios') {
+      message(`El sitio local ya está sincronizado: ${plan.counts.after} procesos.`, 'success');
+      return;
+    }
+
+    const warningNote = plan.validation?.warnings?.length
+      ? `\nAdvertencias editoriales no bloqueantes: ${plan.validation.warnings.length}.`
+      : '';
+    const accepted = confirm(
+      `Se actualizará la proyección pública local.\n\n`
+      + `Procesos actuales: ${plan.counts.before}\n`
+      + `Procesos resultantes: ${plan.counts.after}\n`
+      + `Nuevos: ${plan.counts.created}\n`
+      + `Actualizados: ${plan.counts.updated}\n`
+      + `Sin cambios: ${plan.counts.unchanged}${warningNote}\n\n`
+      + 'Se conservarán los estados editoriales y se creará un respaldo. '
+      + 'No se ejecutará Git ni se publicará en Internet.\n\n¿Continuar?',
+    );
+    if (!accepted) {
+      message('Sincronización cancelada; no se modificó ningún archivo.', 'warning');
+      return;
+    }
+
+    button.textContent = 'Sincronizando…';
+    const result = await api('/api/public-sync/apply', {
+      method: 'POST',
+      body: JSON.stringify({ plan_id: plan.plan_id, confirmed: true }),
+    });
+    await bootstrap();
+    const appliedPlan = result.plan || plan;
+    message(
+      `Sitio local sincronizado: ${appliedPlan.counts.before} → ${appliedPlan.counts.after} procesos. `
+      + `Backup: ${result.backup?.relative || 'no requerido'}.`,
+      'success',
+      true,
+    );
+  } catch (error) {
+    message(publicSyncProblem(error), 'error', true);
+  } finally {
+    button.removeAttribute('aria-busy');
+    button.textContent = originalLabel;
+    await refreshPublicSyncReadiness();
   }
 }
 
@@ -1837,12 +2300,14 @@ async function restore(name, type) {
     } else {
       S.data = response.data;
       S.validation = response.validation;
+      S.publicSyncPlan = null;
       dirty(false);
       message('Backup editorial restaurado.');
     }
     await refreshBackups();
     fillFilters();
     renderAll();
+    await refreshPublicSyncReadiness();
   } catch (error) {
     message(error.message, 'error');
   }
@@ -1924,8 +2389,12 @@ function selectedCandidateReports() {
 
 function syncCandidateImportControls() {
   const selected = selectedCandidateReports().length;
+  const selectedWarnings = (S.candidateImport?.candidates || []).reduce((sum, report) => {
+    const items = report.action === 'update' ? report.update_plan?.new_warnings : report.item_plan?.warnings;
+    return sum + (items || []).filter((item) => item.selected && warningDecisionReady(item)).length;
+  }, 0);
   $('#candidate-selection-count').textContent = selected
-    ? `${selected} ${selected === 1 ? 'decisión seleccionada' : 'decisiones seleccionadas'}`
+    ? `${selected} ${selected === 1 ? 'candidato seleccionado' : 'candidatos seleccionados'} · ${selectedWarnings} ${selectedWarnings === 1 ? 'advertencia confirmada' : 'advertencias confirmadas'}`
     : 'Ninguna acción seleccionada';
   $('#apply-candidate-import').disabled = !selected || !$('#candidate-import-confirmed').checked;
 }
@@ -1952,6 +2421,49 @@ function candidateDecisionControls(report) {
   </div>`;
 }
 
+function candidateWarningPlan(report, items) {
+  if (!items?.length) return '<p class="muted">ChatGPT no devolvió advertencias para este candidato.</p>';
+  return `<div class="candidate-warning-list">${items.map((item, index) => {
+    const warning = item.value;
+    const ready = warningDecisionReady(item);
+    const pendingSources = warning.vinculos_pendientes?.fuente_ids || [];
+    const pendingSignals = warning.vinculos_pendientes?.signal_ids || [];
+    const blockingIssues = item.conflicts.filter((conflict) => conflict.blocking);
+    const reviewIssues = item.conflicts.filter((conflict) => !conflict.blocking);
+    return `<article class="candidate-warning-item ${item.blocked ? 'blocked' : ready ? '' : 'decision-required'}">
+      <header>
+        <label class="candidate-select"><input type="checkbox" data-candidate-warning="${report.index}:${index}" ${item.selected ? 'checked' : ''} ${item.blocked || !ready ? 'disabled' : ''}><span><b>${esc(warning.advertencia_id)}</b><small>${item.blocked ? 'Conflicto aislado: no se aplicará' : ready ? 'Incorporar esta advertencia' : 'Completá la decisión para habilitarla'}</small></span></label>
+        <span class="badge ${item.blocked ? 'bad' : ready ? 'good' : 'warn'}">${item.blocked ? 'Bloqueada' : ready ? 'Lista' : 'Decisión pendiente'}</span>
+      </header>
+      <p>${esc(warning.descripcion || 'Sin descripción')}</p>
+      <div class="candidate-warning-meta"><span><b>Tipo</b>${esc(warning.tipo || '—')}</span><span><b>Referencias válidas</b>${warning.signal_ids.length} señales · ${warning.fuente_ids.length} fuentes</span></div>
+      ${candidateIssueList(blockingIssues, 'error')}${candidateIssueList(reviewIssues, 'warning')}
+      ${(pendingSources.length || pendingSignals.length) ? `<p class="pending-links"><b>Vínculos pendientes conservados:</b> ${esc([...pendingSignals, ...pendingSources].join(' · '))}</p>` : ''}
+      <div class="candidate-warning-decision">
+        <label class="field"><span>Estado de entrada</span><select data-warning-state="${report.index}:${index}"><option value="">Confirmar…</option><option value="pendiente" ${warning.estado === 'pendiente' ? 'selected' : ''}>Pendiente</option></select></label>
+        <label class="field"><span>Tratamiento propuesto</span><select data-warning-treatment="${report.index}:${index}"><option value="">Elegir…</option>${Object.entries(WARNING_TREATMENT_LABELS).map(([value, label]) => `<option value="${value}" ${warning.tratamiento === value ? 'selected' : ''}>${esc(label)}</option>`).join('')}</select></label>
+        <label class="field"><span>Prioridad</span><select data-warning-priority="${report.index}:${index}">${Object.entries(WARNING_PRIORITY_LABELS).map(([value, label]) => `<option value="${value}" ${warning.prioridad === value ? 'selected' : ''}>${esc(label)}</option>`).join('')}</select></label>
+      </div>
+    </article>`;
+  }).join('')}</div>`;
+}
+
+function candidateNewPlan(report) {
+  if (report.action !== 'new') return '';
+  const plan = report.item_plan;
+  const sources = plan.sources.length
+    ? plan.sources.map((item, index) => `<label class="candidate-update-item"><input type="checkbox" data-new-source="${report.index}:${index}" ${item.selected ? 'checked' : ''}><span><strong>${esc(item.value.medio || 'Fuente')}</strong><small>${esc(item.value.titulo || item.value.url || 'Sin título')}</small></span></label>`).join('')
+    : '<p class="muted">No hay publicaciones.</p>';
+  const signals = plan.signals.length
+    ? plan.signals.map((item, index) => `<label class="candidate-update-item"><input type="checkbox" data-new-signal="${report.index}:${index}" ${item.selected ? 'checked' : ''}><span><strong>${esc(item.value.titulo || 'Señal')}</strong><small>${esc(item.value.fecha || 'Sin fecha')} · ${esc(item.value.tipo || 'Sin tipo')}</small></span></label>`).join('')
+    : '<p class="muted">No hay señales.</p>';
+  return `<section class="candidate-update-plan candidate-intake-plan">
+    <header><div><p class="eyebrow">CONTENIDO PROPUESTO</p><h4>Confirmación por ítem</h4></div><span class="badge info">${plan.sources.length} fuentes · ${plan.signals.length} señales · ${plan.warnings.length} advertencias</span></header>
+    <div class="candidate-update-columns"><div><h5>Publicaciones</h5>${sources}</div><div><h5>Señales</h5>${signals}</div></div>
+    <details open><summary>Advertencias · confirmar una por una</summary>${candidateWarningPlan(report, plan.warnings)}</details>
+  </section>`;
+}
+
 function candidateUpdatePlan(report) {
   if (report.action !== 'update' || !report.update_plan) return '';
   const plan = report.update_plan;
@@ -1966,8 +2478,9 @@ function candidateUpdatePlan(report) {
     ? plan.field_changes.map((change, index) => `<label class="candidate-field-change"><input type="checkbox" data-update-field="${report.index}:${index}" ${change.selected ? 'checked' : ''}><span><strong>${esc(change.label)}</strong><small><b>Actual:</b> ${esc(changeValue(change.current))}</small><small><b>Propuesto:</b> ${esc(changeValue(change.proposed))}</small></span></label>`).join('')
     : '<p class="muted">No se detectaron cambios materiales en los campos principales.</p>';
   return `<section class="candidate-update-plan">
-    <header><div><p class="eyebrow">ACTUALIZACIÓN PROPUESTA</p><h4>${esc(target?.titulo || report.target_id)}</h4></div><span class="badge info">${plan.new_sources.length} fuentes · ${plan.new_signals.length} señales</span></header>
+    <header><div><p class="eyebrow">ACTUALIZACIÓN PROPUESTA</p><h4>${esc(target?.titulo || report.target_id)}</h4></div><span class="badge info">${plan.new_sources.length} fuentes · ${plan.new_signals.length} señales · ${plan.new_warnings.length} advertencias</span></header>
     <div class="candidate-update-columns"><div><h5>Publicaciones nuevas</h5>${sources}</div><div><h5>Señales nuevas</h5>${signals}</div></div>
+    <details open><summary>Advertencias nuevas · confirmar una por una</summary>${candidateWarningPlan(report, plan.new_warnings)}</details>
     <details open><summary>Cambios de ficha · ninguno se aplica sin marcarlo</summary><div class="candidate-field-changes">${changes}</div></details>
   </section>`;
 }
@@ -1986,7 +2499,10 @@ function renderCandidateImport() {
     `<span class="badge info">${batch.summary.updates} actualizaciones</span>`,
     `<span class="badge warn">${batch.summary.review} para revisar</span>`,
     `<span class="badge bad">${batch.summary.blocked} bloqueados</span>`,
-  ].join('');
+    `<span class="badge info">${batch.summary.warnings} advertencias</span>`,
+    batch.summary.warning_conflicts ? `<span class="badge warn">${batch.summary.warning_conflicts} con revisión</span>` : '',
+    batch.summary.pending_links ? `<span class="badge warn">${batch.summary.pending_links} vínculos pendientes</span>` : '',
+  ].filter(Boolean).join('');
   $('#candidate-preview-list').innerHTML = batch.candidates.map((report) => {
     const event = report.value;
     const status = candidateStatus(report);
@@ -2009,10 +2525,11 @@ function renderCandidateImport() {
         <span><b>Regiones</b>${esc(event.regiones.join(' · ') || '—')}</span>
         <span><b>Categoría</b>${esc(event.categoria || '—')}</span>
         <span><b>Temas</b>${esc(topics.join(' · ') || 'Sin coincidencias')}</span>
-        <span><b>Evidencia</b>${event.fuentes.length} publicaciones · ${event.senales.length} señales</span>
+        <span><b>Evidencia y alertas</b>${event.fuentes.length} publicaciones · ${event.senales.length} señales · ${report.item_plan.warnings.length} advertencias</span>
       </div>
       ${errors}${duplicates}${warnings}
       ${candidateDecisionControls(report)}
+      ${candidateNewPlan(report)}
       ${candidateUpdatePlan(report)}
       <details><summary>Ver estado de entrada</summary><dl><dt>Estado editorial</dt><dd>Borrador</dd><dt>Verificación</dt><dd>Pendiente</dd><dt>Clasificación temática</dt><dd>Propuesta por IA · pendiente de revisión</dd><dt>Fecha de corte</dt><dd>${esc(event.fecha_corte)}</dd></dl></details>
     </article>`;
@@ -2057,6 +2574,33 @@ function renderCandidateImport() {
   bindUpdateToggle('[data-update-source]', 'new_sources');
   bindUpdateToggle('[data-update-signal]', 'new_signals');
   bindUpdateToggle('[data-update-field]', 'field_changes');
+  for (const [selector, key] of [['[data-new-source]', 'sources'], ['[data-new-signal]', 'signals']]) {
+    $$(selector, $('#candidate-preview-list')).forEach((input) => {
+      input.onchange = () => {
+        const [reportIndex, itemIndex] = input.getAttribute(selector.slice(1, -1)).split(':').map(Number);
+        S.candidateImport.candidates[reportIndex].item_plan[key][itemIndex].selected = input.checked;
+      };
+    });
+  }
+  const warningItemsFor = (report) => (report.action === 'update' ? report.update_plan?.new_warnings : report.item_plan?.warnings) || [];
+  $$('[data-candidate-warning]', $('#candidate-preview-list')).forEach((input) => {
+    input.onchange = () => {
+      const [reportIndex, itemIndex] = input.dataset.candidateWarning.split(':').map(Number);
+      const item = warningItemsFor(S.candidateImport.candidates[reportIndex])[itemIndex];
+      item.selected = input.checked && warningDecisionReady(item);
+      syncCandidateImportControls();
+    };
+  });
+  for (const [selector, field] of [['[data-warning-state]', 'estado'], ['[data-warning-treatment]', 'tratamiento'], ['[data-warning-priority]', 'prioridad']]) {
+    $$(selector, $('#candidate-preview-list')).forEach((select) => {
+      select.onchange = () => {
+        const [reportIndex, itemIndex] = select.getAttribute(selector.slice(1, -1)).split(':').map(Number);
+        const item = warningItemsFor(S.candidateImport.candidates[reportIndex])[itemIndex];
+        configureCandidateWarning(item, { [field]: select.value });
+        renderCandidateImport();
+      };
+    });
+  }
   syncCandidateImportControls();
 }
 
@@ -2098,9 +2642,13 @@ async function applyCandidateImport() {
   const selected = selectedCandidateReports();
   if (!selected.length) return message('Seleccioná al menos una decisión aplicable.', 'warning');
   if (!$('#candidate-import-confirmed').checked) return message('Confirmá la revisión humana antes de incorporar.', 'warning');
-  const result = applyCandidateDecisions(S.data, selected, {
+  const result = applyCandidateDecisions(S.data, S.candidateImport.candidates, {
     batchId: S.candidateImport.metadata.batch_id,
     importedAt: S.candidateImport.metadata.imported_at,
+    importedTimestamp: S.candidateImport.metadata.imported_timestamp,
+    originalText: S.candidateImport.metadata.original_text,
+    formatVersion: S.candidateImport.metadata.schema_version,
+    query: S.candidateImport.metadata.consulta,
   });
   try {
     const validation = await api('/api/validate', { method: 'POST', body: JSON.stringify(result.data) });
@@ -2120,6 +2668,9 @@ async function applyCandidateImport() {
       result.applied.updates ? `${result.applied.updates} actualizaciones` : '',
       result.applied.sources ? `${result.applied.sources} fuentes` : '',
       result.applied.signals ? `${result.applied.signals} señales` : '',
+      result.applied.warnings ? `${result.applied.warnings} advertencias` : '',
+      result.applied.warning_rejections ? `${result.applied.warning_rejections} advertencias no aplicadas` : '',
+      result.applied.pending_links ? `${result.applied.pending_links} con vínculos pendientes` : '',
       result.applied.field_changes ? `${result.applied.field_changes} cambios de ficha` : '',
     ].filter(Boolean).join(' · ');
     message(`${summary} aplicados en memoria. Revisá y pulsá Guardar para persistir.`);
@@ -2151,6 +2702,9 @@ document.addEventListener('click', (event) => {
   if (editSignal) openSignal(Number(editSignal.dataset.editSignal));
   const deleteSignal = event.target.closest('[data-delete-signal]');
   if (deleteSignal && confirm('¿Eliminar esta señal del macroevento?')) {
+    const signal = S.eventDraft.senales[Number(deleteSignal.dataset.deleteSignal)];
+    const linkedWarning = (S.eventDraft.advertencias || []).find((warning) => (warning.signal_ids || []).includes(signal.id));
+    if (linkedWarning) return message(`No se puede eliminar: la señal está vinculada con ${linkedWarning.advertencia_id}. Desvinculala primero desde Advertencias.`, 'warning');
     S.eventDraft.senales.splice(Number(deleteSignal.dataset.deleteSignal), 1);
     renderSignalCards();
     markEventDraftChanged();
@@ -2160,6 +2714,12 @@ document.addEventListener('click', (event) => {
   const deleteSource = event.target.closest('[data-delete-source]');
   if (deleteSource && confirm('¿Eliminar esta fuente del macroevento?')) {
     const source = S.eventDraft.fuentes[Number(deleteSource.dataset.deleteSource)];
+    const linkedWarning = (S.eventDraft.advertencias || []).find((warning) => (
+      (warning.fuente_ids || []).includes(source.id)
+      || (warning.resuelta_con_fuente_ids || []).includes(source.id)
+      || (warning.resolucion?.fuente_ids || []).includes(source.id)
+    ));
+    if (linkedWarning) return message(`No se puede eliminar: la fuente está vinculada con ${linkedWarning.advertencia_id}. Desvinculala o reabrí la advertencia primero.`, 'warning');
     S.eventDraft.fuentes.splice(Number(deleteSource.dataset.deleteSource), 1);
     S.eventDraft.senales.forEach((signal) => { signal.fuente_ids = signal.fuente_ids.filter((id) => id !== source.id); });
     renderSourceCards();
@@ -2197,7 +2757,8 @@ $('#download-candidate-template').onclick = () => {
   message('Plantilla JSON descargada.');
 };
 $('#select-importable-candidates').onclick = () => {
-  for (const report of S.candidateImport?.candidates || []) report.selected = !report.blocked && ['new', 'update'].includes(report.action);
+  const next = (S.candidateImport?.candidates || []).find((report) => !report.selected && !report.blocked && ['new', 'update'].includes(report.action));
+  if (next) next.selected = true;
   renderCandidateImport();
 };
 $('#clear-candidate-selection').onclick = () => {
@@ -2208,6 +2769,7 @@ $('#candidate-import-confirmed').onchange = syncCandidateImportControls;
 $('#apply-candidate-import').onclick = applyCandidateImport;
 $('#new-expedient').onclick = () => openExpedient();
 $('#save').onclick = save;
+$('#sync-public').onclick = syncPublicProjection;
 $('#reload').onclick = async () => {
   if (S.changed && !confirm('Hay cambios sin guardar. ¿Recargar y descartarlos?')) return;
   await bootstrap();
@@ -2298,6 +2860,36 @@ $('#e-theme-search').addEventListener('input', renderThemeEditor);
 $('#e-theme-review').addEventListener('change', () => { if ($('#e-theme-review').value === 'revisada' && !$('#e-theme-reviewed').value) $('#e-theme-reviewed').value = today(); });
 $('#add-signal').onclick = () => openSignal();
 $('#add-source').onclick = () => openSource();
+$('#event-record-tabs').addEventListener('click', (event) => {
+  const tab = event.target.closest('[data-event-tab]');
+  if (tab) activateEventRecordTab(tab.dataset.eventTab);
+});
+$('#event-record-tabs').addEventListener('keydown', (event) => {
+  const tabs = $$('[data-event-tab]', $('#event-record-tabs'));
+  const current = tabs.indexOf(event.target.closest('[data-event-tab]'));
+  if (current < 0 || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+  event.preventDefault();
+  const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+  activateEventRecordTab(tabs[next].dataset.eventTab, { focus: true });
+});
+$('#add-warning').onclick = () => openWarning();
+for (const selector of ['#warning-filter-state', '#warning-filter-treatment', '#warning-filter-priority', '#warning-filter-signal', '#warning-filter-source', '#warning-filter-prompt']) {
+  $(selector).addEventListener('change', renderWarningCards);
+}
+$('#clear-warning-filters').onclick = () => clearWarningFilters();
+$('#warning-radar').onclick = () => { S.warningRadar = !S.warningRadar; renderWarningCards(); };
+$('#warning-cards').addEventListener('click', (event) => {
+  const edit = event.target.closest('[data-edit-warning]');
+  if (edit) openWarning(Number(edit.dataset.editWarning));
+  const reactivate = event.target.closest('[data-reactivate-warning]');
+  if (reactivate) quickWarningChange(Number(reactivate.dataset.reactivateWarning), 'tratamiento', 'relevante');
+});
+$('#warning-cards').addEventListener('change', (event) => {
+  const control = event.target.closest('[data-warning-field]');
+  if (!control) return;
+  event.stopPropagation();
+  quickWarningChange(Number(control.dataset.warningIndex), control.dataset.warningField, control.value);
+});
 ['#s-impact', '#s-prob', '#s-reach', '#s-persistence', '#s-spread', '#s-gap', '#s-uncertainty', '#s-urgency', '#s-coverage'].forEach((selector) => $(selector).addEventListener('input', calcEvent));
 $('#event-form').addEventListener('submit', (event) => {
   event.preventDefault();
@@ -2337,7 +2929,17 @@ $('#signal-form').addEventListener('submit', (event) => {
   const index = Number($('#signal-index').value);
   const value = { id: slug($('#sig-id').value || $('#sig-title').value), fecha: $('#sig-date').value, titulo: $('#sig-title').value.trim(), tipo: $('#sig-type').value.trim(), descripcion: $('#sig-description').value.trim(), estado_revision: $('#sig-status').value, origen: $('#sig-origin').value, fuente_ids: selectedCheckboxValues('#sig-source-options'), intensidad: $('#sig-intensity').value === '' ? null : Number($('#sig-intensity').value), localizaciones: gatherLocations() };
   if (S.eventDraft.senales.some((item, itemIndex) => item.id === value.id && itemIndex !== index)) return message(`Ya existe la señal ${value.id}.`, 'error');
-  if (index >= 0) S.eventDraft.senales[index] = value; else S.eventDraft.senales.push(value);
+  if (index >= 0) {
+    const oldId = S.eventDraft.senales[index].id;
+    S.eventDraft.senales[index] = value;
+    if (oldId !== value.id) (S.eventDraft.advertencias || []).forEach((warning) => {
+      if (!(warning.signal_ids || []).includes(oldId)) return;
+      const timestamp = warningNow();
+      warning.signal_ids = warning.signal_ids.map((id) => id === oldId ? value.id : id);
+      warning.actualizada_el = timestamp;
+      warning.historial = [...(warning.historial || []), warningHistoryEntry(warning, 'vinculos_actualizados', `Se actualizó el vínculo de señal ${oldId} → ${value.id}.`, WARNING_EDITOR_ACTOR, timestamp)];
+    });
+  } else S.eventDraft.senales.push(value);
   $('#signal-editor').close();
   renderSignalCards();
   markEventDraftChanged();
@@ -2386,11 +2988,54 @@ $('#source-form').addEventListener('submit', (event) => {
   if (index >= 0) {
     const oldId = S.eventDraft.fuentes[index].id;
     S.eventDraft.fuentes[index] = value;
-    if (oldId !== value.id) S.eventDraft.senales.forEach((signal) => { signal.fuente_ids = signal.fuente_ids.map((id) => id === oldId ? value.id : id); });
+    if (oldId !== value.id) {
+      S.eventDraft.senales.forEach((signal) => { signal.fuente_ids = signal.fuente_ids.map((id) => id === oldId ? value.id : id); });
+      (S.eventDraft.advertencias || []).forEach((warning) => {
+        const linked = (warning.fuente_ids || []).includes(oldId)
+          || (warning.resuelta_con_fuente_ids || []).includes(oldId)
+          || (warning.resolucion?.fuente_ids || []).includes(oldId);
+        if (!linked) return;
+        const timestamp = warningNow();
+        warning.fuente_ids = (warning.fuente_ids || []).map((id) => id === oldId ? value.id : id);
+        warning.resuelta_con_fuente_ids = (warning.resuelta_con_fuente_ids || []).map((id) => id === oldId ? value.id : id);
+        if (warning.resolucion) warning.resolucion.fuente_ids = (warning.resolucion.fuente_ids || []).map((id) => id === oldId ? value.id : id);
+        warning.actualizada_el = timestamp;
+        warning.historial = [...(warning.historial || []), warningHistoryEntry(warning, 'vinculos_actualizados', `Se actualizó el vínculo de fuente ${oldId} → ${value.id}.`, WARNING_EDITOR_ACTOR, timestamp)];
+      });
+    }
   } else S.eventDraft.fuentes.push(value);
   $('#source-editor').close();
   renderSourceCards();
   renderSignalCards();
+  markEventDraftChanged();
+});
+
+// Editor de advertencias
+$('#close-warning-editor').onclick = $('#cancel-warning-editor').onclick = () => { closeContextHelp(false); $('#warning-editor').close(); };
+$('#warning-state').addEventListener('change', updateWarningResolutionFields);
+$('#warning-treatment').addEventListener('change', updateWarningEditorRule);
+$('#warning-resolution-type').addEventListener('change', updateWarningResolutionFields);
+$('#warning-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const index = Number($('#warning-index').value);
+  if ($('#warning-state').value === 'resuelta' && $('#warning-resolution-type').value === 'evidencia'
+    && !checkedWarningValues('#warning-resolution-source-options').length) {
+    $('#warning-editor-status').textContent = 'Seleccioná al menos una fuente para resolver por evidencia.';
+    $('#warning-resolution-source-options input')?.focus();
+    return;
+  }
+  const value = gatherWarning();
+  if (S.eventDraft.advertencias.some((item, itemIndex) => item.advertencia_id === value.advertencia_id && itemIndex !== index)) {
+    $('#warning-editor-status').textContent = `Ya existe ${value.advertencia_id}.`;
+    $('#warning-id').focus();
+    return;
+  }
+  if (index >= 0) S.eventDraft.advertencias[index] = value;
+  else S.eventDraft.advertencias.push(value);
+  S.warningSelectedId = value.advertencia_id;
+  $('#warning-editor').close();
+  activateEventRecordTab('warnings');
+  renderWarningCards();
   markEventDraftChanged();
 });
 

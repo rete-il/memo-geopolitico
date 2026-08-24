@@ -22,12 +22,14 @@ function fixture(overrides = {}) {
       { id: 'src-1', media_id: 'reuters', medio_catalogado: true, medio: 'Reuters', estado_verificacion: 'verificada' },
       { id: 'src-2', media_id: '', medio_catalogado: false, medio: 'AFC', estado_verificacion: 'pendiente' },
     ],
+    advertencias: [],
+    excepciones_advertencias: [],
     ...overrides,
   };
   return {
     eventId: event.id,
     data: {
-      schema_version: 2,
+      schema_version: 3,
       macroeventos: [event],
       expedientes_editoriales: [{ id: 'exp-1', macroevento_ids: [event.id] }],
     },

@@ -292,7 +292,7 @@ export function generateReviewPackage({
   }
 
   const validation = validateAnalysisResponse({
-    markdown: session.respuesta_chatgpt.contenido_normalizado,
+    markdown: session.respuesta_chatgpt.contenido_original,
     data,
     eventId: id,
     session,
@@ -404,6 +404,11 @@ export function generateReviewPackage({
       metrics: proposal.metrics,
     }), 'Diferencias respecto de la versión pública local'),
     fileRecord(analysisPath, finalNewline(validation.normalized_markdown), 'Análisis Markdown validado y aprobado'),
+    fileRecord('ADVERTENCIAS-DECISIONES.json', jsonText({
+      schema_version: 1,
+      macroevento_id: id,
+      propuestas: session.respuesta_chatgpt.advertencias_propuestas || [],
+    }), 'Advertencias estructuradas y decisiones humanas vinculadas al análisis'),
     fileRecord('PROMPT-ANALISIS.txt', finalNewline(session.prompt_analisis?.content), 'Prompt exacto utilizado en ChatGPT'),
     fileRecord('INFORME-TRAZABILIDAD.md', traceReport({ session, generatedAt, packageId }), 'Informe de los trece pasos internos'),
     fileRecord('INSTRUCCIONES-VSCODE.md', instructionsMarkdown({ session, packageId, analysisPath }), 'Orden y límites para la revisión en VS Code'),
@@ -430,6 +435,7 @@ export function generateReviewPackage({
       respuesta_aprobada_el: session.respuesta_chatgpt.aprobada_el,
       hash_sha256: validation.hash_sha256,
       advertencias_conservadas: validation.warnings.length,
+      advertencias_estructuradas: (session.respuesta_chatgpt.advertencias_propuestas || []).length,
       analysis_revision: nextAnalysisRevision,
       process_revision: nextProcessRevision,
     },

@@ -15,6 +15,7 @@ const localApplication = fs.readFileSync(new URL('../lib/local-application.mjs',
 const localIntegration = fs.readFileSync(new URL('../lib/local-integration.mjs', import.meta.url), 'utf8');
 const localPublication = fs.readFileSync(new URL('../lib/local-publication.mjs', import.meta.url), 'utf8');
 const localProcessUpdate = fs.readFileSync(new URL('../lib/local-process-update.mjs', import.meta.url), 'utf8');
+const publicSync = fs.readFileSync(new URL('../lib/public-sync.mjs', import.meta.url), 'utf8');
 const reviewPackage = fs.readFileSync(new URL('../lib/review-package.mjs', import.meta.url), 'utf8');
 const server = fs.readFileSync(new URL('../server.mjs', import.meta.url), 'utf8');
 const config = JSON.parse(fs.readFileSync(new URL('../data/config.json', import.meta.url), 'utf8'));
@@ -78,6 +79,8 @@ test('la vista previa tiene reglas responsive y estados visuales', () => {
   assert.match(styles, /\.candidate-preview-card\.blocked/);
   assert.match(styles, /\.candidate-issues\.error/);
   assert.match(styles, /\.candidate-update-plan/);
+  assert.match(styles, /\.candidate-warning-item\.blocked/);
+  assert.match(styles, /\.candidate-warning-decision/);
   assert.match(styles, /\.source-selection-row/);
   assert.match(styles, /@media\(max-width:560px\)[\s\S]*\.candidate-facts\{grid-template-columns:1fr\}/);
 });
@@ -86,6 +89,9 @@ test('la navegación expone el generador y la importación permite decisiones de
   assert.match(html, /data-view="search"/);
   assert.match(app, /configureCandidateAction/);
   assert.match(app, /applyCandidateDecisions/);
+  assert.match(app, /configureCandidateWarning/);
+  assert.match(app, /data-candidate-warning/);
+  assert.match(html, /advertencias no marcadas se registrarán como no aplicadas/);
   assert.match(html, /Aplicar decisiones/);
 });
 
@@ -231,6 +237,9 @@ test('la Fase 5 recibe archivo o pegado, valida, previsualiza y exige aprobació
     'analysis-response-results',
     'analysis-response-blocks',
     'analysis-response-warnings',
+    'analysis-warning-decisions',
+    'analysis-warning-decision-progress',
+    'analysis-warning-decision-list',
     'analysis-response-metadata-list',
     'analysis-response-preview-body',
     'approve-analysis-response',
@@ -239,9 +248,11 @@ test('la Fase 5 recibe archivo o pegado, valida, previsualiza y exige aprobació
   }
   assert.match(preparationApp, /\/api\/analysis-response/);
   assert.match(preparationApp, /\/api\/analysis-response\/approve/);
+  assert.match(preparationApp, /\/api\/analysis-response\/warning-decision/);
   assert.match(preparationApp, /\.text\(\)/);
   assert.match(server, /url\.pathname === '\/api\/analysis-response'/);
   assert.match(server, /url\.pathname === '\/api\/analysis-response\/approve'/);
+  assert.match(server, /url\.pathname === '\/api\/analysis-response\/warning-decision'/);
   assert.match(analysisResponse, /contenido_original/);
   assert.match(analysisResponse, /estado = 'respuesta_aprobada'/);
   assert.match(analysisResponse, /archivos_canonicos_modificados:\s*0/);
@@ -252,6 +263,7 @@ test('la Fase 5 conserva preview seguro, responsive y sin escritura canónica', 
   assert.match(analysisResponse, /rel="noreferrer"/);
   assert.match(styles, /\.analysis-response-input-grid/);
   assert.match(styles, /\.markdown-preview/);
+  assert.match(styles, /\.analysis-warning-decision-card/);
   assert.match(styles, /@media\(max-width:900px\)[\s\S]*\.analysis-response-input-grid,\.analysis-response-preview-grid\{grid-template-columns:1fr\}/);
   assert.match(styles, /@media\(max-width:560px\)[\s\S]*\.analysis-response-metrics\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)\}/);
   assert.doesNotMatch(analysisResponse, /src[\\/]content|macroeventos\.json|git\s/);
@@ -434,4 +446,99 @@ test('la ruta corta separa el proceso del análisis y valida el paquete completo
   assert.doesNotMatch(localProcessUpdate, /child_process|execSync|spawnSync|\bgit\s+(?:add|commit|push)/i);
   assert.match(styles, /\.global-status-items/);
   assert.match(styles, /@media\(max-width:560px\)[\s\S]*\.global-status-items\{grid-template-columns:1fr\}/);
+});
+
+test('el dashboard sincroniza la proyección pública mediante plan, confirmación y respaldo', () => {
+  assert.match(html, /id="sync-public"[^>]*disabled/);
+  assert.match(html, /id="sync-public"[^>]*>Comprobando…<\/button>/);
+  assert.match(app, /\$\('#sync-public'\)\.onclick = syncPublicProjection/);
+  assert.match(app, /refreshPublicSyncReadiness/);
+  assert.match(app, /counts\?\.created/);
+  assert.match(app, /button\.disabled = created > 0|if \(created > 0\)[\s\S]*button\.disabled = false/);
+  assert.match(app, /Sin eventos nuevos/);
+  assert.match(app, /Sitio sincronizado/);
+  assert.match(app, /\/api\/public-sync\/plan/);
+  assert.match(app, /\/api\/public-sync\/apply/);
+  assert.match(app, /Se conservarán los estados editoriales/);
+  assert.match(server, /url\.pathname === '\/api\/public-sync\/plan'/);
+  assert.match(server, /url\.pathname === '\/api\/public-sync\/apply'/);
+  assert.match(publicSync, /public-process-removal-blocked/);
+  assert.match(publicSync, /public-sync-plan-stale/);
+  assert.match(publicSync, /publication_states_preserved: true/);
+  assert.match(publicSync, /writeAtomic/);
+  assert.doesNotMatch(publicSync, /child_process|execSync|spawnSync|\bgit\s+(?:add|commit|push)|netlify/i);
+});
+
+test('la Etapa 2 expone Advertencias al mismo nivel que Señales y Fuentes', () => {
+  for (const id of [
+    'event-record-tabs',
+    'event-tab-signals-button',
+    'event-tab-sources-button',
+    'event-tab-warnings-button',
+    'event-tab-warnings',
+    'warning-summary',
+    'warning-cards',
+    'add-warning',
+    'warning-editor',
+  ]) {
+    assert.match(html, new RegExp(`id="${id}"`), `Falta #${id}`);
+  }
+  assert.match(html, /role="tablist"/);
+  assert.match(html, /role="tabpanel"/);
+  assert.match(app, /function activateEventRecordTab/);
+  assert.match(app, /ArrowLeft/);
+  assert.match(app, /ArrowRight/);
+});
+
+test('Advertencias ofrece resumen, filtros combinables, radar y regla derivada', () => {
+  for (const id of [
+    'warning-filter-state',
+    'warning-filter-treatment',
+    'warning-filter-priority',
+    'warning-filter-signal',
+    'warning-filter-source',
+    'warning-filter-prompt',
+    'warning-radar',
+    'clear-warning-filters',
+    'warning-prompt-rule',
+  ]) {
+    assert.match(html, new RegExp(`id="${id}"`), `Falta #${id}`);
+  }
+  assert.match(html, /Observación posterior/);
+  assert.match(app, /filterAndSortWarnings/);
+  assert.match(app, /warningPromptDecision/);
+  assert.doesNotMatch(html, /id="warning-prompt-rule"[^>]*(?:input|select)/);
+});
+
+test('el detalle permite gestionar estado, tratamiento, prioridad, vínculos y trazabilidad', () => {
+  for (const id of [
+    'warning-state',
+    'warning-treatment',
+    'warning-priority',
+    'warning-actor',
+    'warning-signal-options',
+    'warning-source-options',
+    'warning-resolution-section',
+    'warning-resolution-type',
+    'warning-resolution-reason',
+    'warning-resolution-source-options',
+    'warning-history',
+    'warning-exceptions',
+    'warning-generations',
+    'warning-confirmed',
+  ]) {
+    assert.match(html, new RegExp(`id="${id}"`), `Falta #${id}`);
+  }
+  assert.match(app, /function quickWarningChange/);
+  assert.match(app, /warningHistoryEntry/);
+  assert.match(app, /confirm\(`/);
+  assert.match(html, /Confirmo esta decisión editorial/);
+});
+
+test('Advertencias conserva foco visible y adaptación a 1024, 768 y 390 px', () => {
+  assert.match(styles, /\.event-record-tab\.active/);
+  assert.match(styles, /\.warning-card\.selected/);
+  assert.match(styles, /@media\(max-width:1024px\)[\s\S]*\.warning-summary\{grid-template-columns:repeat\(3,minmax\(0,1fr\)\)\}/);
+  assert.match(styles, /@media\(max-width:768px\)[\s\S]*\.warning-detail-grid\{grid-template-columns:1fr\}/);
+  assert.match(styles, /@media\(max-width:560px\)[\s\S]*\.warning-quick-actions\{grid-template-columns:1fr\}/);
 });

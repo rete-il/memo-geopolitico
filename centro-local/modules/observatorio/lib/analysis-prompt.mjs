@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export const ANALYSIS_PROMPT_TEMPLATE_ID = 'memo-analisis-completo';
-export const ANALYSIS_PROMPT_TEMPLATE_VERSION = '1.0';
+export const ANALYSIS_PROMPT_TEMPLATE_VERSION = '1.1';
 
 const clean = (value) => String(value ?? '').trim();
 const unique = (values) => [...new Set((values || []).map(clean).filter(Boolean))];
@@ -65,7 +65,7 @@ function catalogMetadata(source, catalog) {
 
 function sourceBlocks(sources, catalog) {
   if (!sources.length) {
-    return 'No hay fuentes verificadas. No redactes afirmaciones factuales: devolvé un borrador de estructura con marcadores [VERIFICAR].';
+    return 'No hay fuentes verificadas. No redactes afirmaciones factuales. Devolvé una estructura analítica prudente y registrá cada carencia como una advertencia estructurada fuera del Markdown.';
   }
   return sources.map((source, index) => [
     `${index + 1}. ${source.medio || 'Fuente sin nombre'}: “${source.titulo || 'Sin título'}”`,
@@ -200,7 +200,7 @@ Plantilla: ${ANALYSIS_PROMPT_TEMPLATE_ID}
 Versión: ${ANALYSIS_PROMPT_TEMPLATE_VERSION}
 Fecha de preparación: ${generatedAt}
 
-Actuá como analista geopolítico senior y redactor de Memo Geopolítico. Producí un **borrador Markdown autónomo sujeto a revisión humana**. No investigues nuevas fuentes para completar vacíos: utilizá exclusivamente la evidencia autorizada incluida abajo y marcá [VERIFICAR: detalle concreto] cuando no alcance.
+Actuá como analista geopolítico senior y redactor de Memo Geopolítico. Producí un **borrador Markdown autónomo sujeto a revisión humana**. No investigues nuevas fuentes para completar vacíos: utilizá exclusivamente la evidencia autorizada incluida abajo. Cuando la evidencia no alcance, mantené el Markdown prudente y registrá el problema como una advertencia estructurada separada.
 
 ## Identidad y relación obligatorias
 - macroevento_principal_id: ${id}
@@ -247,7 +247,7 @@ ${excludedBlocks(pendingSources, pendingSignals)}
 - Escenario adverso: ${event.escenarios?.adverso || 'no consignado'}
 - Escenario transformador: ${event.escenarios?.transformador || 'no consignado'}
 
-Estos datos son insumos analíticos, no evidencia independiente. Toda afirmación factual derivada de ellos debe apoyarse en una fuente autorizada o quedar marcada [VERIFICAR].
+Estos datos son insumos analíticos, no evidencia independiente. Toda afirmación factual derivada de ellos debe apoyarse en una fuente autorizada; si no puede respaldarse, omitila o formulala como incertidumbre y registrá una advertencia estructurada.
 
 ## Incertidumbres que deben conservarse
 ${uncertaintyText}
@@ -266,17 +266,44 @@ ${justification}
 8. Señalá de forma sobria los vacíos regionales o de perspectiva que afecten el análisis.
 9. Mantené tono analítico, preciso y no alarmista.
 10. No afirmes que el texto está listo para publicar.
-11. No incluyas comentarios fuera del Markdown solicitado.
+11. No uses marcadores [VERIFICAR], [COMPLETAR], [PENDIENTE] ni TODO dentro del Markdown.
 12. Conservá exactamente macroevento_principal_id: ${id}.
+13. Generá una advertencia separada por cada problema concreto; no agregues varios problemas en una sola advertencia.
+14. No conviertas una advertencia en una afirmación del artículo.
 
 ## Formato de salida
-Devolvé exclusivamente un archivo Markdown completo. Usá este frontmatter como contrato y reemplazá únicamente los marcadores entre corchetes:
+Devolvé un único bloque de código \`markdown\`. Dentro de ese bloque incluí, en este orden:
+1. el archivo Markdown completo y limpio;
+2. al final, un comentario de control \`MEMO_ADVERTENCIAS_V1\` con JSON válido.
+
+El comentario de control será retirado automáticamente antes de guardar o publicar el Markdown. Usá este frontmatter como contrato y reemplazá únicamente los marcadores entre corchetes:
 
 \`\`\`yaml
 ${frontmatter}
 \`\`\`
 
 Después del frontmatter, redactá el análisis con subtítulos claros, enlaces integrados y una sección final “Fuentes” que liste únicamente la evidencia autorizada efectivamente utilizada.
+
+Al final del mismo bloque de código, después de la sección Fuentes, agregá exactamente esta envoltura con JSON válido (sin cercos de código adicionales):
+
+<!-- MEMO_ADVERTENCIAS_V1
+{
+  "schema_version": 1,
+  "advertencias_nuevas": [
+    {
+      "advertencia_id": "adv-${id}-001",
+      "descripcion": "Problema concreto que requiere decisión humana",
+      "tipo": "insuficiencia_evidencia",
+      "signal_ids": [],
+      "fuente_ids": [],
+      "tratamiento_sugerido": "bloqueante",
+      "prioridad_sugerida": "alta"
+    }
+  ]
+}
+-->
+
+Si no detectás problemas, devolvé "advertencias_nuevas": []. Los únicos tratamientos sugeridos válidos son "bloqueante", "relevante", "observacion_posterior" e "irrelevante"; las prioridades válidas son "alta", "media" y "baja". Solo podés vincular signal_ids y fuente_ids que aparezcan en este encargo.
 `;
 
   return {
@@ -376,6 +403,14 @@ export function createAnalysisPromptSession({
   if (fs.existsSync(file)) {
     try { previous = JSON.parse(fs.readFileSync(file, 'utf8')); } catch { previous = null; }
   }
+  let archivedSession = null;
+  const obsoletePrompt = previous?.prompt_analisis?.template?.version !== ANALYSIS_PROMPT_TEMPLATE_VERSION;
+  if (previous?.respuesta_chatgpt && obsoletePrompt) {
+    const suffix = generatedTimestamp.replace(/[^0-9]/g, '').slice(0, 14) || Date.now().toString();
+    archivedSession = path.join(sessionsDir, `preparacion-${prompt.macroevento_id}-anterior-${suffix}.json`);
+    fs.copyFileSync(file, archivedSession);
+    previous = null;
+  }
   if (previous?.respuesta_chatgpt || ['respuesta_recibida', 'respuesta_validada', 'respuesta_aprobada'].includes(previous?.estado)) {
     return {
       status: 'blocked',
@@ -424,8 +459,12 @@ export function createAnalysisPromptSession({
     file: {
       name: path.basename(file),
       relative_path: path.join('data', 'sesiones', path.basename(file)),
-      operation: previous ? 'actualizado' : 'creado',
+      operation: previous || archivedSession ? 'actualizado' : 'creado',
     },
+    archived_session: archivedSession ? {
+      name: path.basename(archivedSession),
+      relative_path: path.join('data', 'sesiones', path.basename(archivedSession)),
+    } : null,
     safety: session.seguridad,
   };
 }

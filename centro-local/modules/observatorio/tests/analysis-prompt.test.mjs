@@ -101,6 +101,10 @@ test('genera un prompt controlado con identidad, evidencia verificada y contrato
   assert.match(result.content, /fuente_id: src-verificada/);
   assert.match(result.content, /Fuente reservada: src-pendiente/);
   assert.match(result.content, /no sobrescribas ni presentes como duplicado/i);
+  assert.match(result.content, /MEMO_ADVERTENCIAS_V1/);
+  assert.match(result.content, /advertencias_nuevas/);
+  assert.match(result.content, /una advertencia separada por cada problema concreto/i);
+  assert.doesNotMatch(result.content, /marcá \[VERIFICAR/);
 });
 
 test('crea o actualiza una única sesión local y no muta los datos canónicos', (context) => {

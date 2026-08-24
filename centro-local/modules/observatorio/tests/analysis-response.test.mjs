@@ -9,6 +9,7 @@ import {
   approveAnalysisResponse,
   renderMarkdownPreview,
   saveAnalysisResponse,
+  saveAnalysisWarningDecision,
   validateAnalysisResponse,
 } from '../lib/analysis-response.mjs';
 
@@ -52,6 +53,7 @@ function validMarkdown(overrides = {}) {
     macroevento_id: EVENT_ID,
     source_id: 'src-verificada',
     url: 'https://example.com/verified',
+    warnings: [],
     ...overrides,
   };
   return `---
@@ -89,6 +91,10 @@ La integración regional depende de componentes adicionales y revisión humana.
 ## Fuentes
 
 - [Fuente autorizada](${values.url})
+
+<!-- MEMO_ADVERTENCIAS_V1
+${JSON.stringify({ schema_version: 1, advertencias_nuevas: values.warnings }, null, 2)}
+-->
 `;
 }
 
@@ -154,7 +160,7 @@ test('detecta frontmatter ausente, marcadores y una identidad ya existente', (co
   assert.ok(placeholder.blocks.some((item) => item.code === 'unresolved-frontmatter-placeholders'));
 });
 
-test('acepta una envoltura Markdown con advertencia y conserva el original', (context) => {
+test('acepta una envoltura Markdown informativa y conserva el original', (context) => {
   const sessionsDir = fs.mkdtempSync(path.join(os.tmpdir(), 'memo-response-save-'));
   context.after(() => fs.rmSync(sessionsDir, { recursive: true, force: true }));
   const input = fixture();
@@ -171,10 +177,74 @@ test('acepta una envoltura Markdown con advertencia y conserva el original', (co
   assert.equal(result.status, 'ready');
   assert.equal(result.session.estado, 'respuesta_validada');
   assert.equal(result.session.respuesta_chatgpt.contenido_original, wrapped);
-  assert.ok(result.validation.warnings.some((item) => item.code === 'outer-code-fence'));
+  assert.ok(result.validation.information.some((item) => item.code === 'outer-code-fence'));
   assert.deepEqual(input.data, originalData);
   assert.deepEqual(fs.readdirSync(sessionsDir), [`preparacion-${EVENT_ID}.json`]);
   assert.equal(result.safety.archivos_canonicos_modificados, 0);
+});
+
+test('separa advertencias estructuradas del Markdown y bloquea marcadores internos', () => {
+  const input = fixture();
+  const warnings = [{
+    advertencia_id: 'adv-lobito-evidencia-001',
+    descripcion: 'Falta evidencia independiente para sostener el alcance regional.',
+    tipo: 'insuficiencia_evidencia',
+    signal_ids: [],
+    fuente_ids: ['src-verificada'],
+    tratamiento_sugerido: 'bloqueante',
+    prioridad_sugerida: 'alta',
+  }];
+  const result = validateAnalysisResponse({ ...input, eventId: EVENT_ID, markdown: validMarkdown({ warnings }) });
+  assert.equal(result.status, 'ready');
+  assert.equal(result.warning_candidates.length, 1);
+  assert.equal(result.warning_candidates[0].advertencia_id, 'adv-lobito-evidencia-001');
+  assert.doesNotMatch(result.normalized_markdown, /MEMO_ADVERTENCIAS_V1/);
+
+  const marked = validateAnalysisResponse({
+    ...input,
+    eventId: EVENT_ID,
+    markdown: validMarkdown().replace('La integración regional', '[VERIFICAR: alcance] La integración regional'),
+  });
+  assert.ok(marked.blocks.some((item) => item.code === 'editorial-markers-in-markdown'));
+});
+
+test('exige gestionar cada advertencia y persiste la decisión en el expediente', (context) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'memo-warning-decision-'));
+  context.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const sessionsDir = path.join(root, 'sesiones');
+  const backupsDir = path.join(root, 'backups');
+  const dataPath = path.join(root, 'macroeventos.json');
+  fs.mkdirSync(sessionsDir, { recursive: true });
+  const input = fixture();
+  input.data.schema_version = 3;
+  input.data.macroeventos[0].senales = [];
+  input.data.macroeventos[0].advertencias = [];
+  input.data.macroeventos[0].excepciones_advertencias = [];
+  fs.writeFileSync(dataPath, `${JSON.stringify(input.data, null, 2)}\n`, 'utf8');
+  fs.writeFileSync(sessionFileFor(sessionsDir, EVENT_ID), `${JSON.stringify(input.session, null, 2)}\n`, 'utf8');
+  const warnings = [{
+    advertencia_id: 'adv-lobito-evidencia-001',
+    descripcion: 'Falta evidencia independiente para sostener el alcance regional.',
+    tipo: 'insuficiencia_evidencia',
+    signal_ids: [], fuente_ids: ['src-verificada'],
+    tratamiento_sugerido: 'bloqueante', prioridad_sugerida: 'alta',
+  }];
+  const saved = saveAnalysisResponse({ sessionsDir, data: input.data, eventId: EVENT_ID, markdown: validMarkdown({ warnings }) });
+  const blocked = approveAnalysisResponse({ sessionsDir, eventId: EVENT_ID, expectedHash: saved.validation.hash_sha256 });
+  assert.equal(blocked.blocks[0].code, 'warning-decisions-required');
+  const decided = saveAnalysisWarningDecision({
+    sessionsDir, dataPath, backupsDir, data: input.data, eventId: EVENT_ID,
+    warningId: 'adv-lobito-evidencia-001', expectedHash: saved.validation.hash_sha256,
+    action: 'incorporar', treatment: 'bloqueante', priority: 'alta',
+    notes: 'Debe resolverse antes de autorizar la publicación.',
+    decidedAt: '2026-08-08T11:45:00.000Z',
+  });
+  assert.equal(decided.status, 'ready');
+  assert.equal(decided.data.macroeventos[0].advertencias[0].tratamiento, 'bloqueante');
+  assert.equal(decided.data.macroeventos[0].advertencias[0].estado, 'pendiente');
+  assert.ok(fs.existsSync(path.join(backupsDir, decided.backup)));
+  const approved = approveAnalysisResponse({ sessionsDir, eventId: EVENT_ID, expectedHash: saved.validation.hash_sha256 });
+  assert.equal(approved.status, 'ready');
 });
 
 test('guarda bloqueos sin aprobarlos y permite reemplazar la respuesta en la misma sesión', (context) => {

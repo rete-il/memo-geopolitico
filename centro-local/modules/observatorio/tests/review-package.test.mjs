@@ -126,7 +126,7 @@ function zipEntries(buffer) {
   return result;
 }
 
-test('genera un ZIP con los ocho artefactos y completa el paso 13 sin escrituras canónicas', (context) => {
+test('genera un ZIP con los nueve artefactos y completa el paso 13 sin escrituras canónicas', (context) => {
   const fixture = makeFixture(context);
   const result = generateReviewPackage({
     ...fixture,
@@ -141,7 +141,7 @@ test('genera un ZIP con los ocho artefactos y completa el paso 13 sin escrituras
   assert.ok(result.session.trazabilidad.pasos_completados.includes(13));
   assert.equal(result.safety.archivos_canonicos_creados, 0);
   assert.equal(result.safety.archivos_canonicos_modificados, 0);
-  assert.equal(result.package.artifacts.length, 8);
+  assert.equal(result.package.artifacts.length, 9);
   assert.equal(fs.readFileSync(path.join(fixture.packagesDir, result.file.name)).subarray(0, 2).toString(), 'PK');
 });
 

@@ -250,14 +250,35 @@ export function planLocalApplication({
   } catch (error) {
     return { status: 'blocked', blocks: [issue('invalid-package-content', 'El contenido del paquete no es aplicable', error.message)] };
   }
+  const structuredWarningContract = session.prompt_analisis?.template?.version === '1.1';
+  const validationInput = structuredWarningContract
+    ? `${packageContent.markdown.trim()}\n\n<!-- MEMO_ADVERTENCIAS_V1\n${JSON.stringify({
+      schema_version: 1,
+      advertencias_nuevas: (session.respuesta_chatgpt.advertencias_propuestas || []).map((item) => ({
+        advertencia_id: item.advertencia_id,
+        descripcion: item.descripcion,
+        tipo: item.tipo,
+        signal_ids: item.signal_ids || [],
+        fuente_ids: item.fuente_ids || [],
+        tratamiento_sugerido: item.tratamiento_sugerido,
+        prioridad_sugerida: item.prioridad_sugerida,
+      })),
+    }, null, 2)}\n-->`
+    : packageContent.markdown;
   const validation = validateAnalysisResponse({
-    markdown: packageContent.markdown,
+    markdown: validationInput,
     data,
     eventId: id,
     session,
     projectRoot,
   });
-  if (validation.status !== 'ready' || validation.hash_sha256 !== session.respuesta_chatgpt.hash_sha256) {
+  const expectedHash = structuredWarningContract
+    ? session.respuesta_chatgpt.markdown_sha256
+    : session.respuesta_chatgpt.hash_sha256;
+  const actualHash = structuredWarningContract
+    ? sha256(Buffer.from(validation.normalized_markdown, 'utf8'))
+    : validation.hash_sha256;
+  if (validation.status !== 'ready' || actualHash !== expectedHash) {
     return {
       status: 'blocked',
       blocks: validation.blocks.length

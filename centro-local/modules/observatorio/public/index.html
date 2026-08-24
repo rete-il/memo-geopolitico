@@ -32,7 +32,7 @@
       <header class="topbar">
         <span class="mobile menu-spacer" aria-hidden="true"></span>
         <div><p class="eyebrow">PROSPECTIVA E INTELIGENCIA ESTRATÉGICA</p><h1 id="page-title">Resumen del Observatorio</h1></div>
-        <div class="actions"><span id="server-status" class="server-status checking" role="status">Comprobando servidor…</span><span id="save-state">Sin cambios</span><button id="open-help" class="btn ghost">Ayuda</button><button id="reload" class="btn ghost">Recargar</button><button id="save" class="btn primary">Guardar</button></div>
+        <div class="actions"><span id="server-status" class="server-status checking" role="status">Comprobando servidor…</span><span id="save-state">Sin cambios</span><button id="open-help" class="btn ghost">Ayuda</button><button id="reload" class="btn ghost">Recargar</button><button id="save" class="btn primary">Guardar</button><button id="sync-public" class="btn ghost" disabled title="Comprobando si hay macroeventos nuevos para incorporar al sitio local">Comprobando…</button></div>
       </header>
       <div id="message" class="message" role="status" aria-live="polite" hidden></div>
 
@@ -183,7 +183,7 @@
     <div class="dialog-shell">
       <header class="dialog-head"><div><p class="eyebrow">ENTRADA ASISTIDA</p><h2>Importar candidatos desde ChatGPT</h2></div><button type="button" id="close-candidate-import" class="icon" aria-label="Cerrar importación">×</button></header>
       <div class="dialog-body">
-        <p class="assisted-output-note">La importación distingue procesos nuevos, actualizaciones, duplicados sin novedad y candidatos ambiguos. Las fuentes y señales nuevas quedan pendientes; ningún cambio se guarda en disco hasta que pulses <b>Guardar</b>.</p>
+        <p class="assisted-output-note">La importación distingue procesos nuevos, actualizaciones, duplicados sin novedad y candidatos ambiguos. También previsualiza advertencias, conflictos y vínculos pendientes. Ningún cambio se guarda en disco hasta que pulses <b>Guardar</b>.</p>
 
         <fieldset><legend>1. Preparar la salida del prompt</legend>
           <p class="help">Añadí estas instrucciones al prompt de búsqueda para recibir un JSON compatible. También podés descargar una plantilla de referencia.</p>
@@ -191,11 +191,11 @@
             <button type="button" id="copy-candidate-format" class="btn ghost">Copiar instrucciones de formato</button>
             <button type="button" id="download-candidate-template" class="btn ghost">Descargar plantilla JSON</button>
           </div>
-          <details class="import-contract"><summary>Ver reglas del formato</summary><ul><li>Un objeto con la lista <code>candidatos</code>.</li><li>Fuentes y señales vinculadas por IDs internos del candidato.</li><li>Evaluaciones 1–5 como propuestas analíticas.</li><li>Campos desconocidos vacíos, nunca inventados.</li></ul></details>
+          <details class="import-contract"><summary>Ver reglas del formato</summary><ul><li>Un objeto con la lista <code>candidatos</code>.</li><li>Fuentes, señales y advertencias vinculadas por IDs internos del candidato.</li><li>Cada <code>advertencia_id</code> debe ser único dentro del macroevento.</li><li>Las advertencias entran pendientes y se confirman una por una.</li><li>Los vínculos desconocidos quedan visibles como pendientes; no se inventan ni se descartan en silencio.</li><li>Evaluaciones 1–5 como propuestas analíticas.</li><li>Campos desconocidos vacíos, nunca inventados.</li></ul></details>
         </fieldset>
 
         <fieldset><legend>2. Pegar o cargar la respuesta</legend>
-          <label class="field"><span>Respuesta JSON de ChatGPT</span><textarea id="candidate-json" rows="13" spellcheck="false" placeholder='{"formato":"observatorio-candidatos","schema_version":1,"candidatos":[…]}'></textarea></label>
+          <label class="field"><span>Respuesta JSON de ChatGPT</span><textarea id="candidate-json" rows="13" spellcheck="false" placeholder='{"formato":"observatorio-candidatos","schema_version":3,"candidatos":[…]}'></textarea></label>
           <div class="button-row">
             <label class="btn ghost file">Cargar archivo .json<input id="candidate-file" type="file" accept=".json,application/json"></label>
             <button type="button" id="analyze-candidates" class="btn primary">Analizar candidatos</button>
@@ -206,11 +206,11 @@
         <fieldset id="candidate-preview-section" hidden><legend>3. Revisar y seleccionar</legend>
           <div id="candidate-import-summary" class="quality-summary" role="status" aria-live="polite"></div>
           <div class="section-tools">
-            <p class="help">Los duplicados sin novedad y los candidatos compuestos quedan bloqueados. En las actualizaciones podés aceptar fuentes, señales y cada cambio principal por separado.</p>
-            <div class="button-row"><button type="button" id="select-importable-candidates" class="btn small ghost">Seleccionar acciones propuestas</button><button type="button" id="clear-candidate-selection" class="btn small ghost">Quitar selección</button></div>
+            <p class="help">Los conflictos se aíslan por candidato o advertencia. Seleccioná los candidatos y confirmá cada advertencia por separado; una advertencia sin estado o tratamiento no puede aplicarse.</p>
+            <div class="button-row"><button type="button" id="select-importable-candidates" class="btn small ghost">Seleccionar siguiente candidato</button><button type="button" id="clear-candidate-selection" class="btn small ghost">Quitar selección</button></div>
           </div>
           <div id="candidate-preview-list" class="candidate-preview-list"></div>
-          <label class="review-confirmation"><input id="candidate-import-confirmed" type="checkbox"><span>Revisé las acciones seleccionadas. Los candidatos nuevos se incorporarán como <b>Borrador</b>; las actualizaciones conservarán el ID y el estado del macroevento existente, y sus nuevas fuentes y señales quedarán <b>Pendientes</b>.</span></label>
+          <label class="review-confirmation"><input id="candidate-import-confirmed" type="checkbox"><span>Revisé candidatos e ítems. Los nuevos se incorporarán como <b>Borrador</b>; fuentes, señales y advertencias confirmadas quedarán <b>Pendientes</b>. Las advertencias no marcadas se registrarán como no aplicadas.</span></label>
         </fieldset>
       </div>
       <footer class="dialog-foot"><span id="candidate-selection-count" class="muted">Ninguna acción seleccionada</span><div><button type="button" id="cancel-candidate-import" class="btn ghost">Cancelar</button><button type="button" id="apply-candidate-import" class="btn primary" disabled>Aplicar decisiones</button></div></footer>
@@ -277,8 +277,35 @@
           <label class="field"><span>Confianza</span><select id="s-confidence"><option value="baja">Baja</option><option value="media">Media</option><option value="media-alta">Media-alta</option><option value="alta">Alta</option></select></label>
         </div><div class="calc">Relevancia: <strong id="calc-rel">—</strong> · Gap bruto: <strong id="calc-gap">—</strong></div></fieldset>
 
-        <fieldset><legend>Señales estructuradas</legend><div class="section-tools"><p class="help">Cada señal conserva ID, estado de revisión, origen, fuentes y localizaciones opcionales.</p><button type="button" id="add-signal" class="btn ghost">+ Agregar señal</button></div><div id="signal-cards" class="item-cards"></div></fieldset>
-        <fieldset><legend>Fuentes estructuradas</legend><div class="section-tools"><p class="help">Cada publicación puede vincularse con uno de los 92 medios clasificados.</p><button type="button" id="add-source" class="btn ghost">+ Agregar fuente</button></div><div id="source-cards" class="item-cards"></div></fieldset>
+        <section class="event-records" aria-labelledby="event-records-title">
+          <h3 id="event-records-title" class="sr-only">Registros del expediente</h3>
+          <div id="event-record-tabs" class="event-record-tabs" role="tablist" aria-label="Registros del expediente">
+            <button type="button" id="event-tab-signals-button" class="event-record-tab active" role="tab" aria-selected="true" aria-controls="event-tab-signals" tabindex="0" data-event-tab="signals">Señales <span id="event-tab-signals-count" class="tab-count">0</span></button>
+            <button type="button" id="event-tab-sources-button" class="event-record-tab" role="tab" aria-selected="false" aria-controls="event-tab-sources" tabindex="-1" data-event-tab="sources">Fuentes <span id="event-tab-sources-count" class="tab-count">0</span></button>
+            <button type="button" id="event-tab-warnings-button" class="event-record-tab" role="tab" aria-selected="false" aria-controls="event-tab-warnings" tabindex="-1" data-event-tab="warnings">Advertencias <span id="event-tab-warnings-count" class="tab-count">0</span></button>
+          </div>
+          <section id="event-tab-signals" class="event-record-panel" role="tabpanel" aria-labelledby="event-tab-signals-button" data-event-panel="signals">
+            <fieldset><legend>Señales estructuradas</legend><div class="section-tools"><p class="help">Cada señal conserva ID, estado de revisión, origen, fuentes y localizaciones opcionales.</p><button type="button" id="add-signal" class="btn ghost">+ Agregar señal</button></div><div id="signal-cards" class="item-cards"></div></fieldset>
+          </section>
+          <section id="event-tab-sources" class="event-record-panel" role="tabpanel" aria-labelledby="event-tab-sources-button" data-event-panel="sources" hidden>
+            <fieldset><legend>Fuentes estructuradas</legend><div class="section-tools"><p class="help">Cada publicación puede vincularse con uno de los 92 medios clasificados.</p><button type="button" id="add-source" class="btn ghost">+ Agregar fuente</button></div><div id="source-cards" class="item-cards"></div></fieldset>
+          </section>
+          <section id="event-tab-warnings" class="event-record-panel warning-panel" role="tabpanel" aria-labelledby="event-tab-warnings-button" data-event-panel="warnings" hidden>
+            <div class="warning-heading"><div><p class="eyebrow">CONTROL EDITORIAL</p><h3>Advertencias</h3><p class="help">Clasificá límites, contradicciones y faltantes sin modificar prompts ni publicaciones.</p></div><button type="button" id="add-warning" class="btn primary">+ Nueva advertencia</button></div>
+            <div id="warning-summary" class="warning-summary" aria-label="Resumen de advertencias"></div>
+            <div class="warning-toolbar">
+              <label class="field"><span>Estado</span><select id="warning-filter-state"><option value="">Todos</option><option value="pendiente">Pendiente</option><option value="resuelta">Resuelta</option><option value="descartada">Descartada</option></select></label>
+              <label class="field"><span>Tratamiento</span><select id="warning-filter-treatment"><option value="">Todos</option><option value="bloqueante">Bloqueante</option><option value="relevante">Relevante</option><option value="observacion_posterior">Observación posterior</option><option value="irrelevante">Irrelevante</option></select></label>
+              <label class="field"><span>Prioridad</span><select id="warning-filter-priority"><option value="">Todas</option><option value="alta">Alta</option><option value="media">Media</option><option value="baja">Baja</option></select></label>
+              <label class="field"><span>Señal vinculada</span><select id="warning-filter-signal"><option value="">Todas</option><option value="con">Con señal</option><option value="sin">Sin señal</option></select></label>
+              <label class="field"><span>Fuente vinculada</span><select id="warning-filter-source"><option value="">Todas</option><option value="con">Con fuente</option><option value="sin">Sin fuente</option></select></label>
+              <label class="field"><span>Regla de prompt</span><select id="warning-filter-prompt"><option value="">Todas</option><option value="incluida">Incluida</option><option value="excluida">Excluida</option></select></label>
+              <div class="warning-view-actions"><button type="button" id="warning-radar" class="btn ghost" aria-pressed="false">Radar de observación <span id="warning-radar-count" class="tab-count">0</span></button><button type="button" id="clear-warning-filters" class="btn ghost">Limpiar</button></div>
+            </div>
+            <p id="warning-list-status" class="help" role="status" aria-live="polite"></p>
+            <div id="warning-cards" class="warning-cards"></div>
+          </section>
+        </section>
         <fieldset id="event-update-history-section" hidden><legend>Historial de actualizaciones</legend><p class="help">Trazabilidad de lotes incorporados sin reemplazar la identidad ni el estado editorial del macroevento.</p><div id="event-update-history" class="update-history"></div></fieldset>
         <fieldset><legend>Diversidad de cobertura</legend><div id="event-diversity"></div></fieldset>
       </div>
@@ -341,6 +368,44 @@
         <div id="catalog-preview" class="catalog-preview"></div>
       </div>
       <footer class="dialog-foot"><span></span><div><button type="button" id="cancel-source-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar fuente</button></div></footer>
+    </form>
+  </dialog>
+
+  <dialog id="warning-editor" class="large-dialog">
+    <form id="warning-form">
+      <header class="dialog-head"><div><p class="eyebrow">ADVERTENCIA</p><h2 id="warning-editor-title">Editar advertencia</h2></div><button type="button" id="close-warning-editor" class="icon" aria-label="Cerrar advertencia">×</button></header>
+      <div class="dialog-body warning-detail-body">
+        <input id="warning-index" type="hidden">
+        <div class="warning-detail-grid">
+          <section class="warning-edit-column">
+            <fieldset><legend>Clasificación y contenido</legend><div class="form-grid">
+              <label class="field"><span>ID</span><input id="warning-id" required pattern="[a-z0-9]+(?:[-_][a-z0-9]+)*"></label>
+              <label class="field"><span>Tipo</span><input id="warning-type" required placeholder="evidencia_insuficiente"></label>
+              <label class="field span2"><span>Descripción completa</span><textarea id="warning-description" rows="6" required></textarea></label>
+              <label class="field"><span>Estado</span><select id="warning-state"><option value="pendiente">Pendiente</option><option value="resuelta">Resuelta</option><option value="descartada">Descartada</option></select></label>
+              <label class="field"><span>Tratamiento</span><select id="warning-treatment" aria-describedby="warning-treatment-help"><option value="bloqueante">Bloqueante</option><option value="relevante">Relevante</option><option value="observacion_posterior">Observación posterior</option><option value="irrelevante">Irrelevante</option></select><small id="warning-treatment-help" class="help">“Observación posterior” conserva el caso en el radar sin incluirlo en el prompt actual.</small></label>
+              <label class="field"><span>Prioridad</span><select id="warning-priority"><option value="alta">Alta</option><option value="media">Media</option><option value="baja">Baja</option></select></label>
+              <label class="field"><span>Actor de la decisión</span><input id="warning-actor" value="rete" required></label>
+              <label class="field span2"><span>Notas editoriales</span><textarea id="warning-notes" rows="4"></textarea></label>
+            </div></fieldset>
+            <fieldset><legend>Vínculos</legend><div class="warning-link-grid"><section><h3>Señales relacionadas</h3><div id="warning-signal-options" class="check-grid compact"></div></section><section><h3>Fuentes relacionadas</h3><div id="warning-source-options" class="check-grid compact"></div></section></div></fieldset>
+            <fieldset id="warning-resolution-section" hidden><legend id="warning-resolution-legend">Resolución</legend><p id="warning-resolution-help" class="help"></p><div class="form-grid">
+              <label class="field"><span>Tipo de resolución</span><select id="warning-resolution-type"><option value="evidencia">Evidencia</option><option value="decision_editorial">Decisión editorial</option></select></label>
+              <label class="field"><span>Fecha de decisión</span><input id="warning-resolution-date" type="datetime-local"></label>
+              <label class="field span2"><span>Motivo de la decisión</span><textarea id="warning-resolution-reason" rows="4"></textarea></label>
+              <section id="warning-resolution-sources-wrap" class="span2"><h3>Fuentes que resuelven</h3><p class="help">Una resolución por evidencia requiere al menos una fuente.</p><div id="warning-resolution-source-options" class="check-grid compact"></div></section>
+            </div></fieldset>
+            <label class="warning-confirm"><input id="warning-confirmed" type="checkbox" required><span>Confirmo esta decisión editorial y su registro con fecha y actor.</span></label>
+          </section>
+          <aside class="warning-trace-column" aria-label="Detalle y trazabilidad">
+            <section class="warning-rule-card"><p class="eyebrow">REGLA DERIVADA</p><strong id="warning-prompt-rule">Excluida del prompt</strong><p id="warning-prompt-help" class="help"></p></section>
+            <section><h3>Historial</h3><div id="warning-history" class="warning-history"></div></section>
+            <section><h3>Excepciones registradas</h3><div id="warning-exceptions" class="warning-history"></div></section>
+            <section><h3>Generaciones afectadas</h3><div id="warning-generations" class="warning-history"></div></section>
+          </aside>
+        </div>
+      </div>
+      <footer class="dialog-foot"><span id="warning-editor-status" class="help" role="status" aria-live="polite"></span><div><button type="button" id="cancel-warning-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar advertencia</button></div></footer>
     </form>
   </dialog>
 
@@ -462,7 +527,7 @@
         <section><h3>Expedientes públicos y encargos editoriales</h3><p>Cada macroevento genera directamente un expediente público del Observatorio. Un encargo editorial es un trabajo interno y opcional para investigar o redactar una publicación a partir de uno o más macroeventos.</p></section>
         <section><h3>Datos activos</h3><dl class="help-data-list"><dt>Archivo editorial</dt><dd>data/macroeventos.json</dd><dt>Catálogo de fuentes</dt><dd>data/catalogo-medios.json</dd><dt>Taxonomía</dt><dd>data/taxonomia-temas.json</dd><dt>Generador</dt><dd>data/configuracion-busqueda.json</dd><dt>Configuración</dt><dd>data/config.json</dd></dl><div id="help-counts" class="help-counts"></div></section>
         <section><h3>Flujo editorial</h3><ol><li>Configurar y generar un prompt de búsqueda contextual.</li><li>Ejecutarlo en ChatGPT e importar el lote JSON completo.</li><li>Revisar candidatos nuevos, actualizaciones, casos sin novedad y compuestos.</li><li>Aplicar las decisiones y guardar con backup.</li><li>Crear o actualizar un encargo editorial y evaluar suficiencia documental.</li><li>Generar el encargo de redacción y revisar el Markdown antes de incorporarlo al sitio.</li></ol></section>
-        <section><h3>Guardar y recuperar</h3><p><b>Aplicar cambios</b> actualiza la memoria de la pestaña. <b>Guardar</b> persiste en JSON y crea un backup. Si el servidor se desconecta, mantené la pestaña abierta, reiniciá <code>npm run start</code> y volvé a guardar.</p></section>
+        <section><h3>Guardar, sincronizar y recuperar</h3><p><b>Aplicar cambios</b> actualiza la memoria de la pestaña. <b>Guardar</b> persiste en JSON y crea un backup. Después, el control de sincronización compara automáticamente la base guardada con la proyección pública y solo se habilita cuando detecta uno o más macroeventos nuevos. Al pulsarlo, conserva los estados editoriales, muestra el alcance, pide confirmación y crea otro respaldo antes de escribir. Las simples actualizaciones de procesos existentes no habilitan el botón. No ejecuta Git ni publica en Internet. Si el servidor se desconecta, mantené la pestaña abierta, reiniciá <code>npm run start</code> y volvé a guardar.</p></section>
         <section><h3>Cambios principales de v0.6.3</h3><ul><li>Expedientes reproduce el estado público efectivo usado por el sitio.</li><li>Las publicaciones relacionadas tienen prioridad sobre el estado base del expediente.</li><li>La consulta es de solo lectura y no modifica macroeventos ni publicaciones.</li><li>Expedientes y Encargos editoriales permanecen como funciones separadas.</li></ul></section>
       </div>
       <footer class="dialog-foot"><span></span><button type="button" id="close-help-dialog-footer" class="btn primary">Cerrar</button></footer>

@@ -84,6 +84,7 @@ El usuario no necesita abrir ni recordar esos puertos internos.
 - La Fase 8 copia el borrador canónico aprobado a `src\content\publicaciones\_preview` para verlo en el sitio editorial local. Solo actualiza `src\data\public\observatorio.json` cuando la propuesta de seguimiento aprobada contiene diferencias.
 - La Fase 9 crea o actualiza deliberadamente `src\content\publicaciones\publicadas\<slug>.md` después de comprobar el preview, las identidades, las fuentes y la ausencia de marcadores editoriales internos. Registra la operación en `data\promociones` y el respaldo en `data\backups\publicaciones`.
 - La ruta **Actualizar proceso en evolución** modifica únicamente `src\data\public\observatorio.json`, conserva la aprobación del Markdown, valida el paquete público completo antes y después de escribir y registra backup en `data\backups\actualizaciones-proceso`.
+- El control de sincronización del Observatorio se habilita automáticamente solo cuando los macroeventos guardados contienen identificadores nuevos para `src\data\public\observatorio.json`. Las actualizaciones de procesos existentes no lo activan. Al ejecutarlo, presenta primero un plan, conserva los estados editoriales, bloquea eliminaciones automáticas, exige confirmación y registra el respaldo en `data\backups\sincronizacion-observatorio`. No ejecuta Git ni despliegue.
 - El dashboard de Medios, el Observatorio y el sitio público comparten una
   derivación de 93 registros generada desde el Excel maestro. Para
   resincronizarlos se ejecuta `npm run sync:media` desde la raíz del proyecto.

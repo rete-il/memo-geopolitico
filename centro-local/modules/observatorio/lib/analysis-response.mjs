@@ -3,6 +3,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { sessionFileFor } from './analysis-prompt.mjs';
+import {
+  WARNING_PRIORITIES,
+  WARNING_TREATMENTS,
+  validateEventWarnings,
+} from './warnings-contract.mjs';
 
 const clean = (value) => String(value ?? '').trim();
 const VALID_ID = /^[a-z0-9](?:[a-z0-9-]{0,198}[a-z0-9])?$/;
@@ -15,6 +20,8 @@ const REQUIRED_SCALARS = [
   ['resumen', 'resumen'],
   ['macroevento_principal_id', 'macroevento_principal_id'],
 ];
+const WARNING_ID = /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/;
+const WARNING_ENVELOPE = /<!--\s*MEMO_ADVERTENCIAS_V1\s*\n([\s\S]*?)\n-->\s*$/i;
 
 function unique(values) {
   return [...new Set((values || []).map(clean).filter(Boolean))];
@@ -67,7 +74,7 @@ function topLevelList(lines, key) {
   for (let cursor = index + 1; cursor < lines.length; cursor += 1) {
     const line = lines[cursor];
     if (clean(line) && lineIndent(line) === 0) break;
-    const match = line.match(/^\s{2}-\s+(.*?)\s*$/);
+    const match = line.match(/^\s{2}[-*+]\s+(.*?)\s*$/);
     if (match) values.push(scalar(match[1]));
   }
   return unique(values);
@@ -79,11 +86,56 @@ function unwrapOuterFence(value) {
   return match ? { markdown: match[1].trim(), wrapped: true } : { markdown: normalized, wrapped: false };
 }
 
+function normalizeWarningCandidate(value = {}) {
+  return {
+    advertencia_id: clean(value.advertencia_id),
+    descripcion: clean(value.descripcion),
+    tipo: clean(value.tipo),
+    signal_ids: unique(value.signal_ids),
+    fuente_ids: unique(value.fuente_ids),
+    tratamiento_sugerido: clean(value.tratamiento_sugerido),
+    prioridad_sugerida: clean(value.prioridad_sugerida),
+  };
+}
+
+function warningFingerprint(value = {}) {
+  return JSON.stringify({
+    descripcion: clean(value.descripcion).toLocaleLowerCase('es'),
+    tipo: clean(value.tipo),
+    signal_ids: unique(value.signal_ids).sort(),
+    fuente_ids: unique(value.fuente_ids).sort(),
+  });
+}
+
+function extractWarningEnvelope(value) {
+  const match = String(value ?? '').match(WARNING_ENVELOPE);
+  if (!match) return { markdown: String(value ?? '').trim(), found: false, value: null, error: '' };
+  try {
+    return {
+      markdown: String(value).slice(0, match.index).trim(),
+      found: true,
+      value: JSON.parse(match[1]),
+      error: '',
+    };
+  } catch (error) {
+    return {
+      markdown: String(value).slice(0, match.index).trim(),
+      found: true,
+      value: null,
+      error: error.message,
+    };
+  }
+}
+
 function splitMarkdown(value) {
   const normalized = unwrapOuterFence(value);
-  const match = normalized.markdown.match(/^---\s*\n([\s\S]*?)\n---(?:\s*\n|$)([\s\S]*)$/);
+  const envelope = extractWarningEnvelope(normalized.markdown);
+  const match = envelope.markdown.match(/^---\s*\n([\s\S]*?)\n---(?:\s*\n|$)([\s\S]*)$/);
   return {
     ...normalized,
+    response_content: normalized.markdown,
+    markdown: envelope.markdown,
+    warning_envelope: envelope,
     frontmatter: match?.[1] || '',
     body: match?.[2]?.trim() || '',
   };
@@ -276,8 +328,16 @@ export function validateAnalysisResponse({
   if (!session || session.macroevento_id !== id || !session.prompt_analisis) {
     blocks.push(issue('missing-session', 'No existe una sesión de prompt compatible', 'Generá o recuperá primero el prompt del mismo macroevento.'));
   }
-  if (parsed.wrapped) warnings.push(issue('outer-code-fence', 'La respuesta llegó dentro de un bloque de código', 'El bloque exterior se retiró para validar y previsualizar el Markdown. El original permanece guardado.'));
+  if (parsed.wrapped) information.push(issue('outer-code-fence', 'Envoltura Markdown retirada', 'El bloque exterior se retiró de forma segura. El original permanece guardado.'));
   if (!parsed.frontmatter) blocks.push(issue('missing-frontmatter', 'Falta el frontmatter YAML', 'El archivo debe comenzar y cerrar su encabezado con --- antes del cuerpo Markdown.'));
+  const requiresWarningEnvelope = session?.prompt_analisis?.template?.version === '1.1';
+  if (!parsed.warning_envelope.found && requiresWarningEnvelope) {
+    blocks.push(issue('missing-warning-envelope', 'Falta el bloque estructurado de advertencias', 'La respuesta debe terminar con el comentario MEMO_ADVERTENCIAS_V1, aunque la lista advertencias_nuevas esté vacía.'));
+  } else if (parsed.warning_envelope.found && parsed.warning_envelope.error) {
+    blocks.push(issue('invalid-warning-envelope-json', 'El bloque de advertencias no contiene JSON válido', parsed.warning_envelope.error));
+  } else if (parsed.warning_envelope.found && (parsed.warning_envelope.value?.schema_version !== 1 || !Array.isArray(parsed.warning_envelope.value?.advertencias_nuevas))) {
+    blocks.push(issue('invalid-warning-envelope-contract', 'El bloque de advertencias no cumple el contrato', 'Debe tener schema_version: 1 y una lista advertencias_nuevas.'));
+  }
 
   const metadata = parsed.frontmatter ? parseFrontmatter(parsed.frontmatter) : {};
   if (parsed.frontmatter && metadata.schema_version !== 2) {
@@ -317,6 +377,44 @@ export function validateAnalysisResponse({
 
   const event = (data?.macroeventos || []).find((item) => item?.id === id);
   if (!event) blocks.push(issue('missing-event', 'El macroevento ya no está disponible', `No se encontró “${id}” en los datos actuales.`));
+  const warningCandidates = [];
+  const existingWarnings = Array.isArray(event?.advertencias) ? event.advertencias : [];
+  const existingById = new Map(existingWarnings.map((item) => [clean(item?.advertencia_id), item]));
+  const existingByFingerprint = new Map(existingWarnings.map((item) => [warningFingerprint(item), item]));
+  const candidateIds = new Set();
+  const candidateFingerprints = new Set();
+  const knownSignalIds = new Set((event?.senales || []).map((item) => clean(item?.id)).filter(Boolean));
+  const knownSourceIds = new Set((event?.fuentes || []).map((item) => clean(item?.id)).filter(Boolean));
+  for (const [index, rawCandidate] of (parsed.warning_envelope.value?.advertencias_nuevas || []).entries()) {
+    const candidate = normalizeWarningCandidate(rawCandidate);
+    const label = `advertencias_nuevas[${index}]`;
+    if (!WARNING_ID.test(candidate.advertencia_id)) blocks.push(issue('invalid-warning-id', `${label}: advertencia_id inválido`, 'Usá minúsculas, números, guiones o guiones bajos.'));
+    if (!candidate.descripcion) blocks.push(issue('missing-warning-description', `${label}: falta descripción`));
+    if (!WARNING_ID.test(candidate.tipo)) blocks.push(issue('invalid-warning-type', `${label}: tipo inválido`));
+    if (!WARNING_TREATMENTS.includes(candidate.tratamiento_sugerido)) blocks.push(issue('invalid-warning-treatment', `${label}: tratamiento sugerido inválido`, WARNING_TREATMENTS.join(', ')));
+    if (!WARNING_PRIORITIES.includes(candidate.prioridad_sugerida)) blocks.push(issue('invalid-warning-priority', `${label}: prioridad sugerida inválida`, WARNING_PRIORITIES.join(', ')));
+    const unknownSignals = candidate.signal_ids.filter((signalId) => !knownSignalIds.has(signalId));
+    const unknownSources = candidate.fuente_ids.filter((sourceId) => !knownSourceIds.has(sourceId));
+    if (unknownSignals.length) blocks.push(issue('warning-unknown-signals', `${label}: señales inexistentes`, unknownSignals.join(', ')));
+    if (unknownSources.length) blocks.push(issue('warning-unknown-sources', `${label}: fuentes inexistentes`, unknownSources.join(', ')));
+    const fingerprint = warningFingerprint(candidate);
+    if (candidateIds.has(candidate.advertencia_id)) blocks.push(issue('duplicate-warning-id', `${label}: advertencia_id repetido`, candidate.advertencia_id));
+    if (candidateFingerprints.has(fingerprint)) blocks.push(issue('duplicate-warning-content', `${label}: advertencia repetida`, candidate.descripcion));
+    candidateIds.add(candidate.advertencia_id);
+    candidateFingerprints.add(fingerprint);
+    const sameId = existingById.get(candidate.advertencia_id);
+    const sameContent = existingByFingerprint.get(fingerprint);
+    if (sameId && warningFingerprint(sameId) !== fingerprint) {
+      blocks.push(issue('warning-id-conflict', `${label}: el ID ya pertenece a otra advertencia`, candidate.advertencia_id));
+    }
+    const existing = sameId || sameContent || null;
+    warningCandidates.push({
+      ...candidate,
+      fingerprint_sha256: crypto.createHash('sha256').update(fingerprint).digest('hex'),
+      estado_importacion: existing ? 'ya_existente' : 'pendiente_decision',
+      advertencia_existente_id: existing?.advertencia_id || null,
+    });
+  }
   const verifiedSources = (event?.fuentes || []).filter((source) => source.estado_verificacion === 'verificada');
   const reservedSources = (event?.fuentes || []).filter((source) => source.estado_verificacion !== 'verificada');
   const promptVerified = unique(session?.prompt_analisis?.variables?.fuentes_verificadas || []);
@@ -340,12 +438,16 @@ export function validateAnalysisResponse({
   const headings = parsed.body.match(/^#{2,4}\s+.+$/gm) || [];
   if (parsed.body && headings.length < 2) warnings.push(issue('few-sections', 'El análisis tiene poca estructura', 'Se esperan al menos dos subtítulos Markdown claros.'));
   if (parsed.body && !/^##\s+Fuentes\s*$/im.test(parsed.body)) warnings.push(issue('missing-sources-section', 'Falta la sección final “Fuentes”', 'Agregá una sección ## Fuentes que liste únicamente la evidencia utilizada.'));
-  const verifyMarkers = parsed.body.match(/\[VERIFICAR(?::[^\]]+)?\]/gi) || [];
-  if (verifyMarkers.length) warnings.push(issue('verification-markers', `${verifyMarkers.length} ${verifyMarkers.length === 1 ? 'marcador requiere' : 'marcadores requieren'} revisión humana`, unique(verifyMarkers).join(' · ')));
+  const editorialMarkers = [
+    ...(parsed.body.match(/\[VERIFICAR(?::[^\]]+)?\]/gi) || []),
+    ...(parsed.body.match(/\[(?:COMPLETAR|PENDIENTE)(?::[^\]]+)?\]/gi) || []),
+    ...(parsed.body.match(/(?:^|\s)TODO\s*:/gim) || []),
+  ];
+  if (editorialMarkers.length) blocks.push(issue('editorial-markers-in-markdown', 'El Markdown contiene marcadores editoriales internos', 'Convertí cada problema en una advertencia estructurada y mantené limpio el texto publicable.'));
   if (/<\/?[a-z][^>]*>/i.test(parsed.body)) warnings.push(issue('raw-html', 'El cuerpo contiene HTML', 'La vista previa lo muestra como texto por seguridad; revisalo antes de aprobar.'));
 
   const words = parsed.body ? (parsed.body.replace(/https?:\/\/\S+/g, ' ').match(/[\p{L}\p{N}][\p{L}\p{N}'’_-]*/gu) || []).length : 0;
-  const hash = crypto.createHash('sha256').update(parsed.markdown, 'utf8').digest('hex');
+  const hash = crypto.createHash('sha256').update(parsed.response_content, 'utf8').digest('hex');
   const status = blocks.length ? 'blocked' : 'ready';
   if (status === 'ready') information.push(issue('structure-valid', 'Estructura Markdown válida', 'La identidad, el vínculo y las fuentes superaron los controles automáticos.'));
   information.push(issue('human-review-required', 'La aprobación sigue siendo humana', 'La validación estructural no confirma por sí sola la exactitud factual ni autoriza publicación.'));
@@ -365,8 +467,11 @@ export function validateAnalysisResponse({
       links: bodyUrls.length,
       source_ids: submittedSourceIds.length,
       authorized_source_ids: promptVerified.length,
-      verification_markers: verifyMarkers.length,
+      verification_markers: editorialMarkers.length,
+      warning_candidates: warningCandidates.length,
+      warning_candidates_pending: warningCandidates.filter((item) => item.estado_importacion === 'pendiente_decision').length,
     },
+    warning_candidates: warningCandidates,
     normalized_markdown: parsed.markdown,
     preview_html: renderMarkdownPreview(parsed.body),
   };
@@ -391,6 +496,15 @@ export function saveAnalysisResponse({ sessionsDir, data, projectRoot, eventId, 
   }
   const validation = validateAnalysisResponse({ markdown, data, eventId, session, projectRoot, receivedAt });
   const validated = validation.status === 'ready';
+  const priorDecisions = new Map((session.respuesta_chatgpt?.advertencias_propuestas || [])
+    .filter((item) => item?.decision?.hash_sha256 === validation.hash_sha256)
+    .map((item) => [item.fingerprint_sha256, item.decision]));
+  const warningProposals = validation.warning_candidates.map((candidate) => ({
+    ...candidate,
+    decision: candidate.estado_importacion === 'ya_existente'
+      ? { estado: 'ya_existente', advertencia_id: candidate.advertencia_existente_id }
+      : (priorDecisions.get(candidate.fingerprint_sha256) || null),
+  }));
   session.estado = validated ? 'respuesta_validada' : 'respuesta_recibida';
   session.actualizado_el = receivedAt;
   session.respuesta_chatgpt = {
@@ -398,6 +512,7 @@ export function saveAnalysisResponse({ sessionsDir, data, projectRoot, eventId, 
     contenido_original: String(markdown ?? ''),
     contenido_normalizado: validation.normalized_markdown,
     hash_sha256: validation.hash_sha256,
+    markdown_sha256: crypto.createHash('sha256').update(validation.normalized_markdown, 'utf8').digest('hex'),
     validacion: {
       estado: validation.status,
       bloqueos: validation.blocks,
@@ -407,6 +522,7 @@ export function saveAnalysisResponse({ sessionsDir, data, projectRoot, eventId, 
       metricas: validation.metrics,
       preview_html: validation.preview_html,
     },
+    advertencias_propuestas: warningProposals,
     aprobada_el: null,
   };
   session.paquete_revision = null;
@@ -449,6 +565,11 @@ export function approveAnalysisResponse({ sessionsDir, eventId, expectedHash, ap
   if (!expectedHash || response.hash_sha256 !== clean(expectedHash)) {
     return { status: 'blocked', blocks: [issue('response-changed', 'La respuesta cambió desde la validación', 'Volvé a validarla antes de aprobar.')] };
   }
+  const pendingWarningDecisions = (response.advertencias_propuestas || [])
+    .filter((item) => !['guardada', 'descartada', 'ya_existente'].includes(item?.decision?.estado));
+  if (pendingWarningDecisions.length) {
+    return { status: 'blocked', blocks: [issue('warning-decisions-required', 'Faltan decisiones sobre advertencias', `Gestioná ${pendingWarningDecisions.length} advertencia(s) una por una antes de aprobar el análisis.`)] };
+  }
   session.estado = 'respuesta_aprobada';
   session.actualizado_el = approvedAt;
   session.respuesta_chatgpt.aprobada_el = approvedAt;
@@ -477,10 +598,137 @@ export function approveAnalysisResponse({ sessionsDir, eventId, expectedHash, ap
       information: response.validacion.informacion || [],
       metadata: response.validacion.metadata || {},
       metrics: response.validacion.metricas || {},
+      warning_candidates: response.advertencias_propuestas || [],
       normalized_markdown: response.contenido_normalizado || '',
       preview_html: response.validacion.preview_html || '',
     },
     file: { name: path.basename(file), relative_path: path.join('data', 'sesiones', path.basename(file)), operation: 'actualizado' },
     safety: session.seguridad,
   };
+}
+
+function compactTimestamp(value) {
+  return String(value).replace(/[^0-9]/g, '').slice(0, 14) || Date.now().toString();
+}
+
+function writeJsonAtomic(file, value) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const temporary = `${file}.tmp-${process.pid}-${Date.now()}`;
+  fs.writeFileSync(temporary, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
+  fs.renameSync(temporary, file);
+}
+
+export function saveAnalysisWarningDecision({
+  sessionsDir,
+  dataPath,
+  backupsDir,
+  data,
+  eventId,
+  warningId,
+  expectedHash,
+  action,
+  treatment,
+  priority,
+  notes = '',
+  actor = 'usuario-local',
+  decidedAt = new Date().toISOString(),
+} = {}) {
+  const id = clean(eventId);
+  let sessionFile;
+  try { sessionFile = sessionFileFor(sessionsDir, id); } catch (error) {
+    return { status: 'blocked', blocks: [issue('invalid-event-id', 'macroevento_id inválido', error.message)] };
+  }
+  if (!fs.existsSync(sessionFile)) return { status: 'blocked', blocks: [issue('missing-session', 'No existe una sesión para gestionar advertencias')] };
+  const session = JSON.parse(fs.readFileSync(sessionFile, 'utf8'));
+  const response = session.respuesta_chatgpt;
+  if (response?.validacion?.estado !== 'ready' || response.hash_sha256 !== clean(expectedHash)) {
+    return { status: 'blocked', blocks: [issue('response-changed', 'La respuesta no coincide con la validación vigente')] };
+  }
+  const proposals = response.advertencias_propuestas || [];
+  const proposal = proposals.find((item) => item.advertencia_id === clean(warningId));
+  if (!proposal) return { status: 'blocked', blocks: [issue('warning-proposal-missing', 'No existe la advertencia propuesta')] };
+  if (proposal.estado_importacion === 'ya_existente') {
+    proposal.decision = { estado: 'ya_existente', advertencia_id: proposal.advertencia_existente_id };
+    writeSessionAtomic(sessionFile, session);
+    return { status: 'ready', session, warning: null, decision: proposal.decision, backup: null };
+  }
+  if (!['incorporar', 'descartar'].includes(action)) return { status: 'blocked', blocks: [issue('invalid-warning-action', 'Elegí incorporar o descartar la advertencia')] };
+  const selectedTreatment = action === 'descartar' ? 'irrelevante' : clean(treatment);
+  if (!WARNING_TREATMENTS.includes(selectedTreatment)) return { status: 'blocked', blocks: [issue('invalid-warning-treatment', 'Elegí un tratamiento válido')] };
+  if (!WARNING_PRIORITIES.includes(clean(priority))) return { status: 'blocked', blocks: [issue('invalid-warning-priority', 'Elegí una prioridad válida')] };
+  if (clean(notes).length < 8) return { status: 'blocked', blocks: [issue('warning-notes-required', 'Registrá una justificación breve', 'La decisión debe dejar al menos 8 caracteres de trazabilidad editorial.')] };
+
+  const nextData = structuredClone(data);
+  const event = (nextData.macroeventos || []).find((item) => item.id === id);
+  if (!event) return { status: 'blocked', blocks: [issue('missing-event', 'El macroevento ya no existe')] };
+  if (!Array.isArray(event.advertencias)) event.advertencias = [];
+  if (!Array.isArray(event.excepciones_advertencias)) event.excepciones_advertencias = [];
+  const existing = (event.advertencias || []).find((item) => item.advertencia_id === proposal.advertencia_id);
+  if (existing && warningFingerprint(existing) !== warningFingerprint(proposal)) {
+    return { status: 'blocked', blocks: [issue('warning-id-conflict', 'El ID ya pertenece a otra advertencia')] };
+  }
+  const discarded = action === 'descartar';
+  const warning = existing || {
+    advertencia_id: proposal.advertencia_id,
+    descripcion: proposal.descripcion,
+    tipo: proposal.tipo,
+    signal_ids: proposal.signal_ids,
+    fuente_ids: proposal.fuente_ids,
+    estado: discarded ? 'descartada' : 'pendiente',
+    tratamiento: selectedTreatment,
+    prioridad: clean(priority),
+    creada_el: decidedAt,
+    actualizada_el: decidedAt,
+    resuelta_el: null,
+    resuelta_con_fuente_ids: [],
+    notas_editoriales: clean(notes),
+    resolucion: discarded ? {
+      tipo: 'decision_editorial',
+      motivo: clean(notes),
+      decidida_por: clean(actor),
+      decidida_el: decidedAt,
+      fuente_ids: [],
+    } : null,
+    historial: [{
+      cambio_id: `hist-${proposal.advertencia_id}-${compactTimestamp(decidedAt)}`,
+      accion: discarded ? 'descartada_desde_analisis' : 'incorporada_desde_analisis',
+      detalle: clean(notes),
+      realizada_el: decidedAt,
+      realizada_por: clean(actor),
+    }],
+  };
+  if (!existing) event.advertencias.push(warning);
+  const warningValidation = validateEventWarnings(event, { path: `macroevento(${id})` });
+  if (!warningValidation.valid) return { status: 'blocked', blocks: [issue('invalid-warning-result', 'La advertencia no supera el contrato interno', warningValidation.errors.join(' · '))] };
+  nextData.actualizado = decidedAt.slice(0, 10);
+  proposal.decision = {
+    estado: discarded ? 'descartada' : 'guardada',
+    accion: action,
+    tratamiento: selectedTreatment,
+    prioridad: clean(priority),
+    notas: clean(notes),
+    decidida_por: clean(actor),
+    decidida_el: decidedAt,
+    hash_sha256: response.hash_sha256,
+  };
+  session.actualizado_el = decidedAt;
+  session.trazabilidad = {
+    ...(session.trazabilidad || {}),
+    estado: proposals.every((item) => ['guardada', 'descartada', 'ya_existente'].includes(item?.decision?.estado))
+      ? 'advertencias_decididas_pendiente_aprobacion'
+      : 'advertencias_pendientes_decision',
+  };
+  const previousData = fs.readFileSync(dataPath);
+  let backup = null;
+  try {
+    fs.mkdirSync(backupsDir, { recursive: true });
+    backup = `macroeventos-${compactTimestamp(decidedAt)}-decision-advertencia.json`;
+    fs.copyFileSync(dataPath, path.join(backupsDir, backup));
+    writeJsonAtomic(dataPath, nextData);
+    writeSessionAtomic(sessionFile, session);
+  } catch (error) {
+    fs.writeFileSync(dataPath, previousData);
+    return { status: 'blocked', blocks: [issue('warning-decision-write-failed', 'No se pudo guardar la decisión', error.message)] };
+  }
+  return { status: 'ready', session, data: nextData, warning, decision: proposal.decision, backup };
 }
