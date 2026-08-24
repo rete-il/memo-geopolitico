@@ -18,6 +18,13 @@ Thumbs.db
 # Resguardos e informes operativos locales
 /backups-instalacion/
 /centro-local/backups-instalacion/
+/respaldos-instalacion/
+/_backups_local/
+/backup-etapa2-antes-*/
+/_etapa1_instalador/
+/Instalador_Fase3_Advertencias_v1_1/
+/Memo_Etapa3_CORREGIDO/
+/centro-local/data/actualizaciones-proceso/
 /check-fase*.txt
 /errores-test.txt
 /qa-*.txt
