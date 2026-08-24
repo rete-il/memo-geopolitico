@@ -143,6 +143,10 @@ const stateRouteCount = countRoutes(
   production,
   path.join('observatorio', 'estado'),
 );
+const observatoryData = JSON.parse(
+  fs.readFileSync(path.join(root, 'src', 'data', 'public', 'observatorio.json'), 'utf8'),
+);
+const expectedProcessCount = observatoryData.procesos.length;
 const editorialPublicationRoutes = expectedEditorialPublicationRoutes();
 const publishedPublicationRoutes = expectedPublishedPublicationRoutes();
 
@@ -161,10 +165,10 @@ assert.equal(
   false,
 );
 assert.equal(publications.includes('publication-card--in-progress'), false);
-assert.equal(observatoryProcessCards, 17);
+assert.equal(observatoryProcessCards, expectedProcessCount);
 assert.equal(linkedPublicationTitles, publishedPublicationRoutes.linkedProcesses);
-assert.equal(observatoryStateLinks, 17);
-assert.equal(dashboardProcessRows, 17);
+assert.equal(observatoryStateLinks, expectedProcessCount);
+assert.equal(dashboardProcessRows, expectedProcessCount);
 assert.equal(/>(?:Guardar|Editar|Eliminar)</.test(dashboard), false);
 assert.equal(countRoutes(production, 'publicaciones'), publishedPublicationRoutes.posts);
 assert.equal(countRoutes(preview, 'publicaciones'), editorialPublicationRoutes);
@@ -186,7 +190,7 @@ assert.equal(
     production,
     path.join('metodologia', 'relevancia-atencion-mediatica'),
   ),
-  17,
+  expectedProcessCount,
 );
 
 console.log(
@@ -203,7 +207,7 @@ console.log(
       paginas_de_estado: stateRouteCount,
       enlaces_tematicos_en_publicaciones: publicationThemeLinks,
       filas_dashboard: dashboardProcessRows,
-      paginas_metodologicas_especificas: 17,
+      paginas_metodologicas_especificas: expectedProcessCount,
       enlaces_internos_rotos: 0,
     },
     null,
