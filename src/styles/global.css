@@ -1324,6 +1324,29 @@ a:active {
   padding-left: 1.2rem;
 }
 
+.process-relation-group {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--paper-deep);
+}
+
+.process-relation-group h3 {
+  margin: 0 0 0.65rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.process-relation-group ul {
+  margin: 0;
+}
+
+.process-relation-link {
+  font-weight: 700;
+}
+
 .methodology-layout {
   max-width: 54rem;
   padding-top: clamp(2rem, 4vw, 3.5rem);

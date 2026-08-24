@@ -68,6 +68,8 @@ export interface PublicProcess {
   clasificacion: Classification;
   que_esta_ocurriendo: string;
   por_que_importa: string;
+  es_macroevento_rector?: boolean;
+  macroevento_rector_id?: string | null;
   claves_estructurales: string[];
   valoraciones: {
     relevancia_geopolitica: number;

@@ -132,7 +132,7 @@
           "titulo": "The next Strait of Hormuz crisis could be even worse",
           "fecha": "2026-06-17",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://www.chathamhouse.org/2026/06/next-strait-hormuz-crisis-could-be-even-worse",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -146,7 +146,7 @@
           "titulo": "Expansión logística exterior a Hormuz",
           "fecha": "2026-07-12",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://www.ft.com/content/1f97b548-1bd8-41c8-8380-043ec688d77a",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -156,7 +156,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "cables-submarinos-infraestructura-critica",
@@ -280,7 +284,7 @@
           "titulo": "2026 ICPC Plenary Meeting",
           "fecha": "2026-04-20",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://www.iscpc.org/events/2026-plenary-meeting/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -294,7 +298,7 @@
           "titulo": "Oral evidence session on subsea infrastructure",
           "fecha": "2026-05-18",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://committees.parliament.uk/event/27216/formal-meeting-oral-evidence-session/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -304,7 +308,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "corredor-medio-caucaso-sur",
@@ -473,7 +481,7 @@
           "titulo": "EU launches Connectivity Agenda Platform",
           "fecha": "2026-06-23",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://enlargement.ec.europa.eu/news/eu-launches-connectivity-agenda-platform-strengthen-links-between-europe-and-central-asia-through-2026-06-23_en",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -487,7 +495,7 @@
           "titulo": "Azerbaijan says real peace requires constitutional change in Armenia",
           "fecha": "2026-07-16",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://www.reuters.com/world/azerbaijan-real-peace-with-armenia-wants-it-change-constitution-2026-07-16/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -515,7 +523,11 @@
       ],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "mar-negro-azov-guerra-logistica",
@@ -1372,7 +1384,11 @@
           ]
         }
       ],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial. El mar Negro y el mar de Azov conectan producción agrícola, energía, industria y sostenimiento militar. Desde 2022, ataques, bloqueos y corredores negociados mostraron que el control marítimo no depende solo de grandes buques: drones, misiles y daños a terminales pueden alterar el valor estratégico de toda la costa. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "panama-gobernanza-portuaria",
@@ -1495,7 +1511,7 @@
           "titulo": "US allies support Panama sovereignty",
           "fecha": "2026-04-28",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://www.reuters.com/world/china/us-allies-release-joint-statement-supporting-panamas-sovereignty-2026-04-28/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -1505,7 +1521,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "La disputa por el canal se extiende a concesiones portuarias, registros navales, arbitrajes, inspecciones de buques y alineamiento diplomático. El canal es una infraestructura panameña con función mundial. A ambos extremos, puertos y servicios marítimos conectan rutas, operadores y cadenas logísticas. La rivalidad entre Estados Unidos y China hace que decisiones comerciales y regulatorias sean interpretadas como alineamientos geopolíticos. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "corredor-lobito-minerales",
@@ -1578,7 +1598,7 @@
           "id": "sig-corredor-lobito-minerales-003",
           "fecha": "2026-07-03",
           "titulo": "Cierre financiero de US$753 millones para Lobito Atlantic Railway",
-          "tipo": "Financiación",
+          "tipo": "financiacion",
           "descripcion": "Africa Finance Corporation anunció el cierre financiero de US$753 millones para Lobito Atlantic Railway.\n\nLos fondos se destinan a la rehabilitación, modernización y operación a largo plazo del corredor ferroviario existente de 1.300 km entre el Puerto de Lobito, en Angola, y la frontera con la República Democrática del Congo.\n\nLa evidencia disponible confirma la financiación de este componente ferroviario. No permite afirmar que esté financiada la totalidad del Corredor de Lobito.",
           "estado_revision": "revisada",
           "origen": "ia",
@@ -1771,7 +1791,7 @@
           "titulo": "AFC lines up lenders for Lobito Corridor",
           "fecha": "2026-04-30",
           "idioma": "en",
-          "tipo": "noticia de agencia",
+          "tipo": "noticia_de_agencia",
           "url": "https://www.reuters.com/world/africa/afc-lines-up-regional-international-lenders-including-citi-lobito-corridor-2026-04-30/",
           "estado_verificacion": "verificada",
           "observaciones": "Respalda la señal “Búsqueda de financiación internacional”.\nVerificar que el artículo confirme la incorporación o búsqueda de\nfinanciadores, y no la interprete como financiación ya cerrada.\nConviene complementar con documentación de AFC y una fuente africana.",
@@ -1785,7 +1805,7 @@
           "titulo": "Trafigura backs out of Angola transmission line project",
           "fecha": "2026-07-15",
           "idioma": "en",
-          "tipo": "noticia de agencia",
+          "tipo": "noticia_de_agencia",
           "url": "https://www.reuters.com/business/energy/trafigura-backs-out-angola-transmission-line-project-sources-say-2026-07-15/",
           "estado_verificacion": "verificada",
           "observaciones": "Reuters informa que Trafigura se retiró de una propuesta para construir\nuna línea de transmisión de 2.000 MW desde Angola hacia zonas mineras de\ncobre y cobalto de la RDC y Zambia.\n\nLa retirada constituye una señal de incertidumbre financiera y de ejecución\npara ese proyecto específico, pero no implica la cancelación del conjunto\nde la infraestructura eléctrica asociada al Corredor de Lobito.\n\nEl proyecto permanece en fase de negociación y existen otras líneas de\ntransmisión en desarrollo. La información sobre la retirada se basa en\nfuentes con conocimiento directo y en una fuente gubernamental; Trafigura\nno realizó una confirmación pública y respondió “sin comentarios”.",
@@ -1798,8 +1818,8 @@
           "medio": "Africa Finance Corporation (AFC)",
           "titulo": "AFC Achieves Financial Close on Landmark US$753 MM Lobito Corridor Railway Project",
           "fecha": "2026-07-03",
-          "idioma": "Inglés",
-          "tipo": "Fuente institucional primaria",
+          "idioma": "en",
+          "tipo": "fuente_institucional_primaria",
           "url": "https://www.africafc.org/news-and-insights/news/afc-achieves-financial-close-on-landmark-us-753-mm-lobito-corridor-railway-project-marking-a-major-milestone-for-regional-integration-and-economic-transformation",
           "estado_verificacion": "pendiente",
           "observaciones": "Fuente institucional primaria. Confirma el cierre financiero de\nUS$753 millones para Lobito Atlantic Railway.\n\nEl anuncio corresponde al componente ferroviario angoleño y no\ndemuestra que esté financiada la totalidad del Corredor de Lobito.\nRequiere corroboración con una fuente independiente.\n\nEl sitio oficial de AFC devolvió un error 504 durante el intento de\nrevisión del 22-07-2026.\n\nEl comunicado aparece indexado y existe una copia republicada, pero la\nfuente oficial todavía no pudo ser abierta y revisada manualmente.\n\nMantener como Pendiente.",
@@ -1812,8 +1832,8 @@
           "medio": "Mining Weekly",
           "titulo": "Lobito Corridor railway project achieves $753m financial close",
           "fecha": "2026-07-03",
-          "idioma": "Inglés",
-          "tipo": "Medio periodístico",
+          "idioma": "en",
+          "tipo": "medio_periodistico",
           "url": "https://www.miningweekly.com/article/lobito-corridor-railway-project-achieves-753m-financial-close-2026-07-03",
           "estado_verificacion": "verificada",
           "observaciones": "Fuente periodística especializada revisada manualmente.\n\nConfirma que los US$753 millones apoyarán la rehabilitación, modernización y operación a largo plazo del corredor ferroviario existente de 1.300 km entre el Puerto de Lobito y la frontera con la RDC.\n\nLa nota delimita el destino ferroviario de los fondos, pero no afirma expresamente que la financiación excluya otros componentes ni demuestra que esté financiada la totalidad del Corredor de Lobito.\n\nLa información se basa en el anuncio de AFC, por lo que constituye una corroboración periodística útil, pero no plenamente independiente.",
@@ -1827,7 +1847,7 @@
           "titulo": "The Lobito Corridor shows how digitization is shaping critical minerals competition",
           "fecha": "2026-07-20",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://www.chathamhouse.org/2026/07/lobito-corridor-shows-how-digitization-shaping-critical-minerals-competition",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -1841,7 +1861,7 @@
           "titulo": "Expanding the Copperbelt's Atlantic export routes",
           "fecha": "2026-06-26",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://geopoliticalfutures.com/expanding-the-copperbelts-atlantic-export-routes/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -1906,7 +1926,11 @@
       ],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos. El ferrocarril de Benguela conecta el puerto angoleño de Lobito con la República Democrática del Congo y proyecta una futura extensión hacia Zambia. La rehabilitación ferroviaria crea una salida occidental para el Copperbelt, pero el corredor más amplio depende de componentes eléctricos, fronterizos, digitales y productivos que no avanzan al mismo ritmo. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "imec-reconfiguracion-modular",
@@ -2021,7 +2045,7 @@
           "titulo": "The India-Middle East-Europe Economic Corridor",
           "fecha": "2026-06-03",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://mei.edu/backgrounder/the-india-middle-east-europe-economic-corridor/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -2031,7 +2055,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "El IMEC probablemente avance mediante módulos nacionales y bilaterales —puertos, aduanas digitales, ferrocarriles, cables y energía— antes de funcionar como corredor integrado. El IMEC fue presentado como conexión marítima y ferroviaria entre India, el Golfo, el Levante y Europa, acompañada por energía y datos. Su geografía atraviesa rivalidades y conflictos; por eso puertos, aduanas digitales, ferrocarriles y cables pueden avanzar separadamente. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "ruta-maritima-norte-artico",
@@ -2156,7 +2184,7 @@
           "titulo": "Trans-Arctic Transport Corridor and India-Russia Cooperation",
           "fecha": "2026-04-23",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://idsa.in/publisher/issuebrief/trans-arctic-transport-corridor-and-india-russia-cooperation",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -2170,7 +2198,7 @@
           "titulo": "Les frappes ukrainiennes pourraient rendre l’Arctique russe invivable",
           "fecha": "2026-07-15",
           "idioma": "fr",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://legrandcontinent.eu/fr/2026/07/15/les-frappes-ukrainiennes-de-drones-pourraient-rendre-larctique-russe-invivable/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -2180,7 +2208,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "Rusia intenta transformar una ruta estacional y principalmente energética en un corredor transártico integral conectado con China e India. La Ruta Marítima del Norte reduce distancias entre partes de Asia y Europa, aunque no reemplaza de manera simple las rutas meridionales. Rusia intenta integrarla a puertos, recursos energéticos y conexiones ferroviarias, mientras China e India evalúan acceso, inversión y seguridad de suministro. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "iraq-development-road",
@@ -2339,7 +2371,7 @@
           "titulo": "Development Road first phase to prioritize railway",
           "fecha": "2026-06-25",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://www.aa.com.tr/en/middle-east/development-road-s-1st-phase-to-prioritize-railway-as-middle-east-conflict-disrupts-trade/3977809",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -2353,7 +2385,7 @@
           "titulo": "La Russie consolide sa présence en Syrie",
           "fecha": "2026-07-10",
           "idioma": "fr",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://legrandcontinent.eu/fr/2026/07/10/la-russie-consolide-sa-presence-en-syrie/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -2397,7 +2429,11 @@
       ],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo. El puerto de Grand Faw y el Development Road prometen llevar carga desde el Golfo hasta Turquía y Europa. A la vez, la reapertura de salidas energéticas hacia el Mediterráneo ampliaría opciones iraquíes. El corredor atraviesa un espacio donde compiten agendas nacionales, milicias, vecinos y grandes potencias. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "instc-rusia-iran-india",
@@ -2511,7 +2547,7 @@
           "titulo": "راه آهن رشت آستارا",
           "fecha": "2026-06-23",
           "idioma": "fa",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://www.mehrnews.com/news/6865255/%D8%B1%D8%A7%D9%87-%D8%A2%D9%87%D9%86-%D8%B1%D8%B4%D8%AA-%D8%A2%D8%B3%D8%AA%D8%A7%D8%B1%D8%A7-%D8%AA%D8%B1%D8%A7%D9%86%D8%B2%DB%8C%D8%AA-%D8%A7%D8%B2-%D9%87%D9%86%D8%AF-%D8%A8%D9%87-%D8%A7%D8%B1%D9%88%D9%BE%D8%A7-%D8%AF%D8%B1-%D8%A2%D8%B3%D8%AA%D8%A7%D9%86%D9%87-%DA%AF%D8%B1%D9%87-%DA%AF%D8%B4%D8%A7%DB%8C%DB%8C",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -2521,7 +2557,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "El corredor Norte–Sur busca conectar Rusia con el océano Índico sin depender de Europa ni de rutas dominadas por Occidente. Rasht–Astara es el eslabón decisivo. El INSTC busca conectar Rusia con el océano Índico mediante redes marítimas, ferroviarias y viales a través de Irán y el Caspio. La guerra y las sanciones aumentaron su atractivo político; al mismo tiempo, financiación, anchos de vía y trámites impiden tratarlo como una ruta única. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "chancay-corredores-bioceanicos",
@@ -2657,7 +2697,7 @@
           "titulo": "Hub norte: una respuesta estratégica ante el desafío de Chancay",
           "fecha": "2026-04-30",
           "idioma": "es",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://revistamarina.cl/es/articulo/hub-norte-una-respuesta-estrategica-ante-el-desafio-de-chancay/es",
           "estado_verificacion": "verificada",
           "observaciones": "",
@@ -2667,7 +2707,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica. Chancay ofrece una gran terminal del Pacífico con conexión directa hacia Asia. Su potencial excede al comercio peruano si logra captar carga de Brasil, Bolivia y otras economías interiores. Pero cruzar los Andes exige obras costosas y acuerdos que han frustrado proyectos anteriores. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "myanmar-corredores-china-india",
@@ -2797,7 +2841,7 @@
           "titulo": "Kaladan project to be operational by '27, will unlock trade opportunities: Sonowal",
           "fecha": "2025-07-07",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://timesofindia.indiatimes.com/city/guwahati/kaladan-project-to-be-operational-by-27-will-unlock-trade-opportunities-sonowal/articleshow/122304171.cms",
           "estado_verificacion": "verificada",
           "observaciones": "Autoridad que formula el pedido: Sarbananda Sonowal, ministro de Puertos, Navegación y Vías Navegables de la Unión de India.\nDestinatario: No se identifica un destinatario concreto. Las declaraciones fueron formuladas públicamente en Guwahati, presumiblemente ante periodistas.\nPedido exacto: La nota no contiene un pedido o exhortación. Sonowal anuncia que el Proyecto de Transporte Multimodal Kaladan deberá estar plenamente operativo en 2027. Señala que el puerto de Sittwe ya está preparado y que continúa la construcción de la conexión vial entre Paletwa y Zorinpui, en la frontera con Mizoram.\nContexto: El proyecto conectará Mizoram con Calcuta a través de Myanmar, combinando transporte marítimo, fluvial y terrestre. Su finalización se retrasó por la guerra civil y los enfrentamientos en los estados birmanos de Rakhine y Chin. Según Sonowal, permitirá reducir en unos 700 km el trayecto Aizawl–Calcuta y abrir nuevas oportunidades comerciales para el noreste de India, Myanmar, Bangladesh, Bután y Nepal, conectándolos con el sudeste asiático.\nArtículo completo comprobado: Sí. La nota completa, escrita por Kangkan Kalita y publicada el 7 de julio de 2025, está accesible hasta la indicación “End of Article”. Times of India",
@@ -2810,7 +2854,7 @@
           "medio": "The Times of India",
           "titulo": "PM urges Myanmar to fast-track Kaladan corridor linking Sittwe & Mizoram",
           "fecha": "2026-06-02",
-          "idioma": "Inglés",
+          "idioma": "en",
           "tipo": "noticia",
           "url": "https://timesofindia.indiatimes.com/city/guwahati/pm-urges-myanmar-to-fasttrack-kaladan-corridor-linking-sittwe-mizoram/articleshow/131469001.cms",
           "estado_verificacion": "verificada",
@@ -2824,8 +2868,8 @@
           "medio": "Financial Times",
           "titulo": "China’s Xi Jinping urges Myanmar’s coup leader to push ahead with strategic project",
           "fecha": "2026-06-16",
-          "idioma": "Inglés",
-          "tipo": "Noticia",
+          "idioma": "en",
+          "tipo": "noticia",
           "url": "https://www.ft.com/content/c2b5b90b-cc3b-4a1b-bdb2-c2520adad51d",
           "estado_verificacion": "verificada",
           "observaciones": "Emisor: Xi Jinping, presidente de China.\n\nDestinatario: Min Aung Hlaing, presidente de Myanmar.\n\nHecho documentado: Xi instó a Myanmar a avanzar con el China–Myanmar Economic Corridor (CMEC) y con sus proyectos estratégicos.\n\nRelación con Kyaukphyu: Financial Times identifica expresamente al puerto de aguas profundas y la zona económica especial de Kyaukphyu como componentes del CMEC, junto con los oleoductos y gasoductos que conectan Myanmar con Yunnan.\n\nFecha comprobada del hecho: 16 de junio de 2026.\n\nPrecisión editorial: la fuente habla de avanzar o impulsar los proyectos; “acelerar” es una formulación más fuerte y conviene evitarla salvo que otra fuente la respalde literalmente.",
@@ -2838,8 +2882,8 @@
           "medio": "Ministry of Information, Myanmar",
           "titulo": "India Cargo Vessel MV Taw Win Thiri arrives at Sittway Port under Kaladan Project",
           "fecha": "2026-05-18",
-          "idioma": "Inglés",
-          "tipo": "fuente oficial",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
           "url": "https://www.moi.gov.mm/moi%3Aeng/news/21001",
           "estado_verificacion": "verificada",
           "observaciones": "Hecho verificado: el buque MV Taw Win Thiri llegó al puerto de Sittwe el 18 de mayo de 2026 con 400 toneladas de carga general procedente de India.\n\nSituación operativa: la publicación lo identifica como el 330.º buque en atracar en Sittwe, lo que confirma actividad portuaria efectiva en 2026.\n\nRelación con Kaladan: el puerto de Sittwe forma parte del Kaladan Multi-Modal Transit Transport Project.\n\nComponentes mencionados: Sittwe Port, Paletwa Inland Water Terminal, Kaladan River Bridge y Paletwa–Mizoram Road.",
@@ -2852,8 +2896,8 @@
           "medio": "Ministry of Foreign Affairs of the People's Republic of China",
           "titulo": "Joint Statement of the People’s Republic of China and the Republic of the Union of Myanmar on Accelerating the Building of a China-Myanmar Community with a Shared Future",
           "fecha": "2026-06-17",
-          "idioma": "Inglés",
-          "tipo": "fuente oficial",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
           "url": "https://hk.ocmfa.gov.cn/eng/xjpzxzywshd/202606/t20260617_11947840.htm",
           "estado_verificacion": "verificada",
           "observaciones": "Hecho verificado: China y Myanmar acordaron seguir promoviendo la implementación del China–Myanmar Economic Corridor (CMEC).\n\nKyaukphyu: el comunicado identifica expresamente al Kyaukphyu Deep-Sea Port como uno de los principales proyectos del corredor que ambas partes se comprometen a seguir promoviendo.\n\nOleoductos y gasoductos: el comunicado señala que ambas partes continuarán aprovechando los China–Myanmar oil and gas pipelines.\n\nPrecisión editorial: la fuente confirma la existencia y utilización de los oleoductos y gasoductos, pero no permite presentar al puerto de aguas profundas de Kyaukphyu como plenamente operativo. El puerto sigue siendo un proyecto en desarrollo.",
@@ -2866,8 +2910,8 @@
           "medio": "SAGE Open",
           "titulo": "Kyaukphyu Seaport Project: Analysing Its Key Characteristics and Potential Implications",
           "fecha": "2026-01-13",
-          "idioma": "Inglés",
-          "tipo": "artículo académico",
+          "idioma": "en",
+          "tipo": "articulo_academico",
           "url": "https://journals.sagepub.com/doi/10.1177/21582440251411377",
           "estado_verificacion": "verificada",
           "observaciones": "Hecho verificado: el estudio identifica Kyaukphyu como acceso chino al océano Índico y como infraestructura con potencial para reducir la dependencia de rutas marítimas que atraviesan el estrecho de Malaca.\n\nPrecisión editorial: esta afirmación corresponde a análisis académico sobre la función estratégica de Kyaukphyu. No debe presentarse como declaración oficial china salvo que otra fuente primaria lo documente expresamente.\n\nEstado del puerto: el estudio señala que la realización plena del proyecto continúa condicionada por inestabilidad política, oposición local, cooperación insuficiente, riesgos ambientales y otros factores.",
@@ -2894,7 +2938,7 @@
           "medio": "Center for Strategic and International Studies (CSIS)",
           "titulo": "Chinese Energy Investments in Southeast Asia",
           "fecha": "2025-12-17",
-          "idioma": "Inglés",
+          "idioma": "en",
           "tipo": "informe",
           "url": "https://www.csis.org/analysis/chinese-energy-investments-southeast-asia",
           "estado_verificacion": "verificada",
@@ -2908,8 +2952,8 @@
           "medio": "SAGE Open",
           "titulo": "Kyaukphyu Seaport Project: Analysing Its Key Characteristics and Potential Implications",
           "fecha": "2026-01-15",
-          "idioma": "Inglés",
-          "tipo": "artículo académico",
+          "idioma": "en",
+          "tipo": "articulo_academico",
           "url": "https://journals.sagepub.com/doi/10.1177/21582440251411377",
           "estado_verificacion": "verificada",
           "observaciones": "Autores: Zeyar Oo y Yonghong Dai, Shenzhen University.\n\nFunción estratégica: el estudio identifica a Kyaukphyu como una vía de acceso de China al océano Índico, particularmente relevante para la provincia interior de Yunnan.\n\nMalaca: el artículo sostiene que el acceso proporcionado por Kyaukphyu puede reducir la dependencia china de la ruta marítima más extensa que atraviesa el estrecho de Malaca.\n\nEnergía y conectividad: la localización de Kyaukphyu se analiza como parte de una alternativa estratégica para transporte, comercio y seguridad energética entre el océano Índico y China.\n\nEstado del proyecto: el estudio no presenta al puerto profundo de Kyaukphyu como plenamente realizado. Señala que su desarrollo continúa condicionado por inestabilidad política, conflicto interno, dificultades de cooperación, oposición local y riesgos socioambientales.\n\nPrecisión editorial: la relación entre Kyaukphyu y la reducción de dependencia de Malaca es una conclusión de análisis académico. No debe atribuirse como declaración oficial del gobierno chino salvo que exista una fuente primaria específica.",
@@ -2922,8 +2966,8 @@
           "medio": "Myanmar Peace Monitor",
           "titulo": "The Arakan Army and the Quest for Total Control of Arakan State: How Close?",
           "fecha": "2026-06-03",
-          "idioma": "Inglés",
-          "tipo": "análisis",
+          "idioma": "en",
+          "tipo": "analisis",
           "url": "https://mmpeacemonitor.org/en/eng-cover-story/the-arakan-army-and-the-quest-for-total-control-of-arakan-state-how-close/",
           "estado_verificacion": "verificada",
           "observaciones": "Control territorial actualizado a junio de 2026.\n\nPaletwa: Myanmar Peace Monitor señala que el Arakan Army (AA) tomó Paletwa el 14 de enero de 2024 y continúa controlándolo.\n\nRakhine/Arakan: la fuente contabiliza 25 de 28 localidades bajo control del AA y considera creíble su afirmación de controlar casi todo el estado.\n\nKyaukphyu: el township permanece bajo control parcial; continúa siendo un frente activo entre el Arakan Army y las fuerzas de la junta. No debe describirse como enteramente controlado por ninguna de las dos partes.\n\nSittwe: permanece bajo control de las fuerzas de la junta y constituye uno de los principales objetivos de las operaciones del Arakan Army.\n\nManaung: permanece igualmente bajo control de la junta.\n\nImplicación para los corredores: el tramo de Kaladan alrededor de Paletwa atraviesa territorio controlado por el Arakan Army, mientras que Sittwe permanece bajo control de la junta. Kyaukphyu, nodo estratégico del CMEC, se encuentra en una zona de control disputado.\n\nPrecisión editorial: el control territorial es dinámico y esta caracterización corresponde a la situación documentada al 8 de junio de 2026.",
@@ -2936,7 +2980,7 @@
           "medio": "Burma News International",
           "titulo": "Junta erects new fences around Sittwe, tightens security measures",
           "fecha": "2026-05-18",
-          "idioma": "Inglés",
+          "idioma": "en",
           "tipo": "noticia",
           "url": "https://www.bnionline.net/en/news/junta-erects-new-fences-around-sittwe-tightens-security-measures",
           "estado_verificacion": "verificada",
@@ -2950,7 +2994,7 @@
           "medio": "Burma News International",
           "titulo": "Criticism grows as AA detains traders and young people at Paletwa checkpoints",
           "fecha": "2026-04-29",
-          "idioma": "Inglés",
+          "idioma": "en",
           "tipo": "noticia",
           "url": "https://www.bnionline.net/en/news/criticism-grows-aa-detains-traders-and-young-people-paletwa-checkpoints",
           "estado_verificacion": "verificada",
@@ -2964,7 +3008,7 @@
           "medio": "The Irrawaddy",
           "titulo": "Arakan Army Surrounds Myanmar’s Western Naval Bases, Sparking Intense Battles",
           "fecha": "2026-06-02",
-          "idioma": "Inglés",
+          "idioma": "en",
           "tipo": "noticia",
           "url": "https://www.irrawaddy.com/news/war-against-the-junta/arakan-army-surrounds-myanmars-western-naval-bases-sparking-intense-battles.html",
           "estado_verificacion": "verificada",
@@ -2975,7 +3019,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil. China conecta Yunnan con el Índico mediante Kyaukphyu y oleoductos; India desarrolla Sittwe y Kaladan para vincular su nordeste. Ambos proyectos evitan cuellos de botella externos, pero atraviesan Rakhine y otras zonas afectadas por guerra, desplazamiento y poder territorial disputado. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "africa-oriental-puertas-entrada",
@@ -3106,7 +3154,7 @@
           "titulo": "Gulf investment in Africa: opportunity, asymmetry and risk of dependence",
           "fecha": "2026-06-04",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://kalam.chathamhouse.org/articles/gulf-investment-in-africa-opportunity-asymmetry-and-the-risk-of-dependence/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -3116,7 +3164,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "Mombasa, Dar es Salaam, Lamu, Berbera y Yibuti compiten por servir a economías sin litoral. Capital chino, emiratí y europeo crea corredores parcialmente superpuestos. Mombasa, Dar es Salaam, Lamu, Berbera y Yibuti sirven o aspiran a servir a Etiopía, Uganda, Rwanda, Sudán del Sur y los Grandes Lagos. Capital chino, emiratí y europeo superpone terminales y corredores. La redundancia puede ampliar opciones, aunque también crear dependencia y capacidad subutilizada. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "marruecos-estado-conector",
@@ -3247,7 +3299,7 @@
           "titulo": "La stratégie de l’État connecteur est en train de faire gagner le Maroc",
           "fecha": "2026-07-01",
           "idioma": "fr",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://legrandcontinent.eu/fr/2026/07/01/la-strategie-de-letat-connecteur-est-en-train-de-faire-gagner-le-maroc/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -3257,7 +3309,11 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "por_que_importa": "Tanger Med, Nador West Med, Dakhla y las conexiones terrestres con el Sahel forman una estrategia integrada de manufactura, transbordo, energía y acceso marítimo para Estados sin litoral. Marruecos se presenta simultáneamente como plataforma próxima a Europa y como puerta atlántica africana. Tanger Med demostró el valor de integrar puerto, zonas industriales y acuerdos comerciales. Los nuevos nodos amplían esa lógica hacia energía y Estados sahelianos sin litoral, aunque se cruzan con la disputa del Sahara Occidental. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "rail-baltica-movilidad-militar-europea",
@@ -3442,7 +3498,7 @@
           "titulo": "Can the Baltics save the EU's largest infrastructure project?",
           "fecha": "2026-04-28",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://www.theparliamentmagazine.eu/news/article/can-the-baltics-save-the-eus-largest-infrastructure-project",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -3470,7 +3526,7 @@
           "titulo": "La guerre qui vient",
           "fecha": "2026-05-31",
           "idioma": "fr",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://legrandcontinent.eu/fr/2026/05/31/guerre-qui-vient/",
           "estado_verificacion": "pendiente",
           "observaciones": "",
@@ -3487,7 +3543,11 @@
         "lote_id": "chatgpt-2026-07-23-corredores",
         "importado_el": "2026-07-23",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "ferrocarril-china-kirguistan-uzbekistan",
@@ -3675,7 +3735,7 @@
           "titulo": "Progress on the China-Kyrgyzstan-Uzbekistan railway: Some challenges remain",
           "fecha": "2026-07-17",
           "idioma": "en",
-          "tipo": "análisis",
+          "tipo": "analisis",
           "url": "https://thediplomat.com/2026/07/progress-on-the-china-kyrgyzstan-uzbekistan-railway-some-challenges-remain/",
           "estado_verificacion": "verificada",
           "observaciones": "",
@@ -3692,7 +3752,11 @@
         "lote_id": "chatgpt-2026-07-23-corredores",
         "importado_el": "2026-07-23",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito. El ferrocarril China–Kirguistán–Uzbekistán promete conectar Xinjiang con el valle de Ferganá y redes hacia el oeste. Reduce dependencia de trayectos por Kazajistán y Rusia. El trazado montañoso exige decenas de puentes y túneles, lo que convierte la transición a la obra física en una prueba política y financiera. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "land-bridge-tailandes-malaca",
@@ -3858,7 +3922,11 @@
         "lote_id": "chatgpt-2026-07-23-corredores",
         "importado_el": "2026-07-23",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local. Tailandia propone dos puertos, en el golfo de Tailandia y el mar de Andamán, unidos por unos 90 kilómetros de carretera y ferrocarril. El proyecto evitaría parte del paso por Malaca. A diferencia de un canal, requiere doble manipulación de la carga y grandes volúmenes para justificar una inversión cercana a US$30.000 millones. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "turquia-arabia-saudita-pakistan-defensa",
@@ -4427,7 +4495,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "El pacto conecta la arquitectura de seguridad de Medio Oriente con Asia meridional a través de Turquía, miembro de la OTAN y aliado de Estados Unidos, sin convertir el acuerdo en una extensión automática de la Alianza. Su institucionalización podría consolidar un nuevo polo de disuasión y cooperación militar entre Ankara, Riad e Islamabad, alterar los cálculos estratégicos de Israel, India e Irán y ampliar la autonomía regional de los tres participantes. El seguimiento debe distinguir entre el compromiso político de defensa colectiva y su traducción efectiva en órganos permanentes, ejercicios, coproducción y asistencia ante una crisis.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "siria-turquia-israel-reordenamiento",
@@ -4552,7 +4624,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "pkk-sdf-transformacion-cuestion-kurda",
@@ -4671,7 +4747,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "hormuz-turquia-corredor-energia-mediacion",
@@ -4845,7 +4925,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "turquia-iran-competencia-coexistencia",
@@ -4969,7 +5053,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "industria-defensa-turca-proyeccion-regional",
@@ -5085,7 +5173,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "mediterraneo-oriental-cronos-turquia",
@@ -5215,7 +5307,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     },
     {
       "id": "somalia-turquia-energia-seguridad",
@@ -5331,7 +5427,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
+      "macroevento_relacionado_ids": []
     }
   ],
   "expedientes_editoriales": [],

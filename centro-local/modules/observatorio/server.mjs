@@ -41,6 +41,10 @@ import {
 } from './lib/public-sync.mjs';
 import { generateReviewPackage, resolvePreparedReviewPackage } from './lib/review-package.mjs';
 import {
+  normalizeCharacterization,
+  normalizeLanguageCode,
+} from './public/controlled-values.js';
+import {
   INTERNAL_SCHEMA_VERSION,
   normalizeWarningContainers,
   validateEventWarnings,
@@ -143,7 +147,7 @@ function normalizeSignal(signal = {}, eventId = 'evento', index = 0) {
     id: slug(signal.id || `sig-${eventId}-${String(index + 1).padStart(3, '0')}`),
     fecha: text(signal.fecha, 20),
     titulo: text(signal.titulo, 500),
-    tipo: text(signal.tipo, 200),
+    tipo: normalizeCharacterization(text(signal.tipo, 200)),
     descripcion: text(signal.descripcion),
     estado_revision: text(signal.estado_revision === 'confirmada' ? 'verificada' : (signal.estado_revision || 'pendiente'), 40),
     origen: text(signal.origen || 'ia', 40),
@@ -173,8 +177,8 @@ function normalizeSource(source = {}, eventId = 'evento', index = 0, catalog = {
     medio: text(source.medio || catalogItem?.nombre, 300),
     titulo: text(source.titulo, 1000),
     fecha: text(source.fecha, 20),
-    idioma: text(source.idioma, 100),
-    tipo: text(source.tipo, 200),
+    idioma: normalizeLanguageCode(text(source.idioma, 100)),
+    tipo: normalizeCharacterization(text(source.tipo, 200)),
     url: text(source.url, 3000),
     estado_verificacion: text(verifiedState || 'pendiente', 40),
     observaciones: text(source.observaciones),
@@ -263,7 +267,7 @@ function normalizeEvent(event = {}, index = 0, catalog = {}) {
     estado_verificacion: text(event.estado_verificacion || 'pendiente', 40),
     fecha_corte: text(event.fecha_corte, 20),
     regiones: stringArray(event.regiones),
-    categoria: text(event.categoria, 200),
+    categoria: normalizeCharacterization(text(event.categoria, 200)),
     tema_ids: Array.isArray(event.tema_ids)
       ? [...new Set(event.tema_ids.map(Number).filter(Number.isInteger))]
       : [],
@@ -274,6 +278,12 @@ function normalizeEvent(event = {}, index = 0, catalog = {}) {
       revisada_el: text(event.clasificacion_tematica?.revisada_el, 20) || null,
     },
     descripcion: text(event.descripcion),
+    por_que_importa: text(event.por_que_importa),
+    es_macroevento_rector: Boolean(event.es_macroevento_rector),
+    macroevento_rector_id: event.macroevento_rector_id
+      ? slug(event.macroevento_rector_id)
+      : null,
+    macroevento_relacionado_ids: [...new Set(stringArray(event.macroevento_relacionado_ids, 500).map(slug))],
     senales: signals,
     actores: stringArray(event.actores),
     intereses: stringArray(event.intereses),
@@ -528,6 +538,26 @@ function validateData(data, catalog = readJson(catalogPath), taxonomy = readJson
     if (event.estado_editorial === 'validado') {
       const verified = (event.fuentes || []).filter((source) => source.estado_verificacion === 'verificada').length;
       if (verified < Number(config.requiere_fuentes_para_validar || 2)) errors.push(`${label}: un evento validado requiere al menos ${config.requiere_fuentes_para_validar || 2} fuentes verificadas.`);
+      if (!event.por_que_importa) errors.push(`${label}: un evento validado requiere completar “Por qué importa”.`);
+    }
+  }
+
+  for (const event of data.macroeventos || []) {
+    const label = event.titulo || event.id;
+    const rectorId = event.macroevento_rector_id;
+    if (event.es_macroevento_rector && rectorId) {
+      errors.push(`${label}: un macroevento rector no puede depender de otro rector.`);
+    }
+    if (rectorId === event.id) errors.push(`${label}: no puede ser su propio macroevento rector.`);
+    if (rectorId && !eventMap.has(rectorId)) errors.push(`${label}: macroevento rector inexistente (${rectorId}).`);
+    if (rectorId && eventMap.has(rectorId) && !eventMap.get(rectorId).es_macroevento_rector) {
+      errors.push(`${label}: el macroevento de destino no está marcado como rector (${rectorId}).`);
+    }
+    const relatedIds = event.macroevento_relacionado_ids || [];
+    if (new Set(relatedIds).size !== relatedIds.length) errors.push(`${label}: hay macroeventos relacionados duplicados.`);
+    for (const relatedId of relatedIds) {
+      if (relatedId === event.id) errors.push(`${label}: no puede relacionarse consigo mismo.`);
+      else if (!eventMap.has(relatedId)) errors.push(`${label}: macroevento relacionado inexistente (${relatedId}).`);
     }
   }
 

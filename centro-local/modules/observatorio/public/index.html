@@ -229,7 +229,7 @@
           <label class="field"><span>Tipo</span><select id="e-type"><option value="evento_puntual">Evento puntual</option><option value="tendencia_recurrente">Tendencia recurrente</option><option value="tendencia_estructural">Tendencia estructural</option><option value="macroproceso_emergente">Macroproceso emergente</option><option value="macroproceso_en_maduracion">Macroproceso en maduración</option><option value="macroproceso_estructural">Macroproceso estructural</option></select></label>
           <label class="field"><span>Estado editorial</span><select id="e-status"><option value="borrador">Borrador</option><option value="revision">Revisión</option><option value="validado">Validado</option><option value="archivado">Archivado</option></select></label>
           <label class="field"><span>Verificación general</span><select id="e-verification"><option value="pendiente">Pendiente</option><option value="parcial">Parcial</option><option value="verificado">Verificado</option></select></label>
-          <label class="field"><span>Categoría interna</span><input id="e-category" required></label>
+          <label class="field"><span>Categoría interna</span><input id="e-category" list="event-category-options" required><small class="help">Elegí una caracterización existente o escribí una nueva; se guardará en formato estable.</small></label>
           <label class="field span2"><span>Regiones, separadas por coma</span><input id="e-regions" required></label>
           <div class="field span2 taxonomy-editor">
             <span>Temas internos</span>
@@ -248,11 +248,26 @@
 
         <fieldset><legend>Proceso estructural</legend>
           <label class="field"><span>Descripción</span><textarea id="e-description" rows="5" required></textarea></label>
+          <label class="field"><span>Por qué importa</span><textarea id="e-why" rows="5"></textarea><small class="help">Explica la relevancia geopolítica del proceso. Se publica en la ficha y es obligatorio antes de validar el macroevento.</small></label>
           <div class="form-grid">
             <label class="field"><span>Actores, uno por línea</span><textarea id="e-actors" rows="5"></textarea></label>
             <label class="field"><span>Intereses, uno por línea</span><textarea id="e-interests" rows="5"></textarea></label>
             <label class="field"><span>Indicadores, uno por línea</span><textarea id="e-indicators" rows="5"></textarea></label>
             <label class="field"><span>Palabras clave, una por línea</span><textarea id="e-keywords" rows="5"></textarea></label>
+          </div>
+        </fieldset>
+
+        <fieldset><legend>Relaciones analíticas</legend>
+          <div class="form-grid">
+            <label class="check-card span2 relation-role"><input id="e-is-rector" type="checkbox"><span><strong>Macroevento rector</strong><small>Articula una hipótesis o un conjunto de procesos complementarios.</small></span></label>
+            <label class="field span2"><span>Macroevento rector del que depende</span><select id="e-rector-id"><option value="">No depende de un rector</option></select><small id="e-rector-help" class="help">Solo se muestran macroeventos ya marcados como rectores.</small></label>
+            <div class="field span2 taxonomy-editor">
+              <span>Macroeventos relacionados</span>
+              <p class="help">Vinculá procesos que amplían o contextualizan este expediente. La relación se mostrará como enlace en la ficha pública.</p>
+              <input id="e-related-search" type="search" placeholder="Buscar por título, región o categoría…">
+              <div id="e-related-selected" class="topic-chips" aria-live="polite"></div>
+              <div id="e-related-options" class="topic-picker relation-picker" aria-label="Selector de macroeventos relacionados"></div>
+            </div>
           </div>
         </fieldset>
 
@@ -329,7 +344,7 @@
           <label class="field"><span>ID</span><input id="sig-id" required></label>
           <label class="field"><span>Fecha</span><input id="sig-date" type="date"></label>
           <label class="field span2"><span>Título</span><input id="sig-title" required></label>
-          <label class="field"><span>Tipo</span><input id="sig-type"></label>
+          <label class="field"><span>Tipo</span><input id="sig-type" list="signal-type-options"><small class="help">Elegí una caracterización existente o escribí una nueva.</small></label>
           <label class="field"><span>Estado de revisión</span><select id="sig-status"><option value="pendiente">Pendiente</option><option value="revisada">Revisada</option><option value="verificada">Verificada</option><option value="descartada">Descartada</option></select></label>
           <label class="field"><span>Origen</span><select id="sig-origin"><option value="ia">IA</option><option value="humano">Humano</option><option value="fuente">Fuente</option><option value="mixto">Mixto</option></select></label>
           <label class="field"><span>Intensidad opcional</span><input id="sig-intensity" type="number" min="1" max="5"></label>
@@ -360,8 +375,8 @@
           <label class="field span2"><span>Título de la publicación</span><input id="src-title" required></label>
           <label class="field"><span>Fecha</span><input id="src-date" type="date"></label>
           <label class="field"><span>Revisada el</span><input id="src-reviewed" type="date"></label>
-          <label class="field"><span>Idioma</span><input id="src-language"></label>
-          <label class="field"><span>Tipo</span><input id="src-type"></label>
+          <label class="field"><span>Idioma</span><input id="src-language" list="language-options" placeholder="en"><small class="help">Se guarda como código ISO de dos letras; por ejemplo, en o es.</small></label>
+          <label class="field"><span>Tipo</span><input id="src-type" list="source-type-options"><small class="help">Elegí una caracterización existente o escribí una nueva.</small></label>
           <div class="field span2"><span>URL HTTPS</span><div class="url-row"><input id="src-url" type="url" placeholder="https://..."><button type="button" id="open-source-url" class="btn ghost">Abrir fuente ↗</button><button type="button" id="copy-source-url" class="btn ghost">Copiar URL</button></div><small id="source-url-help" class="help">La fuente se abre en una pestaña nueva.</small></div>
           <label class="field span2"><span>Observaciones editoriales</span><textarea id="src-notes" rows="4"></textarea></label>
         </div>
@@ -370,6 +385,11 @@
       <footer class="dialog-foot"><span></span><div><button type="button" id="cancel-source-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar fuente</button></div></footer>
     </form>
   </dialog>
+
+  <datalist id="event-category-options"></datalist>
+  <datalist id="signal-type-options"></datalist>
+  <datalist id="source-type-options"></datalist>
+  <datalist id="language-options"></datalist>
 
   <dialog id="warning-editor" class="large-dialog">
     <form id="warning-form">

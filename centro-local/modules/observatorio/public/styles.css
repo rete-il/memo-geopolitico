@@ -720,6 +720,13 @@ dialog{position:relative}
   .final-qa-controls .btn{width:100%}
 }
 
+.relation-role{align-items:center;background:var(--surface2)}
+.relation-role input{flex:0 0 auto;margin:0}
+.relation-role strong,.relation-role small{display:block}
+.relation-role small{margin-top:4px;color:var(--muted)}
+.relation-picker .topic-option span{display:grid;gap:2px}
+.relation-picker .topic-option small{display:block}
+
 /* Etapa 2 · gestión de advertencias del expediente */
 .analysis-warning-decisions{display:grid;gap:14px;margin-top:16px;padding:16px;border:1px solid #d9b66f;border-left:5px solid var(--warn);border-radius:12px;background:#fffaf0}
 .analysis-warning-decisions>header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}

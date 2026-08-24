@@ -448,6 +448,27 @@ test('la ruta corta separa el proceso del análisis y valida el paquete completo
   assert.match(styles, /@media\(max-width:560px\)[\s\S]*\.global-status-items\{grid-template-columns:1fr\}/);
 });
 
+test('el editor permite explicar relevancia, organizar un rector y gestionar caracterizaciones', () => {
+  for (const id of [
+    'e-why',
+    'e-is-rector',
+    'e-rector-id',
+    'e-related-search',
+    'e-related-selected',
+    'e-related-options',
+    'event-category-options',
+    'signal-type-options',
+    'source-type-options',
+    'language-options',
+  ]) {
+    assert.match(html, new RegExp(`id="${id}"`), `Falta #${id}`);
+  }
+  assert.match(app, /function renderEventRelations\(\)/);
+  assert.match(app, /normalizeLanguageCode/);
+  assert.match(app, /normalizeCharacterization/);
+  assert.match(styles, /\.relation-picker/);
+});
+
 test('el dashboard sincroniza la proyección pública mediante plan, confirmación y respaldo', () => {
   assert.match(html, /id="sync-public"[^>]*disabled/);
   assert.match(html, /id="sync-public"[^>]*>Comprobando…<\/button>/);

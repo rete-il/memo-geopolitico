@@ -1,5 +1,11 @@
 import { initContextHelp, closeContextHelp } from './context-help.js';
 import {
+  LANGUAGE_OPTIONS,
+  languageLabel,
+  normalizeCharacterization,
+  normalizeLanguageCode,
+} from './controlled-values.js';
+import {
   candidateExample,
   candidateFormatInstructions,
   applyCandidateDecisions,
@@ -358,6 +364,24 @@ function fillFilters() {
   if (events.some((event) => event.id === current)) eventSelect.value = current;
   const taxonomySelect = $('#t-category');
   taxonomySelect.innerHTML = `<option value="">Todas</option>${(S.taxonomy.categorias || []).map((category) => `<option value="${esc(category.id)}">${esc(category.nombre)}</option>`).join('')}`;
+  renderControlledValueLists();
+}
+
+function renderDatalist(selector, values, label = (value) => human(value)) {
+  const datalist = $(selector);
+  if (!datalist) return;
+  datalist.innerHTML = unique(values).sort((left, right) => left.localeCompare(right, 'es'))
+    .map((value) => `<option value="${esc(value)}">${esc(label(value))}</option>`)
+    .join('');
+}
+
+function renderControlledValueLists() {
+  const events = S.data.macroeventos || [];
+  renderDatalist('#event-category-options', events.map((event) => normalizeCharacterization(event.categoria)).filter(Boolean));
+  renderDatalist('#signal-type-options', events.flatMap((event) => event.senales || []).map((signal) => normalizeCharacterization(signal.tipo)).filter(Boolean));
+  renderDatalist('#source-type-options', events.flatMap((event) => event.fuentes || []).map((source) => normalizeCharacterization(source.tipo)).filter(Boolean));
+  const existingLanguages = events.flatMap((event) => event.fuentes || []).map((source) => normalizeLanguageCode(source.idioma)).filter(Boolean);
+  renderDatalist('#language-options', [...LANGUAGE_OPTIONS.map(([code]) => code), ...existingLanguages], languageLabel);
 }
 
 function renderAll() {
@@ -483,7 +507,7 @@ function renderEvents() {
   $('#event-count').textContent = `${events.length} macroeventos`;
   $('#event-empty').hidden = events.length > 0;
   $('#event-rows').innerHTML = events.map((event) => `<tr>
-    <td><strong>${esc(event.titulo)}</strong><small>${esc(event.categoria)} · ${esc(human(event.tipo_proceso))}</small></td>
+    <td>${event.es_macroevento_rector ? '<span class="badge info">Rector</span>' : ''}<strong>${esc(event.titulo)}</strong><small>${esc(event.categoria)} · ${esc(human(event.tipo_proceso))}</small></td>
     <td>${esc((event.regiones || []).slice(0, 3).join(' · '))}</td>
     <td>${esc(sourceSummary(event))}</td>
     <td><span class="metric-pill">${rel(event)}</span></td>
@@ -501,7 +525,7 @@ function renderPublicExpedients() {
     const badgeClass = publicState === 'publicado' ? 'good' : publicState === 'en_revision' || publicState === 'listo' ? 'info' : 'warn';
     return `<article class="public-expedient-card">
     <div class="public-expedient-card__body">
-      <span class="badge ${badgeClass}">${esc(PUBLIC_STATE_LABELS[publicState] || human(publicState))}</span>
+      <span class="badge ${badgeClass}">${esc(PUBLIC_STATE_LABELS[publicState] || human(publicState))}</span>${event.es_macroevento_rector ? '<span class="badge info">Macroevento rector</span>' : ''}
       <h3>${esc(event.titulo)}</h3>
       <p>${esc(event.descripcion || 'Sin descripción.')}</p>
     </div>
@@ -797,7 +821,7 @@ function renderData() {
 }
 
 function blankEvent() {
-  return { id: '', titulo: '', tipo_proceso: 'macroproceso_estructural', estado_editorial: 'borrador', estado_verificacion: 'pendiente', fecha_corte: today(), regiones: [], categoria: 'infraestructura_conectividad', tema_ids: [], clasificacion_tematica: { origen: 'humano', estado_revision: 'pendiente', taxonomy_version: Number(S.taxonomy.schema_version || 1), revisada_el: null }, descripcion: '', senales: [], actores: [], intereses: [], horizonte: { min_anios: 3, max_anios: 10 }, escenarios: { base: '', adverso: '', transformador: '' }, indicadores: [], evaluacion: { impacto: 3, probabilidad: 3, alcance: 3, persistencia: 3, propagacion: 3, subcobertura: 3, incertidumbre: 3, urgencia: 3, cobertura_observada: 3, confianza: 'media' }, palabras_clave: [], fuentes: [], advertencias: [], excepciones_advertencias: [] };
+  return { id: '', titulo: '', tipo_proceso: 'macroproceso_estructural', estado_editorial: 'borrador', estado_verificacion: 'pendiente', fecha_corte: today(), regiones: [], categoria: 'infraestructura_conectividad', tema_ids: [], clasificacion_tematica: { origen: 'humano', estado_revision: 'pendiente', taxonomy_version: Number(S.taxonomy.schema_version || 1), revisada_el: null }, descripcion: '', por_que_importa: '', es_macroevento_rector: false, macroevento_rector_id: null, macroevento_relacionado_ids: [], senales: [], actores: [], intereses: [], horizonte: { min_anios: 3, max_anios: 10 }, escenarios: { base: '', adverso: '', transformador: '' }, indicadores: [], evaluacion: { impacto: 3, probabilidad: 3, alcance: 3, persistencia: 3, propagacion: 3, subcobertura: 3, incertidumbre: 3, urgencia: 3, cobertura_observada: 3, confianza: 'media' }, palabras_clave: [], fuentes: [], advertencias: [], excepciones_advertencias: [] };
 }
 
 function uniqueId(base, existing) {
@@ -843,6 +867,56 @@ function renderThemeEditor() {
   }));
 }
 
+function renderEventRelations() {
+  if (!S.eventDraft) return;
+  const currentId = slug($('#e-id').value || S.eventDraft.id);
+  const isRector = Boolean(S.eventDraft.es_macroevento_rector);
+  const selectedRectorId = isRector ? '' : String(S.eventDraft.macroevento_rector_id || '');
+  const rectors = (S.data.macroeventos || [])
+    .filter((event) => event.id !== currentId && event.es_macroevento_rector)
+    .sort((left, right) => left.titulo.localeCompare(right.titulo, 'es'));
+  const selectedRector = selectedRectorId ? byId(selectedRectorId) : null;
+  if (selectedRector && !rectors.some((event) => event.id === selectedRector.id)) rectors.push(selectedRector);
+
+  $('#e-is-rector').checked = isRector;
+  $('#e-rector-id').disabled = isRector;
+  $('#e-rector-id').innerHTML = `<option value="">${isRector ? 'Este macroevento es rector' : 'No depende de un rector'}</option>${rectors.map((event) => `<option value="${esc(event.id)}">${esc(event.titulo)}</option>`).join('')}`;
+  $('#e-rector-id').value = selectedRectorId;
+  $('#e-rector-help').textContent = isRector
+    ? 'Un macroevento rector no puede depender de otro rector.'
+    : rectors.length
+      ? 'Solo se muestran macroeventos ya marcados como rectores.'
+      : 'Todavía no hay otro macroevento marcado como rector.';
+
+  const selected = new Set((S.eventDraft.macroevento_relacionado_ids || []).filter((id) => id !== currentId));
+  const selectedEvents = [...selected].map(byId).filter(Boolean).sort((left, right) => left.titulo.localeCompare(right.titulo, 'es'));
+  $('#e-related-selected').innerHTML = selectedEvents.length
+    ? selectedEvents.map((event) => `<span class="topic-chip">${esc(event.titulo)}<button type="button" data-remove-related="${esc(event.id)}" aria-label="Quitar ${esc(event.titulo)}">×</button></span>`).join('')
+    : '<span class="muted">Ningún macroevento relacionado.</span>';
+
+  const query = normalize($('#e-related-search').value);
+  const available = (S.data.macroeventos || [])
+    .filter((event) => event.id !== currentId)
+    .filter((event) => !query || normalize(`${event.titulo} ${event.regiones?.join(' ')} ${event.categoria}`).includes(query))
+    .sort((left, right) => left.titulo.localeCompare(right.titulo, 'es'));
+  $('#e-related-options').innerHTML = available.length
+    ? `<div class="topic-options">${available.map((event) => `<label class="topic-option"><input type="checkbox" value="${esc(event.id)}" ${selected.has(event.id) ? 'checked' : ''}><span>${esc(event.titulo)}<small>${event.es_macroevento_rector ? 'Macroevento rector · ' : ''}${esc(human(event.categoria))}</small></span></label>`).join('')}</div>`
+    : '<p class="muted">No hay macroeventos que coincidan con la búsqueda.</p>';
+
+  $$('input[type="checkbox"]', $('#e-related-options')).forEach((input) => input.addEventListener('change', () => {
+    const next = new Set(S.eventDraft.macroevento_relacionado_ids || []);
+    if (input.checked) next.add(input.value); else next.delete(input.value);
+    S.eventDraft.macroevento_relacionado_ids = [...next].filter((id) => id !== currentId);
+    renderEventRelations();
+    markEventDraftChanged();
+  }));
+  $$('[data-remove-related]', $('#e-related-selected')).forEach((button) => button.addEventListener('click', () => {
+    S.eventDraft.macroevento_relacionado_ids = (S.eventDraft.macroevento_relacionado_ids || []).filter((id) => id !== button.dataset.removeRelated);
+    renderEventRelations();
+    markEventDraftChanged();
+  }));
+}
+
 function fillEventFields(event, mode) {
   $('#event-original-id').value = mode === 'edit' ? event.id : '';
   $('#event-editor-title').textContent = mode === 'new' ? 'Nuevo macroevento' : mode === 'duplicate' ? 'Duplicar macroevento' : 'Editar macroevento';
@@ -861,6 +935,12 @@ function fillEventFields(event, mode) {
   $('#e-theme-version').textContent = String(event.clasificacion_tematica?.taxonomy_version || S.taxonomy.schema_version || 1);
   renderThemeEditor();
   $('#e-description').value = event.descripcion;
+  $('#e-why').value = event.por_que_importa || '';
+  S.eventDraft.es_macroevento_rector = mode === 'duplicate' ? false : Boolean(event.es_macroevento_rector);
+  S.eventDraft.macroevento_rector_id = mode === 'duplicate' ? null : (event.macroevento_rector_id || null);
+  S.eventDraft.macroevento_relacionado_ids = mode === 'duplicate' ? [] : [...(event.macroevento_relacionado_ids || [])];
+  $('#e-related-search').value = '';
+  renderEventRelations();
   $('#e-actors').value = event.actores.join('\n');
   $('#e-interests').value = event.intereses.join('\n');
   $('#e-indicators').value = event.indicadores.join('\n');
@@ -946,10 +1026,14 @@ function gatherEvent() {
     estado_verificacion: $('#e-verification').value,
     fecha_corte: $('#e-date').value,
     regiones: commas($('#e-regions').value),
-    categoria: $('#e-category').value.trim(),
+    categoria: normalizeCharacterization($('#e-category').value),
     tema_ids: [...new Set((S.eventDraft.tema_ids || []).map(Number).filter(Number.isInteger))].sort((a, b) => a - b),
     clasificacion_tematica: { origen: $('#e-theme-origin').value, estado_revision: $('#e-theme-review').value, taxonomy_version: Number($('#e-theme-version').textContent || S.taxonomy.schema_version || 1), revisada_el: $('#e-theme-reviewed').value || null },
     descripcion: $('#e-description').value.trim(),
+    por_que_importa: $('#e-why').value.trim(),
+    es_macroevento_rector: Boolean(S.eventDraft.es_macroevento_rector),
+    macroevento_rector_id: S.eventDraft.es_macroevento_rector ? null : (S.eventDraft.macroevento_rector_id || null),
+    macroevento_relacionado_ids: [...new Set((S.eventDraft.macroevento_relacionado_ids || []).filter((id) => id && id !== slug($('#e-id').value || $('#e-title').value)))],
     actores: lines($('#e-actors').value),
     intereses: lines($('#e-interests').value),
     indicadores: lines($('#e-indicators').value),
@@ -974,7 +1058,7 @@ function calcEvent() {
 function renderSignalCards() {
   const items = S.eventDraft?.senales || [];
   $('#event-tab-signals-count').textContent = String(items.length);
-  $('#signal-cards').innerHTML = items.length ? items.map((signal, index) => `<article class="item-card"><div><span class="badge ${signal.estado_revision === 'confirmada' ? 'good' : signal.estado_revision === 'descartada' ? 'bad' : 'warn'}">${esc(human(signal.estado_revision))}</span><h3>${esc(signal.titulo)}</h3><p>${esc(signal.fecha || 'Sin fecha')} · ${esc(signal.tipo || 'Sin tipo')} · origen ${esc(signal.origen)}</p><small>${esc(signal.descripcion || 'Sin descripción')}</small></div><div class="item-actions"><button type="button" class="btn small ghost" data-edit-signal="${index}">Editar</button><button type="button" class="btn small danger" data-delete-signal="${index}">Eliminar</button></div></article>`).join('') : '<p class="muted">Todavía no hay señales.</p>';
+  $('#signal-cards').innerHTML = items.length ? items.map((signal, index) => `<article class="item-card"><div><span class="badge ${signal.estado_revision === 'confirmada' ? 'good' : signal.estado_revision === 'descartada' ? 'bad' : 'warn'}">${esc(human(signal.estado_revision))}</span><h3>${esc(signal.titulo)}</h3><p>${esc(signal.fecha || 'Sin fecha')} · ${esc(human(signal.tipo || 'Sin tipo'))} · origen ${esc(signal.origen)}</p><small>${esc(signal.descripcion || 'Sin descripción')}</small></div><div class="item-actions"><button type="button" class="btn small ghost" data-edit-signal="${index}">Editar</button><button type="button" class="btn small danger" data-delete-signal="${index}">Eliminar</button></div></article>`).join('') : '<p class="muted">Todavía no hay señales.</p>';
 }
 
 function sourceCatalogMeta(source) {
@@ -986,7 +1070,7 @@ function renderSourceCards() {
   $('#event-tab-sources-count').textContent = String(items.length);
   $('#source-cards').innerHTML = items.length ? items.map((source, index) => {
     const media = sourceCatalogMeta(source);
-    return `<article class="item-card"><div><span class="badge ${source.estado_verificacion === 'verificada' ? 'good' : source.estado_verificacion === 'descartada' ? 'bad' : source.estado_verificacion === 'revisada' ? 'info' : 'warn'}">${esc(human(source.estado_verificacion))}</span><span class="badge ${media ? 'info' : 'warn'}">${media ? 'Catalogada' : 'No catalogada'}</span><h3>${esc(source.medio || 'Fuente sin identificar')}</h3><p>${esc(source.titulo || 'Sin título')}</p><small>${esc(source.fecha || 'Sin fecha')} · ${esc(media?.familia || source.tipo || 'Sin clasificación')} · ${esc(media?.perspectiva || '')}</small>${source.url ? `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">Abrir fuente ↗</a>` : ''}</div><div class="item-actions"><button type="button" class="btn small ghost" data-edit-source="${index}">Editar</button><button type="button" class="btn small danger" data-delete-source="${index}">Eliminar</button></div></article>`;
+    return `<article class="item-card"><div><span class="badge ${source.estado_verificacion === 'verificada' ? 'good' : source.estado_verificacion === 'descartada' ? 'bad' : source.estado_verificacion === 'revisada' ? 'info' : 'warn'}">${esc(human(source.estado_verificacion))}</span><span class="badge ${media ? 'info' : 'warn'}">${media ? 'Catalogada' : 'No catalogada'}</span><h3>${esc(source.medio || 'Fuente sin identificar')}</h3><p>${esc(source.titulo || 'Sin título')}</p><small>${esc(source.fecha || 'Sin fecha')} · ${esc(media?.familia || human(source.tipo) || 'Sin clasificación')}${source.idioma ? ` · ${esc(languageLabel(source.idioma))}` : ''} · ${esc(media?.perspectiva || '')}</small>${source.url ? `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">Abrir fuente ↗</a>` : ''}</div><div class="item-actions"><button type="button" class="btn small ghost" data-edit-source="${index}">Editar</button><button type="button" class="btn small danger" data-delete-source="${index}">Eliminar</button></div></article>`;
   }).join('') : '<p class="muted">Todavía no hay fuentes.</p>';
   calcEvent();
 }
@@ -2858,6 +2942,14 @@ $('#event-form').addEventListener('change', markEventDraftChanged);
 $('#prepare-analysis-followup').onclick = () => openPreparation($('#event-original-id').value);
 $('#e-theme-search').addEventListener('input', renderThemeEditor);
 $('#e-theme-review').addEventListener('change', () => { if ($('#e-theme-review').value === 'revisada' && !$('#e-theme-reviewed').value) $('#e-theme-reviewed').value = today(); });
+$('#e-related-search').addEventListener('input', renderEventRelations);
+$('#e-is-rector').addEventListener('change', () => {
+  S.eventDraft.es_macroevento_rector = $('#e-is-rector').checked;
+  if (S.eventDraft.es_macroevento_rector) S.eventDraft.macroevento_rector_id = null;
+  renderEventRelations();
+});
+$('#e-rector-id').addEventListener('change', () => { S.eventDraft.macroevento_rector_id = $('#e-rector-id').value || null; });
+$('#e-category').addEventListener('blur', () => { $('#e-category').value = normalizeCharacterization($('#e-category').value); });
 $('#add-signal').onclick = () => openSignal();
 $('#add-source').onclick = () => openSource();
 $('#event-record-tabs').addEventListener('click', (event) => {
@@ -2900,7 +2992,23 @@ $('#event-form').addEventListener('submit', (event) => {
     const index = S.data.macroeventos.findIndex((item) => item.id === originalId);
     S.data.macroeventos[index] = value;
     S.data.expedientes_editoriales.forEach((exp) => { exp.macroevento_ids = exp.macroevento_ids.map((id) => id === originalId ? value.id : id); });
+    if (originalId !== value.id) S.data.macroeventos.forEach((item) => {
+      if (item.id === value.id) return;
+      if (item.macroevento_rector_id === originalId) item.macroevento_rector_id = value.id;
+      item.macroevento_relacionado_ids = (item.macroevento_relacionado_ids || []).map((id) => id === originalId ? value.id : id);
+    });
   } else S.data.macroeventos.push(value);
+  const relatedIds = new Set(value.macroevento_relacionado_ids || []);
+  S.data.macroeventos.forEach((item) => {
+    if (item.id === value.id) return;
+    const current = new Set((item.macroevento_relacionado_ids || []).map((id) => id === originalId ? value.id : id));
+    if (relatedIds.has(item.id)) current.add(value.id);
+    else {
+      current.delete(value.id);
+      if (originalId) current.delete(originalId);
+    }
+    item.macroevento_relacionado_ids = [...current];
+  });
   S.lastEditedEventId = value.id;
   S.eventDraftChanged = false;
   $('#event-editor').close();
@@ -2913,6 +3021,10 @@ $('#delete-event').onclick = () => {
   const item = byId(id);
   if (!item || !confirm(`¿Eliminar “${item.titulo}”? También se retirará de encargos editoriales relacionados.`)) return;
   S.data.macroeventos = S.data.macroeventos.filter((event) => event.id !== id);
+  S.data.macroeventos.forEach((event) => {
+    if (event.macroevento_rector_id === id) event.macroevento_rector_id = null;
+    event.macroevento_relacionado_ids = (event.macroevento_relacionado_ids || []).filter((relatedId) => relatedId !== id);
+  });
   S.data.expedientes_editoriales.forEach((exp) => { exp.macroevento_ids = exp.macroevento_ids.filter((eventId) => eventId !== id); });
   $('#event-editor').close();
   dirty(true);
@@ -2927,7 +3039,7 @@ $('#add-location').onclick = () => addLocationRow();
 $('#signal-form').addEventListener('submit', (event) => {
   event.preventDefault();
   const index = Number($('#signal-index').value);
-  const value = { id: slug($('#sig-id').value || $('#sig-title').value), fecha: $('#sig-date').value, titulo: $('#sig-title').value.trim(), tipo: $('#sig-type').value.trim(), descripcion: $('#sig-description').value.trim(), estado_revision: $('#sig-status').value, origen: $('#sig-origin').value, fuente_ids: selectedCheckboxValues('#sig-source-options'), intensidad: $('#sig-intensity').value === '' ? null : Number($('#sig-intensity').value), localizaciones: gatherLocations() };
+  const value = { id: slug($('#sig-id').value || $('#sig-title').value), fecha: $('#sig-date').value, titulo: $('#sig-title').value.trim(), tipo: normalizeCharacterization($('#sig-type').value), descripcion: $('#sig-description').value.trim(), estado_revision: $('#sig-status').value, origen: $('#sig-origin').value, fuente_ids: selectedCheckboxValues('#sig-source-options'), intensidad: $('#sig-intensity').value === '' ? null : Number($('#sig-intensity').value), localizaciones: gatherLocations() };
   if (S.eventDraft.senales.some((item, itemIndex) => item.id === value.id && itemIndex !== index)) return message(`Ya existe la señal ${value.id}.`, 'error');
   if (index >= 0) {
     const oldId = S.eventDraft.senales[index].id;
@@ -2949,6 +3061,8 @@ $('#signal-form').addEventListener('submit', (event) => {
 $('#close-source-editor').onclick = $('#cancel-source-editor').onclick = () => { closeContextHelp(false); $('#source-editor').close(); };
 $('#src-catalog-search').addEventListener('input', () => fillCatalogOptions($('#src-catalog-search').value, ''));
 $('#src-url').addEventListener('input', updateSourceUrlActions);
+$('#src-language').addEventListener('blur', () => { $('#src-language').value = normalizeLanguageCode($('#src-language').value); });
+$('#src-type').addEventListener('blur', () => { $('#src-type').value = normalizeCharacterization($('#src-type').value); });
 $('#open-source-url').addEventListener('click', () => { const url = validSourceUrl(); if (url) window.open(url, '_blank', 'noopener,noreferrer'); });
 $('#copy-source-url').addEventListener('click', async () => { const url = validSourceUrl(); if (!url) return; await copyText(url); message('URL copiada.'); });
 $('#src-media-id').addEventListener('change', () => {
@@ -2983,7 +3097,7 @@ $('#source-form').addEventListener('submit', (event) => {
   event.preventDefault();
   const index = Number($('#source-index').value);
   const mediaId = $('#src-media-id').value;
-  const value = { id: slug($('#src-id').value || $('#src-title').value), media_id: mediaId, medio_catalogado: Boolean(mediaId), medio: $('#src-medium').value.trim(), titulo: $('#src-title').value.trim(), fecha: $('#src-date').value, idioma: $('#src-language').value.trim(), tipo: $('#src-type').value.trim(), url: $('#src-url').value.trim(), estado_verificacion: $('#src-status').value, observaciones: $('#src-notes').value.trim(), revisada_el: $('#src-reviewed').value };
+  const value = { id: slug($('#src-id').value || $('#src-title').value), media_id: mediaId, medio_catalogado: Boolean(mediaId), medio: $('#src-medium').value.trim(), titulo: $('#src-title').value.trim(), fecha: $('#src-date').value, idioma: normalizeLanguageCode($('#src-language').value), tipo: normalizeCharacterization($('#src-type').value), url: $('#src-url').value.trim(), estado_verificacion: $('#src-status').value, observaciones: $('#src-notes').value.trim(), revisada_el: $('#src-reviewed').value };
   if (S.eventDraft.fuentes.some((item, itemIndex) => item.id === value.id && itemIndex !== index)) return message(`Ya existe la fuente ${value.id}.`, 'error');
   if (index >= 0) {
     const oldId = S.eventDraft.fuentes[index].id;

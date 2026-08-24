@@ -1,3 +1,8 @@
+import {
+  normalizeCharacterization,
+  normalizeLanguageCode,
+} from './controlled-values.js';
+
 export const CANDIDATE_FORMAT_VERSION = 3;
 export const SUPPORTED_CANDIDATE_FORMAT_VERSIONS = new Set([1, 2, 3]);
 const MAX_CANDIDATE_INPUT_CHARS = 5_000_000;
@@ -38,9 +43,7 @@ export const candidateSlug = (value) => normalizeText(value)
   .replace(/^-+|-+$/g, '') || 'item';
 
 function categoryId(value) {
-  return normalizeText(value)
-    .replace(/[^a-z0-9]+/g, '_')
-    .replace(/^_+|_+$/g, '');
+  return normalizeCharacterization(value);
 }
 
 function text(value, max = 30000) {
@@ -248,8 +251,8 @@ function normalizeSource(source, eventId, sourceIndex, context, warnings, errors
       medio: medium,
       titulo: title,
       fecha: validDate(first(source.fecha, source.fecha_publicacion)),
-      idioma: text(source.idioma, 100),
-      tipo: text(first(source.tipo, source.tipo_publicacion), 200),
+      idioma: normalizeLanguageCode(text(source.idioma, 100)),
+      tipo: normalizeCharacterization(text(first(source.tipo, source.tipo_publicacion), 200)),
       url: rawUrl,
       estado_verificacion: 'pendiente',
       observaciones: text(source.observaciones),
@@ -268,7 +271,7 @@ function normalizeSignal(signal, eventId, signalIndex, sourceMap, context, warni
     id: uniqueId(first(signal.id, `sig-${eventId}-${String(signalIndex + 1).padStart(3, '0')}`), context.reservedSignalIds),
     fecha: validDate(signal.fecha),
     titulo: text(signal.titulo, 500),
-    tipo: text(signal.tipo, 200),
+    tipo: normalizeCharacterization(text(signal.tipo, 200)),
     descripcion: text(signal.descripcion),
     estado_revision: 'pendiente',
     origen: 'ia',
@@ -515,6 +518,10 @@ function normalizeCandidate(raw, index, context) {
       revisada_el: null,
     },
     descripcion: description,
+    por_que_importa: text(raw.por_que_importa),
+    es_macroevento_rector: false,
+    macroevento_rector_id: null,
+    macroevento_relacionado_ids: [],
     senales: signals,
     actores: stringArray(first(raw.actores, raw.actores_relevantes)),
     intereses: stringArray(first(raw.intereses, raw.intereses_en_juego)),

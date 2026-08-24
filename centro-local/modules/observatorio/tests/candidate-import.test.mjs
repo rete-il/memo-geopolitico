@@ -283,6 +283,27 @@ test('la plantilla y las instrucciones declaran el contrato vigente', () => {
   assert.match(instructions, /observacion_posterior/);
 });
 
+test('normaliza idiomas y caracterizaciones al importar candidatos', () => {
+  const report = prepare([baseCandidate({
+    categoria: 'Acuerdo de defensa regional',
+    fuentes: [{
+      ...baseCandidate().fuentes[0],
+      idioma: 'Inglés',
+      tipo: 'Artículo académico',
+    }],
+    senales: [{
+      ...baseCandidate().senales[0],
+      tipo: 'Financiación',
+    }],
+  })]).candidates[0];
+  assert.equal(report.value.categoria, 'acuerdo_de_defensa_regional');
+  assert.equal(report.value.fuentes[0].idioma, 'en');
+  assert.equal(report.value.fuentes[0].tipo, 'articulo_academico');
+  assert.equal(report.value.senales[0].tipo, 'financiacion');
+  assert.equal(report.value.es_macroevento_rector, false);
+  assert.deepEqual(report.value.macroevento_relacionado_ids, []);
+});
+
 test('aplica una actualización selectiva sin cambiar identidad ni estado editorial', () => {
   const existing = prepare([baseCandidate({
     id: 'corredor-existente',

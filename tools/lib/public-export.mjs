@@ -1,3 +1,8 @@
+import {
+  normalizeCharacterization,
+  normalizeLanguageCode,
+} from '../../centro-local/modules/observatorio/public/controlled-values.js';
+
 const THEME_DEFINITIONS = [
   ['seguridad-conflicto', 'Seguridad y conflicto'],
   ['diplomacia-gobernanza', 'Diplomacia y gobernanza'],
@@ -185,8 +190,8 @@ function sourceProjection(source) {
     medio: String(source.medio || ''),
     titulo: String(source.titulo || ''),
     fecha: String(source.fecha || ''),
-    idioma: String(source.idioma || ''),
-    tipo: String(source.tipo || ''),
+    idioma: normalizeLanguageCode(source.idioma),
+    tipo: normalizeCharacterization(source.tipo),
     url: String(source.url || ''),
     estado_verificacion: normalizeSourceState(source.estado_verificacion),
   };
@@ -471,6 +476,10 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
       },
       que_esta_ocurriendo: String(event.descripcion || ''),
       por_que_importa: String(event.por_que_importa || ''),
+      es_macroevento_rector: Boolean(event.es_macroevento_rector),
+      macroevento_rector_id: event.macroevento_rector_id
+        ? slugify(event.macroevento_rector_id)
+        : null,
       claves_estructurales: Array.isArray(event.claves_estructurales)
         ? event.claves_estructurales.map(String)
         : [],
@@ -486,7 +495,7 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
       fuente_ids: sourceIds,
       recurso_visual_ids: [],
       macroevento_relacionado_ids: Array.isArray(event.macroevento_relacionado_ids)
-        ? event.macroevento_relacionado_ids.map(slugify)
+        ? unique(event.macroevento_relacionado_ids.map(slugify))
         : [],
       indicadores_seguimiento: Array.isArray(event.indicadores)
         ? event.indicadores.map(String)
@@ -647,6 +656,24 @@ export function validatePublicPackage(data, options = {}) {
       if (!process.fuente_ids.length) errors.push(`${label}: un proceso publicado requiere fuentes.`);
     } else if (!options.allowDrafts && !options.allowDevelopment) {
       errors.push(`${label}: el paquete público contiene un proceso no publicado.`);
+    }
+  }
+
+  const processById = new Map((data?.procesos || []).map((process) => [process.macroevento_id, process]));
+  for (const process of data?.procesos || []) {
+    const label = process.titulo || process.macroevento_id;
+    const rectorId = process.macroevento_rector_id;
+    if (process.es_macroevento_rector && rectorId) errors.push(`${label}: un macroevento rector no puede depender de otro rector.`);
+    if (rectorId === process.macroevento_id) errors.push(`${label}: no puede ser su propio macroevento rector.`);
+    if (rectorId && !processById.has(rectorId)) errors.push(`${label}: macroevento rector inexistente (${rectorId}).`);
+    if (rectorId && processById.has(rectorId) && !processById.get(rectorId).es_macroevento_rector) {
+      errors.push(`${label}: el macroevento de destino no está marcado como rector (${rectorId}).`);
+    }
+    const relatedIds = process.macroevento_relacionado_ids || [];
+    if (new Set(relatedIds).size !== relatedIds.length) errors.push(`${label}: hay macroeventos relacionados duplicados.`);
+    for (const relatedId of relatedIds) {
+      if (relatedId === process.macroevento_id) errors.push(`${label}: no puede relacionarse consigo mismo.`);
+      else if (!processById.has(relatedId)) errors.push(`${label}: macroevento relacionado inexistente (${relatedId}).`);
     }
   }
 

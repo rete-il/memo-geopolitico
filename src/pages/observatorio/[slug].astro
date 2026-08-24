@@ -76,6 +76,29 @@ const geographyItems = [
 const actorItems = process.clasificacion.actor_ids
   .map((id) => catalogMaps.actores.get(id))
   .filter(Boolean);
+const processById = new Map(processes.map((item) => [item.macroevento_id, item]));
+const rectorProcess = process.macroevento_rector_id
+  ? processById.get(process.macroevento_rector_id)
+  : undefined;
+const complementaryProcesses = process.es_macroevento_rector
+  ? processes.filter((item) => item.macroevento_rector_id === process.macroevento_id)
+  : [];
+const reservedRelationIds = new Set([
+  process.macroevento_id,
+  process.macroevento_rector_id || '',
+  ...complementaryProcesses.map((item) => item.macroevento_id),
+]);
+const outgoingRelatedProcesses = (process.macroevento_relacionado_ids || [])
+  .map((id) => processById.get(id))
+  .filter((item): item is PublicProcess => Boolean(item));
+const incomingRelatedProcesses = processes.filter((item) =>
+  (item.macroevento_relacionado_ids || []).includes(process.macroevento_id)
+);
+const relatedProcesses = [...new Map(
+  [...outgoingRelatedProcesses, ...incomingRelatedProcesses]
+    .filter((item) => !reservedRelationIds.has(item.macroevento_id))
+    .map((item) => [item.macroevento_id, item]),
+).values()];
 ---
 
 <SiteLayout
@@ -141,6 +164,47 @@ const actorItems = process.clasificacion.actor_ids
             }
           </p>
         </section>
+
+        {
+          (process.es_macroevento_rector || rectorProcess || complementaryProcesses.length > 0 || relatedProcesses.length > 0) && (
+            <section class="content-section">
+              <h2>Relaciones con otros macroeventos</h2>
+              {process.es_macroevento_rector && (
+                <p>
+                  <strong>Macroevento rector.</strong> Este proceso articula una hipótesis de seguimiento y organiza procesos complementarios.
+                </p>
+              )}
+              {rectorProcess && (
+                <div class="process-relation-group">
+                  <h3>Macroevento rector</h3>
+                  <a class="process-relation-link" href={`/observatorio/${rectorProcess.slug}/`}>
+                    {rectorProcess.titulo}
+                  </a>
+                </div>
+              )}
+              {complementaryProcesses.length > 0 && (
+                <div class="process-relation-group">
+                  <h3>Procesos complementarios</h3>
+                  <ul>
+                    {complementaryProcesses.map((item) => (
+                      <li><a href={`/observatorio/${item.slug}/`}>{item.titulo}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {relatedProcesses.length > 0 && (
+                <div class="process-relation-group">
+                  <h3>Otros procesos relacionados</h3>
+                  <ul>
+                    {relatedProcesses.map((item) => (
+                      <li><a href={`/observatorio/${item.slug}/`}>{item.titulo}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+          )
+        }
 
         {
           process.claves_estructurales.length > 0 && (
