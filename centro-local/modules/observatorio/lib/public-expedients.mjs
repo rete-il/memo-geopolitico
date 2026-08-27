@@ -72,10 +72,12 @@ function parsePublication(file) {
   if (!yaml) return null;
   const state = nestedValue(yaml, 'publicacion', 'estado');
   const postId = topLevelValue(yaml, 'post_id');
+  const slug = topLevelValue(yaml, 'slug');
   const principalId = topLevelValue(yaml, 'macroevento_principal_id');
   if (!postId || !principalId || !(state in STATE_PRIORITY)) return null;
   return {
     post_id: postId,
+    slug,
     estado: state,
     actualizado_el: nestedValue(yaml, 'publicacion', 'actualizado_el'),
     macroevento_ids: [principalId, ...topLevelList(yaml, 'macroevento_secundario_ids')],
@@ -137,6 +139,7 @@ export function loadPublicExpedientStates(projectRoot) {
     for (const [eventId, publication] of byRelatedEvent) {
       byEvent[eventId] = {
         estado: publication.estado,
+        slug: publication.slug || byEvent[eventId]?.slug || '',
         actualizado_el: byEvent[eventId]?.actualizado_el || publication.actualizado_el,
         origen: 'publicacion_relacionada',
       };

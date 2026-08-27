@@ -24,6 +24,13 @@ test('los módulos se integran dentro de la misma ventana', () => {
   assert.doesNotMatch(html, /target="_blank"/);
 });
 
+test('el Observatorio puede abrir análisis publicados en una pestaña nueva', () => {
+  const observatorioFrame = html.match(/<iframe[^>]+id="frame-observatorio"[^>]*>/)?.[0] ?? '';
+
+  assert.match(observatorioFrame, /sandbox="[^"]*\ballow-popups\b[^"]*"/);
+  assert.match(observatorioFrame, /sandbox="[^"]*\ballow-popups-to-escape-sandbox\b[^"]*"/);
+});
+
 test('no hay controles de Git, sincronización o publicación automática', () => {
   assert.doesNotMatch(html, /git add|git push|hacer commit|publicar ahora/i);
   assert.doesNotMatch(app, /git add|git push|child_process|sync-local-data/i);

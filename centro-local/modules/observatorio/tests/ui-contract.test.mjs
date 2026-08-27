@@ -50,6 +50,11 @@ const requiredIds = [
   'sg-prompt-preview',
   'sg-copy-prompt',
   'sg-download-prompt',
+  'editorial-vocabulary-groups',
+  'editorial-vocabulary-editor',
+  'editorial-vocabulary-form',
+  'warning-type-options',
+  'apply-warning-type-defaults',
 ];
 
 test('la interfaz declara todos los controles de la importación', () => {
@@ -104,6 +109,19 @@ test('distingue expedientes públicos de encargos editoriales', () => {
   assert.match(app, /function renderPublicExpedients\(\)/);
   assert.match(app, /payload\.public_expedients/);
   assert.match(app, /PUBLIC_STATE_LABELS/);
+});
+
+test('la gestión separa publicación, estado interno y continuidad editorial', () => {
+  assert.match(html, /id="f-publication"/);
+  assert.match(html, /id="event-publication-summary"/);
+  assert.match(html, /<th>Publicación<\/th><th>Estado interno<\/th>/);
+  assert.match(app, /PUBLICATION_MANAGEMENT_LABELS/);
+  assert.match(app, /function eventPublicState\(event\)/);
+  assert.match(app, /data-publication-quick/);
+  assert.match(app, /class="badge good publication-state-link"/);
+  assert.match(app, /aria-label="Abrir análisis publicado:/);
+  assert.match(app, /data-continue-publication/);
+  assert.match(styles, /#event-rows tr\.is-published/);
 });
 
 test('el resumen usa una sola fila de seis tarjetas en escritorio', () => {
@@ -368,6 +386,33 @@ test('la Fase 8 separa plan, confirmación, integración, QA y reversión', () =
   assert.doesNotMatch(localIntegration, /child_process|execSync|spawnSync|\bgit\s+(?:add|commit|push)/i);
 });
 
+test('Taxonomía centraliza vocabularios y distingue señales revisadas de verificadas', () => {
+  assert.match(html, /Vocabularios editoriales/);
+  assert.match(html, /id="warning-type"[^>]*list="warning-type-options"/);
+  assert.match(app, /function renderEditorialVocabularies\(\)/);
+  assert.match(app, /function applyEditorialVocabulary\(event\)/);
+  assert.match(app, /function applyWarningTypeSuggestion\(\)/);
+  assert.match(styles, /\.signal-review-state\.reviewed/);
+  assert.match(styles, /\.signal-review-state\.verified/);
+});
+
+test('la versión visible proviene del servidor y no conserva literales antiguos', () => {
+  assert.match(app, /S\.appVersion = payload\.app_version/);
+  assert.match(server, /readJson\(path\.join\(root, 'package\.json'\)\)\.version/);
+  assert.doesNotMatch(html, /v0\.(?:6\.3|7\.0)/);
+  assert.doesNotMatch(app, /const APP_VERSION/);
+});
+
+test('los enlaces locales usan localhost y no fijan la interfaz IPv4', () => {
+  assert.match(preparationApp, /const LOCAL_SITE_ORIGIN = 'http:\/\/localhost:4321'/);
+  assert.match(preparationApp, /localSiteUrl\(analysisUrl\)/);
+  assert.match(preparationApp, /localSiteUrl\(followupUrl\)/);
+  assert.match(preparationApp, /localSiteUrl\(publicUrl\)/);
+  assert.match(preparationHtml, /href="http:\/\/localhost:4321\/publicaciones\/"/);
+  assert.doesNotMatch(preparationApp, /127\.0\.0\.1:4321/);
+  assert.doesNotMatch(preparationHtml, /127\.0\.0\.1:4321/);
+});
+
 test('la Fase 8 es responsive y comunica que preview no equivale a publicación', () => {
   assert.match(preparationHtml, /no se crea una publicación de producción/i);
   assert.match(preparationHtml, /no ejecuta check, build, Git ni despliegue/i);
@@ -448,7 +493,7 @@ test('la ruta corta separa el proceso del análisis y valida el paquete completo
   assert.match(styles, /@media\(max-width:560px\)[\s\S]*\.global-status-items\{grid-template-columns:1fr\}/);
 });
 
-test('el editor permite explicar relevancia, organizar un rector y gestionar caracterizaciones', () => {
+test('el editor permite explicar relevancia, organizar un rector y administrar categorías internas', () => {
   for (const id of [
     'e-why',
     'e-is-rector',
@@ -456,7 +501,16 @@ test('el editor permite explicar relevancia, organizar un rector y gestionar car
     'e-related-search',
     'e-related-selected',
     'e-related-options',
-    'event-category-options',
+    'e-category',
+    'manage-internal-categories',
+    'new-internal-category',
+    'internal-category-list',
+    'internal-category-editor',
+    'internal-category-form',
+    'f-role',
+    'f-publication',
+    'event-publication-summary',
+    'o-role',
     'signal-type-options',
     'source-type-options',
     'language-options',
@@ -464,9 +518,13 @@ test('el editor permite explicar relevancia, organizar un rector y gestionar car
     assert.match(html, new RegExp(`id="${id}"`), `Falta #${id}`);
   }
   assert.match(app, /function renderEventRelations\(\)/);
+  assert.match(app, /function renderInternalCategories\(\)/);
+  assert.match(app, /function applyInternalCategory\(event\)/);
+  assert.match(app, /eventRole\(event\) === role/);
   assert.match(app, /normalizeLanguageCode/);
   assert.match(app, /normalizeCharacterization/);
   assert.match(styles, /\.relation-picker/);
+  assert.match(styles, /\.internal-category-list/);
 });
 
 test('el dashboard sincroniza la proyección pública mediante plan, confirmación y respaldo', () => {

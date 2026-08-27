@@ -24,7 +24,7 @@
         <button class="nav-item" data-view="expedients">Encargos editoriales</button>
         <button class="nav-item" data-view="data">Datos y backups</button>
       </nav>
-      <footer><b>Solo local</b><small>127.0.0.1 · sin APIs externas</small><small id="app-version-label">Observatorio v0.6.3</small></footer>
+      <footer><b>Solo local</b><small>127.0.0.1 · sin APIs externas</small><small id="app-version-label">Observatorio v—</small></footer>
     </aside>
     <button id="nav-overlay" class="nav-overlay" type="button" aria-label="Cerrar menú" tabindex="-1" hidden></button>
 
@@ -44,6 +44,7 @@
             <div class="overview-search">
               <label class="field grow"><span>Buscar macroevento</span><input id="o-search" type="search" placeholder="Título, ID o tema interno"></label>
               <label class="field"><span>Tipo</span><select id="o-type"><option value="">Todos</option></select></label>
+              <label class="field"><span>Rol</span><select id="o-role"><option value="">Todos</option><option value="rector">Rector</option><option value="complementario">Complementario</option><option value="independiente">Independiente</option></select></label>
               <label class="field"><span>Estado</span><select id="o-status"><option value="">Todos</option></select></label>
               <button id="clear-overview-search" class="btn ghost">Limpiar</button>
             </div>
@@ -63,14 +64,17 @@
           <label class="field"><span>Región</span><select id="f-region"><option value="">Todas</option></select></label>
           <label class="field"><span>Categoría</span><select id="f-category"><option value="">Todas</option></select></label>
           <label class="field"><span>Tipo</span><select id="f-type"><option value="">Todos</option></select></label>
-          <label class="field"><span>Estado</span><select id="f-status"><option value="">Todos</option></select></label>
+          <label class="field"><span>Rol</span><select id="f-role"><option value="">Todos</option><option value="rector">Rector</option><option value="complementario">Complementario</option><option value="independiente">Independiente</option></select></label>
+          <label class="field"><span>Estado editorial</span><select id="f-status"><option value="">Todos</option></select></label>
+          <label class="field"><span>Publicación</span><select id="f-publication"><option value="">Todas</option><option value="pendiente">Pendientes</option><option value="borrador">Sin análisis</option><option value="en_revision">En preparación</option><option value="listo">Listas para publicar</option><option value="publicado">Publicadas</option></select></label>
           <label class="field"><span>Gap mínimo</span><select id="f-gap"><option value="">Cualquiera</option><option value="3">3+</option><option value="4">4+</option><option value="5">5</option></select></label>
-          <label class="field"><span>Ordenar</span><select id="f-sort"><option value="rel">Relevancia ↓</option><option value="gap">Gap ↓</option><option value="title">Título A–Z</option><option value="date">Fecha ↓</option></select></label>
+          <label class="field"><span>Ordenar</span><select id="f-sort"><option value="rel">Relevancia ↓</option><option value="publication">Pendientes de publicación primero</option><option value="gap">Gap ↓</option><option value="title">Título A–Z</option><option value="date">Fecha ↓</option></select></label>
           <button id="clear-filters" class="btn ghost">Limpiar</button>
         </div>
         <section class="panel table-panel">
-          <div class="table-meta"><span id="event-count">0 macroeventos</span><span>Editar el macroevento o iniciar un encargo editorial</span></div>
-          <div class="table-wrap"><table><thead><tr><th>Macroevento</th><th>Región</th><th>Fuentes</th><th>Relevancia</th><th>Gap</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="event-rows"></tbody></table></div>
+          <div class="table-meta"><span id="event-count">0 macroeventos</span><span>La publicación y el estado interno se muestran por separado</span></div>
+          <div id="event-publication-summary" class="publication-summary" role="group" aria-label="Filtrar macroeventos por estado de publicación"></div>
+          <div class="table-wrap"><table><thead><tr><th>Macroevento</th><th>Región</th><th>Fuentes</th><th>Relevancia</th><th>Gap</th><th>Publicación</th><th>Estado interno</th><th>Acciones</th></tr></thead><tbody id="event-rows"></tbody></table></div>
           <div id="event-empty" class="empty" hidden>No hay resultados.</div>
         </section>
       </section>
@@ -81,7 +85,17 @@
       </section>
 
       <section id="taxonomy" class="view">
-        <div class="heading"><div><p class="eyebrow">TAXONOMÍA INTERNA DE DETECCIÓN</p><h2>Temas de investigación</h2></div></div>
+        <div class="heading"><div><p class="eyebrow">TAXONOMÍA INTERNA DE DETECCIÓN</p><h2>Temas de investigación</h2></div><button id="new-internal-category" class="btn primary">Nueva categoría interna</button></div>
+        <section class="panel internal-categories-panel">
+          <header><div><p class="eyebrow">CLASIFICACIÓN DE MACROEVENTOS</p><h2>Categorías internas</h2></div><span id="internal-category-count" class="badge info">0 categorías</span></header>
+          <p class="help">Administrá los nombres disponibles en las fichas. El ID permanece estable; las categorías archivadas se conservan en los macroeventos existentes, pero no se ofrecen para nuevas asignaciones.</p>
+          <div id="internal-category-list" class="internal-category-list"></div>
+        </section>
+        <section class="panel editorial-vocabularies-panel">
+          <header><div><p class="eyebrow">LISTAS CONTROLADAS</p><h2>Vocabularios editoriales</h2></div></header>
+          <p class="help">Administrá en un solo lugar los tipos de señales, fuentes y advertencias, además de los idiomas. Los ID permanecen estables y los valores archivados siguen siendo legibles en los registros históricos.</p>
+          <div id="editorial-vocabulary-groups" class="editorial-vocabulary-groups"></div>
+        </section>
         <div class="panel filters">
           <label class="field grow"><span>Buscar tema</span><input id="t-search" type="search" placeholder="Minerales, Sahel, cables..."></label>
           <label class="field"><span>Área</span><select id="t-category"><option value="">Todas</option></select></label>
@@ -229,7 +243,7 @@
           <label class="field"><span>Tipo</span><select id="e-type"><option value="evento_puntual">Evento puntual</option><option value="tendencia_recurrente">Tendencia recurrente</option><option value="tendencia_estructural">Tendencia estructural</option><option value="macroproceso_emergente">Macroproceso emergente</option><option value="macroproceso_en_maduracion">Macroproceso en maduración</option><option value="macroproceso_estructural">Macroproceso estructural</option></select></label>
           <label class="field"><span>Estado editorial</span><select id="e-status"><option value="borrador">Borrador</option><option value="revision">Revisión</option><option value="validado">Validado</option><option value="archivado">Archivado</option></select></label>
           <label class="field"><span>Verificación general</span><select id="e-verification"><option value="pendiente">Pendiente</option><option value="parcial">Parcial</option><option value="verificado">Verificado</option></select></label>
-          <label class="field"><span>Categoría interna</span><input id="e-category" list="event-category-options" required><small class="help">Elegí una caracterización existente o escribí una nueva; se guardará en formato estable.</small></label>
+          <div class="field"><span>Categoría interna</span><div class="category-field-row"><select id="e-category" required></select><button type="button" id="manage-internal-categories" class="btn ghost">Nueva categoría</button></div><small class="help">Elegí una categoría activa. La administración completa está en Taxonomía.</small></div>
           <label class="field span2"><span>Regiones, separadas por coma</span><input id="e-regions" required></label>
           <div class="field span2 taxonomy-editor">
             <span>Temas internos</span>
@@ -386,10 +400,44 @@
     </form>
   </dialog>
 
-  <datalist id="event-category-options"></datalist>
   <datalist id="signal-type-options"></datalist>
   <datalist id="source-type-options"></datalist>
+  <datalist id="warning-type-options"></datalist>
   <datalist id="language-options"></datalist>
+
+  <dialog id="internal-category-editor">
+    <form id="internal-category-form">
+      <header class="dialog-head"><div><p class="eyebrow">CATEGORÍA INTERNA</p><h2 id="internal-category-editor-title">Nueva categoría</h2></div><button type="button" id="close-internal-category-editor" class="icon" aria-label="Cerrar categoría">&times;</button></header>
+      <div class="dialog-body">
+        <input id="internal-category-original-id" type="hidden">
+        <label class="field"><span>Nombre visible</span><input id="internal-category-name" required maxlength="200"></label>
+        <label class="field"><span>ID estable</span><input id="internal-category-id" required pattern="[a-z0-9]+(?:_[a-z0-9]+)*" maxlength="200"><small class="help">Se genera al crearla y no cambia cuando se modifica el nombre.</small></label>
+        <label class="field"><span>Descripción</span><textarea id="internal-category-description" rows="4" maxlength="2000"></textarea></label>
+        <label class="field"><span>Estado</span><select id="internal-category-status"><option value="activa">Activa</option><option value="archivada">Archivada</option></select></label>
+      </div>
+      <footer class="dialog-foot"><span id="internal-category-editor-status" class="help" role="status" aria-live="polite"></span><div><button type="button" id="cancel-internal-category-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar categoría</button></div></footer>
+    </form>
+  </dialog>
+
+  <dialog id="editorial-vocabulary-editor">
+    <form id="editorial-vocabulary-form">
+      <header class="dialog-head"><div><p class="eyebrow">VOCABULARIO EDITORIAL</p><h2 id="editorial-vocabulary-editor-title">Nuevo valor</h2></div><button type="button" id="close-editorial-vocabulary-editor" class="icon" aria-label="Cerrar vocabulario">&times;</button></header>
+      <div class="dialog-body">
+        <input id="editorial-vocabulary-original-id" type="hidden">
+        <label class="field"><span>Lista</span><select id="editorial-vocabulary-kind"><option value="tipos_senal">Tipos de señal</option><option value="tipos_fuente">Tipos de fuente</option><option value="tipos_advertencia">Tipos de advertencia</option><option value="idiomas">Idiomas</option></select></label>
+        <label class="field"><span>Nombre visible</span><input id="editorial-vocabulary-name" required maxlength="200"></label>
+        <label class="field"><span>ID estable</span><input id="editorial-vocabulary-id" required pattern="[a-z0-9]+(?:_[a-z0-9]+)*|[a-z]{2}" maxlength="200"><small class="help">Se genera al crear el valor y no cambia al modificar su nombre.</small></label>
+        <label class="field"><span>Descripción de uso</span><textarea id="editorial-vocabulary-description" rows="4" maxlength="2000"></textarea></label>
+        <label class="field"><span>Alias, separados por coma</span><input id="editorial-vocabulary-aliases" maxlength="1000"><small class="help">Permiten reconocer variantes históricas sin duplicar el valor canónico.</small></label>
+        <label class="field"><span>Estado</span><select id="editorial-vocabulary-status"><option value="activa">Activo</option><option value="archivada">Archivado</option></select></label>
+        <div id="warning-vocabulary-defaults" class="form-grid" hidden>
+          <label class="field"><span>Tratamiento sugerido</span><select id="editorial-vocabulary-treatment"><option value="bloqueante">Bloqueante</option><option value="relevante">Relevante</option><option value="observacion_posterior">Observación posterior</option><option value="irrelevante">Irrelevante</option></select></label>
+          <label class="field"><span>Prioridad sugerida</span><select id="editorial-vocabulary-priority"><option value="alta">Alta</option><option value="media">Media</option><option value="baja">Baja</option></select></label>
+        </div>
+      </div>
+      <footer class="dialog-foot"><span id="editorial-vocabulary-editor-status" class="help" role="status" aria-live="polite"></span><div><button type="button" id="cancel-editorial-vocabulary-editor" class="btn ghost">Cancelar</button><button class="btn primary">Aplicar valor</button></div></footer>
+    </form>
+  </dialog>
 
   <dialog id="warning-editor" class="large-dialog">
     <form id="warning-form">
@@ -400,7 +448,7 @@
           <section class="warning-edit-column">
             <fieldset><legend>Clasificación y contenido</legend><div class="form-grid">
               <label class="field"><span>ID</span><input id="warning-id" required pattern="[a-z0-9]+(?:[-_][a-z0-9]+)*"></label>
-              <label class="field"><span>Tipo</span><input id="warning-type" required placeholder="evidencia_insuficiente"></label>
+              <label class="field"><span>Tipo</span><input id="warning-type" list="warning-type-options" required placeholder="insuficiencia_evidencia"><small id="warning-type-help" class="help">Elegí un tipo del vocabulario administrado en Taxonomía.</small><button type="button" id="apply-warning-type-defaults" class="btn ghost small" hidden>Aplicar sugerencia</button></label>
               <label class="field span2"><span>Descripción completa</span><textarea id="warning-description" rows="6" required></textarea></label>
               <label class="field"><span>Estado</span><select id="warning-state"><option value="pendiente">Pendiente</option><option value="resuelta">Resuelta</option><option value="descartada">Descartada</option></select></label>
               <label class="field"><span>Tratamiento</span><select id="warning-treatment" aria-describedby="warning-treatment-help"><option value="bloqueante">Bloqueante</option><option value="relevante">Relevante</option><option value="observacion_posterior">Observación posterior</option><option value="irrelevante">Irrelevante</option></select><small id="warning-treatment-help" class="help">“Observación posterior” conserva el caso en el radar sin incluirlo en el prompt actual.</small></label>
@@ -538,7 +586,7 @@
       <header class="dialog-head"><div><p class="eyebrow">INFORMACIÓN Y OPERACIÓN</p><h2>Ayuda del Observatorio</h2></div><button type="button" id="close-help-dialog" class="icon" aria-label="Cerrar ayuda general">×</button></header>
       <div class="dialog-body help-general-body">
         <section class="help-version-card">
-          <div><span>Versión instalada</span><strong id="help-version">v0.6.3</strong></div>
+          <div><span>Versión instalada</span><strong id="help-version">v—</strong></div>
           <div><span>Servidor</span><strong id="help-server-state">Comprobando…</strong></div>
           <div><span>Esquema de datos</span><strong id="help-schema-version">—</strong></div>
           <div><span>Taxonomía</span><strong id="help-taxonomy-version">—</strong></div>
@@ -548,7 +596,7 @@
         <section><h3>Datos activos</h3><dl class="help-data-list"><dt>Archivo editorial</dt><dd>data/macroeventos.json</dd><dt>Catálogo de fuentes</dt><dd>data/catalogo-medios.json</dd><dt>Taxonomía</dt><dd>data/taxonomia-temas.json</dd><dt>Generador</dt><dd>data/configuracion-busqueda.json</dd><dt>Configuración</dt><dd>data/config.json</dd></dl><div id="help-counts" class="help-counts"></div></section>
         <section><h3>Flujo editorial</h3><ol><li>Configurar y generar un prompt de búsqueda contextual.</li><li>Ejecutarlo en ChatGPT e importar el lote JSON completo.</li><li>Revisar candidatos nuevos, actualizaciones, casos sin novedad y compuestos.</li><li>Aplicar las decisiones y guardar con backup.</li><li>Crear o actualizar un encargo editorial y evaluar suficiencia documental.</li><li>Generar el encargo de redacción y revisar el Markdown antes de incorporarlo al sitio.</li></ol></section>
         <section><h3>Guardar, sincronizar y recuperar</h3><p><b>Aplicar cambios</b> actualiza la memoria de la pestaña. <b>Guardar</b> persiste en JSON y crea un backup. Después, el control de sincronización compara automáticamente la base guardada con la proyección pública y solo se habilita cuando detecta uno o más macroeventos nuevos. Al pulsarlo, conserva los estados editoriales, muestra el alcance, pide confirmación y crea otro respaldo antes de escribir. Las simples actualizaciones de procesos existentes no habilitan el botón. No ejecuta Git ni publica en Internet. Si el servidor se desconecta, mantené la pestaña abierta, reiniciá <code>npm run start</code> y volvé a guardar.</p></section>
-        <section><h3>Cambios principales de v0.6.3</h3><ul><li>Expedientes reproduce el estado público efectivo usado por el sitio.</li><li>Las publicaciones relacionadas tienen prioridad sobre el estado base del expediente.</li><li>La consulta es de solo lectura y no modifica macroeventos ni publicaciones.</li><li>Expedientes y Encargos editoriales permanecen como funciones separadas.</li></ul></section>
+        <section><h3>Cambios principales de la versión instalada</h3><ul><li>Expedientes reproduce el estado público efectivo usado por el sitio.</li><li>Las publicaciones relacionadas tienen prioridad sobre el estado base del expediente.</li><li>La consulta es de solo lectura y no modifica macroeventos ni publicaciones.</li><li>Expedientes y Encargos editoriales permanecen como funciones separadas.</li></ul></section>
       </div>
       <footer class="dialog-foot"><span></span><button type="button" id="close-help-dialog-footer" class="btn primary">Cerrar</button></footer>
     </div>

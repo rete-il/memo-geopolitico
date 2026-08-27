@@ -1,6 +1,13 @@
 import { runPreflight } from './preflight.js';
 
 const $ = (selector) => document.querySelector(selector);
+const LOCAL_SITE_ORIGIN = 'http://localhost:4321';
+
+function localSiteUrl(pathname = '/') {
+  const localPath = `/${String(pathname || '/').replace(/^\/+/, '')}`;
+  return `${LOCAL_SITE_ORIGIN}${localPath}`;
+}
+
 const esc = (value) => String(value ?? '')
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
@@ -1497,8 +1504,8 @@ function renderAppliedLocalIntegration(session, integration = null, plan = null,
     <li><div><b>${esc(backup)}</b><small>Manifiesto y copias anteriores</small></div><span>Disponible</span></li>
   `;
   $('#local-integration-commands').textContent = 'npm run check\nnpm run build\nnpm run build:preview\nnpm run validate:build\nnpm run dev:editorial';
-  $('#open-analysis-preview').href = `http://127.0.0.1:4321${analysisUrl}`;
-  $('#open-followup-preview').href = `http://127.0.0.1:4321${followupUrl}`;
+  $('#open-analysis-preview').href = localSiteUrl(analysisUrl);
+  $('#open-followup-preview').href = localSiteUrl(followupUrl);
   $('#confirm-local-integration-rollback').checked = false;
   $('#rollback-local-integration').disabled = saved.rollback_estado !== 'disponible';
   $('#local-integration-rollback-status').textContent = saved.rollback_estado === 'disponible'
@@ -1741,7 +1748,7 @@ function renderAppliedLocalPublication(session, publication = null, plan = null,
     <li><div><b>${esc(backup)}</b><small>Manifiesto y versiones anteriores cuando correspondía</small></div><span>Disponible</span></li>
   `;
   $('#local-publication-commands').textContent = 'npm.cmd run test\nnpm.cmd run validate:data\nnpm.cmd run check\nnpm.cmd run build\nnpm.cmd run build:preview\nnpm.cmd run validate:build\ngit --no-pager diff --check\nnpm.cmd run dev';
-  $('#open-local-publication').href = `http://127.0.0.1:4321${publicUrl}`;
+  $('#open-local-publication').href = localSiteUrl(publicUrl);
   $('#confirm-local-publication-rollback').checked = false;
   $('#rollback-local-publication').disabled = saved.rollback_estado !== 'disponible';
   $('#local-publication-rollback-status').textContent = saved.rollback_estado === 'disponible'

@@ -1,10 +1,19 @@
 import { initContextHelp, closeContextHelp } from './context-help.js';
 import {
-  LANGUAGE_OPTIONS,
   languageLabel,
   normalizeCharacterization,
   normalizeLanguageCode,
 } from './controlled-values.js';
+import {
+  internalCategoryById,
+  normalizeInternalCategories,
+} from './internal-categories.js';
+import {
+  EDITORIAL_VOCABULARY_DEFINITIONS,
+  editorialVocabularyRecord,
+  normalizeEditorialVocabularies,
+  normalizeEditorialVocabularyId,
+} from './editorial-vocabularies.js';
 import {
   candidateExample,
   candidateFormatInstructions,
@@ -32,8 +41,6 @@ import {
   warningSummary,
 } from './warnings-ui.js';
 
-const APP_VERSION = '0.7.0';
-
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
 const deep = (value) => JSON.parse(JSON.stringify(value));
@@ -45,6 +52,9 @@ const slug = (value) => normalize(value).replace(/[^a-z0-9]+/g, '-').replace(/^-
 const esc = (value) => String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 const HUMAN_LABELS = { listo_para_prompt: 'Listo para encargo de redacción', prompt_exportado: 'Encargo exportado' };
 const PUBLIC_STATE_LABELS = { borrador: 'En documentación', en_revision: 'En revisión editorial', listo: 'Listo para publicación', publicado: 'Publicado' };
+const PUBLICATION_MANAGEMENT_LABELS = { borrador: 'Sin análisis', en_revision: 'En preparación', listo: 'Listo para publicar', publicado: 'Publicado' };
+const EVENT_ROLE_LABELS = { rector: 'Rector', complementario: 'Complementario', independiente: 'Independiente' };
+const LOCAL_SITE_ORIGIN = 'http://localhost:4321';
 const human = (value) => HUMAN_LABELS[value] || String(value || '').replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
 const unique = (values) => [...new Set(values.filter(Boolean))];
 const byId = (id) => S.data.macroeventos.find((item) => item.id === id);
@@ -53,9 +63,27 @@ const mediaById = (id) => S.catalog.records.find((item) => item.media_id === id)
 const rel = (event) => ['impacto', 'persistencia', 'alcance', 'probabilidad'].reduce((total, key) => total * Number(event.evaluacion?.[key] || 1), 1);
 const gapRaw = (event) => rel(event) / Math.max(1, Number(event.evaluacion?.cobertura_observada || 1));
 const gapLevel = (event) => Number(event.evaluacion?.subcobertura || 1);
+const eventRole = (event) => event?.es_macroevento_rector ? 'rector' : event?.macroevento_rector_id ? 'complementario' : 'independiente';
+
+function eventPublicRecord(event) {
+  return S.publicExpedients.by_event?.[event.id] || null;
+}
+
+function eventPublicState(event) {
+  return eventPublicRecord(event)?.estado || ({ revision: 'en_revision', validado: 'listo' }[event.estado_editorial] || 'borrador');
+}
+
+function publicationBadgeClass(state) {
+  return state === 'publicado' ? 'good' : state === 'listo' || state === 'en_revision' ? 'info' : 'neutral';
+}
+
+function analysisUrl(event) {
+  const publicationSlug = eventPublicRecord(event)?.slug;
+  return publicationSlug ? `${LOCAL_SITE_ORIGIN}/publicaciones/${encodeURIComponent(publicationSlug)}/` : '';
+}
 
 const S = {
-  data: { macroeventos: [], expedientes_editoriales: [] },
+  data: { categorias_internas: [], vocabularios_editoriales: {}, macroeventos: [], expedientes_editoriales: [] },
   taxonomy: { categorias: [] },
   catalog: { records: [], metadata: {} },
   searchConfig: { ejes_editoriales: [], fuentes_prioritarias: [], criterios_transversales: [] },
@@ -71,6 +99,7 @@ const S = {
   eventDraftChanged: false,
   eventEditorMode: '',
   lastEditedEventId: '',
+  categoryEditorReturnToEvent: false,
   warningSelectedId: '',
   warningRadar: false,
   expDraft: null,
@@ -87,6 +116,7 @@ const S = {
     prompt: '',
   },
   serverOnline: null,
+  appVersion: '',
 };
 
 const mobileNavigation = window.matchMedia('(max-width: 850px)');
@@ -186,7 +216,10 @@ async function checkHealth() {
   try {
     const response = await fetch('/api/health', { cache: 'no-store' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    S.appVersion = payload.version || S.appVersion;
     setServerStatus(true);
+    renderHelp();
     return true;
   } catch (error) {
     setServerStatus(false, error.message);
@@ -292,6 +325,7 @@ window.addEventListener('beforeunload', (event) => {
 
 async function bootstrap() {
   const payload = await api('/api/bootstrap');
+  S.appVersion = payload.app_version || S.appVersion;
   S.data = payload.data;
   S.taxonomy = payload.taxonomy;
   S.searchConfig = payload.search_config || S.searchConfig;
@@ -349,10 +383,36 @@ function setOptions(select, values, placeholder) {
   if (values.includes(current)) select.value = current;
 }
 
+function internalCategories() {
+  S.data.categorias_internas = normalizeInternalCategories(S.data.categorias_internas, S.data.macroeventos);
+  return S.data.categorias_internas;
+}
+
+function internalCategoryLabel(id) {
+  return internalCategoryById(internalCategories(), id)?.nombre || human(id);
+}
+
+function setInternalCategoryFilterOptions(select, placeholder = 'Todas') {
+  const current = select.value;
+  const used = new Set((S.data.macroeventos || []).map((event) => event.categoria));
+  const categories = internalCategories().filter((category) => category.estado === 'activa' || used.has(category.id));
+  select.innerHTML = `<option value="">${esc(placeholder)}</option>${categories.map((category) => `<option value="${esc(category.id)}">${esc(category.nombre)}${category.estado === 'archivada' ? ' (archivada)' : ''}</option>`).join('')}`;
+  if (categories.some((category) => category.id === current)) select.value = current;
+}
+
+function renderEventCategoryOptions(selectedId = '') {
+  const select = $('#e-category');
+  if (!select) return;
+  const current = normalizeCharacterization(selectedId || select.value);
+  const categories = internalCategories().filter((category) => category.estado === 'activa' || category.id === current);
+  select.innerHTML = `<option value="">Seleccioná una categoría</option>${categories.map((category) => `<option value="${esc(category.id)}">${esc(category.nombre)}${category.estado === 'archivada' ? ' (archivada)' : ''}</option>`).join('')}`;
+  select.value = categories.some((category) => category.id === current) ? current : '';
+}
+
 function fillFilters() {
   const events = S.data.macroeventos || [];
   setOptions($('#f-region'), unique(events.flatMap((event) => event.regiones || [])).sort(), 'Todas');
-  setOptions($('#f-category'), unique(events.map((event) => event.categoria)).sort(), 'Todas');
+  setInternalCategoryFilterOptions($('#f-category'));
   setOptions($('#f-type'), unique(events.map((event) => event.tipo_proceso)).sort(), 'Todos');
   setOptions($('#f-status'), unique(events.map((event) => event.estado_editorial)).sort(), 'Todos');
   setOptions($('#o-type'), unique(events.map((event) => event.tipo_proceso)).sort(), 'Todos');
@@ -376,12 +436,12 @@ function renderDatalist(selector, values, label = (value) => human(value)) {
 }
 
 function renderControlledValueLists() {
-  const events = S.data.macroeventos || [];
-  renderDatalist('#event-category-options', events.map((event) => normalizeCharacterization(event.categoria)).filter(Boolean));
-  renderDatalist('#signal-type-options', events.flatMap((event) => event.senales || []).map((signal) => normalizeCharacterization(signal.tipo)).filter(Boolean));
-  renderDatalist('#source-type-options', events.flatMap((event) => event.fuentes || []).map((source) => normalizeCharacterization(source.tipo)).filter(Boolean));
-  const existingLanguages = events.flatMap((event) => event.fuentes || []).map((source) => normalizeLanguageCode(source.idioma)).filter(Boolean);
-  renderDatalist('#language-options', [...LANGUAGE_OPTIONS.map(([code]) => code), ...existingLanguages], languageLabel);
+  const vocabularies = editorialVocabularies();
+  const active = (kind) => (vocabularies[kind] || []).filter((item) => item.estado === 'activa');
+  renderDatalist('#signal-type-options', active('tipos_senal').map((item) => item.id), (id) => editorialVocabularyRecord(vocabularies, 'tipos_senal', id)?.nombre || human(id));
+  renderDatalist('#source-type-options', active('tipos_fuente').map((item) => item.id), (id) => editorialVocabularyRecord(vocabularies, 'tipos_fuente', id)?.nombre || human(id));
+  renderDatalist('#warning-type-options', active('tipos_advertencia').map((item) => item.id), (id) => editorialVocabularyRecord(vocabularies, 'tipos_advertencia', id)?.nombre || human(id));
+  renderDatalist('#language-options', active('idiomas').map((item) => item.id), (id) => editorialVocabularyRecord(vocabularies, 'idiomas', id)?.nombre || languageLabel(id));
 }
 
 function renderAll() {
@@ -398,9 +458,9 @@ function renderAll() {
 
 function renderHelp() {
   const versionLabel = $('#app-version-label');
-  if (versionLabel) versionLabel.textContent = `Observatorio v${APP_VERSION}`;
+  if (versionLabel) versionLabel.textContent = `Observatorio v${S.appVersion || '—'}`;
   const version = $('#help-version');
-  if (version) version.textContent = `v${APP_VERSION}`;
+  if (version) version.textContent = `v${S.appVersion || '—'}`;
   const server = $('#help-server-state');
   if (server) server.textContent = S.serverOnline === true ? 'Conectado' : S.serverOnline === false ? 'Desconectado' : 'Comprobando…';
   const schema = $('#help-schema-version');
@@ -435,13 +495,14 @@ function renderBars(target, entries, limit = 8) {
 function overviewEvents(events) {
   const q = normalize($('#o-search').value);
   const type = $('#o-type').value;
+  const role = $('#o-role').value;
   const status = $('#o-status').value;
   const filtered = events.filter((event) => {
     const topics = (event.tema_ids || []).map(topicById).filter(Boolean).map((topic) => `${topic.id} ${topic.nombre} ${topic.categoria_nombre}`);
     const haystack = normalize([event.id, event.titulo, ...topics].join(' '));
-    return (!q || haystack.includes(q)) && (!type || event.tipo_proceso === type) && (!status || event.estado_editorial === status);
+    return (!q || haystack.includes(q)) && (!type || event.tipo_proceso === type) && (!role || eventRole(event) === role) && (!status || event.estado_editorial === status);
   }).sort((a, b) => rel(b) - rel(a) || a.titulo.localeCompare(b.titulo, 'es'));
-  return { filtered, active: Boolean(q || type || status) };
+  return { filtered, active: Boolean(q || type || role || status) };
 }
 
 function renderOverview() {
@@ -464,28 +525,46 @@ function renderOverview() {
   $('#ranking-meta').textContent = active
     ? `${filtered.length} ${filtered.length === 1 ? 'macroevento encontrado' : 'macroeventos encontrados'}`
     : `Mostrando los ${Math.min(8, events.length)} de mayor relevancia`;
-  $('#ranking').innerHTML = ranked.map((event, index) => `<button class="rank-row" data-edit-event="${esc(event.id)}"><b>${index + 1}</b><span><strong>${esc(event.titulo)}</strong><small>${esc(event.id)} · ${esc((event.regiones || []).join(' · '))}</small></span><em>${rel(event)}</em><i>gap ${gapLevel(event)}/5</i></button>`).join('') || '<p class="empty">No se encontraron macroeventos.</p>';
+  $('#ranking').innerHTML = ranked.map((event, index) => {
+    const publicState = eventPublicState(event);
+    return `<button class="rank-row" data-edit-event="${esc(event.id)}"><b>${index + 1}</b><span><strong>${esc(event.titulo)}</strong><small>${esc(event.id)} · ${esc(EVENT_ROLE_LABELS[eventRole(event)])} · ${esc((event.regiones || []).join(' · '))}</small><small class="rank-publication ${publicState === 'publicado' ? 'is-published' : ''}">${esc(PUBLICATION_MANAGEMENT_LABELS[publicState] || human(publicState))}</small></span><em>${rel(event)}</em><i>gap ${gapLevel(event)}/5</i></button>`;
+  }).join('') || '<p class="empty">No se encontraron macroeventos.</p>';
   renderBars('#regions', countBy(events, (event) => event.regiones || []));
-  renderBars('#categories', countBy(events, (event) => event.categoria));
+  renderBars('#categories', countBy(events, (event) => internalCategoryLabel(event.categoria)));
   const errors = S.validation.errors || [];
   const warnings = S.validation.warnings || [];
   $('#quality').innerHTML = `<div class="quality-summary"><span class="badge ${errors.length ? 'bad' : 'good'}">${errors.length} errores</span><span class="badge ${warnings.length ? 'warn' : 'good'}">${warnings.length} advertencias</span><span class="badge info">${verified} fuentes verificadas</span><span class="badge info">${events.length} expedientes públicos</span><span class="badge info">${editorialAssignments.length} encargos editoriales</span></div>${errors.slice(0, 5).map((item) => `<p class="issue error">${esc(item)}</p>`).join('')}${warnings.slice(0, 5).map((item) => `<p class="issue warning">${esc(item)}</p>`).join('') || (!errors.length ? '<p class="muted">La estructura está lista para continuar con la revisión editorial.</p>' : '')}`;
 }
 
-function filteredEvents() {
+function filteredEvents({ ignorePublication = false } = {}) {
   const q = normalize($('#f-search').value);
   const region = $('#f-region').value;
   const category = $('#f-category').value;
   const type = $('#f-type').value;
+  const role = $('#f-role').value;
   const status = $('#f-status').value;
+  const publication = $('#f-publication').value;
   const gap = Number($('#f-gap').value || 0);
   const sort = $('#f-sort').value;
   const events = (S.data.macroeventos || []).filter((event) => {
     const haystack = normalize([event.titulo, event.descripcion, event.categoria, ...(event.regiones || []), ...(event.actores || []), ...(event.palabras_clave || [])].join(' '));
-    return (!q || haystack.includes(q)) && (!region || event.regiones?.includes(region)) && (!category || event.categoria === category) && (!type || event.tipo_proceso === type) && (!status || event.estado_editorial === status) && (!gap || gapLevel(event) >= gap);
+    const publicState = eventPublicState(event);
+    const publicationMatches = ignorePublication || !publication || (publication === 'pendiente' ? publicState !== 'publicado' : publicState === publication);
+    return (!q || haystack.includes(q)) && (!region || event.regiones?.includes(region)) && (!category || event.categoria === category) && (!type || event.tipo_proceso === type) && (!role || eventRole(event) === role) && (!status || event.estado_editorial === status) && publicationMatches && (!gap || gapLevel(event) >= gap);
   });
-  events.sort((a, b) => sort === 'gap' ? gapLevel(b) - gapLevel(a) : sort === 'title' ? a.titulo.localeCompare(b.titulo, 'es') : sort === 'date' ? String(b.fecha_corte).localeCompare(String(a.fecha_corte)) : rel(b) - rel(a));
+  events.sort((a, b) => sort === 'publication' ? Number(eventPublicState(a) === 'publicado') - Number(eventPublicState(b) === 'publicado') || rel(b) - rel(a) : sort === 'gap' ? gapLevel(b) - gapLevel(a) : sort === 'title' ? a.titulo.localeCompare(b.titulo, 'es') : sort === 'date' ? String(b.fecha_corte).localeCompare(String(a.fecha_corte)) : rel(b) - rel(a));
   return events;
+}
+
+function renderPublicationSummary(events) {
+  const selected = $('#f-publication').value;
+  const published = events.filter((event) => eventPublicState(event) === 'publicado').length;
+  const options = [
+    ['', 'Todos', events.length],
+    ['publicado', 'Publicados', published],
+    ['pendiente', 'Pendientes', events.length - published],
+  ];
+  $('#event-publication-summary').innerHTML = options.map(([value, label, count]) => `<button type="button" class="publication-summary__item ${selected === value ? 'active' : ''}" data-publication-quick="${value}" aria-pressed="${selected === value}"><span>${esc(label)}</span><strong>${count}</strong></button>`).join('');
 }
 
 function sourceSummary(event) {
@@ -504,17 +583,30 @@ function pendingUpdateCount(event) {
 
 function renderEvents() {
   const events = filteredEvents();
-  $('#event-count').textContent = `${events.length} macroeventos`;
+  renderPublicationSummary(filteredEvents({ ignorePublication: true }));
+  $('#event-count').textContent = `${events.length} ${events.length === 1 ? 'macroevento mostrado' : 'macroeventos mostrados'}`;
   $('#event-empty').hidden = events.length > 0;
-  $('#event-rows').innerHTML = events.map((event) => `<tr>
-    <td>${event.es_macroevento_rector ? '<span class="badge info">Rector</span>' : ''}<strong>${esc(event.titulo)}</strong><small>${esc(event.categoria)} · ${esc(human(event.tipo_proceso))}</small></td>
+  $('#event-rows').innerHTML = events.map((event) => {
+    const publicState = eventPublicState(event);
+    const publicLabel = PUBLICATION_MANAGEMENT_LABELS[publicState] || human(publicState);
+    const publicUrl = analysisUrl(event);
+    const publicationControl = publicState === 'publicado' && publicUrl
+      ? `<a class="badge good publication-state-link" data-open-analysis="${esc(event.id)}" href="${esc(publicUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Abrir análisis publicado: ${esc(event.titulo)}">${esc(publicLabel)} <span aria-hidden="true">↗</span></a>`
+      : `<span class="badge ${publicationBadgeClass(publicState)}">${esc(publicLabel)}</span>`;
+    const publicationAction = publicState !== 'publicado' && preparationEnabled()
+      ? `<a class="btn small primary" data-continue-publication="${esc(event.id)}" href="${esc(preparationUrl(event.id))}">Continuar publicación</a>`
+      : '';
+    return `<tr class="${publicState === 'publicado' ? 'is-published' : ''}">
+    <td>${eventRole(event) !== 'independiente' ? `<span class="badge info">${esc(EVENT_ROLE_LABELS[eventRole(event)])}</span>` : ''}<strong>${esc(event.titulo)}</strong><small>${esc(internalCategoryLabel(event.categoria))} · ${esc(human(event.tipo_proceso))}</small></td>
     <td>${esc((event.regiones || []).slice(0, 3).join(' · '))}</td>
     <td>${esc(sourceSummary(event))}</td>
     <td><span class="metric-pill">${rel(event)}</span></td>
     <td><span class="metric-pill">${gapLevel(event)}/5</span></td>
+    <td class="publication-cell">${publicationControl}${eventPublicRecord(event)?.actualizado_el ? `<small>Actualizado ${esc(eventPublicRecord(event).actualizado_el)}</small>` : ''}</td>
     <td><span class="badge ${event.estado_editorial === 'validado' ? 'good' : event.estado_editorial === 'archivado' ? 'bad' : 'warn'}">${esc(human(event.estado_editorial))}</span><small>${esc(human(event.estado_verificacion))}</small>${pendingUpdateCount(event) ? `<small class="pending-update">${pendingUpdateCount(event)} elementos de actualización pendientes</small>` : ''}</td>
-    <td><div class="row-actions"><button class="btn small ghost" data-edit-event="${esc(event.id)}">Editar</button><button class="btn small primary" data-create-exp="${esc(event.id)}">Crear encargo</button></div></td>
-  </tr>`).join('');
+    <td><div class="row-actions"><button class="btn small ghost" data-edit-event="${esc(event.id)}">Editar</button>${publicationAction}<button class="btn small ghost" data-create-exp="${esc(event.id)}">Crear encargo</button></div></td>
+  </tr>`;
+  }).join('');
 }
 
 function renderPublicExpedients() {
@@ -554,6 +646,197 @@ function renderTaxonomy() {
   const categoryId = $('#t-category').value;
   const categories = (S.taxonomy.categorias || []).filter((category) => !categoryId || String(category.id) === categoryId).map((category) => ({ ...category, temas: (category.temas || []).filter((topic) => !q || normalize(`${topic.id} ${topic.nombre}`).includes(q)) })).filter((category) => category.temas.length);
   $('#taxonomy-grid').innerHTML = categories.map((category) => `<section class="panel taxonomy-card"><header><div><small>Área ${esc(category.id)}</small><h3>${esc(category.nombre)}</h3></div><span>${category.temas.length}</span></header><div>${category.temas.map((topic) => `<p><b>${esc(topic.id)}</b> ${esc(topic.nombre)}</p>`).join('')}</div></section>`).join('') || '<section class="panel empty">No hay temas que coincidan.</section>';
+  renderInternalCategories();
+  renderEditorialVocabularies();
+}
+
+function renderInternalCategories() {
+  const categories = internalCategories();
+  const usage = countBy(S.data.macroeventos || [], (event) => event.categoria);
+  const usageById = new Map(usage);
+  $('#internal-category-count').textContent = `${categories.length} ${categories.length === 1 ? 'categoría' : 'categorías'}`;
+  $('#internal-category-list').innerHTML = categories.map((category) => {
+    const count = usageById.get(category.id) || 0;
+    return `<article class="internal-category-row">
+      <div><strong>${esc(category.nombre)}</strong><small>${esc(category.id)} · ${count} ${count === 1 ? 'macroevento' : 'macroeventos'}</small>${category.descripcion ? `<p>${esc(category.descripcion)}</p>` : ''}</div>
+      <div class="item-actions"><span class="badge ${category.estado === 'activa' ? 'good' : 'neutral'}">${category.estado === 'activa' ? 'Activa' : 'Archivada'}</span><button type="button" class="btn small ghost" data-edit-internal-category="${esc(category.id)}">Editar</button></div>
+    </article>`;
+  }).join('') || '<p class="empty">Todavía no hay categorías internas.</p>';
+}
+
+function editorialVocabularies() {
+  S.data.vocabularios_editoriales = normalizeEditorialVocabularies(
+    S.data.vocabularios_editoriales,
+    S.data.macroeventos,
+  );
+  return S.data.vocabularios_editoriales;
+}
+
+function editorialVocabularyUsage(kind, id) {
+  const normalizedId = normalizeEditorialVocabularyId(kind, id);
+  const events = S.data.macroeventos || [];
+  if (kind === 'tipos_senal') return events.flatMap((event) => event.senales || []).filter((item) => normalizeCharacterization(item.tipo) === normalizedId).length;
+  if (kind === 'tipos_fuente') return events.flatMap((event) => event.fuentes || []).filter((item) => normalizeCharacterization(item.tipo) === normalizedId).length;
+  if (kind === 'tipos_advertencia') return events.flatMap((event) => event.advertencias || []).filter((item) => normalizeCharacterization(item.tipo) === normalizedId).length;
+  return events.flatMap((event) => event.fuentes || []).filter((item) => normalizeLanguageCode(item.idioma) === normalizedId).length;
+}
+
+function renderEditorialVocabularies() {
+  const target = $('#editorial-vocabulary-groups');
+  if (!target) return;
+  const vocabularies = editorialVocabularies();
+  target.innerHTML = Object.entries(EDITORIAL_VOCABULARY_DEFINITIONS).map(([kind, definition]) => {
+    const records = vocabularies[kind] || [];
+    return `<details class="editorial-vocabulary-group" ${kind === 'tipos_advertencia' ? 'open' : ''}>
+      <summary><span><strong>${esc(definition.nombre)}</strong><small>${records.length} valores</small></span><button type="button" class="btn ghost small" data-new-editorial-vocabulary="${esc(kind)}">Nuevo valor</button></summary>
+      <div class="editorial-vocabulary-list">${records.map((record) => {
+        const usage = editorialVocabularyUsage(kind, record.id);
+        const defaults = kind === 'tipos_advertencia'
+          ? `<small>Sugerencia: ${esc(human(record.tratamiento_sugerido))} · prioridad ${esc(human(record.prioridad_sugerida))}</small>`
+          : '';
+        return `<article class="editorial-vocabulary-row"><div><strong>${esc(record.nombre)}</strong><small>${esc(record.id)} · ${usage} usos</small>${defaults}${record.descripcion ? `<p>${esc(record.descripcion)}</p>` : ''}</div><div class="item-actions"><span class="badge ${record.estado === 'activa' ? 'good' : 'neutral'}">${record.estado === 'activa' ? 'Activo' : 'Archivado'}</span><button type="button" class="btn ghost small" data-edit-editorial-vocabulary="${esc(kind)}:${esc(record.id)}">Editar</button></div></article>`;
+      }).join('') || '<p class="empty">Todavía no hay valores.</p>'}</div>
+    </details>`;
+  }).join('');
+}
+
+function updateEditorialVocabularyFields() {
+  const kind = $('#editorial-vocabulary-kind').value;
+  $('#warning-vocabulary-defaults').hidden = kind !== 'tipos_advertencia';
+  $('#editorial-vocabulary-id').pattern = kind === 'idiomas'
+    ? '[a-z]{2}'
+    : '[a-z0-9]+(?:_[a-z0-9]+)*';
+}
+
+function openEditorialVocabularyEditor(kind = 'tipos_senal', id = '') {
+  const vocabularies = editorialVocabularies();
+  const item = id ? editorialVocabularyRecord(vocabularies, kind, id) : null;
+  const definition = EDITORIAL_VOCABULARY_DEFINITIONS[kind] || EDITORIAL_VOCABULARY_DEFINITIONS.tipos_senal;
+  $('#editorial-vocabulary-original-id').value = item?.id || '';
+  $('#editorial-vocabulary-kind').value = kind;
+  $('#editorial-vocabulary-kind').disabled = Boolean(item);
+  $('#editorial-vocabulary-editor-title').textContent = item ? `Editar ${definition.singular}` : `Nuevo ${definition.singular}`;
+  $('#editorial-vocabulary-name').value = item?.nombre || '';
+  $('#editorial-vocabulary-id').value = item?.id || '';
+  $('#editorial-vocabulary-id').readOnly = Boolean(item);
+  $('#editorial-vocabulary-description').value = item?.descripcion || '';
+  $('#editorial-vocabulary-aliases').value = (item?.aliases || []).join(', ');
+  $('#editorial-vocabulary-status').value = item?.estado || 'activa';
+  $('#editorial-vocabulary-treatment').value = item?.tratamiento_sugerido || 'relevante';
+  $('#editorial-vocabulary-priority').value = item?.prioridad_sugerida || 'media';
+  $('#editorial-vocabulary-editor-status').textContent = item
+    ? 'El ID estable no se modifica al cambiar el nombre.'
+    : 'El valor quedará en memoria hasta pulsar Guardar.';
+  updateEditorialVocabularyFields();
+  $('#editorial-vocabulary-editor').showModal();
+  $('#editorial-vocabulary-name').focus();
+}
+
+function closeEditorialVocabularyEditor() {
+  $('#editorial-vocabulary-editor').close();
+}
+
+function applyEditorialVocabulary(event) {
+  event.preventDefault();
+  const kind = $('#editorial-vocabulary-kind').value;
+  const originalId = $('#editorial-vocabulary-original-id').value;
+  const name = $('#editorial-vocabulary-name').value.trim();
+  const id = originalId || normalizeEditorialVocabularyId(kind, $('#editorial-vocabulary-id').value || name);
+  const vocabularies = editorialVocabularies();
+  const records = vocabularies[kind] || [];
+  const duplicate = records.find((item) => item.id === id && item.id !== originalId);
+  if (!name || !id || duplicate) {
+    $('#editorial-vocabulary-editor-status').textContent = duplicate
+      ? `Ya existe el valor ${duplicate.nombre}.`
+      : 'Completá un nombre y un ID válidos.';
+    return;
+  }
+  const record = {
+    id,
+    nombre: name,
+    descripcion: $('#editorial-vocabulary-description').value.trim(),
+    aliases: commas($('#editorial-vocabulary-aliases').value),
+    estado: $('#editorial-vocabulary-status').value === 'archivada' ? 'archivada' : 'activa',
+    ...(kind === 'tipos_advertencia' ? {
+      tratamiento_sugerido: $('#editorial-vocabulary-treatment').value,
+      prioridad_sugerida: $('#editorial-vocabulary-priority').value,
+    } : {}),
+  };
+  const index = records.findIndex((item) => item.id === originalId);
+  if (index >= 0) records[index] = record;
+  else records.push(record);
+  S.data.vocabularios_editoriales = normalizeEditorialVocabularies(vocabularies, S.data.macroeventos);
+  renderControlledValueLists();
+  renderEditorialVocabularies();
+  dirty(true);
+  closeEditorialVocabularyEditor();
+  message(`${originalId ? 'Valor actualizado' : 'Valor creado'} en memoria. Pulsá Guardar para persistir.`);
+}
+
+function openInternalCategoryEditor(categoryId = '', returnToEvent = false) {
+  const category = categoryId ? internalCategoryById(internalCategories(), categoryId) : null;
+  S.categoryEditorReturnToEvent = Boolean(returnToEvent);
+  $('#internal-category-original-id').value = category?.id || '';
+  $('#internal-category-editor-title').textContent = category ? 'Editar categoría interna' : 'Nueva categoría interna';
+  $('#internal-category-name').value = category?.nombre || '';
+  $('#internal-category-id').value = category?.id || '';
+  $('#internal-category-id').readOnly = Boolean(category);
+  $('#internal-category-description').value = category?.descripcion || '';
+  $('#internal-category-status').value = category?.estado || 'activa';
+  $('#internal-category-editor-status').textContent = category
+    ? 'El ID estable no se modifica al cambiar el nombre.'
+    : 'El ID se generará a partir del nombre y podrá ajustarse antes de crear la categoría.';
+  $('#internal-category-editor').showModal();
+  $('#internal-category-name').focus();
+}
+
+function closeInternalCategoryEditor() {
+  $('#internal-category-editor').close();
+  S.categoryEditorReturnToEvent = false;
+}
+
+function applyInternalCategory(event) {
+  event.preventDefault();
+  const originalId = $('#internal-category-original-id').value;
+  const name = $('#internal-category-name').value.trim();
+  const id = originalId || normalizeCharacterization($('#internal-category-id').value || name);
+  const status = $('#internal-category-status').value === 'archivada' ? 'archivada' : 'activa';
+  const categories = internalCategories();
+  const duplicate = categories.find((category) => category.id === id && category.id !== originalId);
+  if (!name) {
+    $('#internal-category-editor-status').textContent = 'Ingresá un nombre visible.';
+    $('#internal-category-name').focus();
+    return;
+  }
+  if (!id || duplicate) {
+    $('#internal-category-editor-status').textContent = duplicate ? `Ya existe la categoría ${duplicate.nombre}.` : 'Ingresá un ID estable válido.';
+    $('#internal-category-id').focus();
+    return;
+  }
+
+  const record = {
+    id,
+    nombre: name,
+    descripcion: $('#internal-category-description').value.trim(),
+    estado: status,
+  };
+  const existingIndex = categories.findIndex((category) => category.id === originalId);
+  if (existingIndex >= 0) categories[existingIndex] = record;
+  else categories.push(record);
+  S.data.categorias_internas = normalizeInternalCategories(categories, S.data.macroeventos);
+  const returnToEvent = S.categoryEditorReturnToEvent && $('#event-editor').open;
+  fillFilters();
+  renderTaxonomy();
+  renderOverview();
+  renderEvents();
+  if (returnToEvent) {
+    renderEventCategoryOptions(id);
+    $('#e-category').value = id;
+    markEventDraftChanged();
+  }
+  dirty(true);
+  closeInternalCategoryEditor();
+  message(`${originalId ? 'Categoría actualizada' : 'Categoría creada'} en memoria. Pulsá Guardar para persistir.`);
 }
 
 function searchProfile() {
@@ -926,7 +1209,7 @@ function fillEventFields(event, mode) {
   $('#e-type').value = event.tipo_proceso;
   $('#e-status').value = mode === 'duplicate' ? 'borrador' : event.estado_editorial;
   $('#e-verification').value = mode === 'duplicate' ? 'pendiente' : event.estado_verificacion;
-  $('#e-category').value = event.categoria;
+  renderEventCategoryOptions(event.categoria);
   $('#e-regions').value = event.regiones.join(', ');
   $('#e-theme-search').value = '';
   $('#e-theme-origin').value = event.clasificacion_tematica?.origen || 'ia';
@@ -1058,7 +1341,17 @@ function calcEvent() {
 function renderSignalCards() {
   const items = S.eventDraft?.senales || [];
   $('#event-tab-signals-count').textContent = String(items.length);
-  $('#signal-cards').innerHTML = items.length ? items.map((signal, index) => `<article class="item-card"><div><span class="badge ${signal.estado_revision === 'confirmada' ? 'good' : signal.estado_revision === 'descartada' ? 'bad' : 'warn'}">${esc(human(signal.estado_revision))}</span><h3>${esc(signal.titulo)}</h3><p>${esc(signal.fecha || 'Sin fecha')} · ${esc(human(signal.tipo || 'Sin tipo'))} · origen ${esc(signal.origen)}</p><small>${esc(signal.descripcion || 'Sin descripción')}</small></div><div class="item-actions"><button type="button" class="btn small ghost" data-edit-signal="${index}">Editar</button><button type="button" class="btn small danger" data-delete-signal="${index}">Eliminar</button></div></article>`).join('') : '<p class="muted">Todavía no hay señales.</p>';
+  $('#signal-cards').innerHTML = items.length ? items.map((signal, index) => {
+    const stateClass = signal.estado_revision === 'verificada' || signal.estado_revision === 'confirmada'
+      ? 'verified'
+      : signal.estado_revision === 'revisada'
+        ? 'reviewed'
+        : signal.estado_revision === 'descartada'
+          ? 'discarded'
+          : 'pending';
+    const stateLabel = signal.estado_revision === 'confirmada' ? 'verificada' : signal.estado_revision;
+    return `<article class="item-card"><div><span class="badge signal-review-state ${stateClass}">${esc(human(stateLabel))}</span><h3>${esc(signal.titulo)}</h3><p>${esc(signal.fecha || 'Sin fecha')} · ${esc(human(signal.tipo || 'Sin tipo'))} · origen ${esc(signal.origen)}</p><small>${esc(signal.descripcion || 'Sin descripción')}</small></div><div class="item-actions"><button type="button" class="btn small ghost" data-edit-signal="${index}">Editar</button><button type="button" class="btn small danger" data-delete-signal="${index}">Eliminar</button></div></article>`;
+  }).join('') : '<p class="muted">Todavía no hay señales.</p>';
 }
 
 function sourceCatalogMeta(source) {
@@ -1262,6 +1555,35 @@ function updateWarningResolutionFields() {
   updateWarningEditorRule();
 }
 
+function updateWarningTypeSuggestion() {
+  const typeId = normalizeCharacterization($('#warning-type').value);
+  const item = editorialVocabularyRecord(editorialVocabularies(), 'tipos_advertencia', typeId);
+  const help = $('#warning-type-help');
+  const button = $('#apply-warning-type-defaults');
+  if (!item) {
+    help.textContent = typeId
+      ? 'Este tipo todavía no está administrado. Podés incorporarlo desde Taxonomía.'
+      : 'Elegí un tipo del vocabulario administrado en Taxonomía.';
+    button.hidden = true;
+    return;
+  }
+  help.textContent = `${item.descripcion || item.nombre}. Sugerencia: ${human(item.tratamiento_sugerido)}, prioridad ${human(item.prioridad_sugerida)}.`;
+  button.hidden = false;
+}
+
+function applyWarningTypeSuggestion() {
+  const item = editorialVocabularyRecord(
+    editorialVocabularies(),
+    'tipos_advertencia',
+    normalizeCharacterization($('#warning-type').value),
+  );
+  if (!item) return;
+  $('#warning-treatment').value = item.tratamiento_sugerido;
+  $('#warning-priority').value = item.prioridad_sugerida;
+  updateWarningEditorRule();
+  $('#warning-editor-status').textContent = 'Se aplicó la sugerencia del vocabulario. Revisala antes de confirmar la decisión.';
+}
+
 function openWarning(index = -1, { proposedState = '' } = {}) {
   const warning = index >= 0 ? deep(S.eventDraft.advertencias[index]) : blankWarning();
   if (proposedState) warning.estado = proposedState;
@@ -1282,6 +1604,7 @@ function openWarning(index = -1, { proposedState = '' } = {}) {
   $('#warning-resolution-reason').value = warning.resolucion?.motivo || '';
   $('#warning-confirmed').checked = false;
   $('#warning-editor-status').textContent = proposedState ? `Completá y confirmá la decisión para pasar a ${WARNING_STATE_LABELS[proposedState]}.` : 'Cada aplicación agrega fecha y actor al historial.';
+  updateWarningTypeSuggestion();
   renderWarningLinkOptions(warning);
   renderWarningTrace(warning);
   updateWarningResolutionFields();
@@ -1308,7 +1631,7 @@ function gatherWarning() {
   const next = {
     ...(original || blankWarning()),
     advertencia_id: slug($('#warning-id').value),
-    tipo: slug($('#warning-type').value),
+    tipo: normalizeCharacterization($('#warning-type').value),
     descripcion: $('#warning-description').value.trim(),
     estado: state,
     tratamiento: $('#warning-treatment').value,
@@ -2774,8 +3097,25 @@ document.addEventListener('click', (event) => {
   if (go) view(go.dataset.go);
   const editEvent = event.target.closest('[data-edit-event]');
   if (editEvent) openEvent(editEvent.dataset.editEvent);
+  const editInternalCategory = event.target.closest('[data-edit-internal-category]');
+  if (editInternalCategory) openInternalCategoryEditor(editInternalCategory.dataset.editInternalCategory);
+  const newEditorialVocabulary = event.target.closest('[data-new-editorial-vocabulary]');
+  if (newEditorialVocabulary) {
+    event.preventDefault();
+    openEditorialVocabularyEditor(newEditorialVocabulary.dataset.newEditorialVocabulary);
+  }
+  const editEditorialVocabulary = event.target.closest('[data-edit-editorial-vocabulary]');
+  if (editEditorialVocabulary) {
+    const [kind, id] = editEditorialVocabulary.dataset.editEditorialVocabulary.split(':');
+    openEditorialVocabularyEditor(kind, id);
+  }
   const createExp = event.target.closest('[data-create-exp]');
   if (createExp) openExpedient('', createExp.dataset.createExp);
+  const publicationQuick = event.target.closest('[data-publication-quick]');
+  if (publicationQuick) {
+    $('#f-publication').value = publicationQuick.dataset.publicationQuick;
+    renderEvents();
+  }
   const editExp = event.target.closest('[data-edit-exp]');
   if (editExp) openExpedient(editExp.dataset.editExp);
   const promptExp = event.target.closest('[data-prompt-exp]');
@@ -2819,6 +3159,24 @@ $('#open-help').onclick = () => { renderHelp(); $('#help-dialog').showModal(); $
 $('#close-help-dialog').onclick = $('#close-help-dialog-footer').onclick = () => $('#help-dialog').close();
 
 $('#new-event').onclick = () => openEvent('', 'new');
+$('#new-internal-category').onclick = () => openInternalCategoryEditor();
+$('#manage-internal-categories').onclick = () => openInternalCategoryEditor('', true);
+$('#close-internal-category-editor').onclick = $('#cancel-internal-category-editor').onclick = closeInternalCategoryEditor;
+$('#internal-category-form').addEventListener('submit', applyInternalCategory);
+$('#internal-category-name').addEventListener('input', () => {
+  if (!$('#internal-category-original-id').value) $('#internal-category-id').value = normalizeCharacterization($('#internal-category-name').value);
+});
+$('#close-editorial-vocabulary-editor').onclick = $('#cancel-editorial-vocabulary-editor').onclick = closeEditorialVocabularyEditor;
+$('#editorial-vocabulary-form').addEventListener('submit', applyEditorialVocabulary);
+$('#editorial-vocabulary-kind').addEventListener('change', updateEditorialVocabularyFields);
+$('#editorial-vocabulary-name').addEventListener('input', () => {
+  if (!$('#editorial-vocabulary-original-id').value) {
+    $('#editorial-vocabulary-id').value = normalizeEditorialVocabularyId(
+      $('#editorial-vocabulary-kind').value,
+      $('#editorial-vocabulary-name').value,
+    );
+  }
+});
 $('#open-candidate-import').onclick = openCandidateImport;
 $('#close-candidate-import').onclick = $('#cancel-candidate-import').onclick = () => $('#candidate-import-editor').close();
 $('#clear-candidate-import').onclick = () => { resetCandidateImport(true); $('#candidate-json').focus(); };
@@ -2864,10 +3222,10 @@ $('#refresh-backups').onclick = refreshBackups;
 $('#import').onchange = (event) => { const file = event.target.files?.[0]; if (file) importDataFile(file); event.target.value = ''; };
 $('#import-catalog').onchange = (event) => { const file = event.target.files?.[0]; if (file) importCatalogFile(file); event.target.value = ''; };
 
-['#f-search', '#f-region', '#f-category', '#f-type', '#f-status', '#f-gap', '#f-sort'].forEach((selector) => $(selector).addEventListener(selector === '#f-search' ? 'input' : 'change', renderEvents));
-$('#clear-filters').onclick = () => { ['#f-search', '#f-region', '#f-category', '#f-type', '#f-status', '#f-gap'].forEach((selector) => { $(selector).value = ''; }); $('#f-sort').value = 'rel'; renderEvents(); };
-['#o-search', '#o-type', '#o-status'].forEach((selector) => $(selector).addEventListener(selector === '#o-search' ? 'input' : 'change', renderOverview));
-$('#clear-overview-search').onclick = () => { ['#o-search', '#o-type', '#o-status'].forEach((selector) => { $(selector).value = ''; }); renderOverview(); $('#o-search').focus(); };
+['#f-search', '#f-region', '#f-category', '#f-type', '#f-role', '#f-status', '#f-publication', '#f-gap', '#f-sort'].forEach((selector) => $(selector).addEventListener(selector === '#f-search' ? 'input' : 'change', renderEvents));
+$('#clear-filters').onclick = () => { ['#f-search', '#f-region', '#f-category', '#f-type', '#f-role', '#f-status', '#f-publication', '#f-gap'].forEach((selector) => { $(selector).value = ''; }); $('#f-sort').value = 'rel'; renderEvents(); };
+['#o-search', '#o-type', '#o-role', '#o-status'].forEach((selector) => $(selector).addEventListener(selector === '#o-search' ? 'input' : 'change', renderOverview));
+$('#clear-overview-search').onclick = () => { ['#o-search', '#o-type', '#o-role', '#o-status'].forEach((selector) => { $(selector).value = ''; }); renderOverview(); $('#o-search').focus(); };
 $('#t-search').addEventListener('input', renderTaxonomy);
 $('#t-category').addEventListener('change', renderTaxonomy);
 $('#clear-taxonomy').onclick = () => { $('#t-search').value = ''; $('#t-category').value = ''; renderTaxonomy(); };
@@ -2949,7 +3307,6 @@ $('#e-is-rector').addEventListener('change', () => {
   renderEventRelations();
 });
 $('#e-rector-id').addEventListener('change', () => { S.eventDraft.macroevento_rector_id = $('#e-rector-id').value || null; });
-$('#e-category').addEventListener('blur', () => { $('#e-category').value = normalizeCharacterization($('#e-category').value); });
 $('#add-signal').onclick = () => openSignal();
 $('#add-source').onclick = () => openSource();
 $('#event-record-tabs').addEventListener('click', (event) => {
@@ -3128,6 +3485,8 @@ $('#source-form').addEventListener('submit', (event) => {
 $('#close-warning-editor').onclick = $('#cancel-warning-editor').onclick = () => { closeContextHelp(false); $('#warning-editor').close(); };
 $('#warning-state').addEventListener('change', updateWarningResolutionFields);
 $('#warning-treatment').addEventListener('change', updateWarningEditorRule);
+$('#warning-type').addEventListener('input', updateWarningTypeSuggestion);
+$('#apply-warning-type-defaults').onclick = applyWarningTypeSuggestion;
 $('#warning-resolution-type').addEventListener('change', updateWarningResolutionFields);
 $('#warning-form').addEventListener('submit', (event) => {
   event.preventDefault();

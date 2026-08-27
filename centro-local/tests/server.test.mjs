@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import test from 'node:test';
 import { createCentroServer } from '../server.mjs';
+import centerPackage from '../package.json' with { type: 'json' };
+import observatoryPackage from '../modules/observatorio/package.json' with { type: 'json' };
 
 class FakeManager {
   async status() {
@@ -36,7 +38,9 @@ test('sirve la portada y el estado desde 127.0.0.1', async () => {
     const status = await fetch(`${base}/api/status`);
     assert.equal(status.status, 200);
     const payload = await status.json();
-    assert.equal(payload.version, '0.2.3');
+    assert.equal(payload.version, centerPackage.version);
+    assert.equal(payload.versions.centro, centerPackage.version);
+    assert.equal(payload.versions.observatorio, observatoryPackage.version);
     assert.equal(payload.modules.observatorio.running, true);
   });
 });

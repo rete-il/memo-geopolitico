@@ -80,6 +80,9 @@ const processById = new Map(processes.map((item) => [item.macroevento_id, item])
 const rectorProcess = process.macroevento_rector_id
   ? processById.get(process.macroevento_rector_id)
   : undefined;
+const rectorEditorialState = rectorProcess
+  ? effectiveEditorialState(rectorProcess, publicationEntries)
+  : undefined;
 const complementaryProcesses = process.es_macroevento_rector
   ? processes.filter((item) => item.macroevento_rector_id === process.macroevento_id)
   : [];
@@ -176,10 +179,21 @@ const relatedProcesses = [...new Map(
               )}
               {rectorProcess && (
                 <div class="process-relation-group">
-                  <h3>Macroevento rector</h3>
+                  <h3>
+                    Macroevento rector
+                    {rectorEditorialState !== 'publicado' && (
+                      <span class="draft-chip">En preparación</span>
+                    )}
+                  </h3>
                   <a class="process-relation-link" href={`/observatorio/${rectorProcess.slug}/`}>
                     {rectorProcess.titulo}
                   </a>
+                  {rectorEditorialState !== 'publicado' && (
+                    <p>
+                      Este expediente aporta evidencia a una hipótesis rectora que aún
+                      se encuentra en elaboración editorial.
+                    </p>
+                  )}
                 </div>
               )}
               {complementaryProcesses.length > 0 && (

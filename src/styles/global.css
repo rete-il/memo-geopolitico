@@ -1339,6 +1339,11 @@ a:active {
   text-transform: uppercase;
 }
 
+.process-relation-group h3 .draft-chip {
+  margin-left: 0.65rem;
+  vertical-align: middle;
+}
+
 .process-relation-group ul {
   margin: 0;
 }
@@ -2118,6 +2123,38 @@ a:active {
 
 .article-shell > .sidebar-card + .prose {
   margin-top: var(--publication-process-gap, clamp(2rem, 3vw, 2.5rem));
+}
+
+.publication-process-context .process-context-action {
+  display: inline-flex;
+  margin-top: 0.35rem;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.publication-rector-context {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.publication-rector-context .eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.publication-rector-context > a {
+  display: inline-block;
+  font-weight: 700;
+}
+
+.publication-rector-context > p:last-child {
+  margin-bottom: 0;
+  color: var(--ink-700);
+  font-size: 0.92rem;
 }
 
 .progress-card h3 {

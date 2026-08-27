@@ -23,6 +23,7 @@ test('reproduce los estados públicos efectivos sin modificar macroeventos', (co
   }));
   write(path.join(projectRoot, 'src/content/publicaciones/_preview/rail.md'), `---
 post_id: "rail"
+slug: "rail-baltica-preview"
 publicacion:
   estado: "en_revision"
   actualizado_el: "2026-07-25"
@@ -32,6 +33,7 @@ macroevento_secundario_ids: []
 `);
   write(path.join(projectRoot, 'src/content/publicaciones/publicadas/rail.md'), `---
 post_id: "rail"
+slug: "rail-baltica-publicado"
 publicacion:
   estado: "publicado"
   actualizado_el: "2026-07-26"
@@ -43,6 +45,7 @@ macroevento_secundario_ids: []
   const snapshot = loadPublicExpedientStates(projectRoot);
   assert.equal(snapshot.available, true);
   assert.equal(snapshot.by_event['rail-baltica'].estado, 'publicado');
+  assert.equal(snapshot.by_event['rail-baltica'].slug, 'rail-baltica-publicado');
   assert.equal(snapshot.by_event['rail-baltica'].actualizado_el, '2026-07-23');
   assert.equal(snapshot.by_event['land-bridge'].estado, 'en_revision');
   assert.equal(snapshot.process_by_event['rail-baltica'].macroevento_id, 'rail-baltica');

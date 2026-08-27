@@ -44,6 +44,11 @@ import {
   normalizeCharacterization,
   normalizeLanguageCode,
 } from './public/controlled-values.js';
+import { normalizeInternalCategories } from './public/internal-categories.js';
+import {
+  EDITORIAL_VOCABULARY_DEFINITIONS,
+  normalizeEditorialVocabularies,
+} from './public/editorial-vocabularies.js';
 import {
   INTERNAL_SCHEMA_VERSION,
   normalizeWarningContainers,
@@ -70,7 +75,7 @@ const publicationsDir = path.join(centerRoot, 'data', 'promociones');
 const processUpdatesDir = path.join(centerRoot, 'data', 'actualizaciones-proceso');
 const commonBackupsDir = path.join(centerRoot, 'data', 'backups');
 const config = readJson(configPath);
-const APP_VERSION = '0.10.1';
+const APP_VERSION = readJson(path.join(root, 'package.json')).version;
 
 const HOST = process.env.OBSERVATORIO_HOST || config.host || '127.0.0.1';
 const PORT = Number(process.env.OBSERVATORIO_PORT || config.puerto || 4323);
@@ -317,7 +322,10 @@ function normalizeEvent(event = {}, index = 0, catalog = {}) {
     historial_evaluacion: Array.isArray(event.historial_evaluacion)
       ? event.historial_evaluacion.map(normalizeEvaluationHistory)
       : [],
-    advertencias: warningContainers.advertencias,
+    advertencias: (Array.isArray(warningContainers.advertencias) ? warningContainers.advertencias : []).map((warning) => ({
+      ...warning,
+      tipo: normalizeCharacterization(warning?.tipo),
+    })),
     excepciones_advertencias: warningContainers.excepciones_advertencias,
     ...(event.importacion && typeof event.importacion === 'object' ? {
       importacion: {
@@ -358,6 +366,7 @@ function normalizeData(payload = {}, catalog = readJson(catalogPath)) {
   const events = Array.isArray(payload.macroeventos) ? payload.macroeventos : [];
   const expedients = Array.isArray(payload.expedientes_editoriales) ? payload.expedientes_editoriales : [];
   const incomingSchema = Number(payload.schema_version);
+  const normalizedEvents = events.map((event, index) => normalizeEvent(event, index, catalog));
   return {
     schema_version: incomingSchema === 2 || incomingSchema === INTERNAL_SCHEMA_VERSION
       ? INTERNAL_SCHEMA_VERSION
@@ -365,7 +374,9 @@ function normalizeData(payload = {}, catalog = readJson(catalogPath)) {
     titulo: text(payload.titulo || 'Observatorio de macroeventos geopolíticos', 500),
     actualizado: text(payload.actualizado || new Date().toISOString().slice(0, 10), 20),
     notas: text(payload.notas),
-    macroeventos: events.map((event, index) => normalizeEvent(event, index, catalog)),
+    categorias_internas: normalizeInternalCategories(payload.categorias_internas, normalizedEvents),
+    vocabularios_editoriales: normalizeEditorialVocabularies(payload.vocabularios_editoriales, normalizedEvents),
+    macroeventos: normalizedEvents,
     expedientes_editoriales: expedients.map(normalizeExpedient),
     importaciones_candidatos: Array.isArray(payload.importaciones_candidatos)
       ? payload.importaciones_candidatos.map(normalizeCandidateImportRecord)
@@ -463,6 +474,7 @@ function validateData(data, catalog = readJson(catalogPath), taxonomy = readJson
   const allowedSignalReview = new Set(['pendiente', 'revisada', 'verificada', 'descartada']);
   const allowedOrigin = new Set(['ia', 'humano', 'fuente', 'mixto']);
   const allowedThemeReview = new Set(['pendiente', 'revisada']);
+  const allowedInternalCategoryStatus = new Set(['activa', 'archivada']);
   const topicIds = new Set((taxonomy.categorias || []).flatMap((category) => (category.temas || []).map((topic) => Number(topic.id))));
   const allowedExpedientStatus = new Set(['borrador', 'fuentes_pendientes', 'listo_para_prompt', 'prompt_exportado', 'borrador_recibido', 'revision_editorial', 'aprobado', 'publicado', 'archivado']);
   const allowedDocTypes = new Set(['movimiento', 'foco', 'dossier']);
@@ -470,8 +482,37 @@ function validateData(data, catalog = readJson(catalogPath), taxonomy = readJson
   const eventMap = new Map();
 
   if (data.schema_version !== INTERNAL_SCHEMA_VERSION) errors.push(`El esquema interno debe ser v${INTERNAL_SCHEMA_VERSION}.`);
+  if (!Array.isArray(data.categorias_internas)) errors.push('categorias_internas debe ser una lista.');
+  if (!data.vocabularios_editoriales || typeof data.vocabularios_editoriales !== 'object') errors.push('vocabularios_editoriales debe ser un objeto.');
   if (!Array.isArray(data.macroeventos)) errors.push('macroeventos debe ser una lista.');
   if (!Array.isArray(data.expedientes_editoriales)) errors.push('expedientes_editoriales debe ser una lista.');
+
+  const internalCategoryIds = new Set();
+  for (const [categoryIndex, category] of (data.categorias_internas || []).entries()) {
+    const label = category.nombre || category.id || `Categoría interna ${categoryIndex + 1}`;
+    if (!category.id) errors.push(`${label}: falta ID estable.`);
+    if (internalCategoryIds.has(category.id)) errors.push(`${label}: ID duplicado (${category.id}).`);
+    internalCategoryIds.add(category.id);
+    if (!category.nombre) errors.push(`${label}: falta nombre visible.`);
+    if (!allowedInternalCategoryStatus.has(category.estado)) errors.push(`${label}: estado de categoría inválido.`);
+  }
+
+  for (const kind of Object.keys(EDITORIAL_VOCABULARY_DEFINITIONS)) {
+    const records = data.vocabularios_editoriales?.[kind];
+    if (!Array.isArray(records)) {
+      errors.push(`vocabularios_editoriales.${kind} debe ser una lista.`);
+      continue;
+    }
+    const ids = new Set();
+    for (const [index, record] of records.entries()) {
+      const label = record.nombre || record.id || `${kind} ${index + 1}`;
+      if (!record.id) errors.push(`${label}: falta ID estable.`);
+      if (ids.has(record.id)) errors.push(`${label}: ID duplicado (${record.id}).`);
+      ids.add(record.id);
+      if (!record.nombre) errors.push(`${label}: falta nombre visible.`);
+      if (!['activa', 'archivada'].includes(record.estado)) errors.push(`${label}: estado inválido.`);
+    }
+  }
 
   for (const [eventIndex, event] of (data.macroeventos || []).entries()) {
     const label = event.titulo || event.id || `Macroevento ${eventIndex + 1}`;
@@ -482,6 +523,7 @@ function validateData(data, catalog = readJson(catalogPath), taxonomy = readJson
     if (!event.titulo) errors.push(`${label}: falta título.`);
     if (!event.descripcion) errors.push(`${label}: falta descripción.`);
     if (!event.categoria) errors.push(`${label}: falta categoría.`);
+    else if (!internalCategoryIds.has(event.categoria)) errors.push(`${label}: categoría interna inexistente (${event.categoria}).`);
     if (!event.regiones?.length) errors.push(`${label}: falta al menos una región.`);
     if (!allowedEditorial.has(event.estado_editorial)) errors.push(`${label}: estado editorial inválido.`);
     if (!allowedVerification.has(event.estado_verificacion)) errors.push(`${label}: estado de verificación inválido.`);
@@ -1242,6 +1284,7 @@ const server = http.createServer(async (req, res) => {
       const catalog = normalizeCatalog(readJson(catalogPath));
       const data = normalizeData(readJson(dataPath), catalog);
       return sendJson(res, 200, {
+        app_version: APP_VERSION,
         data,
         taxonomy: readJson(taxonomyPath),
         search_config: readJson(searchConfigPath),

@@ -44,7 +44,7 @@
       <div class="sidebar__footer">
         <p><strong>Producción separada</strong></p>
         <p>El sitio público sigue siendo de solo consulta. Este Centro no forma parte de Netlify.</p>
-        <span>Fase 1 integrada · v0.2.3</span>
+        <span id="center-version-label">Centro local v—</span>
       </div>
     </aside>
 
@@ -156,10 +156,10 @@
 
         <section class="view module-view" data-panel="observatorio" aria-label="Observatorio integrado">
           <div class="module-toolbar">
-            <div><strong>Observatorio local v0.6.3</strong><span>Edición y mantenimiento de datos estructurados</span></div>
+            <div><strong id="observatory-version-label">Observatorio local v—</strong><span>Edición y mantenimiento de datos estructurados</span></div>
             <button class="text-button" type="button" data-reload-frame="frame-observatorio">Recargar módulo</button>
           </div>
-          <iframe id="frame-observatorio" title="Observatorio local" data-src="http://127.0.0.1:4323" sandbox="allow-downloads allow-forms allow-modals allow-same-origin allow-scripts"></iframe>
+          <iframe id="frame-observatorio" title="Observatorio local" data-src="http://127.0.0.1:4323" sandbox="allow-downloads allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
         </section>
 
         <section class="view module-view" data-panel="medios" aria-label="Directorio de Medios integrado">

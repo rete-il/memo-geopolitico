@@ -78,6 +78,10 @@ function renderStatus(payload) {
   renderTopStatus(payload);
   const modules = payload.modules || {};
   const data = payload.data || {};
+  const versions = payload.versions || {};
+
+  setText('#center-version-label', `Centro local v${versions.centro || payload.version || '—'}`);
+  setText('#observatory-version-label', `Observatorio local v${versions.observatorio || '—'}`);
 
   const obsReady = Boolean(modules.observatorio?.running && data.observatorio?.ok);
   const mediaReady = Boolean(data.medios?.ok);

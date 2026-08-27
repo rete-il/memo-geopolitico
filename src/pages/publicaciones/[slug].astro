@@ -40,6 +40,9 @@ const Content = rendered?.Content;
 const process = processes.find(
   (item) => item.macroevento_id === entry.data.macroevento_principal_id,
 );
+const rectorProcess = process?.macroevento_rector_id
+  ? processes.find((item) => item.macroevento_id === process.macroevento_rector_id)
+  : undefined;
 const publicationSources = entry.data.fuente_ids
   .map((id) => sourceById.get(id))
   .filter(Boolean);
@@ -109,10 +112,32 @@ const primaryTopic = topics.find((topic) => topic.primary);
 
     {
       process && (
-        <aside class="sidebar-card">
+        <aside class="sidebar-card publication-process-context">
           <p class="eyebrow">Proceso principal</p>
           <h2><a href={`/observatorio/${process.slug}/`}>{process.titulo}</a></h2>
           <p>{process.sintesis}</p>
+          <a class="process-context-action" href={`/observatorio/${process.slug}/`}>
+            Abrir expediente del Observatorio →
+          </a>
+          {
+            rectorProcess && (
+              <div class="publication-rector-context">
+                <p class="eyebrow">
+                  Macroevento rector
+                  {rectorProcess.publicacion.estado !== 'publicado' && (
+                    <span class="draft-chip">En preparación</span>
+                  )}
+                </p>
+                <a href={`/observatorio/${rectorProcess.slug}/`}>
+                  {rectorProcess.titulo}
+                </a>
+                <p>
+                  Este análisis aporta evidencia a una hipótesis rectora más amplia,
+                  todavía en elaboración.
+                </p>
+              </div>
+            )
+          }
         </aside>
       )
     }

@@ -9,7 +9,8 @@ import { paths } from './lib/paths.mjs';
 
 const HOST = '127.0.0.1';
 const DEFAULT_PORT = 4322;
-const VERSION = '0.2.3';
+const VERSION = JSON.parse(fs.readFileSync(new URL('./package.json', import.meta.url), 'utf8')).version;
+const OBSERVATORIO_VERSION = JSON.parse(fs.readFileSync(new URL('./modules/observatorio/package.json', import.meta.url), 'utf8')).version;
 const entryFile = fileURLToPath(import.meta.url);
 
 const contentTypes = {
@@ -120,7 +121,13 @@ export function createCentroServer(options = {}) {
           moduleManager.status(),
           Promise.resolve(collectDataHealth()),
         ]);
-        sendJson(res, 200, { ok: data.ok, version: VERSION, modules, data });
+        sendJson(res, 200, {
+          ok: data.ok,
+          version: VERSION,
+          versions: { centro: VERSION, observatorio: OBSERVATORIO_VERSION },
+          modules,
+          data,
+        });
         return;
       }
       if (req.method === 'POST' && url.pathname === '/api/modules/retry') {
