@@ -2030,5 +2030,51 @@
       "Las rutas, el esquema de contenido y la navegación se validan contra la copia local de Astro."
     ],
     "notes": "Postergada hasta completar un corpus piloto suficiente de Movimientos, Focos y Dossiers y revisar la arquitectura del sitio con evidencia editorial real."
+  },
+  {
+    "id": "OBS-004",
+    "type": "UX",
+    "epic": "Observatorio editorial",
+    "title": "Diferenciar visualmente los estados Revisada y Verificada en Señales",
+    "priority": "P2",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "S",
+    "owner": "Rete",
+    "dependencies": [
+      "OBS-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Las etiquetas Revisada y Verificada usan colores claramente diferenciables en las tarjetas de señales.",
+      "La distinción conserva contraste accesible y no depende exclusivamente del color: el texto del estado continúa visible.",
+      "Los colores se aplican de manera consistente en el listado, el editor y cualquier resumen que muestre el estado de revisión de una señal.",
+      "El cambio se valida en escritorio, tablet y teléfono sin alterar el significado ni los datos del expediente."
+    ],
+    "notes": "Observación registrada durante la revisión del macroevento turquia-iran-competencia-coexistencia el 2026-08-25: Revisada y Verificada se perciben actualmente con el mismo color y cuesta distinguirlas a simple vista."
+  },
+  {
+    "id": "OBS-005",
+    "type": "UX",
+    "epic": "Observatorio editorial",
+    "title": "Administrar los tipos de advertencias, señales y fuentes como vocabularios controlados",
+    "priority": "P2",
+    "status": "proposed",
+    "release": "beta-4-editorial",
+    "size": "M",
+    "owner": "Rete",
+    "dependencies": [
+      "OBS-001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Los formularios ofrecen una lista de caracterizaciones existentes y permiten iniciar el alta de una nueva sin abandonar el registro.",
+      "Taxonomía incorpora administradores separados para tipos de advertencia, de señal y de fuente.",
+      "Cada tipo conserva un ID estable, nombre visible, descripción de uso y estado activo o archivado.",
+      "Los tipos de advertencia pueden proponer tratamiento y prioridad predeterminados sin sustituir la decisión editorial humana.",
+      "Los tipos utilizados no se eliminan y el cambio de nombre visible no modifica registros existentes.",
+      "La migración unifica variantes ortográficas equivalentes sin perder valores históricos ni inventar equivalencias ambiguas."
+    ],
+    "notes": "Necesidad detectada durante la gestión de una advertencia de turquia-iran-competencia-coexistencia el 2026-08-25. El campo Tipo es actualmente texto libre; debe evolucionar hacia un vocabulario administrable semejante al de categorías internas."
   }
 ]

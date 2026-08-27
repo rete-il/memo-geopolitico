@@ -112,6 +112,8 @@
 | TRUST-001 | CONTENT | Transparencia | P1 | ○ Propuesta | XL | TBD | IA-001 | Crear Acerca de, Política editorial, Uso de IA y Correcciones |
 | ED-003 | FEAT | Editorial | P2 | ○ Propuesta | M | TBD | ED-001 | Crear índice de contenidos y anclas |
 | ED-007 | FEAT | Editorial | P2 | ○ Propuesta | M | TBD | ED-004 | Crear navegación anterior/siguiente y compartir |
+| OBS-004 | UX | Observatorio editorial | P2 | ○ Propuesta | S | Rete | OBS-001 | Diferenciar visualmente los estados Revisada y Verificada en Señales |
+| OBS-005 | UX | Observatorio editorial | P2 | ○ Propuesta | M | Rete | OBS-001 | Administrar los tipos de advertencias, señales y fuentes como vocabularios controlados |
 
 ## Beta 5 — Medios
 

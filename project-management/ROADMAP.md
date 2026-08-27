@@ -8,7 +8,7 @@
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
 | 2 | Beta 2 — Navegación y exploración temática | Implementar la cabecera editorial, el menú hamburguesa y la navegación secundaria por regiones, temas y medios. | 0% | Planificada |
 | 3 | Beta 3 — Relevancia y atención mediática | Consolidar la columna derecha como módulo editorial manual, administrable y enlazado a páginas temáticas. | 11% | Planificada |
-| 4 | Beta 4 — Alertas, Focos y Dossiers | Normalizar los tres tipos editoriales, sus índices, metadatos, resúmenes diferenciados y lectura extensa. | 6% | Planificada |
+| 4 | Beta 4 — Alertas, Focos y Dossiers | Normalizar los tres tipos editoriales, sus índices, metadatos, resúmenes diferenciados y lectura extensa. | 5% | Planificada |
 | 5 | Beta 5 — Medios | Modularizar la página Medios, preservar el directorio actual y mejorar filtros, móvil y accesibilidad. | 0% | Planificada |
 | 6 | Beta 6 — QA, rendimiento y preparación de release | Cerrar calidad, accesibilidad, seguridad, rendimiento y documentación antes de fusionar a main. | 0% | Planificada |
 | 99 | Futuro — Capacidades posteriores | Funciones no bloqueantes para el reacondicionamiento inicial. | 0% | Planificada |
@@ -16,7 +16,9 @@
 ## Beta 0 — Baseline, seguridad y control
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
+
 **Fecha objetivo:** TBD
+
 **Avance:** 85%
 
 ### Criterios de salida
@@ -76,7 +78,9 @@
 ## Beta 1 — Fundamentos y sistema de diseño
 
 **Objetivo:** Crear contratos, tokens, componentes UI y shell de sitio reutilizable.
+
 **Fecha objetivo:** TBD
+
 **Avance:** 0%
 
 ### Criterios de salida
@@ -102,7 +106,9 @@
 ## Beta 2 — Navegación y exploración temática
 
 **Objetivo:** Implementar la cabecera editorial, el menú hamburguesa y la navegación secundaria por regiones, temas y medios.
+
 **Fecha objetivo:** TBD
+
 **Avance:** 0%
 
 ### Criterios de salida
@@ -132,7 +138,9 @@
 ## Beta 3 — Relevancia y atención mediática
 
 **Objetivo:** Consolidar la columna derecha como módulo editorial manual, administrable y enlazado a páginas temáticas.
+
 **Fecha objetivo:** TBD
+
 **Avance:** 11%
 
 ### Criterios de salida
@@ -162,8 +170,10 @@
 ## Beta 4 — Alertas, Focos y Dossiers
 
 **Objetivo:** Normalizar los tres tipos editoriales, sus índices, metadatos, resúmenes diferenciados y lectura extensa.
+
 **Fecha objetivo:** TBD
-**Avance:** 6%
+
+**Avance:** 5%
 
 ### Criterios de salida
 
@@ -186,11 +196,15 @@
 | ED-007 | FEAT | P2 | ○ Propuesta | M | Crear navegación anterior/siguiente y compartir |
 | TRUST-001 | CONTENT | P1 | ○ Propuesta | XL | Crear Acerca de, Política editorial, Uso de IA y Correcciones |
 | OBS-002 | CONTENT | P1 | ▶ En progreso | L | Completar el piloto del Corredor de Lobito hasta un Markdown publicable |
+| OBS-004 | UX | P2 | ○ Propuesta | S | Diferenciar visualmente los estados Revisada y Verificada en Señales |
+| OBS-005 | UX | P2 | ○ Propuesta | M | Administrar los tipos de advertencias, señales y fuentes como vocabularios controlados |
 
 ## Beta 5 — Medios
 
 **Objetivo:** Modularizar la página Medios, preservar el directorio actual y mejorar filtros, móvil y accesibilidad.
+
 **Fecha objetivo:** TBD
+
 **Avance:** 0%
 
 ### Criterios de salida
@@ -218,7 +232,9 @@
 ## Beta 6 — QA, rendimiento y preparación de release
 
 **Objetivo:** Cerrar calidad, accesibilidad, seguridad, rendimiento y documentación antes de fusionar a main.
+
 **Fecha objetivo:** TBD
+
 **Avance:** 0%
 
 ### Criterios de salida
@@ -247,7 +263,9 @@
 ## Futuro — Capacidades posteriores
 
 **Objetivo:** Funciones no bloqueantes para el reacondicionamiento inicial.
+
 **Fecha objetivo:** Sin compromiso
+
 **Avance:** 0%
 
 ### Criterios de salida

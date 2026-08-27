@@ -9,6 +9,8 @@ const dataDir = path.join(root, 'data');
 
 const readJson = (name) =>
   JSON.parse(fs.readFileSync(path.join(dataDir, name), 'utf8'));
+const writeMarkdown = (name, content) =>
+  fs.writeFileSync(path.join(root, name), `${content.trimEnd()}\n`);
 const project = readJson('project.json');
 const releases = readJson('releases.json');
 const items = readJson('work-items.json');
@@ -126,7 +128,7 @@ statusMd += `| ID | Estado | Trabajo | Release |\n|---|---|---|---|\n`;
 for (const i of p0Open)
   statusMd += `| ${i.id} | ${statusLabel[i.status]} | ${i.title} | ${i.release} |\n`;
 statusMd += `\n## Cómo actualizar\n\n1. Editar \`data/work-items.json\`.\n2. Ejecutar el generador.\n3. Revisar cambios.\n4. Hacer commit en \`beta\`.\n`;
-fs.writeFileSync(path.join(root, 'STATUS.md'), statusMd);
+writeMarkdown('STATUS.md', statusMd);
 
 let roadmapMd = `# Roadmap maestro\n\n> Archivo generado desde \`data/releases.json\` y \`data/work-items.json\`.\n\n`;
 roadmapMd += `| Secuencia | Release | Objetivo | Avance | Estado |\n|---:|---|---|---:|---|\n`;
@@ -146,7 +148,7 @@ for (const r of bySequence) {
 roadmapMd += `\n`;
 for (const r of bySequence) {
   const list = byRelease(r.id);
-  roadmapMd += `## ${r.name}\n\n**Objetivo:** ${r.goal}  \n**Fecha objetivo:** ${r.target}  \n**Avance:** ${weightedProgress(list)}%\n\n`;
+  roadmapMd += `## ${r.name}\n\n**Objetivo:** ${r.goal}\n\n**Fecha objetivo:** ${r.target}\n\n**Avance:** ${weightedProgress(list)}%\n\n`;
   roadmapMd += `### Criterios de salida\n\n`;
   if (r.exitCriteria.length)
     for (const c of r.exitCriteria) roadmapMd += `- [ ] ${c}\n`;
@@ -156,7 +158,7 @@ for (const r of bySequence) {
     roadmapMd += `| ${i.id} | ${i.type} | ${i.priority} | ${statusIcon[i.status]} ${statusLabel[i.status]} | ${i.size} | ${i.title} |\n`;
   roadmapMd += `\n`;
 }
-fs.writeFileSync(path.join(root, 'ROADMAP.md'), roadmapMd);
+writeMarkdown('ROADMAP.md', roadmapMd);
 
 let backlogMd = `# Backlog\n\n> Archivo generado. La fuente de verdad es \`data/work-items.json\`.\n\n`;
 backlogMd += `## Convenciones\n\n- Estados: ${project.statusVocabulary.map((s) => `${statusIcon[s]} ${statusLabel[s]}`).join(' · ')}\n- Tamaños: XS, S, M, L, XL.\n- Prioridades: P0 crítica, P1 alta, P2 media, P3 futura.\n\n`;
@@ -170,7 +172,7 @@ for (const r of bySequence) {
     backlogMd += `| ${i.id} | ${i.type} | ${i.epic} | ${i.priority} | ${statusIcon[i.status]} ${statusLabel[i.status]} | ${i.size} | ${i.owner} | ${(i.dependencies || []).join(', ') || '—'} | ${i.title} |\n`;
   backlogMd += `\n`;
 }
-fs.writeFileSync(path.join(root, 'BACKLOG.md'), backlogMd);
+writeMarkdown('BACKLOG.md', backlogMd);
 
 project.lastUpdated = now;
 fs.writeFileSync(
