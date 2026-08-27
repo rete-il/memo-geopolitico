@@ -86,7 +86,7 @@ El usuario no necesita abrir ni recordar esos puertos internos.
 - La ruta **Actualizar proceso en evolución** modifica únicamente `src\data\public\observatorio.json`, conserva la aprobación del Markdown, valida el paquete público completo antes y después de escribir y registra backup en `data\backups\actualizaciones-proceso`.
 - El control de sincronización del Observatorio se habilita automáticamente solo cuando los macroeventos guardados contienen identificadores nuevos para `src\data\public\observatorio.json`. Las actualizaciones de procesos existentes no lo activan. Al ejecutarlo, presenta primero un plan, conserva los estados editoriales, bloquea eliminaciones automáticas, exige confirmación y registra el respaldo en `data\backups\sincronizacion-observatorio`. No ejecuta Git ni despliegue.
 - El dashboard de Medios, el Observatorio y el sitio público comparten una
-  derivación de 93 registros generada desde el Excel maestro. Para
+  derivación de 106 registros generada desde el Excel maestro. Para
   resincronizarlos se ejecuta `npm run sync:media` desde la raíz del proyecto.
 
 ## Límites de seguridad

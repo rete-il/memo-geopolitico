@@ -6,10 +6,10 @@ import { checkInstallation } from '../server.mjs';
 test('reconoce los datos reales incluidos en el Centro', () => {
   const health = collectDataHealth();
   assert.equal(health.ok, true);
-  assert.equal(health.observatorio.macroeventos, 25);
+  assert.equal(health.observatorio.macroeventos, 26);
   assert.equal(health.observatorio.temas, 314);
-  assert.equal(health.medios.canonical, 93);
-  assert.equal(health.medios.derived, 93);
+  assert.equal(health.medios.canonical, 106);
+  assert.equal(health.medios.derived, 106);
   assert.equal(health.medios.in_sync, true);
   assert.equal(health.workflow.etapas, 13);
   assert.equal(health.workflow.documentos, 2);

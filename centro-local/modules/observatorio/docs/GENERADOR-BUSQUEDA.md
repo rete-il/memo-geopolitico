@@ -6,7 +6,7 @@ El generador utiliza tres catálogos normalizados:
 
 | Origen editorial | Uso local |
 |---|---|
-| XLSX de medios | `data/catalogo-medios.json`: 93 fuentes |
+| XLSX de medios | `data/catalogo-medios.json`: 106 fuentes |
 | `Temas.pdf` | `data/taxonomia-temas.json`: 17 grupos y 314 entradas |
 | `temas adecuados.pdf` | `data/configuracion-busqueda.json`: 19 ejes seleccionables y un criterio transversal |
 

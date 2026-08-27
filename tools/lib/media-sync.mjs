@@ -10,18 +10,21 @@ function writeJson(file, value) {
   fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-function replaceStandaloneDataset(file, dataset) {
+export function replaceStandaloneDataset(file, dataset) {
   const source = fs.readFileSync(file, 'utf8');
   const marker = 'window.MEDIA_DASHBOARD_DATA = ';
   const start = source.indexOf(marker);
-  const end = source.indexOf(';\n', start);
-  if (start < 0 || end < 0) {
+  const lineBreak = source.indexOf('\n', start);
+  const end = lineBreak >= 0 ? lineBreak : source.length;
+  const currentStatement = source.slice(start, end).replace(/\r$/, '');
+  if (start < 0 || !currentStatement.trimEnd().endsWith(';')) {
     throw new Error('No se encontró el bloque de datos del dashboard autónomo.');
   }
   const statement = `${marker}${JSON.stringify(dataset)};`;
+  const carriageReturn = lineBreak >= 0 && source[end - 1] === '\r' ? '\r' : '';
   fs.writeFileSync(
     file,
-    `${source.slice(0, start)}${statement}${source.slice(end + 1)}`,
+    `${source.slice(0, start)}${statement}${carriageReturn}${source.slice(end)}`,
     'utf8',
   );
 }

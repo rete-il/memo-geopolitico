@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { buildMediaDataset, validateMediaDataset } from '../tools/lib/media-export.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const expectedMediaCount = 106;
 const canonical = buildMediaDataset(
   path.join(
     root,
@@ -38,9 +39,9 @@ const observatoryCatalog = readJson(
 
 test('las tres vistas derivadas coinciden con el Excel maestro', () => {
   assert.equal(validateMediaDataset(canonical).valid, true);
-  assert.equal(canonical.records.length, 93);
+  assert.equal(canonical.records.length, expectedMediaCount);
   for (const catalog of [publicCatalog, mediaDashboard, observatoryCatalog]) {
-    assert.equal(catalog.records.length, 93);
+    assert.equal(catalog.records.length, expectedMediaCount);
     assert.deepEqual(catalog.records, canonical.records);
   }
 });
