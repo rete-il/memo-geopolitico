@@ -1,7 +1,7 @@
 {
   "formato": "memo-geopolitico-publico",
   "schema_version": 2,
-  "generado_el": "2026-08-23",
+  "generado_el": "2026-08-26",
   "procesos": [
     {
       "schema_version": 2,
@@ -64,6 +64,8 @@
       },
       "que_esta_ocurriendo": "La Unión Europea, Turquía, Estados Unidos y los Estados de Asia Central intentan consolidar una ruta China–Europa que reduzca la exposición a Rusia, Irán y los estrechos de Oriente Medio.",
       "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.8,
@@ -76,7 +78,9 @@
       "cronologia": [],
       "fuente_ids": [],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Tiempo puerta a puerta",
         "Capacidad de ferris del Caspio",
@@ -148,6 +152,8 @@
       },
       "que_esta_ocurriendo": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo.",
       "por_que_importa": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo. El puerto de Grand Faw y el Development Road prometen llevar carga desde el Golfo hasta Turquía y Europa. A la vez, la reapertura de salidas energéticas hacia el Mediterráneo ampliaría opciones iraquíes. El corredor atraviesa un espacio donde compiten agendas nacionales, milicias, vecinos y grandes potencias. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.3,
@@ -160,7 +166,9 @@
       "cronologia": [],
       "fuente_ids": [],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Avance de Grand Faw",
         "Contratos ferroviarios",
@@ -194,7 +202,8 @@
           "Fuentes verificadas incorporadas",
           "Señales verificadas incorporadas",
           "Revisión editorial completada",
-          "Análisis publicado"
+          "Análisis publicado",
+          "Revisión editorial iniciada"
         ]
       },
       "clasificacion": {
@@ -221,6 +230,8 @@
       },
       "que_esta_ocurriendo": "Consolidación de una arquitectura de defensa entre Turquía, Arabia Saudita y Pakistán mediante el Acuerdo de Defensa Conjunta de La Meca. El proceso puede generar mecanismos militares permanentes, ejercicios, cooperación en sistemas no tripulados, guerra electrónica, inteligencia artificial y coproducción de defensa. Turquía participa como potencia militar de la OTAN con capacidad industrial propia y como actor de una estructura regional de disuasión que no depende exclusivamente del paraguas estadounidense.",
       "por_que_importa": "El pacto conecta la arquitectura de seguridad de Medio Oriente con Asia meridional a través de Turquía, miembro de la OTAN y aliado de Estados Unidos, sin convertir el acuerdo en una extensión automática de la Alianza. Su institucionalización podría consolidar un nuevo polo de disuasión y cooperación militar entre Ankara, Riad e Islamabad, alterar los cálculos estratégicos de Israel, India e Irán y ampliar la autonomía regional de los tres participantes. El seguimiento debe distinguir entre el compromiso político de defensa colectiva y su traducción efectiva en órganos permanentes, ejercicios, coproducción y asistencia ante una crisis.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.5,
@@ -323,7 +334,9 @@
         "src-turquia-pacto-jpost-opinion-20260810"
       ],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Creación de mecanismos políticos o militares permanentes derivados del acuerdo.",
         "Realización de ejercicios militares conjuntos.",
@@ -381,6 +394,8 @@
       },
       "que_esta_ocurriendo": "Reconfiguración del equilibrio externo en Siria tras la caída del orden anterior, con Turquía como uno de los principales aliados del gobierno sirio, participante en entrenamiento militar, reconstrucción institucional e infraestructura. La expansión de esa influencia genera fricción creciente con Israel y ha obligado a Estados Unidos a trabajar en mecanismos de desconflicción entre Turquía, Israel y Siria. El proceso puede determinar la futura arquitectura militar y política siria y el grado de presencia turca en el país.",
       "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.8,
@@ -393,7 +408,9 @@
       "cronologia": [],
       "fuente_ids": [],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Formalización de un mecanismo de desconflicción Turquía–Israel–Siria.",
         "Despliegues militares turcos confirmados en bases sirias.",
@@ -451,6 +468,8 @@
       },
       "que_esta_ocurriendo": "Proceso de desarme, disolución y reintegración del PKK mediante un nuevo marco legal turco, con posibles efectos sobre el norte de Irak y sobre la relación entre las SDF y Damasco. Turquía busca convertir un conflicto armado de décadas en un arreglo institucional y reducir la dimensión transfronteriza de la amenaza kurda, mientras permanece abierta la cuestión más amplia de los derechos políticos y culturales kurdos y de la situación de las fuerzas kurdas sirias.",
       "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.5,
@@ -463,7 +482,9 @@
       "cronologia": [],
       "fuente_ids": [],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Aplicación efectiva del marco legal de desarme y reintegración.",
         "Certificación del desarme y disolución del PKK.",
@@ -523,6 +544,8 @@
       },
       "que_esta_ocurriendo": "La interrupción o amenaza persistente sobre el estrecho de Hormuz refuerza la búsqueda de corredores energéticos alternativos y aumenta el valor de las infraestructuras terrestres conectadas con Turquía. Paralelamente, Ankara mantiene contactos con Estados Unidos, Irán, Pakistán y Qatar y ofrece apoyo a negociaciones, intentando combinar su función de corredor energético con una posición diplomática de mediación regional.",
       "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.8,
@@ -535,7 +558,9 @@
       "cronologia": [],
       "fuente_ids": [],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Duración y severidad de las interrupciones de navegación por Hormuz.",
         "Aumento de volúmenes energéticos desviados hacia rutas terrestres conectadas con Turquía.",
@@ -554,18 +579,22 @@
       "macroevento_id": "turquia-iran-competencia-coexistencia",
       "slug": "turquia-iran-competencia-coexistencia",
       "titulo": "Competencia y coexistencia estratégica entre Turquía e Irán",
-      "sintesis": "Turquía e Irán mantienen una relación de competencia y coexistencia en la que Ankara busca evitar tanto el colapso iraní como una hegemonía regional de Teherán. Turquía preserva comercio, energía y estabilidad fronteriza mientras compite con Irán por influencia en Siria, Irak y otros espacios regionales y mantiene capacidad de interlocución con Estados Unidos y los Estados del Golfo.",
+      "sintesis": "Turquía e Irán mantienen una relación de competencia y coexistencia. Ankara preserva comercio, energía y estabilidad fronteriza mientras compite con Teherán por influencia en Siria, Irak y otros espacios regionales, y mantiene interlocución con Estados Unidos y los Estados del Golfo. Análisis especializados coinciden en que Turquía se beneficia de una menor proyección iraní, pero no tendría interés en un colapso de Irán; esta motivación debe conservarse como evaluación analítica y no como doctrina oficial turca.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-08-21"
+        "estado": "publicado",
+        "publicado_el": "2026-08-25",
+        "actualizado_el": "2026-08-25"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
@@ -590,21 +619,109 @@
         ],
         "etiqueta_ids": []
       },
-      "que_esta_ocurriendo": "Turquía e Irán mantienen una relación de competencia y coexistencia en la que Ankara busca evitar tanto el colapso iraní como una hegemonía regional de Teherán. Turquía preserva comercio, energía y estabilidad fronteriza mientras compite con Irán por influencia en Siria, Irak y otros espacios regionales y mantiene capacidad de interlocución con Estados Unidos y los Estados del Golfo.",
-      "por_que_importa": "",
+      "que_esta_ocurriendo": "Turquía e Irán mantienen una relación de competencia y coexistencia. Ankara preserva comercio, energía y estabilidad fronteriza mientras compite con Teherán por influencia en Siria, Irak y otros espacios regionales, y mantiene interlocución con Estados Unidos y los Estados del Golfo. Análisis especializados coinciden en que Turquía se beneficia de una menor proyección iraní, pero no tendría interés en un colapso de Irán; esta motivación debe conservarse como evaluación analítica y no como doctrina oficial turca.",
+      "por_que_importa": "La relación entre Turquía e Irán condiciona el equilibrio regional porque combina interdependencia económica y energética con competencia por influencia en Siria e Irak. La capacidad de Ankara para mantener interlocución con Teherán, Estados Unidos y los Estados del Golfo puede contribuir a contener escaladas y reforzar su función de potencia bisagra, pero también expone a Turquía a sanciones, crisis fronterizas y presiones derivadas de alianzas contrapuestas.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
-        "relevancia_geopolitica": 4.5,
-        "atencion_mediatica": 3,
-        "brecha": 1.5,
-        "confianza": "media",
-        "incertidumbre": 5
+        "relevancia_geopolitica": 4.3,
+        "atencion_mediatica": 4,
+        "brecha": 0.3,
+        "confianza": "media-alta",
+        "incertidumbre": 4
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "sig-turquia-iran-riesgo-sanciones-20260820",
+          "fecha": "2026-08-20",
+          "titulo": "La presión estadounidense coloca el comercio turco-iraní bajo riesgo de sanciones secundarias",
+          "resumen": "Reuters informó sobre amenazas estadounidenses de consecuencias económicas para terceros que sostuvieran vínculos económicos con Irán y señaló que Turquía mantenía un comercio bilateral significativo sin haber anunciado su reducción. La fuente no demuestra que Turquía haya recibido nuevas sanciones.",
+          "fuente_ids": [
+            "src-turquia-iran-reuters-socios-20260820"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "senal-1-10",
+          "fecha": "2026-08-17",
+          "titulo": "Ankara mantiene interlocución con Irán y Estados Unidos durante la crisis regional",
+          "resumen": "Turquía combinó críticas a los ataques estadounidenses e israelíes contra Irán con críticas a acciones iraníes contra Estados del Golfo y ofreció apoyo a negociaciones. La conducta muestra una estrategia de coexistencia competitiva y preservación de autonomía diplomática.",
+          "fuente_ids": [
+            "fuente-1-10"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-iran-importaciones-gas-20260814",
+          "fecha": "2026-08-14",
+          "titulo": "El gas iraní mantiene un peso sustancial en el suministro turco",
+          "resumen": "EPDK publicó el informe de gas correspondiente a junio de 2026. Una fuente analítica que reproduce sus datos sitúa las importaciones turcas desde Irán en 883 millones de metros cúbicos durante junio y 4,536 bcm durante el primer semestre de 2026, un 34 % más que un año antes. Las cifras requieren comprobación directa en el archivo estadístico oficial.",
+          "fuente_ids": [
+            "src-turquia-iran-epdk-gas-20260814",
+            "src-turquia-iran-iranintl-gas-20260821"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-iran-pacto-no-dirigido-20260808",
+          "fecha": "2026-08-08",
+          "titulo": "Ankara declara que el pacto con Arabia Saudita y Pakistán no está dirigido contra Irán",
+          "resumen": "Hakan Fidan afirmó que el pacto es defensivo, que Irán no constituye un objetivo y que, según la posición turca, el mecanismo no contradice las obligaciones de Turquía en la OTAN ni impide que Ankara continúe ofreciendo mediación.",
+          "fuente_ids": [
+            "src-turquia-iran-mfa-fidan-20260808"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-iran-contrato-gas-20260729",
+          "fecha": "2026-07-29",
+          "titulo": "Finaliza el término del contrato gasífero turco-iraní sin un reemplazo público de largo plazo",
+          "resumen": "Dos fuentes coinciden en que el contrato de gas de 25 años llegó al final de su término a fines de julio de 2026 y que no se había anunciado públicamente un nuevo acuerdo de largo plazo. El efecto jurídico exacto y una eventual prórroga automática continúan sin confirmación oficial.",
+          "fuente_ids": [
+            "src-turquia-iran-iranwire-gas-20260803",
+            "src-turquia-iran-iranintl-gas-20260821"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-iran-mediacion-cooperacion-20260622",
+          "fecha": "2026-06-22",
+          "titulo": "Turquía vincula mediación entre Estados Unidos e Irán con continuidad de la cooperación económica",
+          "resumen": "Tras una conversación entre Erdoğan y Pezeshkian, la Presidencia turca comunicó que Ankara apoyaría el proceso negociador entre Irán y Estados Unidos y continuaría promoviendo la cooperación comercial, financiera y energética con Irán.",
+          "fuente_ids": [
+            "src-turquia-iran-presidencia-20260622"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-turquia-iran-irak-ceyhan-20260528",
+          "fecha": "2026-05-28",
+          "titulo": "La crisis regional eleva el valor estratégico de Turquía en Irak",
+          "resumen": "RUSI registra que la ruta de exportación iraquí vía Ceyhan ganó importancia durante la crisis de Hormuz y que Ankara buscaba ampliar la cooperación comercial y de seguridad con Irak. La interpretación de que Turquía intenta ocupar espacio perdido por Irán pertenece a los autores.",
+          "fuente_ids": [
+            "src-turquia-iran-rusi-irak-20260528"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "fuente-1-10",
+        "src-turquia-iran-mfa-fidan-20260808",
+        "src-turquia-iran-presidencia-20260622",
+        "src-turquia-iran-epdk-gas-20260814",
+        "src-turquia-iran-reuters-socios-20260820",
+        "src-turquia-iran-iranwire-gas-20260803",
+        "src-turquia-iran-rusi-irak-20260528",
+        "src-turquia-iran-suits-equilibrio-20260609",
+        "src-turquia-iran-iranintl-gas-20260821",
+        "src-turquia-iran-brookings-orden-20260616"
+      ],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Volumen y composición del comercio Turquía–Irán.",
         "Continuidad o interrupción de suministros energéticos iraníes hacia Turquía.",
@@ -613,9 +730,9 @@
         "Iniciativas diplomáticas turcas entre Irán y Estados Unidos o Estados del Golfo."
       ],
       "escenarios": {
-        "base": "",
-        "adverso": "",
-        "transformador": ""
+        "base": "Turquía mantiene una relación compartimentada con Irán: preserva el comercio, los suministros energéticos y la interlocución diplomática, mientras compite con Teherán por influencia en Siria e Irak. Ankara continúa coordinándose con Estados Unidos y los Estados del Golfo sin adoptar una política de ruptura con Irán. La presión de las sanciones y la renegociación del vínculo gasífero generan tensiones periódicas, pero no eliminan la interdependencia bilateral.",
+        "adverso": "Una escalada regional o una aplicación más estricta de sanciones secundarias obliga a Turquía a reducir operaciones comerciales y energéticas con Irán. Aumentan los costes de suministro, la presión financiera y la inseguridad fronteriza, mientras la competencia entre actores vinculados con Ankara y Teherán se intensifica en Siria o Irak. Irán interpreta las alianzas turcas con Estados Unidos y los Estados del Golfo como una amenaza, disminuye la interlocución bilateral y se reduce la capacidad mediadora de Turquía.",
+        "transformador": "Turquía aprovecha su diversificación energética, su pertenencia a la OTAN, sus relaciones con los Estados del Golfo y sus canales con Teherán para institucionalizar una función de mediación regional. Ankara contribuye a establecer mecanismos estables de gestión de crisis, obtiene un marco previsible para el comercio y el gas con Irán y coordina espacios de competencia en Siria e Irak sin confrontación directa. El resultado refuerza a Turquía como potencia bisagra entre Irán, Occidente y las nuevas arquitecturas regionales."
       }
     },
     {
@@ -626,20 +743,27 @@
       "sintesis": "Expansión acelerada de las exportaciones de defensa turcas y de los programas de cooperación, coproducción y suministro militar. Turquía utiliza drones, plataformas, sistemas electrónicos y otros productos de defensa para crear relaciones de largo plazo basadas en entrenamiento, repuestos, munición, actualizaciones e interoperabilidad. El proceso aumenta su autonomía estratégica y su capacidad de construir vínculos políticos y militares duraderos dentro y fuera de Medio Oriente.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-08-21"
+        "estado": "publicado",
+        "publicado_el": "2026-08-26",
+        "actualizado_el": "2026-08-26"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
         "tema_principal_id": "tecnologia-poder-digital",
-        "tema_secundario_ids": [],
+        "tema_secundario_ids": [
+          "seguridad-conflicto",
+          "diplomacia-gobernanza"
+        ],
         "subtema_ids": [],
         "geografia": {
           "alcance": "global",
@@ -658,7 +782,9 @@
         "etiqueta_ids": []
       },
       "que_esta_ocurriendo": "Expansión acelerada de las exportaciones de defensa turcas y de los programas de cooperación, coproducción y suministro militar. Turquía utiliza drones, plataformas, sistemas electrónicos y otros productos de defensa para crear relaciones de largo plazo basadas en entrenamiento, repuestos, munición, actualizaciones e interoperabilidad. El proceso aumenta su autonomía estratégica y su capacidad de construir vínculos políticos y militares duraderos dentro y fuera de Medio Oriente.",
-      "por_que_importa": "",
+      "por_que_importa": "La industria de defensa permite a Turquía convertir capacidad productiva en relaciones militares duraderas: entrenamiento, repuestos, munición, mantenimiento, coproducción y dependencia tecnológica. El crecimiento exportador amplía la autonomía de Ankara y su acceso a socios de Europa, Asia, África y Medio Oriente. La cuestión central es si las ventas se traducen en influencia política sostenible y no solamente en ingresos o entregas puntuales.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.8,
@@ -667,11 +793,70 @@
         "confianza": "media",
         "incertidumbre": 3
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "senal-1-12",
+          "fecha": "2026-06-05",
+          "titulo": "Las exportaciones turcas de defensa se triplican desde 2021",
+          "resumen": "Las exportaciones de defensa turcas alcanzaron aproximadamente 10.000 millones de dólares y Turquía declaró el objetivo de volver a duplicarlas en dos años. La expansión consolida a la industria de defensa como instrumento estructural de influencia exterior.",
+          "fuente_ids": [
+            "fuente-1-12"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-defensa-turquia-sipri-ranking-20260309",
+          "fecha": "2026-03-09",
+          "titulo": "Türkiye asciende al puesto 11 entre proveedores de armamento mayor",
+          "resumen": "SIPRI estima que la cuota turca de transferencias de armamento mayor alcanzó 1,8% en 2021–2025 y creció 122% frente al quinquenio anterior.",
+          "fuente_ids": [
+            "src-defensa-turquia-sipri-transferencias-20260309"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-defensa-turquia-exportaciones-record-20260112",
+          "fecha": "2026-01-12",
+          "titulo": "La autoridad sectorial turca informa exportaciones récord en 2025",
+          "resumen": "La SSB informó exportaciones de defensa y aeroespacio por 10.054 millones de dólares en 2025, ampliando la base económica de la proyección industrial.",
+          "fuente_ids": [
+            "src-defensa-turquia-ssb-exportaciones-20260112"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-defensa-turquia-hurjet-espana-20251231",
+          "fecha": "2025-12-31",
+          "titulo": "España selecciona un paquete de 30 aviones HÜRJET",
+          "resumen": "La SSB anunció un programa de exportación por 2.600 millones de euros con entregas previstas desde 2028, señal de penetración en un mercado aliado europeo.",
+          "fuente_ids": [
+            "src-defensa-turquia-hurjet-espana-20251231"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-defensa-turquia-empresas-top100-20251201",
+          "fecha": "2025-12-01",
+          "titulo": "Cinco empresas turcas ingresan en el Top 100 de productores de armas",
+          "resumen": "SIPRI registró cinco empresas con sede en Türkiye y 10.100 millones de dólares de ingresos militares combinados en 2024.",
+          "fuente_ids": [
+            "src-defensa-turquia-sipri-top100-20251201"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "fuente-1-12",
+        "src-defensa-turquia-ssb-exportaciones-20260112",
+        "src-defensa-turquia-sipri-transferencias-20260309",
+        "src-defensa-turquia-sipri-top100-20251201",
+        "src-defensa-turquia-hurjet-espana-20251231"
+      ],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Valor anual de las exportaciones turcas de defensa y aeroespacio.",
         "Número de países clientes y distribución regional de las ventas.",
@@ -680,9 +865,9 @@
         "Acuerdos de entrenamiento, mantenimiento, municiones y actualización asociados a las exportaciones."
       ],
       "escenarios": {
-        "base": "",
-        "adverso": "",
-        "transformador": ""
+        "base": "Las exportaciones y asociaciones industriales continúan creciendo, con penetración gradual en mercados de la OTAN, el Golfo, Asia y África.",
+        "adverso": "Restricciones tecnológicas, controles de exportación, fallos de programas o resistencia política europea frenan contratos y exponen dependencias críticas.",
+        "transformador": "Turquía consolida cadenas de coproducción multinacionales y se convierte en proveedor sistémico de plataformas, municiones y servicios durante todo el ciclo de vida."
       }
     },
     {
@@ -730,6 +915,8 @@
       },
       "que_esta_ocurriendo": "Desarrollo comercial del yacimiento Cronos frente a Chipre mediante conexión con infraestructura egipcia y exportación de GNL hacia Europa. El proceso demuestra la viabilidad de una ruta energética del Mediterráneo Oriental que no necesita atravesar Turquía, lo que puede limitar el grado en que Ankara sea considerada un corredor inevitable para los recursos gasíferos de la región.",
       "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4,
@@ -742,7 +929,9 @@
       "cronologia": [],
       "fuente_ids": [],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Cumplimiento del calendario de desarrollo de Cronos.",
         "Construcción de la conexión submarina hacia infraestructura egipcia.",
@@ -798,6 +987,8 @@
       },
       "que_esta_ocurriendo": "Expansión de la presencia turca en Somalia mediante exploración energética offshore, cooperación militar y una infraestructura de entrenamiento y apoyo logístico. La perforación del primer pozo turco de aguas profundas en el exterior extiende la proyección de Ankara desde la seguridad hacia los recursos estratégicos. El proceso permanece sujeto a elevada incertidumbre geológica y de seguridad.",
       "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 3.8,
@@ -810,7 +1001,9 @@
       "cronologia": [],
       "fuente_ids": [],
       "recurso_visual_ids": [],
-      "macroevento_relacionado_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
       "indicadores_seguimiento": [
         "Resultados del pozo offshore Curad-1.",
         "Nuevos pozos o contratos de exploración y producción.",
@@ -889,6 +1082,8 @@
       },
       "que_esta_ocurriendo": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos.",
       "por_que_importa": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos. El ferrocarril de Benguela conecta el puerto angoleño de Lobito con la República Democrática del Congo y proyecta una futura extensión hacia Zambia. La rehabilitación ferroviaria crea una salida occidental para el Copperbelt, pero el corredor más amplio depende de componentes eléctricos, fronterizos, digitales y productivos que no avanzan al mismo ritmo. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.5,
@@ -999,6 +1194,8 @@
       },
       "que_esta_ocurriendo": "Rail Baltica deja de ser solamente un proyecto de mercado único y se convierte en infraestructura potencial para el refuerzo militar del flanco oriental europeo. Su utilidad depende de la continuidad transfronteriza, la coordinación y la financiación.",
       "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.8,
@@ -1077,6 +1274,8 @@
       },
       "que_esta_ocurriendo": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito.",
       "por_que_importa": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito. El ferrocarril China–Kirguistán–Uzbekistán promete conectar Xinjiang con el valle de Ferganá y redes hacia el oeste. Reduce dependencia de trayectos por Kazajistán y Rusia. El trazado montañoso exige decenas de puentes y túneles, lo que convierte la transición a la obra física en una prueba política y financiera. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.5,
@@ -1192,6 +1391,8 @@
       },
       "que_esta_ocurriendo": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local.",
       "por_que_importa": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local. Tailandia propone dos puertos, en el golfo de Tailandia y el mar de Andamán, unidos por unos 90 kilómetros de carretera y ferrocarril. El proyecto evitaría parte del paso por Malaca. A diferencia de un canal, requiere doble manipulación de la carga y grandes volúmenes para justificar una inversión cercana a US$30.000 millones. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4,
@@ -1303,6 +1504,8 @@
       },
       "que_esta_ocurriendo": "La vulnerabilidad simultánea de Hormuz, Bab el-Mandeb y Suez impulsa una transición desde la logística de máxima eficiencia hacia redes redundantes: oleoductos terrestres, puertos exteriores al Golfo, almacenamiento, rutas por el Cabo y corredores ferroviarios.",
       "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 5,
@@ -1389,6 +1592,8 @@
       },
       "que_esta_ocurriendo": "Los cables submarinos dejan de tratarse como infraestructura comercial invisible y pasan a integrarse en la planificación de defensa, inteligencia, soberanía digital y resiliencia económica.",
       "por_que_importa": "",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 5,
@@ -1477,6 +1682,8 @@
       },
       "que_esta_ocurriendo": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial.",
       "por_que_importa": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial. El mar Negro y el mar de Azov conectan producción agrícola, energía, industria y sostenimiento militar. Desde 2022, ataques, bloqueos y corredores negociados mostraron que el control marítimo no depende solo de grandes buques: drones, misiles y daños a terminales pueden alterar el valor estratégico de toda la costa. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.8,
@@ -1585,6 +1792,8 @@
       },
       "que_esta_ocurriendo": "La disputa por el canal se extiende a concesiones portuarias, registros navales, arbitrajes, inspecciones de buques y alineamiento diplomático.",
       "por_que_importa": "La disputa por el canal se extiende a concesiones portuarias, registros navales, arbitrajes, inspecciones de buques y alineamiento diplomático. El canal es una infraestructura panameña con función mundial. A ambos extremos, puertos y servicios marítimos conectan rutas, operadores y cadenas logísticas. La rivalidad entre Estados Unidos y China hace que decisiones comerciales y regulatorias sean interpretadas como alineamientos geopolíticos. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.8,
@@ -1676,6 +1885,8 @@
       },
       "que_esta_ocurriendo": "El IMEC probablemente avance mediante módulos nacionales y bilaterales —puertos, aduanas digitales, ferrocarriles, cables y energía— antes de funcionar como corredor integrado.",
       "por_que_importa": "El IMEC probablemente avance mediante módulos nacionales y bilaterales —puertos, aduanas digitales, ferrocarriles, cables y energía— antes de funcionar como corredor integrado. El IMEC fue presentado como conexión marítima y ferroviaria entre India, el Golfo, el Levante y Europa, acompañada por energía y datos. Su geografía atraviesa rivalidades y conflictos; por eso puertos, aduanas digitales, ferrocarriles y cables pueden avanzar separadamente. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.5,
@@ -1766,6 +1977,8 @@
       },
       "que_esta_ocurriendo": "Rusia intenta transformar una ruta estacional y principalmente energética en un corredor transártico integral conectado con China e India.",
       "por_que_importa": "Rusia intenta transformar una ruta estacional y principalmente energética en un corredor transártico integral conectado con China e India. La Ruta Marítima del Norte reduce distancias entre partes de Asia y Europa, aunque no reemplaza de manera simple las rutas meridionales. Rusia intenta integrarla a puertos, recursos energéticos y conexiones ferroviarias, mientras China e India evalúan acceso, inversión y seguridad de suministro. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.5,
@@ -1851,6 +2064,8 @@
       },
       "que_esta_ocurriendo": "El corredor Norte–Sur busca conectar Rusia con el océano Índico sin depender de Europa ni de rutas dominadas por Occidente. Rasht–Astara es el eslabón decisivo.",
       "por_que_importa": "El corredor Norte–Sur busca conectar Rusia con el océano Índico sin depender de Europa ni de rutas dominadas por Occidente. Rasht–Astara es el eslabón decisivo. El INSTC busca conectar Rusia con el océano Índico mediante redes marítimas, ferroviarias y viales a través de Irán y el Caspio. La guerra y las sanciones aumentaron su atractivo político; al mismo tiempo, financiación, anchos de vía y trámites impiden tratarlo como una ruta única. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.3,
@@ -1943,6 +2158,8 @@
       },
       "que_esta_ocurriendo": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica.",
       "por_que_importa": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica. Chancay ofrece una gran terminal del Pacífico con conexión directa hacia Asia. Su potencial excede al comercio peruano si logra captar carga de Brasil, Bolivia y otras economías interiores. Pero cruzar los Andes exige obras costosas y acuerdos que han frustrado proyectos anteriores. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.3,
@@ -2056,6 +2273,8 @@
       },
       "que_esta_ocurriendo": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil.",
       "por_que_importa": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil. China conecta Yunnan con el Índico mediante Kyaukphyu y oleoductos; India desarrolla Sittwe y Kaladan para vincular su nordeste. Ambos proyectos evitan cuellos de botella externos, pero atraviesan Rakhine y otras zonas afectadas por guerra, desplazamiento y poder territorial disputado. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.3,
@@ -2177,6 +2396,8 @@
       },
       "que_esta_ocurriendo": "Mombasa, Dar es Salaam, Lamu, Berbera y Yibuti compiten por servir a economías sin litoral. Capital chino, emiratí y europeo crea corredores parcialmente superpuestos.",
       "por_que_importa": "Mombasa, Dar es Salaam, Lamu, Berbera y Yibuti compiten por servir a economías sin litoral. Capital chino, emiratí y europeo crea corredores parcialmente superpuestos. Mombasa, Dar es Salaam, Lamu, Berbera y Yibuti sirven o aspiran a servir a Etiopía, Uganda, Rwanda, Sudán del Sur y los Grandes Lagos. Capital chino, emiratí y europeo superpone terminales y corredores. La redundancia puede ampliar opciones, aunque también crear dependencia y capacidad subutilizada. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.3,
@@ -2261,6 +2482,8 @@
       },
       "que_esta_ocurriendo": "Tanger Med, Nador West Med, Dakhla y las conexiones terrestres con el Sahel forman una estrategia integrada de manufactura, transbordo, energía y acceso marítimo para Estados sin litoral.",
       "por_que_importa": "Tanger Med, Nador West Med, Dakhla y las conexiones terrestres con el Sahel forman una estrategia integrada de manufactura, transbordo, energía y acceso marítimo para Estados sin litoral. Marruecos se presenta simultáneamente como plataforma próxima a Europa y como puerta atlántica africana. Tanger Med demostró el valor de integrar puerto, zonas industriales y acuerdos comerciales. Los nuevos nodos amplían esa lógica hacia energía y Estados sahelianos sin litoral, aunque se cruzan con la disputa del Sahara Occidental. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": null,
       "claves_estructurales": [],
       "valoraciones": {
         "relevancia_geopolitica": 4.3,
@@ -2286,9 +2509,142 @@
         "adverso": "Inseguridad, disputa territorial y rivalidad Marruecos–Argelia.",
         "transformador": "Eje Sahel–Atlántico operativo."
       }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "turquia-potencia-bisagra-reordenamiento-regional",
+      "slug": "turquia-potencia-bisagra-reordenamiento-regional",
+      "titulo": "Consolidación de Turquía como potencia bisagra multidimensional en el reordenamiento regional",
+      "sintesis": "Proceso mediante el cual Turquía amplía su capacidad de influencia combinando posición geográfica, pertenencia a la OTAN, relación con Estados Unidos, autonomía diplomática, industria de defensa, corredores energéticos y logísticos, presencia militar y vínculos simultáneos con actores rivales. El proceso puede desplazar parcialmente funciones tradicionalmente ejercidas por Estados Unidos sin implicar necesariamente una ruptura de la alianza bilateral.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "borrador",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-21"
+      },
+      "progreso_publico": {
+        "etapa": "borrador",
+        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "diplomacia-gobernanza",
+        "tema_secundario_ids": [
+          "seguridad-conflicto",
+          "infraestructura-conectividad",
+          "energia-recursos-estrategicos"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos"
+        ],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "global",
+            "oriente-medio",
+            "europa",
+            "asia",
+            "africa"
+          ],
+          "subregion_ids": [
+            "asia-central",
+            "cuerno-de-africa"
+          ],
+          "pais_ids": [
+            "TUR"
+          ],
+          "espacio_ids": [
+            "medio-oriente"
+          ]
+        },
+        "actor_ids": [
+          "turquia",
+          "estados-unidos",
+          "otan",
+          "union-europea",
+          "rusia",
+          "iran",
+          "israel",
+          "arabia-saudita",
+          "pakistan",
+          "estados-del-golfo",
+          "irak",
+          "siria",
+          "estados-de-asia-central",
+          "somalia"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Proceso mediante el cual Turquía amplía su capacidad de influencia combinando posición geográfica, pertenencia a la OTAN, relación con Estados Unidos, autonomía diplomática, industria de defensa, corredores energéticos y logísticos, presencia militar y vínculos simultáneos con actores rivales. El proceso puede desplazar parcialmente funciones tradicionalmente ejercidas por Estados Unidos sin implicar necesariamente una ruptura de la alianza bilateral.",
+      "por_que_importa": "Importa porque reúne en un mismo proceso capacidades militares, diplomáticas, industriales, energéticas y logísticas que hoy aparecen dispersas en varios escenarios. Su seguimiento permite evaluar si Turquía pasa de ser un aliado regional relevante a convertirse en un organizador indispensable de la seguridad y la conectividad entre Europa, Medio Oriente, Asia Central y el Cuerno de África, y en qué medida complementa o sustituye funciones de influencia tradicionalmente ejercidas por Estados Unidos.",
+      "es_macroevento_rector": true,
+      "macroevento_rector_id": null,
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 3,
+        "brecha": 1.8,
+        "confianza": "media",
+        "incertidumbre": 4
+      },
+      "senales": [],
+      "cronologia": [],
+      "fuente_ids": [],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [
+        "turquia-iran-competencia-coexistencia",
+        "mediterraneo-oriental-cronos-turquia",
+        "hormuz-turquia-corredor-energia-mediacion",
+        "industria-defensa-turca-proyeccion-regional",
+        "corredor-medio-caucaso-sur",
+        "iraq-development-road",
+        "turquia-arabia-saudita-pakistan-defensa",
+        "somalia-turquia-energia-seguridad",
+        "siria-turquia-israel-reordenamiento",
+        "pkk-sdf-transformacion-cuestion-kurda"
+      ],
+      "indicadores_seguimiento": [
+        "Nuevos acuerdos de defensa, entrenamiento, acceso o coproducción encabezados por Turquía.",
+        "Evolución de las exportaciones turcas de defensa y de los programas de mantenimiento e interoperabilidad asociados.",
+        "Participación de Ankara en mecanismos de mediación, negociación o desconflicción entre Estados Unidos, Israel, Irán, Siria y los Estados del Golfo.",
+        "Avance efectivo del Corredor Medio, Iraq Development Road, Ceyhan y otras rutas energéticas o logísticas conectadas con Turquía.",
+        "Expansión o reducción de la presencia militar, energética y logística turca en Somalia y el Cuerno de África.",
+        "Grado de coordinación o fricción entre Turquía, Estados Unidos y la OTAN.",
+        "Creación de mecanismos regionales permanentes en los que Turquía actúe como articulador político, militar o industrial.",
+        "Respuestas de Israel, Irán, India, Rusia y otros actores ante el aumento de la influencia turca."
+      ],
+      "escenarios": {
+        "base": "Turquía consolida una influencia selectiva en seguridad, energía, conectividad y mediación, mantiene su pertenencia a la OTAN y su alianza con Estados Unidos, y amplía relaciones con actores regionales rivales. No reemplaza a Washington como potencia predominante, pero asume de forma creciente funciones de articulación regional.",
+        "adverso": "Las restricciones económicas internas y las tensiones simultáneas con Estados Unidos, Israel, Irán, Rusia y los actores kurdos frenan los corredores, debilitan las asociaciones de defensa y fragmentan la proyección exterior turca. Ankara conserva capacidades relevantes, pero no logra convertirlas en una arquitectura regional coherente.",
+        "transformador": "Turquía se convierte en un nodo indispensable de seguridad, defensa industrial, energía y conectividad entre Europa, Medio Oriente, Asia Central y África. Organiza redes regionales estables y desplaza parcialmente funciones de mediación, disuasión y articulación antes ejercidas principalmente por Estados Unidos, aunque permanece formalmente dentro de la alianza occidental."
+      }
     }
   ],
   "fuentes": [
+    {
+      "fuente_id": "fuente-1-10",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Erdogan urges Trump to pursue talks with Iran, offers support",
+      "fecha": "2026-08-17",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/world/asia-pacific/erdogan-urges-trump-pursue-talks-with-iran-offers-support-2026-08-17/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "fuente-1-12",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Turkey targets more defence sales as West rearms and alliances shift",
+      "fecha": "2026-06-05",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/business/aerospace-defense/turkey-targets-more-defence-sales-west-rearms-alliances-shift-2026-06-05/",
+      "estado_verificacion": "verificada"
+    },
     {
       "fuente_id": "fuente-1-2",
       "media_id": null,
@@ -2351,7 +2707,7 @@
       "titulo": "Progress on the China-Kyrgyzstan-Uzbekistan railway: Some challenges remain",
       "fecha": "2026-07-17",
       "idioma": "en",
-      "tipo": "análisis",
+      "tipo": "analisis",
       "url": "https://thediplomat.com/2026/07/progress-on-the-china-kyrgyzstan-uzbekistan-railway-some-challenges-remain/",
       "estado_verificacion": "verificada"
     },
@@ -2362,7 +2718,7 @@
       "titulo": "Hub norte: una respuesta estratégica ante el desafío de Chancay",
       "fecha": "2026-04-30",
       "idioma": "es",
-      "tipo": "análisis",
+      "tipo": "analisis",
       "url": "https://revistamarina.cl/es/articulo/hub-norte-una-respuesta-estrategica-ante-el-desafio-de-chancay/es",
       "estado_verificacion": "verificada"
     },
@@ -2373,7 +2729,7 @@
       "titulo": "AFC lines up lenders for Lobito Corridor",
       "fecha": "2026-04-30",
       "idioma": "en",
-      "tipo": "noticia de agencia",
+      "tipo": "noticia_de_agencia",
       "url": "https://www.reuters.com/world/africa/afc-lines-up-regional-international-lenders-including-citi-lobito-corridor-2026-04-30/",
       "estado_verificacion": "verificada"
     },
@@ -2384,7 +2740,7 @@
       "titulo": "Trafigura backs out of Angola transmission line project",
       "fecha": "2026-07-15",
       "idioma": "en",
-      "tipo": "noticia de agencia",
+      "tipo": "noticia_de_agencia",
       "url": "https://www.reuters.com/business/energy/trafigura-backs-out-angola-transmission-line-project-sources-say-2026-07-15/",
       "estado_verificacion": "verificada"
     },
@@ -2394,9 +2750,53 @@
       "medio": "Mining Weekly",
       "titulo": "Lobito Corridor railway project achieves $753m financial close",
       "fecha": "2026-07-03",
-      "idioma": "Inglés",
-      "tipo": "Medio periodístico",
+      "idioma": "en",
+      "tipo": "medio_periodistico",
       "url": "https://www.miningweekly.com/article/lobito-corridor-railway-project-achieves-753m-financial-close-2026-07-03",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-defensa-turquia-hurjet-espana-20251231",
+      "media_id": "turkiye-ssb",
+      "medio": "Secretariat of Defence Industries (SSB)",
+      "titulo": "Türk Savunma Sanayiimizde Tarihi Hürjet İhracat Başarısı",
+      "fecha": "2025-12-31",
+      "idioma": "tr",
+      "tipo": "comunicado_oficial",
+      "url": "https://www.ssb.gov.tr/haber/turk-savunma-sanayiimizde-tarihi-hurjet-ihracat-basarisi-ZSL8YI",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-defensa-turquia-sipri-top100-20251201",
+      "media_id": "sipri",
+      "medio": "SIPRI",
+      "titulo": "The SIPRI Top 100 Arms-producing and Military Services Companies, 2024",
+      "fecha": "2025-12-01",
+      "idioma": "en",
+      "tipo": "informe_investigacion",
+      "url": "https://www.sipri.org/sites/default/files/2025-11/fs_2512_top_100_2024.pdf",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-defensa-turquia-sipri-transferencias-20260309",
+      "media_id": "sipri",
+      "medio": "SIPRI",
+      "titulo": "Trends in International Arms Transfers, 2025",
+      "fecha": "2026-03-09",
+      "idioma": "en",
+      "tipo": "informe_investigacion",
+      "url": "https://www.sipri.org/publications/2026/sipri-fact-sheets/trends-international-arms-transfers-2025",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-defensa-turquia-ssb-exportaciones-20260112",
+      "media_id": "turkiye-ssb",
+      "medio": "Secretariat of Defence Industries (SSB)",
+      "titulo": "Türk Savunma Sanayiinde Bu Hafta Neler Oldu?",
+      "fecha": "2026-01-12",
+      "idioma": "tr",
+      "tipo": "comunicado_oficial",
+      "url": "https://www.ssb.gov.tr/haber/turk-savunma-sanayiinde-bu-hafta-neler-oldu-2u7TdB",
       "estado_verificacion": "verificada"
     },
     {
@@ -2428,7 +2828,7 @@
       "titulo": "Kaladan project to be operational by '27, will unlock trade opportunities: Sonowal",
       "fecha": "2025-07-07",
       "idioma": "en",
-      "tipo": "análisis",
+      "tipo": "analisis",
       "url": "https://timesofindia.indiatimes.com/city/guwahati/kaladan-project-to-be-operational-by-27-will-unlock-trade-opportunities-sonowal/articleshow/122304171.cms",
       "estado_verificacion": "verificada"
     },
@@ -2438,7 +2838,7 @@
       "medio": "The Times of India",
       "titulo": "PM urges Myanmar to fast-track Kaladan corridor linking Sittwe & Mizoram",
       "fecha": "2026-06-02",
-      "idioma": "Inglés",
+      "idioma": "en",
       "tipo": "noticia",
       "url": "https://timesofindia.indiatimes.com/city/guwahati/pm-urges-myanmar-to-fasttrack-kaladan-corridor-linking-sittwe-mizoram/articleshow/131469001.cms",
       "estado_verificacion": "verificada"
@@ -2449,8 +2849,8 @@
       "medio": "Financial Times",
       "titulo": "China’s Xi Jinping urges Myanmar’s coup leader to push ahead with strategic project",
       "fecha": "2026-06-16",
-      "idioma": "Inglés",
-      "tipo": "Noticia",
+      "idioma": "en",
+      "tipo": "noticia",
       "url": "https://www.ft.com/content/c2b5b90b-cc3b-4a1b-bdb2-c2520adad51d",
       "estado_verificacion": "verificada"
     },
@@ -2460,8 +2860,8 @@
       "medio": "Ministry of Information, Myanmar",
       "titulo": "India Cargo Vessel MV Taw Win Thiri arrives at Sittway Port under Kaladan Project",
       "fecha": "2026-05-18",
-      "idioma": "Inglés",
-      "tipo": "fuente oficial",
+      "idioma": "en",
+      "tipo": "fuente_oficial",
       "url": "https://www.moi.gov.mm/moi%3Aeng/news/21001",
       "estado_verificacion": "verificada"
     },
@@ -2471,8 +2871,8 @@
       "medio": "Ministry of Foreign Affairs of the People's Republic of China",
       "titulo": "Joint Statement of the People’s Republic of China and the Republic of the Union of Myanmar on Accelerating the Building of a China-Myanmar Community with a Shared Future",
       "fecha": "2026-06-17",
-      "idioma": "Inglés",
-      "tipo": "fuente oficial",
+      "idioma": "en",
+      "tipo": "fuente_oficial",
       "url": "https://hk.ocmfa.gov.cn/eng/xjpzxzywshd/202606/t20260617_11947840.htm",
       "estado_verificacion": "verificada"
     },
@@ -2482,8 +2882,8 @@
       "medio": "SAGE Open",
       "titulo": "Kyaukphyu Seaport Project: Analysing Its Key Characteristics and Potential Implications",
       "fecha": "2026-01-13",
-      "idioma": "Inglés",
-      "tipo": "artículo académico",
+      "idioma": "en",
+      "tipo": "articulo_academico",
       "url": "https://journals.sagepub.com/doi/10.1177/21582440251411377",
       "estado_verificacion": "verificada"
     },
@@ -2504,7 +2904,7 @@
       "medio": "Center for Strategic and International Studies (CSIS)",
       "titulo": "Chinese Energy Investments in Southeast Asia",
       "fecha": "2025-12-17",
-      "idioma": "Inglés",
+      "idioma": "en",
       "tipo": "informe",
       "url": "https://www.csis.org/analysis/chinese-energy-investments-southeast-asia",
       "estado_verificacion": "verificada"
@@ -2515,8 +2915,8 @@
       "medio": "SAGE Open",
       "titulo": "Kyaukphyu Seaport Project: Analysing Its Key Characteristics and Potential Implications",
       "fecha": "2026-01-15",
-      "idioma": "Inglés",
-      "tipo": "artículo académico",
+      "idioma": "en",
+      "tipo": "articulo_academico",
       "url": "https://journals.sagepub.com/doi/10.1177/21582440251411377",
       "estado_verificacion": "verificada"
     },
@@ -2526,8 +2926,8 @@
       "medio": "Myanmar Peace Monitor",
       "titulo": "The Arakan Army and the Quest for Total Control of Arakan State: How Close?",
       "fecha": "2026-06-03",
-      "idioma": "Inglés",
-      "tipo": "análisis",
+      "idioma": "en",
+      "tipo": "analisis",
       "url": "https://mmpeacemonitor.org/en/eng-cover-story/the-arakan-army-and-the-quest-for-total-control-of-arakan-state-how-close/",
       "estado_verificacion": "verificada"
     },
@@ -2537,7 +2937,7 @@
       "medio": "Burma News International",
       "titulo": "Junta erects new fences around Sittwe, tightens security measures",
       "fecha": "2026-05-18",
-      "idioma": "Inglés",
+      "idioma": "en",
       "tipo": "noticia",
       "url": "https://www.bnionline.net/en/news/junta-erects-new-fences-around-sittwe-tightens-security-measures",
       "estado_verificacion": "verificada"
@@ -2548,7 +2948,7 @@
       "medio": "Burma News International",
       "titulo": "Criticism grows as AA detains traders and young people at Paletwa checkpoints",
       "fecha": "2026-04-29",
-      "idioma": "Inglés",
+      "idioma": "en",
       "tipo": "noticia",
       "url": "https://www.bnionline.net/en/news/criticism-grows-aa-detains-traders-and-young-people-paletwa-checkpoints",
       "estado_verificacion": "verificada"
@@ -2559,9 +2959,108 @@
       "medio": "The Irrawaddy",
       "titulo": "Arakan Army Surrounds Myanmar’s Western Naval Bases, Sparking Intense Battles",
       "fecha": "2026-06-02",
-      "idioma": "Inglés",
+      "idioma": "en",
       "tipo": "noticia",
       "url": "https://www.irrawaddy.com/news/war-against-the-junta/arakan-army-surrounds-myanmars-western-naval-bases-sparking-intense-battles.html",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-iran-brookings-orden-20260616",
+      "media_id": null,
+      "medio": "Brookings Institution",
+      "titulo": "Turkey’s search for a Middle East order",
+      "fecha": "2026-06-16",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://www.brookings.edu/articles/turkeys-search-for-a-middle-east-order/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-iran-epdk-gas-20260814",
+      "media_id": null,
+      "medio": "Enerji Piyasası Düzenleme Kurumu (EPDK)",
+      "titulo": "Doğalgaz Piyasası Sektör Raporu - Haziran 2026",
+      "fecha": "2026-08-14",
+      "idioma": "tr",
+      "tipo": "informe_estadistico",
+      "url": "https://www.epdk.gov.tr/Detay/Icerik/4-16432/duyuru",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-iran-iranintl-gas-20260821",
+      "media_id": null,
+      "medio": "Iran International",
+      "titulo": "Turkey’s gas pivot leaves Iran with fewer cards to play",
+      "fecha": "2026-08-21",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://www.iranintl.com/en/202608211942",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-iran-iranwire-gas-20260803",
+      "media_id": "iranwire",
+      "medio": "IranWire",
+      "titulo": "Iran-Turkey 25-Year Gas Deal Expires",
+      "fecha": "2026-08-03",
+      "idioma": "en",
+      "tipo": "analisis_periodistico",
+      "url": "https://iranwire.com/en/features/155770-iran-turkey-25-year-gas-deal-expires/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-iran-mfa-fidan-20260808",
+      "media_id": null,
+      "medio": "T.C. Dışişleri Bakanlığı",
+      "titulo": "Dışişleri Bakanı Sayın Hakan Fidan'ın Anadolu Ajansı Editör Masası'na Verdiği Mülakat, 8 Ağustos 2026",
+      "fecha": "2026-08-08",
+      "idioma": "tr",
+      "tipo": "entrevista_oficial",
+      "url": "https://www.mfa.gov.tr/disisleri-bakani-sayin-hakan-fidan-in-anadolu-ajansi-editor-masasi-na-verdigi-mulakat--8-agustos-2026.tr.mfa",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-iran-presidencia-20260622",
+      "media_id": null,
+      "medio": "Republic of Türkiye Directorate of Communications",
+      "titulo": "President Erdoğan, President Pezeshkian of Iran talk over phone",
+      "fecha": "2026-06-22",
+      "idioma": "en",
+      "tipo": "comunicado_oficial",
+      "url": "https://www.iletisim.gov.tr/english/haberler/detay/president-erdogan-president-pezeshkian-of-iran-talk-over-phone-22-06-26",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-iran-reuters-socios-20260820",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Trump threatens to isolate Iran. Who are its trading partners?",
+      "fecha": "2026-08-20",
+      "idioma": "en",
+      "tipo": "noticia_explicativa",
+      "url": "https://www.reuters.com/business/energy/trump-threatens-isolate-iran-who-are-its-trading-partners-2026-08-20/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-iran-rusi-irak-20260528",
+      "media_id": "rusi",
+      "medio": "RUSI",
+      "titulo": "Turkey’s Iraq Gambit Amid the Strait of Hormuz Crisis",
+      "fecha": "2026-05-28",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://www.rusi.org/explore-our-research/publications/commentary/turkeys-iraq-gambit-amid-strait-hormuz-crisis",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-turquia-iran-suits-equilibrio-20260609",
+      "media_id": null,
+      "medio": "Stockholm University – Institute for Turkish Studies",
+      "titulo": "A Difficult Balancing Act: Turkish-Iranian relations in turbulent times",
+      "fecha": "2026-06-09",
+      "idioma": "en",
+      "tipo": "policy_brief",
+      "url": "https://www.su.se/english/divisions/institute-for-turkish-studies/suits-policy-briefs/a-difficult-balancing-act-turkish-iranian-relations-in-turbulent-times",
       "estado_verificacion": "verificada"
     },
     {
@@ -3772,6 +4271,13 @@
         "id": "zambia",
         "nombre": "Zambia",
         "slug": "zambia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "estados-de-asia-central",
+        "nombre": "Estados de Asia Central",
+        "slug": "estados-de-asia-central",
         "estado": "activo",
         "orden": 100
       }
