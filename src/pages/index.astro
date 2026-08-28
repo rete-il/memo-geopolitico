@@ -12,6 +12,10 @@ const trackedProcessCount = processes.filter(
   (process) => process.estado_seguimiento === 'en_seguimiento',
 ).length;
 
+const rectorCount = processes.filter(
+  (process) => process.es_macroevento_rector,
+).length;
+
 const publicationCountLabel =
   publications.length === 0
     ? 'Sin publicaciones disponibles'
@@ -25,6 +29,13 @@ const processCountLabel =
     : trackedProcessCount === 1
       ? '1 proceso en seguimiento'
       : `${trackedProcessCount} procesos en seguimiento`;
+
+const rectorCountLabel =
+  rectorCount === 0
+    ? 'Sin macroeventos rectores disponibles'
+    : rectorCount === 1
+      ? '1 macroevento rector disponible'
+      : `${rectorCount} macroeventos rectores disponibles`;
 ---
 
 <SiteLayout>
@@ -71,6 +82,22 @@ const processCountLabel =
           Explorar el Observatorio <span aria-hidden="true">→</span>
         </a>
       </article>
+
+      <article
+        class="home-path home-path--rectors"
+        aria-labelledby="rectors-title"
+      >
+        <p class="home-path-category">Síntesis estructurales</p>
+        <h2 id="rectors-title">Explorar macroeventos rectores</h2>
+        <p class="home-path-description">
+          Hipótesis amplias que organizan varios procesos relacionados para
+          explicar una transformación geopolítica mayor.
+        </p>
+        <p class="home-path-count">{rectorCountLabel}</p>
+        <a class="home-path-link" href="/observatorio/rectores/">
+          Explorar macroeventos rectores <span aria-hidden="true">→</span>
+        </a>
+      </article>
     </section>
   </div>
 </SiteLayout>
@@ -107,7 +134,7 @@ const processCountLabel =
 
   .home-paths {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(1rem, 2.4vw, 1.75rem);
     margin-top: clamp(2.5rem, 5vw, 4rem);
   }
@@ -132,6 +159,12 @@ const processCountLabel =
   .home-path--observatory {
     background:
       linear-gradient(145deg, rgb(229 240 245 / 88%), transparent 72%),
+      var(--surface);
+  }
+
+  .home-path--rectors {
+    background:
+      linear-gradient(145deg, rgb(238 232 219 / 74%), transparent 70%),
       var(--surface);
   }
 
@@ -204,6 +237,16 @@ const processCountLabel =
       font-size: clamp(3.25rem, 5vw, 4.75rem);
     }
   }
+  @media (max-width: 1040px) {
+    .home-paths {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .home-path--rectors {
+      grid-column: 1 / -1;
+      min-height: 17rem;
+    }
+  }
   @media (max-width: 760px) {
     .home-shell {
       padding-block: 2.25rem 3.5rem;
@@ -215,6 +258,10 @@ const processCountLabel =
 
     .home-paths {
       grid-template-columns: 1fr;
+    }
+
+    .home-path--rectors {
+      grid-column: auto;
     }
 
     .home-path {
