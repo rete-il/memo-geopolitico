@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "titulo": "Observatorio de macroeventos geopolíticos",
-  "actualizado": "2026-08-27",
+  "actualizado": "2026-08-28",
   "notas": "Datos iniciales derivados del análisis del chat. Todas las fuentes comienzan como no verificadas.",
   "categorias_internas": [
     {
@@ -1268,8 +1268,13 @@
       "por_que_importa": "",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
+      "macroevento_rector_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "macroevento_relacionado_ids": [
-        "turquia-potencia-bisagra-reordenamiento-regional"
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "corredores-alternativos-redes-logisticas-redundantes"
       ],
       "senales": [
         {
@@ -2481,8 +2486,13 @@
       "descripcion": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos.",
       "por_que_importa": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos. El ferrocarril de Benguela conecta el puerto angoleño de Lobito con la República Democrática del Congo y proyecta una futura extensión hacia Zambia. La rehabilitación ferroviaria crea una salida occidental para el Copperbelt, pero el corredor más amplio depende de componentes eléctricos, fronterizos, digitales y productivos que no avanzan al mismo ritmo. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "macroevento_rector_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "macroevento_relacionado_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "senales": [
         {
           "id": "sig-corredor-lobito-minerales-001",
@@ -2885,8 +2895,13 @@
       "descripcion": "El IMEC probablemente avance mediante módulos nacionales y bilaterales —puertos, aduanas digitales, ferrocarriles, cables y energía— antes de funcionar como corredor integrado.",
       "por_que_importa": "El IMEC probablemente avance mediante módulos nacionales y bilaterales —puertos, aduanas digitales, ferrocarriles, cables y energía— antes de funcionar como corredor integrado. El IMEC fue presentado como conexión marítima y ferroviaria entre India, el Golfo, el Levante y Europa, acompañada por energía y datos. Su geografía atraviesa rivalidades y conflictos; por eso puertos, aduanas digitales, ferrocarriles y cables pueden avanzar separadamente. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "macroevento_rector_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "macroevento_relacionado_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "senales": [
         {
           "id": "sig-imec-reconfiguracion-modular-001",
@@ -3014,8 +3029,13 @@
       "descripcion": "Rusia intenta transformar una ruta estacional y principalmente energética en un corredor transártico integral conectado con China e India.",
       "por_que_importa": "Rusia intenta transformar una ruta estacional y principalmente energética en un corredor transártico integral conectado con China e India. La Ruta Marítima del Norte reduce distancias entre partes de Asia y Europa, aunque no reemplaza de manera simple las rutas meridionales. Rusia intenta integrarla a puertos, recursos energéticos y conexiones ferroviarias, mientras China e India evalúan acceso, inversión y seguridad de suministro. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "macroevento_rector_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "macroevento_relacionado_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "senales": [
         {
           "id": "sig-ruta-maritima-norte-artico-001",
@@ -3169,8 +3189,13 @@
       "por_que_importa": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo. El puerto de Grand Faw y el Development Road prometen llevar carga desde el Golfo hasta Turquía y Europa. A la vez, la reapertura de salidas energéticas hacia el Mediterráneo ampliaría opciones iraquíes. El corredor atraviesa un espacio donde compiten agendas nacionales, milicias, vecinos y grandes potencias. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
+      "macroevento_rector_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "macroevento_relacionado_ids": [
-        "turquia-potencia-bisagra-reordenamiento-regional"
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "corredores-alternativos-redes-logisticas-redundantes"
       ],
       "senales": [
         {
@@ -3542,8 +3567,13 @@
       "descripcion": "El corredor Norte–Sur busca conectar Rusia con el océano Índico sin depender de Europa ni de rutas dominadas por Occidente. Rasht–Astara es el eslabón decisivo.",
       "por_que_importa": "El corredor Norte–Sur busca conectar Rusia con el océano Índico sin depender de Europa ni de rutas dominadas por Occidente. Rasht–Astara es el eslabón decisivo. El INSTC busca conectar Rusia con el océano Índico mediante redes marítimas, ferroviarias y viales a través de Irán y el Caspio. La guerra y las sanciones aumentaron su atractivo político; al mismo tiempo, financiación, anchos de vía y trámites impiden tratarlo como una ruta única. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "macroevento_rector_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "macroevento_relacionado_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "senales": [
         {
           "id": "sig-instc-rusia-iran-india-001",
@@ -3673,8 +3703,13 @@
       "descripcion": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica.",
       "por_que_importa": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica. Chancay ofrece una gran terminal del Pacífico con conexión directa hacia Asia. Su potencial excede al comercio peruano si logra captar carga de Brasil, Bolivia y otras economías interiores. Pero cruzar los Andes exige obras costosas y acuerdos que han frustrado proyectos anteriores. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "macroevento_rector_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "macroevento_relacionado_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "senales": [
         {
           "id": "sig-chancay-corredores-bioceanicos-001",
@@ -3821,8 +3856,13 @@
       "descripcion": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil.",
       "por_que_importa": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil. China conecta Yunnan con el Índico mediante Kyaukphyu y oleoductos; India desarrolla Sittwe y Kaladan para vincular su nordeste. Ambos proyectos evitan cuellos de botella externos, pero atraviesan Rakhine y otras zonas afectadas por guerra, desplazamiento y poder territorial disputado. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "macroevento_rector_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "macroevento_relacionado_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "senales": [
         {
           "id": "sig-myanmar-corredores-china-india-001",
@@ -4637,8 +4677,13 @@
       "descripcion": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito.",
       "por_que_importa": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito. El ferrocarril China–Kirguistán–Uzbekistán promete conectar Xinjiang con el valle de Ferganá y redes hacia el oeste. Reduce dependencia de trayectos por Kazajistán y Rusia. El trazado montañoso exige decenas de puentes y túneles, lo que convierte la transición a la obra física en una prueba política y financiera. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "macroevento_rector_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "macroevento_relacionado_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "senales": [
         {
           "id": "senal-1-2",
@@ -4845,8 +4890,13 @@
       "descripcion": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local.",
       "por_que_importa": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local. Tailandia propone dos puertos, en el golfo de Tailandia y el mar de Andamán, unidos por unos 90 kilómetros de carretera y ferrocarril. El proyecto evitaría parte del paso por Malaca. A diferencia de un canal, requiere doble manipulación de la carga y grandes volúmenes para justificar una inversión cercana a US$30.000 millones. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "macroevento_rector_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "macroevento_relacionado_ids": [
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
       "senales": [
         {
           "id": "senal-1-3",
@@ -8088,6 +8138,373 @@
       }
     },
     {
+      "id": "corredores-alternativos-redes-logisticas-redundantes",
+      "titulo": "Reconfiguración de la conectividad global mediante corredores alternativos y redes redundantes",
+      "tipo_proceso": "macroproceso_estructural",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "Global",
+        "Asia Central",
+        "Sudeste Asiático",
+        "Oriente Medio",
+        "África austral",
+        "América Latina",
+        "Ártico"
+      ],
+      "categoria": "infraestructura_conectividad",
+      "tema_ids": [
+        21,
+        22,
+        23,
+        29,
+        89,
+        95,
+        271,
+        314
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Proceso mediante el cual Estados, empresas e instituciones financieras impulsan rutas terrestres, marítimas, portuarias y multimodales para diversificar la dependencia de corredores tradicionales expuestos a guerra, sanciones, cuellos de botella, concentración logística o rivalidad estratégica. El conjunto incluye proyectos promovidos por China, India, Rusia, Estados Unidos, la Unión Europea, Estados del Golfo y actores regionales; su evolución debe medirse por financiación, ejecución física, interoperabilidad, demanda y capacidad efectiva de complementar o sustituir rutas existentes.",
+      "por_que_importa": "La multiplicación de corredores alternativos puede redistribuir flujos comerciales, acceso a recursos, poder regulatorio y capacidad de negociación de los países de tránsito. No existe, sin embargo, una estrategia única ni un ganador predeterminado: algunos proyectos responden a China, otros compiten con sus redes y muchos dependen de decisiones locales. El seguimiento conjunto permite distinguir anuncios de infraestructura operativa, diversificación real de dependencia y simples superposiciones de proyectos inconexos.",
+      "es_macroevento_rector": true,
+      "macroevento_rector_id": null,
+      "macroevento_rector_ids": [],
+      "macroevento_relacionado_ids": [
+        "corredor-medio-caucaso-sur",
+        "corredor-lobito-minerales",
+        "imec-reconfiguracion-modular",
+        "ruta-maritima-norte-artico",
+        "iraq-development-road",
+        "instc-rusia-iran-india",
+        "chancay-corredores-bioceanicos",
+        "myanmar-corredores-china-india",
+        "ferrocarril-china-kirguistan-uzbekistan",
+        "land-bridge-tailandes-malaca",
+        "hormuz-bab-el-mandeb-suez",
+        "mar-negro-azov-guerra-logistica",
+        "panama-gobernanza-portuaria",
+        "africa-oriental-puertas-entrada",
+        "marruecos-estado-conector",
+        "turquia-potencia-bisagra-reordenamiento-regional"
+      ],
+      "senales": [
+        {
+          "id": "sig-rector-corredores-lobito-financiacion-20260430",
+          "fecha": "2026-04-30",
+          "titulo": "Lobito busca convertir respaldo geopolítico en financiación ejecutable",
+          "tipo": "financiacion_corredor",
+          "descripcion": "La búsqueda de prestamistas para Lobito muestra que el respaldo estratégico occidental solo se transforma en corredor cuando se cierran estructuras financieras y se coordinan ferrocarril, energía y pasos fronterizos.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-corredores-lobito-reuters-20260430"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-rector-corredores-iraq-gobernanza-20240507",
+          "fecha": "2024-05-07",
+          "titulo": "Development Road vincula conectividad con gobernanza y estabilidad interna",
+          "tipo": "viabilidad_institucional",
+          "descripcion": "El caso iraquí muestra que la infraestructura física no basta: financiación, distribución territorial de beneficios, seguridad y coordinación con vecinos condicionan la conversión de una ruta proyectada en red operativa.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-corredores-iraq-mecouncil-20240507"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-rector-corredores-chancay-respuesta-regional-20260430",
+          "fecha": "2026-04-30",
+          "titulo": "Chancay induce respuestas regionales antes de consolidar un corredor bioceánico",
+          "tipo": "reordenamiento_portuario",
+          "descripcion": "El debate chileno sobre una respuesta a Chancay evidencia efectos competitivos regionales, pero no demuestra todavía que la terminal peruana haya integrado de forma estable carga brasileña mediante conexiones transandinas.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-corredores-chancay-revista-marina-20260430"
+          ],
+          "intensidad": 3,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-rector-corredores-myanmar-competencia-20260616",
+          "fecha": "2026-06-16",
+          "titulo": "China e India impulsan accesos paralelos al Índico a través de Myanmar",
+          "tipo": "competencia_corredores",
+          "descripcion": "Kyaukphyu y Kaladan muestran que la diversificación puede ser simultáneamente competitiva y vulnerable a la agencia local, la guerra civil, el control territorial y la capacidad estatal de completar conexiones interiores.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-corredores-myanmar-ft-20260616",
+            "src-rector-corredores-kaladan-toi-20250707"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-rector-corredores-cku-ejecucion-20260717",
+          "fecha": "2026-07-17",
+          "titulo": "El ferrocarril China–Kirguistán–Uzbekistán entra en una prueba de ejecución",
+          "tipo": "ejecucion_infraestructura",
+          "descripcion": "El paso desde décadas de negociación hacia obras físicas aumenta la madurez del corredor, aunque los desafíos técnicos, financieros y de tránsito impiden equiparar construcción con funcionamiento comercial integrado.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-corredores-cku-diplomat-20260717"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-rector-corredores-tailandia-malaca-20260618",
+          "fecha": "2026-06-18",
+          "titulo": "Tailandia reactiva una alternativa parcial a Malaca sin demostrar aún demanda suficiente",
+          "tipo": "reactivacion_proyecto",
+          "descripcion": "El Land Bridge ilustra la diferencia entre una alternativa geográfica y una sustitución comercial viable: los costos de transbordo, la financiación, la demanda naviera y la oposición local siguen siendo variables decisivas.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-corredores-tailandia-reuters-20260618"
+          ],
+          "intensidad": 3,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "China",
+        "India",
+        "Rusia",
+        "Estados Unidos",
+        "Unión Europea",
+        "Turquía",
+        "Estados del Golfo",
+        "Estados de Asia Central",
+        "Estados de tránsito",
+        "Instituciones financieras multilaterales",
+        "Empresas portuarias, ferroviarias y navieras",
+        "Comunidades locales"
+      ],
+      "intereses": [
+        "Diversificar rutas comerciales, energéticas y de suministro frente a cuellos de botella, sanciones y conflictos.",
+        "Asegurar para China accesos terrestres y marítimos, mercados y continuidad logística sin asumir que todos los proyectos integran una estrategia única.",
+        "Desarrollar para India, Rusia, Estados Unidos, la Unión Europea, Turquía y los Estados del Golfo corredores propios, complementarios o competidores.",
+        "Convertir para los países de tránsito la ubicación geográfica en inversión, empleo, ingresos, conectividad y capacidad de negociación.",
+        "Evitar para los actores locales una dependencia financiera, tecnológica o regulatoria excesiva de un solo patrocinador.",
+        "Asegurar para operadores privados suficiente demanda, interoperabilidad, seguridad y rentabilidad de largo plazo.",
+        "Preservar para comunidades y autoridades subnacionales participación, compensaciones y control sobre impactos sociales y ambientales."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Se consolida una red selectiva de corredores parcialmente operativos. Algunos reducen exposición a rutas tradicionales y mejoran el poder de negociación de Estados de tránsito, pero la mayor parte complementa —y no sustituye— los ejes marítimos y terrestres existentes.",
+        "adverso": "Los proyectos se fragmentan por falta de financiación, guerras, sanciones, cambios de gobierno, oposición local, incompatibilidades aduaneras y demanda insuficiente. Persisten obras aisladas y anuncios sin formar redes logísticas confiables, mientras aumenta la deuda o la dependencia de patrocinadores externos.",
+        "transformador": "Varios corredores alcanzan operación multimodal estable y redistribuyen volúmenes, inversiones y estándares entre Eurasia, África y América Latina. La conectividad global se vuelve más redundante y policéntrica; China conserva un papel central, pero comparte capacidad de organización con India, Rusia, la UE, Estados Unidos, Turquía, Estados del Golfo y países de tránsito con mayor agencia."
+      },
+      "indicadores": [
+        "Cierre financiero verificable, desembolsos y composición de acreedores por proyecto.",
+        "Avance físico de puertos, ferrocarriles, carreteras, pasos fronterizos, energía y conexiones digitales.",
+        "Volúmenes reales de carga, tiempos puerta a puerta, costos logísticos y regularidad de los servicios.",
+        "Acuerdos aduaneros, interoperabilidad ferroviaria, digitalización documental y coordinación regulatoria.",
+        "Participación relativa de financiación, construcción y operación china frente a competidores y socios locales.",
+        "Decisiones de India, Rusia, Estados Unidos, la Unión Europea, Turquía y los Estados del Golfo sobre corredores alternativos.",
+        "Capacidad de los países de tránsito para renegociar contratos, diversificar socios y retener valor agregado.",
+        "Endeudamiento, controversias contractuales, desplazamientos, oposición local e impactos sociales y ambientales.",
+        "Cambios medibles de tráfico desde Suez, Malaca, rutas rusas tradicionales u otros ejes existentes hacia alternativas.",
+        "Diferencia entre infraestructura inaugurada, servicio comercial regular y corredor multimodal plenamente integrado."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 4,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 3,
+        "cobertura_observada": 3,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "corredores alternativos",
+        "redundancia logística",
+        "conectividad global",
+        "diversificación de rutas",
+        "China",
+        "Belt and Road Initiative",
+        "India",
+        "IMEC",
+        "INSTC",
+        "Middle Corridor",
+        "Iraq Development Road",
+        "Lobito Corridor",
+        "Chancay",
+        "corredores bioceánicos",
+        "China–Myanmar Economic Corridor",
+        "Kaladan",
+        "China–Kyrgyzstan–Uzbekistan railway",
+        "Thailand Land Bridge",
+        "Northern Sea Route",
+        "agencia de los Estados de tránsito"
+      ],
+      "fuentes": [
+        {
+          "id": "src-rector-corredores-lobito-reuters-20260430",
+          "media_id": "reuters",
+          "medio_catalogado": true,
+          "medio": "Reuters",
+          "titulo": "AFC lines up lenders for Lobito Corridor",
+          "fecha": "2026-04-30",
+          "idioma": "en",
+          "tipo": "noticia_de_agencia",
+          "url": "https://www.reuters.com/world/africa/afc-lines-up-regional-international-lenders-including-citi-lobito-corridor-2026-04-30/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del expediente de Lobito. Se reutiliza para comparar el paso desde respaldo político hacia financiación ejecutable; no prueba por sí sola el cierre financiero de todo el corredor.",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-rector-corredores-iraq-mecouncil-20240507",
+          "media_id": "middle-east-council-global-affairs",
+          "medio_catalogado": true,
+          "medio": "Middle East Council on Global Affairs",
+          "titulo": "Iraq’s Development Road Project: A Path to Prosperity or Instability?",
+          "fecha": "2024-05-07",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://mecouncil.org/publication/iraqs-development-road-project-a-path-to-prosperity-or-instability/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del expediente Iraq Development Road. Aporta una perspectiva regional sobre viabilidad, gobernanza, financiación y riesgos.",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-rector-corredores-chancay-revista-marina-20260430",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Revista de Marina de Chile",
+          "titulo": "Hub norte: una respuesta estratégica ante el desafío de Chancay",
+          "fecha": "2026-04-30",
+          "idioma": "es",
+          "tipo": "analisis",
+          "url": "https://revistamarina.cl/es/articulo/hub-norte-una-respuesta-estrategica-ante-el-desafio-de-chancay/es",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del expediente Chancay. Se conserva como perspectiva regional chilena, no como evaluación neutral de todo el corredor bioceánico.",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-rector-corredores-myanmar-ft-20260616",
+          "media_id": "financial-times",
+          "medio_catalogado": true,
+          "medio": "Financial Times",
+          "titulo": "China’s Xi Jinping urges Myanmar’s coup leader to push ahead with strategic project",
+          "fecha": "2026-06-16",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://www.ft.com/content/c2b5b90b-cc3b-4a1b-bdb2-c2520adad51d",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del expediente Myanmar. Documenta el impulso chino al CMEC y Kyaukphyu sin demostrar ejecución completa.",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-rector-corredores-kaladan-toi-20250707",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Times of India",
+          "titulo": "Kaladan project to be operational by '27, will unlock trade opportunities: Sonowal",
+          "fecha": "2025-07-07",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://timesofindia.indiatimes.com/city/guwahati/kaladan-project-to-be-operational-by-27-will-unlock-trade-opportunities-sonowal/articleshow/122304171.cms",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del expediente Myanmar. Expone la proyección oficial india para Kaladan; el plazo debe tratarse como objetivo, no como hecho consumado.",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-rector-corredores-cku-diplomat-20260717",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "The Diplomat",
+          "titulo": "Progress on the China-Kyrgyzstan-Uzbekistan railway: Some challenges remain",
+          "fecha": "2026-07-17",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://thediplomat.com/2026/07/progress-on-the-china-kyrgyzstan-uzbekistan-railway-some-challenges-remain/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del expediente CKU. Aporta una evaluación de avance y límites técnicos y financieros.",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-rector-corredores-tailandia-reuters-20260618",
+          "media_id": "reuters",
+          "medio_catalogado": true,
+          "medio": "Reuters",
+          "titulo": "Thailand revives $30 billion coast-to-coast corridor to rival Malacca Strait",
+          "fecha": "2026-06-18",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://www.reuters.com/world/china/thailand-revives-30-bln-coast-to-coast-corridor-rival-malacca-strait-2026-06-18/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del expediente Land Bridge. Documenta la reactivación gubernamental y conserva la distinción entre propuesta, financiación y operación.",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-corredores-alternativos-redes-logisticas-redundantes-001",
+          "descripcion": "Los proyectos agrupados no forman una alianza ni una estrategia coordinada. La relación rectora es una hipótesis comparativa sobre diversificación y redundancia; cada corredor conserva patrocinadores, intereses locales, madurez y riesgos distintos.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-rector-corredores-lobito-financiacion-20260430",
+            "sig-rector-corredores-iraq-gobernanza-20240507",
+            "sig-rector-corredores-chancay-respuesta-regional-20260430",
+            "sig-rector-corredores-myanmar-competencia-20260616",
+            "sig-rector-corredores-cku-ejecucion-20260717",
+            "sig-rector-corredores-tailandia-malaca-20260618"
+          ],
+          "fuente_ids": [
+            "src-rector-corredores-lobito-reuters-20260430",
+            "src-rector-corredores-iraq-mecouncil-20240507",
+            "src-rector-corredores-chancay-revista-marina-20260430",
+            "src-rector-corredores-myanmar-ft-20260616",
+            "src-rector-corredores-kaladan-toi-20250707",
+            "src-rector-corredores-cku-diplomat-20260717",
+            "src-rector-corredores-tailandia-reuters-20260618"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Conservar esta advertencia en el expediente y en el futuro encargo de análisis para impedir que la comparación se presente como un bloque coherente o como una estrategia exclusivamente china.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-corredores-alternativos-redes-logisticas-redundantes-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Se fija el límite analítico antes de desarrollar los procesos dependientes.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
       "id": "turquia-potencia-bisagra-reordenamiento-regional",
       "titulo": "Consolidación de Turquía como potencia bisagra multidimensional en el reordenamiento regional",
       "tipo_proceso": "macroproceso_emergente",
@@ -8391,6 +8808,2202 @@
               "detalle": "Se incorpora porque el rector es una síntesis de segundo orden: la trazabilidad factual permanece en los diez expedientes complementarios y sus análisis enlazados. Esta advertencia impide confundir la hipótesis agregada con evidencia primaria propia.",
               "realizada_el": "2026-08-27T10:26:31.669Z",
               "realizada_por": "usuario-local"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "titulo": "Regionalización de la guerra civil en Sudán y disputa por el orden del mar Rojo y el Cuerno de África",
+      "tipo_proceso": "macroproceso_estructural",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "África",
+        "Sudán",
+        "Cuerno de África",
+        "Mar Rojo",
+        "Oriente Medio",
+        "Europa oriental"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        11,
+        12,
+        143,
+        165,
+        190,
+        200,
+        204,
+        209,
+        210,
+        222,
+        258,
+        259
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Proceso mediante el cual la guerra iniciada en abril de 2023 entre las Fuerzas Armadas de Sudán (SAF) y las Fuerzas de Apoyo Rápido (RSF) evoluciona hacia una fragmentación territorial y estatal sostenida por economías de guerra, redes transfronterizas y apoyos externos. El conflicto articula intereses del Golfo, Egipto, Irán, Turquía, Rusia y otros actores en torno al mar Rojo, el oro, las rutas logísticas, la influencia militar y la competencia diplomática; al mismo tiempo, desplaza población, degrada la seguridad alimentaria y transmite inestabilidad a los países vecinos.",
+      "por_que_importa": "Sudán enlaza tres espacios que suelen analizarse por separado: la seguridad africana, el orden del mar Rojo y rivalidades de Medio Oriente y Eurasia. La cuestión rectora no es solamente quién gana la guerra, sino si el país queda dividido de hecho, qué redes externas hacen sostenible esa división y cómo los intereses contrapuestos de patrocinadores y mediadores alteran el acceso a puertos, minerales, rutas, alianzas y negociaciones. Seguir las ramificaciones permite evaluar tanto la posibilidad de un arreglo como el riesgo de una guerra regional crónica.",
+      "es_macroevento_rector": true,
+      "macroevento_rector_id": null,
+      "macroevento_rector_ids": [],
+      "macroevento_relacionado_ids": [
+        "sudan-fragmentacion-territorial-gobiernos-rivales",
+        "sudan-apoyos-externos-golfo-egipto-iran-turquia",
+        "sudan-oro-economia-guerra-redes-regionales",
+        "sudan-port-sudan-mar-rojo-competencia-bases",
+        "sudan-rusia-ucrania-guerra-conectada",
+        "sudan-mediaciones-jeddah-au-igad-quad",
+        "sudan-hambre-desplazamiento-acceso-humanitario",
+        "sudan-desborde-regional-fronteras-cuerno-africa",
+        "hormuz-bab-el-mandeb-suez",
+        "africa-oriental-puertas-entrada",
+        "mar-negro-azov-guerra-logistica",
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "corredores-alternativos-redes-logisticas-redundantes",
+        "somalia-turquia-energia-seguridad"
+      ],
+      "senales": [
+        {
+          "id": "sig-sudan-guerra-civil-regionalizacion-mar-rojo-division-territorial-20260630",
+          "fecha": "2026-06-30",
+          "titulo": "Sudán queda dividido entre un este controlado por las SAF y un oeste dominado por las RSF",
+          "tipo": "escalada_militar",
+          "descripcion": "La recuperación de Jartum por las Fuerzas Armadas de Sudán no reunificó el país: el centro de gravedad de la guerra se desplazó hacia Darfur, Kordofán y Nilo Azul, mientras ambas coaliciones organizan administraciones rivales.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-ukSecurity"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-guerra-civil-regionalizacion-mar-rojo-internacionalizacion-20260417",
+          "fecha": "2026-04-17",
+          "titulo": "La guerra moviliza redes de apoyo militar y financiero de más de diez países",
+          "tipo": "proyeccion_extrarregional",
+          "descripcion": "Apoyos externos, rutas de armas, drones y financiación convierten la competencia SAF–RSF en un conflicto internacionalizado, aunque los actores sudaneses conservan objetivos y agencia propios.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-csis",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-euaaActors"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-guerra-civil-regionalizacion-mar-rojo-oro-financia-guerra-20260324",
+          "fecha": "2026-03-24",
+          "titulo": "El oro conecta la financiación de ambos bandos con redes comerciales regionales",
+          "tipo": "financiacion",
+          "descripcion": "La producción, exportación y circulación clandestina de oro sostienen capacidades militares y vinculan la guerra con Emiratos Árabes Unidos, Egipto y países de tránsito.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-chathamGold"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-guerra-civil-regionalizacion-mar-rojo-au-rechaza-fragmentacion-20260331",
+          "fecha": "2026-03-31",
+          "titulo": "La Unión Africana rechaza el gobierno paralelo y pide unificar las mediaciones",
+          "tipo": "coordinacion_multilateral",
+          "descripcion": "La AU identifica simultáneamente tres riesgos estructurales: fragmentación estatal, interferencia externa y proliferación de iniciativas de paz no coordinadas.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-auDecision"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-guerra-civil-regionalizacion-mar-rojo-desplazamiento-hambre-20260824",
+          "fecha": "2026-08-24",
+          "titulo": "El desplazamiento masivo y el deterioro alimentario alteran el entorno regional",
+          "tipo": "seguridad",
+          "descripcion": "El tablero de UNHCR registró más de 11,29 millones de personas desplazadas forzosamente y el IPC documentó umbrales extremos de malnutrición en Darfur, con efectos directos sobre fronteras y acceso humanitario.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-unhcr",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-ipc"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-guerra-civil-regionalizacion-mar-rojo-rusia-ucrania-mar-rojo-20251230",
+          "fecha": "2025-12-30",
+          "titulo": "La dimensión Rusia–Ucrania converge con la disputa por oro y acceso al mar Rojo",
+          "tipo": "reposicionamiento_estrategico",
+          "descripcion": "Las redes de Wagner/Africa Corps, reportes sobre apoyo ucraniano a las SAF y el proyecto ruso de base naval conectan Sudán con la guerra europea, pero el plan de base fue reportado como congelado a fines de 2025.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-euaaActors",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-stateGold",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-navalAgreement",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-navalFreeze"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Fuerzas Armadas de Sudán (SAF)",
+        "Fuerzas de Apoyo Rápido (RSF)",
+        "Milicias y movimientos armados sudaneses",
+        "Actores civiles sudaneses",
+        "Emiratos Árabes Unidos",
+        "Egipto",
+        "Arabia Saudita",
+        "Irán",
+        "Turquía",
+        "Rusia",
+        "Ucrania",
+        "Estados Unidos",
+        "Unión Africana",
+        "IGAD",
+        "Naciones Unidas",
+        "Chad",
+        "Libia",
+        "Sudán del Sur",
+        "República Centroafricana",
+        "Etiopía"
+      ],
+      "intereses": [
+        "Conservar para las SAF el aparato estatal, Port Sudan, las instituciones centrales y la supremacía militar sobre fuerzas paramilitares.",
+        "Convertir para las RSF el control territorial, las redes comerciales y las alianzas armadas en poder político y reconocimiento de hecho.",
+        "Asegurar para actores del Golfo y Egipto influencia sobre el mar Rojo, flujos de oro, agricultura, puertos y configuración del gobierno sudanés.",
+        "Obtener para Rusia acceso estratégico al mar Rojo, recursos y alianzas africanas, y limitar los efectos de sanciones vinculadas con la guerra de Ucrania.",
+        "Impedir para Ucrania que redes rusas utilicen Sudán como fuente de ingresos, apoyo logístico o expansión militar.",
+        "Preservar para vecinos africanos estabilidad fronteriza, comercio, petróleo, agua, rutas humanitarias y capacidad de gestionar refugiados.",
+        "Evitar para la población civil la partición coercitiva, la violencia étnica, el hambre, el desplazamiento y la subordinación de la ayuda a objetivos militares."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Persiste una división territorial de hecho. Las SAF conservan el este y las instituciones centrales, mientras las RSF y aliados mantienen enclaves occidentales y meridionales. Los patrocinadores sostienen capacidades suficientes para impedir una victoria decisiva y las negociaciones producen pausas parciales sin transición inclusiva.",
+        "adverso": "La guerra se fragmenta en múltiples frentes, administraciones rivales y economías armadas. Aumentan la violencia étnica, el hambre y los desplazamientos; las rutas desde Libia, Chad y otros vecinos se militarizan, y la competencia por Port Sudan y el mar Rojo atrae apoyos externos más directos.",
+        "transformador": "Presión coordinada de actores africanos, árabes e internacionales reduce los flujos militares y financieros, abre corredores humanitarios y conduce a un alto el fuego verificable. Un proceso sudanés inclusivo preserva instituciones comunes, incorpora actores civiles y negocia seguridad, recursos y gobernanza territorial."
+      },
+      "indicadores": [
+        "Cambios mensuales de control territorial en Darfur, Kordofán, Nilo Azul, Jartum y corredores hacia Port Sudan.",
+        "Funcionamiento y reconocimiento de administraciones rivales, bancos, monedas, tribunales y servicios públicos.",
+        "Transferencias verificadas o reportadas de armas, drones, financiación, combustible, entrenamiento y combatientes externos.",
+        "Producción, exportaciones declaradas, precios, decomisos y rutas de contrabando de oro sudanés.",
+        "Situación jurídica y material de cualquier acuerdo ruso de acceso naval; obras, ratificación, presencia de buques o congelamiento.",
+        "Participación ucraniana o rusa documentada en operaciones, entrenamiento, inteligencia y redes comerciales.",
+        "Coordinación efectiva entre Jeddah, Cuarteto, AU, IGAD, Naciones Unidas, vecinos y actores sudaneses.",
+        "Cumplimiento de treguas, mecanismos de monitoreo, acceso humanitario y protección de civiles.",
+        "Desplazamiento interno y transfronterizo, retornos, hambre, malnutrición y financiación humanitaria con fecha de corte.",
+        "Incidentes y flujos militares en fronteras con Chad, Libia, Sudán del Sur, República Centroafricana, Egipto, Eritrea y Etiopía."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Sudán",
+        "Sudan civil war",
+        "SAF",
+        "RSF",
+        "Abdel Fattah al-Burhan",
+        "Mohamed Hamdan Dagalo",
+        "Hemedti",
+        "Darfur",
+        "Kordofán",
+        "Port Sudan",
+        "mar Rojo",
+        "oro sudanés",
+        "Emiratos Árabes Unidos",
+        "Egipto",
+        "Arabia Saudita",
+        "Irán",
+        "Turquía",
+        "Wagner Group",
+        "Africa Corps",
+        "Ucrania",
+        "Jeddah talks",
+        "AU",
+        "IGAD",
+        "gobierno paralelo",
+        "desplazamiento",
+        "hambruna"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-csis",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Center for Strategic and International Studies (CSIS)",
+          "titulo": "The Sudan War in 10 Charts",
+          "fecha": "2026-04-17",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://www.csis.org/analysis/sudan-war-10-charts",
+          "observaciones": "Síntesis comparada sobre territorialidad, apoyos externos, oro, drones y crisis humanitaria. Se usa como análisis secundario; las atribuciones de apoyo deben conservar las negaciones y grados de evidencia indicados por otras fuentes.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-ukSecurity",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "UK Home Office",
+          "titulo": "Country policy and information note: security situation, Sudan, July 2026",
+          "fecha": "2026-07-23",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+          "observaciones": "Compilación oficial con corte informativo al 30 de junio de 2026. Documenta control territorial, gobiernos rivales, desplazamiento, rutas transfronterizas y variación geográfica; no sustituye la actualización continua del frente.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-chathamGold",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Chatham House",
+          "titulo": "Gold and the war in Sudan: How regional solutions can support an end to conflict",
+          "fecha": "2026-03-24",
+          "idioma": "en",
+          "tipo": "informe_investigacion",
+          "url": "https://www.chathamhouse.org/2025/03/gold-and-war-sudan",
+          "observaciones": "Investigación publicada el 26 de marzo de 2025 y actualizada el 24 de marzo de 2026. Analiza el oro como fuente de financiación, incentivo bélico y red regional; diferencia producción, comercio declarado y contrabando.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-auDecision",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "African Union",
+          "titulo": "Assembly/AU/Dec.978(XXXIX)",
+          "fecha": "2026-03-31",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://au.int/sites/default/files/decisions/46188-Assembly_Decisions_31_March_E.pdf",
+          "observaciones": "Decisión de la 39.ª Asamblea de la Unión Africana. Rechaza la fragmentación y el gobierno paralelo, condena la interferencia externa y pide coordinar las iniciativas de paz bajo AU e IGAD.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-unhcr",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "UNHCR",
+          "titulo": "Sudan Situation – Operational Data Portal",
+          "fecha": "2026-08-24",
+          "idioma": "en",
+          "tipo": "informe_estadistico",
+          "url": "https://data.unhcr.org/en/situations/sudansituation",
+          "observaciones": "Tablero dinámico. Al 24 de agosto de 2026 registraba 11.294.222 personas desplazadas forzosamente; sus componentes tienen fechas de actualización distintas y no deben sumarse sin revisar definiciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-ipc",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Integrated Food Security Phase Classification (IPC)",
+          "titulo": "Sudan IPC Alert: Famine thresholds for acute malnutrition surpassed in Um Baru and Kernoi",
+          "fecha": "2026-02-05",
+          "idioma": "en",
+          "tipo": "informe_estadistico",
+          "url": "https://www.ipcinfo.org/fileadmin/user_upload/ipcinfo/docs/IPC_Alert_Sudan_Feb2026.pdf",
+          "observaciones": "Alerta técnica: superar umbrales de malnutrición no constituye por sí solo una clasificación completa de hambruna. Conserva esa distinción y señala graves limitaciones de acceso y medición.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-euaaActors",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "European Union Agency for Asylum (EUAA)",
+          "titulo": "Sudan: Security Situation, February 2025 – International actors",
+          "fecha": "2025-02-11",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://dip-aws.euaa.europa.eu/coi/sudan/2025/security-situation/12-actors-conflict/122-international-actors",
+          "observaciones": "Informe de información de país que compila apoyo externo alegado o documentado. Registra expresamente las negaciones de Egipto y Emiratos, el apoyo iraní reportado, la evolución rusa y la intervención ucraniana informada por terceros.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-stateGold",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "United States Department of State",
+          "titulo": "Africa Gold Advisory",
+          "fecha": "2023-06-27",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://2021-2025.state.gov/africa-gold-advisory/",
+          "observaciones": "Advertencia oficial sobre riesgos del comercio aurífero africano. Documenta redes vinculadas con Wagner y la relación entre oro, conflicto, sanciones y financiación rusa; su alcance excede Sudán.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-navalAgreement",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Sudan Tribune",
+          "titulo": "Sudan, Russia reach agreement on Russian naval base: Sudanese FM",
+          "fecha": "2025-02-12",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://sudantribune.com/article/297278",
+          "observaciones": "Registra la declaración del canciller sudanés sobre un acuerdo. No demuestra ratificación, construcción ni operación de la base y debe leerse junto con el reporte posterior de congelamiento.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-navalFreeze",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Sudan Tribune",
+          "titulo": "Sudan's Burhan tells Saudi Arabia Russian naval base plans are frozen",
+          "fecha": "2025-12-30",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://sudantribune.com/article/308824",
+          "observaciones": "Reporte basado en fuentes privadas sobre el congelamiento del proyecto. Se usa para impedir que el anuncio de febrero de 2025 se presente como una base confirmada u operativa.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sudan-guerra-civil-regionalizacion-mar-rojo-001",
+          "descripcion": "La internacionalización no convierte a Sudán en una guerra proxy simple. Las SAF, las RSF, sus milicias aliadas y actores civiles conservan agendas propias; los apoyos externos son desiguales, cambiantes y tienen grados de evidencia distintos.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-sudan-guerra-civil-regionalizacion-mar-rojo-division-territorial-20260630",
+            "sig-sudan-guerra-civil-regionalizacion-mar-rojo-internacionalizacion-20260417",
+            "sig-sudan-guerra-civil-regionalizacion-mar-rojo-rusia-ucrania-mar-rojo-20251230"
+          ],
+          "fuente_ids": [
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-ukSecurity",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-csis",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-euaaActors",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-navalFreeze"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "El análisis rector debe distinguir agencia sudanesa, apoyo confirmado, apoyo reportado, acusación y negación. No presentar dos bloques externos estables.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-guerra-civil-regionalizacion-mar-rojo-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "El análisis rector debe distinguir agencia sudanesa, apoyo confirmado, apoyo reportado, acusación y negación. No presentar dos bloques externos estables.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        },
+        {
+          "advertencia_id": "adv-sudan-guerra-civil-regionalizacion-mar-rojo-002",
+          "descripcion": "Las cifras de desplazamiento, retornos, refugio y malnutrición proceden de cortes, poblaciones y metodologías diferentes. No deben sumarse ni presentarse como una serie homogénea.",
+          "tipo": "incomparabilidad_metricas",
+          "signal_ids": [
+            "sig-sudan-guerra-civil-regionalizacion-mar-rojo-desplazamiento-hambre-20260824"
+          ],
+          "fuente_ids": [
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-unhcr",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-ipc",
+            "src-sudan-guerra-civil-regionalizacion-mar-rojo-ukSecurity"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "media",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Fechar cada cifra y conservar las definiciones de UNHCR, IOM, OCHA e IPC.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-guerra-civil-regionalizacion-mar-rojo-002-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Fechar cada cifra y conservar las definiciones de UNHCR, IOM, OCHA e IPC.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "sudan-fragmentacion-territorial-gobiernos-rivales",
+      "titulo": "Fragmentación territorial de Sudán y consolidación de gobiernos rivales",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "Sudán",
+        "Darfur",
+        "Kordofán",
+        "Nilo Azul",
+        "Mar Rojo"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        5,
+        6,
+        143,
+        200,
+        209
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Evolución de la guerra hacia una división de hecho entre zonas controladas por las SAF, las RSF y coaliciones armadas no plenamente subordinadas. El proceso incluye administraciones rivales, instituciones paralelas, cambios del frente hacia Darfur y Kordofán y una creciente desconexión entre control militar, legitimidad política y prestación de servicios.",
+      "por_que_importa": "La partición puede consolidarse sin una declaración formal ni reconocimiento internacional. Determina quién controla población, rutas, recursos, ayuda y representación exterior, y condiciona cualquier negociación futura sobre seguridad y transición.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "macroevento_rector_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "macroevento_relacionado_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "senales": [
+        {
+          "id": "sig-sudan-fragmentacion-territorial-gobiernos-rivales-control-rival-20260630",
+          "fecha": "2026-06-30",
+          "titulo": "Las SAF y las RSF controlan espacios diferenciados y dependen de coaliciones armadas heterogéneas",
+          "tipo": "escalada_militar",
+          "descripcion": "Las SAF controlan la mayor parte del norte, este y centro; las RSF dominan amplias zonas occidentales, mientras movimientos armados y milicias conservan enclaves y agendas propias.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-fragmentacion-territorial-gobiernos-rivales-ukSecurity"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-fragmentacion-territorial-gobiernos-rivales-administraciones-rivales-20260331",
+          "fecha": "2026-03-31",
+          "titulo": "La institucionalización de gobiernos rivales eleva el riesgo de partición de hecho",
+          "tipo": "gobernanza",
+          "descripcion": "Ambos bandos reclaman estructuras civiles; la AU rechazó el gobierno paralelo asociado con las RSF y llamó a preservar las instituciones comunes del Estado.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-fragmentacion-territorial-gobiernos-rivales-ukSecurity",
+            "src-sudan-fragmentacion-territorial-gobiernos-rivales-auDecision"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Fuerzas Armadas de Sudán (SAF)",
+        "Fuerzas de Apoyo Rápido (RSF)",
+        "Sudan Founding Alliance (Tasis)",
+        "SPLA-N",
+        "Movimientos armados de Darfur",
+        "Actores civiles sudaneses",
+        "Unión Africana"
+      ],
+      "intereses": [
+        "Preservar para las SAF continuidad estatal e instituciones centrales desde Port Sudan y Jartum.",
+        "Transformar para las RSF control territorial en autoridad política e instituciones propias.",
+        "Retener para movimientos armados autonomía, territorios, recursos y capacidad de negociación.",
+        "Evitar para actores civiles que la transición quede subordinada a repartos entre coaliciones militares.",
+        "Preservar para la AU y vecinos la unidad territorial y reducir el riesgo de secesión violenta."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Se estabiliza una frontera móvil entre un este/norte bajo las SAF y un oeste bajo las RSF, con Kordofán como zona principal de disputa y administraciones paralelas de capacidad desigual.",
+        "adverso": "Las instituciones rivales consolidan monedas, bancos, justicia, impuestos y fuerzas propias; la fragmentación atrae reconocimiento informal, economías criminales y violencia étnica.",
+        "transformador": "Un alto el fuego territorial verificado abre una negociación sobre mando militar, gobiernos subnacionales, recursos y transición civil dentro de un Estado común."
+      },
+      "indicadores": [
+        "Mapas mensuales de control territorial y conectividad entre enclaves.",
+        "Sedes, presupuestos, bancos, monedas, tribunales y servicios de administraciones rivales.",
+        "Reconocimiento, visitas oficiales o acuerdos exteriores con autoridades paralelas.",
+        "Cohesión, defecciones y autonomía de milicias aliadas a SAF y RSF.",
+        "Cambios demográficos por expulsión, retorno o concentración étnica."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 4,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "alta"
+      },
+      "palabras_clave": [
+        "Sudán dividido",
+        "SAF",
+        "RSF",
+        "gobiernos rivales",
+        "Tasis",
+        "Port Sudan",
+        "Nyala",
+        "Darfur",
+        "Kordofán",
+        "Nilo Azul",
+        "partición de hecho"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sudan-fragmentacion-territorial-gobiernos-rivales-ukSecurity",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "UK Home Office",
+          "titulo": "Country policy and information note: security situation, Sudan, July 2026",
+          "fecha": "2026-07-23",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+          "observaciones": "Compilación oficial con corte informativo al 30 de junio de 2026. Documenta control territorial, gobiernos rivales, desplazamiento, rutas transfronterizas y variación geográfica; no sustituye la actualización continua del frente.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-fragmentacion-territorial-gobiernos-rivales-auDecision",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "African Union",
+          "titulo": "Assembly/AU/Dec.978(XXXIX)",
+          "fecha": "2026-03-31",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://au.int/sites/default/files/decisions/46188-Assembly_Decisions_31_March_E.pdf",
+          "observaciones": "Decisión de la 39.ª Asamblea de la Unión Africana. Rechaza la fragmentación y el gobierno paralelo, condena la interferencia externa y pide coordinar las iniciativas de paz bajo AU e IGAD.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sudan-fragmentacion-territorial-gobiernos-rivales-001",
+          "descripcion": "El control territorial es móvil y las coaliciones armadas no son bloques plenamente coherentes. Un mapa de una fecha no demuestra soberanía estable ni reconocimiento estatal.",
+          "tipo": "alcance_institucional_incierto",
+          "signal_ids": [
+            "sig-sudan-fragmentacion-territorial-gobiernos-rivales-control-rival-20260630",
+            "sig-sudan-fragmentacion-territorial-gobiernos-rivales-administraciones-rivales-20260331"
+          ],
+          "fuente_ids": [
+            "src-sudan-fragmentacion-territorial-gobiernos-rivales-ukSecurity",
+            "src-sudan-fragmentacion-territorial-gobiernos-rivales-auDecision"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Fechar cada mapa y distinguir control militar, administración efectiva, legitimidad y reconocimiento internacional.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-fragmentacion-territorial-gobiernos-rivales-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Fechar cada mapa y distinguir control militar, administración efectiva, legitimidad y reconocimiento internacional.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "sudan-apoyos-externos-golfo-egipto-iran-turquia",
+      "titulo": "Competencia de apoyos externos en Sudán entre el Golfo, Egipto, Irán y Turquía",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "Sudán",
+        "Oriente Medio",
+        "Golfo",
+        "Mar Rojo",
+        "Cuerno de África"
+      ],
+      "categoria": "potencias_bloques",
+      "tema_ids": [
+        1,
+        11,
+        18,
+        190,
+        200,
+        209,
+        222,
+        249,
+        258
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Consolidación de redes externas de apoyo político, financiero y militar a las SAF, las RSF y aliados. Emiratos Árabes Unidos es acusado de sostener a las RSF y lo niega; Egipto mantiene vínculos estrechos con las SAF y también niega determinadas acusaciones; Irán y Turquía aparecen vinculados con capacidades de las SAF. Los intereses combinan seguridad del mar Rojo, rivalidad regional, agricultura, oro, puertos y acceso político.",
+      "por_que_importa": "La disponibilidad de armas, drones, financiación y rutas logísticas altera el equilibrio del frente y reduce los incentivos para negociar. A la vez, los supuestos patrocinadores no forman bloques estables: pueden competir entre sí, mediar, negar su participación o cambiar de preferencia.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "macroevento_rector_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "macroevento_relacionado_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "industria-defensa-turca-proyeccion-regional",
+        "hormuz-bab-el-mandeb-suez"
+      ],
+      "senales": [
+        {
+          "id": "sig-sudan-apoyos-externos-golfo-egipto-iran-turquia-apoyos-externos-20260417",
+          "fecha": "2026-04-17",
+          "titulo": "Egipto, Irán, Turquía y otros actores respaldan a las SAF con capacidades diferentes",
+          "tipo": "cooperacion_militar_industrial",
+          "descripcion": "La asistencia incluye vínculos militares, drones, entrenamiento o apoyo político en grados distintos y no constituye una alianza unificada.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-csis",
+            "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-euaaActors"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-apoyos-externos-golfo-egipto-iran-turquia-armas-uae-rsf-20250508",
+          "fecha": "2025-05-08",
+          "titulo": "Amnesty identifica armamento chino que atribuye a reexportación emiratí hacia las RSF",
+          "tipo": "despliegue_capacidad",
+          "descripcion": "La investigación técnica refuerza la evidencia de apoyo material a las RSF; Emiratos Árabes Unidos niega proporcionar apoyo militar, logístico, político o financiero a los beligerantes.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-amnestyWeapons",
+            "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-euaaActors"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-apoyos-externos-golfo-egipto-iran-turquia-drones-cambian-frente-20260417",
+          "fecha": "2026-04-17",
+          "titulo": "La expansión de drones amplía alcance y letalidad de ambos bandos",
+          "tipo": "expansion_militar",
+          "descripcion": "Las SAF y las RSF incorporaron sistemas de procedencia diversa, haciendo más porosas las fronteras entre producción, transferencia estatal, reexportación y mercado comercial.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-csis",
+            "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-amnestyWeapons"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Fuerzas Armadas de Sudán (SAF)",
+        "Fuerzas de Apoyo Rápido (RSF)",
+        "Emiratos Árabes Unidos",
+        "Egipto",
+        "Irán",
+        "Turquía",
+        "Arabia Saudita",
+        "Libyan National Army",
+        "China como origen de sistemas identificados",
+        "Empresas y redes logísticas regionales"
+      ],
+      "intereses": [
+        "Proteger para Egipto un gobierno compatible con sus intereses de seguridad, Nilo, frontera y mar Rojo.",
+        "Mantener para Emiratos acceso económico, redes comerciales, oro e influencia política, preservando su posición oficial de no apoyo a los beligerantes.",
+        "Ampliar para Irán y Turquía relaciones militares, acceso regional y demostración de sistemas sin asumir coordinación entre ambos.",
+        "Contrarrestar para Arabia Saudita la militarización de la competencia regional y proteger la costa opuesta del mar Rojo.",
+        "Obtener para SAF y RSF armas, financiación, combustible, inteligencia y legitimidad exterior."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Continúan apoyos calibrados y negables que impiden el colapso de los bandos, con drones y rutas regionales como herramientas principales.",
+        "adverso": "Transferencias más avanzadas y ataques de largo alcance convierten ciudades, puertos y fronteras vecinas en objetivos, y la rivalidad del Golfo se vuelve más directa.",
+        "transformador": "Coordinación regional establece controles verificables sobre armas, combustible, financiación y tránsito, reduciendo la capacidad de ambos bandos para sostener ofensivas."
+      },
+      "indicadores": [
+        "Modelos, números de serie y restos verificables de armas y drones.",
+        "Vuelos, rutas terrestres, puertos, pasos fronterizos y empresas vinculadas con transferencias.",
+        "Declaraciones, negaciones, sanciones e investigaciones oficiales.",
+        "Entrenamiento, mantenimiento, repuestos y presencia de asesores.",
+        "Cambios del frente inmediatamente posteriores a nuevas capacidades."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 4,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "UAE Sudan RSF",
+        "Egypt SAF",
+        "Iranian drones Sudan",
+        "Turkish drones Sudan",
+        "arms embargo Darfur",
+        "AH-4 howitzer",
+        "GB50A",
+        "Wing Loong II",
+        "Mohajer-6",
+        "apoyos externos"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-csis",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Center for Strategic and International Studies (CSIS)",
+          "titulo": "The Sudan War in 10 Charts",
+          "fecha": "2026-04-17",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://www.csis.org/analysis/sudan-war-10-charts",
+          "observaciones": "Síntesis comparada sobre territorialidad, apoyos externos, oro, drones y crisis humanitaria. Se usa como análisis secundario; las atribuciones de apoyo deben conservar las negaciones y grados de evidencia indicados por otras fuentes.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-euaaActors",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "European Union Agency for Asylum (EUAA)",
+          "titulo": "Sudan: Security Situation, February 2025 – International actors",
+          "fecha": "2025-02-11",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://dip-aws.euaa.europa.eu/coi/sudan/2025/security-situation/12-actors-conflict/122-international-actors",
+          "observaciones": "Informe de información de país que compila apoyo externo alegado o documentado. Registra expresamente las negaciones de Egipto y Emiratos, el apoyo iraní reportado, la evolución rusa y la intervención ucraniana informada por terceros.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-amnestyWeapons",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Amnesty International",
+          "titulo": "Sudan: Advanced Chinese weaponry provided by UAE identified in breach of arms embargo – new investigation",
+          "fecha": "2025-05-08",
+          "idioma": "en",
+          "tipo": "informe_investigacion",
+          "url": "https://www.amnesty.org/en/latest/news/2025/05/sudan-advanced-chinese-weaponry-provided-by-uae-identified-in-breach-of-arms-embargo-new-investigation/",
+          "observaciones": "Investigación técnica sobre armas chinas identificadas en Sudán y su atribución a una reexportación desde Emiratos Árabes Unidos. La posición emiratí de negación se conserva mediante la fuente EUAA.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sudan-apoyos-externos-golfo-egipto-iran-turquia-001",
+          "descripcion": "Las fuentes no permiten tratar todos los apoyos externos como equivalentes ni plenamente confirmados. Emiratos Árabes Unidos y Egipto han negado acusaciones específicas; la procedencia de un arma no identifica automáticamente al transferente final.",
+          "tipo": "distincion_actores",
+          "signal_ids": [
+            "sig-sudan-apoyos-externos-golfo-egipto-iran-turquia-apoyos-externos-20260417",
+            "sig-sudan-apoyos-externos-golfo-egipto-iran-turquia-armas-uae-rsf-20250508",
+            "sig-sudan-apoyos-externos-golfo-egipto-iran-turquia-drones-cambian-frente-20260417"
+          ],
+          "fuente_ids": [
+            "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-csis",
+            "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-euaaActors",
+            "src-sudan-apoyos-externos-golfo-egipto-iran-turquia-amnestyWeapons"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "En cada afirmación indicar si se trata de identificación técnica, reporte, acusación, declaración oficial o negación.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-apoyos-externos-golfo-egipto-iran-turquia-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "En cada afirmación indicar si se trata de identificación técnica, reporte, acusación, declaración oficial o negación.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "sudan-oro-economia-guerra-redes-regionales",
+      "titulo": "Economía de guerra del oro sudanés y redes financieras regionales",
+      "tipo_proceso": "macroproceso_estructural",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "Sudán",
+        "Darfur",
+        "Oriente Medio",
+        "Golfo",
+        "África central"
+      ],
+      "categoria": "minerales_recursos_estrategicos",
+      "tema_ids": [
+        89,
+        95,
+        190,
+        204,
+        209
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Transformación del oro en fuente simultánea de financiación militar, poder territorial, comercio exterior y evasión de controles. SAF, RSF, empresas, comerciantes y redes transfronterizas capturan distintas etapas de producción y exportación; Emiratos aparece como destino principal, mientras Egipto, Chad, Eritrea, Sudán del Sur y otros territorios actúan como mercados o corredores.",
+      "por_que_importa": "El oro reduce la dependencia de presupuestos estatales y ayuda exterior, prolonga la guerra y crea beneficiarios capaces de bloquear acuerdos. También conecta Sudán con sanciones, redes rusas y decisiones financieras de Medio Oriente.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "macroevento_rector_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "macroevento_relacionado_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "corredor-lobito-minerales",
+        "mar-negro-azov-guerra-logistica"
+      ],
+      "senales": [
+        {
+          "id": "sig-sudan-oro-economia-guerra-redes-regionales-oro-red-regional-20260324",
+          "fecha": "2026-03-24",
+          "titulo": "La mayor parte del oro artesanal circula hacia Emiratos directa o indirectamente",
+          "tipo": "financiacion",
+          "descripcion": "Redes a través de países vecinos conectan producción, intermediación y exportación, creando ingresos para actores armados y oportunidades para facilitadores regionales.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-oro-economia-guerra-redes-regionales-chathamGold"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-oro-economia-guerra-redes-regionales-oro-sanciones-rusia-20230627",
+          "fecha": "2023-06-27",
+          "titulo": "Las redes auríferas vinculadas con Wagner conectan Sudán con financiación y evasión de sanciones rusas",
+          "tipo": "riesgo_sanciones_comercio",
+          "descripcion": "El oro sudanés integra una economía transnacional en la que conflicto local, empresas opacas y presión de sanciones internacionales pueden reforzarse mutuamente.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-oro-economia-guerra-redes-regionales-stateGold",
+            "src-sudan-oro-economia-guerra-redes-regionales-chathamGold"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Fuerzas Armadas de Sudán (SAF)",
+        "Fuerzas de Apoyo Rápido (RSF)",
+        "Empresas mineras sudanesas",
+        "Comerciantes y refinerías",
+        "Emiratos Árabes Unidos",
+        "Egipto",
+        "Chad",
+        "Eritrea",
+        "Sudán del Sur",
+        "Wagner Group / Africa Corps",
+        "Autoridades aduaneras y financieras"
+      ],
+      "intereses": [
+        "Financiar operaciones, salarios y adquisición de armas para SAF y RSF.",
+        "Controlar minas, licencias, transporte, refinación y exportación.",
+        "Asegurar para centros regionales de comercio aurífero suministro, márgenes y trazabilidad favorable.",
+        "Usar para redes rusas el oro como fuente de ingresos y resiliencia frente a sanciones.",
+        "Formalizar para autoridades sudanesas exportaciones e ingresos fiscales sin perder control político."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Coexisten exportaciones oficiales y contrabando a gran escala; ambos bandos capturan rentas y los centros regionales conservan incentivos ambiguos para imponer trazabilidad.",
+        "adverso": "La fragmentación territorial consolida enclaves mineros militarizados, aumenta el lavado de oro y financia compras de armas pese a sanciones y embargo.",
+        "transformador": "Trazabilidad regional, sanciones selectivas a facilitadores, incentivos de formalización y un acuerdo de reparto fiscal reducen la renta bélica y vinculan el oro a reconstrucción."
+      },
+      "indicadores": [
+        "Producción oficial estimada y discrepancias con exportaciones registradas.",
+        "Flujos declarados hacia Emiratos, Egipto y otros destinos.",
+        "Decomisos, rutas, vuelos y corredores de contrabando.",
+        "Control territorial de minas y plantas de procesamiento.",
+        "Sanciones, beneficiarios finales, empresas pantalla y pagos vinculados con armas.",
+        "Ingresos presupuestarios y acuerdos de reparto de recursos."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 5,
+        "incertidumbre": 5,
+        "urgencia": 4,
+        "cobertura_observada": 3,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Sudan gold",
+        "oro sudanés",
+        "Darfur gold",
+        "Jebel Amer",
+        "UAE gold hub",
+        "gold smuggling",
+        "Wagner gold",
+        "Africa Gold Advisory",
+        "economía de guerra",
+        "sanciones"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sudan-oro-economia-guerra-redes-regionales-chathamGold",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Chatham House",
+          "titulo": "Gold and the war in Sudan: How regional solutions can support an end to conflict",
+          "fecha": "2026-03-24",
+          "idioma": "en",
+          "tipo": "informe_investigacion",
+          "url": "https://www.chathamhouse.org/2025/03/gold-and-war-sudan",
+          "observaciones": "Investigación publicada el 26 de marzo de 2025 y actualizada el 24 de marzo de 2026. Analiza el oro como fuente de financiación, incentivo bélico y red regional; diferencia producción, comercio declarado y contrabando.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-oro-economia-guerra-redes-regionales-stateGold",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "United States Department of State",
+          "titulo": "Africa Gold Advisory",
+          "fecha": "2023-06-27",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://2021-2025.state.gov/africa-gold-advisory/",
+          "observaciones": "Advertencia oficial sobre riesgos del comercio aurífero africano. Documenta redes vinculadas con Wagner y la relación entre oro, conflicto, sanciones y financiación rusa; su alcance excede Sudán.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sudan-oro-economia-guerra-redes-regionales-001",
+          "descripcion": "Producción, exportación declarada, estimaciones de contrabando e ingresos de actores armados son métricas incompletas y no comparables de forma directa.",
+          "tipo": "incomparabilidad_metricas",
+          "signal_ids": [
+            "sig-sudan-oro-economia-guerra-redes-regionales-oro-red-regional-20260324",
+            "sig-sudan-oro-economia-guerra-redes-regionales-oro-sanciones-rusia-20230627"
+          ],
+          "fuente_ids": [
+            "src-sudan-oro-economia-guerra-redes-regionales-chathamGold",
+            "src-sudan-oro-economia-guerra-redes-regionales-stateGold"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Identificar período, unidad, fuente, ruta y grado de estimación; no calcular ingresos militares a partir de tonelajes agregados sin evidencia adicional.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-oro-economia-guerra-redes-regionales-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Identificar período, unidad, fuente, ruta y grado de estimación; no calcular ingresos militares a partir de tonelajes agregados sin evidencia adicional.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "sudan-port-sudan-mar-rojo-competencia-bases",
+      "titulo": "Port Sudan y competencia estratégica por bases, puertos y acceso al mar Rojo",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "Sudán",
+        "Port Sudan",
+        "Mar Rojo",
+        "Oriente Medio",
+        "Cuerno de África"
+      ],
+      "categoria": "infraestructura_conectividad",
+      "tema_ids": [
+        7,
+        23,
+        165,
+        190,
+        204,
+        209,
+        222,
+        258
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Conversión de Port Sudan y de la costa sudanesa en activos de competencia estratégica. El puerto concentra comercio, ayuda, conectividad aérea y la sede del aparato estatal ligado a las SAF; Rusia busca acceso naval, mientras Arabia Saudita, Egipto, Emiratos, Irán, Turquía y otros actores evalúan seguridad marítima, bases, logística y equilibrio regional.",
+      "por_que_importa": "El mar Rojo comunica Suez, Bab el-Mandeb, el Golfo y el océano Índico. Una presencia militar externa o la interrupción de Port Sudan cambiaría las rutas de abastecimiento de la guerra, el acceso humanitario y el equilibrio de bases en ambas costas.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "macroevento_rector_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "macroevento_relacionado_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "hormuz-bab-el-mandeb-suez",
+        "africa-oriental-puertas-entrada",
+        "somalia-turquia-energia-seguridad"
+      ],
+      "senales": [
+        {
+          "id": "sig-sudan-port-sudan-mar-rojo-competencia-bases-base-anunciada-20250212",
+          "fecha": "2025-02-12",
+          "titulo": "Sudán y Rusia anuncian acuerdo sobre una instalación naval en el mar Rojo",
+          "tipo": "posicion_seguridad_regional",
+          "descripcion": "La declaración del canciller sudanés reactivó un proyecto de larga data y vinculó el control de Port Sudan con la proyección rusa hacia el mar Rojo y el océano Índico.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-port-sudan-mar-rojo-competencia-bases-navalAgreement"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-port-sudan-mar-rojo-competencia-bases-base-congelada-20251230",
+          "fecha": "2025-12-30",
+          "titulo": "El proyecto de base rusa fue reportado como congelado",
+          "tipo": "riesgo_implementacion",
+          "descripcion": "El reporte posterior demuestra que un acuerdo anunciado no equivale a ratificación, construcción ni despliegue operativo y que la decisión permanece expuesta a presión saudí y a la guerra.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-port-sudan-mar-rojo-competencia-bases-navalFreeze"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-port-sudan-mar-rojo-competencia-bases-port-sudan-nodo-estatal-20260723",
+          "fecha": "2026-07-23",
+          "titulo": "Port Sudan concentra acceso exterior, aviación internacional e instituciones de las SAF",
+          "tipo": "infraestructura_puerto",
+          "descripcion": "El control del puerto y de la costa oriental convierte la infraestructura civil y militar en un activo central para supervivencia estatal, ayuda, comercio y alianzas externas.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-port-sudan-mar-rojo-competencia-bases-ukSecurity",
+            "src-sudan-port-sudan-mar-rojo-competencia-bases-csis"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Fuerzas Armadas de Sudán (SAF)",
+        "Rusia",
+        "Arabia Saudita",
+        "Egipto",
+        "Emiratos Árabes Unidos",
+        "Irán",
+        "Turquía",
+        "Operadores portuarios y navieros",
+        "Actores humanitarios"
+      ],
+      "intereses": [
+        "Conservar para las SAF el principal acceso internacional y una fuente de legitimidad y recursos.",
+        "Obtener para Rusia apoyo logístico naval y presencia entre el Mediterráneo y el Índico.",
+        "Impedir para Arabia Saudita y otros Estados ribereños una militarización hostil de la costa opuesta.",
+        "Asegurar para operadores y ayuda humanitaria continuidad del puerto, aeropuerto y corredores internos.",
+        "Vincular para Egipto, Emiratos, Irán y Turquía acceso, seguridad y alianzas con el futuro orden sudanés."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Port Sudan permanece bajo las SAF y sigue siendo nodo estatal y humanitario; el proyecto ruso continúa negociado o congelado sin base plenamente operativa.",
+        "adverso": "Ataques de largo alcance, sabotaje o competencia entre patrocinadores interrumpen el puerto y convierten la costa en un nuevo frente militar regional.",
+        "transformador": "Un acuerdo político protege la infraestructura civil, somete cualquier presencia militar extranjera a reglas transparentes y coordina seguridad marítima con Estados del mar Rojo."
+      },
+      "indicadores": [
+        "Ratificación, textos, obras, personal, buques o cancelación de acuerdos de base.",
+        "Ataques con drones o misiles contra Port Sudan y otra infraestructura costera.",
+        "Volúmenes portuarios, vuelos internacionales y acceso humanitario.",
+        "Acuerdos portuarios, logísticos o militares con Estados externos.",
+        "Reacciones de Arabia Saudita, Egipto, Emiratos, Estados Unidos y actores del Cuerno de África."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 4,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 4,
+        "cobertura_observada": 3,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Port Sudan",
+        "Russian naval base Sudan",
+        "Red Sea base",
+        "mar Rojo",
+        "Sudan ports",
+        "Saudi Red Sea security",
+        "Bab el-Mandeb",
+        "Suez",
+        "Africa Corps"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sudan-port-sudan-mar-rojo-competencia-bases-navalAgreement",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Sudan Tribune",
+          "titulo": "Sudan, Russia reach agreement on Russian naval base: Sudanese FM",
+          "fecha": "2025-02-12",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://sudantribune.com/article/297278",
+          "observaciones": "Registra la declaración del canciller sudanés sobre un acuerdo. No demuestra ratificación, construcción ni operación de la base y debe leerse junto con el reporte posterior de congelamiento.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-port-sudan-mar-rojo-competencia-bases-navalFreeze",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Sudan Tribune",
+          "titulo": "Sudan's Burhan tells Saudi Arabia Russian naval base plans are frozen",
+          "fecha": "2025-12-30",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://sudantribune.com/article/308824",
+          "observaciones": "Reporte basado en fuentes privadas sobre el congelamiento del proyecto. Se usa para impedir que el anuncio de febrero de 2025 se presente como una base confirmada u operativa.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-port-sudan-mar-rojo-competencia-bases-ukSecurity",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "UK Home Office",
+          "titulo": "Country policy and information note: security situation, Sudan, July 2026",
+          "fecha": "2026-07-23",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+          "observaciones": "Compilación oficial con corte informativo al 30 de junio de 2026. Documenta control territorial, gobiernos rivales, desplazamiento, rutas transfronterizas y variación geográfica; no sustituye la actualización continua del frente.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-port-sudan-mar-rojo-competencia-bases-csis",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Center for Strategic and International Studies (CSIS)",
+          "titulo": "The Sudan War in 10 Charts",
+          "fecha": "2026-04-17",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://www.csis.org/analysis/sudan-war-10-charts",
+          "observaciones": "Síntesis comparada sobre territorialidad, apoyos externos, oro, drones y crisis humanitaria. Se usa como análisis secundario; las atribuciones de apoyo deben conservar las negaciones y grados de evidencia indicados por otras fuentes.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sudan-port-sudan-mar-rojo-competencia-bases-001",
+          "descripcion": "La instalación naval rusa no está demostrada como ratificada, construida u operativa. Un anuncio de acuerdo en febrero de 2025 fue seguido por un reporte de congelamiento en diciembre de 2025.",
+          "tipo": "implementacion_no_demostrada",
+          "signal_ids": [
+            "sig-sudan-port-sudan-mar-rojo-competencia-bases-base-anunciada-20250212",
+            "sig-sudan-port-sudan-mar-rojo-competencia-bases-base-congelada-20251230",
+            "sig-sudan-port-sudan-mar-rojo-competencia-bases-port-sudan-nodo-estatal-20260723"
+          ],
+          "fuente_ids": [
+            "src-sudan-port-sudan-mar-rojo-competencia-bases-navalAgreement",
+            "src-sudan-port-sudan-mar-rojo-competencia-bases-navalFreeze",
+            "src-sudan-port-sudan-mar-rojo-competencia-bases-ukSecurity"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Mostrar la base como proyecto disputado y reversible; exigir evidencia física y jurídica antes de cambiar su estado.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-port-sudan-mar-rojo-competencia-bases-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Mostrar la base como proyecto disputado y reversible; exigir evidencia física y jurídica antes de cambiar su estado.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "sudan-rusia-ucrania-guerra-conectada",
+      "titulo": "Extensión de la confrontación Rusia–Ucrania hacia Sudán mediante oro, mercenarios y acceso naval",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "Sudán",
+        "Mar Rojo",
+        "Europa oriental",
+        "Rusia",
+        "Ucrania"
+      ],
+      "categoria": "potencias_bloques",
+      "tema_ids": [
+        12,
+        89,
+        165,
+        182,
+        200,
+        204,
+        209,
+        259
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Conexión de la guerra sudanesa con la confrontación Rusia–Ucrania mediante redes de Wagner/Africa Corps, comercio de oro, sanciones, apoyo reportado de fuerzas ucranianas a las SAF y negociaciones rusas para acceso naval. La relación es indirecta y cambiante: Rusia mantuvo canales con distintos actores y fue desplazando su preferencia hacia las SAF, mientras Ucrania habría buscado limitar la infraestructura rusa fuera de Europa.",
+      "por_que_importa": "Sudán puede proporcionar a Rusia recursos, rutas y una posición marítima, y ofrecer a Ucrania un espacio para afectar redes rusas. Sin embargo, sobredimensionar este eje ocultaría los motores sudaneses y regionales de la guerra.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "macroevento_rector_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "macroevento_relacionado_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "mar-negro-azov-guerra-logistica",
+        "ruta-maritima-norte-artico",
+        "sudan-oro-economia-guerra-redes-regionales",
+        "sudan-port-sudan-mar-rojo-competencia-bases"
+      ],
+      "senales": [
+        {
+          "id": "sig-sudan-rusia-ucrania-guerra-conectada-wagner-rsf-20250211",
+          "fecha": "2025-02-11",
+          "titulo": "Wagner/Africa Corps fue acusado de suministrar armas a las RSF antes del giro ruso hacia las SAF",
+          "tipo": "reposicionamiento_estrategico",
+          "descripcion": "La evolución muestra que la política rusa no fue lineal: redes mercenarias, diplomacia estatal, oro y acceso naval pueden favorecer actores diferentes en distintos momentos.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-rusia-ucrania-guerra-conectada-euaaActors"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-rusia-ucrania-guerra-conectada-ucrania-apoyo-saf-20240301",
+          "fecha": "2024-03-01",
+          "titulo": "Fuentes compiladas por EUAA reportan intervención y entrenamiento ucranianos junto a las SAF",
+          "tipo": "proyeccion_extrarregional",
+          "descripcion": "La intervención habría buscado contrarrestar redes Wagner, trasladando parcialmente la confrontación Rusia–Ucrania al teatro sudanés; su escala y continuidad permanecen inciertas.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-rusia-ucrania-guerra-conectada-euaaActors"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-rusia-ucrania-guerra-conectada-oro-base-rusia-20251230",
+          "fecha": "2025-12-30",
+          "titulo": "Oro, sanciones y acceso naval estructuran los intereses rusos más allá de un bando específico",
+          "tipo": "riesgo_sanciones_comercio",
+          "descripcion": "La combinación de redes auríferas y búsqueda de una instalación en el mar Rojo explica incentivos rusos duraderos, aunque la base fue reportada como congelada y las alianzas cambiaron.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-rusia-ucrania-guerra-conectada-stateGold",
+            "src-sudan-rusia-ucrania-guerra-conectada-navalAgreement",
+            "src-sudan-rusia-ucrania-guerra-conectada-navalFreeze"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Rusia",
+        "Wagner Group / Africa Corps",
+        "Ucrania",
+        "Fuerzas Armadas de Sudán (SAF)",
+        "Fuerzas de Apoyo Rápido (RSF)",
+        "Empresas auríferas y redes comerciales",
+        "Autoridades de Port Sudan"
+      ],
+      "intereses": [
+        "Conservar para Rusia ingresos, redes africanas y acceso al mar Rojo bajo presión de sanciones.",
+        "Reducir para Ucrania la capacidad rusa de financiar y proyectar operaciones fuera de Europa.",
+        "Obtener para las SAF apoyo diplomático, militar y acceso a armamento.",
+        "Retener para redes vinculadas con RSF conexiones previas de armas y comercio.",
+        "Evitar para Sudán que acuerdos externos conviertan recursos y costa en moneda de cambio sin control civil."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Rusia prioriza relaciones con las SAF y mantiene intereses en oro y acceso naval; la dimensión ucraniana permanece limitada, discreta y subordinada al conflicto local.",
+        "adverso": "Operaciones encubiertas, mercenarios y ataques a redes logísticas amplían el enfrentamiento Rusia–Ucrania, elevan represalias y reducen espacio para negociación sudanesa.",
+        "transformador": "Transparencia sobre acuerdos, sanciones a redes ilícitas y control civil de minería y bases reducen el uso de Sudán como plataforma de confrontación extrarregional."
+      },
+      "indicadores": [
+        "Presencia, reorganización y contratos de Africa Corps o empresas vinculadas.",
+        "Operaciones o entrenamiento ucranianos corroborados por fuentes independientes.",
+        "Cambios rusos en apoyo diplomático, armas y votaciones internacionales.",
+        "Flujos de oro y sanciones vinculados con entidades rusas.",
+        "Estado jurídico y material del proyecto de base naval.",
+        "Ataques atribuidos a actores externos y nivel de corroboración."
+      ],
+      "evaluacion": {
+        "impacto": 4,
+        "probabilidad": 4,
+        "alcance": 5,
+        "persistencia": 4,
+        "propagacion": 4,
+        "subcobertura": 5,
+        "incertidumbre": 5,
+        "urgencia": 3,
+        "cobertura_observada": 2,
+        "confianza": "baja"
+      },
+      "palabras_clave": [
+        "Wagner Sudan",
+        "Africa Corps Sudan",
+        "Ukraine special forces Sudan",
+        "Sudan Russia naval base",
+        "Russian gold Sudan",
+        "Russia sanctions gold",
+        "Port Sudan",
+        "guerra Rusia Ucrania"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sudan-rusia-ucrania-guerra-conectada-euaaActors",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "European Union Agency for Asylum (EUAA)",
+          "titulo": "Sudan: Security Situation, February 2025 – International actors",
+          "fecha": "2025-02-11",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://dip-aws.euaa.europa.eu/coi/sudan/2025/security-situation/12-actors-conflict/122-international-actors",
+          "observaciones": "Informe de información de país que compila apoyo externo alegado o documentado. Registra expresamente las negaciones de Egipto y Emiratos, el apoyo iraní reportado, la evolución rusa y la intervención ucraniana informada por terceros.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-rusia-ucrania-guerra-conectada-stateGold",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "United States Department of State",
+          "titulo": "Africa Gold Advisory",
+          "fecha": "2023-06-27",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://2021-2025.state.gov/africa-gold-advisory/",
+          "observaciones": "Advertencia oficial sobre riesgos del comercio aurífero africano. Documenta redes vinculadas con Wagner y la relación entre oro, conflicto, sanciones y financiación rusa; su alcance excede Sudán.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-rusia-ucrania-guerra-conectada-navalAgreement",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Sudan Tribune",
+          "titulo": "Sudan, Russia reach agreement on Russian naval base: Sudanese FM",
+          "fecha": "2025-02-12",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://sudantribune.com/article/297278",
+          "observaciones": "Registra la declaración del canciller sudanés sobre un acuerdo. No demuestra ratificación, construcción ni operación de la base y debe leerse junto con el reporte posterior de congelamiento.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-rusia-ucrania-guerra-conectada-navalFreeze",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Sudan Tribune",
+          "titulo": "Sudan's Burhan tells Saudi Arabia Russian naval base plans are frozen",
+          "fecha": "2025-12-30",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://sudantribune.com/article/308824",
+          "observaciones": "Reporte basado en fuentes privadas sobre el congelamiento del proyecto. Se usa para impedir que el anuncio de febrero de 2025 se presente como una base confirmada u operativa.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sudan-rusia-ucrania-guerra-conectada-001",
+          "descripcion": "La presencia y escala de operaciones ucranianas en Sudán proceden de reportes secundarios compilados por EUAA y no están documentadas con la misma solidez que otros componentes. Tampoco prueban que Rusia–Ucrania sea el motor principal de la guerra sudanesa.",
+          "tipo": "insuficiencia_evidencia",
+          "signal_ids": [
+            "sig-sudan-rusia-ucrania-guerra-conectada-wagner-rsf-20250211",
+            "sig-sudan-rusia-ucrania-guerra-conectada-ucrania-apoyo-saf-20240301",
+            "sig-sudan-rusia-ucrania-guerra-conectada-oro-base-rusia-20251230"
+          ],
+          "fuente_ids": [
+            "src-sudan-rusia-ucrania-guerra-conectada-euaaActors",
+            "src-sudan-rusia-ucrania-guerra-conectada-stateGold",
+            "src-sudan-rusia-ucrania-guerra-conectada-navalAgreement",
+            "src-sudan-rusia-ucrania-guerra-conectada-navalFreeze"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Usar lenguaje atribuido —“reportado”, “según fuentes compiladas”— y buscar corroboración independiente, continuidad temporal y escala operacional.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-rusia-ucrania-guerra-conectada-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Usar lenguaje atribuido —“reportado”, “según fuentes compiladas”— y buscar corroboración independiente, continuidad temporal y escala operacional.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "sudan-mediaciones-jeddah-au-igad-quad",
+      "titulo": "Competencia y coordinación entre las mediaciones de Jeddah, la AU, IGAD y el Cuarteto",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "Sudán",
+        "África",
+        "Oriente Medio",
+        "Golfo",
+        "Cuerno de África"
+      ],
+      "categoria": "potencias_bloques",
+      "tema_ids": [
+        1,
+        190,
+        200,
+        209,
+        210,
+        222
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Proliferación de mecanismos de negociación impulsados por Arabia Saudita, Estados Unidos, Egipto, Emiratos Árabes Unidos, Unión Africana, IGAD, Naciones Unidas y otros actores. Los procesos compiten por centralidad, participantes, secuencia y objetivos, mientras varios mediadores mantienen intereses propios o relaciones con los beligerantes.",
+      "por_que_importa": "Una mesa no coordinada puede legitimar acuerdos parciales, permitir forum shopping y separar alto el fuego, ayuda, transición civil y seguridad regional. La convergencia de mediadores es condición necesaria pero no suficiente para que los actores sudaneses acepten y cumplan un acuerdo.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "macroevento_rector_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "macroevento_relacionado_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "senales": [
+        {
+          "id": "sig-sudan-mediaciones-jeddah-au-igad-quad-quad-hoja-ruta-20250913",
+          "fecha": "2025-09-13",
+          "titulo": "Arabia Saudita, Egipto, Emiratos y Estados Unidos acuerdan una hoja de ruta común",
+          "tipo": "mecanismo_diplomatico",
+          "descripcion": "El Cuarteto propuso tregua humanitaria, alto el fuego y transición civil, aun cuando sus integrantes mantienen intereses y relaciones distintas con los actores sudaneses.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-mediaciones-jeddah-au-igad-quad-spaQuad"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-mediaciones-jeddah-au-igad-quad-au-coordinacion-20260331",
+          "fecha": "2026-03-31",
+          "titulo": "La Unión Africana pide reunir iniciativas dispersas bajo una coordinación AU–IGAD",
+          "tipo": "coordinacion_multilateral",
+          "descripcion": "La multiplicación de Jeddah, Cuarteto, foros egipcios, AU, IGAD, ONU y esfuerzos bilaterales genera superposición, competencia de formato y riesgo de negociación parcial.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-mediaciones-jeddah-au-igad-quad-auDecision",
+            "src-sudan-mediaciones-jeddah-au-igad-quad-spaQuad"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Arabia Saudita",
+        "Estados Unidos",
+        "Egipto",
+        "Emiratos Árabes Unidos",
+        "Unión Africana",
+        "IGAD",
+        "Naciones Unidas",
+        "Liga de Estados Árabes",
+        "Fuerzas Armadas de Sudán (SAF)",
+        "Fuerzas de Apoyo Rápido (RSF)",
+        "Actores civiles sudaneses"
+      ],
+      "intereses": [
+        "Restaurar para Arabia Saudita estabilidad del mar Rojo y liderazgo diplomático mediante Jeddah.",
+        "Preservar para Egipto instituciones estatales y una transición compatible con sus intereses de seguridad.",
+        "Mantener para Emiratos influencia regional y participación en cualquier arreglo, frente a acusaciones de apoyo a RSF que niega.",
+        "Coordinar para AU e IGAD una solución africana que preserve unidad territorial y protagonismo sudanés.",
+        "Obtener para Estados Unidos tregua, acceso humanitario, protección de civiles y transición civil.",
+        "Evitar para actores sudaneses que un acuerdo externo excluya fuerzas civiles, territorios o comunidades afectadas."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Los mediadores coordinan mensajes y treguas limitadas, pero no logran un mecanismo único de cumplimiento ni una transición inclusiva.",
+        "adverso": "SAF y RSF seleccionan foros convenientes, los patrocinadores bloquean presión sobre aliados y las negociaciones se convierten en cobertura para rearmarse.",
+        "transformador": "Una arquitectura coordinada AU–IGAD con respaldo árabe e internacional alinea incentivos, monitorea un alto el fuego, condiciona apoyos externos e incorpora actores civiles y territoriales."
+      },
+      "indicadores": [
+        "Participación efectiva de SAF, RSF, actores civiles y movimientos armados.",
+        "Compatibilidad entre hojas de ruta, secuencias y definiciones de transición.",
+        "Mecanismos de monitoreo, verificación y consecuencias por incumplimiento.",
+        "Acceso humanitario y duración real de treguas.",
+        "Condicionamiento o reducción de apoyo externo por los propios mediadores.",
+        "Coordinación formal entre AU, IGAD, ONU, Liga Árabe, Jeddah y Cuarteto."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 4,
+        "alcance": 4,
+        "persistencia": 4,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 4,
+        "urgencia": 5,
+        "cobertura_observada": 3,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Jeddah talks Sudan",
+        "Sudan Quad",
+        "AU Sudan mediation",
+        "IGAD Sudan",
+        "Sudan ceasefire",
+        "humanitarian truce",
+        "civilian transition",
+        "forum shopping"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sudan-mediaciones-jeddah-au-igad-quad-spaQuad",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Saudi Press Agency",
+          "titulo": "Joint Statement on Restoring Peace and Security in Sudan Issued by Saudi Arabia, Egypt, the UAE, and the US",
+          "fecha": "2025-09-13",
+          "idioma": "en",
+          "tipo": "comunicado_oficial",
+          "url": "https://www.spa.gov.sa/en/N2396333",
+          "observaciones": "Declaración oficial del Cuarteto. Propone tregua humanitaria, alto el fuego y transición civil, y respalda los procesos de Jeddah y egipcio; prueba coordinación declarada, no implementación.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-mediaciones-jeddah-au-igad-quad-auDecision",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "African Union",
+          "titulo": "Assembly/AU/Dec.978(XXXIX)",
+          "fecha": "2026-03-31",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://au.int/sites/default/files/decisions/46188-Assembly_Decisions_31_March_E.pdf",
+          "observaciones": "Decisión de la 39.ª Asamblea de la Unión Africana. Rechaza la fragmentación y el gobierno paralelo, condena la interferencia externa y pide coordinar las iniciativas de paz bajo AU e IGAD.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sudan-mediaciones-jeddah-au-igad-quad-001",
+          "descripcion": "Las declaraciones conjuntas prueban coordinación diplomática declarada, no capacidad de imponer, monitorear o sostener un acuerdo. Algunos mediadores son también actores con intereses directos y relaciones disputadas con los beligerantes.",
+          "tipo": "eficacia_no_demostrada",
+          "signal_ids": [
+            "sig-sudan-mediaciones-jeddah-au-igad-quad-quad-hoja-ruta-20250913",
+            "sig-sudan-mediaciones-jeddah-au-igad-quad-au-coordinacion-20260331"
+          ],
+          "fuente_ids": [
+            "src-sudan-mediaciones-jeddah-au-igad-quad-spaQuad",
+            "src-sudan-mediaciones-jeddah-au-igad-quad-auDecision"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Separar anuncio, asistencia a la mesa, acuerdo firmado, verificación y cumplimiento; registrar conflictos de interés sin asumir que anulan toda mediación.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-mediaciones-jeddah-au-igad-quad-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Separar anuncio, asistencia a la mesa, acuerdo firmado, verificación y cumplimiento; registrar conflictos de interés sin asumir que anulan toda mediación.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "sudan-hambre-desplazamiento-acceso-humanitario",
+      "titulo": "Desplazamiento, hambre y disputa por el acceso humanitario en Sudán",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "Sudán",
+        "Darfur",
+        "Kordofán",
+        "Cuerno de África",
+        "África central"
+      ],
+      "categoria": "clima_agua_seguridad_alimentaria",
+      "tema_ids": [
+        139,
+        143,
+        151,
+        209,
+        210,
+        221
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Conversión del desplazamiento, el hambre, la destrucción de servicios y el control de corredores de ayuda en componentes estructurales de la guerra. Las ofensivas, asedios, bloqueos, burocracias rivales y cambios de control obligan a desplazamientos internos y transfronterizos, mientras retornos parciales pueden responder tanto a mejoras de seguridad como al agotamiento de recursos.",
+      "por_que_importa": "La crisis humanitaria no es solo una consecuencia: altera control territorial, legitimidad, reclutamiento, economías locales y presión sobre países vecinos. El acceso y la información se convierten en recursos políticos y militares.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "macroevento_rector_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "macroevento_relacionado_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "sudan-desborde-regional-fronteras-cuerno-africa"
+      ],
+      "senales": [
+        {
+          "id": "sig-sudan-hambre-desplazamiento-acceso-humanitario-desplazamiento-20260824",
+          "fecha": "2026-08-24",
+          "titulo": "La crisis sudanesa mantiene más de 11,29 millones de personas desplazadas forzosamente",
+          "tipo": "seguridad",
+          "descripcion": "El desplazamiento interno, la salida a países vecinos y los retornos se modifican con el frente, el agotamiento de recursos y el acceso a servicios; las cifras del tablero tienen cortes distintos.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-hambre-desplazamiento-acceso-humanitario-unhcr"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-hambre-desplazamiento-acceso-humanitario-malnutricion-darfur-20260205",
+          "fecha": "2026-02-05",
+          "titulo": "Um Baru y Kernoi superan umbrales de hambruna para malnutrición aguda",
+          "tipo": "riesgo_implementacion",
+          "descripcion": "El IPC advirtió condiciones catastróficas, acceso limitado y deterioro en Darfur y Kordofán, aclarando que el indicador no equivale por sí solo a una clasificación completa de hambruna.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-hambre-desplazamiento-acceso-humanitario-ipc",
+            "src-sudan-hambre-desplazamiento-acceso-humanitario-ukSecurity"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Población civil sudanesa",
+        "Personas desplazadas y refugiadas",
+        "Fuerzas Armadas de Sudán (SAF)",
+        "Fuerzas de Apoyo Rápido (RSF)",
+        "Milicias aliadas",
+        "UNHCR",
+        "IOM",
+        "OCHA",
+        "IPC",
+        "Organizaciones humanitarias y redes comunitarias",
+        "Países receptores"
+      ],
+      "intereses": [
+        "Sobrevivir, acceder a alimentos, agua, salud, protección y reunificación familiar para la población afectada.",
+        "Controlar corredores, registros, proveedores y distribución de ayuda para actores armados y administraciones rivales.",
+        "Mantener acceso neutral y seguro para organizaciones humanitarias.",
+        "Reducir presión fiscal, social y de seguridad para países receptores.",
+        "Evitar que retornos inseguros se presenten como normalización política."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Persisten desplazamientos y retornos simultáneos, acceso irregular y focos de hambre extrema en zonas sitiadas o inaccesibles.",
+        "adverso": "La expansión de combates en Kordofán y Darfur corta rutas, provoca nuevas salidas masivas y amplía hambruna, epidemias y violencia contra desplazados.",
+        "transformador": "Alto el fuego localizado, corredores verificados, financiación suficiente y negociación con redes comunitarias reducen mortalidad y permiten retornos voluntarios y seguros."
+      },
+      "indicadores": [
+        "Personas desplazadas internas, refugiadas, retornadas y nuevamente desplazadas, con fecha y definición.",
+        "Clasificaciones IPC, malnutrición, mortalidad y acceso a mercados.",
+        "Ataques, bloqueos y autorizaciones sobre rutas, convoyes y centros de salud.",
+        "Financiación humanitaria recibida frente a necesidades.",
+        "Condiciones de voluntariedad, seguridad y servicios en retornos.",
+        "Incidentes de violencia sexual, étnica y reclutamiento en rutas y campamentos."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 3,
+        "incertidumbre": 4,
+        "urgencia": 5,
+        "cobertura_observada": 5,
+        "confianza": "alta"
+      },
+      "palabras_clave": [
+        "Sudan displacement",
+        "Sudan famine",
+        "Darfur hunger",
+        "Um Baru",
+        "Kernoi",
+        "Kordofan",
+        "humanitarian access",
+        "UNHCR Sudan Situation",
+        "IPC Sudan",
+        "retornos"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sudan-hambre-desplazamiento-acceso-humanitario-unhcr",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "UNHCR",
+          "titulo": "Sudan Situation – Operational Data Portal",
+          "fecha": "2026-08-24",
+          "idioma": "en",
+          "tipo": "informe_estadistico",
+          "url": "https://data.unhcr.org/en/situations/sudansituation",
+          "observaciones": "Tablero dinámico. Al 24 de agosto de 2026 registraba 11.294.222 personas desplazadas forzosamente; sus componentes tienen fechas de actualización distintas y no deben sumarse sin revisar definiciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-hambre-desplazamiento-acceso-humanitario-ipc",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Integrated Food Security Phase Classification (IPC)",
+          "titulo": "Sudan IPC Alert: Famine thresholds for acute malnutrition surpassed in Um Baru and Kernoi",
+          "fecha": "2026-02-05",
+          "idioma": "en",
+          "tipo": "informe_estadistico",
+          "url": "https://www.ipcinfo.org/fileadmin/user_upload/ipcinfo/docs/IPC_Alert_Sudan_Feb2026.pdf",
+          "observaciones": "Alerta técnica: superar umbrales de malnutrición no constituye por sí solo una clasificación completa de hambruna. Conserva esa distinción y señala graves limitaciones de acceso y medición.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-hambre-desplazamiento-acceso-humanitario-ukSecurity",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "UK Home Office",
+          "titulo": "Country policy and information note: security situation, Sudan, July 2026",
+          "fecha": "2026-07-23",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+          "observaciones": "Compilación oficial con corte informativo al 30 de junio de 2026. Documenta control territorial, gobiernos rivales, desplazamiento, rutas transfronterizas y variación geográfica; no sustituye la actualización continua del frente.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sudan-hambre-desplazamiento-acceso-humanitario-001",
+          "descripcion": "Las cifras de desplazamiento interno, salida al exterior, retornos y población refugiada previa tienen fechas y universos diferentes. Superar umbrales de malnutrición tampoco equivale automáticamente a una clasificación IPC completa de hambruna.",
+          "tipo": "incomparabilidad_metricas",
+          "signal_ids": [
+            "sig-sudan-hambre-desplazamiento-acceso-humanitario-desplazamiento-20260824",
+            "sig-sudan-hambre-desplazamiento-acceso-humanitario-malnutricion-darfur-20260205"
+          ],
+          "fuente_ids": [
+            "src-sudan-hambre-desplazamiento-acceso-humanitario-unhcr",
+            "src-sudan-hambre-desplazamiento-acceso-humanitario-ipc",
+            "src-sudan-hambre-desplazamiento-acceso-humanitario-ukSecurity"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Mantener fecha, fuente, universo y definición al lado de cada cifra; no sumar categorías solapadas ni extrapolar datos locales a todo Sudán.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-hambre-desplazamiento-acceso-humanitario-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Mantener fecha, fuente, universo y definición al lado de cada cifra; no sumar categorías solapadas ni extrapolar datos locales a todo Sudán.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "sudan-desborde-regional-fronteras-cuerno-africa",
+      "titulo": "Desborde regional de la guerra sudanesa hacia fronteras, corredores y países vecinos",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-08-28",
+      "regiones": [
+        "Sudán",
+        "Chad",
+        "Libia",
+        "Sudán del Sur",
+        "República Centroafricana",
+        "Egipto",
+        "Etiopía",
+        "Eritrea",
+        "Cuerno de África"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        3,
+        12,
+        143,
+        200,
+        209,
+        210
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-28"
+      },
+      "descripcion": "Propagación de la guerra a través de refugiados, combatientes, armas, combustible, oro, ganado y redes comerciales que cruzan Chad, Libia, Sudán del Sur, República Centroafricana, Egipto, Eritrea y Etiopía. Los territorios fronterizos funcionan como corredores de supervivencia y suministro, pero también como espacios de reclutamiento, contrabando y disputa diplomática.",
+      "por_que_importa": "La guerra puede desestabilizar países frágiles, alterar rutas de petróleo y comercio y crear conflictos locales alrededor de recursos y comunidades transfronterizas. A su vez, decisiones de los vecinos pueden prolongar o limitar la capacidad militar de SAF y RSF.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "macroevento_rector_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo"
+      ],
+      "macroevento_relacionado_ids": [
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "africa-oriental-puertas-entrada",
+        "somalia-turquia-energia-seguridad"
+      ],
+      "senales": [
+        {
+          "id": "sig-sudan-desborde-regional-fronteras-cuerno-africa-rutas-transfronterizas-20260723",
+          "fecha": "2026-07-23",
+          "titulo": "Armas, combustible, combatientes y comercio circulan por redes de Libia, Chad, Sudán del Sur y otros vecinos",
+          "tipo": "corredor_logistico",
+          "descripcion": "La permeabilidad fronteriza permite sostener operaciones y economías de guerra, pero una ruta de tránsito no prueba automáticamente patrocinio estatal del país atravesado.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-desborde-regional-fronteras-cuerno-africa-ukSecurity",
+            "src-sudan-desborde-regional-fronteras-cuerno-africa-csis"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-sudan-desborde-regional-fronteras-cuerno-africa-presion-refugiados-20260824",
+          "fecha": "2026-08-24",
+          "titulo": "La salida de población presiona a Chad, Egipto, Sudán del Sur y otros países receptores",
+          "tipo": "seguridad",
+          "descripcion": "Los movimientos masivos conectan seguridad, servicios, comercio fronterizo y estabilidad política regional; retornos y nuevos desplazamientos pueden ocurrir simultáneamente.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sudan-desborde-regional-fronteras-cuerno-africa-unhcr"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Chad",
+        "Libia y Libyan National Army",
+        "Sudán del Sur",
+        "República Centroafricana",
+        "Egipto",
+        "Etiopía",
+        "Eritrea",
+        "Comunidades fronterizas",
+        "Refugiados y retornados",
+        "Redes comerciales y de contrabando",
+        "Fuerzas Armadas de Sudán (SAF)",
+        "Fuerzas de Apoyo Rápido (RSF)"
+      ],
+      "intereses": [
+        "Evitar para los vecinos incursiones, reclutamiento y transferencia de conflictos étnicos o políticos.",
+        "Mantener comercio, rutas de petróleo, ganado, alimentos y movilidad fronteriza.",
+        "Usar para actores armados corredores de armas, combustible, oro y combatientes.",
+        "Gestionar para Estados receptores refugiados, financiación internacional y presión sobre servicios.",
+        "Preservar para comunidades transfronterizas seguridad, acceso a mercados y vínculos familiares."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Los países vecinos contienen parcialmente el conflicto, pero toleran o no logran impedir rutas de suministro y reciben movimientos prolongados de población.",
+        "adverso": "Incidentes fronterizos, milicias transnacionales y crisis internas en Chad, Sudán del Sur o Libia convierten el desborde en un sistema regional de conflictos conectados.",
+        "transformador": "Mecanismos fronterizos africanos combinan protección de refugiados, control de armas y comercio lícito, y los vecinos condicionan colectivamente a los beligerantes."
+      },
+      "indicadores": [
+        "Incidentes armados y violaciones de frontera.",
+        "Rutas verificadas de armas, combustible, combatientes y oro.",
+        "Número y localización de refugiados, retornados y nuevos desplazados.",
+        "Cambios en política fronteriza, visados, deportaciones y campos.",
+        "Interrupciones de petróleo, carreteras, mercados y ayuda.",
+        "Sanciones o cooperación regional contra redes de facilitación."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 3,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Sudan Chad border",
+        "Sudan Libya arms route",
+        "Sudan South Sudan refugees",
+        "Darfur border",
+        "Central African Republic",
+        "Sudan spillover",
+        "cross-border fighters",
+        "arms trafficking"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sudan-desborde-regional-fronteras-cuerno-africa-ukSecurity",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "UK Home Office",
+          "titulo": "Country policy and information note: security situation, Sudan, July 2026",
+          "fecha": "2026-07-23",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://www.gov.uk/government/publications/sudan-country-policy-and-information-notes/country-policy-and-information-note-security-situation-sudan-july-2026-accessible",
+          "observaciones": "Compilación oficial con corte informativo al 30 de junio de 2026. Documenta control territorial, gobiernos rivales, desplazamiento, rutas transfronterizas y variación geográfica; no sustituye la actualización continua del frente.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-desborde-regional-fronteras-cuerno-africa-csis",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Center for Strategic and International Studies (CSIS)",
+          "titulo": "The Sudan War in 10 Charts",
+          "fecha": "2026-04-17",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://www.csis.org/analysis/sudan-war-10-charts",
+          "observaciones": "Síntesis comparada sobre territorialidad, apoyos externos, oro, drones y crisis humanitaria. Se usa como análisis secundario; las atribuciones de apoyo deben conservar las negaciones y grados de evidencia indicados por otras fuentes.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        },
+        {
+          "id": "src-sudan-desborde-regional-fronteras-cuerno-africa-unhcr",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "UNHCR",
+          "titulo": "Sudan Situation – Operational Data Portal",
+          "fecha": "2026-08-24",
+          "idioma": "en",
+          "tipo": "informe_estadistico",
+          "url": "https://data.unhcr.org/en/situations/sudansituation",
+          "observaciones": "Tablero dinámico. Al 24 de agosto de 2026 registraba 11.294.222 personas desplazadas forzosamente; sus componentes tienen fechas de actualización distintas y no deben sumarse sin revisar definiciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-08-28"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sudan-desborde-regional-fronteras-cuerno-africa-001",
+          "descripcion": "La presencia de una ruta, combatientes o mercancías en un país vecino no demuestra por sí sola una política estatal de patrocinio. Autoridades nacionales, fuerzas locales, empresas y redes clandestinas pueden actuar de forma divergente.",
+          "tipo": "distincion_actores",
+          "signal_ids": [
+            "sig-sudan-desborde-regional-fronteras-cuerno-africa-rutas-transfronterizas-20260723",
+            "sig-sudan-desborde-regional-fronteras-cuerno-africa-presion-refugiados-20260824"
+          ],
+          "fuente_ids": [
+            "src-sudan-desborde-regional-fronteras-cuerno-africa-ukSecurity",
+            "src-sudan-desborde-regional-fronteras-cuerno-africa-csis",
+            "src-sudan-desborde-regional-fronteras-cuerno-africa-unhcr"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-28T00:00:00.000Z",
+          "actualizada_el": "2026-08-28T00:00:00.000Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Distinguir territorio de tránsito, tolerancia, incapacidad de control, apoyo de actores subestatales y decisión del gobierno central.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sudan-desborde-regional-fronteras-cuerno-africa-001-20260828",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Distinguir territorio de tránsito, tolerancia, incapacidad de control, apoyo de actores subestatales y decisión del gobierno central.",
+              "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
             }
           ]
         }
