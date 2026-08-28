@@ -497,7 +497,8 @@ test('el editor permite explicar relevancia, organizar un rector y administrar c
   for (const id of [
     'e-why',
     'e-is-rector',
-    'e-rector-id',
+    'e-rector-selected',
+    'e-rector-options',
     'e-related-search',
     'e-related-selected',
     'e-related-options',

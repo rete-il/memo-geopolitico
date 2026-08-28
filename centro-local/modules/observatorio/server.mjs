@@ -264,6 +264,13 @@ function normalizeEvent(event = {}, index = 0, catalog = {}) {
     signal.fuente_ids = signal.fuente_ids.filter((sourceId) => sourceIds.has(sourceId));
   }
   const warningContainers = normalizeWarningContainers(event);
+  const primaryRectorId = event.macroevento_rector_id
+    ? slug(event.macroevento_rector_id)
+    : null;
+  const rectorIds = [...new Set([
+    ...(primaryRectorId ? [primaryRectorId] : []),
+    ...stringArray(event.macroevento_rector_ids, 500).map(slug),
+  ].filter(Boolean))];
   return {
     id,
     titulo: text(event.titulo, 1000),
@@ -285,9 +292,8 @@ function normalizeEvent(event = {}, index = 0, catalog = {}) {
     descripcion: text(event.descripcion),
     por_que_importa: text(event.por_que_importa),
     es_macroevento_rector: Boolean(event.es_macroevento_rector),
-    macroevento_rector_id: event.macroevento_rector_id
-      ? slug(event.macroevento_rector_id)
-      : null,
+    macroevento_rector_id: primaryRectorId || rectorIds[0] || null,
+    macroevento_rector_ids: rectorIds,
     macroevento_relacionado_ids: [...new Set(stringArray(event.macroevento_relacionado_ids, 500).map(slug))],
     senales: signals,
     actores: stringArray(event.actores),
@@ -586,14 +592,19 @@ function validateData(data, catalog = readJson(catalogPath), taxonomy = readJson
 
   for (const event of data.macroeventos || []) {
     const label = event.titulo || event.id;
-    const rectorId = event.macroevento_rector_id;
-    if (event.es_macroevento_rector && rectorId) {
+    const rectorIds = [...new Set([
+      ...(event.macroevento_rector_id ? [event.macroevento_rector_id] : []),
+      ...(event.macroevento_rector_ids || []),
+    ].filter(Boolean))];
+    if (event.es_macroevento_rector && rectorIds.length) {
       errors.push(`${label}: un macroevento rector no puede depender de otro rector.`);
     }
-    if (rectorId === event.id) errors.push(`${label}: no puede ser su propio macroevento rector.`);
-    if (rectorId && !eventMap.has(rectorId)) errors.push(`${label}: macroevento rector inexistente (${rectorId}).`);
-    if (rectorId && eventMap.has(rectorId) && !eventMap.get(rectorId).es_macroevento_rector) {
-      errors.push(`${label}: el macroevento de destino no está marcado como rector (${rectorId}).`);
+    for (const rectorId of rectorIds) {
+      if (rectorId === event.id) errors.push(`${label}: no puede ser su propio macroevento rector.`);
+      if (!eventMap.has(rectorId)) errors.push(`${label}: macroevento rector inexistente (${rectorId}).`);
+      if (eventMap.has(rectorId) && !eventMap.get(rectorId).es_macroevento_rector) {
+        errors.push(`${label}: el macroevento de destino no está marcado como rector (${rectorId}).`);
+      }
     }
     const relatedIds = event.macroevento_relacionado_ids || [];
     if (new Set(relatedIds).size !== relatedIds.length) errors.push(`${label}: hay macroeventos relacionados duplicados.`);

@@ -57,13 +57,22 @@ const EVENT_ROLE_LABELS = { rector: 'Rector', complementario: 'Complementario', 
 const LOCAL_SITE_ORIGIN = 'http://localhost:4321';
 const human = (value) => HUMAN_LABELS[value] || String(value || '').replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
 const unique = (values) => [...new Set(values.filter(Boolean))];
+const eventRectorIds = (event) => unique([
+  ...(event?.macroevento_rector_id ? [event.macroevento_rector_id] : []),
+  ...(Array.isArray(event?.macroevento_rector_ids) ? event.macroevento_rector_ids : []),
+]);
+const setEventRectorIds = (event, values) => {
+  const ids = unique(values).filter((id) => id && id !== event?.id);
+  event.macroevento_rector_ids = ids;
+  event.macroevento_rector_id = ids[0] || null;
+};
 const byId = (id) => S.data.macroeventos.find((item) => item.id === id);
 const expById = (id) => S.data.expedientes_editoriales.find((item) => item.id === id);
 const mediaById = (id) => S.catalog.records.find((item) => item.media_id === id);
 const rel = (event) => ['impacto', 'persistencia', 'alcance', 'probabilidad'].reduce((total, key) => total * Number(event.evaluacion?.[key] || 1), 1);
 const gapRaw = (event) => rel(event) / Math.max(1, Number(event.evaluacion?.cobertura_observada || 1));
 const gapLevel = (event) => Number(event.evaluacion?.subcobertura || 1);
-const eventRole = (event) => event?.es_macroevento_rector ? 'rector' : event?.macroevento_rector_id ? 'complementario' : 'independiente';
+const eventRole = (event) => event?.es_macroevento_rector ? 'rector' : eventRectorIds(event).length ? 'complementario' : 'independiente';
 
 function eventPublicRecord(event) {
   return S.publicExpedients.by_event?.[event.id] || null;
@@ -1104,7 +1113,7 @@ function renderData() {
 }
 
 function blankEvent() {
-  return { id: '', titulo: '', tipo_proceso: 'macroproceso_estructural', estado_editorial: 'borrador', estado_verificacion: 'pendiente', fecha_corte: today(), regiones: [], categoria: 'infraestructura_conectividad', tema_ids: [], clasificacion_tematica: { origen: 'humano', estado_revision: 'pendiente', taxonomy_version: Number(S.taxonomy.schema_version || 1), revisada_el: null }, descripcion: '', por_que_importa: '', es_macroevento_rector: false, macroevento_rector_id: null, macroevento_relacionado_ids: [], senales: [], actores: [], intereses: [], horizonte: { min_anios: 3, max_anios: 10 }, escenarios: { base: '', adverso: '', transformador: '' }, indicadores: [], evaluacion: { impacto: 3, probabilidad: 3, alcance: 3, persistencia: 3, propagacion: 3, subcobertura: 3, incertidumbre: 3, urgencia: 3, cobertura_observada: 3, confianza: 'media' }, palabras_clave: [], fuentes: [], advertencias: [], excepciones_advertencias: [] };
+  return { id: '', titulo: '', tipo_proceso: 'macroproceso_estructural', estado_editorial: 'borrador', estado_verificacion: 'pendiente', fecha_corte: today(), regiones: [], categoria: 'infraestructura_conectividad', tema_ids: [], clasificacion_tematica: { origen: 'humano', estado_revision: 'pendiente', taxonomy_version: Number(S.taxonomy.schema_version || 1), revisada_el: null }, descripcion: '', por_que_importa: '', es_macroevento_rector: false, macroevento_rector_id: null, macroevento_rector_ids: [], macroevento_relacionado_ids: [], senales: [], actores: [], intereses: [], horizonte: { min_anios: 3, max_anios: 10 }, escenarios: { base: '', adverso: '', transformador: '' }, indicadores: [], evaluacion: { impacto: 3, probabilidad: 3, alcance: 3, persistencia: 3, propagacion: 3, subcobertura: 3, incertidumbre: 3, urgencia: 3, cobertura_observada: 3, confianza: 'media' }, palabras_clave: [], fuentes: [], advertencias: [], excepciones_advertencias: [] };
 }
 
 function uniqueId(base, existing) {
@@ -1154,22 +1163,39 @@ function renderEventRelations() {
   if (!S.eventDraft) return;
   const currentId = slug($('#e-id').value || S.eventDraft.id);
   const isRector = Boolean(S.eventDraft.es_macroevento_rector);
-  const selectedRectorId = isRector ? '' : String(S.eventDraft.macroevento_rector_id || '');
+  const selectedRectorIds = new Set(isRector ? [] : eventRectorIds(S.eventDraft));
   const rectors = (S.data.macroeventos || [])
     .filter((event) => event.id !== currentId && event.es_macroevento_rector)
     .sort((left, right) => left.titulo.localeCompare(right.titulo, 'es'));
-  const selectedRector = selectedRectorId ? byId(selectedRectorId) : null;
-  if (selectedRector && !rectors.some((event) => event.id === selectedRector.id)) rectors.push(selectedRector);
 
   $('#e-is-rector').checked = isRector;
-  $('#e-rector-id').disabled = isRector;
-  $('#e-rector-id').innerHTML = `<option value="">${isRector ? 'Este macroevento es rector' : 'No depende de un rector'}</option>${rectors.map((event) => `<option value="${esc(event.id)}">${esc(event.titulo)}</option>`).join('')}`;
-  $('#e-rector-id').value = selectedRectorId;
   $('#e-rector-help').textContent = isRector
-    ? 'Un macroevento rector no puede depender de otro rector.'
+    ? 'Este macroevento organiza otros procesos y no puede depender de otro rector.'
     : rectors.length
-      ? 'Solo se muestran macroeventos ya marcados como rectores.'
+      ? 'Podés seleccionar más de un rector cuando este proceso aporta evidencia a varias hipótesis.'
       : 'Todavía no hay otro macroevento marcado como rector.';
+  const selectedRectorEvents = [...selectedRectorIds]
+    .map(byId)
+    .filter(Boolean)
+    .sort((left, right) => left.titulo.localeCompare(right.titulo, 'es'));
+  $('#e-rector-selected').innerHTML = selectedRectorEvents.length
+    ? selectedRectorEvents.map((event) => `<span class="topic-chip">${esc(event.titulo)}<button type="button" data-remove-rector="${esc(event.id)}" aria-label="Quitar ${esc(event.titulo)}">×</button></span>`).join('')
+    : `<span class="muted">${isRector ? 'Este macroevento es rector.' : 'No depende de un rector.'}</span>`;
+  $('#e-rector-options').innerHTML = !isRector && rectors.length
+    ? `<div class="topic-options">${rectors.map((event) => `<label class="topic-option"><input type="checkbox" value="${esc(event.id)}" ${selectedRectorIds.has(event.id) ? 'checked' : ''}><span>${esc(event.titulo)}<small>Macroevento rector</small></span></label>`).join('')}</div>`
+    : '';
+  $$('input[type="checkbox"]', $('#e-rector-options')).forEach((input) => input.addEventListener('change', () => {
+    const next = new Set(eventRectorIds(S.eventDraft));
+    if (input.checked) next.add(input.value); else next.delete(input.value);
+    setEventRectorIds(S.eventDraft, [...next]);
+    renderEventRelations();
+    markEventDraftChanged();
+  }));
+  $$('[data-remove-rector]', $('#e-rector-selected')).forEach((button) => button.addEventListener('click', () => {
+    setEventRectorIds(S.eventDraft, eventRectorIds(S.eventDraft).filter((id) => id !== button.dataset.removeRector));
+    renderEventRelations();
+    markEventDraftChanged();
+  }));
 
   const selected = new Set((S.eventDraft.macroevento_relacionado_ids || []).filter((id) => id !== currentId));
   const selectedEvents = [...selected].map(byId).filter(Boolean).sort((left, right) => left.titulo.localeCompare(right.titulo, 'es'));
@@ -1220,7 +1246,7 @@ function fillEventFields(event, mode) {
   $('#e-description').value = event.descripcion;
   $('#e-why').value = event.por_que_importa || '';
   S.eventDraft.es_macroevento_rector = mode === 'duplicate' ? false : Boolean(event.es_macroevento_rector);
-  S.eventDraft.macroevento_rector_id = mode === 'duplicate' ? null : (event.macroevento_rector_id || null);
+  setEventRectorIds(S.eventDraft, mode === 'duplicate' ? [] : eventRectorIds(event));
   S.eventDraft.macroevento_relacionado_ids = mode === 'duplicate' ? [] : [...(event.macroevento_relacionado_ids || [])];
   $('#e-related-search').value = '';
   renderEventRelations();
@@ -1300,6 +1326,7 @@ function openEvent(id = '', mode = 'edit') {
 }
 
 function gatherEvent() {
+  const rectorIds = S.eventDraft.es_macroevento_rector ? [] : eventRectorIds(S.eventDraft);
   return {
     ...S.eventDraft,
     id: slug($('#e-id').value || $('#e-title').value),
@@ -1315,7 +1342,8 @@ function gatherEvent() {
     descripcion: $('#e-description').value.trim(),
     por_que_importa: $('#e-why').value.trim(),
     es_macroevento_rector: Boolean(S.eventDraft.es_macroevento_rector),
-    macroevento_rector_id: S.eventDraft.es_macroevento_rector ? null : (S.eventDraft.macroevento_rector_id || null),
+    macroevento_rector_id: rectorIds[0] || null,
+    macroevento_rector_ids: rectorIds,
     macroevento_relacionado_ids: [...new Set((S.eventDraft.macroevento_relacionado_ids || []).filter((id) => id && id !== slug($('#e-id').value || $('#e-title').value)))],
     actores: lines($('#e-actors').value),
     intereses: lines($('#e-interests').value),
@@ -3303,10 +3331,9 @@ $('#e-theme-review').addEventListener('change', () => { if ($('#e-theme-review')
 $('#e-related-search').addEventListener('input', renderEventRelations);
 $('#e-is-rector').addEventListener('change', () => {
   S.eventDraft.es_macroevento_rector = $('#e-is-rector').checked;
-  if (S.eventDraft.es_macroevento_rector) S.eventDraft.macroevento_rector_id = null;
+  if (S.eventDraft.es_macroevento_rector) setEventRectorIds(S.eventDraft, []);
   renderEventRelations();
 });
-$('#e-rector-id').addEventListener('change', () => { S.eventDraft.macroevento_rector_id = $('#e-rector-id').value || null; });
 $('#add-signal').onclick = () => openSignal();
 $('#add-source').onclick = () => openSource();
 $('#event-record-tabs').addEventListener('click', (event) => {
@@ -3352,6 +3379,8 @@ $('#event-form').addEventListener('submit', (event) => {
     if (originalId !== value.id) S.data.macroeventos.forEach((item) => {
       if (item.id === value.id) return;
       if (item.macroevento_rector_id === originalId) item.macroevento_rector_id = value.id;
+      item.macroevento_rector_ids = eventRectorIds(item).map((id) => id === originalId ? value.id : id);
+      setEventRectorIds(item, item.macroevento_rector_ids);
       item.macroevento_relacionado_ids = (item.macroevento_relacionado_ids || []).map((id) => id === originalId ? value.id : id);
     });
   } else S.data.macroeventos.push(value);
@@ -3379,7 +3408,7 @@ $('#delete-event').onclick = () => {
   if (!item || !confirm(`¿Eliminar “${item.titulo}”? También se retirará de encargos editoriales relacionados.`)) return;
   S.data.macroeventos = S.data.macroeventos.filter((event) => event.id !== id);
   S.data.macroeventos.forEach((event) => {
-    if (event.macroevento_rector_id === id) event.macroevento_rector_id = null;
+    setEventRectorIds(event, eventRectorIds(event).filter((rectorId) => rectorId !== id));
     event.macroevento_relacionado_ids = (event.macroevento_relacionado_ids || []).filter((relatedId) => relatedId !== id);
   });
   S.data.expedientes_editoriales.forEach((exp) => { exp.macroevento_ids = exp.macroevento_ids.filter((eventId) => eventId !== id); });

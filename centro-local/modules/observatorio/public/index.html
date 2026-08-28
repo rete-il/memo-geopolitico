@@ -274,7 +274,12 @@
         <fieldset><legend>Relaciones analíticas</legend>
           <div class="form-grid">
             <label class="check-card span2 relation-role"><input id="e-is-rector" type="checkbox"><span><strong>Macroevento rector</strong><small>Articula una hipótesis o un conjunto de procesos complementarios.</small></span></label>
-            <label class="field span2"><span>Macroevento rector del que depende</span><select id="e-rector-id"><option value="">No depende de un rector</option></select><small id="e-rector-help" class="help">Solo se muestran macroeventos ya marcados como rectores.</small></label>
+            <div class="field span2 taxonomy-editor">
+              <span>Macroeventos rectores de los que depende</span>
+              <p id="e-rector-help" class="help">Un proceso puede aportar evidencia a más de una hipótesis rectora.</p>
+              <div id="e-rector-selected" class="topic-chips" aria-live="polite"></div>
+              <div id="e-rector-options" class="topic-picker relation-picker" aria-label="Selector de macroeventos rectores"></div>
+            </div>
             <div class="field span2 taxonomy-editor">
               <span>Macroeventos relacionados</span>
               <p class="help">Vinculá procesos que amplían o contextualizan este expediente. La relación se mostrará como enlace en la ficha pública.</p>

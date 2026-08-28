@@ -38,6 +38,7 @@ const CATEGORY_THEME = {
 
 const GEOGRAPHY = {
   Global: { type: 'region', id: 'global', nombre: 'Global' },
+  África: { type: 'region', id: 'africa', nombre: 'África' },
   Europa: { type: 'region', id: 'europa', nombre: 'Europa' },
   'Oriente Medio': { type: 'region', id: 'oriente-medio', nombre: 'Oriente Medio' },
   'América Latina': { type: 'region', id: 'americas', nombre: 'Américas' },
@@ -63,17 +64,26 @@ const GEOGRAPHY = {
   Azerbaiyán: { type: 'country', id: 'AZE', nombre: 'Azerbaiyán', parent_id: 'asia' },
   Bolivia: { type: 'country', id: 'BOL', nombre: 'Bolivia', parent_id: 'americas' },
   Brasil: { type: 'country', id: 'BRA', nombre: 'Brasil', parent_id: 'americas' },
+  Chad: { type: 'country', id: 'TCD', nombre: 'Chad', parent_id: 'africa' },
   Chile: { type: 'country', id: 'CHL', nombre: 'Chile', parent_id: 'americas' },
   China: { type: 'country', id: 'CHN', nombre: 'China', parent_id: 'asia' },
+  Egipto: { type: 'country', id: 'EGY', nombre: 'Egipto', parent_id: 'africa' },
+  Eritrea: { type: 'country', id: 'ERI', nombre: 'Eritrea', parent_id: 'africa' },
+  Etiopía: { type: 'country', id: 'ETH', nombre: 'Etiopía', parent_id: 'africa' },
   India: { type: 'country', id: 'IND', nombre: 'India', parent_id: 'asia' },
   Irak: { type: 'country', id: 'IRQ', nombre: 'Irak', parent_id: 'oriente-medio' },
   Irán: { type: 'country', id: 'IRN', nombre: 'Irán', parent_id: 'oriente-medio' },
+  Libia: { type: 'country', id: 'LBY', nombre: 'Libia', parent_id: 'africa' },
   Myanmar: { type: 'country', id: 'MMR', nombre: 'Myanmar', parent_id: 'asia' },
   Paraguay: { type: 'country', id: 'PRY', nombre: 'Paraguay', parent_id: 'americas' },
   Perú: { type: 'country', id: 'PER', nombre: 'Perú', parent_id: 'americas' },
+  'República Centroafricana': { type: 'country', id: 'CAF', nombre: 'República Centroafricana', parent_id: 'africa' },
   Rusia: { type: 'country', id: 'RUS', nombre: 'Rusia', parent_id: 'europa' },
   Siria: { type: 'country', id: 'SYR', nombre: 'Siria', parent_id: 'oriente-medio' },
+  Sudán: { type: 'country', id: 'SDN', nombre: 'Sudán', parent_id: 'africa' },
+  'Sudán del Sur': { type: 'country', id: 'SSD', nombre: 'Sudán del Sur', parent_id: 'africa' },
   Turquía: { type: 'country', id: 'TUR', nombre: 'Turquía', parent_id: 'oriente-medio' },
+  Ucrania: { type: 'country', id: 'UKR', nombre: 'Ucrania', parent_id: 'europa' },
   'Bahía de Bengala': { type: 'space', id: 'bahia-de-bengala', nombre: 'Bahía de Bengala', parent_id: 'asia' },
   Caspio: { type: 'space', id: 'mar-caspio', nombre: 'Mar Caspio', parent_id: 'asia' },
   Golfo: { type: 'space', id: 'golfo-persico', nombre: 'Golfo Pérsico', parent_id: 'oriente-medio' },
@@ -97,6 +107,12 @@ export function slugify(value) {
 }
 
 const unique = (items) => [...new Set(items.filter(Boolean))];
+const rectorIdsFor = (item = {}) => unique([
+  ...(item.macroevento_rector_id ? [slugify(item.macroevento_rector_id)] : []),
+  ...(Array.isArray(item.macroevento_rector_ids)
+    ? item.macroevento_rector_ids.map(slugify)
+    : []),
+]);
 
 function catalogItem(id, nombre, order = 100, extra = {}) {
   return {
@@ -477,9 +493,8 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
       que_esta_ocurriendo: String(event.descripcion || ''),
       por_que_importa: String(event.por_que_importa || ''),
       es_macroevento_rector: Boolean(event.es_macroevento_rector),
-      macroevento_rector_id: event.macroevento_rector_id
-        ? slugify(event.macroevento_rector_id)
-        : null,
+      macroevento_rector_id: rectorIdsFor(event)[0] || null,
+      macroevento_rector_ids: rectorIdsFor(event),
       claves_estructurales: Array.isArray(event.claves_estructurales)
         ? event.claves_estructurales.map(String)
         : [],
@@ -662,12 +677,14 @@ export function validatePublicPackage(data, options = {}) {
   const processById = new Map((data?.procesos || []).map((process) => [process.macroevento_id, process]));
   for (const process of data?.procesos || []) {
     const label = process.titulo || process.macroevento_id;
-    const rectorId = process.macroevento_rector_id;
-    if (process.es_macroevento_rector && rectorId) errors.push(`${label}: un macroevento rector no puede depender de otro rector.`);
-    if (rectorId === process.macroevento_id) errors.push(`${label}: no puede ser su propio macroevento rector.`);
-    if (rectorId && !processById.has(rectorId)) errors.push(`${label}: macroevento rector inexistente (${rectorId}).`);
-    if (rectorId && processById.has(rectorId) && !processById.get(rectorId).es_macroevento_rector) {
-      errors.push(`${label}: el macroevento de destino no está marcado como rector (${rectorId}).`);
+    const rectorIds = rectorIdsFor(process);
+    if (process.es_macroevento_rector && rectorIds.length) errors.push(`${label}: un macroevento rector no puede depender de otro rector.`);
+    for (const rectorId of rectorIds) {
+      if (rectorId === process.macroevento_id) errors.push(`${label}: no puede ser su propio macroevento rector.`);
+      if (!processById.has(rectorId)) errors.push(`${label}: macroevento rector inexistente (${rectorId}).`);
+      if (processById.has(rectorId) && !processById.get(rectorId).es_macroevento_rector) {
+        errors.push(`${label}: el macroevento de destino no está marcado como rector (${rectorId}).`);
+      }
     }
     const relatedIds = process.macroevento_relacionado_ids || [];
     if (new Set(relatedIds).size !== relatedIds.length) errors.push(`${label}: hay macroeventos relacionados duplicados.`);

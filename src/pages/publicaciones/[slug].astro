@@ -19,6 +19,7 @@ import {
   getPublicationEntries,
   type PublicationEntry,
 } from '../../lib/publications';
+import { processRectorIds } from '../../lib/process-relations';
 
 export async function getStaticPaths() {
   const entries = await getPublicationEntries();
@@ -40,9 +41,11 @@ const Content = rendered?.Content;
 const process = processes.find(
   (item) => item.macroevento_id === entry.data.macroevento_principal_id,
 );
-const rectorProcess = process?.macroevento_rector_id
-  ? processes.find((item) => item.macroevento_id === process.macroevento_rector_id)
-  : undefined;
+const rectorProcesses = process
+  ? processRectorIds(process)
+      .map((id) => processes.find((item) => item.macroevento_id === id))
+      .filter((item): item is (typeof processes)[number] => Boolean(item))
+  : [];
 const publicationSources = entry.data.fuente_ids
   .map((id) => sourceById.get(id))
   .filter(Boolean);
@@ -120,20 +123,25 @@ const primaryTopic = topics.find((topic) => topic.primary);
             Abrir expediente del Observatorio →
           </a>
           {
-            rectorProcess && (
+            rectorProcesses.length > 0 && (
               <div class="publication-rector-context">
                 <p class="eyebrow">
-                  Macroevento rector
-                  {rectorProcess.publicacion.estado !== 'publicado' && (
-                    <span class="draft-chip">En preparación</span>
-                  )}
+                  {rectorProcesses.length === 1 ? 'Macroevento rector' : 'Macroeventos rectores'}
                 </p>
-                <a href={`/observatorio/${rectorProcess.slug}/`}>
-                  {rectorProcess.titulo}
-                </a>
+                <ul>
+                  {rectorProcesses.map((rector) => (
+                    <li>
+                      <a href={`/observatorio/${rector.slug}/`}>
+                        {rector.titulo}
+                      </a>
+                      {rector.publicacion.estado !== 'publicado' && (
+                        <span class="draft-chip">En preparación</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
                 <p>
-                  Este análisis aporta evidencia a una hipótesis rectora más amplia,
-                  todavía en elaboración.
+                  Este análisis aporta evidencia a una o más hipótesis rectoras más amplias.
                 </p>
               </div>
             )

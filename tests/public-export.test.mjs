@@ -110,10 +110,19 @@ test('proyecta el rol rector, sus relaciones y los valores normalizados', () => 
   input.macroeventos[0].macroevento_relacionado_ids = ['proceso-complementario'];
   input.macroeventos.push({
     ...structuredClone(input.macroeventos[0]),
+    id: 'proceso-rector-secundario',
+    titulo: 'Proceso rector secundario',
+    macroevento_relacionado_ids: ['proceso-complementario'],
+    fuentes: [],
+    senales: [],
+  });
+  input.macroeventos.push({
+    ...structuredClone(input.macroeventos[0]),
     id: 'proceso-complementario',
     titulo: 'Proceso complementario',
     es_macroevento_rector: false,
     macroevento_rector_id: 'proceso-prueba',
+    macroevento_rector_ids: ['proceso-prueba', 'proceso-rector-secundario'],
     macroevento_relacionado_ids: ['proceso-prueba'],
     fuentes: [],
     senales: [],
@@ -127,6 +136,10 @@ test('proyecta el rol rector, sus relaciones y los valores normalizados', () => 
   assert.equal(rector.es_macroevento_rector, true);
   assert.deepEqual(rector.macroevento_relacionado_ids, ['proceso-complementario']);
   assert.equal(complement.macroevento_rector_id, 'proceso-prueba');
+  assert.deepEqual(complement.macroevento_rector_ids, [
+    'proceso-prueba',
+    'proceso-rector-secundario',
+  ]);
   assert.equal(result.fuentes[0].idioma, 'en');
   assert.equal(result.fuentes[0].tipo, 'articulo_academico');
   assert.equal(validatePublicPackage(result, { allowDevelopment: true }).valid, true);
@@ -134,7 +147,7 @@ test('proyecta el rol rector, sus relaciones y los valores normalizados', () => 
 
 test('bloquea un vínculo rector hacia un proceso que no cumple ese rol', () => {
   const input = structuredClone(source);
-  input.macroeventos[0].macroevento_rector_id = 'proceso-inexistente';
+  input.macroeventos[0].macroevento_rector_ids = ['proceso-inexistente'];
   const result = buildPublicPackage(input, taxonomy, {
     includeUnpublished: true,
     includeInternal: false,

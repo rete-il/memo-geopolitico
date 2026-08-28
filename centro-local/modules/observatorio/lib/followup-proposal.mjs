@@ -13,6 +13,7 @@ const PROPOSAL_FIELDS = [
   'indicadores_seguimiento',
   'escenarios',
   'macroevento_relacionado_ids',
+  'macroevento_rector_ids',
 ];
 
 const clone = (value) => (value === undefined ? undefined : structuredClone(value));

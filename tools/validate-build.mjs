@@ -84,7 +84,12 @@ function expectedPublishedPublicationRoutes() {
     .map((name) => matter.read(path.join(publishedDirectory, name)).data);
   return {
     posts: new Set(publications.map((publication) => publication.post_id)).size,
-    linkedProcesses: new Set(publications.map((publication) => publication.macroevento_principal_id)).size,
+    linkedProcesses: new Set(
+      publications.flatMap((publication) => [
+        publication.macroevento_principal_id,
+        ...(publication.macroevento_secundario_ids || []),
+      ]),
+    ).size,
   };
 }
 

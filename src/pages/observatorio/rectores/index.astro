@@ -7,6 +7,7 @@ import {
 } from '../../../lib/editorial';
 import { getPublicationEntries } from '../../../lib/publications';
 import { editorialStageLabel, formatDate } from '../../../lib/text';
+import { processDependsOnRector } from '../../../lib/process-relations';
 
 const publicationEntries = await getPublicationEntries({
   includePreview: true,
@@ -23,10 +24,7 @@ const rectorGroups = processes
   .map((rector) => {
     const publication = publicationFor(rector);
     const complementaries = processes
-      .filter(
-        (process) =>
-          process.macroevento_rector_id === rector.macroevento_id,
-      )
+      .filter((process) => processDependsOnRector(process, rector.macroevento_id))
       .sort(
         (a, b) =>
           b.valoraciones.relevancia_geopolitica -
@@ -90,7 +88,7 @@ const rectorCountLabel =
       rectorGroups.length ? (
         <section class="rector-list" aria-label="Macroeventos rectores disponibles">
           {rectorGroups.map(
-            ({ rector, publication, editorialState, complementaries }, index) => {
+            ({ rector, publication, editorialState, complementaries }) => {
               const publicationHref =
                 publication?.data.publicacion.estado === 'publicado'
                   ? `/publicaciones/${publication.data.slug}/`
@@ -125,14 +123,18 @@ const rectorCountLabel =
                     </div>
                   </header>
 
-                  <details open={index === 0}>
+                  <details open={rectorGroups.length === 1} data-branch-details>
                     <summary>
                       <strong>
                         {complementaries.length === 1
                           ? '1 proceso complementario'
                           : `${complementaries.length} procesos complementarios`}
                       </strong>
-                      <span>Ver ramificaciones</span>
+                      <span data-branch-toggle-label>
+                        {rectorGroups.length === 1
+                          ? 'Cerrar ramificaciones'
+                          : 'Ver ramificaciones'}
+                      </span>
                     </summary>
 
                     {complementaries.length ? (
@@ -191,6 +193,23 @@ const rectorCountLabel =
     }
   </div>
 </SiteLayout>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('[data-branch-details]').forEach((details) => {
+    const label = details.querySelector<HTMLElement>('[data-branch-toggle-label]');
+
+    const updateLabel = () => {
+      if (label) {
+        label.textContent = details.open
+          ? 'Cerrar ramificaciones'
+          : 'Ver ramificaciones';
+      }
+    };
+
+    updateLabel();
+    details.addEventListener('toggle', updateLabel);
+  });
+</script>
 
 <style>
   .rector-page {

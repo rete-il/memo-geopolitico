@@ -521,6 +521,7 @@ function normalizeCandidate(raw, index, context) {
     por_que_importa: text(raw.por_que_importa),
     es_macroevento_rector: false,
     macroevento_rector_id: null,
+    macroevento_rector_ids: [],
     macroevento_relacionado_ids: [],
     senales: signals,
     actores: stringArray(first(raw.actores, raw.actores_relevantes)),

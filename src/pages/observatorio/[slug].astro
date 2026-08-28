@@ -21,6 +21,10 @@ import {
 } from '../../lib/text';
 import type { PublicProcess } from '../../lib/types';
 import { getPublicationEntries } from '../../lib/publications';
+import {
+  processDependsOnRector,
+  processRectorIds,
+} from '../../lib/process-relations';
 import { topicHref, topicReferences } from '../../lib/taxonomy';
 
 export function getStaticPaths() {
@@ -77,18 +81,15 @@ const actorItems = process.clasificacion.actor_ids
   .map((id) => catalogMaps.actores.get(id))
   .filter(Boolean);
 const processById = new Map(processes.map((item) => [item.macroevento_id, item]));
-const rectorProcess = process.macroevento_rector_id
-  ? processById.get(process.macroevento_rector_id)
-  : undefined;
-const rectorEditorialState = rectorProcess
-  ? effectiveEditorialState(rectorProcess, publicationEntries)
-  : undefined;
+const rectorProcesses = processRectorIds(process)
+  .map((id) => processById.get(id))
+  .filter((item): item is PublicProcess => Boolean(item));
 const complementaryProcesses = process.es_macroevento_rector
-  ? processes.filter((item) => item.macroevento_rector_id === process.macroevento_id)
+  ? processes.filter((item) => processDependsOnRector(item, process.macroevento_id))
   : [];
 const reservedRelationIds = new Set([
   process.macroevento_id,
-  process.macroevento_rector_id || '',
+  ...processRectorIds(process),
   ...complementaryProcesses.map((item) => item.macroevento_id),
 ]);
 const outgoingRelatedProcesses = (process.macroevento_relacionado_ids || [])
@@ -169,7 +170,7 @@ const relatedProcesses = [...new Map(
         </section>
 
         {
-          (process.es_macroevento_rector || rectorProcess || complementaryProcesses.length > 0 || relatedProcesses.length > 0) && (
+          (process.es_macroevento_rector || rectorProcesses.length > 0 || complementaryProcesses.length > 0 || relatedProcesses.length > 0) && (
             <section class="content-section">
               <h2>Relaciones con otros macroeventos</h2>
               {process.es_macroevento_rector && (
@@ -177,23 +178,28 @@ const relatedProcesses = [...new Map(
                   <strong>Macroevento rector.</strong> Este proceso articula una hipótesis de seguimiento y organiza procesos complementarios.
                 </p>
               )}
-              {rectorProcess && (
+              {rectorProcesses.length > 0 && (
                 <div class="process-relation-group">
-                  <h3>
-                    Macroevento rector
-                    {rectorEditorialState !== 'publicado' && (
-                      <span class="draft-chip">En preparación</span>
-                    )}
-                  </h3>
-                  <a class="process-relation-link" href={`/observatorio/${rectorProcess.slug}/`}>
-                    {rectorProcess.titulo}
-                  </a>
-                  {rectorEditorialState !== 'publicado' && (
-                    <p>
-                      Este expediente aporta evidencia a una hipótesis rectora que aún
-                      se encuentra en elaboración editorial.
-                    </p>
-                  )}
+                  <h3>{rectorProcesses.length === 1 ? 'Macroevento rector' : 'Macroeventos rectores'}</h3>
+                  <ul>
+                    {rectorProcesses.map((rector) => {
+                      const rectorEditorialState = effectiveEditorialState(rector, publicationEntries);
+                      return (
+                        <li>
+                          <a class="process-relation-link" href={`/observatorio/${rector.slug}/`}>
+                            {rector.titulo}
+                          </a>
+                          {rectorEditorialState !== 'publicado' && (
+                            <span class="draft-chip">En preparación</span>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <p>
+                    Este expediente aporta evidencia a una o más hipótesis rectoras;
+                    cada vínculo conserva su propio estado editorial.
+                  </p>
                 </div>
               )}
               {complementaryProcesses.length > 0 && (

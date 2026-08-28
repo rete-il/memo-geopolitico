@@ -70,6 +70,7 @@ export interface PublicProcess {
   por_que_importa: string;
   es_macroevento_rector?: boolean;
   macroevento_rector_id?: string | null;
+  macroevento_rector_ids?: string[];
   claves_estructurales: string[];
   valoraciones: {
     relevancia_geopolitica: number;
