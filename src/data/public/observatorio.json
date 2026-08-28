@@ -1,7 +1,7 @@
 {
   "formato": "memo-geopolitico-publico",
   "schema_version": 2,
-  "generado_el": "2026-08-26",
+  "generado_el": "2026-08-27",
   "procesos": [
     {
       "schema_version": 2,
@@ -102,16 +102,19 @@
       "sintesis": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "en_revision",
-        "publicado_el": null,
-        "actualizado_el": "2026-08-21"
+        "estado": "publicado",
+        "publicado_el": "2026-08-27",
+        "actualizado_el": "2026-08-27"
       },
       "progreso_publico": {
-        "etapa": "en_revision",
-        "proximo_paso": "Revisar coherencia, fuentes y valoraciones antes de autorizar la publicación.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
           "Expediente abierto y clasificado",
-          "Revisión editorial iniciada"
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
@@ -162,9 +165,67 @@
         "confianza": "media-alta",
         "incertidumbre": 4
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "senal-1-8",
+          "fecha": "2026-08-21",
+          "titulo": "Irak prioriza Ceyhan dentro de su estrategia de diversificación de exportaciones",
+          "resumen": "Irak anunció planes para ampliar significativamente su producción y diversificar sus rutas de exportación, incluyendo una mayor utilización de Ceyhan en Turquía junto con alternativas hacia Siria y Jordania. La decisión refuerza la función potencial de Turquía como corredor energético terrestre.",
+          "fuente_ids": [
+            "fuente-1-8"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-iraq-development-road-002",
+          "fecha": "2026-07-10",
+          "titulo": "Consolidación rusa en Tartús",
+          "resumen": "Señales de una posible función logística comercial en la costa siria.",
+          "fuente_ids": [
+            "src-iraq-development-road-002"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-iraq-development-road-001",
+          "fecha": "2026-06-25",
+          "titulo": "Priorización de la fase ferroviaria",
+          "resumen": "Irak destacó el ferrocarril como primer componente operativo.",
+          "fuente_ids": [
+            "src-iraq-development-road-001"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-iraq-development-road-cinturon-20251012",
+          "fecha": "2025-10-12",
+          "titulo": "Irak estructura un cinturón económico por fases entre Al-Faw y Turquía",
+          "resumen": "La empresa pública portuaria iraquí presentó el corredor como una plataforma de inversión industrial, energética, residencial y digital organizada en tres fases.",
+          "fuente_ids": [
+            "src-iraq-development-road-ina-20251012"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-iraq-development-road-memorando-20250201",
+          "fecha": "2025-02-01",
+          "titulo": "Continúa la coordinación cuadrilateral Irak–Turquía–Qatar–Emiratos",
+          "resumen": "La diplomacia económica italiana registró la continuidad de conversaciones entre los cuatro firmantes del memorando de 2024 para desarrollar el corredor.",
+          "fuente_ids": [
+            "src-iraq-development-road-esteri-20250201"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "src-iraq-development-road-001",
+        "src-iraq-development-road-002",
+        "fuente-1-8",
+        "src-iraq-development-road-ina-20251012",
+        "src-iraq-development-road-esteri-20250201",
+        "src-iraq-development-road-mecouncil-20240507"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [
         "turquia-potencia-bisagra-reordenamiento-regional"
@@ -358,20 +419,26 @@
       "sintesis": "Reconfiguración del equilibrio externo en Siria tras la caída del orden anterior, con Turquía como uno de los principales aliados del gobierno sirio, participante en entrenamiento militar, reconstrucción institucional e infraestructura. La expansión de esa influencia genera fricción creciente con Israel y ha obligado a Estados Unidos a trabajar en mecanismos de desconflicción entre Turquía, Israel y Siria. El proceso puede determinar la futura arquitectura militar y política siria y el grado de presencia turca en el país.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-08-21"
+        "estado": "publicado",
+        "publicado_el": "2026-08-27",
+        "actualizado_el": "2026-08-27"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
         "tema_principal_id": "seguridad-conflicto",
-        "tema_secundario_ids": [],
+        "tema_secundario_ids": [
+          "diplomacia-gobernanza"
+        ],
         "subtema_ids": [],
         "geografia": {
           "alcance": "global",
@@ -393,7 +460,7 @@
         "etiqueta_ids": []
       },
       "que_esta_ocurriendo": "Reconfiguración del equilibrio externo en Siria tras la caída del orden anterior, con Turquía como uno de los principales aliados del gobierno sirio, participante en entrenamiento militar, reconstrucción institucional e infraestructura. La expansión de esa influencia genera fricción creciente con Israel y ha obligado a Estados Unidos a trabajar en mecanismos de desconflicción entre Turquía, Israel y Siria. El proceso puede determinar la futura arquitectura militar y política siria y el grado de presencia turca en el país.",
-      "por_que_importa": "",
+      "por_que_importa": "Siria es el espacio donde la expansión de la influencia militar e institucional turca puede entrar en contacto directo con la libertad de acción que Israel reclama para sí. La existencia de canales de desconflinción reduce el riesgo accidental, pero también confirma que Ankara, Jerusalén, Damasco y Washington deben negociar reglas operativas. La evolución del proceso mostrará si Turquía consolida una presencia duradera, si Israel logra limitarla o si surge un arreglo de seguridad más estable.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
@@ -404,9 +471,46 @@
         "confianza": "media",
         "incertidumbre": 4
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "sig-siria-turquia-israel-base-20260819",
+          "fecha": "2026-08-19",
+          "titulo": "Israel ataca una base siria después de una visita de una delegación turca",
+          "resumen": "El episodio muestra que la posible ampliación de la presencia turca en instalaciones sirias continúa siendo una línea de fricción operativa con Israel.",
+          "fuente_ids": [
+            "fuente-1-5",
+            "src-siria-turquia-israel-ap-20260819"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "senal-1-5",
+          "fecha": "2026-08-18",
+          "titulo": "Estados Unidos trabaja en un mecanismo formal de desconflicción",
+          "resumen": "Tras un ataque israelí contra la base de Abu al-Duhur, el enviado estadounidense Tom Barrack informó que Washington trabaja en un mecanismo de desconflicción entre Israel, Turquía y Siria. La necesidad de ese mecanismo refleja el aumento de la interacción militar y de la competencia entre Turquía e Israel dentro del espacio sirio.",
+          "fuente_ids": [
+            "fuente-1-5"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-siria-turquia-israel-lineas-20250731",
+          "fecha": "2025-07-31",
+          "titulo": "Un informe estadounidense registra líneas de desconflinción Turquía–Israel utilizadas en Siria",
+          "resumen": "El informe trimestral de supervisión de la operación estadounidense señala que las partes establecieron y utilizaron líneas de desconflinción, aunque la crisis de 2026 evidencia que el mecanismo seguía siendo incompleto o necesitaba ampliación.",
+          "fuente_ids": [
+            "src-siria-turquia-israel-oir-20250731"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "fuente-1-5",
+        "src-siria-turquia-israel-ap-20260819",
+        "src-siria-turquia-israel-carnegie-20250708",
+        "src-siria-turquia-israel-oir-20250731"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [
         "turquia-potencia-bisagra-reordenamiento-regional"
@@ -419,9 +523,9 @@
         "Cambios en la presencia militar rusa que amplíen o reduzcan el margen de maniobra de Turquía."
       ],
       "escenarios": {
-        "base": "",
-        "adverso": "",
-        "transformador": ""
+        "base": "Turquía amplía gradualmente entrenamiento, infraestructura y apoyo al Estado sirio mientras mantiene con Israel canales técnicos de desconflinción mediados por Estados Unidos.",
+        "adverso": "Nuevos ataques israelíes contra instalaciones asociadas con Turquía provocan una respuesta militar o una interrupción de los canales técnicos y elevan el riesgo de confrontación directa.",
+        "transformador": "Un mecanismo estable Turquía–Israel–Siria delimita áreas de operación y se integra en un arreglo más amplio de seguridad y reconstrucción siria."
       }
     },
     {
@@ -432,20 +536,27 @@
       "sintesis": "Proceso de desarme, disolución y reintegración del PKK mediante un nuevo marco legal turco, con posibles efectos sobre el norte de Irak y sobre la relación entre las SDF y Damasco. Turquía busca convertir un conflicto armado de décadas en un arreglo institucional y reducir la dimensión transfronteriza de la amenaza kurda, mientras permanece abierta la cuestión más amplia de los derechos políticos y culturales kurdos y de la situación de las fuerzas kurdas sirias.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-08-21"
+        "estado": "publicado",
+        "publicado_el": "2026-08-27",
+        "actualizado_el": "2026-08-27"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
         "tema_principal_id": "seguridad-conflicto",
-        "tema_secundario_ids": [],
+        "tema_secundario_ids": [
+          "diplomacia-gobernanza",
+          "sociedad-demografia-migraciones"
+        ],
         "subtema_ids": [],
         "geografia": {
           "alcance": "global",
@@ -467,7 +578,7 @@
         "etiqueta_ids": []
       },
       "que_esta_ocurriendo": "Proceso de desarme, disolución y reintegración del PKK mediante un nuevo marco legal turco, con posibles efectos sobre el norte de Irak y sobre la relación entre las SDF y Damasco. Turquía busca convertir un conflicto armado de décadas en un arreglo institucional y reducir la dimensión transfronteriza de la amenaza kurda, mientras permanece abierta la cuestión más amplia de los derechos políticos y culturales kurdos y de la situación de las fuerzas kurdas sirias.",
-      "por_que_importa": "",
+      "por_que_importa": "La transición del PKK desde la lucha armada hacia un marco político y jurídico puede modificar la seguridad interna de Turquía y su intervención en Irak y Siria. La evolución paralela de las SDF determina si el conflicto kurdo transfronterizo se desmilitariza o simplemente cambia de instituciones y territorio. El proceso solo será estructural si el desarme, la reintegración, los derechos políticos y la integración siria producen arreglos sostenibles.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
@@ -478,9 +589,56 @@
         "confianza": "media",
         "incertidumbre": 4
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "sig-pkk-sdf-disolucion-sdf-20260825",
+          "fecha": "2026-08-25",
+          "titulo": "Las SDF anuncian su disolución como fuerza independiente tras integrarse en el ejército sirio",
+          "resumen": "El anuncio conecta directamente la transformación del conflicto kurdo con la reorganización estatal siria, aunque resta comprobar la cadena de mando y el control territorial efectivos.",
+          "fuente_ids": [
+            "src-pkk-sdf-ap-disolucion-20260825"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "senal-1-6",
+          "fecha": "2026-08-10",
+          "titulo": "El Parlamento turco aprueba el marco legal para avanzar en la disolución del PKK",
+          "resumen": "El Parlamento turco aprobó por amplia mayoría un marco para el desarme y la reintegración vinculados con la disolución del PKK. El cambio traslada el proceso desde la negociación política hacia una arquitectura jurídica con potenciales repercusiones sobre Irak y Siria.",
+          "fuente_ids": [
+            "fuente-1-6"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-pkk-sdf-proyecto-ley-20260805",
+          "fecha": "2026-08-05",
+          "titulo": "El proyecto de reintegración del PKK llega al Parlamento turco",
+          "resumen": "La remisión del proyecto al Parlamento convirtió el proceso de paz en un mecanismo jurídico antes de su aprobación definitiva.",
+          "fuente_ids": [
+            "src-pkk-sdf-ap-proyecto-ley-20260805"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-pkk-sdf-desarme-simbolico-20250711",
+          "fecha": "2025-07-11",
+          "titulo": "Combatientes del PKK realizan una primera ceremonia simbólica de desarme en Irak",
+          "resumen": "La destrucción pública de armas constituyó un primer acto observable, pero no certificó el desarme total ni la disolución de todas las estructuras.",
+          "fuente_ids": [
+            "src-pkk-sdf-ap-desarme-20250711"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "fuente-1-6",
+        "src-pkk-sdf-ap-disolucion-20260825",
+        "src-pkk-sdf-ap-proyecto-ley-20260805",
+        "src-pkk-sdf-ap-desarme-20250711",
+        "src-pkk-sdf-lemonde-opinion-20250324"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [
         "turquia-potencia-bisagra-reordenamiento-regional"
@@ -493,9 +651,9 @@
         "Acuerdos efectivos de integración de las SDF en estructuras estatales sirias."
       ],
       "escenarios": {
-        "base": "",
-        "adverso": "",
-        "transformador": ""
+        "base": "La legislación turca permite una reintegración gradual del PKK mientras la integración de las SDF en el Estado sirio avanza de manera desigual y negociada.",
+        "adverso": "La falta de garantías políticas, incidentes armados o disputas sobre la autonomía kurda reactivan la violencia y vuelven a conectar los teatros turco, iraquí y sirio.",
+        "transformador": "El desarme verificable del PKK y la integración pactada de las SDF abren una institucionalización transfronteriza de derechos, seguridad local y representación política."
       }
     },
     {
@@ -506,21 +664,30 @@
       "sintesis": "La interrupción o amenaza persistente sobre el estrecho de Hormuz refuerza la búsqueda de corredores energéticos alternativos y aumenta el valor de las infraestructuras terrestres conectadas con Turquía. Paralelamente, Ankara mantiene contactos con Estados Unidos, Irán, Pakistán y Qatar y ofrece apoyo a negociaciones, intentando combinar su función de corredor energético con una posición diplomática de mediación regional.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-08-21"
+        "estado": "publicado",
+        "publicado_el": "2026-08-27",
+        "actualizado_el": "2026-08-27"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
         "tema_principal_id": "infraestructura-conectividad",
-        "tema_secundario_ids": [],
-        "subtema_ids": [],
+        "tema_secundario_ids": [
+          "energia-recursos-estrategicos",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "rutas-maritimas-estrechos"
+        ],
         "geografia": {
           "alcance": "global",
           "region_ids": [
@@ -543,7 +710,7 @@
         "etiqueta_ids": []
       },
       "que_esta_ocurriendo": "La interrupción o amenaza persistente sobre el estrecho de Hormuz refuerza la búsqueda de corredores energéticos alternativos y aumenta el valor de las infraestructuras terrestres conectadas con Turquía. Paralelamente, Ankara mantiene contactos con Estados Unidos, Irán, Pakistán y Qatar y ofrece apoyo a negociaciones, intentando combinar su función de corredor energético con una posición diplomática de mediación regional.",
-      "por_que_importa": "",
+      "por_que_importa": "Una crisis prolongada en Hormuz puede elevar simultáneamente el valor de las conexiones terrestres que atraviesan Turquía y de la capacidad diplomática de Ankara para hablar con Irán, Estados Unidos y los Estados del Golfo. Esa ventaja no es automática: depende de infraestructura operativa, volúmenes transferibles y resultados negociadores verificables. El macroevento permite medir si Turquía convierte ubicación y relaciones en capacidad efectiva de reducir riesgos regionales.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
@@ -554,9 +721,57 @@
         "confianza": "media",
         "incertidumbre": 5
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "senal-2-4",
+          "fecha": "2026-08-21",
+          "titulo": "Irak impulsa rutas de exportación alternativas al Golfo",
+          "resumen": "Irak incluyó a Ceyhan entre las rutas destinadas a ampliar y diversificar sus exportaciones petroleras. La evolución aumenta el valor potencial del territorio turco como salida energética terrestre ante vulnerabilidades en las rutas del Golfo.",
+          "fuente_ids": [
+            "fuente-2-4"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "senal-1-9",
+          "fecha": "2026-08-17",
+          "titulo": "Turquía ofrece apoyo a una vía negociada con Irán",
+          "resumen": "Recep Tayyip Erdoğan instó al presidente estadounidense a buscar conversaciones con Irán y ofreció apoyo turco, mientras Ankara mantenía contactos con Estados Unidos, Irán, Pakistán y Qatar. La señal refleja el intento turco de conservar una posición de intermediación durante la crisis regional.",
+          "fuente_ids": [
+            "fuente-1-9"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-hormuz-corredores-siria-turquia-20260730",
+          "fecha": "2026-07-30",
+          "titulo": "Siria promueve corredores energéticos alternativos conectados con Turquía",
+          "resumen": "La reactivación propuesta del Gasoducto Árabe y de conexiones desde Irak o el Golfo hacia Turquía muestra presión política por diversificar rutas, aunque todavía no prueba capacidad operativa.",
+          "fuente_ids": [
+            "src-hormuz-turquia-lemonde-20260730"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-hormuz-gobernanza-disputada-20260716",
+          "fecha": "2026-07-16",
+          "titulo": "La gobernanza de Hormuz permanece disputada pese al acuerdo temporal",
+          "resumen": "Las interpretaciones divergentes de Estados Unidos e Irán sobre navegación, desminado y autoridad mantienen abierto el riesgo de nuevas interrupciones.",
+          "fuente_ids": [
+            "src-hormuz-turquia-brookings-20260625",
+            "src-hormuz-turquia-anadolu-20260716"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "fuente-1-9",
+        "fuente-2-4",
+        "src-hormuz-turquia-brookings-20260625",
+        "src-hormuz-turquia-anadolu-20260716",
+        "src-hormuz-turquia-lemonde-20260730"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [
         "turquia-potencia-bisagra-reordenamiento-regional"
@@ -569,9 +784,9 @@
         "Cambios persistentes en precios y flujos regionales de energía."
       ],
       "escenarios": {
-        "base": "",
-        "adverso": "",
-        "transformador": ""
+        "base": "La navegación por Hormuz continúa con interrupciones y acuerdos temporales; Turquía gana demanda política y comercial, pero los corredores alternativos avanzan lentamente.",
+        "adverso": "La escalada cierra rutas marítimas, desborda la capacidad terrestre disponible y expone a Turquía a presiones contrapuestas sin que su mediación produzca resultados.",
+        "transformador": "Inversiones coordinadas conectan Irak, Siria y el Golfo con redes turcas y Ankara participa en un arreglo duradero de seguridad marítima y negociación regional."
       }
     },
     {
@@ -878,20 +1093,28 @@
       "sintesis": "Desarrollo comercial del yacimiento Cronos frente a Chipre mediante conexión con infraestructura egipcia y exportación de GNL hacia Europa. El proceso demuestra la viabilidad de una ruta energética del Mediterráneo Oriental que no necesita atravesar Turquía, lo que puede limitar el grado en que Ankara sea considerada un corredor inevitable para los recursos gasíferos de la región.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-08-21"
+        "estado": "publicado",
+        "publicado_el": "2026-08-27",
+        "actualizado_el": "2026-08-27"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
         "tema_principal_id": "infraestructura-conectividad",
-        "tema_secundario_ids": [],
+        "tema_secundario_ids": [
+          "seguridad-conflicto",
+          "energia-recursos-estrategicos",
+          "diplomacia-gobernanza"
+        ],
         "subtema_ids": [],
         "geografia": {
           "alcance": "global",
@@ -914,7 +1137,7 @@
         "etiqueta_ids": []
       },
       "que_esta_ocurriendo": "Desarrollo comercial del yacimiento Cronos frente a Chipre mediante conexión con infraestructura egipcia y exportación de GNL hacia Europa. El proceso demuestra la viabilidad de una ruta energética del Mediterráneo Oriental que no necesita atravesar Turquía, lo que puede limitar el grado en que Ankara sea considerada un corredor inevitable para los recursos gasíferos de la región.",
-      "por_que_importa": "",
+      "por_que_importa": "Cronos demuestra que Chipre puede monetizar gas mediante instalaciones egipcias y exportar GNL a Europa sin atravesar Turquía. La ruta limita la idea de Ankara como paso inevitable, pero no elimina su importancia en otros sistemas energéticos ni resuelve las disputas marítimas del Mediterráneo Oriental. El proceso ofrece una prueba concreta para comparar capacidad, calendario, costos y resiliencia entre corredores rivales.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
@@ -925,9 +1148,59 @@
         "confianza": "media",
         "incertidumbre": 3
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "senal-1-13",
+          "fecha": "2026-07-28",
+          "titulo": "TotalEnergies y Eni adoptan la decisión final de inversión para Cronos",
+          "resumen": "Las empresas aprobaron el desarrollo del yacimiento Cronos, con conexión prevista hacia Egipto y exportación de GNL hacia Europa a partir de 2028. La infraestructura configura una vía de comercialización del gas del Mediterráneo Oriental que no requiere tránsito por Turquía.",
+          "fuente_ids": [
+            "fuente-1-13"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-cronos-ruta-egipto-20260728",
+          "fecha": "2026-07-28",
+          "titulo": "Cronos adopta una ruta contractual hacia Zohr y Damietta",
+          "resumen": "Los acuerdos del proyecto prevén transportar el gas desde aguas chipriotas, procesarlo en instalaciones egipcias y exportarlo como GNL, sin conexión terrestre con Turquía.",
+          "fuente_ids": [
+            "src-cronos-totalenergies-20260728",
+            "src-cronos-eni-20260728"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-cronos-produccion-2028-20260728",
+          "fecha": "2026-07-28",
+          "titulo": "El consorcio fija 2028 como objetivo de primera producción",
+          "resumen": "La FID establece un objetivo observable de inicio de producción y una meseta aproximada de 500 millones de pies cúbicos diarios.",
+          "fuente_ids": [
+            "fuente-1-13",
+            "src-cronos-totalenergies-20260728",
+            "src-cronos-eni-20260728"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-cronos-egipto-capacidad-20250701",
+          "fecha": "2025-07-01",
+          "titulo": "Egipto concentra la capacidad regional de exportación de GNL",
+          "resumen": "La EIA identificó a Egipto como el único país de la región con capacidad de exportación de GNL, aunque su demanda interna y producción decreciente condicionan la disponibilidad.",
+          "fuente_ids": [
+            "src-cronos-eia-eastmed-20250701"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "fuente-1-13",
+        "src-cronos-totalenergies-20260728",
+        "src-cronos-eni-20260728",
+        "src-cronos-eia-eastmed-20250701",
+        "src-cronos-ap-chipre-20260630"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [
         "turquia-potencia-bisagra-reordenamiento-regional"
@@ -940,9 +1213,9 @@
         "Desarrollo de nuevos campos del Mediterráneo Oriental mediante rutas que eviten Turquía."
       ],
       "escenarios": {
-        "base": "",
-        "adverso": "",
-        "transformador": ""
+        "base": "Cronos avanza hacia producción en 2028 utilizando Zohr y Damietta, con volúmenes moderados que diversifican el suministro europeo sin reordenar por completo el mercado regional.",
+        "adverso": "Retrasos técnicos, demanda egipcia, tensiones marítimas o insuficiente capacidad de licuefacción reducen las exportaciones y debilitan la ruta.",
+        "transformador": "Cronos y otros campos chipriotas consolidan a Egipto como centro regional de procesamiento y crean una cadena sostenida de GNL hacia Europa que reduce la centralidad de Turquía."
       }
     },
     {
@@ -953,21 +1226,31 @@
       "sintesis": "Expansión de la presencia turca en Somalia mediante exploración energética offshore, cooperación militar y una infraestructura de entrenamiento y apoyo logístico. La perforación del primer pozo turco de aguas profundas en el exterior extiende la proyección de Ankara desde la seguridad hacia los recursos estratégicos. El proceso permanece sujeto a elevada incertidumbre geológica y de seguridad.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-08-21"
+        "estado": "publicado",
+        "publicado_el": "2026-08-27",
+        "actualizado_el": "2026-08-27"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
         "tema_principal_id": "infraestructura-conectividad",
-        "tema_secundario_ids": [],
-        "subtema_ids": [],
+        "tema_secundario_ids": [
+          "seguridad-conflicto",
+          "energia-recursos-estrategicos",
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [
+          "corredores-estrategicos"
+        ],
         "geografia": {
           "alcance": "regional",
           "region_ids": [
@@ -986,7 +1269,7 @@
         "etiqueta_ids": []
       },
       "que_esta_ocurriendo": "Expansión de la presencia turca en Somalia mediante exploración energética offshore, cooperación militar y una infraestructura de entrenamiento y apoyo logístico. La perforación del primer pozo turco de aguas profundas en el exterior extiende la proyección de Ankara desde la seguridad hacia los recursos estratégicos. El proceso permanece sujeto a elevada incertidumbre geológica y de seguridad.",
-      "por_que_importa": "",
+      "por_que_importa": "Somalia reúne las dimensiones energética, militar, marítima y de construcción estatal de la proyección turca. Curad-1 es la primera perforación turca de aguas profundas en el exterior y se apoya en una relación de defensa, entrenamiento y protección marítima de largo plazo. El resultado permitirá observar si Ankara transforma asistencia y presencia militar en acceso sostenible a recursos y mayor influencia en el Cuerno de África.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "claves_estructurales": [],
@@ -997,9 +1280,55 @@
         "confianza": "media",
         "incertidumbre": 5
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "senal-1-14",
+          "fecha": "2026-05-26",
+          "titulo": "Comienza la fase de perforación offshore turca en Somalia",
+          "resumen": "Tras la fase sísmica, Somalia informó que estaba en marcha la perforación offshore con Turquía y esperaba resultados durante 2026. La actividad convierte la cooperación energética en una presencia física y operativa turca en el sector de hidrocarburos somalí.",
+          "fuente_ids": [
+            "fuente-1-14"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-somalia-curad1-operacion-20260411",
+          "fecha": "2026-04-11",
+          "titulo": "El buque Çağrı Bey inicia la primera perforación profunda turca en el exterior",
+          "resumen": "La llegada del buque y el comienzo de Curad-1 trasladan la cooperación desde estudios sísmicos a una operación física de alta complejidad a 370 kilómetros de Mogadiscio.",
+          "fuente_ids": [
+            "src-somalia-turquia-energia-ministerio-20260411"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-somalia-turquia-refuerzo-militar-20250820",
+          "fecha": "2025-08-20",
+          "titulo": "Turquía amplía su contingente militar y mantiene Camp TURKSOM",
+          "resumen": "El análisis registra el refuerzo de personal turco y la continuidad del entrenamiento de unidades somalíes, mostrando una presencia de seguridad más amplia que la campaña energética.",
+          "fuente_ids": [
+            "src-somalia-turquia-winep-20250820"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-somalia-turquia-acuerdo-defensa-20240221",
+          "fecha": "2024-02-21",
+          "titulo": "Somalia y Turquía establecen un marco decenal de defensa y seguridad marítima",
+          "resumen": "El acuerdo combina entrenamiento, equipamiento naval y protección de activos marítimos, creando la base institucional para la posterior expansión energética.",
+          "fuente_ids": [
+            "src-somalia-turquia-ap-acuerdo-20240221"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "fuente-1-14",
+        "src-somalia-turquia-energia-ministerio-20260411",
+        "src-somalia-turquia-winep-20250820",
+        "src-somalia-turquia-ap-acuerdo-20240221"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [
         "turquia-potencia-bisagra-reordenamiento-regional"
@@ -1012,9 +1341,9 @@
         "Continuidad y seguridad de la logística destinada a la presencia turca en Somalia."
       ],
       "escenarios": {
-        "base": "",
-        "adverso": "",
-        "transformador": ""
+        "base": "La perforación concluye sin descubrimiento comercial inmediato, pero Turquía mantiene exploración, entrenamiento militar y cooperación marítima como relación estratégica de largo plazo.",
+        "adverso": "Resultados geológicos negativos, ataques de al-Shabaab, controversias contractuales o tensiones regionales encarecen y reducen la presencia turca.",
+        "transformador": "Un descubrimiento comercial impulsa producción, infraestructura portuaria y protección marítima integradas con formación militar y nuevas inversiones turcas en el Cuerno de África."
       }
     },
     {
@@ -2518,15 +2847,19 @@
       "sintesis": "Proceso mediante el cual Turquía amplía su capacidad de influencia combinando posición geográfica, pertenencia a la OTAN, relación con Estados Unidos, autonomía diplomática, industria de defensa, corredores energéticos y logísticos, presencia militar y vínculos simultáneos con actores rivales. El proceso puede desplazar parcialmente funciones tradicionalmente ejercidas por Estados Unidos sin implicar necesariamente una ruptura de la alianza bilateral.",
       "estado_seguimiento": "en_seguimiento",
       "publicacion": {
-        "estado": "borrador",
-        "publicado_el": null,
-        "actualizado_el": "2026-08-21"
+        "estado": "publicado",
+        "publicado_el": "2026-08-27",
+        "actualizado_el": "2026-08-27"
       },
       "progreso_publico": {
-        "etapa": "borrador",
-        "proximo_paso": "Completar la documentación y verificar las señales pendientes.",
+        "etapa": "publicado",
+        "proximo_paso": "Mantener actualizado el expediente a medida que aparezcan nuevas señales verificadas.",
         "hitos_completados": [
-          "Expediente abierto y clasificado"
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial completada",
+          "Análisis publicado"
         ]
       },
       "clasificacion": {
@@ -2589,9 +2922,61 @@
         "confianza": "media",
         "incertidumbre": 4
       },
-      "senales": [],
+      "senales": [
+        {
+          "senal_id": "sig-rector-turquia-articulacion-regional-20260616",
+          "fecha": "2026-06-16",
+          "titulo": "Turquía busca articular un orden regional mientras administra rivalidades",
+          "resumen": "La búsqueda turca de margen regional combina interlocución con actores rivales y competencia en escenarios como Siria; hablar con varias partes aumenta el acceso, pero no demuestra por sí solo capacidad de mediación eficaz.",
+          "fuente_ids": [
+            "src-rector-turquia-siria-carnegie-20250708",
+            "src-rector-turquia-orden-brookings-20260616"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-rector-turquia-capacidad-industrial-20260605",
+          "fecha": "2026-06-05",
+          "titulo": "La industria de defensa aporta una base material a la proyección turca",
+          "resumen": "Las exportaciones y capacidades industriales turcas amplían la posibilidad de sostener asociaciones de defensa, mantenimiento e interoperabilidad; el efecto político duradero debe seguir verificándose en cada relación bilateral.",
+          "fuente_ids": [
+            "src-rector-turquia-defensa-reuters-20260605",
+            "src-rector-turquia-armas-sipri-20260309"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-rector-turquia-corredores-disputados-20250701",
+          "fecha": "2025-07-01",
+          "titulo": "La centralidad logística turca compite con corredores y rutas alternativas",
+          "resumen": "Development Road puede reforzar la conexión de Irak con Turquía, mientras la infraestructura del Mediterráneo Oriental demuestra que existen trayectorias energéticas alternativas; la centralidad depende de operación, costos y confiabilidad, no solo de geografía.",
+          "fuente_ids": [
+            "src-rector-turquia-iraq-mecouncil-20240507",
+            "src-rector-turquia-cronos-eia-20250701"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-rector-turquia-proyeccion-somalia-20240221",
+          "fecha": "2024-02-21",
+          "titulo": "La asociación con Somalia extiende la proyección turca fuera de su entorno inmediato",
+          "resumen": "La cooperación de seguridad con Somalia muestra capacidad de proyectar compromisos institucionales hacia el Cuerno de África; su sostenibilidad depende de costos, resultados y condiciones locales.",
+          "fuente_ids": [
+            "src-rector-turquia-somalia-ap-20240221"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
       "cronologia": [],
-      "fuente_ids": [],
+      "fuente_ids": [
+        "src-rector-turquia-defensa-reuters-20260605",
+        "src-rector-turquia-siria-carnegie-20250708",
+        "src-rector-turquia-orden-brookings-20260616",
+        "src-rector-turquia-iraq-mecouncil-20240507",
+        "src-rector-turquia-cronos-eia-20250701",
+        "src-rector-turquia-somalia-ap-20240221",
+        "src-rector-turquia-armas-sipri-20260309"
+      ],
       "recurso_visual_ids": [],
       "macroevento_relacionado_ids": [
         "turquia-iran-competencia-coexistencia",
@@ -2646,6 +3031,28 @@
       "estado_verificacion": "verificada"
     },
     {
+      "fuente_id": "fuente-1-13",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "TotalEnergies, Eni approve Cyprus gas field for LNG 2028 startup",
+      "fecha": "2026-07-28",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/business/energy/totalenergies-eni-approve-cyprus-gas-field-lng-2028-startup-2026-07-28/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "fuente-1-14",
+      "media_id": "anadolu-agency",
+      "medio": "Anadolu Agency",
+      "titulo": "Somalia expects positive drilling results with Türkiye by year-end, eyes mining deals",
+      "fecha": "2026-05-26",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.aa.com.tr/en/energy/analysis/somalia-expects-positive-drilling-results-with-turkiye-by-year-end-eyes-mining-deals/57255?amp=1",
+      "estado_verificacion": "verificada"
+    },
+    {
       "fuente_id": "fuente-1-2",
       "media_id": null,
       "medio": "Kabar",
@@ -2679,6 +3086,50 @@
       "estado_verificacion": "verificada"
     },
     {
+      "fuente_id": "fuente-1-5",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "US working on deconfliction mechanism among Turkey, Israel, Syria, US envoy says",
+      "fecha": "2026-08-18",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/world/middle-east/us-working-deconfliction-mechanism-among-turkey-israel-syria-us-envoy-says-2026-08-18/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "fuente-1-6",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Turkish parliament passes landmark law to advance PKK peace process",
+      "fecha": "2026-08-10",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/world/middle-east/turkish-parliament-passes-landmark-law-advance-pkk-peace-process-2026-08-10/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "fuente-1-8",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Iraq aims to boost oil output to 8-10 million bpd in six years",
+      "fecha": "2026-08-21",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/business/energy/iraq-aims-boost-oil-output-8-10-million-bpd-six-years-2026-08-21/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "fuente-1-9",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Erdogan urges Trump to pursue talks with Iran, offers support",
+      "fecha": "2026-08-17",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/world/asia-pacific/erdogan-urges-trump-pursue-talks-with-iran-offers-support-2026-08-17/",
+      "estado_verificacion": "verificada"
+    },
+    {
       "fuente_id": "fuente-2-2",
       "media_id": null,
       "medio": "Kabar",
@@ -2698,6 +3149,17 @@
       "idioma": "en",
       "tipo": "noticia",
       "url": "https://www.reuters.com/world/asia-pacific/thailand-touts-31-billion-land-bridge-plan-amid-hormuz-crisis-courts-singapore-2026-04-27/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "fuente-2-4",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Iraq aims to boost oil output to 8-10 million bpd in six years",
+      "fecha": "2026-08-21",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/business/energy/iraq-aims-boost-oil-output-8-10-million-bpd-six-years-2026-08-21/",
       "estado_verificacion": "verificada"
     },
     {
@@ -2756,6 +3218,50 @@
       "estado_verificacion": "verificada"
     },
     {
+      "fuente_id": "src-cronos-ap-chipre-20260630",
+      "media_id": "associated-press-ap",
+      "medio": "Associated Press (AP)",
+      "titulo": "Cypriot natural gas could start flowing from ExxonMobil’s discoveries by 2033",
+      "fecha": "2026-06-30",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://apnews.com/article/97ce4d93e6b8696bef3b13b7d352d5bf",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-cronos-eia-eastmed-20250701",
+      "media_id": "u-s-energy-information-administration-eia",
+      "medio": "U.S. Energy Information Administration (EIA)",
+      "titulo": "Regional Analysis Brief: Eastern Mediterranean Energy",
+      "fecha": "2025-07-01",
+      "idioma": "en",
+      "tipo": "informe_oficial",
+      "url": "https://www.eia.gov/international/content/analysis/regions_of_interest/Eastern_Mediterranean/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-cronos-eni-20260728",
+      "media_id": "eni",
+      "medio": "Eni",
+      "titulo": "Eni announces Final Investment Decision for Cyprus’ Cronos project",
+      "fecha": "2026-07-28",
+      "idioma": "en",
+      "tipo": "comunicado_corporativo",
+      "url": "https://www.eni.com/en-IT/media/press-release/2026/07/eni-announces-final-investment-decision-cyprus-cronos-project.html",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-cronos-totalenergies-20260728",
+      "media_id": "totalenergies",
+      "medio": "TotalEnergies",
+      "titulo": "Cyprus: TotalEnergies Approves the Development of the Cronos Gas Field to Supply Europe with LNG",
+      "fecha": "2026-07-28",
+      "idioma": "en",
+      "tipo": "comunicado_corporativo",
+      "url": "https://totalenergies.com/newsroom/cyprus-totalenergies-approves-the-development-of-the-cronos-gas-field-to-supply-europe-with-lng/?lang=eng",
+      "estado_verificacion": "verificada"
+    },
+    {
       "fuente_id": "src-defensa-turquia-hurjet-espana-20251231",
       "media_id": "turkiye-ssb",
       "medio": "Secretariat of Defence Industries (SSB)",
@@ -2797,6 +3303,94 @@
       "idioma": "tr",
       "tipo": "comunicado_oficial",
       "url": "https://www.ssb.gov.tr/haber/turk-savunma-sanayiinde-bu-hafta-neler-oldu-2u7TdB",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-hormuz-turquia-anadolu-20260716",
+      "media_id": "anadolu-agency",
+      "medio": "Anadolu Agency",
+      "titulo": "EXPLAINER – Why Article 5 is the Iran-US deal’s biggest sticking point",
+      "fecha": "2026-07-16",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://www.aa.com.tr/en/features/explainer-why-article-5-is-the-iran-us-deal-s-biggest-sticking-point/4000631",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-hormuz-turquia-brookings-20260625",
+      "media_id": "brookings-institution",
+      "medio": "Brookings Institution",
+      "titulo": "Will the Strait of Hormuz reopen after the US-Iran deal?",
+      "fecha": "2026-06-25",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://www.brookings.edu/articles/will-the-strait-of-hormuz-reopen-after-the-us-iran-deal/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-hormuz-turquia-lemonde-20260730",
+      "media_id": "le-monde",
+      "medio": "Le Monde",
+      "titulo": "Syria positions itself as an alternative energy and logistics hub to Strait of Hormuz",
+      "fecha": "2026-07-30",
+      "idioma": "en",
+      "tipo": "noticia_analitica",
+      "url": "https://www.lemonde.fr/en/international/article/2026/07/30/syria-positions-itself-as-an-alternative-energy-and-logistics-hub-to-strait-of-hormuz_6755993_4.html",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-iraq-development-road-001",
+      "media_id": "anadolu-agency",
+      "medio": "Anadolu Agency",
+      "titulo": "Development Road first phase to prioritize railway",
+      "fecha": "2026-06-25",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://www.aa.com.tr/en/middle-east/development-road-s-1st-phase-to-prioritize-railway-as-middle-east-conflict-disrupts-trade/3977809",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-iraq-development-road-002",
+      "media_id": "le-grand-continent",
+      "medio": "Le Grand Continent",
+      "titulo": "La Russie consolide sa présence en Syrie",
+      "fecha": "2026-07-10",
+      "idioma": "fr",
+      "tipo": "analisis",
+      "url": "https://legrandcontinent.eu/fr/2026/07/10/la-russie-consolide-sa-presence-en-syrie/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-iraq-development-road-esteri-20250201",
+      "media_id": "italian-foreign-ministry",
+      "medio": "Italian Ministry of Foreign Affairs and International Cooperation",
+      "titulo": "Iraq Development Road: a strategic corridor between East and West",
+      "fecha": "2025-02-01",
+      "idioma": "en",
+      "tipo": "diplomacia_economica",
+      "url": "https://www.esteri.it/en/sala_stampa/archivionotizie/diplomazia-economica/2025/02/iraq-development-road-un-corridoio-strategico-tra-oriente-e-occidente/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-iraq-development-road-ina-20251012",
+      "media_id": "iraqi-news-agency",
+      "medio": "Iraqi News Agency (INA)",
+      "titulo": "GCPI: Economic Belt along Development Road from Al-Faw to Turkey",
+      "fecha": "2025-10-12",
+      "idioma": "en",
+      "tipo": "noticia_oficial",
+      "url": "https://ina.iq/en/economy/42950-gcpi-economic-belt-along-development-road-from-al-faw-to-turkey.html",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-iraq-development-road-mecouncil-20240507",
+      "media_id": "middle-east-council-global-affairs",
+      "medio": "Middle East Council on Global Affairs",
+      "titulo": "Iraq’s Development Road Project: A Path to Prosperity or Instability?",
+      "fecha": "2024-05-07",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://mecouncil.org/publication/iraqs-development-road-project-a-path-to-prosperity-or-instability/",
       "estado_verificacion": "verificada"
     },
     {
@@ -2962,6 +3556,193 @@
       "idioma": "en",
       "tipo": "noticia",
       "url": "https://www.irrawaddy.com/news/war-against-the-junta/arakan-army-surrounds-myanmars-western-naval-bases-sparking-intense-battles.html",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-pkk-sdf-ap-desarme-20250711",
+      "media_id": "associated-press-ap",
+      "medio": "Associated Press (AP)",
+      "titulo": "Kurdish separatist fighters in Iraq begin laying down weapons as part of peace process with Turkey",
+      "fecha": "2025-07-11",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://apnews.com/article/b91f6eac4794767fee2d3288fcb343d1",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-pkk-sdf-ap-disolucion-20260825",
+      "media_id": "associated-press-ap",
+      "medio": "Associated Press (AP)",
+      "titulo": "Kurdish-led Syrian Democratic Forces group says it has dissolved after merging with the Syrian army",
+      "fecha": "2026-08-25",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://apnews.com/article/1b7d210c96d2c608007b0411db25f453",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-pkk-sdf-ap-proyecto-ley-20260805",
+      "media_id": "associated-press-ap",
+      "medio": "Associated Press (AP)",
+      "titulo": "Bill aiming for peace between Turkey and Kurdish fighters goes to parliament",
+      "fecha": "2026-08-05",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://apnews.com/article/6b52a23e48b05d392f6474fbaba8b819",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-pkk-sdf-lemonde-opinion-20250324",
+      "media_id": "le-monde",
+      "medio": "Le Monde",
+      "titulo": "Öcalan’s call for non-violent democratic struggle could create a new social contract for the Kurdistan question",
+      "fecha": "2025-03-24",
+      "idioma": "en",
+      "tipo": "opinion",
+      "url": "https://www.lemonde.fr/en/opinion/article/2025/03/24/ocalan-s-call-for-non-violent-democratic-struggle-could-create-a-new-social-contract-for-the-kurdistan-question_6739475_23.html",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-turquia-armas-sipri-20260309",
+      "media_id": "sipri",
+      "medio": "SIPRI",
+      "titulo": "Trends in International Arms Transfers, 2025",
+      "fecha": "2026-03-09",
+      "idioma": "en",
+      "tipo": "informe_investigacion",
+      "url": "https://www.sipri.org/publications/2026/sipri-fact-sheets/trends-international-arms-transfers-2025",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-turquia-cronos-eia-20250701",
+      "media_id": "u-s-energy-information-administration-eia",
+      "medio": "U.S. Energy Information Administration (EIA)",
+      "titulo": "Regional Analysis Brief: Eastern Mediterranean Energy",
+      "fecha": "2025-07-01",
+      "idioma": "en",
+      "tipo": "informe_oficial",
+      "url": "https://www.eia.gov/international/content/analysis/regions_of_interest/Eastern_Mediterranean/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-turquia-defensa-reuters-20260605",
+      "media_id": "reuters",
+      "medio": "Reuters",
+      "titulo": "Turkey targets more defence sales as West rearms and alliances shift",
+      "fecha": "2026-06-05",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://www.reuters.com/business/aerospace-defense/turkey-targets-more-defence-sales-west-rearms-alliances-shift-2026-06-05/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-turquia-iraq-mecouncil-20240507",
+      "media_id": "middle-east-council-global-affairs",
+      "medio": "Middle East Council on Global Affairs",
+      "titulo": "Iraq’s Development Road Project: A Path to Prosperity or Instability?",
+      "fecha": "2024-05-07",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://mecouncil.org/publication/iraqs-development-road-project-a-path-to-prosperity-or-instability/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-turquia-orden-brookings-20260616",
+      "media_id": "brookings-institution",
+      "medio": "Brookings Institution",
+      "titulo": "Turkey’s search for a Middle East order",
+      "fecha": "2026-06-16",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://www.brookings.edu/articles/turkeys-search-for-a-middle-east-order/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-turquia-siria-carnegie-20250708",
+      "media_id": "carnegie-endowment",
+      "medio": "Carnegie Endowment for International Peace",
+      "titulo": "The Middle East’s Other Escalating Rivalry",
+      "fecha": "2025-07-08",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://carnegieendowment.org/emissary/2025/07/turkey-israel-syria-escalating-rivalry",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-turquia-somalia-ap-20240221",
+      "media_id": "associated-press-ap",
+      "medio": "Associated Press (AP)",
+      "titulo": "Somalia announces deal with Turkey to deter Ethiopia’s access to sea through a breakaway region",
+      "fecha": "2024-02-21",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://apnews.com/article/d4bc5ae5eaa023b34d9387b603457ff0",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-siria-turquia-israel-ap-20260819",
+      "media_id": "associated-press-ap",
+      "medio": "Associated Press (AP)",
+      "titulo": "Israeli strikes hit an air base hours after a Turkish delegation visit, Syrian officials say",
+      "fecha": "2026-08-19",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://apnews.com/article/60a2747ff4dcdd6ebc498807912cce46",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-siria-turquia-israel-carnegie-20250708",
+      "media_id": "carnegie-endowment",
+      "medio": "Carnegie Endowment for International Peace",
+      "titulo": "The Middle East’s Other Escalating Rivalry",
+      "fecha": "2025-07-08",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://carnegieendowment.org/emissary/2025/07/turkey-israel-syria-escalating-rivalry",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-siria-turquia-israel-oir-20250731",
+      "media_id": "us-department-defense",
+      "medio": "U.S. Department of Defense",
+      "titulo": "Operation Inherent Resolve Quarterly Report to Congress, April 1, 2025–June 30, 2025",
+      "fecha": "2025-07-31",
+      "idioma": "en",
+      "tipo": "informe_oficial",
+      "url": "https://media.defense.gov/2025/Jul/31/2003767903/-1/-1/1/OIR_Q3_JUN2025_FINAL_508.PDF",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-somalia-turquia-ap-acuerdo-20240221",
+      "media_id": "associated-press-ap",
+      "medio": "Associated Press (AP)",
+      "titulo": "Somalia announces deal with Turkey to deter Ethiopia’s access to sea through a breakaway region",
+      "fecha": "2024-02-21",
+      "idioma": "en",
+      "tipo": "noticia",
+      "url": "https://apnews.com/article/d4bc5ae5eaa023b34d9387b603457ff0",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-somalia-turquia-energia-ministerio-20260411",
+      "media_id": "turkiye-energy-ministry",
+      "medio": "Republic of Türkiye Ministry of Energy and Natural Resources",
+      "titulo": "A New Chapter in Energy History",
+      "fecha": "2026-04-11",
+      "idioma": "en",
+      "tipo": "comunicado_oficial",
+      "url": "https://enerji.gov.tr/news-detail?id=31801",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-somalia-turquia-winep-20250820",
+      "media_id": "washington-institute",
+      "medio": "The Washington Institute for Near East Policy",
+      "titulo": "To Halt the Jihadist Advance in Somalia, Work with Turkey and the UAE",
+      "fecha": "2025-08-20",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://www.washingtoninstitute.org/policy-analysis/halt-jihadist-advance-somalia-work-turkey-and-uae",
       "estado_verificacion": "verificada"
     },
     {

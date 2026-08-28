@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "titulo": "Observatorio de macroeventos geopolíticos",
-  "actualizado": "2026-08-26",
+  "actualizado": "2026-08-27",
   "notas": "Datos iniciales derivados del análisis del chat. Todas las fuentes comienzan como no verificadas.",
   "categorias_internas": [
     {
@@ -76,6 +76,13 @@
         "estado": "activa"
       },
       {
+        "id": "articulacion_diplomatica",
+        "nombre": "Articulacion Diplomatica",
+        "descripcion": "",
+        "aliases": [],
+        "estado": "activa"
+      },
+      {
         "id": "avance_infraestructura",
         "nombre": "Avance Infraestructura",
         "descripcion": "",
@@ -99,6 +106,13 @@
       {
         "id": "cambio_legal",
         "nombre": "Cambio Legal",
+        "descripcion": "",
+        "aliases": [],
+        "estado": "activa"
+      },
+      {
+        "id": "capacidad_industrial",
+        "nombre": "Capacidad Industrial",
         "descripcion": "",
         "aliases": [],
         "estado": "activa"
@@ -162,6 +176,13 @@
       {
         "id": "corredor_logistico",
         "nombre": "Corredor Logistico",
+        "descripcion": "",
+        "aliases": [],
+        "estado": "activa"
+      },
+      {
+        "id": "corredores_competidos",
+        "nombre": "Corredores Competidos",
         "descripcion": "",
         "aliases": [],
         "estado": "activa"
@@ -477,6 +498,13 @@
       {
         "id": "propuesta_infraestructura",
         "nombre": "Propuesta Infraestructura",
+        "descripcion": "",
+        "aliases": [],
+        "estado": "activa"
+      },
+      {
+        "id": "proyeccion_extrarregional",
+        "nombre": "Proyeccion Extrarregional",
         "descripcion": "",
         "aliases": [],
         "estado": "activa"
@@ -8063,8 +8091,8 @@
       "id": "turquia-potencia-bisagra-reordenamiento-regional",
       "titulo": "Consolidación de Turquía como potencia bisagra multidimensional en el reordenamiento regional",
       "tipo_proceso": "macroproceso_emergente",
-      "estado_editorial": "borrador",
-      "estado_verificacion": "pendiente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "parcial",
       "fecha_corte": "2026-08-21",
       "regiones": [
         "Medio Oriente",
@@ -8104,7 +8132,67 @@
         "siria-turquia-israel-reordenamiento",
         "pkk-sdf-transformacion-cuestion-kurda"
       ],
-      "senales": [],
+      "senales": [
+        {
+          "id": "sig-rector-turquia-capacidad-industrial-20260605",
+          "fecha": "2026-06-05",
+          "titulo": "La industria de defensa aporta una base material a la proyección turca",
+          "tipo": "capacidad_industrial",
+          "descripcion": "Las exportaciones y capacidades industriales turcas amplían la posibilidad de sostener asociaciones de defensa, mantenimiento e interoperabilidad; el efecto político duradero debe seguir verificándose en cada relación bilateral.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-turquia-defensa-reuters-20260605",
+            "src-rector-turquia-armas-sipri-20260309"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-rector-turquia-articulacion-regional-20260616",
+          "fecha": "2026-06-16",
+          "titulo": "Turquía busca articular un orden regional mientras administra rivalidades",
+          "tipo": "articulacion_diplomatica",
+          "descripcion": "La búsqueda turca de margen regional combina interlocución con actores rivales y competencia en escenarios como Siria; hablar con varias partes aumenta el acceso, pero no demuestra por sí solo capacidad de mediación eficaz.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-turquia-siria-carnegie-20250708",
+            "src-rector-turquia-orden-brookings-20260616"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-rector-turquia-corredores-disputados-20250701",
+          "fecha": "2025-07-01",
+          "titulo": "La centralidad logística turca compite con corredores y rutas alternativas",
+          "tipo": "corredores_competidos",
+          "descripcion": "Development Road puede reforzar la conexión de Irak con Turquía, mientras la infraestructura del Mediterráneo Oriental demuestra que existen trayectorias energéticas alternativas; la centralidad depende de operación, costos y confiabilidad, no solo de geografía.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-turquia-iraq-mecouncil-20240507",
+            "src-rector-turquia-cronos-eia-20250701"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-rector-turquia-proyeccion-somalia-20240221",
+          "fecha": "2024-02-21",
+          "titulo": "La asociación con Somalia extiende la proyección turca fuera de su entorno inmediato",
+          "tipo": "proyeccion_extrarregional",
+          "descripcion": "La cooperación de seguridad con Somalia muestra capacidad de proyectar compromisos institucionales hacia el Cuerno de África; su sostenibilidad depende de costos, resultados y condiciones locales.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-turquia-somalia-ap-20240221"
+          ],
+          "intensidad": 3,
+          "localizaciones": []
+        }
+      ],
       "actores": [
         "Turquía",
         "Estados Unidos",
@@ -8178,10 +8266,135 @@
         "Cuerno de África",
         "Asia Central"
       ],
-      "fuentes": [],
+      "fuentes": [
+        {
+          "id": "src-rector-turquia-defensa-reuters-20260605",
+          "media_id": "reuters",
+          "medio_catalogado": true,
+          "medio": "Reuters",
+          "titulo": "Turkey targets more defence sales as West rearms and alliances shift",
+          "fecha": "2026-06-05",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://www.reuters.com/business/aerospace-defense/turkey-targets-more-defence-sales-west-rearms-alliances-shift-2026-06-05/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del expediente complementario sobre industria de defensa; incorporada al rector para sostener el eje material de la hipótesis.",
+          "revisada_el": "2026-08-27"
+        },
+        {
+          "id": "src-rector-turquia-siria-carnegie-20250708",
+          "media_id": "carnegie-endowment",
+          "medio_catalogado": true,
+          "medio": "Carnegie Endowment for International Peace",
+          "titulo": "The Middle East’s Other Escalating Rivalry",
+          "fecha": "2025-07-08",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://carnegieendowment.org/emissary/2025/07/turkey-israel-syria-escalating-rivalry",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del complementario Siria–Turquía–Israel; sostiene el eje de competencia, desconflicción y límites regionales.",
+          "revisada_el": "2026-08-27"
+        },
+        {
+          "id": "src-rector-turquia-orden-brookings-20260616",
+          "media_id": "brookings-institution",
+          "medio_catalogado": true,
+          "medio": "Brookings Institution",
+          "titulo": "Turkey’s search for a Middle East order",
+          "fecha": "2026-06-16",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://www.brookings.edu/articles/turkeys-search-for-a-middle-east-order/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del complementario Turquía–Irán; aporta perspectiva analítica sobre la búsqueda turca de orden regional.",
+          "revisada_el": "2026-08-27"
+        },
+        {
+          "id": "src-rector-turquia-iraq-mecouncil-20240507",
+          "media_id": "middle-east-council-global-affairs",
+          "medio_catalogado": true,
+          "medio": "Middle East Council on Global Affairs",
+          "titulo": "Iraq’s Development Road Project: A Path to Prosperity or Instability?",
+          "fecha": "2024-05-07",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://mecouncil.org/publication/iraqs-development-road-project-a-path-to-prosperity-or-instability/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del complementario Iraq Development Road; sostiene el eje de corredores y sus riesgos de implementación.",
+          "revisada_el": "2026-08-27"
+        },
+        {
+          "id": "src-rector-turquia-cronos-eia-20250701",
+          "media_id": "u-s-energy-information-administration-eia",
+          "medio_catalogado": true,
+          "medio": "U.S. Energy Information Administration (EIA)",
+          "titulo": "Regional Analysis Brief: Eastern Mediterranean Energy",
+          "fecha": "2025-07-01",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://www.eia.gov/international/content/analysis/regions_of_interest/Eastern_Mediterranean/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del complementario Cronos; conserva la contraevidencia de rutas energéticas que pueden evitar Turquía.",
+          "revisada_el": "2026-08-27"
+        },
+        {
+          "id": "src-rector-turquia-somalia-ap-20240221",
+          "media_id": "associated-press-ap",
+          "medio_catalogado": true,
+          "medio": "Associated Press (AP)",
+          "titulo": "Somalia announces deal with Turkey to deter Ethiopia’s access to sea through a breakaway region",
+          "fecha": "2024-02-21",
+          "idioma": "en",
+          "tipo": "noticia",
+          "url": "https://apnews.com/article/d4bc5ae5eaa023b34d9387b603457ff0",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente verificada del complementario Somalia; sostiene la dimensión de proyección militar y extrarregional.",
+          "revisada_el": "2026-08-27"
+        },
+        {
+          "id": "src-rector-turquia-armas-sipri-20260309",
+          "media_id": "sipri",
+          "medio_catalogado": true,
+          "medio": "SIPRI",
+          "titulo": "Trends in International Arms Transfers, 2025",
+          "fecha": "2026-03-09",
+          "idioma": "en",
+          "tipo": "informe_investigacion",
+          "url": "https://www.sipri.org/publications/2026/sipri-fact-sheets/trends-international-arms-transfers-2025",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente independiente verificada del complementario de industria de defensa; aporta contraste sobre transferencias internacionales de armas.",
+          "revisada_el": "2026-08-27"
+        }
+      ],
       "actualizaciones": [],
       "historial_evaluacion": [],
-      "advertencias": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-turquia-potencia-bisagra-reordenamiento-regional-001",
+          "descripcion": "El análisis rector no contiene fuentes directas propias y sintetiza diez expedientes complementarios; la comprobación factual debe realizarse en esos expedientes y en sus publicaciones vinculadas.",
+          "tipo": "insuficiencia_evidencia",
+          "signal_ids": [],
+          "fuente_ids": [],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-27T10:26:31.669Z",
+          "actualizada_el": "2026-08-27T10:26:31.669Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Se incorpora porque el rector es una síntesis de segundo orden: la trazabilidad factual permanece en los diez expedientes complementarios y sus análisis enlazados. Esta advertencia impide confundir la hipótesis agregada con evidencia primaria propia.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-turquia-potencia-bisagra-reordenamiento-regional-001-20260827102631",
+              "accion": "incorporada_desde_analisis",
+              "detalle": "Se incorpora porque el rector es una síntesis de segundo orden: la trazabilidad factual permanece en los diez expedientes complementarios y sus análisis enlazados. Esta advertencia impide confundir la hipótesis agregada con evidencia primaria propia.",
+              "realizada_el": "2026-08-27T10:26:31.669Z",
+              "realizada_por": "usuario-local"
+            }
+          ]
+        }
+      ],
       "excepciones_advertencias": []
     }
   ],
