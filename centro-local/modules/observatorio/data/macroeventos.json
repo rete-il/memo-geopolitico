@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "titulo": "Observatorio de macroeventos geopolíticos",
-  "actualizado": "2026-08-28",
+  "actualizado": "2026-08-29",
   "notas": "Datos iniciales derivados del análisis del chat. Todas las fuentes comienzan como no verificadas.",
   "categorias_internas": [
     {
@@ -957,8 +957,10 @@
       "descripcion": "La vulnerabilidad simultánea de Hormuz, Bab el-Mandeb y Suez impulsa una transición desde la logística de máxima eficiencia hacia redes redundantes: oleoductos terrestres, puertos exteriores al Golfo, almacenamiento, rutas por el Cabo y corredores ferroviarios.",
       "por_que_importa": "",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "macroevento_relacionado_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
       "senales": [
         {
           "id": "sig-hormuz-bab-el-mandeb-suez-001",
@@ -1072,7 +1074,10 @@
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
-      "excepciones_advertencias": []
+      "excepciones_advertencias": [],
+      "macroevento_rector_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ]
     },
     {
       "id": "cables-submarinos-infraestructura-critica",
@@ -2897,10 +2902,12 @@
       "es_macroevento_rector": false,
       "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
       "macroevento_rector_ids": [
-        "corredores-alternativos-redes-logisticas-redundantes"
+        "corredores-alternativos-redes-logisticas-redundantes",
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
       ],
       "macroevento_relacionado_ids": [
-        "corredores-alternativos-redes-logisticas-redundantes"
+        "corredores-alternativos-redes-logisticas-redundantes",
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
       ],
       "senales": [
         {
@@ -5647,7 +5654,8 @@
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "macroevento_relacionado_ids": [
-        "turquia-potencia-bisagra-reordenamiento-regional"
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
       ],
       "senales": [
         {
@@ -5892,7 +5900,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "macroevento_rector_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ]
     },
     {
       "id": "pkk-sdf-transformacion-cuestion-kurda",
@@ -6563,7 +6575,8 @@
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
       "macroevento_relacionado_ids": [
-        "turquia-potencia-bisagra-reordenamiento-regional"
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
       ],
       "senales": [
         {
@@ -7162,7 +7175,11 @@
         "lote_id": "chatgpt-2026-08-22-1787370430233",
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
-      }
+      },
+      "macroevento_rector_ids": [
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ]
     },
     {
       "id": "industria-defensa-turca-proyeccion-regional",
@@ -11003,6 +11020,2451 @@
               "accion": "incorporada_desde_diseno_rector",
               "detalle": "Distinguir territorio de tránsito, tolerancia, incapacidad de control, apoyo de actores subestatales y decisión del gobierno central.",
               "realizada_el": "2026-08-28T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "titulo": "De los Acuerdos de Abraham a la guerra regionalizada: Israel, Irán, Palestina y los Estados del Golfo",
+      "tipo_proceso": "macroproceso_estructural",
+      "estado_editorial": "revision",
+      "estado_verificacion": "verificado",
+      "fecha_corte": "2026-08-29",
+      "regiones": [
+        "Oriente Medio",
+        "Golfo",
+        "Levante",
+        "Mar Rojo",
+        "Mediterráneo"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        7,
+        10,
+        91,
+        108,
+        141,
+        173,
+        188,
+        190,
+        200,
+        241,
+        242,
+        243,
+        244,
+        249,
+        251,
+        252,
+        253,
+        258
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-29"
+      },
+      "descripcion": "Proceso mediante el cual la arquitectura de normalización abierta por los Acuerdos de Abraham se superpone con la cuestión palestina no resuelta, la guerra de Gaza, la confrontación directa e indirecta entre Israel e Irán y la búsqueda de seguridad y autonomía estratégica de los Estados del Golfo. El sistema conecta Gaza y Cisjordania con Líbano, Siria, Iraq, Yemen, el mar Rojo, el estrecho de Ormuz y las garantías militares de Estados Unidos, sin convertir a todos los actores en dos bloques homogéneos.",
+      "por_que_importa": "Importa porque permite evaluar si Medio Oriente evoluciona hacia una arquitectura de normalización y seguridad ampliada, una guerra regional prolongada o una combinación inestable de cooperación económica, disuasión militar y conflictos recurrentes. El seguimiento rector mantiene a Palestina como dimensión política propia, distingue las estrategias de cada Estado del Golfo y mide cuándo un frente local altera simultáneamente alianzas, rutas marítimas, energía, proliferación y presencia estadounidense.",
+      "es_macroevento_rector": true,
+      "macroevento_rector_id": null,
+      "macroevento_rector_ids": [],
+      "macroevento_relacionado_ids": [
+        "abraham-normalizacion-arabia-saudita-israel",
+        "gaza-cisjordania-orden-politico-palestino",
+        "israel-iran-confrontacion-directa-nuclear-misilistica",
+        "israel-libano-hezbollah-frontera-norte",
+        "iran-red-aliados-irak-siria-yemen",
+        "estados-golfo-autonomia-seguridad-mediacion",
+        "estados-unidos-arquitectura-seguridad-medio-oriente",
+        "hormuz-bab-el-mandeb-suez",
+        "imec-reconfiguracion-modular",
+        "siria-turquia-israel-reordenamiento",
+        "turquia-iran-competencia-coexistencia"
+      ],
+      "senales": [
+        {
+          "id": "sig-mena-rector-normalizacion-20200915",
+          "fecha": "2020-09-15",
+          "titulo": "Los Acuerdos de Abraham institucionalizan una vía de normalización árabe-israelí",
+          "tipo": "normalizacion_diplomatica",
+          "descripcion": "La firma de acuerdos de normalización crea una arquitectura estatal de cooperación diplomática, económica y de seguridad que puede persistir aun cuando aumente la oposición política y social.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-mena-rector-abraham-state-20200915"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-mena-rector-gaza-orden-politico-20260428",
+          "fecha": "2026-04-28",
+          "titulo": "La reconstrucción de Gaza depende de gobernanza, seguridad y horizonte político palestino",
+          "tipo": "gobernanza_posconflicto",
+          "descripcion": "La discusión internacional ya no se limita al cese del fuego: vincula administración transitoria, reconstrucción, Cisjordania, Autoridad Palestina y viabilidad de una solución política.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-mena-rector-un-gaza-governance-20260428"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-mena-rector-iran-confrontacion-directa-20260702",
+          "fecha": "2026-07-02",
+          "titulo": "La confrontación con Irán pasa a depender de ceses del fuego y mediaciones regionales",
+          "tipo": "desescalada_regional",
+          "descripcion": "La mediación sobre un cese de hostilidades entre Estados Unidos e Irán muestra que la disuasión regional combina ataques directos, presión diplomática y riesgo de reactivación simultánea de varios frentes.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-mena-rector-un-iran-ceasefire-20260702"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-mena-rector-golfo-agenda-integrada-20260625",
+          "fecha": "2026-06-25",
+          "titulo": "Estados Unidos y el GCC tratan Gaza, Irán, Iraq y Líbano como una agenda de seguridad conectada",
+          "tipo": "coordinacion_seguridad",
+          "descripcion": "La agenda conjunta enlaza defensa frente a Irán, control estatal de las armas, futuro de Gaza, soberanía libanesa y seguridad de las infraestructuras regionales.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-mena-rector-gcc-us-ministerial-20260625"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-mena-rector-defensa-aerea-integrada-20260113",
+          "fecha": "2026-01-13",
+          "titulo": "La defensa aérea y misilística regional adquiere mecanismos permanentes de coordinación",
+          "tipo": "integracion_defensa_aerea",
+          "descripcion": "La apertura de una célula combinada en Qatar aporta una institución operativa para compartir alertas y coordinar respuestas, aunque no demuestra por sí sola integración política ni eficacia en combate.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-mena-rector-centcom-air-defense-20260113"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Israel",
+        "Irán",
+        "Estados Unidos",
+        "Arabia Saudita",
+        "Emiratos Árabes Unidos",
+        "Qatar",
+        "Bahrain",
+        "Kuwait",
+        "Omán",
+        "Consejo de Cooperación del Golfo",
+        "Autoridad Palestina",
+        "Hamas",
+        "Hezbollah",
+        "Houthis",
+        "Milicias iraquíes",
+        "Líbano",
+        "Siria",
+        "Iraq",
+        "Yemen",
+        "Egipto",
+        "Jordania",
+        "Turquía",
+        "Naciones Unidas"
+      ],
+      "intereses": [
+        "Preservar para Israel seguridad territorial, libertad de acción militar, reconocimiento regional y contención de las capacidades iraníes y de sus aliados.",
+        "Conservar para Irán capacidad de disuasión estatal, continuidad de su programa nuclear y profundidad regional mediante relaciones con actores armados y gobiernos aliados.",
+        "Convertir para los Estados del Golfo sus recursos, mediación y asociaciones militares en autonomía estratégica sin quedar subordinados a una guerra permanente entre Israel, Irán y Estados Unidos.",
+        "Alcanzar para los palestinos protección, representación legítima, reconstrucción, autodeterminación y un arreglo político que vincule Gaza, Cisjordania y Jerusalén Este.",
+        "Mantener para Estados Unidos acceso militar, seguridad de aliados, libertad de navegación, no proliferación y capacidad de articular coaliciones regionales.",
+        "Preservar para Egipto y Jordania estabilidad fronteriza, mediación, tratados existentes y rechazo de desplazamientos palestinos permanentes.",
+        "Evitar para Líbano, Iraq, Siria y Yemen que la disputa regional consolide actores armados por fuera del monopolio estatal de la fuerza.",
+        "Mantener abiertas las rutas de Ormuz, Bab el-Mandeb y Suez y reducir el traslado de la guerra a energía, comercio e infraestructura civil."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Sobrevive una normalización condicionada: los acuerdos diplomáticos existentes continúan, pero su profundización y una eventual incorporación saudí quedan limitadas por Gaza, Cisjordania y la seguridad regional. Israel e Irán mantienen una disuasión inestable con episodios directos e indirectos, mientras los Estados del Golfo combinan defensa colectiva, mediación y diversificación de socios.",
+        "adverso": "La región se organiza alrededor de una guerra prolongada y multinodal. La confrontación Israel–Irán reactiva de forma recurrente Líbano, Siria, Iraq, Yemen, el Golfo y las rutas marítimas; fracasan los arreglos para Gaza, aumenta la presión sobre Cisjordania y los Estados del Golfo quedan expuestos a ataques e interrupciones energéticas.",
+        "transformador": "Un arreglo verificable para Gaza y un horizonte político palestino permiten ampliar la normalización y construir mecanismos parciales de seguridad regional. Acuerdos sobre defensa aérea, navegación, programa nuclear iraní, control estatal de armas y reconstrucción reducen la probabilidad de escaladas simultáneas sin eliminar las rivalidades."
+      },
+      "indicadores": [
+        "Continuidad, reducción o ampliación de embajadas, comercio, inversión, turismo y cooperación de seguridad vinculados con los Acuerdos de Abraham.",
+        "Condiciones oficiales y avances verificables de una eventual normalización entre Arabia Saudita e Israel.",
+        "Cumplimiento del alto el fuego en Gaza, liberación de rehenes y detenidos, acceso humanitario, retirada militar y despliegue de mecanismos de seguridad.",
+        "Autoridad efectiva sobre Gaza, relación con la Autoridad Palestina, reformas institucionales y coordinación con Cisjordania.",
+        "Asentamientos, violencia, desplazamiento, ingresos fiscales y gobernabilidad palestina en Cisjordania y Jerusalén Este.",
+        "Frecuencia, alcance y atribución de ataques directos entre Israel, Irán y fuerzas estadounidenses.",
+        "Acceso del OIEA, inventarios nucleares, enriquecimiento, instalaciones afectadas y cambios de doctrina nuclear iraní.",
+        "Cumplimiento de ceses del fuego y de la resolución 1701 en la frontera Israel–Líbano; control estatal libanés de armas y territorio.",
+        "Ataques y autonomía operativa de grupos armados en Iraq, Siria y Yemen, con evidencia diferenciada sobre apoyo o dirección iraní.",
+        "Ataques a navegación, primas de seguros, tránsito por Suez, Bab el-Mandeb y Ormuz y afectación de energía y comercio.",
+        "Grado de interoperabilidad de defensa aérea y misilística entre Estados Unidos y socios regionales.",
+        "Diferencias entre Arabia Saudita, Emiratos, Qatar, Bahrain, Kuwait y Omán respecto de Israel, Irán, mediación y presencia estadounidense."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 5,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Acuerdos de Abraham",
+        "Abraham Accords",
+        "Israel",
+        "Irán",
+        "Gaza",
+        "Cisjordania",
+        "Palestina",
+        "Arabia Saudita",
+        "Emiratos Árabes Unidos",
+        "Qatar",
+        "Bahrain",
+        "Kuwait",
+        "Omán",
+        "GCC",
+        "Hezbollah",
+        "Houthis",
+        "Siria",
+        "Iraq",
+        "Líbano",
+        "Yemen",
+        "mar Rojo",
+        "estrecho de Ormuz",
+        "normalización árabe-israelí",
+        "defensa aérea integrada"
+      ],
+      "fuentes": [
+        {
+          "id": "src-mena-rector-abraham-state-20200915",
+          "medio_catalogado": false,
+          "medio": "U.S. Department of State",
+          "titulo": "The Abraham Accords",
+          "fecha": "2020-09-15",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://2021-2025.state.gov/the-abraham-accords/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria para el texto y los objetivos declarados de normalización, cooperación, paz, seguridad y prosperidad. El sitio es un archivo oficial y no se actualiza.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-un-gaza-governance-20260428",
+          "media_id": "united-nations-onu",
+          "medio_catalogado": true,
+          "medio": "United Nations (ONU)",
+          "titulo": "Amid a tenuous ceasefire and soaring humanitarian needs, the Security Council hears updates on transitional governance structures and reconstruction efforts in Gaza",
+          "fecha": "2026-04-28",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.un.org/unispal/document/amid-a-tenuous-ceasefire-and-soaring-humanitarian-needs-the-security-council-hears-updates-on-transitional-governance-structures-and-reconstruction-efforts-in-gaza/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente multilateral para distinguir alto el fuego, gobernanza, reconstrucción, Cisjordania y horizonte político palestino.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-un-iran-ceasefire-20260702",
+          "media_id": "united-nations-onu",
+          "medio_catalogado": true,
+          "medio": "United Nations (ONU)",
+          "titulo": "UN calls for maximum restraint to preserve ceasefire between the United States and Iran",
+          "fecha": "2026-07-02",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://dppa.un.org/en/speeches-and-statements/un-calls-for-maximum-restraint-to-preserve-ceasefire-between-the",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente multilateral para la fase de confrontación directa, mediación y riesgo de reanudación de hostilidades regionales.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-gcc-us-ministerial-20260625",
+          "medio_catalogado": false,
+          "medio": "Gulf Cooperation Council (GCC)",
+          "titulo": "Joint Statement Following the Ministerial Meeting of the United States and the Gulf Cooperation Council",
+          "fecha": "2026-06-25",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.gcc-sg.org/en/MediaCenter/News/Pages/news-2026-6-25-10.aspx",
+          "estado_verificacion": "verificada",
+          "observaciones": "Posición oficial de los gobiernos del GCC y Estados Unidos; debe leerse como fuente primaria interesada y contrastarse.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-centcom-air-defense-20260113",
+          "media_id": "u-s-centcom",
+          "medio_catalogado": true,
+          "medio": "U.S. CENTCOM",
+          "titulo": "U.S., Regional Partners Open New Air Defense Operations Cell in Qatar",
+          "fecha": "2026-01-13",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.centcom.mil/MEDIA/PUBLIC-RELEASES/Article/4376614/us-regional-partners-open-new-air-defense-operations-cell-in-qatar/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente militar primaria sobre coordinación regional de defensa aérea y misilística; requiere corroboración independiente para evaluar eficacia.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-iaea-iran-monitoring-20250613",
+          "media_id": "iaea-oiea",
+          "medio_catalogado": true,
+          "medio": "IAEA / OIEA",
+          "titulo": "Verification and Monitoring in Iran",
+          "fecha": "2025-06-13",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.iaea.org/newscenter/focus/iran",
+          "estado_verificacion": "verificada",
+          "observaciones": "Portal técnico de referencia para separar hechos de verificación nuclear, declaraciones estatales e inferencias estratégicas.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-carnegie-abraham-context-20250425",
+          "media_id": "carnegie-endowment",
+          "medio_catalogado": true,
+          "medio": "Carnegie Endowment for International Peace",
+          "titulo": "The Abraham Accords After Gaza: A Change of Context",
+          "fecha": "2025-04-25",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://carnegieendowment.org/research/2025/04/the-abraham-accords-after-gaza-a-change-of-context?center=global",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis independiente sobre la continuidad estatal de los Acuerdos de Abraham, la contracción de su dimensión social tras Gaza y el mayor costo político de una ampliación saudí.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-ecfr-palestinian-politics-20251120",
+          "media_id": "ecfr",
+          "medio_catalogado": true,
+          "medio": "ECFR",
+          "titulo": "Averting West Bank collapse: How to revive Palestinian politics",
+          "fecha": "2025-11-20",
+          "idioma": "en",
+          "tipo": "policy_brief",
+          "url": "https://ecfr.eu/publication/averting-west-bank-collapse-how-to-revive-palestinian-politics/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Policy brief sobre legitimidad, capacidad fiscal, sucesión y fragmentación territorial palestina; permite tratar Gaza y Cisjordania como problema político propio.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-iiss-missile-strategy-20250618",
+          "media_id": "iiss",
+          "medio_catalogado": true,
+          "medio": "IISS",
+          "titulo": "Israel’s attack and the limits of Iran’s missile strategy",
+          "fecha": "2025-06-18",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://www.iiss.org/online-analysis/online-analysis/2025/06/israels-attack-and-the-limits-of-irans-missile-strategy/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis técnico sobre los límites de la estrategia misilística iraní y el cambio de tolerancia israelí al riesgo.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-mecga-gulf-neutrality-20260312",
+          "media_id": "middle-east-council-global-affairs",
+          "medio_catalogado": true,
+          "medio": "Middle East Council on Global Affairs",
+          "titulo": "The Limits of Neutrality for Gulf States in the U.S.–Israel–Iran War",
+          "fecha": "2026-03-12",
+          "idioma": "en",
+          "tipo": "policy_note",
+          "url": "https://mecouncil.org/publication/limits-gulf-neutrality-us-israel-iran-war/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Perspectiva regional sobre la exposición diferenciada de los Estados del Golfo y la distancia entre neutralidad declarada, infraestructura militar y participación práctica.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-chatham-axis-resistance-20250306",
+          "media_id": "chatham-house",
+          "medio_catalogado": true,
+          "medio": "Chatham House",
+          "titulo": "The shape-shifting ‘axis of resistance’",
+          "fecha": "2025-03-06",
+          "idioma": "en",
+          "tipo": "informe_investigacion",
+          "url": "https://www.chathamhouse.org/2025/03/shape-shifting-axis-resistance",
+          "estado_verificacion": "verificada",
+          "observaciones": "Investigación sobre la adaptación horizontal, inserción doméstica, redes económicas y autonomía local de actores vinculados con Irán.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-mecga-hezbollah-depth-20250413",
+          "media_id": "middle-east-council-global-affairs",
+          "medio_catalogado": true,
+          "medio": "Middle East Council on Global Affairs",
+          "titulo": "Hezbollah’s Defeat and Iran’s Strategic Depth Doctrine",
+          "fecha": "2025-04-13",
+          "idioma": "en",
+          "tipo": "issue_brief",
+          "url": "https://mecouncil.org/publication/hezbollahs-defeat-and-irans-strategic-depth-doctrine/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Evaluación regional sobre Hezbollah, la profundidad estratégica iraní y las diferencias entre degradación operativa y continuidad doctrinal.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-chatham-gulf-security-20260615",
+          "media_id": "chatham-house",
+          "medio_catalogado": true,
+          "medio": "Chatham House",
+          "titulo": "Gulf states can contain the threat from Iran and Israel. But they’ll need help",
+          "fecha": "2026-06-15",
+          "idioma": "en",
+          "tipo": "opinion",
+          "url": "https://www.chathamhouse.org/publications/the-world-today/2026-06/gulf-states-can-contain-threat-iran-and-israel-theyll-need",
+          "estado_verificacion": "verificada",
+          "observaciones": "Perspectiva atribuida sobre seguridad colectiva, autonomía y exposición de los Estados del Golfo frente a Israel e Irán.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-mena-rector-carnegie-us-gulf-security-20260303",
+          "media_id": "carnegie-endowment",
+          "medio_catalogado": true,
+          "medio": "Carnegie Endowment for International Peace",
+          "titulo": "The Gulf Monarchies Are Caught Between Iran’s Desperation and the U.S.’s Recklessness",
+          "fecha": "2026-03-03",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://carnegieendowment.org/emissary/2026/03/gulf-states-iran-war-security",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis crítico sobre bases, ventas de armas, protección efectiva y límites percibidos de la garantía estadounidense en el Golfo.",
+          "revisada_el": "2026-08-29"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-mena-rector-golfo-no-homogeneo-001",
+          "descripcion": "Los Estados del Golfo no forman un actor homogéneo frente a Israel, Irán, Palestina o Estados Unidos. Sus posiciones, capacidades, vulnerabilidades y funciones de mediación deben analizarse por separado.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-mena-rector-golfo-agenda-integrada-20260625",
+            "sig-mena-rector-defensa-aerea-integrada-20260113"
+          ],
+          "fuente_ids": [
+            "src-mena-rector-gcc-us-ministerial-20260625",
+            "src-mena-rector-centcom-air-defense-20260113",
+            "src-mena-rector-mecga-gulf-neutrality-20260312",
+            "src-mena-rector-chatham-gulf-security-20260615"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T13:20:00Z",
+          "resuelta_el": "2026-08-29T13:20:00Z",
+          "resuelta_con_fuente_ids": [
+            "src-mena-rector-gcc-us-ministerial-20260625",
+            "src-mena-rector-centcom-air-defense-20260113",
+            "src-mena-rector-mecga-gulf-neutrality-20260312",
+            "src-mena-rector-chatham-gulf-security-20260615"
+          ],
+          "notas_editoriales": "Toda síntesis regional deberá identificar qué Estado sostiene cada posición y distinguir declaración conjunta, conducta bilateral y capacidad operativa.",
+          "resolucion": {
+            "tipo": "incorporada_al_analisis",
+            "detalle": "El análisis diferencia las estrategias de Arabia Saudita, Emiratos, Qatar, Omán, Bahrain y Kuwait; las declaraciones del GCC se utilizan solo como mínimo común y no como prueba de conducta nacional idéntica.",
+            "fuente_ids": [
+              "src-mena-rector-gcc-us-ministerial-20260625",
+              "src-mena-rector-centcom-air-defense-20260113",
+              "src-mena-rector-mecga-gulf-neutrality-20260312",
+              "src-mena-rector-chatham-gulf-security-20260615"
+            ],
+            "resuelta_el": "2026-08-29T13:20:00Z",
+            "resuelta_por": "codex-con-autorizacion-usuario"
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-mena-rector-golfo-no-homogeneo-001-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Toda síntesis regional deberá identificar qué Estado sostiene cada posición y distinguir declaración conjunta, conducta bilateral y capacidad operativa.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-mena-rector-golfo-no-homogeneo-001-resuelta-20260829",
+              "accion": "resuelta",
+              "detalle": "El análisis diferencia las estrategias de Arabia Saudita, Emiratos, Qatar, Omán, Bahrain y Kuwait; las declaraciones del GCC se utilizan solo como mínimo común y no como prueba de conducta nacional idéntica.",
+              "realizada_el": "2026-08-29T13:20:00Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        },
+        {
+          "advertencia_id": "adv-mena-rector-red-iran-autonomia-002",
+          "descripcion": "La relación de Irán con Hezbollah, los Houthis y las milicias de Iraq y Siria no demuestra control operativo uniforme sobre cada decisión. Deben distinguirse financiación, armamento, coordinación, alineamiento político y autonomía local.",
+          "tipo": "atribucion_incierta",
+          "signal_ids": [
+            "sig-mena-rector-iran-confrontacion-directa-20260702"
+          ],
+          "fuente_ids": [
+            "src-mena-rector-un-iran-ceasefire-20260702",
+            "src-mena-rector-chatham-axis-resistance-20250306",
+            "src-mena-rector-mecga-hezbollah-depth-20250413"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T13:20:00Z",
+          "resuelta_el": "2026-08-29T13:20:00Z",
+          "resuelta_con_fuente_ids": [
+            "src-mena-rector-un-iran-ceasefire-20260702",
+            "src-mena-rector-chatham-axis-resistance-20250306",
+            "src-mena-rector-mecga-hezbollah-depth-20250413"
+          ],
+          "notas_editoriales": "No usar “proxy” como explicación autosuficiente. Cada ramificación deberá documentar el grado de apoyo y la agencia propia del actor local.",
+          "resolucion": {
+            "tipo": "incorporada_al_analisis",
+            "detalle": "El análisis sustituye la idea de una cadena de mando uniforme por una tipología explícita de apoyo, coordinación, afinidad, inserción doméstica y autonomía operativa de cada actor.",
+            "fuente_ids": [
+              "src-mena-rector-un-iran-ceasefire-20260702",
+              "src-mena-rector-chatham-axis-resistance-20250306",
+              "src-mena-rector-mecga-hezbollah-depth-20250413"
+            ],
+            "resuelta_el": "2026-08-29T13:20:00Z",
+            "resuelta_por": "codex-con-autorizacion-usuario"
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-mena-rector-red-iran-autonomia-002-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "No usar “proxy” como explicación autosuficiente. Cada ramificación deberá documentar el grado de apoyo y la agencia propia del actor local.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-mena-rector-red-iran-autonomia-002-resuelta-20260829",
+              "accion": "resuelta",
+              "detalle": "El análisis sustituye la idea de una cadena de mando uniforme por una tipología explícita de apoyo, coordinación, afinidad, inserción doméstica y autonomía operativa de cada actor.",
+              "realizada_el": "2026-08-29T13:20:00Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        },
+        {
+          "advertencia_id": "adv-mena-rector-palestina-dimension-propia-003",
+          "descripcion": "Gaza y Cisjordania no deben presentarse solamente como obstáculos o incentivos para la normalización entre Estados. La representación, los derechos, la gobernanza y la seguridad palestinas constituyen una dimensión analítica propia.",
+          "tipo": "sesgo_marco_analitico",
+          "signal_ids": [
+            "sig-mena-rector-gaza-orden-politico-20260428"
+          ],
+          "fuente_ids": [
+            "src-mena-rector-un-gaza-governance-20260428",
+            "src-mena-rector-ecfr-palestinian-politics-20251120"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T13:20:00Z",
+          "resuelta_el": "2026-08-29T13:20:00Z",
+          "resuelta_con_fuente_ids": [
+            "src-mena-rector-un-gaza-governance-20260428",
+            "src-mena-rector-ecfr-palestinian-politics-20251120"
+          ],
+          "notas_editoriales": "El análisis rector deberá separar los resultados para la población y las instituciones palestinas de los cálculos diplomáticos de Israel, Estados Unidos y los Estados árabes.",
+          "resolucion": {
+            "tipo": "incorporada_al_analisis",
+            "detalle": "El análisis dedica una sección propia a representación, derechos, gobernanza, seguridad, reconstrucción y continuidad territorial palestinas, separadas de los cálculos de normalización entre Estados.",
+            "fuente_ids": [
+              "src-mena-rector-un-gaza-governance-20260428",
+              "src-mena-rector-ecfr-palestinian-politics-20251120"
+            ],
+            "resuelta_el": "2026-08-29T13:20:00Z",
+            "resuelta_por": "codex-con-autorizacion-usuario"
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-mena-rector-palestina-dimension-propia-003-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "El análisis rector deberá separar los resultados para la población y las instituciones palestinas de los cálculos diplomáticos de Israel, Estados Unidos y los Estados árabes.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-mena-rector-palestina-dimension-propia-003-resuelta-20260829",
+              "accion": "resuelta",
+              "detalle": "El análisis dedica una sección propia a representación, derechos, gobernanza, seguridad, reconstrucción y continuidad territorial palestinas, separadas de los cálculos de normalización entre Estados.",
+              "realizada_el": "2026-08-29T13:20:00Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "abraham-normalizacion-arabia-saudita-israel",
+      "titulo": "Resiliencia de los Acuerdos de Abraham y negociación de la normalización saudí-israelí",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "verificado",
+      "fecha_corte": "2026-08-29",
+      "regiones": [
+        "Oriente Medio",
+        "Golfo",
+        "Levante"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        190,
+        200,
+        241,
+        249,
+        252,
+        255
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-29"
+      },
+      "descripcion": "Evolución de los vínculos establecidos por Israel con Emiratos Árabes Unidos, Bahrain y Marruecos, y de los intentos de incorporar a Arabia Saudita mediante acuerdos de seguridad, cooperación económica, energía nuclear civil y condiciones vinculadas con la cuestión palestina. El proceso diferencia continuidad formal, cooperación material, legitimidad política y aceptación social.",
+      "por_que_importa": "La supervivencia o ampliación de la normalización indica si la guerra de Gaza revirtió el nuevo entramado diplomático o si este puede adaptarse incorporando condiciones palestinas y garantías de seguridad. Arabia Saudita constituye la prueba principal, pero no debe confundirse su negociación con las trayectorias ya consolidadas o divergentes de otros Estados.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "macroevento_rector_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "macroevento_relacionado_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "senales": [
+        {
+          "id": "sig-abraham-saudi-marco-vigente-20260429",
+          "fecha": "2026-04-29",
+          "titulo": "La normalización continúa como opción estratégica, pero el Golfo muestra trayectorias divergentes",
+          "tipo": "normalizacion_condicionada",
+          "descripcion": "Los beneficios acumulados por los firmantes y las diferencias entre Arabia Saudita y Emiratos muestran continuidad del marco sin una expansión automática.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-abraham-saudi-state-20200915",
+            "src-abraham-saudi-reuters-20260429"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-abraham-saudi-garantias-20260429",
+          "fecha": "2026-04-29",
+          "titulo": "La vía saudí vincula normalización con garantías y condiciones adicionales",
+          "tipo": "negociacion_estrategica",
+          "descripcion": "La negociación saudí no es equivalente a las adhesiones anteriores: combina seguridad, relación con Estados Unidos, tecnología y dimensión palestina.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-abraham-saudi-reuters-20260429"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-abraham-saudi-resiliencia-selectiva-20250425",
+          "fecha": "2025-04-25",
+          "titulo": "Los Acuerdos sobreviven a Gaza, pero con menor profundidad social y mayor costo político",
+          "tipo": "normalizacion_selectiva",
+          "descripcion": "Carnegie distingue la preservación de relaciones estatales y económicas de la contracción del contacto social y de la mayor dificultad política para ampliar la normalización a Arabia Saudita.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-abraham-saudi-carnegie-context-20250425"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Israel",
+        "Arabia Saudita",
+        "Emiratos Árabes Unidos",
+        "Bahrain",
+        "Marruecos",
+        "Estados Unidos",
+        "Autoridad Palestina",
+        "Consejo de Cooperación del Golfo"
+      ],
+      "intereses": [
+        "Ampliar para Israel reconocimiento, comercio, cooperación tecnológica y profundidad estratégica.",
+        "Obtener para Arabia Saudita garantías de seguridad, tecnología, acceso nuclear civil y avances verificables para los palestinos.",
+        "Preservar para Emiratos y Bahrain los beneficios de relaciones ya institucionalizadas sin absorber todos los costos regionales de las guerras israelíes.",
+        "Utilizar para Estados Unidos la normalización como base de una arquitectura regional aliada.",
+        "Evitar para los palestinos que la integración regional avance sin derechos, representación ni horizonte estatal."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Los acuerdos existentes sobreviven con cooperación selectiva, pero la adhesión saudí continúa condicionada y políticamente costosa.",
+        "adverso": "La guerra y la ausencia de horizonte palestino vacían la normalización de contenido político, reducen intercambios y postergan indefinidamente la vía saudí.",
+        "transformador": "Un arreglo palestino verificable y garantías estadounidenses permiten una normalización saudí-israelí acompañada de compromisos regionales de seguridad y reconstrucción."
+      },
+      "indicadores": [
+        "Estado de embajadas, vuelos, comercio, inversión y acuerdos bilaterales.",
+        "Condiciones saudíes oficiales sobre Palestina, seguridad y energía nuclear civil.",
+        "Cooperación militar, tecnológica y de inteligencia anunciada o documentada.",
+        "Encuestas, restricciones sociales y costos reputacionales de la normalización.",
+        "Participación palestina en acuerdos regionales y financiación de reconstrucción."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 4,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 4,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Acuerdos de Abraham",
+        "normalización saudí-israelí",
+        "Arabia Saudita",
+        "Israel",
+        "Emiratos Árabes Unidos",
+        "Bahrain",
+        "Marruecos",
+        "garantías de seguridad",
+        "energía nuclear civil",
+        "Palestina"
+      ],
+      "fuentes": [
+        {
+          "id": "src-abraham-saudi-state-20200915",
+          "medio_catalogado": false,
+          "medio": "U.S. Department of State",
+          "titulo": "The Abraham Accords",
+          "fecha": "2020-09-15",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://2021-2025.state.gov/the-abraham-accords/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Texto oficial archivado que establece la línea de base de la normalización.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-abraham-saudi-reuters-20260429",
+          "media_id": "reuters",
+          "medio_catalogado": true,
+          "medio": "Reuters",
+          "titulo": "EXPLAINER: Why the Abraham Accords are back in the spotlight?",
+          "fecha": "2026-04-29",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://www.reutersconnect.com/item/explainer-why-the-abraham-accords-are-back-in-the-spotlight/dGFnOnJldXRlcnMuY29tLDIwMjY6bmV3c21sX1ZBNjIxNzI4MDQyMDI2UlAx",
+          "estado_verificacion": "verificada",
+          "observaciones": "Explicador independiente sobre beneficios, divergencias del Golfo y condiciones de la negociación saudí.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-abraham-saudi-carnegie-context-20250425",
+          "media_id": "carnegie-endowment",
+          "medio_catalogado": true,
+          "medio": "Carnegie Endowment for International Peace",
+          "titulo": "The Abraham Accords After Gaza: A Change of Context",
+          "fecha": "2025-04-25",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://carnegieendowment.org/research/2025/04/the-abraham-accords-after-gaza-a-change-of-context?center=global",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis independiente sobre la supervivencia desigual de los acuerdos tras Gaza, la reducción del contacto social y el aumento del costo político de una ampliación saudí.",
+          "revisada_el": "2026-08-29"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-abraham-saudi-continuidad-no-profundidad-001",
+          "descripcion": "La continuidad jurídica o diplomática de un acuerdo no demuestra igual profundidad política, militar, económica ni social.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-abraham-saudi-marco-vigente-20260429"
+          ],
+          "fuente_ids": [
+            "src-abraham-saudi-state-20200915",
+            "src-abraham-saudi-reuters-20260429",
+            "src-abraham-saudi-carnegie-context-20250425"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_con_fuente_ids": [
+            "src-abraham-saudi-state-20200915",
+            "src-abraham-saudi-reuters-20260429",
+            "src-abraham-saudi-carnegie-context-20250425"
+          ],
+          "notas_editoriales": "Medir por separado relaciones formales, cooperación efectiva, opinión pública y capacidad de resistir nuevas escaladas.",
+          "resolucion": {
+            "tipo": "decision_editorial",
+            "motivo": "La advertencia se incorpora como regla permanente del análisis: se medirán por separado continuidad formal, cooperación efectiva, profundidad sectorial, opinión pública y resistencia de los acuerdos ante nuevas escaladas.",
+            "decidida_el": "2026-08-29T12:00:00.000Z",
+            "decidida_por": "codex-con-autorizacion-usuario",
+            "fuente_ids": [
+              "src-abraham-saudi-state-20200915",
+              "src-abraham-saudi-reuters-20260429",
+              "src-abraham-saudi-carnegie-context-20250425"
+            ]
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-abraham-saudi-continuidad-no-profundidad-001-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Medir por separado relaciones formales, cooperación efectiva, opinión pública y capacidad de resistir nuevas escaladas.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-abraham-saudi-continuidad-no-profundidad-001-20260829-revision-editorial",
+              "accion": "resuelta",
+              "detalle": "La limitación se conserva como regla metodológica obligatoria para el análisis y deja de bloquear la preparación editorial.",
+              "realizada_el": "2026-08-29T12:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "gaza-cisjordania-orden-politico-palestino",
+      "titulo": "Gaza, Cisjordania y disputa por el futuro orden político palestino",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "verificado",
+      "fecha_corte": "2026-08-29",
+      "regiones": [
+        "Oriente Medio",
+        "Levante"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        109,
+        131,
+        139,
+        141,
+        251,
+        252
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-29"
+      },
+      "descripcion": "Proceso que conecta el cumplimiento de los arreglos de cese del fuego y seguridad en Gaza con la reconstrucción, el gobierno transitorio, la representación palestina, la relación con la Autoridad Palestina y el deterioro político y territorial de Cisjordania y Jerusalén Este. Incluye la situación humanitaria y jurídica como componentes sustantivos, no subordinados a la diplomacia regional.",
+      "por_que_importa": "Ninguna arquitectura regional puede estabilizarse si Gaza queda sin gobierno legítimo, reconstrucción sostenible o relación institucional con Cisjordania. Las decisiones sobre seguridad, desplazamiento, asentamientos, ingresos y representación condicionan tanto el futuro palestino como la normalización árabe-israelí.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "macroevento_rector_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "macroevento_relacionado_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "senales": [
+        {
+          "id": "sig-gaza-order-governance-20260428",
+          "fecha": "2026-04-28",
+          "titulo": "La administración transitoria y la reconstrucción pasan al centro de la disputa sobre Gaza",
+          "tipo": "gobernanza_transitoria",
+          "descripcion": "La sostenibilidad del cese del fuego depende de una autoridad operativa, seguridad, servicios y financiación, además de la suspensión de hostilidades.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-gaza-order-un-governance-20260428"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-gaza-order-reunification-20260826",
+          "fecha": "2026-08-26",
+          "titulo": "La ONU vincula la recuperación de Gaza con la reunificación política palestina",
+          "tipo": "horizonte_politico",
+          "descripcion": "La recuperación material se considera dependiente de un marco que conecte Gaza y Cisjordania bajo un gobierno palestino legítimo y de un proceso político más amplio.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-gaza-order-un-political-horizon-20260826"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-gaza-order-pa-fragilidad-20251120",
+          "fecha": "2025-11-20",
+          "titulo": "La fragilidad de la Autoridad Palestina condiciona cualquier reunificación entre Gaza y Cisjordania",
+          "tipo": "fragilidad_institucional",
+          "descripcion": "La viabilidad de una autoridad palestina unificada depende no solo de un arreglo para Gaza, sino también de legitimidad, sucesión, capacidad fiscal, reforma política y continuidad territorial en Cisjordania.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-gaza-order-ecfr-west-bank-20251120"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Población palestina",
+        "Autoridad Palestina",
+        "Hamas",
+        "Israel",
+        "Egipto",
+        "Qatar",
+        "Estados Unidos",
+        "Naciones Unidas",
+        "Jordania",
+        "Estados árabes donantes"
+      ],
+      "intereses": [
+        "Garantizar protección, retorno, ayuda y reconstrucción para la población de Gaza.",
+        "Definir una autoridad palestina legítima y responsable sobre Gaza y Cisjordania.",
+        "Obtener para Israel garantías de seguridad y desarme sin perpetuar una administración militar indefinida.",
+        "Evitar para Egipto y Jordania desplazamientos permanentes y desestabilización fronteriza.",
+        "Vincular para mediadores y donantes la reconstrucción con gobernanza verificable y un horizonte político."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Un alto el fuego frágil permite ayuda y reconstrucción limitada, mientras la gobernanza transitoria y la reunificación institucional palestina avanzan lentamente.",
+        "adverso": "Se reanuda la guerra, fracasan la administración y la reconstrucción, aumenta el desplazamiento y Cisjordania se fragmenta política y territorialmente.",
+        "transformador": "Un mecanismo palestino legítimo asume funciones de gobierno, la reconstrucción obtiene financiación sostenida y se abre un proceso político que integra Gaza y Cisjordania."
+      },
+      "indicadores": [
+        "Violaciones del alto el fuego, liberaciones, retirada y mecanismos de verificación.",
+        "Acceso humanitario, salud, vivienda, agua, desplazamiento y reconstrucción con fecha y metodología.",
+        "Mandato, presupuesto, personal y control territorial de las autoridades transitorias.",
+        "Reformas, legitimidad y capacidad fiscal de la Autoridad Palestina.",
+        "Asentamientos, violencia, demoliciones y conectividad territorial en Cisjordania.",
+        "Compromisos financieros y condiciones de los donantes."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 5,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Gaza",
+        "Cisjordania",
+        "Jerusalén Este",
+        "Autoridad Palestina",
+        "Hamas",
+        "reconstrucción",
+        "gobernanza palestina",
+        "alto el fuego",
+        "desplazamiento",
+        "solución de dos Estados"
+      ],
+      "fuentes": [
+        {
+          "id": "src-gaza-order-un-governance-20260428",
+          "media_id": "united-nations-onu",
+          "medio_catalogado": true,
+          "medio": "United Nations (ONU)",
+          "titulo": "Amid a tenuous ceasefire and soaring humanitarian needs, the Security Council hears updates on transitional governance structures and reconstruction efforts in Gaza",
+          "fecha": "2026-04-28",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.un.org/unispal/document/amid-a-tenuous-ceasefire-and-soaring-humanitarian-needs-the-security-council-hears-updates-on-transitional-governance-structures-and-reconstruction-efforts-in-gaza/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente multilateral sobre fragilidad del cese del fuego, gobernanza transitoria, reconstrucción y Cisjordania.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-gaza-order-un-political-horizon-20260826",
+          "media_id": "united-nations-onu",
+          "medio_catalogado": true,
+          "medio": "United Nations (ONU)",
+          "titulo": "Gaza’s recovery and reconstruction and the broader political process are mutually dependent",
+          "fecha": "2026-08-26",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.un.org/unispal/document/gazas-recovery-and-reconstruction-and-the-broader-political-process-are-mutually-dependent-un-acting-special-coordinator-for-the-middle-east-peace-process-briefs-the-security-council/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente multilateral reciente que vincula recuperación, gobierno palestino, Cisjordania y horizonte político.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-gaza-order-ecfr-west-bank-20251120",
+          "media_id": "ecfr",
+          "medio_catalogado": true,
+          "medio": "ECFR",
+          "titulo": "Averting West Bank collapse: How to revive Palestinian politics",
+          "fecha": "2025-11-20",
+          "idioma": "en",
+          "tipo": "policy_brief",
+          "url": "https://ecfr.eu/publication/averting-west-bank-collapse-how-to-revive-palestinian-politics/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Policy brief basado en entrevistas sobre la fragilidad de la Autoridad Palestina, la fragmentación de Cisjordania y las condiciones políticas para una reunificación palestina.",
+          "revisada_el": "2026-08-29"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-gaza-order-metricas-y-derechos-001",
+          "descripcion": "Las cifras humanitarias, de daños, desplazamiento y reconstrucción cambian según fecha, población y metodología. No deben mezclarse ni utilizarse únicamente como insumo de una hipótesis diplomática.",
+          "tipo": "incomparabilidad_metricas",
+          "signal_ids": [
+            "sig-gaza-order-governance-20260428",
+            "sig-gaza-order-reunification-20260826"
+          ],
+          "fuente_ids": [
+            "src-gaza-order-un-governance-20260428",
+            "src-gaza-order-un-political-horizon-20260826",
+            "src-gaza-order-ecfr-west-bank-20251120"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_con_fuente_ids": [
+            "src-gaza-order-un-governance-20260428",
+            "src-gaza-order-un-political-horizon-20260826",
+            "src-gaza-order-ecfr-west-bank-20251120"
+          ],
+          "notas_editoriales": "Fechar cada cifra, conservar definiciones y mantener separadas las dimensiones humanitaria, jurídica, institucional y estratégica.",
+          "resolucion": {
+            "tipo": "decision_editorial",
+            "motivo": "La advertencia se incorpora como regla permanente del análisis: toda cifra deberá conservar fecha, alcance y metodología, y las dimensiones humanitaria, jurídica, institucional y estratégica se presentarán por separado.",
+            "decidida_el": "2026-08-29T12:00:00.000Z",
+            "decidida_por": "codex-con-autorizacion-usuario",
+            "fuente_ids": [
+              "src-gaza-order-un-governance-20260428",
+              "src-gaza-order-un-political-horizon-20260826",
+              "src-gaza-order-ecfr-west-bank-20251120"
+            ]
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-gaza-order-metricas-y-derechos-001-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Fechar cada cifra, conservar definiciones y mantener separadas las dimensiones humanitaria, jurídica, institucional y estratégica.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-gaza-order-metricas-y-derechos-001-20260829-revision-editorial",
+              "accion": "resuelta",
+              "detalle": "La limitación se conserva como regla metodológica obligatoria para el análisis y deja de bloquear la preparación editorial.",
+              "realizada_el": "2026-08-29T12:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "israel-iran-confrontacion-directa-nuclear-misilistica",
+      "titulo": "Confrontación directa Israel–Irán y reconfiguración de la disuasión nuclear y misilística",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "verificado",
+      "fecha_corte": "2026-08-29",
+      "regiones": [
+        "Oriente Medio",
+        "Golfo",
+        "Levante"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        9,
+        10,
+        11,
+        17,
+        188,
+        242,
+        243,
+        249,
+        295
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-29"
+      },
+      "descripcion": "Paso de una confrontación principalmente encubierta e indirecta a intercambios directos que involucran territorio, instalaciones militares, fuerzas estadounidenses, bases y socios del Golfo. El proceso combina programa nuclear, misiles y drones, defensa aérea, libertad de navegación, operaciones encubiertas y negociaciones de cese del fuego.",
+      "por_que_importa": "La confrontación directa modifica los umbrales de disuasión y puede conectar en horas el programa nuclear iraní con ataques sobre Israel, bases estadounidenses, Estados del Golfo, Líbano y el estrecho de Ormuz. También determina los incentivos regionales para proliferación, garantías externas y defensa colectiva.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "macroevento_rector_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "macroevento_relacionado_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "senales": [
+        {
+          "id": "sig-israel-iran-ceasefire-system-20260702",
+          "fecha": "2026-07-02",
+          "titulo": "La desescalada entre Estados Unidos e Irán se convierte en un problema de seguridad regional",
+          "tipo": "cese_fuego_regional",
+          "descripcion": "La necesidad de mediación y contención muestra que los intercambios directos ya afectan simultáneamente a Israel, los Estados del Golfo y la economía regional.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-israel-iran-un-ceasefire-20260702",
+            "src-israel-iran-gcc-attacks-20260610"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-israel-iran-verification-gap-20250613",
+          "fecha": "2025-06-13",
+          "titulo": "La verificación nuclear permanece como límite crítico de cualquier arreglo",
+          "tipo": "verificacion_nuclear",
+          "descripcion": "La evaluación de capacidad y riesgo nuclear depende de acceso técnico, inventarios y continuidad de conocimiento, no solo de declaraciones políticas o resultados militares.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-israel-iran-iaea-monitoring-20250613"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-israel-iran-missile-limits-20250618",
+          "fecha": "2025-06-18",
+          "titulo": "La confrontación directa expone límites de la estrategia misilística iraní",
+          "tipo": "disuasion_misilistica",
+          "descripcion": "El IISS evalúa que la degradación de activos misilísticos y de aliados regionales restringe opciones iraníes, mientras el cambio de tolerancia israelí al riesgo vuelve más inestable la disuasión.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-israel-iran-iiss-missile-strategy-20250618"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-israel-iran-gulf-neutrality-limits-20260312",
+          "fecha": "2026-03-12",
+          "titulo": "La confrontación Israel–Irán reduce el margen de neutralidad práctica de los Estados del Golfo",
+          "tipo": "derrame_regional_disuasion",
+          "descripcion": "Una perspectiva regional señala que la infraestructura militar, energética y logística del Golfo puede quedar incorporada a los cálculos de disuasión aunque sus gobiernos declaren neutralidad política.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-israel-iran-mecga-gulf-neutrality-20260312"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Israel",
+        "Irán",
+        "Estados Unidos",
+        "IAEA / OIEA",
+        "Estados del Golfo",
+        "Qatar",
+        "Omán",
+        "Consejo de Seguridad de la ONU"
+      ],
+      "intereses": [
+        "Impedir para Israel que Irán adquiera una capacidad nuclear militar y preservar libertad de acción.",
+        "Preservar para Irán régimen, soberanía, capacidad de represalia y margen nuclear negociador.",
+        "Evitar para los Estados del Golfo convertirse en campo de batalla por albergar fuerzas estadounidenses.",
+        "Mantener para Estados Unidos disuasión, acceso regional, protección de fuerzas y no proliferación.",
+        "Conservar para el OIEA acceso suficiente para verificar materiales e instalaciones."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Ceses del fuego frágiles alternan con ataques limitados, presión económica y negociación, sin una solución estable del expediente nuclear.",
+        "adverso": "Fracasa la disuasión y se reanudan ataques sostenidos contra instalaciones, bases y rutas marítimas, con carrera nuclear y militar regional.",
+        "transformador": "Un acuerdo verificable restablece inspecciones y límites nucleares, acompaña la desescalada militar y crea mecanismos para prevenir ataques sobre terceros Estados."
+      },
+      "indicadores": [
+        "Ataques directos, objetivos, víctimas, atribución y respuesta.",
+        "Despliegues de Estados Unidos e Israel y cambios iraníes de doctrina.",
+        "Acceso del OIEA, inventarios, enriquecimiento y continuidad de conocimiento.",
+        "Alertas e intercepciones en Estados del Golfo y daños a infraestructura civil.",
+        "Negociaciones, mediadores, términos y cumplimiento de ceses del fuego.",
+        "Cambios en programas misilísticos, drones y defensa aérea."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 5,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Israel–Irán",
+        "programa nuclear iraní",
+        "OIEA",
+        "misiles balísticos",
+        "drones",
+        "defensa aérea",
+        "bases estadounidenses",
+        "disuasión",
+        "no proliferación",
+        "estrecho de Ormuz"
+      ],
+      "fuentes": [
+        {
+          "id": "src-israel-iran-un-ceasefire-20260702",
+          "media_id": "united-nations-onu",
+          "medio_catalogado": true,
+          "medio": "United Nations (ONU)",
+          "titulo": "UN calls for maximum restraint to preserve ceasefire between the United States and Iran",
+          "fecha": "2026-07-02",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://dppa.un.org/en/speeches-and-statements/un-calls-for-maximum-restraint-to-preserve-ceasefire-between-the",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente multilateral sobre confrontación directa, mediación y riesgo de escalada.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-israel-iran-iaea-monitoring-20250613",
+          "media_id": "iaea-oiea",
+          "medio_catalogado": true,
+          "medio": "IAEA / OIEA",
+          "titulo": "Verification and Monitoring in Iran",
+          "fecha": "2025-06-13",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.iaea.org/newscenter/focus/iran",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente técnica para verificación nuclear; no evalúa por sí sola intenciones estratégicas.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-israel-iran-gcc-attacks-20260610",
+          "medio_catalogado": false,
+          "medio": "Gulf Cooperation Council (GCC)",
+          "titulo": "Statement issued by the 167th Ministerial Council meeting of the Gulf Cooperation Council",
+          "fecha": "2026-06-10",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.gcc-sg.org/en/MediaCenter/News/Pages/news-2026-6-10-1.aspx",
+          "estado_verificacion": "verificada",
+          "observaciones": "Posición oficial del GCC sobre ataques y defensa colectiva; fuente primaria interesada.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-israel-iran-iiss-missile-strategy-20250618",
+          "media_id": "iiss",
+          "medio_catalogado": true,
+          "medio": "IISS",
+          "titulo": "Israel’s attack and the limits of Iran’s missile strategy",
+          "fecha": "2025-06-18",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://www.iiss.org/online-analysis/online-analysis/2025/06/israels-attack-and-the-limits-of-irans-missile-strategy/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis técnico de defensa sobre los límites de la estrategia misilística iraní, la modificación de la tolerancia israelí al riesgo y la relación entre capacidades convencionales y disuasión.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-israel-iran-mecga-gulf-neutrality-20260312",
+          "media_id": "middle-east-council-global-affairs",
+          "medio_catalogado": true,
+          "medio": "Middle East Council on Global Affairs",
+          "titulo": "The Limits of Neutrality for Gulf States in the U.S.–Israel–Iran War",
+          "fecha": "2026-03-12",
+          "idioma": "en",
+          "tipo": "policy_note",
+          "url": "https://mecouncil.org/publication/limits-gulf-neutrality-us-israel-iran-war/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Perspectiva regional del Golfo sobre cómo la confrontación entre Israel, Estados Unidos e Irán desborda los frentes directos y convierte bases, defensa aérea, energía y navegación en componentes de la disuasión. Las evaluaciones se conservan atribuidas al autor.",
+          "revisada_el": "2026-08-29"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-israel-iran-capacidad-intencion-001",
+          "descripcion": "Capacidad nuclear, material enriquecido, daño a instalaciones e intención de fabricar un arma son variables distintas. No deben presentarse como equivalentes.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-israel-iran-verification-gap-20250613"
+          ],
+          "fuente_ids": [
+            "src-israel-iran-iaea-monitoring-20250613",
+            "src-israel-iran-iiss-missile-strategy-20250618",
+            "src-israel-iran-mecga-gulf-neutrality-20260312"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_con_fuente_ids": [
+            "src-israel-iran-iaea-monitoring-20250613",
+            "src-israel-iran-iiss-missile-strategy-20250618",
+            "src-israel-iran-mecga-gulf-neutrality-20260312"
+          ],
+          "notas_editoriales": "Conservar el vocabulario técnico del OIEA y separar datos verificados, estimaciones de inteligencia y declaraciones de las partes.",
+          "resolucion": {
+            "tipo": "decision_editorial",
+            "motivo": "La advertencia se incorpora como regla permanente del análisis: capacidad técnica, inventario de material, daño físico, acceso de verificación e intención política serán tratados como variables diferentes y atribuidas.",
+            "decidida_el": "2026-08-29T12:00:00.000Z",
+            "decidida_por": "codex-con-autorizacion-usuario",
+            "fuente_ids": [
+              "src-israel-iran-iaea-monitoring-20250613",
+              "src-israel-iran-iiss-missile-strategy-20250618",
+              "src-israel-iran-mecga-gulf-neutrality-20260312"
+            ]
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-israel-iran-capacidad-intencion-001-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Conservar el vocabulario técnico del OIEA y separar datos verificados, estimaciones de inteligencia y declaraciones de las partes.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-israel-iran-capacidad-intencion-001-20260829-revision-editorial",
+              "accion": "resuelta",
+              "detalle": "La limitación se conserva como regla metodológica obligatoria para el análisis y deja de bloquear la preparación editorial.",
+              "realizada_el": "2026-08-29T12:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "israel-libano-hezbollah-frontera-norte",
+      "titulo": "Frontera Israel–Líbano, Hezbollah y disputa por el monopolio de la fuerza",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "verificado",
+      "fecha_corte": "2026-08-29",
+      "regiones": [
+        "Oriente Medio",
+        "Levante",
+        "Mediterráneo"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        3,
+        5,
+        14,
+        109,
+        188,
+        242,
+        244,
+        253
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-29"
+      },
+      "descripcion": "Evolución de la frontera Israel–Líbano desde el intercambio de ataques asociado con Gaza hacia una disputa sobre cese de hostilidades, retirada, control territorial, armas de Hezbollah y autoridad efectiva del Estado libanés. El proceso conecta la seguridad del norte de Israel con soberanía libanesa y la relación entre Hezbollah e Irán.",
+      "por_que_importa": "El frente libanés puede reactivar una guerra regional incluso cuando existan ceses del fuego en Gaza o con Irán. Su estabilización exige seguridad para ambas poblaciones, cumplimiento territorial, fortalecimiento estatal libanés y una solución al armamento no estatal.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "macroevento_rector_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "macroevento_relacionado_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "senales": [
+        {
+          "id": "sig-israel-lebanon-ceasefire-extension-20260424",
+          "fecha": "2026-04-24",
+          "titulo": "Israel y Líbano requieren extensiones sucesivas para sostener el cese de hostilidades",
+          "tipo": "cese_hostilidades_fragil",
+          "descripcion": "La extensión temporal reduce violencia, pero confirma que retirada, soberanía, armas y control territorial continúan sin resolución definitiva.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-israel-lebanon-un-cessation-20260424"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-israel-lebanon-state-arms-20260529",
+          "fecha": "2026-05-29",
+          "titulo": "El monopolio estatal de las armas se convierte en condición central del arreglo",
+          "tipo": "monopolio_estatal_fuerza",
+          "descripcion": "La estabilización depende tanto del cumplimiento israelí de la Línea Azul como de la capacidad del Estado libanés para ejercer autoridad y controlar armas en todo el territorio.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-israel-lebanon-un-report-202605"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-israel-lebanon-disarmament-debate-20251215",
+          "fecha": "2025-12-15",
+          "titulo": "El debate sobre el desarme vincula el monopolio estatal con la relación Hezbollah–Irán",
+          "tipo": "desarme_actor_no_estatal",
+          "descripcion": "Un análisis de Chatham House sostiene que el avance estatal al sur del Litani no resuelve por sí mismo el desarme nacional y que la relación con Teherán continúa siendo una variable central; la atribución se conserva como interpretación.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-israel-lebanon-chatham-disarmament-20251215"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-israel-lebanon-iran-depth-disruption-20250413",
+          "fecha": "2025-04-13",
+          "titulo": "La degradación de Hezbollah debilita la profundidad estratégica iraní sin eliminar la estrategia de redes aliadas",
+          "tipo": "degradacion_profundidad_estrategica",
+          "descripcion": "El análisis regional distingue entre el debilitamiento operativo de Hezbollah y la persistencia de la estrategia iraní de sostener actores aliados como instrumento de disuasión extraterritorial.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-israel-lebanon-mecga-strategic-depth-20250413"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Israel",
+        "Gobierno del Líbano",
+        "Fuerzas Armadas Libanesas",
+        "Hezbollah",
+        "Irán",
+        "Estados Unidos",
+        "UNIFIL",
+        "Naciones Unidas"
+      ],
+      "intereses": [
+        "Permitir para Israel el retorno seguro de población al norte y reducir capacidad de ataque transfronterizo.",
+        "Recuperar para el Estado libanés soberanía, territorio y monopolio de las armas.",
+        "Preservar para Hezbollah influencia política, capacidad militar y base social.",
+        "Mantener para Irán una capacidad de disuasión regional sin perder un aliado central.",
+        "Implementar para Naciones Unidas y mediadores un arreglo compatible con la resolución 1701."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Un cese de hostilidades incompleto reduce ataques, pero persisten posiciones disputadas, armas no estatales e incursiones que impiden una normalización fronteriza.",
+        "adverso": "Ataques y represalias destruyen el arreglo, provocan una nueva invasión y conectan el frente con la confrontación Israel–Irán.",
+        "transformador": "Retirada, verificación, despliegue estatal libanés y negociación de seguridad fronteriza reducen la autonomía militar de actores no estatales y permiten retornos."
+      },
+      "indicadores": [
+        "Ataques a ambos lados de la Línea Azul y víctimas civiles.",
+        "Retirada o permanencia de fuerzas israelíes al norte de la Línea Azul.",
+        "Despliegue, recursos y autoridad de las Fuerzas Armadas Libanesas.",
+        "Armas, posiciones y decisiones de Hezbollah al sur y al norte del Litani.",
+        "Cumplimiento de ceses del fuego y resolución 1701.",
+        "Retorno de población y reconstrucción fronteriza."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Israel",
+        "Líbano",
+        "Hezbollah",
+        "Línea Azul",
+        "río Litani",
+        "resolución 1701",
+        "UNIFIL",
+        "Fuerzas Armadas Libanesas",
+        "frente norte"
+      ],
+      "fuentes": [
+        {
+          "id": "src-israel-lebanon-un-cessation-20260424",
+          "media_id": "united-nations-onu",
+          "medio_catalogado": true,
+          "medio": "United Nations (ONU)",
+          "titulo": "Statement attributable to the Spokesperson for the Secretary-General regarding the extension of the cessation of hostilities",
+          "fecha": "2026-04-24",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.un.org/sg/en/content/sg/statements/2026-04-24/statement-attributable-the-spokesperson-for-the-secretary-general-regarding-the-extension-of-the-cessation-of-hostilities",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente multilateral sobre cese de hostilidades, resolución 1701, soberanía y control estatal de armas.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-israel-lebanon-un-report-202605",
+          "media_id": "united-nations-onu",
+          "medio_catalogado": true,
+          "medio": "United Nations (ONU)",
+          "titulo": "Implementation of Security Council resolution 1701 (2006)",
+          "fecha": "2026-05-29",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://digitallibrary.un.org/record/4113690/files/S_2026_366-EN.pdf",
+          "estado_verificacion": "verificada",
+          "observaciones": "Informe del Secretario General sobre ataques, presencia territorial, armas no estatales y obligaciones de las partes.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-israel-lebanon-chatham-disarmament-20251215",
+          "media_id": "chatham-house",
+          "medio_catalogado": true,
+          "medio": "Chatham House",
+          "titulo": "Only Iran can disarm Hezbollah",
+          "fecha": "2025-12-15",
+          "idioma": "en",
+          "tipo": "opinion",
+          "url": "https://www.chathamhouse.org/2025/12/only-iran-can-disarm-hezbollah",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comentario analítico que vincula el debate sobre el monopolio estatal de la fuerza con la relación Hezbollah–Irán. Sus conclusiones sobre agencia y mando deben mantenerse atribuidas al autor.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-israel-lebanon-mecga-strategic-depth-20250413",
+          "media_id": "middle-east-council-global-affairs",
+          "medio_catalogado": true,
+          "medio": "Middle East Council on Global Affairs",
+          "titulo": "Hezbollah’s Defeat and Iran’s Strategic Depth Doctrine",
+          "fecha": "2025-04-13",
+          "idioma": "en",
+          "tipo": "issue_brief",
+          "url": "https://mecouncil.org/publication/hezbollahs-defeat-and-irans-strategic-depth-doctrine/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Evaluación regional sobre la centralidad de Hezbollah en la profundidad estratégica iraní, su degradación militar y las restricciones que introducen el cambio en Siria, la situación económica iraní y la presión israelí.",
+          "revisada_el": "2026-08-29"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-israel-lebanon-simetria-obligaciones-001",
+          "descripcion": "Las obligaciones y capacidades de Israel, el Estado libanés y Hezbollah son distintas. Resumir el problema como una simple frontera entre dos Estados ocultaría la presencia militar no estatal y las violaciones de soberanía.",
+          "tipo": "sesgo_marco_analitico",
+          "signal_ids": [
+            "sig-israel-lebanon-state-arms-20260529"
+          ],
+          "fuente_ids": [
+            "src-israel-lebanon-un-report-202605",
+            "src-israel-lebanon-chatham-disarmament-20251215",
+            "src-israel-lebanon-mecga-strategic-depth-20250413"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_con_fuente_ids": [
+            "src-israel-lebanon-un-report-202605",
+            "src-israel-lebanon-chatham-disarmament-20251215",
+            "src-israel-lebanon-mecga-strategic-depth-20250413"
+          ],
+          "notas_editoriales": "Registrar por separado ataques, ocupación o presencia territorial, decisiones estatales libanesas y conducta de Hezbollah.",
+          "resolucion": {
+            "tipo": "decision_editorial",
+            "motivo": "La advertencia se incorpora como regla permanente del análisis: se distinguirán obligaciones, capacidades y conductas de Israel, el Estado libanés y Hezbollah, evitando una simetría artificial entre actores estatales y no estatales.",
+            "decidida_el": "2026-08-29T12:00:00.000Z",
+            "decidida_por": "codex-con-autorizacion-usuario",
+            "fuente_ids": [
+              "src-israel-lebanon-un-report-202605",
+              "src-israel-lebanon-chatham-disarmament-20251215",
+              "src-israel-lebanon-mecga-strategic-depth-20250413"
+            ]
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-israel-lebanon-simetria-obligaciones-001-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Registrar por separado ataques, ocupación o presencia territorial, decisiones estatales libanesas y conducta de Hezbollah.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-israel-lebanon-simetria-obligaciones-001-20260829-revision-editorial",
+              "accion": "resuelta",
+              "detalle": "La limitación se conserva como regla metodológica obligatoria para el análisis y deja de bloquear la preparación editorial.",
+              "realizada_el": "2026-08-29T12:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "iran-red-aliados-irak-siria-yemen",
+      "titulo": "Transformación de la red regional de aliados de Irán entre Iraq, Siria y Yemen",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "verificado",
+      "fecha_corte": "2026-08-29",
+      "regiones": [
+        "Oriente Medio",
+        "Irak",
+        "Siria",
+        "Mar Rojo"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        5,
+        7,
+        11,
+        14,
+        173,
+        188,
+        244,
+        245,
+        246,
+        258
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-29"
+      },
+      "descripcion": "Evolución de los vínculos políticos, militares, financieros y tecnológicos entre Irán y actores armados o partidarios en Iraq, Siria y Yemen después de Gaza y de la confrontación directa. El proceso observa simultáneamente apoyo iraní, agendas locales, institucionalización, control territorial y capacidad de atacar a Israel, fuerzas estadounidenses, Estados vecinos o navegación comercial.",
+      "por_que_importa": "La red permite a Irán distribuir costos y profundidad estratégica, pero sus componentes no obedecen necesariamente a un mando único. Su transformación determina si los frentes pueden apagarse por separado, si se integran en una guerra regional y si los Estados recuperan el monopolio de las armas.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "macroevento_rector_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "macroevento_relacionado_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "senales": [
+        {
+          "id": "sig-iran-network-red-sea-attacks-20260810",
+          "fecha": "2026-08-10",
+          "titulo": "Los ataques hutíes mantienen conectado el conflicto regional con la navegación comercial",
+          "tipo": "coercion_maritima",
+          "descripcion": "La continuidad del seguimiento del Consejo de Seguridad muestra que Yemen sigue funcionando como un frente con efectos sobre comercio y seguridad regional.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-iran-network-un-red-sea-20260810"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-iran-network-state-control-20260625",
+          "fecha": "2026-06-25",
+          "titulo": "El control estatal de armas en Iraq y otros teatros entra en la agenda de seguridad regional",
+          "tipo": "control_estatal_armas",
+          "descripcion": "La posición conjunta de Estados Unidos y el GCC vincula la reducción de amenazas transfronterizas con la capacidad de los gobiernos para impedir ataques de grupos no estatales.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-iran-network-gcc-us-20260625"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-iran-network-horizontal-adaptation-20250306",
+          "fecha": "2025-03-06",
+          "titulo": "La red vinculada con Irán se adapta mediante conexiones horizontales y autonomía local",
+          "tipo": "adaptacion_red_regional",
+          "descripcion": "Chatham House describe una coalición flexible cuyos integrantes combinan apoyo iraní, inserción doméstica, redes económicas y decisiones propias; su resiliencia no depende exclusivamente de una dirección central.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-iran-network-chatham-shape-shifting-20250306"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-iran-network-iraq-balancing-20250116",
+          "fecha": "2025-01-16",
+          "titulo": "Iraq intenta contener a las facciones alineadas con Irán sin romper sus equilibrios externos",
+          "tipo": "equilibrio_estatal_red_armada",
+          "descripcion": "El gobierno iraquí combina cooperación con Estados Unidos, vínculos con Irán y acercamiento al Golfo y Turquía mientras procura evitar que las facciones armadas conviertan al país en un frente regional.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-iran-network-mecga-iraq-balancing-20250116"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Irán",
+        "Cuerpo de Guardianes de la Revolución Islámica",
+        "Houthis",
+        "Milicias iraquíes",
+        "Gobierno de Iraq",
+        "Actores armados en Siria",
+        "Gobierno de Siria",
+        "Estados Unidos",
+        "Israel",
+        "Arabia Saudita",
+        "Emiratos Árabes Unidos",
+        "Yemen"
+      ],
+      "intereses": [
+        "Preservar para Irán profundidad estratégica y opciones de represalia.",
+        "Conservar para actores locales poder, recursos, legitimidad y autonomía dentro de sus conflictos nacionales.",
+        "Recuperar para Iraq, Siria y Yemen control estatal de armas y territorio.",
+        "Proteger para Israel, Estados Unidos y Estados vecinos fuerzas, territorio e infraestructura.",
+        "Mantener para el comercio internacional libertad de navegación por el mar Rojo y Bab el-Mandeb."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "La red se adapta: algunos actores reducen ataques y otros conservan armas y autonomía, mientras Irán mantiene apoyo selectivo sin coordinación operacional permanente.",
+        "adverso": "Los frentes se sincronizan contra Israel, Estados Unidos y Estados del Golfo, y el mar Rojo vuelve a sufrir ataques sostenidos.",
+        "transformador": "Acuerdos nacionales y regionales integran o desmovilizan fuerzas, restringen transferencias y permiten ceses del fuego verificables por teatro."
+      },
+      "indicadores": [
+        "Transferencias documentadas de armas, componentes, financiación y entrenamiento.",
+        "Cadena de decisión y reivindicación de cada ataque.",
+        "Ataques contra fuerzas estadounidenses, Israel, Estados vecinos y navegación.",
+        "Integración de milicias en instituciones y presupuestos estatales.",
+        "Negociaciones nacionales sobre armas y autoridad territorial.",
+        "Sanciones, interdicciones y rutas logísticas."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 5,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "red de aliados de Irán",
+        "Axis of Resistance",
+        "Houthis",
+        "milicias iraquíes",
+        "Siria",
+        "IRGC",
+        "drones",
+        "misiles",
+        "Bab el-Mandeb",
+        "armas no estatales"
+      ],
+      "fuentes": [
+        {
+          "id": "src-iran-network-un-red-sea-20260810",
+          "media_id": "united-nations-onu",
+          "medio_catalogado": true,
+          "medio": "United Nations (ONU)",
+          "titulo": "Houthi attacks on merchant and commercial vessels in the Red Sea",
+          "fecha": "2026-08-10",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://main.un.org/securitycouncil/en/content/letters-exchanged-between-secretary-general-and-president-security-council-2026",
+          "estado_verificacion": "verificada",
+          "observaciones": "Registro multilateral para la cronología de ataques marítimos; no prueba por sí solo cadena de mando externa.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-iran-network-gcc-us-20260625",
+          "medio_catalogado": false,
+          "medio": "Gulf Cooperation Council (GCC)",
+          "titulo": "Joint Statement Following the Ministerial Meeting of the United States and the Gulf Cooperation Council",
+          "fecha": "2026-06-25",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.gcc-sg.org/en/MediaCenter/News/Pages/news-2026-6-25-10.aspx",
+          "estado_verificacion": "verificada",
+          "observaciones": "Posición oficial sobre grupos armados en Iraq y seguridad regional; requiere contraste por ser fuente interesada.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-iran-network-chatham-shape-shifting-20250306",
+          "media_id": "chatham-house",
+          "medio_catalogado": true,
+          "medio": "Chatham House",
+          "titulo": "The shape-shifting ‘axis of resistance’",
+          "fecha": "2025-03-06",
+          "idioma": "en",
+          "tipo": "informe_investigacion",
+          "url": "https://www.chathamhouse.org/2025/03/shape-shifting-axis-resistance",
+          "estado_verificacion": "verificada",
+          "observaciones": "Investigación sobre adaptación, redes económicas y autonomía horizontal de actores vinculados con Irán; evita reducirlos a una cadena de mando uniforme.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-iran-network-mecga-iraq-balancing-20250116",
+          "media_id": "middle-east-council-global-affairs",
+          "medio_catalogado": true,
+          "medio": "Middle East Council on Global Affairs",
+          "titulo": "The Iraqi Prime Minister's Tricky Balancing Act",
+          "fecha": "2025-01-16",
+          "idioma": "en",
+          "tipo": "policy_note",
+          "url": "https://mecouncil.org/publication/iraqs-prime-minister-sudanis-tricky-balancing-act/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis regional de Iraq como arena de competencia y mediación, con milicias alineadas con Irán insertas en estructuras estatales y un gobierno que equilibra vínculos con Teherán, Washington, los Estados del Golfo y Turquía.",
+          "revisada_el": "2026-08-29"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-iran-network-command-autonomy-001",
+          "descripcion": "Apoyo iraní, afinidad ideológica y coordinación no equivalen automáticamente a dirección operacional de cada ataque. La autonomía de los actores locales varía por país, momento y tipo de operación.",
+          "tipo": "atribucion_incierta",
+          "signal_ids": [
+            "sig-iran-network-red-sea-attacks-20260810",
+            "sig-iran-network-state-control-20260625"
+          ],
+          "fuente_ids": [
+            "src-iran-network-un-red-sea-20260810",
+            "src-iran-network-gcc-us-20260625",
+            "src-iran-network-chatham-shape-shifting-20250306",
+            "src-iran-network-mecga-iraq-balancing-20250116"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_con_fuente_ids": [
+            "src-iran-network-un-red-sea-20260810",
+            "src-iran-network-gcc-us-20260625",
+            "src-iran-network-chatham-shape-shifting-20250306",
+            "src-iran-network-mecga-iraq-balancing-20250116"
+          ],
+          "notas_editoriales": "Clasificar cada vínculo como confirmado, reportado, alegado o inferido y conservar la perspectiva de los gobiernos y actores locales.",
+          "resolucion": {
+            "tipo": "decision_editorial",
+            "motivo": "La advertencia se incorpora como regla permanente del análisis: apoyo, afinidad, coordinación y dirección operacional se clasificarán por separado, con atribución específica para cada actor, teatro y episodio.",
+            "decidida_el": "2026-08-29T12:00:00.000Z",
+            "decidida_por": "codex-con-autorizacion-usuario",
+            "fuente_ids": [
+              "src-iran-network-un-red-sea-20260810",
+              "src-iran-network-gcc-us-20260625",
+              "src-iran-network-chatham-shape-shifting-20250306",
+              "src-iran-network-mecga-iraq-balancing-20250116"
+            ]
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-iran-network-command-autonomy-001-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Clasificar cada vínculo como confirmado, reportado, alegado o inferido y conservar la perspectiva de los gobiernos y actores locales.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-iran-network-command-autonomy-001-20260829-revision-editorial",
+              "accion": "resuelta",
+              "detalle": "La limitación se conserva como regla metodológica obligatoria para el análisis y deja de bloquear la preparación editorial.",
+              "realizada_el": "2026-08-29T12:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "estados-golfo-autonomia-seguridad-mediacion",
+      "titulo": "Autonomía estratégica de los Estados del Golfo entre defensa colectiva, mediación y rivalidad con Irán",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "verificado",
+      "fecha_corte": "2026-08-29",
+      "regiones": [
+        "Oriente Medio",
+        "Golfo",
+        "Mar Rojo"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        7,
+        17,
+        36,
+        173,
+        189,
+        190,
+        249,
+        255,
+        256,
+        257
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-29"
+      },
+      "descripcion": "Proceso mediante el cual Arabia Saudita, Emiratos Árabes Unidos, Qatar, Bahrain, Kuwait y Omán combinan defensa colectiva, alianzas con Estados Unidos, relaciones diferenciadas con Israel, diálogo o rivalidad con Irán, mediación y diversificación económica. El seguimiento evita atribuir al GCC una estrategia única cuando existen amenazas compartidas pero distintas preferencias diplomáticas.",
+      "por_que_importa": "Los Estados del Golfo concentran bases, energía, capital, mediación y rutas críticas. Pueden facilitar acuerdos y defensa regional, pero también quedar expuestos a represalias y a decisiones de socios externos. Sus diferencias definen qué arquitectura de seguridad es políticamente viable.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "macroevento_rector_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "macroevento_relacionado_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "senales": [
+        {
+          "id": "sig-gulf-autonomy-defense-cell-20260113",
+          "fecha": "2026-01-13",
+          "titulo": "El Golfo profundiza la coordinación técnica de defensa aérea y misilística",
+          "tipo": "defensa_colectiva",
+          "descripcion": "La nueva célula en Qatar institucionaliza intercambio y coordinación, aunque su alcance político y desempeño efectivo deben comprobarse.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-gulf-autonomy-centcom-cell-20260113"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-gulf-autonomy-threat-shared-20260723",
+          "fecha": "2026-07-23",
+          "titulo": "Los ataques sobre territorios e infraestructura refuerzan la noción de seguridad indivisible del GCC",
+          "tipo": "amenaza_compartida",
+          "descripcion": "Las declaraciones conjuntas muestran convergencia defensiva ante ataques, pero no demuestran una política exterior uniforme frente a Irán, Israel o Palestina.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-gulf-autonomy-gcc-iran-attacks-20260723",
+            "src-gulf-autonomy-gcc-us-20260625"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-gulf-autonomy-positive-sum-security-20260615",
+          "fecha": "2026-06-15",
+          "titulo": "Una perspectiva del Golfo propone seguridad colectiva sin alineamiento automático con Israel o Irán",
+          "tipo": "seguridad_colectiva_golfo",
+          "descripcion": "La formulación regional prioriza estabilidad, diversificación económica, rutas abiertas y ayuda externa, y presenta a los Estados del Golfo como expuestos a las estrategias coercitivas de ambos polos.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-gulf-autonomy-chatham-collective-security-20260615"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Arabia Saudita",
+        "Emiratos Árabes Unidos",
+        "Qatar",
+        "Bahrain",
+        "Kuwait",
+        "Omán",
+        "Consejo de Cooperación del Golfo",
+        "Estados Unidos",
+        "Irán",
+        "Israel"
+      ],
+      "intereses": [
+        "Proteger territorio, energía, agua, puertos, aviación y población frente a misiles y drones.",
+        "Mantener relaciones con Estados Unidos sin renunciar a vínculos con China, Rusia, Irán y otros socios.",
+        "Usar mediación y diplomacia para limitar guerras que amenazan programas de desarrollo.",
+        "Convertir capacidades nacionales en defensa colectiva sin ceder completamente autonomía.",
+        "Diferenciar posiciones sobre normalización con Israel y cuestión palestina."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Aumenta la coordinación defensiva mientras cada Estado conserva una política diplomática propia y reversible frente a Irán e Israel.",
+        "adverso": "Ataques sobre bases e infraestructura arrastran al Golfo a una guerra regional y revelan brechas de defensa y cohesión política.",
+        "transformador": "El GCC combina defensa integrada con acuerdos de no agresión, navegación y confianza que reducen la exposición de sus territorios."
+      },
+      "indicadores": [
+        "Reuniones y decisiones de defensa conjunta del GCC.",
+        "Intercepciones, daños y resiliencia de energía, agua, puertos y aeropuertos.",
+        "Acuerdos bilaterales de seguridad y presencia de fuerzas extranjeras.",
+        "Mediaciones de Qatar y Omán y diplomacia saudí y emiratí.",
+        "Relaciones comerciales y diplomáticas con Irán e Israel por Estado.",
+        "Divergencias públicas y operativas dentro del GCC."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "GCC",
+        "Arabia Saudita",
+        "Emiratos Árabes Unidos",
+        "Qatar",
+        "Bahrain",
+        "Kuwait",
+        "Omán",
+        "defensa colectiva",
+        "mediación",
+        "autonomía estratégica",
+        "Irán",
+        "Israel"
+      ],
+      "fuentes": [
+        {
+          "id": "src-gulf-autonomy-gcc-us-20260625",
+          "medio_catalogado": false,
+          "medio": "Gulf Cooperation Council (GCC)",
+          "titulo": "Joint Statement Following the Ministerial Meeting of the United States and the Gulf Cooperation Council",
+          "fecha": "2026-06-25",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.gcc-sg.org/en/MediaCenter/News/Pages/news-2026-6-25-10.aspx",
+          "estado_verificacion": "verificada",
+          "observaciones": "Posición conjunta oficial sobre seguridad, Gaza, Irán, Iraq y Líbano.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-gulf-autonomy-centcom-cell-20260113",
+          "media_id": "u-s-centcom",
+          "medio_catalogado": true,
+          "medio": "U.S. CENTCOM",
+          "titulo": "U.S., Regional Partners Open New Air Defense Operations Cell in Qatar",
+          "fecha": "2026-01-13",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.centcom.mil/MEDIA/PUBLIC-RELEASES/Article/4376614/us-regional-partners-open-new-air-defense-operations-cell-in-qatar/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente militar primaria sobre coordinación operativa; requiere contraste sobre participantes, alcance y eficacia.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-gulf-autonomy-gcc-iran-attacks-20260723",
+          "medio_catalogado": false,
+          "medio": "Gulf Cooperation Council (GCC)",
+          "titulo": "GCC Member States and Hashemite Kingdom of Jordan Condemn Continuation of Iranian Attacks on Their Territories",
+          "fecha": "2026-07-23",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.gcc-sg.org/en/MediaCenter/News/Pages/news-2026-7-23-7.aspx",
+          "estado_verificacion": "verificada",
+          "observaciones": "Declaración oficial sobre amenazas compartidas; no elimina las diferencias bilaterales entre los Estados.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-gulf-autonomy-chatham-collective-security-20260615",
+          "media_id": "chatham-house",
+          "medio_catalogado": true,
+          "medio": "Chatham House",
+          "titulo": "Gulf states can contain the threat from Iran and Israel. But they’ll need help",
+          "fecha": "2026-06-15",
+          "idioma": "en",
+          "tipo": "opinion",
+          "url": "https://www.chathamhouse.org/publications/the-world-today/2026-06/gulf-states-can-contain-threat-iran-and-israel-theyll-need",
+          "estado_verificacion": "verificada",
+          "observaciones": "Perspectiva de un analista del Golfo sobre seguridad colectiva, exposición simultánea frente a Israel e Irán y prioridad regional por estabilidad, desarrollo y rutas abiertas.",
+          "revisada_el": "2026-08-29"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-gulf-autonomy-no-bloque-unico-001",
+          "descripcion": "Una declaración conjunta del GCC acredita una posición colectiva sobre ese asunto, no identidad de estrategias nacionales en normalización, mediación, bases extranjeras o relación con Irán.",
+          "tipo": "alcance_institucional_incierto",
+          "signal_ids": [
+            "sig-gulf-autonomy-threat-shared-20260723"
+          ],
+          "fuente_ids": [
+            "src-gulf-autonomy-gcc-iran-attacks-20260723",
+            "src-gulf-autonomy-gcc-us-20260625",
+            "src-gulf-autonomy-chatham-collective-security-20260615"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_con_fuente_ids": [
+            "src-gulf-autonomy-gcc-iran-attacks-20260723",
+            "src-gulf-autonomy-gcc-us-20260625",
+            "src-gulf-autonomy-chatham-collective-security-20260615"
+          ],
+          "notas_editoriales": "Desagregar siempre por Arabia Saudita, Emiratos, Qatar, Bahrain, Kuwait y Omán y corroborar conducta bilateral.",
+          "resolucion": {
+            "tipo": "decision_editorial",
+            "motivo": "La advertencia se incorpora como regla permanente del análisis: las posiciones colectivas del GCC no sustituirán el examen diferenciado de Arabia Saudita, Emiratos, Qatar, Bahrain, Kuwait y Omán.",
+            "decidida_el": "2026-08-29T12:00:00.000Z",
+            "decidida_por": "codex-con-autorizacion-usuario",
+            "fuente_ids": [
+              "src-gulf-autonomy-gcc-iran-attacks-20260723",
+              "src-gulf-autonomy-gcc-us-20260625",
+              "src-gulf-autonomy-chatham-collective-security-20260615"
+            ]
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-gulf-autonomy-no-bloque-unico-001-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Desagregar siempre por Arabia Saudita, Emiratos, Qatar, Bahrain, Kuwait y Omán y corroborar conducta bilateral.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-gulf-autonomy-no-bloque-unico-001-20260829-revision-editorial",
+              "accion": "resuelta",
+              "detalle": "La limitación se conserva como regla metodológica obligatoria para el análisis y deja de bloquear la preparación editorial.",
+              "realizada_el": "2026-08-29T12:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": []
+    },
+    {
+      "id": "estados-unidos-arquitectura-seguridad-medio-oriente",
+      "titulo": "Reconfiguración de la garantía estadounidense y de la defensa aérea regional en Medio Oriente",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "revision",
+      "estado_verificacion": "verificado",
+      "fecha_corte": "2026-08-29",
+      "regiones": [
+        "Oriente Medio",
+        "Golfo",
+        "Levante",
+        "Mar Rojo"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        8,
+        9,
+        11,
+        17,
+        181,
+        200,
+        241,
+        242,
+        249,
+        295,
+        310
+      ],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-08-29"
+      },
+      "descripcion": "Transformación de la presencia estadounidense desde garantías bilaterales y despliegues nacionales hacia redes de alerta, defensa aérea y misilística, protección de bases, libertad de navegación y coaliciones variables. El proceso prueba si Washington puede proteger simultáneamente a Israel y socios árabes sin arrastrarlos a una estrategia regional que rechacen.",
+      "por_que_importa": "La credibilidad de las garantías estadounidenses afecta normalización, proliferación, compras de armas y disposición de los Estados del Golfo a cooperar. La integración técnica puede avanzar más rápido que el consenso político y exponer territorios aliados a represalias.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "macroevento_rector_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "macroevento_relacionado_ids": [
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada"
+      ],
+      "senales": [
+        {
+          "id": "sig-us-architecture-cell-20260113",
+          "fecha": "2026-01-13",
+          "titulo": "La coordinación de defensa aérea obtiene una estructura operativa permanente en Qatar",
+          "tipo": "institucionalizacion_militar",
+          "descripcion": "La célula combinada puede reducir tiempos de alerta y mejorar coordinación, pero su eficacia dependerá de datos compartidos, reglas de empleo y reservas políticas.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-us-architecture-centcom-cell-20260113"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-us-architecture-dialogue-20260701",
+          "fecha": "2026-07-01",
+          "titulo": "La red estadounidense amplía el diálogo defensivo a doce Estados con intereses diferentes",
+          "tipo": "coalicion_variable",
+          "descripcion": "La participación amplia confirma demanda de coordinación, aunque no equivale a una alianza regional única ni a compromiso automático de defensa.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-us-architecture-centcom-dialogue-20260701",
+            "src-us-architecture-gcc-ministerial-20260625"
+          ],
+          "intensidad": 4,
+          "localizaciones": []
+        },
+        {
+          "id": "sig-us-architecture-guarantee-limits-20260303",
+          "fecha": "2026-03-03",
+          "titulo": "La exposición del Golfo reabre la discusión sobre los límites de la garantía estadounidense",
+          "tipo": "credibilidad_garantia_seguridad",
+          "descripcion": "Carnegie plantea que alojar fuerzas estadounidenses y adquirir sistemas no asegura protección suficiente ni influencia sobre las decisiones de Washington, lo que fortalece incentivos para coordinación colectiva y autonomía.",
+          "estado_revision": "verificada",
+          "origen": "fuente",
+          "fuente_ids": [
+            "src-us-architecture-carnegie-gulf-guarantee-20260303"
+          ],
+          "intensidad": 5,
+          "localizaciones": []
+        }
+      ],
+      "actores": [
+        "Estados Unidos",
+        "U.S. CENTCOM",
+        "Israel",
+        "Arabia Saudita",
+        "Emiratos Árabes Unidos",
+        "Qatar",
+        "Bahrain",
+        "Kuwait",
+        "Omán",
+        "Jordania",
+        "Egipto",
+        "Líbano",
+        "Siria"
+      ],
+      "intereses": [
+        "Proteger para Estados Unidos fuerzas, bases, aliados y rutas marítimas con costos sostenibles.",
+        "Obtener para socios regionales alerta temprana, interceptores, tecnología y garantías creíbles.",
+        "Preservar para los Estados árabes control sobre cuándo y contra quién se usan sus territorios y capacidades.",
+        "Integrar sensores y mando sin convertir cooperación técnica en una alianza formal no consentida.",
+        "Disuadir ataques iraníes y de actores armados sin escalar automáticamente a guerra abierta."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Se profundiza la interoperabilidad técnica y el intercambio de alertas, mientras las garantías continúan siendo bilaterales y políticamente diferenciadas.",
+        "adverso": "Ataques saturan defensas, golpean bases e infraestructura y erosionan la confianza en Washington, acelerando proliferación y diversificación de socios.",
+        "transformador": "Una red regional transparente combina alerta, defensa, consulta política y mecanismos de desescalada que reducen errores de cálculo y exposición de terceros."
+      },
+      "indicadores": [
+        "Participantes y reglas de la célula de defensa regional.",
+        "Interoperabilidad de sensores, mando, interceptores y comunicaciones.",
+        "Despliegues, retiradas y rotaciones de fuerzas estadounidenses.",
+        "Acuerdos de acceso, defensa y venta de armamento.",
+        "Tasas de intercepción, saturación, daños y reposición de municiones.",
+        "Consultas políticas previas y posteriores al uso de territorio aliado."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 4,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Estados Unidos",
+        "CENTCOM",
+        "defensa aérea integrada",
+        "defensa misilística",
+        "Al Udeid",
+        "bases estadounidenses",
+        "garantías de seguridad",
+        "interoperabilidad",
+        "GCC"
+      ],
+      "fuentes": [
+        {
+          "id": "src-us-architecture-centcom-cell-20260113",
+          "media_id": "u-s-centcom",
+          "medio_catalogado": true,
+          "medio": "U.S. CENTCOM",
+          "titulo": "U.S., Regional Partners Open New Air Defense Operations Cell in Qatar",
+          "fecha": "2026-01-13",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.centcom.mil/MEDIA/PUBLIC-RELEASES/Article/4376614/us-regional-partners-open-new-air-defense-operations-cell-in-qatar/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria para la creación, ubicación y objetivo declarado de la célula; no prueba eficacia.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-us-architecture-centcom-dialogue-20260701",
+          "media_id": "u-s-centcom",
+          "medio_catalogado": true,
+          "medio": "U.S. CENTCOM",
+          "titulo": "CENTCOM Leads Regional Security Dialogue with 12 Nations in Bahrain",
+          "fecha": "2026-07-01",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.centcom.mil/MEDIA/PUBLIC-RELEASES/Article/4531502/centcom-leads-regional-security-dialogue-with-12-nations-in-bahrain/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria sobre participantes y objetivos declarados de coordinación regional; requiere corroboración sobre compromisos concretos.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-us-architecture-gcc-ministerial-20260625",
+          "medio_catalogado": false,
+          "medio": "Gulf Cooperation Council (GCC)",
+          "titulo": "Joint Statement Following the Ministerial Meeting of the United States and the Gulf Cooperation Council",
+          "fecha": "2026-06-25",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.gcc-sg.org/en/MediaCenter/News/Pages/news-2026-6-25-10.aspx",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente conjunta oficial para el componente político de la arquitectura; no representa necesariamente todas las reservas nacionales.",
+          "revisada_el": "2026-08-29"
+        },
+        {
+          "id": "src-us-architecture-carnegie-gulf-guarantee-20260303",
+          "media_id": "carnegie-endowment",
+          "medio_catalogado": true,
+          "medio": "Carnegie Endowment for International Peace",
+          "titulo": "The Gulf Monarchies Are Caught Between Iran’s Desperation and the U.S.’s Recklessness",
+          "fecha": "2026-03-03",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://carnegieendowment.org/emissary/2026/03/gulf-states-iran-war-security",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis crítico sobre la exposición de los Estados del Golfo, los límites percibidos de la protección estadounidense y la tensión entre bases, ventas de armas, defensa efectiva y autonomía regional.",
+          "revisada_el": "2026-08-29"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-us-architecture-capacidad-garantia-001",
+          "descripcion": "Interoperabilidad técnica, presencia de bases y diálogo militar no equivalen a una garantía automática de defensa ni a consenso sobre operaciones ofensivas.",
+          "tipo": "alcance_institucional_incierto",
+          "signal_ids": [
+            "sig-us-architecture-cell-20260113",
+            "sig-us-architecture-dialogue-20260701"
+          ],
+          "fuente_ids": [
+            "src-us-architecture-centcom-cell-20260113",
+            "src-us-architecture-centcom-dialogue-20260701",
+            "src-us-architecture-gcc-ministerial-20260625",
+            "src-us-architecture-carnegie-gulf-guarantee-20260303"
+          ],
+          "estado": "resuelta",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-08-29T00:00:00.000Z",
+          "actualizada_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_el": "2026-08-29T12:00:00.000Z",
+          "resuelta_con_fuente_ids": [
+            "src-us-architecture-centcom-cell-20260113",
+            "src-us-architecture-centcom-dialogue-20260701",
+            "src-us-architecture-gcc-ministerial-20260625",
+            "src-us-architecture-carnegie-gulf-guarantee-20260303"
+          ],
+          "notas_editoriales": "Separar infraestructura, capacidad operacional, compromiso jurídico, decisión política y resultados observados.",
+          "resolucion": {
+            "tipo": "decision_editorial",
+            "motivo": "La advertencia se incorpora como regla permanente del análisis: infraestructura, interoperabilidad, presencia militar, compromiso jurídico, decisión política y resultados observados se evaluarán como niveles distintos.",
+            "decidida_el": "2026-08-29T12:00:00.000Z",
+            "decidida_por": "codex-con-autorizacion-usuario",
+            "fuente_ids": [
+              "src-us-architecture-centcom-cell-20260113",
+              "src-us-architecture-centcom-dialogue-20260701",
+              "src-us-architecture-gcc-ministerial-20260625",
+              "src-us-architecture-carnegie-gulf-guarantee-20260303"
+            ]
+          },
+          "historial": [
+            {
+              "cambio_id": "hist-adv-us-architecture-capacidad-garantia-001-20260829",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Separar infraestructura, capacidad operacional, compromiso jurídico, decisión política y resultados observados.",
+              "realizada_el": "2026-08-29T00:00:00.000Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            },
+            {
+              "cambio_id": "hist-adv-us-architecture-capacidad-garantia-001-20260829-revision-editorial",
+              "accion": "resuelta",
+              "detalle": "La limitación se conserva como regla metodológica obligatoria para el análisis y deja de bloquear la preparación editorial.",
+              "realizada_el": "2026-08-29T12:00:00.000Z",
               "realizada_por": "codex-con-autorizacion-usuario"
             }
           ]
