@@ -1,7 +1,7 @@
 {
   "formato": "memo-geopolitico-publico",
   "schema_version": 2,
-  "generado_el": "2026-08-29",
+  "generado_el": "2026-08-30",
   "procesos": [
     {
       "schema_version": 2,
@@ -5595,6 +5595,190 @@
         "adverso": "Ataques saturan defensas, golpean bases e infraestructura y erosionan la confianza en Washington, acelerando proliferación y diversificación de socios.",
         "transformador": "Una red regional transparente combina alerta, defensa, consulta política y mecanismos de desescalada que reducen errores de cálculo y exposición de terceros."
       }
+    },
+    {
+      "schema_version": 2,
+      "macroevento_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "slug": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "titulo": "Guerra Rusia–Ucrania y reconfiguración de redes internacionales de seguridad y sostenimiento",
+      "sintesis": "Macroevento rector que observa cómo la guerra iniciada en 2014 y transformada por la invasión rusa a gran escala de 2022 genera e institucionaliza redes internacionales de apoyo militar, financiación, tecnología, producción, sanciones, logística y seguridad. Evalúa en qué medida esas redes prolongan el conflicto, modifican la arquitectura de seguridad europea, reorientan las relaciones de Rusia y Ucrania con terceros Estados y transmiten capacidades o respuestas hacia otros teatros. Distingue alianzas formales, asociaciones, dependencias y transacciones; incorpora mecanismos de contención y evidencia contraria; y no presupone bloques homogéneos ni una confrontación sistémica mundial.",
+      "estado_seguimiento": "en_seguimiento",
+      "publicacion": {
+        "estado": "en_revision",
+        "publicado_el": null,
+        "actualizado_el": "2026-08-30"
+      },
+      "progreso_publico": {
+        "etapa": "en_revision",
+        "proximo_paso": "Revisar coherencia, fuentes y valoraciones antes de autorizar la publicación.",
+        "hitos_completados": [
+          "Expediente abierto y clasificado",
+          "Fuentes verificadas incorporadas",
+          "Señales verificadas incorporadas",
+          "Revisión editorial iniciada"
+        ]
+      },
+      "clasificacion": {
+        "tema_principal_id": "seguridad-conflicto",
+        "tema_secundario_ids": [],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "transfronterizo",
+          "region_ids": [
+            "europa",
+            "global",
+            "oriente-medio",
+            "africa"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "RUS",
+            "UKR"
+          ],
+          "espacio_ids": [
+            "mar-negro",
+            "baltico",
+            "asia-oriental"
+          ]
+        },
+        "actor_ids": [
+          "rusia",
+          "ucrania",
+          "estados-unidos",
+          "otan",
+          "union-europea",
+          "estados-europeos",
+          "bielorrusia",
+          "china",
+          "iran",
+          "corea-del-norte",
+          "turquia",
+          "india",
+          "estados-del-golfo"
+        ],
+        "etiqueta_ids": []
+      },
+      "que_esta_ocurriendo": "Macroevento rector que observa cómo la guerra iniciada en 2014 y transformada por la invasión rusa a gran escala de 2022 genera e institucionaliza redes internacionales de apoyo militar, financiación, tecnología, producción, sanciones, logística y seguridad. Evalúa en qué medida esas redes prolongan el conflicto, modifican la arquitectura de seguridad europea, reorientan las relaciones de Rusia y Ucrania con terceros Estados y transmiten capacidades o respuestas hacia otros teatros. Distingue alianzas formales, asociaciones, dependencias y transacciones; incorpora mecanismos de contención y evidencia contraria; y no presupone bloques homogéneos ni una confrontación sistémica mundial.",
+      "por_que_importa": "El seguimiento conjunto permite determinar si decisiones dispersas sobre ayuda, producción, sanciones, comercio, compromisos de seguridad y cooperación con terceros forman un mecanismo común de sostenimiento y adaptación o son solamente coincidencias. El rector explica dependencias cruzadas, cambios cualitativos y mecanismos de transmisión que los expedientes separados no pueden evaluar por sí solos, sin absorber la causalidad propia de otros teatros.",
+      "es_macroevento_rector": true,
+      "macroevento_rector_id": null,
+      "macroevento_rector_ids": [],
+      "claves_estructurales": [],
+      "valoraciones": {
+        "relevancia_geopolitica": 4.8,
+        "atencion_mediatica": 4,
+        "brecha": 0.8,
+        "confianza": "media-alta",
+        "incertidumbre": 4
+      },
+      "senales": [
+        {
+          "senal_id": "sig-rector-rusia-ucrania-industria-europa-20260427",
+          "fecha": "2026-04-27",
+          "titulo": "El rearme europeo consolida una adaptación industrial y presupuestaria duradera",
+          "resumen": "El aumento del gasto y de la producción europea muestra que la guerra ha acelerado una adaptación estructural. La incertidumbre sobre garantías estadounidenses y tendencias de rearme anteriores impiden atribuir todo el cambio exclusivamente a Ucrania.",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-sipri-milex-20260427",
+            "src-rector-rusia-ucrania-eu-military-support-202608"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+          "fecha": "2024-06-19",
+          "titulo": "Rusia y Corea del Norte formalizan asistencia militar recíproca",
+          "resumen": "El tratado bilateral y la posterior participación norcoreana documentada en Rusia constituyen la manifestación más clara de acoplamiento operativo selectivo entre la guerra europea y la seguridad de Asia Oriental. El vínculo no demuestra una coalición coordinada entre Rusia, China, Irán y Corea del Norte.",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
+            "src-rector-rusia-ucrania-msmt-20250529"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-acuerdos-seguridad-20240613",
+          "fecha": "2024-06-13",
+          "titulo": "Ucrania institucionaliza una red plurianual de acuerdos de seguridad",
+          "resumen": "Los acuerdos bilaterales derivados de la declaración del G7 convierten parte del apoyo coyuntural en compromisos de entrenamiento, financiación, producción y asistencia de largo plazo. No equivalen automáticamente a garantías de defensa mutua ni aseguran ejecución uniforme.",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-us-ua-security-20240613",
+            "src-rector-rusia-ucrania-kiel-support-20260813"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-adaptacion-trigo-20240222",
+          "fecha": "2024-02-22",
+          "titulo": "La adaptación del comercio de trigo limita la propagación permanente del choque inicial",
+          "resumen": "El Banco Mundial encontró que los países vulnerables sufrieron reducciones iniciales, pero localizaron nuevos proveedores con relativa rapidez. Es contraevidencia frente a una interpretación lineal según la cual toda disrupción producida por la guerra se vuelve estructural e irreversible.",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-worldbank-wheat-20240222"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-contencion-turquia-20220829",
+          "fecha": "2022-08-29",
+          "titulo": "La aplicación turca de Montreux limita la expansión naval del conflicto",
+          "resumen": "Turquía calificó la situación como guerra y aplicó el artículo 19 de la Convención de Montreux para cerrar los estrechos a buques de guerra de los beligerantes. La medida constituye evidencia directa de contención y demuestra que la internacionalización puede coexistir con mecanismos de desacoplamiento.",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-turquia-montreux-20220829"
+          ],
+          "estado_verificacion": "verificada"
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-otan-reconfiguracion-20220629",
+          "fecha": "2022-06-29",
+          "titulo": "La OTAN redefine a Rusia como amenaza directa y reordena su postura de defensa",
+          "resumen": "El Concepto Estratégico de 2022 identifica a Rusia como la amenaza más significativa y directa para la seguridad aliada. La decisión muestra una transformación institucional de la arquitectura euroatlántica vinculada a la invasión, aunque la adaptación de la OTAN y el deterioro de relaciones con Rusia preceden a 2022.",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-nato-concept-20220629"
+          ],
+          "estado_verificacion": "verificada"
+        }
+      ],
+      "cronologia": [],
+      "fuente_ids": [
+        "src-rector-rusia-ucrania-nato-concept-20220629",
+        "src-rector-rusia-ucrania-us-ua-security-20240613",
+        "src-rector-rusia-ucrania-kiel-support-20260813",
+        "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
+        "src-rector-rusia-ucrania-msmt-20250529",
+        "src-rector-rusia-ucrania-sipri-milex-20260427",
+        "src-rector-rusia-ucrania-eu-military-support-202608",
+        "src-rector-rusia-ucrania-turquia-montreux-20220829",
+        "src-rector-rusia-ucrania-worldbank-wheat-20240222"
+      ],
+      "recurso_visual_ids": [],
+      "macroevento_relacionado_ids": [
+        "mar-negro-azov-guerra-logistica",
+        "rail-baltica-movilidad-militar-europea",
+        "ruta-maritima-norte-artico",
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "sudan-rusia-ucrania-guerra-conectada",
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "indicadores_seguimiento": [
+        "Ayuda militar y financiera por proveedor, tipo, asignación, entrega y fecha, evitando sumar anuncios y desembolsos como si fueran equivalentes.",
+        "Dependencia de Rusia y Ucrania de proveedores externos para munición, defensa aérea, inteligencia, drones, misiles, componentes y mantenimiento.",
+        "Contratos, coproducción, plantas y compromisos de seguridad con horizonte posterior a la fase activa de la guerra.",
+        "Suministro de munición, misiles, personal y tecnología entre Rusia y Corea del Norte, incluida cualquier contraprestación rusa verificable.",
+        "Producción y transferencia de drones y tecnología militar entre Rusia e Irán, distinguiendo cooperación de guerra y relación bilateral general.",
+        "Peso de componentes chinos de doble uso y grado de institucionalización o restricción de la cooperación china con Rusia.",
+        "Integración militar y logística entre Rusia y Bielorrusia.",
+        "Continuidad, divergencia y dependencia estadounidense dentro de las redes europeas de apoyo a Ucrania.",
+        "Operaciones o represalias fuera del teatro europeo causadas explícitamente por decisiones vinculadas con Ucrania.",
+        "Comunicaciones militares, restricciones de empleo, mediaciones, aplicación de Montreux, acuerdos parciales y otras señales de contención.",
+        "Adaptación de mercados energéticos, alimentarios y logísticos que reduzca o revierta la propagación inicial.",
+        "Separación entre intensidad militar, extensión geográfica, persistencia institucional, propagación causal y riesgo sistémico.",
+        "Nivel de evolución: 1 guerra internacionalizada; 2 confrontación sostenida por redes; 3 acoplamiento operativo selectivo; 4 confrontación interestatal directa limitada; 5 confrontación sistémica multiteatro.",
+        "Condición de nivel actual: nivel 2 general, con manifestación parcial de nivel 3 en la relación Rusia–Corea del Norte y evidencia todavía insuficiente para atribuir ese nivel a Sudán."
+      ],
+      "escenarios": {
+        "base": "La guerra continúa o se congela sin solución política completa. Europa aumenta su papel, pero conserva dependencias críticas de capacidades estadounidenses. Rusia mantiene suministros norcoreanos, cooperación iraní y apoyo económico y tecnológico chino. Persisten sanciones y militarización sin combate directo entre Rusia y la OTAN. El rector permanece en nivel 2, con manifestaciones selectivas de nivel 3.",
+        "adverso": "La participación de terceros se amplía, ocurre un enfrentamiento atribuible entre Rusia y fuerzas de la OTAN o aparecen represalias coordinadas en varios teatros. Los compromisos de defensa y las transferencias militares cruzadas elevan el proceso al nivel 3 y crean riesgo de nivel 4, sin que la simultaneidad de conflictos baste por sí sola para hablar de confrontación sistémica.",
+        "transformador": "Un alto el fuego o acuerdo reduce la intensidad militar, pero no revierte la ampliación de la OTAN, la movilización industrial, los acuerdos de seguridad, las sanciones ni la orientación asiática de Rusia. El rector se transforma en seguimiento de la arquitectura posbélica, las garantías, el control de armas y la reversibilidad de las redes creadas durante la guerra."
+      }
     }
   ],
   "fuentes": [
@@ -6513,7 +6697,7 @@
     },
     {
       "fuente_id": "src-sudan-guerra-civil-regionalizacion-mar-rojo-chathamgold",
-      "media_id": null,
+      "media_id": "chatham-house",
       "medio": "Chatham House",
       "titulo": "Gold and the war in Sudan: How regional solutions can support an end to conflict",
       "fecha": "2026-03-24",
@@ -6667,7 +6851,7 @@
     },
     {
       "fuente_id": "src-sudan-oro-economia-guerra-redes-regionales-chathamgold",
-      "media_id": null,
+      "media_id": "chatham-house",
       "medio": "Chatham House",
       "titulo": "Gold and the war in Sudan: How regional solutions can support an end to conflict",
       "fecha": "2026-03-24",
@@ -7390,6 +7574,105 @@
       "tipo": "issue_brief",
       "url": "https://mecouncil.org/publication/hezbollahs-defeat-and-irans-strategic-depth-doctrine/",
       "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-rusia-ucrania-eu-military-support-202608",
+      "media_id": null,
+      "medio": "Consejo de la Unión Europea",
+      "titulo": "EU military support for Ukraine",
+      "fecha": "2026-08-13",
+      "idioma": "en",
+      "tipo": "fuente_institucional_primaria",
+      "url": "https://www.consilium.europa.eu/en/policies/military-support-ukraine/",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-rusia-ucrania-kiel-support-20260813",
+      "media_id": null,
+      "medio": "Kiel Institute for the World Economy",
+      "titulo": "Ukraine Support Tracker",
+      "fecha": "2026-08-13",
+      "idioma": "en",
+      "tipo": "informe_estadistico",
+      "url": "https://www.kielinstitut.de/topics/war-against-ukraine/ukraine-support-tracker",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
+      "media_id": null,
+      "medio": "Presidencia de Rusia",
+      "titulo": "Order on signing a Treaty on Comprehensive Strategic Partnership between Russia and North Korea",
+      "fecha": "2024-06-19",
+      "idioma": "en",
+      "tipo": "documento_oficial",
+      "url": "https://en.kremlin.ru/acts/news/74321",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-rusia-ucrania-msmt-20250529",
+      "media_id": null,
+      "medio": "Multilateral Sanctions Monitoring Team",
+      "titulo": "Unlawful Military Cooperation including Arms Transfers between North Korea and Russia",
+      "fecha": "2025-05-29",
+      "idioma": "en",
+      "tipo": "informe_investigacion",
+      "url": "https://digitallibrary.un.org/record/4083743?ln=en",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-rusia-ucrania-nato-concept-20220629",
+      "media_id": null,
+      "medio": "OTAN",
+      "titulo": "NATO 2022 Strategic Concept",
+      "fecha": "2022-06-29",
+      "idioma": "en",
+      "tipo": "documento_oficial",
+      "url": "https://www.nato.int/en/about-us/official-texts-and-resources/strategic-concepts/nato-2022-strategic-concept",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-rusia-ucrania-sipri-milex-20260427",
+      "media_id": "sipri",
+      "medio": "SIPRI",
+      "titulo": "Global military spending rise continues as European and Asian expenditures surge",
+      "fecha": "2026-04-27",
+      "idioma": "en",
+      "tipo": "informe_investigacion",
+      "url": "https://www.sipri.org/media/press-release/2026/global-military-spending-rise-continues-european-and-asian-expenditures-surge",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-rusia-ucrania-turquia-montreux-20220829",
+      "media_id": null,
+      "medio": "Ministerio de Asuntos Exteriores de Turquía",
+      "titulo": "We still have time to construct a peaceful future",
+      "fecha": "2022-08-29",
+      "idioma": "en",
+      "tipo": "fuente_oficial",
+      "url": "https://www.mfa.gov.tr/sayin-bakanimizin-bled-strategic-forum-makalesi.en.mfa",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-rusia-ucrania-us-ua-security-20240613",
+      "media_id": null,
+      "medio": "Presidencia de Ucrania",
+      "titulo": "Bilateral security agreement between Ukraine and the United States of America",
+      "fecha": "2024-06-13",
+      "idioma": "en",
+      "tipo": "documento_oficial",
+      "url": "https://www.president.gov.ua/en/news/dvostoronnya-bezpekova-ugoda-mizh-ukrayinoyu-ta-spoluchenimi-91501",
+      "estado_verificacion": "verificada"
+    },
+    {
+      "fuente_id": "src-rector-rusia-ucrania-worldbank-wheat-20240222",
+      "media_id": null,
+      "medio": "Banco Mundial",
+      "titulo": "Global wheat shipments withstood the shock of Russia’s invasion of Ukraine",
+      "fecha": "2024-02-22",
+      "idioma": "en",
+      "tipo": "analisis",
+      "url": "https://blogs.worldbank.org/en/trade/global-wheat-shipments-withstood-shock-russias-invasion-ukraine",
+      "estado_verificacion": "verificada"
     }
   ],
   "recursos_visuales": [],
@@ -8011,6 +8294,22 @@
         "id": "port-sudan",
         "nombre": "Port Sudan",
         "slug": "port-sudan",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "global"
+      },
+      {
+        "id": "baltico",
+        "nombre": "Báltico",
+        "slug": "baltico",
+        "estado": "activo",
+        "orden": 100,
+        "parent_id": "global"
+      },
+      {
+        "id": "asia-oriental",
+        "nombre": "Asia Oriental",
+        "slug": "asia-oriental",
         "estado": "activo",
         "orden": 100,
         "parent_id": "global"
@@ -9113,6 +9412,27 @@
         "id": "yemen",
         "nombre": "Yemen",
         "slug": "yemen",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "bielorrusia",
+        "nombre": "Bielorrusia",
+        "slug": "bielorrusia",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "corea-del-norte",
+        "nombre": "Corea del Norte",
+        "slug": "corea-del-norte",
+        "estado": "activo",
+        "orden": 100
+      },
+      {
+        "id": "estados-europeos",
+        "nombre": "Estados europeos",
+        "slug": "estados-europeos",
         "estado": "activo",
         "orden": 100
       }
