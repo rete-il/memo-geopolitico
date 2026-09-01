@@ -1,6 +1,6 @@
 ---
 import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { processes } from '../../../lib/data';
+import { editorialPreviewEnabled, processes } from '../../../lib/data';
 import {
   effectiveEditorialState,
   relatedPublicationForProcess,
@@ -90,7 +90,9 @@ const rectorCountLabel =
           {rectorGroups.map(
             ({ rector, publication, editorialState, complementaries }) => {
               const publicationHref =
-                publication?.data.publicacion.estado === 'publicado'
+                publication &&
+                (publication.data.publicacion.estado === 'publicado' ||
+                  editorialPreviewEnabled)
                   ? `/publicaciones/${publication.data.slug}/`
                   : '';
 
@@ -142,7 +144,9 @@ const rectorCountLabel =
                         {complementaries.map(
                           ({ process, publication: childPublication, editorialState: childState }) => {
                             const childPublicationHref =
-                              childPublication?.data.publicacion.estado === 'publicado'
+                              childPublication &&
+                              (childPublication.data.publicacion.estado === 'publicado' ||
+                                editorialPreviewEnabled)
                                 ? `/publicaciones/${childPublication.data.slug}/`
                                 : '';
 
