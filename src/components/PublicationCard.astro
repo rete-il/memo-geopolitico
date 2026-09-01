@@ -36,7 +36,7 @@ const {
   currentLabelId,
 } = Astro.props;
 const isPublished = publication.publicacion.estado === 'publicado';
-const destination = isPublished
+const destination = isPublished || editorialPreview
   ? `/publicaciones/${publication.slug}/`
   : `/observatorio/${publication.macroevento_principal_id}/`;
 const topics = topicReferences(publication.clasificacion, catalogMaps);
@@ -100,7 +100,7 @@ const labels = cardLabelReferences(publication.clasificacion, catalogMaps);
   </div>
   <h2>
     {
-      isPublished ? (
+      isPublished || editorialPreview ? (
         <a href={destination}>{publication.titulo}</a>
       ) : (
         <span>{publication.titulo}</span>
@@ -122,7 +122,7 @@ const labels = cardLabelReferences(publication.clasificacion, catalogMaps);
       }
     </span>
     <a href={destination}>
-      {isPublished ? 'Leer publicación' : 'Abrir expediente'}{' '}
+      {isPublished ? 'Leer publicación' : editorialPreview ? 'Leer borrador' : 'Abrir expediente'}{' '}
       <span aria-hidden="true">→</span>
     </a>
   </footer>

@@ -1,4 +1,5 @@
 node_modules/
+.pnpm-store/
 dist/
 dist-preview/
 .astro/
@@ -36,3 +37,7 @@ Thumbs.db
 /ACTUALIZAR-GITHUB-BETA*.bat
 /memo-geopolitico-centro-local-*.zip
 /centro-local/modules/observatorio.zip
+
+# Exportaciones y utilidades de recuperación locales
+/notion-export/
+/tools/restore-preview-from-astro-cache.mjs

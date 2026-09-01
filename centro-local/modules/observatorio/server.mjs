@@ -54,6 +54,11 @@ import {
   normalizeWarningContainers,
   validateEventWarnings,
 } from './lib/warnings-contract.mjs';
+import {
+  normalizeSignalReference,
+  normalizeTypedRelation,
+  validateTransversalContract,
+} from './lib/transversal-contract.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const root = path.dirname(__filename);
@@ -156,6 +161,7 @@ function normalizeSignal(signal = {}, eventId = 'evento', index = 0) {
     descripcion: text(signal.descripcion),
     estado_revision: text(signal.estado_revision === 'confirmada' ? 'verificada' : (signal.estado_revision || 'pendiente'), 40),
     origen: text(signal.origen || 'ia', 40),
+    propietario_macroevento_id: slug(signal.propietario_macroevento_id || eventId),
     fuente_ids: stringArray(signal.fuente_ids, 500).map(slug),
     ...(Array.isArray(signal.vinculos_pendientes_fuente_ids) ? {
       vinculos_pendientes_fuente_ids: stringArray(signal.vinculos_pendientes_fuente_ids, 500),
@@ -295,6 +301,9 @@ function normalizeEvent(event = {}, index = 0, catalog = {}) {
     macroevento_rector_id: primaryRectorId || rectorIds[0] || null,
     macroevento_rector_ids: rectorIds,
     macroevento_relacionado_ids: [...new Set(stringArray(event.macroevento_relacionado_ids, 500).map(slug))],
+    referencias_senal: Array.isArray(event.referencias_senal)
+      ? event.referencias_senal.map(normalizeSignalReference)
+      : [],
     senales: signals,
     actores: stringArray(event.actores),
     intereses: stringArray(event.intereses),
@@ -383,6 +392,9 @@ function normalizeData(payload = {}, catalog = readJson(catalogPath)) {
     categorias_internas: normalizeInternalCategories(payload.categorias_internas, normalizedEvents),
     vocabularios_editoriales: normalizeEditorialVocabularies(payload.vocabularios_editoriales, normalizedEvents),
     macroeventos: normalizedEvents,
+    relaciones_macroeventos: Array.isArray(payload.relaciones_macroeventos)
+      ? payload.relaciones_macroeventos.map(normalizeTypedRelation)
+      : [],
     expedientes_editoriales: expedients.map(normalizeExpedient),
     importaciones_candidatos: Array.isArray(payload.importaciones_candidatos)
       ? payload.importaciones_candidatos.map(normalizeCandidateImportRecord)
@@ -492,6 +504,7 @@ function validateData(data, catalog = readJson(catalogPath), taxonomy = readJson
   if (!data.vocabularios_editoriales || typeof data.vocabularios_editoriales !== 'object') errors.push('vocabularios_editoriales debe ser un objeto.');
   if (!Array.isArray(data.macroeventos)) errors.push('macroeventos debe ser una lista.');
   if (!Array.isArray(data.expedientes_editoriales)) errors.push('expedientes_editoriales debe ser una lista.');
+  if (!Array.isArray(data.relaciones_macroeventos)) errors.push('relaciones_macroeventos debe ser una lista.');
 
   const internalCategoryIds = new Set();
   for (const [categoryIndex, category] of (data.categorias_internas || []).entries()) {
@@ -613,6 +626,9 @@ function validateData(data, catalog = readJson(catalogPath), taxonomy = readJson
       else if (!eventMap.has(relatedId)) errors.push(`${label}: macroevento relacionado inexistente (${relatedId}).`);
     }
   }
+
+  const transversalValidation = validateTransversalContract(data);
+  errors.push(...transversalValidation.errors);
 
   const expIds = new Set();
   for (const [index, exp] of (data.expedientes_editoriales || []).entries()) {

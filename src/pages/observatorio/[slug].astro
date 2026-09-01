@@ -43,7 +43,9 @@ const processSources = process.fuente_ids
   .map((id) => sourceById.get(id))
   .filter(Boolean);
 
-const publications = (await getPublicationEntries()).filter(
+const publications = (await getPublicationEntries({
+  includePreview: editorialPreviewEnabled,
+})).filter(
   ({ data }) =>
     data.macroevento_principal_id === process.macroevento_id ||
     data.macroevento_secundario_ids.includes(process.macroevento_id),
@@ -103,6 +105,12 @@ const relatedProcesses = [...new Map(
     .filter((item) => !reservedRelationIds.has(item.macroevento_id))
     .map((item) => [item.macroevento_id, item]),
 ).values()];
+const typedRelations = (process.relaciones_tipadas || []).map((relation) => {
+  const counterpartId = relation.origen_id === process.macroevento_id
+    ? relation.destino_id
+    : relation.origen_id;
+  return { relation, counterpart: processById.get(counterpartId) };
+}).filter((item) => Boolean(item.counterpart));
 ---
 
 <SiteLayout
@@ -218,6 +226,30 @@ const relatedProcesses = [...new Map(
                   <ul>
                     {relatedProcesses.map((item) => (
                       <li><a href={`/observatorio/${item.slug}/`}>{item.titulo}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {typedRelations.length > 0 && (
+                <div class="process-relation-group typed-relations">
+                  <h3>Mecanismos transversales auditados</h3>
+                  <ul>
+                    {typedRelations.map(({ relation, counterpart }) => (
+                      <li>
+                        <div class="typed-relation-heading">
+                          <span class="relation-type">{humanize(relation.tipo)}</span>
+                          <a href={`/observatorio/${counterpart!.slug}/`}>{counterpart!.titulo}</a>
+                        </div>
+                        <p>{relation.mecanismo}</p>
+                        <small>
+                          {relation.direccion === 'bidireccional'
+                            ? 'Interacción bidireccional'
+                            : relation.origen_id === process.macroevento_id
+                              ? 'Efecto desde este proceso'
+                              : 'Efecto sobre este proceso'}
+                          {' · '}{relation.evidencia_senal_ids.length} señal(es) de evidencia
+                        </small>
+                      </li>
                     ))}
                   </ul>
                 </div>

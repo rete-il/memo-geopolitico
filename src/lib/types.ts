@@ -29,11 +29,29 @@ export interface Classification {
 
 export interface PublicSignal {
   senal_id: string;
+  propietario_macroevento_id: string;
   fecha: string;
   titulo: string;
   resumen: string;
   fuente_ids: string[];
   estado_verificacion: 'pendiente' | 'revisada' | 'verificada';
+}
+
+export interface PublicTypedRelation {
+  relacion_id: string;
+  origen_id: string;
+  destino_id: string;
+  tipo: 'subordinada' | 'relacionada' | 'amplificadora' | 'contenedora' | 'contextual' | 'coincidente';
+  mecanismo: string;
+  evidencia_senal_ids: string[];
+  direccion: 'origen_destino' | 'bidireccional';
+  reciprocidad: boolean;
+}
+
+export interface PublicSignalReference {
+  senal_id: string;
+  tipo_uso: 'relacionada' | 'amplificadora' | 'contenedora' | 'contextual' | 'coincidente';
+  efecto_segundo_orden: string;
 }
 
 export interface PublicSource {
@@ -84,6 +102,8 @@ export interface PublicProcess {
   fuente_ids: string[];
   recurso_visual_ids: string[];
   macroevento_relacionado_ids: string[];
+  relaciones_tipadas?: PublicTypedRelation[];
+  referencias_senal?: PublicSignalReference[];
   indicadores_seguimiento: string[];
   escenarios: {
     base: string;

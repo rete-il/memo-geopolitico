@@ -213,6 +213,19 @@ function sourceProjection(source) {
   };
 }
 
+function publicTypedRelation(relation = {}) {
+  return {
+    relacion_id: slugify(relation.id),
+    origen_id: slugify(relation.origen_id),
+    destino_id: slugify(relation.destino_id),
+    tipo: String(relation.tipo || ''),
+    mecanismo: String(relation.mecanismo || ''),
+    evidencia_senal_ids: unique((relation.evidencia_senal_ids || []).map(slugify)),
+    direccion: String(relation.direccion || 'origen_destino'),
+    reciprocidad: Boolean(relation.reciprocidad),
+  };
+}
+
 function geographyProjection(labels) {
   const regionIds = [];
   const subregionIds = [];
@@ -437,6 +450,7 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
       );
       signals.push({
         senal_id: slugify(signal.id),
+        propietario_macroevento_id: slugify(signal.propietario_macroevento_id || event.id),
         fecha: String(signal.fecha || ''),
         titulo: String(signal.titulo || ''),
         resumen: String(signal.descripcion || ''),
@@ -512,6 +526,14 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
       macroevento_relacionado_ids: Array.isArray(event.macroevento_relacionado_ids)
         ? unique(event.macroevento_relacionado_ids.map(slugify))
         : [],
+      relaciones_tipadas: (data.relaciones_macroeventos || [])
+        .filter((relation) => relation.origen_id === event.id || relation.destino_id === event.id)
+        .map(publicTypedRelation),
+      referencias_senal: (event.referencias_senal || []).map((reference) => ({
+        senal_id: slugify(reference.senal_id),
+        tipo_uso: String(reference.tipo_uso || ''),
+        efecto_segundo_orden: String(reference.efecto_segundo_orden || ''),
+      })),
       indicadores_seguimiento: Array.isArray(event.indicadores)
         ? event.indicadores.map(String)
         : [],
@@ -568,6 +590,7 @@ export function validatePublicPackage(data, options = {}) {
   if (data?.schema_version !== 2) errors.push('El esquema público debe ser v2.');
 
   const processIds = new Set();
+  const signalOwners = new Map();
   const sourceIds = new Set((data?.fuentes || []).map((item) => item.fuente_id));
   const themeIds = new Set((data?.catalogos?.temas || []).map((item) => item.id));
   const subthemeIds = new Set((data?.catalogos?.subtemas || []).map((item) => item.id));
@@ -664,6 +687,9 @@ export function validatePublicPackage(data, options = {}) {
       for (const id of signal.fuente_ids) {
         if (!sourceIds.has(id)) errors.push(`${label} / ${signal.titulo}: fuente inexistente (${id}).`);
       }
+      if (signal.propietario_macroevento_id && signal.propietario_macroevento_id !== process.macroevento_id) errors.push(`${label} / ${signal.titulo}: propietario canónico incoherente.`);
+      if (signalOwners.has(signal.senal_id)) errors.push(`${label} / ${signal.titulo}: ID de señal duplicado globalmente.`);
+      signalOwners.set(signal.senal_id, process.macroevento_id);
     }
     if (process.publicacion.estado === 'publicado') {
       if (!process.por_que_importa) errors.push(`${label}: un proceso publicado requiere “por qué importa”.`);
@@ -691,6 +717,21 @@ export function validatePublicPackage(data, options = {}) {
     for (const relatedId of relatedIds) {
       if (relatedId === process.macroevento_id) errors.push(`${label}: no puede relacionarse consigo mismo.`);
       else if (!processById.has(relatedId)) errors.push(`${label}: macroevento relacionado inexistente (${relatedId}).`);
+    }
+    const relationIds = new Set();
+    for (const relation of process.relaciones_tipadas || []) {
+      if (!relation.relacion_id || relationIds.has(relation.relacion_id)) errors.push(`${label}: relación tipada ausente o duplicada.`);
+      relationIds.add(relation.relacion_id);
+      if (!processById.has(relation.origen_id) || !processById.has(relation.destino_id)) errors.push(`${label}: relación tipada con extremo inexistente.`);
+      if (![relation.origen_id, relation.destino_id].includes(process.macroevento_id)) errors.push(`${label}: relación tipada ajena al proceso.`);
+      if (!['subordinada', 'relacionada', 'amplificadora', 'contenedora', 'contextual', 'coincidente'].includes(relation.tipo)) errors.push(`${label}: tipo de relación inválido (${relation.tipo}).`);
+      if (!relation.mecanismo) errors.push(`${label}: relación tipada sin mecanismo.`);
+      for (const signalId of relation.evidencia_senal_ids || []) if (!signalOwners.has(signalId)) errors.push(`${label}: relación con evidencia inexistente (${signalId}).`);
+    }
+    for (const reference of process.referencias_senal || []) {
+      if (!signalOwners.has(reference.senal_id)) errors.push(`${label}: referencia transversal inexistente (${reference.senal_id}).`);
+      if (signalOwners.get(reference.senal_id) === process.macroevento_id) errors.push(`${label}: referencia transversal apunta a una señal propia (${reference.senal_id}).`);
+      if (!reference.efecto_segundo_orden) errors.push(`${label}: referencia transversal sin efecto de segundo orden.`);
     }
   }
 

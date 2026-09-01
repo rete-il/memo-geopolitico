@@ -2,14 +2,14 @@
   "schema_version": 1,
   "metadata": {
     "titulo": "Directorio profesional de medios geopolíticos",
-    "archivo_fuente": "Medios_Matriz_Geopolitica_Navegacion_actualizado.xlsx",
+    "archivo_fuente": "Medios_Matriz_Geopolitica_Navegacion_corregido.xlsx",
     "hoja_fuente": "Matriz profesional",
     "total_medios": 106,
     "ultima_revision": "2026-08-26",
     "descripcion": "Matriz de fuentes clasificada por región, función epistemológica, perspectiva geopolítica y criterios de calidad.",
     "total_fuentes": 106,
-    "generado": "2026-08-26T00:00:00Z",
-    "importado": "2026-08-26",
+    "generado": "2026-09-01T00:00:00Z",
+    "importado": "2026-09-01",
     "catalogo": "Observatorio de macroeventos geopolíticos"
   },
   "columns": [
