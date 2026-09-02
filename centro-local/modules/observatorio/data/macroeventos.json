@@ -2,7 +2,10 @@
   "schema_version": 3,
   "titulo": "Observatorio de macroeventos geopolíticos",
   "actualizado": "2026-09-02",
-  "notas": "Datos iniciales derivados del análisis del chat. Todas las fuentes comienzan como no verificadas.\nContrato transversal incorporado el 2026-09-01: propiedad única de señales, referencias de segundo orden y relaciones tipadas.\nContrato transversal incorporado el 2026-09-01: propiedad única de señales, referencias de segundo orden y relaciones tipadas.",
+  "notas": [
+    "Datos iniciales derivados del análisis del chat. Todas las fuentes comienzan como no verificadas.\nContrato transversal incorporado el 2026-09-01: propiedad única de señales, referencias de segundo orden y relaciones tipadas.\nContrato transversal incorporado el 2026-09-01: propiedad única de señales, referencias de segundo orden y relaciones tipadas.",
+    "Arquitectura complementaria del rector Rusia–Ucrania incorporada el 2026-09-02: cinco procesos nuevos, uno reutilizado y propiedad específica de señales."
+  ],
   "categorias_internas": [
     {
       "id": "africa",
@@ -1469,7 +1472,7 @@
       "tipo_proceso": "tendencia_recurrente",
       "estado_editorial": "borrador",
       "estado_verificacion": "pendiente",
-      "fecha_corte": "2026-07-19",
+      "fecha_corte": "2026-09-02",
       "regiones": [
         "Europa oriental",
         "Mar Negro",
@@ -1504,8 +1507,10 @@
       "descripcion": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial.",
       "por_que_importa": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial. El mar Negro y el mar de Azov conectan producción agrícola, energía, industria y sostenimiento militar. Desde 2022, ataques, bloqueos y corredores negociados mostraron que el control marítimo no depende solo de grandes buques: drones, misiles y daños a terminales pueden alterar el valor estratégico de toda la costa. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
-      "macroevento_rector_id": null,
-      "macroevento_relacionado_ids": [],
+      "macroevento_rector_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "macroevento_relacionado_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento"
+      ],
       "senales": [
         {
           "id": "sig-mar-negro-azov-guerra-logistica-001",
@@ -1537,6 +1542,41 @@
           ],
           "intensidad": null,
           "localizaciones": [],
+          "propietario_macroevento_id": "mar-negro-azov-guerra-logistica"
+        },
+        {
+          "id": "sig-rector-rusia-ucrania-contencion-turquia-20220829",
+          "fecha": "2022-08-29",
+          "titulo": "La aplicación turca de Montreux limita la expansión naval del conflicto",
+          "tipo": "mecanismo_diplomatico",
+          "descripcion": "Turquía calificó la situación como guerra y aplicó el artículo 19 de la Convención de Montreux para cerrar los estrechos a buques de guerra de los beligerantes. La medida constituye evidencia directa de contención y demuestra que la internacionalización puede coexistir con mecanismos de desacoplamiento.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-turquia-montreux-20220829"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Turquía",
+            "Mar Negro"
+          ],
+          "propietario_macroevento_id": "mar-negro-azov-guerra-logistica"
+        },
+        {
+          "id": "sig-rector-rusia-ucrania-adaptacion-trigo-20240222",
+          "fecha": "2024-02-22",
+          "titulo": "La adaptación del comercio de trigo limita la propagación permanente del choque inicial",
+          "tipo": "analisis_estrategico",
+          "descripcion": "El Banco Mundial encontró que los países vulnerables sufrieron reducciones iniciales, pero localizaron nuevos proveedores con relativa rapidez. Es contraevidencia frente a una interpretación lineal según la cual toda disrupción producida por la guerra se vuelve estructural e irreversible.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-worldbank-wheat-20240222"
+          ],
+          "intensidad": 3,
+          "localizaciones": [
+            "Global"
+          ],
           "propietario_macroevento_id": "mar-negro-azov-guerra-logistica"
         }
       ],
@@ -1621,6 +1661,34 @@
           "estado_verificacion": "verificada",
           "observaciones": "Fuente periodística directa sobre la interrupción operativa. Reuters cita tres fuentes del sector exportador de granos que informaron la suspensión temporal de la navegación por el canal Don-Azov el 10 de julio de 2026, después de ataques contra 13 embarcaciones rusas, incluidos 10 petroleros. Los ministerios rusos de Agricultura y Transporte no respondieron a Reuters y no se informó una fecha de reapertura. La fuente respalda las señales sobre los ataques contra embarcaciones y la suspensión de la navegación, pero no demuestra por sí sola un patrón coordinado, sistemático y persistente.",
           "revisada_el": "2026-08-21"
+        },
+        {
+          "id": "src-rector-rusia-ucrania-turquia-montreux-20220829",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Ministerio de Asuntos Exteriores de Turquía",
+          "titulo": "We still have time to construct a peaceful future",
+          "fecha": "2022-08-29",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
+          "url": "https://www.mfa.gov.tr/sayin-bakanimizin-bled-strategic-forum-makalesi.en.mfa",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria sobre la decisión turca de aplicar el artículo 19 de Montreux; también presenta la política turca desde una perspectiva institucional favorable.",
+          "revisada_el": "2026-08-30"
+        },
+        {
+          "id": "src-rector-rusia-ucrania-worldbank-wheat-20240222",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Banco Mundial",
+          "titulo": "Global wheat shipments withstood the shock of Russia’s invasion of Ukraine",
+          "fecha": "2024-02-22",
+          "idioma": "en",
+          "tipo": "analisis",
+          "url": "https://blogs.worldbank.org/en/trade/global-wheat-shipments-withstood-shock-russias-invasion-ukraine",
+          "estado_verificacion": "verificada",
+          "observaciones": "Aporta contraevidencia sobre adaptación comercial y limita una interpretación de propagación permanente e irreversible.",
+          "revisada_el": "2026-08-30"
         }
       ],
       "actualizaciones": [],
@@ -2325,7 +2393,43 @@
         }
       ],
       "excepciones_advertencias": [],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "macroevento_rector_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento"
+      ],
+      "definicion_operativa": "Seguimiento de ataques, restricciones, protección, seguros y adaptación que modifican de forma persistente la capacidad de usar puertos, canales, rutas marítimas y conexiones terrestres del mar Negro y Azov para sostener guerra, comercio e ingresos.",
+      "delimitacion_exclusiones": [
+        "No convierte cada ataque o cierre temporal en campaña estratégica sostenida.",
+        "No atribuye daños, intención o autoría con una sola parte beligerante.",
+        "No absorbe la seguridad marítima global ni todos los efectos de sanciones sobre la flota sombra."
+      ],
+      "pregunta_seguimiento": "¿Los ataques, restricciones y adaptaciones están cambiando de manera persistente la capacidad logística, exportadora y de contención en el mar Negro y Azov?",
+      "hipotesis_principal": "El teatro marítimo se ha convertido en un sistema adaptativo donde ataques de precisión y no tripulados, rutas alternativas, protección, seguros y Montreux redistribuyen acceso sin producir control permanente de una sola parte.",
+      "hipotesis_alternativas": [
+        "Los incidentes producen interrupciones breves sin reconfiguración estructural de rutas o capacidad.",
+        "La adaptación comercial sustituye proveedores y puertos con mayor rapidez que la coerción puede imponer costos duraderos.",
+        "Montreux contiene la expansión naval, pero otras capacidades mantienen el riesgo de escalada."
+      ],
+      "mecanismo_causal": "Ataques o restricciones degradan buques, puertos y rutas; operadores responden con protección, desvíos, seguros y sustitución; Turquía y acuerdos parciales limitan determinados movimientos navales; el balance entre coerción y adaptación determina capacidad efectiva e impacto exterior.",
+      "indicadores_fortalecimiento": [
+        "Interrupciones repetidas reducen capacidad, exportaciones o ingresos durante varios trimestres.",
+        "Primas, desvíos y protección aumentan de forma persistente.",
+        "Ataques coordinan efectos marítimos y terrestres sobre nodos logísticos."
+      ],
+      "indicadores_debilitamiento": [
+        "La navegación, exportación y capacidad portuaria se recuperan rápidamente tras incidentes.",
+        "Nuevas rutas y proveedores absorben el choque sin costos persistentes.",
+        "La evidencia no conecta incidentes aislados con una campaña o resultado logístico."
+      ],
+      "condiciones_refutacion": [
+        "Rechazar la tesis de reconfiguración si una serie multianual no muestra pérdida, desvío o adaptación persistente.",
+        "Retirar atribuciones que no sean corroboradas por fuentes independientes o evidencia técnica."
+      ],
+      "incertidumbres": [
+        "Daños, autoría y objetivos operativos bajo información de guerra.",
+        "Capacidad portuaria y duración real de interrupciones.",
+        "Datos de seguros, propiedad de buques y flota sombra."
+      ]
     },
     {
       "id": "panama-gobernanza-portuaria",
@@ -13723,13 +13827,13 @@
       "excepciones_advertencias": [],
       "referencias_senal": []
     },
-    {
-      "id": "rusia-ucrania-redes-seguridad-sostenimiento",
+  {
+    "id": "rusia-ucrania-redes-seguridad-sostenimiento",
       "titulo": "Guerra Rusia–Ucrania y reconfiguración de redes internacionales de seguridad y sostenimiento",
       "tipo_proceso": "macroproceso_estructural",
       "estado_editorial": "revision",
       "estado_verificacion": "parcial",
-      "fecha_corte": "2026-08-30",
+    "fecha_corte": "2026-09-02",
       "regiones": [
         "Europa",
         "Rusia",
@@ -13754,7 +13858,6 @@
       "macroevento_rector_id": null,
       "macroevento_rector_ids": [],
       "macroevento_relacionado_ids": [
-        "mar-negro-azov-guerra-logistica",
         "rail-baltica-movilidad-militar-europea",
         "ruta-maritima-norte-artico",
         "turquia-potencia-bisagra-reordenamiento-regional",
@@ -13762,118 +13865,7 @@
         "sudan-guerra-civil-regionalizacion-mar-rojo",
         "corredores-alternativos-redes-logisticas-redundantes"
       ],
-      "senales": [
-        {
-          "id": "sig-rector-rusia-ucrania-otan-reconfiguracion-20220629",
-          "fecha": "2022-06-29",
-          "titulo": "La OTAN redefine a Rusia como amenaza directa y reordena su postura de defensa",
-          "tipo": "reposicionamiento_estrategico",
-          "descripcion": "El Concepto Estratégico de 2022 identifica a Rusia como la amenaza más significativa y directa para la seguridad aliada. La decisión muestra una transformación institucional de la arquitectura euroatlántica vinculada a la invasión, aunque la adaptación de la OTAN y el deterioro de relaciones con Rusia preceden a 2022.",
-          "estado_revision": "verificada",
-          "origen": "mixto",
-          "fuente_ids": [
-            "src-rector-rusia-ucrania-nato-concept-20220629"
-          ],
-          "intensidad": 5,
-          "localizaciones": [
-            "Europa"
-          ],
-          "propietario_macroevento_id": "rusia-ucrania-redes-seguridad-sostenimiento"
-        },
-        {
-          "id": "sig-rector-rusia-ucrania-acuerdos-seguridad-20240613",
-          "fecha": "2024-06-13",
-          "titulo": "Ucrania institucionaliza una red plurianual de acuerdos de seguridad",
-          "tipo": "acuerdo_defensa",
-          "descripcion": "Los acuerdos bilaterales derivados de la declaración del G7 convierten parte del apoyo coyuntural en compromisos de entrenamiento, financiación, producción y asistencia de largo plazo. No equivalen automáticamente a garantías de defensa mutua ni aseguran ejecución uniforme.",
-          "estado_revision": "verificada",
-          "origen": "mixto",
-          "fuente_ids": [
-            "src-rector-rusia-ucrania-us-ua-security-20240613",
-            "src-rector-rusia-ucrania-kiel-support-20260813"
-          ],
-          "intensidad": 4,
-          "localizaciones": [
-            "Ucrania",
-            "Europa",
-            "Estados Unidos"
-          ],
-          "propietario_macroevento_id": "rusia-ucrania-redes-seguridad-sostenimiento"
-        },
-        {
-          "id": "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
-          "fecha": "2024-06-19",
-          "titulo": "Rusia y Corea del Norte formalizan asistencia militar recíproca",
-          "tipo": "mecanismo_defensa_mutua",
-          "descripcion": "El tratado bilateral y la posterior participación norcoreana documentada en Rusia constituyen la manifestación más clara de acoplamiento operativo selectivo entre la guerra europea y la seguridad de Asia Oriental. El vínculo no demuestra una coalición coordinada entre Rusia, China, Irán y Corea del Norte.",
-          "estado_revision": "verificada",
-          "origen": "mixto",
-          "fuente_ids": [
-            "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
-            "src-rector-rusia-ucrania-msmt-20250529"
-          ],
-          "intensidad": 5,
-          "localizaciones": [
-            "Rusia",
-            "Corea del Norte",
-            "Asia Oriental"
-          ],
-          "propietario_macroevento_id": "rusia-ucrania-redes-seguridad-sostenimiento"
-        },
-        {
-          "id": "sig-rector-rusia-ucrania-industria-europa-20260427",
-          "fecha": "2026-04-27",
-          "titulo": "El rearme europeo consolida una adaptación industrial y presupuestaria duradera",
-          "tipo": "capacidad_industrial",
-          "descripcion": "El aumento del gasto y de la producción europea muestra que la guerra ha acelerado una adaptación estructural. La incertidumbre sobre garantías estadounidenses y tendencias de rearme anteriores impiden atribuir todo el cambio exclusivamente a Ucrania.",
-          "estado_revision": "verificada",
-          "origen": "mixto",
-          "fuente_ids": [
-            "src-rector-rusia-ucrania-sipri-milex-20260427",
-            "src-rector-rusia-ucrania-eu-military-support-202608"
-          ],
-          "intensidad": 5,
-          "localizaciones": [
-            "Europa"
-          ],
-          "propietario_macroevento_id": "rusia-ucrania-redes-seguridad-sostenimiento"
-        },
-        {
-          "id": "sig-rector-rusia-ucrania-contencion-turquia-20220829",
-          "fecha": "2022-08-29",
-          "titulo": "La aplicación turca de Montreux limita la expansión naval del conflicto",
-          "tipo": "mecanismo_diplomatico",
-          "descripcion": "Turquía calificó la situación como guerra y aplicó el artículo 19 de la Convención de Montreux para cerrar los estrechos a buques de guerra de los beligerantes. La medida constituye evidencia directa de contención y demuestra que la internacionalización puede coexistir con mecanismos de desacoplamiento.",
-          "estado_revision": "verificada",
-          "origen": "mixto",
-          "fuente_ids": [
-            "src-rector-rusia-ucrania-turquia-montreux-20220829"
-          ],
-          "intensidad": 4,
-          "localizaciones": [
-            "Turquía",
-            "Mar Negro"
-          ],
-          "propietario_macroevento_id": "rusia-ucrania-redes-seguridad-sostenimiento"
-        },
-        {
-          "id": "sig-rector-rusia-ucrania-adaptacion-trigo-20240222",
-          "fecha": "2024-02-22",
-          "titulo": "La adaptación del comercio de trigo limita la propagación permanente del choque inicial",
-          "tipo": "analisis_estrategico",
-          "descripcion": "El Banco Mundial encontró que los países vulnerables sufrieron reducciones iniciales, pero localizaron nuevos proveedores con relativa rapidez. Es contraevidencia frente a una interpretación lineal según la cual toda disrupción producida por la guerra se vuelve estructural e irreversible.",
-          "estado_revision": "verificada",
-          "origen": "mixto",
-          "fuente_ids": [
-            "src-rector-rusia-ucrania-worldbank-wheat-20240222"
-          ],
-          "intensidad": 3,
-          "localizaciones": [
-            "Global"
-          ],
-          "propietario_macroevento_id": "rusia-ucrania-redes-seguridad-sostenimiento"
-        }
-      ],
+      "senales": [],
       "actores": [
         "Rusia",
         "Ucrania",
@@ -13954,134 +13946,7 @@
         "contención de escalada",
         "acoplamiento de teatros"
       ],
-      "fuentes": [
-        {
-          "id": "src-rector-rusia-ucrania-nato-concept-20220629",
-          "media_id": "",
-          "medio_catalogado": false,
-          "medio": "OTAN",
-          "titulo": "NATO 2022 Strategic Concept",
-          "fecha": "2022-06-29",
-          "idioma": "en",
-          "tipo": "documento_oficial",
-          "url": "https://www.nato.int/en/about-us/official-texts-and-resources/strategic-concepts/nato-2022-strategic-concept",
-          "estado_verificacion": "verificada",
-          "observaciones": "Fuente primaria sobre la posición y adaptación doctrinal de la Alianza; no constituye una evaluación independiente de las intenciones rusas.",
-          "revisada_el": "2026-08-30"
-        },
-        {
-          "id": "src-rector-rusia-ucrania-us-ua-security-20240613",
-          "media_id": "",
-          "medio_catalogado": false,
-          "medio": "Presidencia de Ucrania",
-          "titulo": "Bilateral security agreement between Ukraine and the United States of America",
-          "fecha": "2024-06-13",
-          "idioma": "en",
-          "tipo": "documento_oficial",
-          "url": "https://www.president.gov.ua/en/news/dvostoronnya-bezpekova-ugoda-mizh-ukrayinoyu-ta-spoluchenimi-91501",
-          "estado_verificacion": "verificada",
-          "observaciones": "Prueba la institucionalización formal de apoyo y cooperación; su existencia no garantiza ejecución uniforme ni equivale a defensa mutua automática.",
-          "revisada_el": "2026-08-30"
-        },
-        {
-          "id": "src-rector-rusia-ucrania-kiel-support-20260813",
-          "media_id": "",
-          "medio_catalogado": false,
-          "medio": "Kiel Institute for the World Economy",
-          "titulo": "Ukraine Support Tracker",
-          "fecha": "2026-08-13",
-          "idioma": "en",
-          "tipo": "informe_estadistico",
-          "url": "https://www.kielinstitut.de/topics/war-against-ukraine/ukraine-support-tracker",
-          "estado_verificacion": "verificada",
-          "observaciones": "Base comparativa de ayuda gubernamental. No cubre plenamente transferencias secretas, ayuda privada ni todas las diferencias entre anuncio, asignación y entrega.",
-          "revisada_el": "2026-08-30"
-        },
-        {
-          "id": "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
-          "media_id": "",
-          "medio_catalogado": false,
-          "medio": "Presidencia de Rusia",
-          "titulo": "Order on signing a Treaty on Comprehensive Strategic Partnership between Russia and North Korea",
-          "fecha": "2024-06-19",
-          "idioma": "en",
-          "tipo": "documento_oficial",
-          "url": "https://en.kremlin.ru/acts/news/74321",
-          "estado_verificacion": "verificada",
-          "observaciones": "Fuente primaria adecuada para la existencia jurídica del tratado; no basta para evaluar motivaciones, implementación o cumplimiento.",
-          "revisada_el": "2026-08-30"
-        },
-        {
-          "id": "src-rector-rusia-ucrania-msmt-20250529",
-          "media_id": "",
-          "medio_catalogado": false,
-          "medio": "Multilateral Sanctions Monitoring Team",
-          "titulo": "Unlawful Military Cooperation including Arms Transfers between North Korea and Russia",
-          "fecha": "2025-05-29",
-          "idioma": "en",
-          "tipo": "informe_investigacion",
-          "url": "https://digitallibrary.un.org/record/4083743?ln=en",
-          "estado_verificacion": "verificada",
-          "observaciones": "Compila evidencia sobre armas, misiles y tropas. El mecanismo está formado por Estados críticos de Rusia y Corea del Norte y no sustituye al antiguo panel independiente de expertos de Naciones Unidas.",
-          "revisada_el": "2026-08-30"
-        },
-        {
-          "id": "src-rector-rusia-ucrania-sipri-milex-20260427",
-          "media_id": "sipri",
-          "medio_catalogado": true,
-          "medio": "SIPRI",
-          "titulo": "Global military spending rise continues as European and Asian expenditures surge",
-          "fecha": "2026-04-27",
-          "idioma": "en",
-          "tipo": "informe_investigacion",
-          "url": "https://www.sipri.org/media/press-release/2026/global-military-spending-rise-continues-european-and-asian-expenditures-surge",
-          "estado_verificacion": "verificada",
-          "observaciones": "Respalda la magnitud de la remilitarización y las cargas rusa y ucraniana; el gasto agregado no prueba por sí solo causalidad ni preparación para guerra directa.",
-          "revisada_el": "2026-08-30"
-        },
-        {
-          "id": "src-rector-rusia-ucrania-eu-military-support-202608",
-          "media_id": "",
-          "medio_catalogado": false,
-          "medio": "Consejo de la Unión Europea",
-          "titulo": "EU military support for Ukraine",
-          "fecha": "2026-08-13",
-          "idioma": "en",
-          "tipo": "fuente_institucional_primaria",
-          "url": "https://www.consilium.europa.eu/en/policies/military-support-ukraine/",
-          "estado_verificacion": "verificada",
-          "observaciones": "Documenta instrumentos, entrenamiento y cifras oficiales de apoyo; debe contrastarse con datos de entregas y contribuciones nacionales.",
-          "revisada_el": "2026-08-30"
-        },
-        {
-          "id": "src-rector-rusia-ucrania-turquia-montreux-20220829",
-          "media_id": "",
-          "medio_catalogado": false,
-          "medio": "Ministerio de Asuntos Exteriores de Turquía",
-          "titulo": "We still have time to construct a peaceful future",
-          "fecha": "2022-08-29",
-          "idioma": "en",
-          "tipo": "fuente_oficial",
-          "url": "https://www.mfa.gov.tr/sayin-bakanimizin-bled-strategic-forum-makalesi.en.mfa",
-          "estado_verificacion": "verificada",
-          "observaciones": "Fuente primaria sobre la decisión turca de aplicar el artículo 19 de Montreux; también presenta la política turca desde una perspectiva institucional favorable.",
-          "revisada_el": "2026-08-30"
-        },
-        {
-          "id": "src-rector-rusia-ucrania-worldbank-wheat-20240222",
-          "media_id": "",
-          "medio_catalogado": false,
-          "medio": "Banco Mundial",
-          "titulo": "Global wheat shipments withstood the shock of Russia’s invasion of Ukraine",
-          "fecha": "2024-02-22",
-          "idioma": "en",
-          "tipo": "analisis",
-          "url": "https://blogs.worldbank.org/en/trade/global-wheat-shipments-withstood-shock-russias-invasion-ukraine",
-          "estado_verificacion": "verificada",
-          "observaciones": "Aporta contraevidencia sobre adaptación comercial y limita una interpretación de propagación permanente e irreversible.",
-          "revisada_el": "2026-08-30"
-        }
-      ],
+      "fuentes": [],
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [
@@ -14089,15 +13954,8 @@
           "advertencia_id": "adv-rusia-ucrania-bloques-homogeneos-001",
           "descripcion": "La asistencia a Ucrania y la cooperación de Rusia con China, Irán y Corea del Norte no demuestran dos bloques homogéneos. Deben distinguirse alianza formal, asociación, dependencia, transacción, autonomía, oportunismo y divergencia interna.",
           "tipo": "inferencia_analitica",
-          "signal_ids": [
-            "sig-rector-rusia-ucrania-acuerdos-seguridad-20240613",
-            "sig-rector-rusia-ucrania-rpdc-tratado-20240619"
-          ],
-          "fuente_ids": [
-            "src-rector-rusia-ucrania-us-ua-security-20240613",
-            "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
-            "src-rector-rusia-ucrania-msmt-20250529"
-          ],
+        "signal_ids": [],
+        "fuente_ids": [],
           "estado": "pendiente",
           "tratamiento": "relevante",
           "prioridad": "alta",
@@ -14105,7 +13963,7 @@
           "actualizada_el": "2026-08-30T00:00:00Z",
           "resuelta_el": null,
           "resuelta_con_fuente_ids": [],
-          "notas_editoriales": "Mantener abierta la hipótesis de coaliciones variables y exigir evidencia de mando, compromisos, reciprocidad o respuesta coordinada antes de emplear la categoría de bloque.",
+        "notas_editoriales": "Mantener abierta la hipótesis de coaliciones variables y exigir evidencia de mando, compromisos, reciprocidad o respuesta coordinada antes de emplear la categoría de bloque. La evidencia trasladada a sus procesos propietarios se consulta mediante referencias_senal y no se duplica dentro de esta advertencia.",
           "resolucion": null,
           "historial": [
             {
@@ -14189,6 +14047,1607 @@
           "senal_id": "sig-nuclear-rusia-doctrina-2024",
           "tipo_uso": "amplificadora",
           "efecto_segundo_orden": "La erosión de límites y la doctrina nuclear comprimen la gestión de escalada y condicionan apoyo, despliegues y garantías en Europa."
+        },
+        {
+          "senal_id": "sig-asistencia-ucrania-purl-nsatu-20260708",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La institucionalización de coordinación, financiación y entrega determina la continuidad de la red occidental de sostenimiento."
+        },
+        {
+          "senal_id": "sig-asistencia-ucrania-europa-lidera-dependencia-eeuu-20260813",
+          "tipo_uso": "contextual",
+          "efecto_segundo_orden": "La combinación de liderazgo financiero europeo y dependencia selectiva estadounidense limita una lectura de sustitución completa."
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-industria-europa-20260427",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La capacidad industrial y presupuestaria prolonga el conflicto cuando se convierte en producción y entrega efectiva."
+        },
+        {
+          "senal_id": "sig-sanciones-rusia-desvio-no-compensa-20251211",
+          "tipo_uso": "contextual",
+          "efecto_segundo_orden": "La compensación parcial entre restricción y desvío explica por qué adaptación no equivale a neutralización total."
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La relación Rusia–RPDC constituye el caso más claro de acoplamiento militar selectivo con otro teatro."
+        },
+        {
+          "senal_id": "sig-terceros-rusia-china-disputa-doble-uso-20260618",
+          "tipo_uso": "contextual",
+          "efecto_segundo_orden": "La controversia sobre doble uso chino obliga a separar posición oficial, flujo comercial y destino militar."
+        },
+        {
+          "senal_id": "sig-garantias-ucrania-paris-posaltofuego-20260107",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "Garantías y monitoreo posaltofuego podrían transformar redes de guerra en mecanismos de disuasión, si se vuelven ejecutables."
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-contencion-turquia-20220829",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "Montreux limita determinados movimientos navales y prueba que internacionalización y contención pueden coexistir."
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-adaptacion-trigo-20240222",
+          "tipo_uso": "contextual",
+          "efecto_segundo_orden": "La adaptación del comercio de trigo aporta contraevidencia frente a una propagación mundial lineal e irreversible."
+        }
+      ]
+    },
+    {
+      "id": "asistencia-militar-occidental-ucrania-transformacion",
+      "titulo": "Transformación de la asistencia militar occidental a Ucrania",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "borrador",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-09-02",
+      "regiones": [
+        "Ucrania",
+        "Europa",
+        "Estados Unidos",
+        "Atlántico Norte"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "pendiente",
+        "taxonomy_version": 1,
+        "revisada_el": null
+      },
+      "descripcion": "Conversión de la ayuda militar occidental desde transferencias de emergencia y existencias nacionales hacia una combinación más institucionalizada de financiación, compras, entrenamiento, inteligencia, mantenimiento, producción y compromisos plurianuales, con desacuerdos sobre costos, empleo y riesgo.",
+      "por_que_importa": "La capacidad ucraniana de sostener operaciones y disuadir nuevas agresiones depende menos del volumen anunciado que de entregas oportunas, defensa aérea, munición, mantenimiento, entrenamiento e inteligencia. La redistribución de costos entre Estados Unidos y Europa puede estabilizar la red o abrir fallas críticas.",
+      "definicion_operativa": "Se considera transformación cuando cambian de forma persistente la composición, financiación, coordinación, condicionalidad o sostenimiento de la asistencia militar aportada por Estados occidentales y organizaciones euroatlánticas a Ucrania.",
+      "delimitacion_exclusiones": [
+        "No suma ayuda humanitaria o macrofinanciera salvo cuando condiciona directamente la capacidad militar.",
+        "No trata cada anuncio como entrega ni cada transferencia como capacidad operativa.",
+        "No absorbe la producción industrial, que posee un proceso complementario específico.",
+        "No equipara asistencia con participación directa en las hostilidades."
+      ],
+      "pregunta_seguimiento": "¿La red occidental está convirtiendo apoyo contingente en una capacidad previsible y sostenible para Ucrania, o depende todavía de decisiones políticas, existencias y sistemas críticos que pueden interrumpirse?",
+      "hipotesis_principal": "La asistencia se ha institucionalizado y europeizado parcialmente mediante PURL, NSATU, instrumentos de la UE y acuerdos plurianuales, pero conserva dependencias selectivas de Estados Unidos y vulnerabilidades de ejecución, mantenimiento y consenso político.",
+      "hipotesis_alternativas": [
+        "Los nuevos mecanismos cambian el canal administrativo, pero no reducen la volatilidad real de entregas.",
+        "Europa puede sustituir financiación estadounidense, pero no determinados interceptores, inteligencia o plataformas.",
+        "La ayuda suficiente para evitar una derrota puede ser insuficiente para alterar el equilibrio militar o producir una negociación estable.",
+        "Restricciones de uso y gestión de escalada pueden contener la guerra aunque reduzcan eficacia operativa."
+      ],
+      "mecanismo_causal": "Necesidades ucranianas priorizadas activan decisiones nacionales y multilaterales; financiación y contratos movilizan inventarios o producción; coordinación, transporte, entrenamiento y mantenimiento convierten material en capacidad operativa. La cadena se debilita si falla cualquiera de esos eslabones o si la condicionalidad política retrasa el flujo.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "macroevento_rector_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento"
+      ],
+      "macroevento_relacionado_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento",
+        "base-industrial-defensa-guerra-rusia-ucrania",
+        "garantias-seguridad-arquitectura-europea-posguerra-ucrania"
+      ],
+      "claves_estructurales": [
+        "Del anuncio a la entrega",
+        "De existencias a compras",
+        "Europeización parcial",
+        "Mantenimiento e interoperabilidad",
+        "Condicionalidad y límites"
+      ],
+      "senales": [
+        {
+          "id": "sig-asistencia-ucrania-purl-nsatu-20260708",
+          "fecha": "2026-07-08",
+          "titulo": "La asistencia pasa a financiación aliada previsible, compras PURL y coordinación NSATU",
+          "tipo": "institucionalizacion_asistencia",
+          "descripcion": "La declaración de Ankara comprometió EUR 70.000 millones en equipo, asistencia y entrenamiento para 2026 y un nivel al menos equivalente en 2027; PURL canaliza material estadounidense financiado por aliados y NSATU coordina entrega, entrenamiento y sostenimiento. Son compromisos soberanos y no una garantía automática de ejecución.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-asistencia-nato-ankara-20260708",
+            "src-asistencia-nato-support-20260709"
+          ],
+          "intensidad": 5,
+          "localizaciones": [
+            "Ucrania",
+            "Europa",
+            "Estados Unidos"
+          ],
+          "propietario_macroevento_id": "asistencia-militar-occidental-ucrania-transformacion"
+        },
+        {
+          "id": "sig-asistencia-ucrania-europa-lidera-dependencia-eeuu-20260813",
+          "fecha": "2026-08-13",
+          "titulo": "Europa aumenta asignaciones mientras persiste dependencia de sistemas estadounidenses",
+          "tipo": "redistribucion_cargas",
+          "descripcion": "El Ukraine Support Tracker registra un aumento europeo de asignaciones en mayo y junio de 2026, impulsado por el Ukraine Support Loan, pero también mantiene que armas estadounidenses siguen siendo críticas. La señal combina mayor carga europea con dependencia selectiva, no sustitución completa.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-kiel-support-20260813"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Europa",
+            "Ucrania",
+            "Estados Unidos"
+          ],
+          "propietario_macroevento_id": "asistencia-militar-occidental-ucrania-transformacion"
+        },
+        {
+          "id": "sig-asistencia-ucrania-ue-entrenamiento-mantenimiento-20260813",
+          "fecha": "2026-08-13",
+          "titulo": "La ayuda europea incorpora entrenamiento, compras, mantenimiento y financiación",
+          "tipo": "sostenimiento_operativo",
+          "descripcion": "Los instrumentos de la Unión Europea muestran que la asistencia ya no consiste solamente en retirar existencias: combina entrenamiento, adquisiciones, financiación y soporte. Las cifras institucionales deben contrastarse con entregas nacionales y disponibilidad efectiva en Ucrania.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-eu-military-support-202608"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Ucrania",
+            "Unión Europea"
+          ],
+          "propietario_macroevento_id": "asistencia-militar-occidental-ucrania-transformacion"
+        }
+      ],
+      "actores": [
+        "Ucrania",
+        "Estados Unidos",
+        "OTAN",
+        "Unión Europea",
+        "Estados europeos",
+        "Canadá",
+        "Reino Unido",
+        "Industria de defensa"
+      ],
+      "intereses": [
+        "Sostener la defensa ucraniana sin entrar en guerra directa con Rusia.",
+        "Distribuir costos y riesgos entre aliados con preferencias distintas.",
+        "Preservar inventarios nacionales y cumplir al mismo tiempo compromisos con Ucrania.",
+        "Convertir aprendizaje operativo ucraniano en entrenamiento e interoperabilidad."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Europa y Canadá financian una proporción creciente; PURL y NSATU sostienen capacidades estadounidenses críticas, con retrasos y condicionalidad periódicos.",
+        "adverso": "Cambios políticos o competencia con otros teatros interrumpen defensa aérea, munición, inteligencia o mantenimiento y producen una brecha operativa prolongada.",
+        "transformador": "Una red contractual y logística plurianual reduce la volatilidad, aumenta producción europea y ucraniana y mantiene apoyo suficiente durante un armisticio o negociación."
+      },
+      "indicadores": [
+        "Anuncios, asignaciones, contratos, entregas y disponibilidad en unidades, medidos por separado.",
+        "Participación relativa de Estados Unidos, Europa, Canadá y otros socios por capacidad.",
+        "Cobertura de defensa aérea, munición, repuestos, mantenimiento, entrenamiento e inteligencia.",
+        "Restricciones de uso, plazos de autorización y cambios de condicionalidad.",
+        "Duración y ejecución de PURL, NSATU, EUMAM y acuerdos bilaterales."
+      ],
+      "indicadores_fortalecimiento": [
+        "Entregas sostenidas y previsibles durante al menos cuatro trimestres.",
+        "Menor concentración por proveedor en capacidades críticas sin pérdida de interoperabilidad.",
+        "Contratos y mantenimiento financiados más allá del ejercicio presupuestario corriente.",
+        "Reducción de la diferencia entre compromisos, asignaciones y material operativo."
+      ],
+      "indicadores_debilitamiento": [
+        "Brechas repetidas de defensa aérea, munición o repuestos atribuibles a decisiones de proveedores.",
+        "Cancelación, expiración o subfinanciación de mecanismos multilaterales.",
+        "Dependencia creciente de un proveedor sujeto a cambios políticos abruptos.",
+        "Incapacidad ucraniana de absorber o mantener sistemas heterogéneos."
+      ],
+      "condiciones_refutacion": [
+        "Reformular si los mecanismos plurianuales no mejoran la continuidad de entregas frente al patrón de paquetes ad hoc.",
+        "Rechazar la hipótesis de europeización si la mayoría de capacidades críticas continúa dependiendo de financiación, existencias y autorización estadounidenses.",
+        "Separar apoyo político de capacidad si asignaciones crecientes no se traducen en disponibilidad operativa verificable."
+      ],
+      "incertidumbres": [
+        "Transferencias clasificadas y disponibilidad real en unidades.",
+        "Inventarios nacionales y tiempos de reposición no públicos.",
+        "Efecto militar marginal de cada capacidad y sustitución entre sistemas.",
+        "Cambios electorales, fatiga fiscal y competencia con otros teatros."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 4,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "media-alta"
+      },
+      "palabras_clave": [
+        "Ukraine military aid",
+        "PURL",
+        "NSATU",
+        "EUMAM",
+        "air defence",
+        "maintenance",
+        "burden sharing"
+      ],
+      "fuentes": [
+        {
+          "id": "src-rector-rusia-ucrania-kiel-support-20260813",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Kiel Institute for the World Economy",
+          "titulo": "Ukraine Support Tracker",
+          "fecha": "2026-08-13",
+          "idioma": "en",
+          "tipo": "informe_estadistico",
+          "url": "https://www.kielinstitut.de/topics/war-against-ukraine/ukraine-support-tracker",
+          "estado_verificacion": "verificada",
+          "observaciones": "Base comparativa de ayuda gubernamental. No cubre plenamente transferencias secretas, ayuda privada ni todas las diferencias entre anuncio, asignación y entrega.",
+          "revisada_el": "2026-08-30"
+        },
+        {
+          "id": "src-rector-rusia-ucrania-eu-military-support-202608",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Consejo de la Unión Europea",
+          "titulo": "EU military support for Ukraine",
+          "fecha": "2026-08-13",
+          "idioma": "en",
+          "tipo": "fuente_institucional_primaria",
+          "url": "https://www.consilium.europa.eu/en/policies/military-support-ukraine/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Documenta instrumentos, entrenamiento y cifras oficiales de apoyo; debe contrastarse con datos de entregas y contribuciones nacionales.",
+          "revisada_el": "2026-08-30"
+        },
+        {
+          "id": "src-asistencia-nato-support-20260709",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "OTAN",
+          "titulo": "NATO’s support for Ukraine",
+          "fecha": "2026-07-09",
+          "idioma": "en",
+          "tipo": "fuente_institucional_primaria",
+          "url": "https://www.nato.int/en/what-we-do/partnerships-and-cooperation/natos-support-for-ukraine",
+          "estado_verificacion": "verificada",
+          "observaciones": "Documenta PURL, NSATU, entrenamiento, mantenimiento y contribuciones declaradas. Expresa la posición de la Alianza y requiere contraste con datos de asignaciones y entregas.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-asistencia-nato-ankara-20260708",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "OTAN",
+          "titulo": "The Ankara Summit Declaration",
+          "fecha": "2026-07-08",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.nato.int/en/about-us/official-texts-and-resources/official-texts/2026/07/08/the-ankara-summit-declaration",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria del compromiso aliado. Prueba la decisión política, no el ritmo de contratación, entrega ni absorción ucraniana.",
+          "revisada_el": "2026-09-02"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-asistencia-ucrania-compromisos-entregas-001",
+          "descripcion": "Las cifras oficiales y los rastreadores emplean unidades distintas. No deben sumarse anuncios, asignaciones, contratos, entregas y valor de reposición como si fueran equivalentes.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-asistencia-ucrania-purl-nsatu-20260708",
+            "sig-asistencia-ucrania-europa-lidera-dependencia-eeuu-20260813",
+            "sig-asistencia-ucrania-ue-entrenamiento-mantenimiento-20260813"
+          ],
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-kiel-support-20260813",
+            "src-rector-rusia-ucrania-eu-military-support-202608",
+            "src-asistencia-nato-support-20260709",
+            "src-asistencia-nato-ankara-20260708"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-09-02T00:00:00Z",
+          "actualizada_el": "2026-09-02T00:00:00Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Mantener series separadas por tipo de compromiso, fecha, proveedor, capacidad y estado de entrega.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-asistencia-ucrania-compromisos-entregas-001-20260902",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Mantener series separadas por tipo de compromiso, fecha, proveedor, capacidad y estado de entrega.",
+              "realizada_el": "2026-09-02T00:00:00Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": [],
+      "referencias_senal": [
+        {
+          "senal_id": "sig-rector-rusia-ucrania-acuerdos-seguridad-20240613",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "Los acuerdos bilaterales aportan continuidad política y marcos de entrenamiento y financiación, aunque no garantizan entregas uniformes."
+        }
+      ]
+    },
+    {
+      "id": "base-industrial-defensa-guerra-rusia-ucrania",
+      "titulo": "Expansión y adaptación de la base industrial de defensa vinculada a la guerra Rusia–Ucrania",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "borrador",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-09-02",
+      "regiones": [
+        "Ucrania",
+        "Europa",
+        "Rusia",
+        "Atlántico Norte"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "pendiente",
+        "taxonomy_version": 1,
+        "revisada_el": null
+      },
+      "descripcion": "Expansión, financiación e integración de capacidad industrial dedicada a municiones, defensa aérea, drones, misiles, mantenimiento y componentes demandados por la guerra, desde contratos plurianuales y compras directas en Ucrania hasta coproducción y nuevas líneas europeas.",
+      "por_que_importa": "La duración de la guerra depende de si presupuestos y contratos se convierten en volumen, calidad y reposición sostenibles. La capacidad nominal puede quedar limitada por explosivos, chips, energía, capital, personal, certificación o competencia con otros teatros.",
+      "definicion_operativa": "Incluye decisiones industriales y cadenas de suministro cuya demanda, financiación o aprendizaje operativo puede vincularse directamente con la guerra y la defensa de Ucrania. Sigue capacidad instalada, producción efectiva, entregas, costos y resiliencia.",
+      "delimitacion_exclusiones": [
+        "No sustituye al rector global de remilitarización industrial ni explica cadenas no vinculadas al teatro Rusia–Ucrania.",
+        "No trata gasto militar agregado como prueba suficiente de producción.",
+        "No convierte memorandos, capacidad anunciada o prototipos en entregas.",
+        "La adaptación táctica de drones se incluye solo cuando modifica producción, contratación o cadenas."
+      ],
+      "pregunta_seguimiento": "¿La demanda de la guerra está creando una base industrial persistente y adaptable, o sólo un aumento costoso y desigual incapaz de cerrar brechas críticas de producción y financiación?",
+      "hipotesis_principal": "La guerra acelera una base industrial europeo-ucraniana más densa y contratos de mayor duración, pero la producción sigue fragmentada, dependiente de componentes y financiación y desigual entre munición, drones, defensa aérea y misiles.",
+      "hipotesis_alternativas": [
+        "El aumento responde principalmente a una remilitarización global previa y no a la guerra en Ucrania.",
+        "La capacidad nominal crece más rápido que pedidos financiados y entregas utilizables.",
+        "La innovación ucraniana mejora adaptación y costo, pero no sustituye interceptores, misiles o plataformas complejas.",
+        "Una desescalada puede transformar contratos de guerra en capacidad de disuasión o producir sobrecapacidad y cancelaciones."
+      ],
+      "mecanismo_causal": "Demanda de alta intensidad y consumo acelerado generan contratos y financiación; estos incentivan inversión, coproducción, aprendizaje y ampliación de líneas; componentes, energía, capital, personal y certificación determinan el volumen efectivo; entregas y retroalimentación del frente modifican diseños y prioridades.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "macroevento_rector_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento"
+      ],
+      "macroevento_relacionado_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento",
+        "remilitarizacion-industrial-cadenas-estrategicas-bloques",
+        "asistencia-militar-occidental-ucrania-transformacion"
+      ],
+      "claves_estructurales": [
+        "Producción efectiva",
+        "Contratos plurianuales",
+        "Cuellos de botella",
+        "Industria ucraniana",
+        "Competencia entre teatros"
+      ],
+      "senales": [
+        {
+          "id": "sig-rector-rusia-ucrania-industria-europa-20260427",
+          "fecha": "2026-04-27",
+          "titulo": "El rearme europeo consolida una adaptación industrial y presupuestaria duradera",
+          "tipo": "capacidad_industrial",
+          "descripcion": "El aumento del gasto y de la producción europea muestra que la guerra ha acelerado una adaptación estructural. La incertidumbre sobre garantías estadounidenses y tendencias de rearme anteriores impiden atribuir todo el cambio exclusivamente a Ucrania.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-sipri-milex-20260427",
+            "src-industria-ue-edip-20260330"
+          ],
+          "intensidad": 5,
+          "localizaciones": [
+            "Europa"
+          ],
+          "propietario_macroevento_id": "base-industrial-defensa-guerra-rusia-ucrania"
+        },
+        {
+          "id": "sig-industria-ucrania-drones-compra-domestica-20260624",
+          "fecha": "2026-06-24",
+          "titulo": "La contratación ucraniana de drones se apoya mayoritariamente en producción nacional",
+          "tipo": "adaptacion_industrial",
+          "descripcion": "El Ministerio de Defensa ucraniano informó que el 95% de los drones contratados para sus fuerzas eran de fabricación nacional y que DOT-Chain aceleró compras. La cifra oficial muestra escala y adaptación, pero no mide por sí sola componentes importados, eficacia o sostenibilidad financiera.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-industria-ucrania-drones-20260624"
+          ],
+          "intensidad": 5,
+          "localizaciones": [
+            "Ucrania"
+          ],
+          "propietario_macroevento_id": "base-industrial-defensa-guerra-rusia-ucrania"
+        },
+        {
+          "id": "sig-industria-ue-ucrania-edip-financiacion-20260330",
+          "fecha": "2026-03-30",
+          "titulo": "EDIP integra producción europea y ucraniana en programas y compras comunes",
+          "tipo": "institucionalizacion_industrial",
+          "descripcion": "El programa europeo financia capacidad, compras conjuntas y cooperación con Ucrania. La señal es institucional: deberá confirmarse mediante adjudicaciones, nuevas líneas, componentes y entregas.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-industria-ue-edip-20260330",
+            "src-industria-ue-apoyo-ucrania-20260824"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Unión Europea",
+            "Ucrania"
+          ],
+          "propietario_macroevento_id": "base-industrial-defensa-guerra-rusia-ucrania"
+        }
+      ],
+      "actores": [
+        "Ucrania",
+        "Unión Europea",
+        "OTAN",
+        "Estados europeos",
+        "Estados Unidos",
+        "Industria de defensa",
+        "Proveedores de componentes",
+        "Inversores públicos y privados"
+      ],
+      "intereses": [
+        "Reponer inventarios y sostener entregas a Ucrania.",
+        "Escalar tecnología ucraniana y proteger producción frente a ataques.",
+        "Asegurar demanda suficiente para invertir sin crear capacidad ociosa.",
+        "Reducir dependencias de componentes y materias primas vulnerables."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Crece la producción de munición y drones, con integración ucraniana gradual y brechas persistentes en defensa aérea, misiles y componentes.",
+        "adverso": "Capital, explosivos, energía, chips o personal limitan la expansión; otros teatros compiten por entregas y los contratos llegan tarde.",
+        "transformador": "Contratos plurianuales, coproducción distribuida y compras a la industria ucraniana consolidan capacidad adaptable que persiste tras un armisticio."
+      },
+      "indicadores": [
+        "Capacidad instalada, producción efectiva, pedidos financiados y entregas por familia de sistema.",
+        "Plazos de contratos, cartera de pedidos y proporción plurianual.",
+        "Inversión en explosivos, propulsores, chips, motores, radares y personal especializado.",
+        "Compras directas a fabricantes ucranianos y coproducción fuera del país.",
+        "Competencia de pedidos con Indo-Pacífico y Medio Oriente."
+      ],
+      "indicadores_fortalecimiento": [
+        "Producción efectiva crece durante varios trimestres y reduce plazos de entrega.",
+        "Los pedidos financiados se acercan a la capacidad nominal ucraniana.",
+        "Se diversifican componentes críticos sin degradar calidad o costo de forma decisiva.",
+        "Coproducción y mantenimiento sobreviven a cambios presupuestarios anuales."
+      ],
+      "indicadores_debilitamiento": [
+        "Cancelaciones o ausencia de pedidos dejan capacidad ociosa.",
+        "Los cuellos de botella trasladan la escasez de sistemas finales a insumos críticos.",
+        "La producción crece sin aumentar entregas o disponibilidad operativa.",
+        "La competencia entre teatros desplaza sistemáticamente necesidades ucranianas."
+      ],
+      "condiciones_refutacion": [
+        "Reformular si la producción atribuible a Ucrania no supera la reposición de existencias ni persiste con contratos plurianuales.",
+        "Rechazar integración industrial si programas conjuntos no generan adjudicaciones, instalaciones o entregas verificables.",
+        "Separar drones de la hipótesis general si su escala no se transmite a munición, defensa aérea, misiles o mantenimiento."
+      ],
+      "incertidumbres": [
+        "Datos clasificados de capacidad, inventarios, precios y pérdidas.",
+        "Diferencia entre capacidad nominal y producción con pedidos financiados.",
+        "Dependencia de componentes chinos y rutas mediante terceros.",
+        "Persistencia de demanda después de un alto el fuego."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 4,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 4,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "media-alta"
+      },
+      "palabras_clave": [
+        "ammunition production",
+        "air defence",
+        "drones",
+        "missiles",
+        "EDIP",
+        "Ukraine defence industry",
+        "coproduction"
+      ],
+      "fuentes": [
+        {
+          "id": "src-rector-rusia-ucrania-sipri-milex-20260427",
+          "media_id": "sipri",
+          "medio_catalogado": true,
+          "medio": "SIPRI",
+          "titulo": "Global military spending rise continues as European and Asian expenditures surge",
+          "fecha": "2026-04-27",
+          "idioma": "en",
+          "tipo": "informe_investigacion",
+          "url": "https://www.sipri.org/media/press-release/2026/global-military-spending-rise-continues-european-and-asian-expenditures-surge",
+          "estado_verificacion": "verificada",
+          "observaciones": "Respalda la magnitud de la remilitarización y las cargas rusa y ucraniana; el gasto agregado no prueba por sí solo causalidad ni preparación para guerra directa.",
+          "revisada_el": "2026-08-30"
+        },
+        {
+          "id": "src-industria-ue-edip-20260330",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Comisión Europea",
+          "titulo": "EDIP: Commission adopts €1.5 billion work programme to boost European and Ukrainian defence industry",
+          "fecha": "2026-03-30",
+          "idioma": "en",
+          "tipo": "fuente_institucional_primaria",
+          "url": "https://defence-industry-space.ec.europa.eu/edip-commission-adopts-eu15-billion-work-programme-boost-european-and-ukrainian-defence-industry-2026-03-30_en",
+          "estado_verificacion": "verificada",
+          "observaciones": "Documenta el programa, sus líneas de financiación y la integración industrial con Ucrania. La aprobación no demuestra por sí sola capacidad entregada.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-industria-ucrania-drones-20260624",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Ministerio de Defensa de Ucrania",
+          "titulo": "95% of drones procured for the Defence Forces are Ukrainian-made",
+          "fecha": "2026-06-24",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
+          "url": "https://mod.gov.ua/en/news/95-of-drones-procured-for-the-defence-forces-are-ukrainian-made",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria sobre contratación y producción de drones. Las cifras proceden del Gobierno ucraniano y no equivalen a auditoría independiente de calidad, supervivencia o componentes.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-industria-ue-apoyo-ucrania-20260824",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Comisión Europea",
+          "titulo": "Commission approves €6.1 billion for Ukraine’s defence",
+          "fecha": "2026-08-24",
+          "idioma": "en",
+          "tipo": "fuente_institucional_primaria",
+          "url": "https://defence-industry-space.ec.europa.eu/commission-approves-eur61-billion-ukraines-defence-2026-08-24_en",
+          "estado_verificacion": "verificada",
+          "observaciones": "Prueba una decisión de financiación orientada a defensa aérea, misiles, munición, radares y capacidad ucraniana; la ejecución deberá verificarse por contratos y entregas.",
+          "revisada_el": "2026-09-02"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-industria-rusia-ucrania-capacidad-entrega-001",
+          "descripcion": "Gasto, capacidad anunciada, pedidos, producción y entrega no son equivalentes. Las cifras oficiales ucranianas y europeas deben tratarse como declaraciones institucionales hasta contrastar ejecución.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-rector-rusia-ucrania-industria-europa-20260427",
+            "sig-industria-ucrania-drones-compra-domestica-20260624",
+            "sig-industria-ue-ucrania-edip-financiacion-20260330"
+          ],
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-sipri-milex-20260427",
+            "src-industria-ue-edip-20260330",
+            "src-industria-ucrania-drones-20260624",
+            "src-industria-ue-apoyo-ucrania-20260824"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-09-02T00:00:00Z",
+          "actualizada_el": "2026-09-02T00:00:00Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Registrar por sistema el dato observado, su unidad, la institución que lo publica y si describe capacidad, contrato, producción o entrega.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-industria-rusia-ucrania-capacidad-entrega-001-20260902",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Registrar por sistema el dato observado, su unidad, la institución que lo publica y si describe capacidad, contrato, producción o entrega.",
+              "realizada_el": "2026-09-02T00:00:00Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": [],
+      "referencias_senal": [
+        {
+          "senal_id": "sig-remilitarizacion-ucrania-capacidad-financiacion",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La brecha entre capacidad ucraniana y pedidos financiados limita cuánto de la expansión nominal sostiene realmente la guerra."
+        },
+        {
+          "senal_id": "sig-remilitarizacion-europa-municion-brecha",
+          "tipo_uso": "contextual",
+          "efecto_segundo_orden": "La experiencia europea muestra que ampliación anunciada y entrega dentro de plazo son variables distintas."
+        }
+      ]
+    },
+    {
+      "id": "rusia-adaptacion-sanciones-restricciones-tecnologicas",
+      "titulo": "Adaptación rusa frente a sanciones y restricciones tecnológicas",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "borrador",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-09-02",
+      "regiones": [
+        "Rusia",
+        "Europa",
+        "Eurasia",
+        "Asia Oriental",
+        "Global"
+      ],
+      "categoria": "comercio_finanzas_sanciones",
+      "tema_ids": [],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "pendiente",
+        "taxonomy_version": 1,
+        "revisada_el": null
+      },
+      "descripcion": "Reorganización rusa de comercio, energía, pagos, logística y acceso a tecnología mediante nuevos proveedores, importaciones paralelas, intermediarios, monedas alternativas y flota sombra, frente a una aplicación sancionatoria que también se adapta.",
+      "por_que_importa": "La adaptación condiciona ingresos, producción y acceso a componentes necesarios para sostener la guerra. Evasión parcial no equivale a neutralización: mayores costos, descuentos, menor calidad, retrasos y dependencia de pocos socios pueden coexistir con continuidad operativa.",
+      "definicion_operativa": "Se observa adaptación cuando actores rusos o intermediarios modifican proveedores, rutas, propiedad, pagos, productos o producción para conservar funciones económicas y tecnológicas restringidas por sanciones relacionadas con la guerra.",
+      "delimitacion_exclusiones": [
+        "No mide la eficacia de las sanciones con una sola variable de PIB o comercio agregado.",
+        "No atribuye todo desvío comercial a evasión ilegal; distingue comercio permitido, importación paralela, elusión y violación.",
+        "No incorpora apoyo militar directo de terceros, tratado en otro proceso.",
+        "No supone que designar un buque o entidad produzca automáticamente cumplimiento."
+      ],
+      "pregunta_seguimiento": "¿Hasta qué punto Rusia mantiene ingresos y acceso tecnológico mediante adaptación, y qué costos, dependencias y cuellos de botella impiden que esa adaptación equivalga a neutralizar las sanciones?",
+      "hipotesis_principal": "Rusia ha construido una adaptación suficientemente amplia para evitar aislamiento y sostener funciones críticas, pero no ha reemplazado sin costo proveedores, tecnología y servicios occidentales; la presión se manifiesta en descuentos, intermediación, dependencia y menor variedad o calidad.",
+      "hipotesis_alternativas": [
+        "Las sanciones tienen efecto principalmente distributivo y aceleran la orientación hacia Asia sin reducir capacidad militar decisiva.",
+        "Los costos acumulativos aparecen con rezago y son subestimados por datos agregados y gasto de guerra.",
+        "La aplicación desigual convierte restricciones amplias en impuestos a la transacción más que en bloqueos.",
+        "La sustitución doméstica real es menor que la reetiquetación o compra a terceros."
+      ],
+      "mecanismo_causal": "Restricciones elevan costos o bloquean proveedores; empresas y Estado buscan terceros, rutas, monedas, ingeniería inversa o producción local; intermediarios capturan rentas y ocultan trazabilidad; autoridades sancionadoras amplían listas y controles; el equilibrio entre ambas adaptaciones determina volumen, precio, calidad y retraso.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "macroevento_rector_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento"
+      ],
+      "macroevento_relacionado_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento",
+        "corredores-alternativos-redes-logisticas-redundantes",
+        "terceros-estados-sostenimiento-rusia-guerra-ucrania"
+      ],
+      "claves_estructurales": [
+        "Desvío comercial",
+        "Sustitución parcial",
+        "Flota sombra",
+        "Pagos alternativos",
+        "Costos y dependencias"
+      ],
+      "senales": [
+        {
+          "id": "sig-sanciones-rusia-desvio-no-compensa-20251211",
+          "fecha": "2025-12-11",
+          "titulo": "El desvío y la sustitución compensan sólo parcialmente las importaciones sancionadas",
+          "tipo": "adaptacion_comercial",
+          "descripcion": "El estudio BOFIT encuentra una caída fuerte de variedades sancionadas y que los canales de sustitución y reruteo no compensaron por completo las pérdidas: las importaciones totales de productos sancionados permanecían por debajo del nivel previo. La adaptación es material, pero costosa e incompleta.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sanciones-rusia-bofit-trade-20251211"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Rusia",
+            "Eurasia"
+          ],
+          "propietario_macroevento_id": "rusia-adaptacion-sanciones-restricciones-tecnologicas"
+        },
+        {
+          "id": "sig-sanciones-rusia-flota-sombra-paquete21-20260723",
+          "fecha": "2026-07-23",
+          "titulo": "La UE amplía el objetivo desde productos hacia buques, energía, pagos e intermediarios",
+          "tipo": "adaptacion_regulatoria",
+          "descripcion": "El vigésimo primer paquete europeo vuelve a designar buques no europeos asociados con la flota sombra e incorpora instrumentos financieros y tecnológicos. La reiteración muestra adaptación mutua entre evasión y aplicación; no demuestra por sí sola reducción de ingresos.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sanciones-rusia-ue-paquete21-20260723"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Rusia",
+            "Unión Europea",
+            "Global"
+          ],
+          "propietario_macroevento_id": "rusia-adaptacion-sanciones-restricciones-tecnologicas"
+        },
+        {
+          "id": "sig-sanciones-rusia-sustitucion-limites-20260504",
+          "fecha": "2026-05-04",
+          "titulo": "La sustitución rusa avanza de manera sectorial y conserva dependencias",
+          "tipo": "sustitucion_tecnologica",
+          "descripcion": "La investigación comparada y los reportes empresariales rusos muestran respuestas de sustitución y compras alternativas, pero también limitaciones tecnológicas, costos y restricciones de demanda y financiación. No respaldan ni neutralización total ni parálisis general.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-sanciones-rusia-bofit-sustitucion-20260504",
+            "src-sanciones-rusia-banco-central-regiones-20250716"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Rusia"
+          ],
+          "propietario_macroevento_id": "rusia-adaptacion-sanciones-restricciones-tecnologicas"
+        }
+      ],
+      "actores": [
+        "Rusia",
+        "Unión Europea",
+        "Estados Unidos",
+        "Reino Unido",
+        "China",
+        "India",
+        "Turquía",
+        "Estados del Golfo",
+        "Intermediarios comerciales",
+        "Flota sombra",
+        "Bancos de terceros países"
+      ],
+      "intereses": [
+        "Preservar para Rusia ingresos energéticos y acceso a componentes y financiación.",
+        "Reducir para la coalición sancionadora la capacidad rusa de financiar y equipar la guerra.",
+        "Capturar para intermediarios márgenes derivados de riesgo, opacidad y nuevas rutas.",
+        "Evitar para terceros sanciones secundarias sin renunciar por completo al comercio ruso."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Rusia sostiene flujos mediante Asia y terceros a mayor costo, mientras la coalición sancionadora cierra rutas de forma incremental.",
+        "adverso": "Intermediación financiera y tecnológica se estabiliza, la flota sombra conserva escala y la presión opera principalmente como descuento o costo absorbible.",
+        "transformador": "Aplicación coordinada sobre transporte, pagos y componentes crea cuellos acumulativos, o un arreglo político modifica de forma verificable el régimen de sanciones."
+      },
+      "indicadores": [
+        "Importaciones de productos restringidos por origen, variedad, precio, ruta y tiempo.",
+        "Participación de China y terceros en maquinaria, electrónica, vehículos, pagos y energía.",
+        "Descuentos del crudo, costos de flete, seguros, propiedad y cambios de bandera.",
+        "Disponibilidad y calidad de sustitutos domésticos en sectores críticos.",
+        "Designaciones, controles de exportación, investigaciones y cumplimiento por jurisdicción."
+      ],
+      "indicadores_fortalecimiento": [
+        "Recuperación sostenida de volúmenes restringidos sin aumento proporcional de precio o retraso.",
+        "Diversificación de pagos y proveedores que reduce la vulnerabilidad a nuevas designaciones.",
+        "Producción doméstica verificable sustituye funciones tecnológicas críticas.",
+        "Ingresos energéticos mantienen financiación pese a límites de precio y sanciones a buques."
+      ],
+      "indicadores_debilitamiento": [
+        "Caída persistente de variedades, volumen o calidad en insumos restringidos.",
+        "Descuentos energéticos, fletes y costos financieros reducen ingresos netos.",
+        "Concentración creciente en China o pocos intermediarios aumenta poder de negociación externo.",
+        "Controles coordinados interrumpen pagos, transporte o componentes de alta prioridad."
+      ],
+      "condiciones_refutacion": [
+        "Rechazar neutralización si costos, retrasos o pérdidas de variedad persisten aun con reruteo.",
+        "Rechazar eficacia decisiva si las restricciones no producen cuellos observables en ingresos, componentes o producción vinculada a la guerra.",
+        "Reformular la flota sombra si las designaciones no reducen capacidad y sólo redistribuyen propiedad nominal."
+      ],
+      "incertidumbres": [
+        "Opacidad aduanera, pagos compensados y propiedad de buques.",
+        "Fiabilidad y comparabilidad de estadísticas rusas en economía de guerra.",
+        "Destino final de bienes de doble uso y componentes reexportados.",
+        "Efectos acumulativos frente a estímulo fiscal y controles internos."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 4,
+        "subcobertura": 4,
+        "incertidumbre": 5,
+        "urgencia": 4,
+        "cobertura_observada": 4,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Russia sanctions",
+        "parallel imports",
+        "shadow fleet",
+        "dual use",
+        "import substitution",
+        "oil discount"
+      ],
+      "fuentes": [
+        {
+          "id": "src-sanciones-rusia-bofit-trade-20251211",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Bank of Finland Institute for Emerging Economies",
+          "titulo": "Trade sanctions",
+          "fecha": "2025-12-11",
+          "idioma": "en",
+          "tipo": "investigacion_academica",
+          "url": "https://publications.bof.fi/items/3e795474-ffe8-4291-a131-5361464db2ae",
+          "estado_verificacion": "verificada",
+          "observaciones": "Estudio microeconómico con datos aduaneros y empresariales. Encuentra desvío y sustitución, pero también una caída persistente de importaciones sancionadas; su ventana principal llega a 2023.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-sanciones-rusia-bofit-sustitucion-20260504",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Bank of Finland Institute for Emerging Economies",
+          "titulo": "Revisiting Russian war-time import substitution",
+          "fecha": "2026-05-04",
+          "idioma": "en",
+          "tipo": "informe_investigacion",
+          "url": "https://publications.bof.fi/items/0bd4280c-e265-45c6-91ff-4498871b0d6e",
+          "estado_verificacion": "verificada",
+          "observaciones": "Examina políticas y resultados de sustitución con documentos, estadísticas y encuestas. Aporta límites frente a narrativas de éxito total o colapso.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-sanciones-rusia-ue-paquete21-20260723",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Consejo de la Unión Europea",
+          "titulo": "21st package of sanctions: EU hits Russian energy, financial services and crypto hard",
+          "fecha": "2026-07-23",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/07/23/21st-package-of-sanctions-eu-hits-russian-energy-financial-services-and-crypto-hard/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria sobre medidas europeas contra energía, finanzas, criptoactivos y flota sombra. Prueba alcance jurídico, no cumplimiento ni efecto causal.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-sanciones-rusia-banco-central-regiones-20250716",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Banco de Rusia",
+          "titulo": "Regional Economy: Commentaries by Bank of Russia Main Branches",
+          "fecha": "2025-07-16",
+          "idioma": "en",
+          "tipo": "informe_oficial",
+          "url": "https://www.cbr.ru/Collection/Collection/File/57129/report_16072025.pdf",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente rusa basada en encuestas empresariales y datos oficiales. Registra sustitución y restricciones por demanda, crédito y sanciones; sus categorías y omisiones reflejan el marco institucional ruso.",
+          "revisada_el": "2026-09-02"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-sanciones-rusia-eficacia-binaria-001",
+          "descripcion": "Evasión observada, crecimiento agregado o importaciones recuperadas no prueban ineficacia total; caída de una categoría, designaciones o deterioro macroeconómico tampoco prueban por sí solos que las sanciones reduzcan capacidad militar.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-sanciones-rusia-desvio-no-compensa-20251211",
+            "sig-sanciones-rusia-flota-sombra-paquete21-20260723",
+            "sig-sanciones-rusia-sustitucion-limites-20260504"
+          ],
+          "fuente_ids": [
+            "src-sanciones-rusia-bofit-trade-20251211",
+            "src-sanciones-rusia-bofit-sustitucion-20260504",
+            "src-sanciones-rusia-ue-paquete21-20260723",
+            "src-sanciones-rusia-banco-central-regiones-20250716"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-09-02T00:00:00Z",
+          "actualizada_el": "2026-09-02T00:00:00Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Comparar contrafactuales, volumen, variedad, precio, retraso, calidad, ingreso neto y función militar con fuentes rusas y externas.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-sanciones-rusia-eficacia-binaria-001-20260902",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Comparar contrafactuales, volumen, variedad, precio, retraso, calidad, ingreso neto y función militar con fuentes rusas y externas.",
+              "realizada_el": "2026-09-02T00:00:00Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": [],
+      "referencias_senal": []
+    },
+    {
+      "id": "terceros-estados-sostenimiento-rusia-guerra-ucrania",
+      "titulo": "Participación de terceros Estados en el sostenimiento de Rusia",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "borrador",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-09-02",
+      "regiones": [
+        "Rusia",
+        "Bielorrusia",
+        "Asia Oriental",
+        "Oriente Medio",
+        "Eurasia",
+        "Global"
+      ],
+      "categoria": "potencias_bloques",
+      "tema_ids": [],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "pendiente",
+        "taxonomy_version": 1,
+        "revisada_el": null
+      },
+      "descripcion": "Participación diferenciada de China, Irán, Corea del Norte, Bielorrusia y otros intermediarios en el sostenimiento militar, tecnológico, económico, energético, logístico o diplomático de Rusia, sin presumir coordinación de bloque.",
+      "por_que_importa": "Munición, drones, componentes, territorio, comercio y financiación pueden reducir restricciones rusas y trasladar capacidades entre regiones. Sin embargo, cada Estado persigue beneficios y asume riesgos distintos; agregar toda relación con Rusia bajo la etiqueta de alianza oculta diferencias causales.",
+      "definicion_operativa": "Incluye conductas estatales o toleradas por el Estado que aportan a Rusia capacidades, insumos, acceso territorial, ingresos, pagos o cobertura diplomática materialmente relacionados con la guerra. Cada actor y función se evalúa por separado.",
+      "delimitacion_exclusiones": [
+        "No clasifica como apoyo militar todo comercio legal, abstención diplomática o rechazo de sanciones.",
+        "No usa “eje”, “bloque” o “alianza” sin compromisos, coordinación y mecanismos compartidos demostrables.",
+        "No fusiona intermediarios privados con decisiones estatales sin evidencia de control o tolerancia.",
+        "La mera procedencia de un componente no identifica al proveedor final ni su conocimiento del uso."
+      ],
+      "pregunta_seguimiento": "¿Qué funciones concretas aportan terceros Estados al sostenimiento ruso, con qué grado de coordinación, dependencia y reciprocidad, y bajo qué condiciones esas asociaciones se expanden o se vuelven más costosas y reversibles?",
+      "hipotesis_principal": "Rusia se sostiene mediante asociaciones superpuestas: RPDC aporta el acoplamiento militar más formal y observable; Irán y Bielorrusia cumplen funciones militares y territoriales específicas; China es central para comercio y bienes de doble uso, pero niega apoyo letal y evita un compromiso equivalente.",
+      "hipotesis_alternativas": [
+        "Las relaciones son principalmente transaccionales y se contraerían si aumentan sanciones o costos reputacionales.",
+        "El comercio chino es demasiado amplio para atribuir su efecto a una decisión de sostener la guerra sin evidencia de destino final.",
+        "Cooperación bilateral intensa no produce coordinación multilateral entre los proveedores de Rusia.",
+        "Las contraprestaciones rusas pueden fortalecer capacidades en Asia y Medio Oriente más de lo que los aportes cambian el frente europeo."
+      ],
+      "mecanismo_causal": "Necesidades rusas generan demanda y negociación bilateral; terceros aportan armas, componentes, territorio, comercio, energía, pagos o cobertura; Rusia ofrece ingresos, tecnología, seguridad o apoyo diplomático; controles, sanciones, autonomía y divergencias limitan cada intercambio. El efecto agregado depende de complementariedad, no de identidad ideológica.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "macroevento_rector_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento"
+      ],
+      "macroevento_relacionado_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento",
+        "indo-pacifico-taiwan-reconfiguracion-seguridad",
+        "rusia-adaptacion-sanciones-restricciones-tecnologicas"
+      ],
+      "claves_estructurales": [
+        "Funciones diferenciadas",
+        "Cooperación bilateral",
+        "Doble uso disputado",
+        "Contraprestaciones",
+        "Sin bloque automático"
+      ],
+      "senales": [
+        {
+          "id": "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+          "fecha": "2024-06-19",
+          "titulo": "Rusia y Corea del Norte formalizan asistencia militar recíproca",
+          "tipo": "mecanismo_defensa_mutua",
+          "descripcion": "El tratado bilateral y la posterior participación norcoreana documentada en Rusia constituyen la manifestación más clara de acoplamiento operativo selectivo entre la guerra europea y la seguridad de Asia Oriental. El vínculo no demuestra una coalición coordinada entre Rusia, China, Irán y Corea del Norte.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
+            "src-rector-rusia-ucrania-msmt-20250529"
+          ],
+          "intensidad": 5,
+          "localizaciones": [
+            "Rusia",
+            "Corea del Norte",
+            "Asia Oriental"
+          ],
+          "propietario_macroevento_id": "terceros-estados-sostenimiento-rusia-guerra-ucrania"
+        },
+        {
+          "id": "sig-terceros-rusia-apoyos-funciones-diferentes-20240710",
+          "fecha": "2024-07-10",
+          "titulo": "La OTAN atribuye a China, Irán, Corea del Norte y Bielorrusia funciones de apoyo diferentes",
+          "tipo": "diferenciacion_apoyos",
+          "descripcion": "La declaración aliada distingue municiones y vehículos no tripulados de Irán y RPDC, integración territorial y militar con Bielorrusia y bienes de doble uso o apoyo industrial chino. Es una clasificación oficial occidental que orienta observables, no confirmación independiente de cada flujo.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-terceros-rusia-nato-washington-20240710"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Rusia",
+            "China",
+            "Irán",
+            "Corea del Norte",
+            "Bielorrusia"
+          ],
+          "propietario_macroevento_id": "terceros-estados-sostenimiento-rusia-guerra-ucrania"
+        },
+        {
+          "id": "sig-terceros-rusia-china-disputa-doble-uso-20260618",
+          "fecha": "2026-06-18",
+          "titulo": "Persiste una disputa verificable sobre bienes chinos de doble uso y su destino final",
+          "tipo": "controversia_atribucion",
+          "descripcion": "China afirma que no entrega armas letales y que controla estrictamente bienes de doble uso; la UE ha designado entidades chinas y de otros terceros países por presunto suministro al complejo militar-industrial ruso. La divergencia exige datos comerciales, empresariales y de componentes, no selección de una declaración como árbitro.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-terceros-rusia-china-mfa-20260618",
+            "src-terceros-rusia-ue-paquete20-20260423"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "China",
+            "Rusia",
+            "Unión Europea"
+          ],
+          "propietario_macroevento_id": "terceros-estados-sostenimiento-rusia-guerra-ucrania"
+        }
+      ],
+      "actores": [
+        "Rusia",
+        "China",
+        "Irán",
+        "Corea del Norte",
+        "Bielorrusia",
+        "India",
+        "Turquía",
+        "Estados del Golfo",
+        "Intermediarios comerciales",
+        "Empresas de doble uso"
+      ],
+      "intereses": [
+        "Compensar para Rusia desgaste, aislamiento parcial y restricciones de suministro.",
+        "Obtener para RPDC tecnología, divisas, experiencia y respaldo político.",
+        "Ampliar para Irán cooperación militar y resiliencia frente a sanciones.",
+        "Preservar para China comercio, estabilidad rusa y margen diplomático sin asumir beligerancia formal.",
+        "Mantener para Bielorrusia integración de seguridad y apoyo ruso al régimen."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Persisten asociaciones bilaterales diferenciadas, con cooperación RPDC-Rusia intensa, comercio chino central y apoyo iraní y bielorruso selectivo.",
+        "adverso": "Aumentan tropas, misiles, coproducción o transferencias tecnológicas recíprocas y se conectan de forma más directa teatros europeos y asiáticos.",
+        "transformador": "Costos, controles o acuerdos reducen transferencias; los vínculos se concentran en comercio permitido y cooperación diplomática reversible."
+      },
+      "indicadores": [
+        "Volumen, frecuencia, rutas y destino de municiones, misiles, drones y componentes.",
+        "Personal, entrenamiento, bases, acceso territorial y acuerdos de defensa.",
+        "Transferencia rusa de tecnología, energía, divisas o apoyo diplomático como contraprestación.",
+        "Comercio de doble uso por empresa, producto, intermediario y usuario final.",
+        "Divergencias públicas, restricciones nacionales y cumplimiento de sanciones."
+      ],
+      "indicadores_fortalecimiento": [
+        "Acuerdos formales se traducen en entregas, despliegues o coproducción persistentes.",
+        "Aparecen planificación, división de tareas o mecanismos de consulta entre más de dos actores.",
+        "Rusia reduce cuellos críticos mediante proveedores alternativos verificables.",
+        "Las contraprestaciones crean dependencia y cooperación posterior a la guerra."
+      ],
+      "indicadores_debilitamiento": [
+        "Caen entregas o comercio sensible tras sanciones, controles o cambios de interés.",
+        "Los socios limitan uso final, niegan tránsito o compiten entre sí.",
+        "Las transferencias no cambian disponibilidad rusa o generan costos superiores al beneficio.",
+        "No aparecen mecanismos multilaterales pese a relaciones bilaterales intensas."
+      ],
+      "condiciones_refutacion": [
+        "Rechazar una hipótesis de bloque si no existe coordinación, compromiso recíproco y conducta costosa compartida.",
+        "Reclasificar apoyo chino si datos de usuario final muestran comercio civil sin aporte material al complejo militar.",
+        "Reformular el peso de un proveedor si entregas declaradas no pueden vincularse con disponibilidad o empleo ruso."
+      ],
+      "incertidumbres": [
+        "Secreto militar y ausencia de monitoreo universal después del veto ruso al panel de la RPDC.",
+        "Destino final de bienes de doble uso y grado de conocimiento estatal.",
+        "Contraprestaciones tecnológicas y financieras no públicas.",
+        "Escala de redes privadas, reexportación y tolerancia gubernamental."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 5,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 5,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 4,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Russia China dual use",
+        "Russia DPRK treaty",
+        "Iran drones Russia",
+        "Belarus logistics",
+        "third-country intermediaries"
+      ],
+      "fuentes": [
+        {
+          "id": "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Presidencia de Rusia",
+          "titulo": "Order on signing a Treaty on Comprehensive Strategic Partnership between Russia and North Korea",
+          "fecha": "2024-06-19",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://en.kremlin.ru/acts/news/74321",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria adecuada para la existencia jurídica del tratado; no basta para evaluar motivaciones, implementación o cumplimiento.",
+          "revisada_el": "2026-08-30"
+        },
+        {
+          "id": "src-rector-rusia-ucrania-msmt-20250529",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Multilateral Sanctions Monitoring Team",
+          "titulo": "Unlawful Military Cooperation including Arms Transfers between North Korea and Russia",
+          "fecha": "2025-05-29",
+          "idioma": "en",
+          "tipo": "informe_investigacion",
+          "url": "https://digitallibrary.un.org/record/4083743?ln=en",
+          "estado_verificacion": "verificada",
+          "observaciones": "Compila evidencia sobre armas, misiles y tropas. El mecanismo está formado por Estados críticos de Rusia y Corea del Norte y no sustituye al antiguo panel independiente de expertos de Naciones Unidas.",
+          "revisada_el": "2026-08-30"
+        },
+        {
+          "id": "src-terceros-rusia-nato-washington-20240710",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "OTAN",
+          "titulo": "Washington Summit Declaration",
+          "fecha": "2024-07-10",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.nato.int/cps/en/natohq/official_texts_227678.htm",
+          "estado_verificacion": "verificada",
+          "observaciones": "Posición oficial aliada que diferencia apoyo directo de Irán y RPDC, integración con Bielorrusia y apoyo chino a la base industrial rusa. Requiere contraste porque la OTAN es parte interesada.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-terceros-rusia-china-mfa-20260618",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Ministerio de Relaciones Exteriores de China",
+          "titulo": "Conferencia de prensa habitual ofrecida el 18 de junio de 2026",
+          "fecha": "2026-06-18",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
+          "url": "https://www.fmprc.gov.cn/esp/xwfw/lxjzzdh/202606/t20260620_11949227.html",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria de la posición china: niega suministrar armas letales y afirma controlar bienes de doble uso. No permite verificar por sí sola flujos empresariales ni destino final.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-terceros-rusia-ue-paquete20-20260423",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Comisión Europea",
+          "titulo": "EU adopts 20th package of sanctions against Russia",
+          "fecha": "2026-04-23",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://finance.ec.europa.eu/news/eu-adopts-20th-package-sanctions-against-russia-2026-04-23_en",
+          "estado_verificacion": "verificada",
+          "observaciones": "Documenta designaciones europeas de bancos e intermediarios de terceros países y proveedores de alta tecnología. Prueba la acusación y medida jurídica, no automáticamente la conducta ni el efecto.",
+          "revisada_el": "2026-09-02"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-terceros-rusia-bloque-homogeneo-001",
+          "descripcion": "Las fuentes oficiales de la OTAN, la UE, China y Rusia son partes interesadas. Una acusación, negación, tratado o designación debe etiquetarse por su naturaleza y corroborarse antes de inferir coordinación o resultado.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+            "sig-terceros-rusia-apoyos-funciones-diferentes-20240710",
+            "sig-terceros-rusia-china-disputa-doble-uso-20260618"
+          ],
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
+            "src-rector-rusia-ucrania-msmt-20250529",
+            "src-terceros-rusia-nato-washington-20240710",
+            "src-terceros-rusia-china-mfa-20260618",
+            "src-terceros-rusia-ue-paquete20-20260423"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-09-02T00:00:00Z",
+          "actualizada_el": "2026-09-02T00:00:00Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Mantener matrices separadas por actor, función, evidencia, contraprestación y grado de coordinación.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-terceros-rusia-bloque-homogeneo-001-20260902",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Mantener matrices separadas por actor, función, evidencia, contraprestación y grado de coordinación.",
+              "realizada_el": "2026-09-02T00:00:00Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": [],
+      "referencias_senal": [
+        {
+          "senal_id": "sig-indo-pacifico-corea-acoplamiento",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La cooperación Rusia–RPDC puede trasladar tecnología, experiencia y cálculos de riesgo hacia la península coreana sin fusionar los teatros."
+        }
+      ]
+    },
+    {
+      "id": "garantias-seguridad-arquitectura-europea-posguerra-ucrania",
+      "titulo": "Garantías de seguridad, negociación y arquitectura europea posterior a la guerra",
+      "tipo_proceso": "macroproceso_emergente",
+      "estado_editorial": "borrador",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-09-02",
+      "regiones": [
+        "Ucrania",
+        "Rusia",
+        "Europa",
+        "Báltico",
+        "Mar Negro"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [],
+      "clasificacion_tematica": {
+        "origen": "humano",
+        "estado_revision": "pendiente",
+        "taxonomy_version": 1,
+        "revisada_el": null
+      },
+      "descripcion": "Formación y disputa de una arquitectura europea capaz de sostener un alto el fuego, acuerdo o contención prolongada mediante garantías a Ucrania, postura aliada, monitoreo, control de armamentos, reconstrucción y mecanismos para responder a una reanudación de hostilidades.",
+      "por_que_importa": "Un cese del fuego sin verificación, fuerzas, financiación o reglas de respuesta puede congelar temporalmente el combate sin producir seguridad. Garantías demasiado vagas pueden carecer de credibilidad; fórmulas incompatibles con las posiciones de las partes pueden impedir la negociación.",
+      "definicion_operativa": "Incluye compromisos, instituciones, despliegues, mecanismos de monitoreo, financiación y arreglos negociados que buscan disuadir, detectar o responder a una nueva agresión y sostener la viabilidad estatal y económica de Ucrania después o durante una reducción de hostilidades.",
+      "delimitacion_exclusiones": [
+        "No presume victoria, derrota, cesión territorial, neutralidad, ingreso inmediato en la OTAN ni acuerdo definitivo.",
+        "No trata declaraciones políticas como garantías ejecutables sin base jurídica, fuerzas y reglas de activación.",
+        "No absorbe la asistencia corriente ni la remilitarización europea general.",
+        "La reconstrucción se incluye cuando condiciona seguridad y sostenibilidad; la ejecución económica podrá requerir un proceso futuro propio."
+      ],
+      "pregunta_seguimiento": "¿Qué combinación de defensa ucraniana, compromisos externos, monitoreo, postura europea y arreglo negociado puede disuadir una reanudación de la guerra sin crear una escalada automática o una garantía vacía?",
+      "hipotesis_principal": "Europa avanza hacia una arquitectura de capas —fuerzas ucranianas, garantías bilaterales, coalición posaltofuego, flanco reforzado y apoyo económico—, pero su credibilidad sigue condicionada por activación, recursos, papel estadounidense y compatibilidad con un acuerdo aceptable para Ucrania y Rusia.",
+      "hipotesis_alternativas": [
+        "Un armisticio estable puede descansar más en agotamiento y defensa ucraniana que en garantías formales.",
+        "La ampliación y postura de la OTAN pueden disuadir ataques a aliados y simultáneamente endurecer el desacuerdo con Rusia sobre el orden europeo.",
+        "Garantías ambiguas reducen riesgo de compromiso automático pero incentivan pruebas de credibilidad.",
+        "Reconstrucción, integración europea y capacidad fiscal pueden ser tan importantes como una fuerza de seguridad externa.",
+        "Un acuerdo puede congelar el conflicto sin resolver territorio, sanciones o control de armas."
+      ],
+      "mecanismo_causal": "Negociación define líneas, obligaciones y verificación; capacidades ucranianas y presencia aliada elevan el costo de reanudación; reglas de consulta y activación convierten compromisos en respuesta creíble; monitoreo reduce sorpresa y atribución disputada; reconstrucción y financiación sostienen Estado y defensa; control de armas y canales de crisis limitan escalada.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "macroevento_rector_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento"
+      ],
+      "macroevento_relacionado_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento",
+        "erosion-control-armamentos-disuasion-nuclear-multipolar",
+        "rail-baltica-movilidad-militar-europea",
+        "asistencia-militar-occidental-ucrania-transformacion"
+      ],
+      "claves_estructurales": [
+        "Garantías activables",
+        "Defensa ucraniana",
+        "Monitoreo",
+        "Flanco oriental",
+        "Reconstrucción y control de escalada"
+      ],
+      "senales": [
+        {
+          "id": "sig-rector-rusia-ucrania-otan-reconfiguracion-20220629",
+          "fecha": "2022-06-29",
+          "titulo": "La OTAN redefine a Rusia como amenaza directa y reordena su postura de defensa",
+          "tipo": "reposicionamiento_estrategico",
+          "descripcion": "El Concepto Estratégico de 2022 identifica a Rusia como la amenaza más significativa y directa para la seguridad aliada. La decisión muestra una transformación institucional de la arquitectura euroatlántica vinculada a la invasión, aunque la adaptación de la OTAN y el deterioro de relaciones con Rusia preceden a 2022.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-nato-concept-20220629"
+          ],
+          "intensidad": 5,
+          "localizaciones": [
+            "Europa"
+          ],
+          "propietario_macroevento_id": "garantias-seguridad-arquitectura-europea-posguerra-ucrania"
+        },
+        {
+          "id": "sig-rector-rusia-ucrania-acuerdos-seguridad-20240613",
+          "fecha": "2024-06-13",
+          "titulo": "Ucrania institucionaliza una red plurianual de acuerdos de seguridad",
+          "tipo": "acuerdo_defensa",
+          "descripcion": "Los acuerdos bilaterales derivados de la declaración del G7 convierten parte del apoyo coyuntural en compromisos de entrenamiento, financiación, producción y asistencia de largo plazo. No equivalen automáticamente a garantías de defensa mutua ni aseguran ejecución uniforme.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-us-ua-security-20240613"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Ucrania",
+            "Europa",
+            "Estados Unidos"
+          ],
+          "propietario_macroevento_id": "garantias-seguridad-arquitectura-europea-posguerra-ucrania"
+        },
+        {
+          "id": "sig-garantias-ucrania-paris-posaltofuego-20260107",
+          "fecha": "2026-01-07",
+          "titulo": "La Coalición de Voluntarios formula garantías políticamente y jurídicamente vinculantes tras un alto el fuego",
+          "tipo": "garantia_seguridad",
+          "descripcion": "La Declaración de París vincula garantías con un alto el fuego, apoyo a las fuerzas ucranianas y respuesta ante una nueva agresión. Su credibilidad dependerá de compromisos nacionales, fuerzas, mando, reglas de activación y participación estadounidense.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-garantias-ucrania-paris-20260107",
+            "src-garantias-ucrania-consejo-europeo-20260618"
+          ],
+          "intensidad": 5,
+          "localizaciones": [
+            "Ucrania",
+            "Europa",
+            "Estados Unidos"
+          ],
+          "propietario_macroevento_id": "garantias-seguridad-arquitectura-europea-posguerra-ucrania"
+        },
+        {
+          "id": "sig-garantias-ucrania-flanco-oriental-20260617",
+          "fecha": "2026-06-17",
+          "titulo": "La adaptación del flanco oriental convierte amenaza percibida en presencia y defensa territorial",
+          "tipo": "postura_defensiva",
+          "descripcion": "La OTAN mantiene agrupaciones en nueve países del flanco oriental y adapta defensa aérea, marítima y refuerzo. La postura sostiene disuasión aliada, pero no resuelve por sí sola la garantía aplicable a Ucrania fuera del artículo 5.",
+          "estado_revision": "verificada",
+          "origen": "mixto",
+          "fuente_ids": [
+            "src-garantias-ucrania-nato-flanco-20260617"
+          ],
+          "intensidad": 4,
+          "localizaciones": [
+            "Europa oriental",
+            "Báltico",
+            "Mar Negro"
+          ],
+          "propietario_macroevento_id": "garantias-seguridad-arquitectura-europea-posguerra-ucrania"
+        }
+      ],
+      "actores": [
+        "Ucrania",
+        "Rusia",
+        "OTAN",
+        "Unión Europea",
+        "Estados Unidos",
+        "Francia",
+        "Reino Unido",
+        "Alemania",
+        "OSCE",
+        "Naciones Unidas",
+        "Instituciones financieras internacionales"
+      ],
+      "intereses": [
+        "Evitar para Ucrania otra agresión y preservar capacidad soberana de defensa y reconstrucción.",
+        "Obtener para Rusia un arreglo sobre territorio, neutralidad y arquitectura europea favorable a sus demandas declaradas.",
+        "Disuadir para aliados sin asumir una escalada automática o compromisos políticamente inviables.",
+        "Crear monitoreo y canales que reduzcan sorpresa, atribución disputada y error de cálculo."
+      ],
+      "horizonte": {
+        "min_anios": 3,
+        "max_anios": 10
+      },
+      "escenarios": {
+        "base": "Combate o armisticio incompleto coexiste con acuerdos bilaterales, flanco aliado reforzado y planificación de garantías todavía condicional.",
+        "adverso": "Un alto el fuego ambiguo carece de monitoreo o respuesta creíble; incidentes, rearme y desacuerdo político permiten reanudar hostilidades.",
+        "transformador": "Un arreglo verificable combina defensa ucraniana sostenible, compromisos activables, monitoreo, reconstrucción y canales de control de escalada."
+      },
+      "indicadores": [
+        "Texto jurídico, ratificación, duración, consultas y cláusulas de activación de garantías.",
+        "Fuerzas, mando, logística, defensa aérea y reservas disponibles para ejecutar compromisos.",
+        "Mecanismos de monitoreo, atribución, inspección y respuesta a violaciones.",
+        "Postura del flanco oriental, movilidad militar y protección de infraestructura.",
+        "Financiación de reconstrucción, defensa y viabilidad fiscal ucraniana.",
+        "Posiciones rusas y ucranianas sobre territorio, neutralidad, alianzas, sanciones y control de armas."
+      ],
+      "indicadores_fortalecimiento": [
+        "Compromisos políticos se convierten en obligaciones nacionales, fuerzas asignadas y ejercicios.",
+        "Monitoreo y canales de crisis operan con acceso, atribución y protocolos acordados.",
+        "La defensa y financiación ucranianas son sostenibles más allá de la fase activa.",
+        "Las partes aceptan mecanismos verificables aunque persistan desacuerdos territoriales."
+      ],
+      "indicadores_debilitamiento": [
+        "Garantías quedan condicionadas sin fecha, fuerza, mando o reglas de activación.",
+        "Un cambio político retira capacidades críticas o impide respuesta colectiva.",
+        "El monitoreo carece de acceso o las violaciones no producen consecuencias previstas.",
+        "Las condiciones mínimas declaradas por las partes permanecen mutuamente excluyentes."
+      ],
+      "condiciones_refutacion": [
+        "Rechazar credibilidad si los firmantes no asignan recursos ni definen respuesta antes de un alto el fuego.",
+        "Reformular la arquitectura de capas si todos los mecanismos dependen de una sola garantía o proveedor.",
+        "No atribuir estabilidad a garantías si la reducción de violencia se explica mejor por agotamiento, clima o pausa operativa.",
+        "Reclasificar reconstrucción como proceso autónomo si adquiere instituciones y causalidad independientes de la seguridad."
+      ],
+      "incertidumbres": [
+        "Contenido clasificado de planes y umbrales de respuesta.",
+        "Aceptabilidad interna y ratificación en Estados garantes.",
+        "Objetivos mínimos reales y flexibilidad negociadora de Rusia y Ucrania.",
+        "Diseño y acceso de una misión de monitoreo.",
+        "Costo, financiación y secuencia de reconstrucción y activos inmovilizados."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 4,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 5,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 5,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "Ukraine security guarantees",
+        "ceasefire monitoring",
+        "European security architecture",
+        "eastern flank",
+        "reconstruction",
+        "arms control"
+      ],
+      "fuentes": [
+        {
+          "id": "src-rector-rusia-ucrania-nato-concept-20220629",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "OTAN",
+          "titulo": "NATO 2022 Strategic Concept",
+          "fecha": "2022-06-29",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.nato.int/en/about-us/official-texts-and-resources/strategic-concepts/nato-2022-strategic-concept",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria sobre la posición y adaptación doctrinal de la Alianza; no constituye una evaluación independiente de las intenciones rusas.",
+          "revisada_el": "2026-08-30"
+        },
+        {
+          "id": "src-rector-rusia-ucrania-us-ua-security-20240613",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Presidencia de Ucrania",
+          "titulo": "Bilateral security agreement between Ukraine and the United States of America",
+          "fecha": "2024-06-13",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.president.gov.ua/en/news/dvostoronnya-bezpekova-ugoda-mizh-ukrayinoyu-ta-spoluchenimi-91501",
+          "estado_verificacion": "verificada",
+          "observaciones": "Prueba la institucionalización formal de apoyo y cooperación; su existencia no garantiza ejecución uniforme ni equivale a defensa mutua automática.",
+          "revisada_el": "2026-08-30"
+        },
+        {
+          "id": "src-garantias-ucrania-paris-20260107",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Servicio Europeo de Acción Exterior",
+          "titulo": "Paris Declaration – Robust Security Guarantees for a Solid and Lasting Peace in Ukraine",
+          "fecha": "2026-01-07",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.eeas.europa.eu/delegations/ukraine/paris-declaration-robust-security-guarantees-solid-and-lasting-peace-ukraine_en",
+          "estado_verificacion": "verificada",
+          "observaciones": "Fuente primaria sobre garantías a activar tras un alto el fuego. Demuestra convergencia declarada, no ratificación, despliegue ni credibilidad automática.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-garantias-ucrania-consejo-europeo-20260618",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Consejo Europeo",
+          "titulo": "European Council conclusions on Ukraine and on European defence and security",
+          "fecha": "2026-06-18",
+          "idioma": "en",
+          "tipo": "documento_oficial",
+          "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/06/18/european-council-conclusions-on-ukraine-and-on-european-defence-and-security/",
+          "estado_verificacion": "verificada",
+          "observaciones": "Posición institucional de la UE sobre paz, garantías, monitoreo y preparación defensiva. No representa unanimidad sobre cada instrumento nacional.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-garantias-ucrania-nato-flanco-20260617",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "OTAN",
+          "titulo": "Strengthening NATO’s eastern flank",
+          "fecha": "2026-06-17",
+          "idioma": "en",
+          "tipo": "fuente_institucional_primaria",
+          "url": "https://nato.int/en/what-we-do/deterrence-and-defence/strengthening-natos-eastern-flank",
+          "estado_verificacion": "verificada",
+          "observaciones": "Documenta presencia, fuerzas y defensa aérea en el flanco oriental. Es fuente primaria sobre postura aliada, no evaluación independiente de suficiencia o intención rusa.",
+          "revisada_el": "2026-09-02"
+        },
+        {
+          "id": "src-garantias-rusia-arquitectura-20240614",
+          "media_id": "",
+          "medio_catalogado": false,
+          "medio": "Presidencia de Rusia",
+          "titulo": "Meeting with Foreign Ministry senior officials",
+          "fecha": "2024-06-14",
+          "idioma": "en",
+          "tipo": "fuente_oficial",
+          "url": "https://en.special.kremlin.ru/events/president/transcripts/74285",
+          "estado_verificacion": "verificada",
+          "observaciones": "Expone condiciones y concepto ruso de neutralidad, límites militares y seguridad euroasiática. Es una posición de parte, no prueba de aceptabilidad ni compromiso de implementación.",
+          "revisada_el": "2026-09-02"
+        }
+      ],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-garantias-ucrania-declaracion-capacidad-001",
+          "descripcion": "Las posiciones oficiales de Ucrania, Rusia, la OTAN y la UE describen objetivos incompatibles y compromisos aún condicionales. No deben presentarse como acuerdo, garantía ejecutable o pronóstico de desenlace.",
+          "tipo": "inferencia_analitica",
+          "signal_ids": [
+            "sig-rector-rusia-ucrania-otan-reconfiguracion-20220629",
+            "sig-rector-rusia-ucrania-acuerdos-seguridad-20240613",
+            "sig-garantias-ucrania-paris-posaltofuego-20260107",
+            "sig-garantias-ucrania-flanco-oriental-20260617"
+          ],
+          "fuente_ids": [
+            "src-rector-rusia-ucrania-nato-concept-20220629",
+            "src-rector-rusia-ucrania-us-ua-security-20240613",
+            "src-garantias-ucrania-paris-20260107",
+            "src-garantias-ucrania-consejo-europeo-20260618",
+            "src-garantias-ucrania-nato-flanco-20260617",
+            "src-garantias-rusia-arquitectura-20240614"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-09-02T00:00:00Z",
+          "actualizada_el": "2026-09-02T00:00:00Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Separar posición declarada, instrumento firmado, capacidad asignada, mecanismo activable y resultado observado.",
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "hist-adv-garantias-ucrania-declaracion-capacidad-001-20260902",
+              "accion": "incorporada_desde_diseno_rector",
+              "detalle": "Separar posición declarada, instrumento firmado, capacidad asignada, mecanismo activable y resultado observado.",
+              "realizada_el": "2026-09-02T00:00:00Z",
+              "realizada_por": "codex-con-autorizacion-usuario"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": [],
+      "referencias_senal": [
+        {
+          "senal_id": "sig-nuclear-rusia-doctrina-2024",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La doctrina nuclear rusa condiciona restricciones de empleo, presencia externa y diseño de garantías sin determinar por sí sola el resultado negociador."
         }
       ]
     },
@@ -21285,6 +22744,195 @@
       "estado_revision": "revisada",
       "justificacion": "El vínculo se incorpora solo como relacionada: identifica un mecanismo y conserva la autonomía causal de «Reconfiguración de la conectividad global mediante corredores alternativos y redes redundantes».",
       "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-rusia-ucrania-redes-seguridad-sostenimiento-asistencia-militar-occidental-ucrania-transformacion",
+      "origen_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "destino_id": "asistencia-militar-occidental-ucrania-transformacion",
+      "tipo": "subordinada",
+      "mecanismo": "La asistencia financiada, entregada, entrenada y mantenida constituye un mecanismo directo de sostenimiento de la capacidad ucraniana.",
+      "evidencia_senal_ids": [
+        "sig-asistencia-ucrania-purl-nsatu-20260708",
+        "sig-asistencia-ucrania-europa-lidera-dependencia-eeuu-20260813"
+      ],
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "verificada",
+      "justificacion": "El destino posee mecanismo, actores, señales y refutación propios, pero forma parte directa de la hipótesis de sostenimiento, adaptación o transformación del rector Rusia–Ucrania.",
+      "condicion_refutacion": "Reclasificar como relación transversal si el proceso deja de depender causalmente de la guerra Rusia–Ucrania o si su evidencia muestra una dinámica principal autónoma no subordinable."
+    },
+    {
+      "id": "rel-rusia-ucrania-redes-seguridad-sostenimiento-base-industrial-defensa-guerra-rusia-ucrania",
+      "origen_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "destino_id": "base-industrial-defensa-guerra-rusia-ucrania",
+      "tipo": "subordinada",
+      "mecanismo": "La producción, reposición y coproducción vinculadas al teatro convierten recursos en capacidad militar persistente para Ucrania y sus apoyos.",
+      "evidencia_senal_ids": [
+        "sig-rector-rusia-ucrania-industria-europa-20260427",
+        "sig-industria-ucrania-drones-compra-domestica-20260624"
+      ],
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "verificada",
+      "justificacion": "El destino posee mecanismo, actores, señales y refutación propios, pero forma parte directa de la hipótesis de sostenimiento, adaptación o transformación del rector Rusia–Ucrania.",
+      "condicion_refutacion": "Reclasificar como relación transversal si el proceso deja de depender causalmente de la guerra Rusia–Ucrania o si su evidencia muestra una dinámica principal autónoma no subordinable."
+    },
+    {
+      "id": "rel-rusia-ucrania-redes-seguridad-sostenimiento-rusia-adaptacion-sanciones-restricciones-tecnologicas",
+      "origen_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "destino_id": "rusia-adaptacion-sanciones-restricciones-tecnologicas",
+      "tipo": "subordinada",
+      "mecanismo": "La adaptación comercial, energética, financiera y tecnológica condiciona la capacidad rusa de sostener la guerra bajo restricciones.",
+      "evidencia_senal_ids": [
+        "sig-sanciones-rusia-desvio-no-compensa-20251211",
+        "sig-sanciones-rusia-flota-sombra-paquete21-20260723"
+      ],
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "verificada",
+      "justificacion": "El destino posee mecanismo, actores, señales y refutación propios, pero forma parte directa de la hipótesis de sostenimiento, adaptación o transformación del rector Rusia–Ucrania.",
+      "condicion_refutacion": "Reclasificar como relación transversal si el proceso deja de depender causalmente de la guerra Rusia–Ucrania o si su evidencia muestra una dinámica principal autónoma no subordinable."
+    },
+    {
+      "id": "rel-rusia-ucrania-redes-seguridad-sostenimiento-terceros-estados-sostenimiento-rusia-guerra-ucrania",
+      "origen_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "destino_id": "terceros-estados-sostenimiento-rusia-guerra-ucrania",
+      "tipo": "subordinada",
+      "mecanismo": "Aportes diferenciados de terceros proveen a Rusia munición, componentes, territorio, comercio o financiación relacionados con la guerra.",
+      "evidencia_senal_ids": [
+        "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+        "sig-terceros-rusia-china-disputa-doble-uso-20260618"
+      ],
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "verificada",
+      "justificacion": "El destino posee mecanismo, actores, señales y refutación propios, pero forma parte directa de la hipótesis de sostenimiento, adaptación o transformación del rector Rusia–Ucrania.",
+      "condicion_refutacion": "Reclasificar como relación transversal si el proceso deja de depender causalmente de la guerra Rusia–Ucrania o si su evidencia muestra una dinámica principal autónoma no subordinable."
+    },
+    {
+      "id": "rel-rusia-ucrania-redes-seguridad-sostenimiento-garantias-seguridad-arquitectura-europea-posguerra-ucrania",
+      "origen_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "destino_id": "garantias-seguridad-arquitectura-europea-posguerra-ucrania",
+      "tipo": "subordinada",
+      "mecanismo": "Garantías, postura, monitoreo y reconstrucción determinan si las redes creadas para la guerra se transforman en una arquitectura de disuasión o contención.",
+      "evidencia_senal_ids": [
+        "sig-rector-rusia-ucrania-otan-reconfiguracion-20220629",
+        "sig-garantias-ucrania-paris-posaltofuego-20260107"
+      ],
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "verificada",
+      "justificacion": "El destino posee mecanismo, actores, señales y refutación propios, pero forma parte directa de la hipótesis de sostenimiento, adaptación o transformación del rector Rusia–Ucrania.",
+      "condicion_refutacion": "Reclasificar como relación transversal si el proceso deja de depender causalmente de la guerra Rusia–Ucrania o si su evidencia muestra una dinámica principal autónoma no subordinable."
+    },
+    {
+      "id": "rel-rusia-ucrania-redes-seguridad-sostenimiento-mar-negro-azov-guerra-logistica",
+      "origen_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "destino_id": "mar-negro-azov-guerra-logistica",
+      "tipo": "subordinada",
+      "mecanismo": "Puertos, rutas, seguros, Montreux y adaptación comercial conectan operaciones con sostenimiento logístico e impacto internacional.",
+      "evidencia_senal_ids": [
+        "sig-rector-rusia-ucrania-contencion-turquia-20220829",
+        "sig-rector-rusia-ucrania-adaptacion-trigo-20240222"
+      ],
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "verificada",
+      "justificacion": "El destino posee mecanismo, actores, señales y refutación propios, pero forma parte directa de la hipótesis de sostenimiento, adaptación o transformación del rector Rusia–Ucrania.",
+      "condicion_refutacion": "Reclasificar como relación transversal si el proceso deja de depender causalmente de la guerra Rusia–Ucrania o si su evidencia muestra una dinámica principal autónoma no subordinable."
+    },
+    {
+      "id": "rel-base-industrial-defensa-guerra-rusia-ucrania-remilitarizacion-industrial-cadenas-estrategicas-bloques",
+      "origen_id": "base-industrial-defensa-guerra-rusia-ucrania",
+      "destino_id": "remilitarizacion-industrial-cadenas-estrategicas-bloques",
+      "tipo": "relacionada",
+      "mecanismo": "La demanda específica de Ucrania prueba y escala capacidad industrial, mientras la remilitarización global aporta capital, cadenas y demanda de otros teatros.",
+      "evidencia_senal_ids": [
+        "sig-industria-ucrania-drones-compra-domestica-20260624",
+        "sig-remilitarizacion-ucrania-capacidad-financiacion"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "verificada",
+      "justificacion": "Comparten infraestructura y financiación, pero el rector global conserva causalidad y alcance más amplios que la guerra Rusia–Ucrania.",
+      "condicion_refutacion": "Reclasificar como contextual si contratos, capacidad y aprendizaje dejan de transmitirse entre la demanda ucraniana y la base industrial más amplia."
+    },
+    {
+      "id": "rel-rusia-adaptacion-sanciones-restricciones-tecnologicas-corredores-alternativos-redes-logisticas-redundantes",
+      "origen_id": "rusia-adaptacion-sanciones-restricciones-tecnologicas",
+      "destino_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "tipo": "amplificadora",
+      "mecanismo": "Restricciones y controles incentivan desvíos de comercio, energía y pagos por terceros países y corredores alternativos.",
+      "evidencia_senal_ids": [
+        "sig-sanciones-rusia-desvio-no-compensa-20251211"
+      ],
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "revisada",
+      "justificacion": "El desvío es un canal causal específico; los corredores mantienen funciones y demandantes no vinculados a Rusia.",
+      "condicion_refutacion": "Reclasificar si los cambios de ruta no pueden asociarse con sanciones o si responden principalmente a costos y proyectos previos."
+    },
+    {
+      "id": "rel-terceros-estados-sostenimiento-rusia-guerra-ucrania-indo-pacifico-taiwan-reconfiguracion-seguridad",
+      "origen_id": "terceros-estados-sostenimiento-rusia-guerra-ucrania",
+      "destino_id": "indo-pacifico-taiwan-reconfiguracion-seguridad",
+      "tipo": "amplificadora",
+      "mecanismo": "La cooperación Rusia–RPDC transfiere experiencia, tecnología y compromisos entre la guerra europea y cálculos de seguridad en Asia Oriental.",
+      "evidencia_senal_ids": [
+        "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+        "sig-indo-pacifico-corea-acoplamiento"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "verificada",
+      "justificacion": "Existe transmisión bilateral observable, pero no una fusión de teatros ni subordinación del Indo-Pacífico.",
+      "condicion_refutacion": "Reducir a contextual si cesan transferencias, personal y contraprestaciones o no alteran capacidades y cálculos fuera de Europa."
+    },
+    {
+      "id": "rel-garantias-seguridad-arquitectura-europea-posguerra-ucrania-erosion-control-armamentos-disuasion-nuclear-multipolar",
+      "origen_id": "garantias-seguridad-arquitectura-europea-posguerra-ucrania",
+      "destino_id": "erosion-control-armamentos-disuasion-nuclear-multipolar",
+      "tipo": "relacionada",
+      "mecanismo": "Garantías, restricciones de empleo y control de escalada interactúan con doctrina nuclear y credibilidad de la disuasión extendida.",
+      "evidencia_senal_ids": [
+        "sig-rector-rusia-ucrania-otan-reconfiguracion-20220629",
+        "sig-nuclear-rusia-doctrina-2024"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "La arquitectura europea y la disuasión nuclear se condicionan, pero ninguna queda subordinada íntegramente a la otra.",
+      "condicion_refutacion": "Reclasificar como contextual si el diseño de garantías no modifica postura, restricciones, comunicaciones o cálculos nucleares observables."
+    },
+    {
+      "id": "rel-rail-baltica-movilidad-militar-europea-garantias-seguridad-arquitectura-europea-posguerra-ucrania",
+      "origen_id": "rail-baltica-movilidad-militar-europea",
+      "destino_id": "garantias-seguridad-arquitectura-europea-posguerra-ucrania",
+      "tipo": "amplificadora",
+      "mecanismo": "La movilidad ferroviaria y la interoperabilidad materializan capacidad de refuerzo en el flanco oriental que respalda disuasión y compromisos de seguridad.",
+      "evidencia_senal_ids": [
+        "sig-garantias-ucrania-flanco-oriental-20260617"
+      ],
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "revisada",
+      "justificacion": "Rail Baltica conserva objetivos civiles y regionales propios; sólo su función de movilidad militar amplifica la arquitectura de seguridad.",
+      "condicion_refutacion": "Reducir a contextual si la infraestructura no alcanza interoperabilidad, capacidad o procedimientos de uso militar verificables."
+    },
+    {
+      "id": "rel-turquia-potencia-bisagra-reordenamiento-regional-mar-negro-azov-guerra-logistica",
+      "origen_id": "turquia-potencia-bisagra-reordenamiento-regional",
+      "destino_id": "mar-negro-azov-guerra-logistica",
+      "tipo": "contenedora",
+      "mecanismo": "La aplicación turca de Montreux restringe el paso de buques de guerra de beligerantes y limita una vía de expansión naval del conflicto.",
+      "evidencia_senal_ids": [
+        "sig-rector-rusia-ucrania-contencion-turquia-20220829"
+      ],
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "verificada",
+      "justificacion": "La medida afecta el teatro marítimo, pero Turquía mantiene una estrategia regional autónoma que no se subordina a Rusia–Ucrania.",
+      "condicion_refutacion": "Reclasificar si Montreux deja de aplicarse, no restringe movimientos relevantes o Turquía abandona la función de control de los estrechos."
     }
   ]
 }

@@ -195,6 +195,50 @@ const referencedSignals = (process.referencias_senal || [])
         </section>
 
         {
+          (process.definicion_operativa || process.delimitacion_exclusiones?.length) && (
+            <section class="content-section">
+              <h2>Definición y delimitación</h2>
+              {process.definicion_operativa && <p>{process.definicion_operativa}</p>}
+              {(process.delimitacion_exclusiones?.length ?? 0) > 0 && (
+                <>
+                  <h3>Qué queda fuera</h3>
+                  <ul>{process.delimitacion_exclusiones?.map((item) => <li>{item}</li>)}</ul>
+                </>
+              )}
+            </section>
+          )
+        }
+
+        {
+          (process.pregunta_seguimiento || process.hipotesis_principal || process.hipotesis_alternativas?.length) && (
+            <section class="content-section">
+              <h2>Pregunta e hipótesis</h2>
+              {process.pregunta_seguimiento && (
+                <p><strong>Pregunta de seguimiento.</strong> {process.pregunta_seguimiento}</p>
+              )}
+              {process.hipotesis_principal && (
+                <p><strong>Hipótesis principal.</strong> {process.hipotesis_principal}</p>
+              )}
+              {(process.hipotesis_alternativas?.length ?? 0) > 0 && (
+                <>
+                  <h3>Hipótesis alternativas</h3>
+                  <ul>{process.hipotesis_alternativas?.map((item) => <li>{item}</li>)}</ul>
+                </>
+              )}
+            </section>
+          )
+        }
+
+        {
+          process.mecanismo_causal && (
+            <section class="content-section">
+              <h2>Mecanismo causal</h2>
+              <p>{process.mecanismo_causal}</p>
+            </section>
+          )
+        }
+
+        {
           (process.es_macroevento_rector || rectorProcesses.length > 0 || complementaryProcesses.length > 0 || relatedProcesses.length > 0) && (
             <section class="content-section">
               <h2>Relaciones con otros macroeventos</h2>
@@ -347,6 +391,46 @@ const referencedSignals = (process.referencias_senal || [])
               <ul>
                 {process.indicadores_seguimiento.map((item) => <li>{item}</li>)}
               </ul>
+            </section>
+          )
+        }
+
+        {
+          (process.indicadores_fortalecimiento?.length || process.indicadores_debilitamiento?.length) && (
+            <section class="content-section">
+              <h2>Cómo cambia la hipótesis</h2>
+              {(process.indicadores_fortalecimiento?.length ?? 0) > 0 && (
+                <>
+                  <h3>Indicadores de fortalecimiento</h3>
+                  <ul>{process.indicadores_fortalecimiento?.map((item) => <li>{item}</li>)}</ul>
+                </>
+              )}
+              {(process.indicadores_debilitamiento?.length ?? 0) > 0 && (
+                <>
+                  <h3>Indicadores de debilitamiento</h3>
+                  <ul>{process.indicadores_debilitamiento?.map((item) => <li>{item}</li>)}</ul>
+                </>
+              )}
+            </section>
+          )
+        }
+
+        {
+          (process.condiciones_refutacion?.length || process.incertidumbres?.length) && (
+            <section class="content-section">
+              <h2>Refutación e incertidumbres</h2>
+              {(process.condiciones_refutacion?.length ?? 0) > 0 && (
+                <>
+                  <h3>Condiciones de refutación</h3>
+                  <ul>{process.condiciones_refutacion?.map((item) => <li>{item}</li>)}</ul>
+                </>
+              )}
+              {(process.incertidumbres?.length ?? 0) > 0 && (
+                <>
+                  <h3>Incertidumbres abiertas</h3>
+                  <ul>{process.incertidumbres?.map((item) => <li>{item}</li>)}</ul>
+                </>
+              )}
             </section>
           )
         }

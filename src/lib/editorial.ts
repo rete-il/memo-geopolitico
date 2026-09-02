@@ -78,12 +78,33 @@ export function relatedPublicationForProcess(
   return relatedPublicationsForProcess(process, entries)[0];
 }
 
+export function primaryPublicationForProcess(
+  process: PublicProcess,
+  entries: PublicationEntry[],
+): PublicationEntry | undefined {
+  return entries
+    .filter(
+      ({ data }) =>
+        data.macroevento_principal_id === process.macroevento_id,
+    )
+    .sort((a, b) => {
+      const priorityDifference =
+        publicationStatePriority[b.data.publicacion.estado] -
+        publicationStatePriority[a.data.publicacion.estado];
+      if (priorityDifference !== 0) return priorityDifference;
+
+      return b.data.publicacion.actualizado_el.localeCompare(
+        a.data.publicacion.actualizado_el,
+      );
+    })[0];
+}
+
 export function effectiveEditorialState(
   process: PublicProcess,
   entries: PublicationEntry[],
 ): PublicationState {
   return (
-    relatedPublicationForProcess(process, entries)?.data.publicacion.estado ||
+    primaryPublicationForProcess(process, entries)?.data.publicacion.estado ||
     process.publicacion.estado
   );
 }

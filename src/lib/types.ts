@@ -86,6 +86,16 @@ export interface PublicProcess {
   clasificacion: Classification;
   que_esta_ocurriendo: string;
   por_que_importa: string;
+  definicion_operativa?: string;
+  delimitacion_exclusiones?: string[];
+  pregunta_seguimiento?: string;
+  hipotesis_principal?: string;
+  hipotesis_alternativas?: string[];
+  mecanismo_causal?: string;
+  indicadores_fortalecimiento?: string[];
+  indicadores_debilitamiento?: string[];
+  condiciones_refutacion?: string[];
+  incertidumbres?: string[];
   es_macroevento_rector?: boolean;
   macroevento_rector_id?: string | null;
   macroevento_rector_ids?: string[];

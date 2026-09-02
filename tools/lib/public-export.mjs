@@ -506,6 +506,28 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
       },
       que_esta_ocurriendo: String(event.descripcion || ''),
       por_que_importa: String(event.por_que_importa || ''),
+      definicion_operativa: String(event.definicion_operativa || ''),
+      delimitacion_exclusiones: Array.isArray(event.delimitacion_exclusiones)
+        ? event.delimitacion_exclusiones.map(String)
+        : [],
+      pregunta_seguimiento: String(event.pregunta_seguimiento || ''),
+      hipotesis_principal: String(event.hipotesis_principal || ''),
+      hipotesis_alternativas: Array.isArray(event.hipotesis_alternativas)
+        ? event.hipotesis_alternativas.map(String)
+        : [],
+      mecanismo_causal: String(event.mecanismo_causal || ''),
+      indicadores_fortalecimiento: Array.isArray(event.indicadores_fortalecimiento)
+        ? event.indicadores_fortalecimiento.map(String)
+        : [],
+      indicadores_debilitamiento: Array.isArray(event.indicadores_debilitamiento)
+        ? event.indicadores_debilitamiento.map(String)
+        : [],
+      condiciones_refutacion: Array.isArray(event.condiciones_refutacion)
+        ? event.condiciones_refutacion.map(String)
+        : [],
+      incertidumbres: Array.isArray(event.incertidumbres)
+        ? event.incertidumbres.map(String)
+        : [],
       es_macroevento_rector: Boolean(event.es_macroevento_rector),
       macroevento_rector_id: rectorIdsFor(event)[0] || null,
       macroevento_rector_ids: rectorIdsFor(event),

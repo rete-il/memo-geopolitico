@@ -11,9 +11,14 @@ autor_ids:
 publicacion:
   estado: "publicado"
   publicado_el: "2026-08-30"
-  actualizado_el: "2026-08-30"
+  actualizado_el: "2026-09-02"
 macroevento_principal_id: "rusia-ucrania-redes-seguridad-sostenimiento"
 macroevento_secundario_ids:
+  - "asistencia-militar-occidental-ucrania-transformacion"
+  - "base-industrial-defensa-guerra-rusia-ucrania"
+  - "rusia-adaptacion-sanciones-restricciones-tecnologicas"
+  - "terceros-estados-sostenimiento-rusia-guerra-ucrania"
+  - "garantias-seguridad-arquitectura-europea-posguerra-ucrania"
   - "mar-negro-azov-guerra-logistica"
   - "rail-baltica-movilidad-militar-europea"
   - "ruta-maritima-norte-artico"
@@ -81,21 +86,21 @@ Esa internacionalización no significa que exista una guerra mundial ni que se h
 
 La hipótesis rectora es más acotada: la guerra transformó de manera duradera la seguridad europea y creó mecanismos internacionales de sostenimiento y adaptación. Algunos de esos mecanismos transmiten capacidades y riesgos hacia otros teatros. Para demostrar una transformación sistémica más amplia no basta con observar simultaneidad; debe verificarse una relación causal, operativa o institucional entre procesos.
 
-Este análisis integra siete expedientes complementarios. Cada uno conserva su causalidad propia. El rector identifica dependencias cruzadas y establece qué evidencia confirmaría —o refutaría— que esas conexiones están modificando el sistema internacional.
+Este análisis se apoya en seis procesos complementarios: cinco mecanismos creados para asistencia, industria, adaptación sancionatoria, apoyos a Rusia y arquitectura de seguridad, más el expediente reutilizado del mar Negro y Azov. Los demás casos citados —Rail Baltica, Ártico, Turquía, Sudán y corredores— conservan relaciones transversales y causalidad propia. El rector identifica dependencias cruzadas y establece qué evidencia confirmaría —o refutaría— que esas conexiones están modificando el sistema internacional.
 
 ## El núcleo más sólido: la arquitectura de seguridad europea
 
 La consecuencia estructural mejor documentada está en Europa. El [Concepto Estratégico de la OTAN de 2022](https://www.nato.int/en/about-us/official-texts-and-resources/strategic-concepts/nato-2022-strategic-concept) identifica a Rusia como la amenaza más significativa y directa para la seguridad aliada. Ese cambio doctrinal acompaña una postura reforzada en el flanco oriental, la ampliación de la Alianza y una nueva prioridad para preparación, reservas y defensa territorial.
 
-La transformación no comenzó desde cero en febrero de 2022. La anexión rusa de Crimea en 2014, la guerra del Donbás, el deterioro de los mecanismos de control de armas y tendencias previas de rearme ya habían modificado la relación entre Rusia y Occidente. La invasión a gran escala aceleró, amplió e institucionalizó esos cambios.
+La transformación no comenzó desde cero en febrero de 2022. La anexión rusa de Crimea en 2014, la guerra del Donbás, el deterioro de los mecanismos de control de armas y tendencias previas de rearme ya habían modificado la relación entre Rusia y Occidente. La invasión a gran escala aceleró, amplió e institucionalizó esos cambios. El expediente sobre [garantías de seguridad y arquitectura europea posterior a la guerra](/observatorio/garantias-seguridad-arquitectura-europea-posguerra-ucrania/) separa compromisos declarados, capacidades asignadas, monitoreo y condiciones de refutación sin asumir un desenlace.
 
-El [aumento del gasto militar registrado por SIPRI](https://www.sipri.org/media/press-release/2026/global-military-spending-rise-continues-european-and-asian-expenditures-surge) y la [asistencia militar coordinada por la Unión Europea](https://www.consilium.europa.eu/en/policies/military-support-ukraine/) muestran que la respuesta dejó de ser únicamente una transferencia de inventarios disponibles. Incluye compras conjuntas, expansión de producción, entrenamiento, mantenimiento y planificación plurianual. El punto decisivo no es una cifra anual, sino si fábricas, presupuestos, contratos e infraestructura crean capacidad persistente.
+El [aumento del gasto militar registrado por SIPRI](https://www.sipri.org/media/press-release/2026/global-military-spending-rise-continues-european-and-asian-expenditures-surge) y la [asistencia militar coordinada por la Unión Europea](https://www.consilium.europa.eu/en/policies/military-support-ukraine/) muestran que la respuesta dejó de ser únicamente una transferencia de inventarios disponibles. Incluye compras conjuntas, expansión de producción, entrenamiento, mantenimiento y planificación plurianual. El expediente sobre [base industrial vinculada a la guerra](/observatorio/base-industrial-defensa-guerra-rusia-ucrania/) distingue capacidad nominal, pedidos, producción y entrega. El punto decisivo no es una cifra anual, sino si fábricas, presupuestos, contratos e infraestructura crean capacidad persistente.
 
 El expediente sobre [Rail Baltica y movilidad militar europea](/observatorio/rail-baltica-movilidad-militar-europea/) permite observar esa dimensión material. Una doctrina cambia realmente la postura de defensa cuando tropas, equipos y suministros pueden desplazarse, cuando puertos y ferrocarriles son interoperables y cuando existen reservas y procedimientos para operar bajo presión. La infraestructura de doble uso convierte compromisos políticos en capacidad logística, aunque sus plazos y costos limitan una adaptación inmediata.
 
 ## Ucrania: del apoyo de emergencia a una red plurianual
 
-La supervivencia militar y fiscal de Ucrania depende de una coalición de apoyo con grados de compromiso diferentes. El [acuerdo bilateral de seguridad entre Ucrania y Estados Unidos](https://www.president.gov.ua/en/news/dvostoronnya-bezpekova-ugoda-mizh-ukrayinoyu-ta-spoluchenimi-91501) ejemplifica el paso desde paquetes coyunturales hacia marcos de entrenamiento, financiación, producción y cooperación de largo plazo. Acuerdos similares distribuyen funciones entre Estados y reducen la dependencia de una sola decisión.
+La supervivencia militar y fiscal de Ucrania depende de una coalición de apoyo con grados de compromiso diferentes. El proceso sobre [transformación de la asistencia militar occidental](/observatorio/asistencia-militar-occidental-ucrania-transformacion/) sigue por separado anuncios, asignaciones, contratos, entregas y sostenimiento. El [acuerdo bilateral de seguridad entre Ucrania y Estados Unidos](https://www.president.gov.ua/en/news/dvostoronnya-bezpekova-ugoda-mizh-ukrayinoyu-ta-spoluchenimi-91501) ejemplifica el paso desde paquetes coyunturales hacia marcos de entrenamiento, financiación, producción y cooperación de largo plazo. Acuerdos similares distribuyen funciones entre Estados y reducen la dependencia de una sola decisión.
 
 El [Ukraine Support Tracker del Instituto Kiel](https://www.kielinstitut.de/topics/war-against-ukraine/ukraine-support-tracker) permite distinguir anuncios, asignaciones y entregas. Esa diferencia es central. Un compromiso político no equivale a material disponible en el frente; tampoco asegura continuidad presupuestaria ni sustituye la capacidad ucraniana de absorber, mantener y emplear sistemas diversos.
 
@@ -105,7 +110,7 @@ Para Ucrania, la adaptación también incluye producción propia, dispersión in
 
 ## Rusia: producción, evasión y asociaciones selectivas
 
-Rusia sostiene la guerra mediante una combinación de movilización industrial, ingresos, sustitución de proveedores, rutas comerciales adaptadas y cooperación exterior. No todos los vínculos cumplen la misma función ni implican el mismo compromiso político.
+Rusia sostiene la guerra mediante una combinación de movilización industrial, ingresos, sustitución de proveedores, rutas comerciales adaptadas y cooperación exterior. El proceso de [adaptación frente a sanciones y restricciones tecnológicas](/observatorio/rusia-adaptacion-sanciones-restricciones-tecnologicas/) evalúa desvíos, pagos, flota sombra y sustitución sin tratar la eficacia como binaria. El expediente de [participación de terceros Estados](/observatorio/terceros-estados-sostenimiento-rusia-guerra-ucrania/) compara por separado armas, componentes, territorio, comercio y contraprestaciones. No todos los vínculos cumplen la misma función ni implican el mismo compromiso político.
 
 Bielorrusia ofrece profundidad territorial, infraestructura y una integración de seguridad especialmente estrecha. Irán ha sido relevante para determinadas capacidades y cadenas de suministro. China es un socio económico central, pero esa relación no debe equipararse sin evidencia a una alianza militar operativa. India y los Estados del Golfo participan en circuitos comerciales y financieros con intereses propios, sin adoptar por ello todos los objetivos rusos.
 
