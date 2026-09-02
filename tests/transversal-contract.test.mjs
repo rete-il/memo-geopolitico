@@ -18,8 +18,8 @@ test('el corpus canónico declara propiedad única y relaciones tipadas auditabl
   const rectors = data.macroeventos.filter((event) => event.es_macroevento_rector);
 
   assert.equal(result.valid, true, result.errors.join('\n'));
-  assert.equal(data.relaciones_macroeventos.length, 30);
-  assert.equal(new Set(data.relaciones_macroeventos.map((relation) => relation.id)).size, 30);
+  assert.equal(data.relaciones_macroeventos.length, 41);
+  assert.equal(new Set(data.relaciones_macroeventos.map((relation) => relation.id)).size, 41);
   assert.equal(rectors.flatMap((event) => event.senales).length, 87);
   assert.equal(
     data.macroeventos.flatMap((event) => event.senales).every(
@@ -59,7 +59,7 @@ test('la proyección pública conserva mecanismos y referencias sin campos edito
   const relations = projection.procesos.flatMap((process) => process.relaciones_tipadas || []);
 
   assert.equal(result.valid, true, result.errors.join('\n'));
-  assert.equal(relations.length, 60);
+  assert.equal(relations.length, 82);
   assert.equal(relations.every((relation) => relation.mecanismo), true);
   assert.equal(relations.some((relation) => 'justificacion' in relation), false);
   assert.equal(relations.some((relation) => 'estado_revision' in relation), false);

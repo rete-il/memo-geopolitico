@@ -111,6 +111,23 @@ const typedRelations = (process.relaciones_tipadas || []).map((relation) => {
     : relation.origen_id;
   return { relation, counterpart: processById.get(counterpartId) };
 }).filter((item) => Boolean(item.counterpart));
+const signalIndex = new Map(
+  processes.flatMap((item) =>
+    item.senales.map((signal) => [signal.senal_id, { signal, owner: item }] as const),
+  ),
+);
+const referencedSignals = (process.referencias_senal || [])
+  .map((reference) => {
+    const evidence = signalIndex.get(reference.senal_id);
+    return {
+      reference,
+      evidence,
+      sources: evidence?.signal.fuente_ids
+        .map((sourceId) => sourceById.get(sourceId))
+        .filter(Boolean) || [],
+    };
+  })
+  .filter((item) => Boolean(item.evidence));
 ---
 
 <SiteLayout
@@ -282,6 +299,46 @@ const typedRelations = (process.relaciones_tipadas || []).map((relation) => {
             )
           }
         </section>
+
+        {
+          referencedSignals.length > 0 && (
+            <section class="content-section">
+              <h2>Señales reutilizadas de otros expedientes</h2>
+              <p>
+                Estas evidencias conservan un único propietario canónico. Este
+                expediente registra solamente su efecto transversal y no las
+                contabiliza como señales propias.
+              </p>
+              <ul class="referenced-signal-list">
+                {referencedSignals.map(({ reference, evidence, sources }) => (
+                  <li>
+                    <div class="typed-relation-heading">
+                      <span class="relation-type">{humanize(reference.tipo_uso)}</span>
+                      <a href={`/observatorio/${evidence!.owner.slug}/`}>
+                        {evidence!.signal.titulo}
+                      </a>
+                    </div>
+                    <p>{reference.efecto_segundo_orden}</p>
+                    <small>Propietario: {evidence!.owner.titulo}</small>
+                    {sources.length > 0 && (
+                      <small>
+                        {' · Fuentes: '}
+                        {sources.map((source, index) => (
+                          <>
+                            {index > 0 && ', '}
+                            <a href={source!.url} target="_blank" rel="noopener noreferrer">
+                              {source!.medio}
+                            </a>
+                          </>
+                        ))}
+                      </small>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
 
         {
           process.indicadores_seguimiento.length > 0 && (

@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "titulo": "Observatorio de macroeventos geopolíticos",
-  "actualizado": "2026-09-01",
+  "actualizado": "2026-09-02",
   "notas": "Datos iniciales derivados del análisis del chat. Todas las fuentes comienzan como no verificadas.\nContrato transversal incorporado el 2026-09-01: propiedad única de señales, referencias de segundo orden y relaciones tipadas.\nContrato transversal incorporado el 2026-09-01: propiedad única de señales, referencias de segundo orden y relaciones tipadas.",
   "categorias_internas": [
     {
@@ -18125,6 +18125,414 @@
       ],
       "excepciones_advertencias": [],
       "referencias_senal": []
+    },
+    {
+      "id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "titulo": "Acoplamiento de conflictos regionales y riesgo de confrontación sistémica mundial",
+      "tipo_proceso": "tendencia_estructural",
+      "estado_editorial": "borrador",
+      "estado_verificacion": "parcial",
+      "fecha_corte": "2026-09-02",
+      "regiones": [
+        "Global",
+        "Europa",
+        "Eurasia",
+        "Medio Oriente",
+        "África",
+        "Asia-Pacífico",
+        "Asia meridional",
+        "América del Norte",
+        "América Latina"
+      ],
+      "categoria": "seguridad_conflicto",
+      "tema_ids": [
+        1,
+        4,
+        16,
+        19,
+        20,
+        25,
+        31,
+        36,
+        39,
+        41,
+        47,
+        67,
+        74,
+        81,
+        91,
+        101,
+        112,
+        132,
+        173,
+        209
+      ],
+      "clasificacion_tematica": {
+        "origen": "mixto",
+        "estado_revision": "pendiente",
+        "taxonomy_version": 1,
+        "revisada_el": null
+      },
+      "descripcion": "Macroevento rector que observa cuándo conflictos, alianzas, cadenas industriales, tecnologías, recursos y decisiones políticas dejan de evolucionar de manera predominantemente autónoma y transmiten escalada entre teatros. Distingue simultaneidad, interdependencia limitada, acoplamiento selectivo y confrontación sistémica; no presenta una guerra mundial como desenlace consumado ni inevitable.",
+      "por_que_importa": "El riesgo sistémico no surge de sumar guerras, sino de mecanismos verificables: compromisos de defensa, reasignación competitiva de municiones e inteligencia, represalias cruzadas, cuellos de botella energéticos y tecnológicos, interrupción de rutas, operaciones ciberespaciales, ambigüedad nuclear-convencional y compresión del tiempo de decisión. La autonomía regional, la interdependencia, la redundancia, los canales militares, la mediación y los límites industriales pueden contener o revertir esa transmisión.",
+      "es_macroevento_rector": true,
+      "macroevento_rector_id": null,
+      "macroevento_rector_ids": [],
+      "macroevento_relacionado_ids": [
+        "rusia-ucrania-redes-seguridad-sostenimiento",
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "africa-central-minerales-criticos-cadenas-tecnologicas",
+        "remilitarizacion-industrial-cadenas-estrategicas-bloques",
+        "indo-pacifico-taiwan-reconfiguracion-seguridad",
+        "erosion-control-armamentos-disuasion-nuclear-multipolar",
+        "estados-unidos-reordenamiento-hemisferio-occidental",
+        "derechas-transnacionales-reconfiguracion-america-latina",
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "senales": [],
+      "actores": [
+        "Estados Unidos",
+        "República Popular China",
+        "Federación de Rusia",
+        "Unión Europea",
+        "OTAN",
+        "Ucrania",
+        "Taiwán",
+        "Japón",
+        "Corea del Sur",
+        "Corea del Norte",
+        "India",
+        "Pakistán",
+        "ASEAN",
+        "Israel",
+        "Irán",
+        "Estados del Golfo",
+        "Turquía",
+        "Unión Africana",
+        "Estados africanos productores",
+        "Brasil",
+        "Argentina",
+        "México",
+        "Organismos multilaterales",
+        "Empresas de defensa, energía, tecnología, logística y comunicaciones"
+      ],
+      "intereses": [
+        "Grandes potencias: preservar disuasión, acceso, alianzas y libertad de acción sin asumir una guerra generalizada",
+        "Aliados: obtener garantías creíbles evitando abandono, atrapamiento o transferencia automática de escalada",
+        "Potencias bisagra y actores regionales: conservar autonomía, diversificar socios y convertir mediación o conectividad en influencia",
+        "Estados productores y de tránsito: capturar valor, asegurar soberanía y evitar que recursos y corredores sean militarizados",
+        "Organismos internacionales y regionales: mantener verificación, comunicación, mediación y reglas parciales",
+        "Actores económicos: asegurar continuidad de suministros, pagos, seguros, datos, energía y transporte",
+        "Sociedades: limitar costos humanos, fiscales y políticos de movilización prolongada y perturbaciones acumuladas"
+      ],
+      "horizonte": {
+        "min_anios": 1,
+        "max_anios": 15
+      },
+      "escenarios": {
+        "base": "Simultaneidad desacoplada e interdependencia limitada: varias crisis coinciden y compiten por atención, presupuesto y suministros, pero conservan causalidad, mando, negociación y umbrales propios. La entrada exige coincidencia sin represalia ni decisión operativa interteatros; revierte o escala según aparezcan mecanismos transmisores verificables.",
+        "adverso": "Acoplamiento selectivo y confrontación sistémica indirecta: decisiones en un teatro alteran capacidades, garantías o coerción en otros; coaliciones flexibles coordinan apoyo, sanciones, tecnología y presión logística, pero evitan aún enfrentamientos directos generalizados. Se debilita si los compromisos permanecen transaccionales y las crisis se negocian por separado.",
+        "transformador": "Confrontación directa limitada entre grandes potencias con riesgo de escalada mundial extrema: incidentes militares, ataques a infraestructura compartida o ambigüedad nuclear-convencional transmiten alerta y represalia a varios teatros. Solo se alcanza con participación directa, coordinación multiteatro y cambios observables de postura; no por retórica o simultaneidad.",
+        "reversion": "Desacoplamiento sostenido: canales de crisis, límites operativos, mediaciones separadas, redundancia industrial y logística, restauración de verificación y divergencia aliada impiden la transmisión. Los conflictos pueden seguir siendo graves sin componer una confrontación mundial."
+      },
+      "indicadores": [
+        "Nivel 1 — simultaneidad desacoplada: crisis coincidentes con cadenas de mando, recursos, represalias y negociaciones separadas; se refuta como acoplamiento si esa autonomía persiste.",
+        "Nivel 2 — interdependencia limitada: competencia por atención, municiones, energía, seguros o sanciones sin transmisión automática de escalada; entra con desplazamientos materiales medibles y sale cuando la adaptación absorbe el choque.",
+        "Nivel 3 — acoplamiento selectivo: una decisión costosa en un teatro cambia postura, capacidad, calendario o garantía en otro; requiere secuencia temporal y mecanismo, no afinidad.",
+        "Nivel 4 — confrontación sistémica indirecta: coordinación persistente entre al menos tres teatros en apoyo militar, tecnología, finanzas o coerción, con límites deliberados a la guerra directa.",
+        "Nivel 5 — confrontación directa entre grandes potencias: enfrentamiento militar corroborado y limitado que activa consultas, dispersión, refuerzos o represalias fuera del teatro inicial.",
+        "Nivel 6 — escalada mundial extrema: participación directa de varias potencias en múltiples teatros, alerta elevada, comunicación degradada y riesgo nuclear; exige un conjunto independiente de señales extraordinarias.",
+        "Escalada — activación o ampliación verificable de garantías de defensa en respuesta a una crisis distinta del teatro cubierto originalmente.",
+        "Escalada — reasignación competitiva de municiones, inteligencia, transporte o personal que cambia la capacidad operativa en otro teatro.",
+        "Escalada — represalia económica, cibernética, espacial o militar explícitamente cruzada entre teatros y corroborada por conducta costosa.",
+        "Escalada — interrupciones simultáneas de rutas, cables, energía o semiconductores que superan redundancias y producen decisiones estratégicas coordinadas.",
+        "Escalada — sistemas de doble capacidad, ataques a mando o alerta y reducción observable del tiempo de decisión.",
+        "Contención — canales militares usados, notificaciones, límites geográficos, exclusiones de objetivos y mediaciones con resultados verificables.",
+        "Desacoplamiento — rechazo aliado a vincular crisis, neutralidad activa, divergencia de sanciones o negociaciones separadas que persisten.",
+        "Contención — sustitución, inventarios, rutas redundantes, reapertura comercial y seguros que amortiguan un choque sin coerción adicional.",
+        "Reversión — retirada de refuerzos excepcionales, reducción de alerta, restauración de inspecciones y caída sostenida de incidentes interteatros.",
+        "Refutación — ausencia prolongada de represalias cruzadas, recursos compartidos, decisiones conjuntas y cambios de postura pese a crisis simultáneas.",
+        "Falso positivo — retórica ideológica, votación diplomática, ejercicio rutinario, memorando sin ejecución o presencia de una misma potencia sin mecanismo causal."
+      ],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 3,
+        "alcance": 5,
+        "persistencia": 4,
+        "propagacion": 5,
+        "subcobertura": 5,
+        "incertidumbre": 5,
+        "urgencia": 5,
+        "cobertura_observada": 5,
+        "confianza": "media"
+      },
+      "palabras_clave": [
+        "acoplamiento de conflictos",
+        "riesgo de Tercera Guerra Mundial",
+        "confrontación sistémica",
+        "escalada horizontal",
+        "alianzas",
+        "remilitarización",
+        "cadenas estratégicas",
+        "semiconductores",
+        "minerales críticos",
+        "rutas marítimas",
+        "cables submarinos",
+        "ciberespacio",
+        "espacio",
+        "disuasión nuclear",
+        "contención",
+        "desacoplamiento",
+        "error de cálculo"
+      ],
+      "fuentes": [],
+      "actualizaciones": [],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-acoplamiento-causalidad-001",
+          "descripcion": "No convertir simultaneidad, afinidad, votación o participación de una misma potencia en evidencia de acoplamiento.",
+          "tipo": "sesgo_clasificacion",
+          "signal_ids": [
+            "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+            "sig-rector-rusia-ucrania-industria-europa-20260427",
+            "sig-rector-rusia-ucrania-contencion-turquia-20220829",
+            "sig-rector-rusia-ucrania-adaptacion-trigo-20240222",
+            "sig-mena-rector-golfo-agenda-integrada-20260625",
+            "sig-mena-rector-defensa-aerea-integrada-20260113",
+            "sig-rector-turquia-articulacion-regional-20260616",
+            "sig-sudan-guerra-civil-regionalizacion-mar-rojo-internacionalizacion-20260417",
+            "sig-sudan-guerra-civil-regionalizacion-mar-rojo-au-rechaza-fragmentacion-20260331",
+            "sig-africa-central-refinado-concentracion-2025",
+            "sig-africa-central-sustitucion-cobalto-2025",
+            "sig-remilitarizacion-gasto-global-2025",
+            "sig-remilitarizacion-europa-municion-brecha",
+            "sig-remilitarizacion-china-fusion-controles",
+            "sig-remilitarizacion-sur-global-localizacion",
+            "sig-indo-pacifico-presion-pla-2024",
+            "sig-indo-pacifico-chips-controles-2024",
+            "sig-indo-pacifico-quad-limites-2025",
+            "sig-indo-pacifico-asean-autonomia",
+            "sig-indo-pacifico-comunicacion-crisis-2024",
+            "sig-indo-pacifico-interdependencia",
+            "sig-nuclear-new-start-expira-2026",
+            "sig-nuclear-iaea-salvaguardias-resiliencia",
+            "sig-nuclear-dualidad-integracion",
+            "sig-nuclear-comunicacion-riesgo",
+            "sig-hemisferio-usmca-review-2026",
+            "sig-hemisferio-greenland-agencia-2025",
+            "sig-derechas-argentina-brasil-cooperacion-2025",
+            "sig-derechas-difusion-sin-integracion-2025",
+            "sig-rector-corredores-myanmar-competencia-20260616",
+            "sig-rector-corredores-tailandia-malaca-20260618"
+          ],
+          "fuente_ids": [],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-09-02T00:00:00Z",
+          "actualizada_el": "2026-09-02T00:00:00Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Exigir secuencia, mecanismo transmisor y conducta costosa.",
+          "resolucion": null,
+          "historial": []
+        },
+        {
+          "advertencia_id": "adv-acoplamiento-bloques-002",
+          "descripcion": "No tratar coaliciones parciales, actores bisagra o redes ideológicas como bloques consolidados.",
+          "tipo": "sesgo_clasificacion",
+          "signal_ids": [],
+          "fuente_ids": [],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-09-02T00:00:00Z",
+          "actualizada_el": "2026-09-02T00:00:00Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "Registrar divergencia, reversibilidad, autonomía y alcance funcional.",
+          "resolucion": null,
+          "historial": []
+        },
+        {
+          "advertencia_id": "adv-acoplamiento-alarmismo-003",
+          "descripcion": "Separar capacidad, intención, preparación, señalización y decisión; evitar lenguaje teleológico o alarmista.",
+          "tipo": "calidad_editorial",
+          "signal_ids": [],
+          "fuente_ids": [],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "alta",
+          "creada_el": "2026-09-02T00:00:00Z",
+          "actualizada_el": "2026-09-02T00:00:00Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "notas_editoriales": "La escala no equivale a probabilidad y no autoriza predicción categórica.",
+          "resolucion": null,
+          "historial": []
+        }
+      ],
+      "excepciones_advertencias": [],
+      "referencias_senal": [
+        {
+          "senal_id": "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La asistencia militar recíproca Rusia–RPDC conecta recursos, aprendizaje y cálculo aliado entre Europa y Asia sin probar mando conjunto."
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-industria-europa-20260427",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La adaptación industrial europea muestra competencia por capacidad y persistencia, pero también una respuesta de disuasión territorial acotada."
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-contencion-turquia-20220829",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La aplicación de Montreux demuestra que un actor bisagra puede limitar la expansión geográfica aun dentro de una guerra internacionalizada."
+        },
+        {
+          "senal_id": "sig-rector-rusia-ucrania-adaptacion-trigo-20240222",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La adaptación comercial del trigo prueba que una perturbación global puede amortiguarse y desacoplarse de la escalada militar."
+        },
+        {
+          "senal_id": "sig-mena-rector-golfo-agenda-integrada-20260625",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La gestión conjunta de varias crisis regionales puede sincronizar decisiones diplomáticas y militares, sin convertirlas automáticamente en una sola guerra."
+        },
+        {
+          "senal_id": "sig-mena-rector-defensa-aerea-integrada-20260113",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La coordinación aérea y misilística crea interoperabilidad y compromisos prácticos que pueden transmitir una crisis entre socios."
+        },
+        {
+          "senal_id": "sig-rector-turquia-articulacion-regional-20260616",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La autonomía y mediación turcas pueden conectar teatros, pero también compartimentar compromisos y evitar bloques rígidos."
+        },
+        {
+          "senal_id": "sig-sudan-guerra-civil-regionalizacion-mar-rojo-internacionalizacion-20260417",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "Las redes externas sostienen la guerra y proyectan efectos al mar Rojo, aunque la causalidad principal sigue siendo sudanesa."
+        },
+        {
+          "senal_id": "sig-sudan-guerra-civil-regionalizacion-mar-rojo-au-rechaza-fragmentacion-20260331",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La acción institucional africana representa un freno regional a fragmentación, reconocimiento paralelo y propagación."
+        },
+        {
+          "senal_id": "sig-africa-central-refinado-concentracion-2025",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La concentración del refinado transmite coerción y cuellos de botella tecnológicos sin equivaler a alineamiento militar."
+        },
+        {
+          "senal_id": "sig-africa-central-sustitucion-cobalto-2025",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La sustitución tecnológica y la sobreoferta reducen la capacidad de un mineral aislado para propagar coerción sistémica."
+        },
+        {
+          "senal_id": "sig-remilitarizacion-gasto-global-2025",
+          "tipo_uso": "contextual",
+          "efecto_segundo_orden": "El crecimiento del gasto es una condición de capacidad, no evidencia suficiente de intención ofensiva ni coordinación multiteatro."
+        },
+        {
+          "senal_id": "sig-remilitarizacion-europa-municion-brecha",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "Los límites de producción y entrega muestran la competencia material que puede conectar teatros y, a la vez, restringir una guerra global sostenida."
+        },
+        {
+          "senal_id": "sig-remilitarizacion-china-fusion-controles",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La interacción entre doble uso y controles tecnológicos convierte cadenas civiles en instrumentos de competencia estratégica."
+        },
+        {
+          "senal_id": "sig-remilitarizacion-sur-global-localizacion",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La localización industrial de actores no alineados confirma autonomía, transacción y coaliciones variables."
+        },
+        {
+          "senal_id": "sig-indo-pacifico-presion-pla-2024",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La práctica de componentes de bloqueo elevaría la demanda simultánea de logística, inteligencia y garantías si coincidiera con otra crisis mayor."
+        },
+        {
+          "senal_id": "sig-indo-pacifico-chips-controles-2024",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "Los controles de semiconductores transmiten competencia entre economía, tecnología y capacidad militar."
+        },
+        {
+          "senal_id": "sig-indo-pacifico-quad-limites-2025",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "Los límites institucionales del Quad contradicen la inferencia de un bloque militar asiático consolidado."
+        },
+        {
+          "senal_id": "sig-indo-pacifico-asean-autonomia",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La arquitectura inclusiva de ASEAN ofrece evidencia de agencia regional y resistencia a la polarización binaria."
+        },
+        {
+          "senal_id": "sig-indo-pacifico-comunicacion-crisis-2024",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "Los contactos militares reducen riesgo de interpretación errónea, aunque su fragilidad limita la confianza."
+        },
+        {
+          "senal_id": "sig-indo-pacifico-interdependencia",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La diversificación incompleta de semiconductores conserva costos de ruptura y capacidad de contención económica."
+        },
+        {
+          "senal_id": "sig-nuclear-new-start-expira-2026",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La pérdida del último límite bilateral integral reduce previsibilidad y agrava la planificación por peor caso."
+        },
+        {
+          "senal_id": "sig-nuclear-iaea-salvaguardias-resiliencia",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La verificación multilateral persistente refuta una tesis de colapso total del orden nuclear."
+        },
+        {
+          "senal_id": "sig-nuclear-dualidad-integracion",
+          "tipo_uso": "amplificadora",
+          "efecto_segundo_orden": "La doble capacidad y la integración multidominio crean ambigüedad entre ataques convencionales, mando y disuasión."
+        },
+        {
+          "senal_id": "sig-nuclear-comunicacion-riesgo",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "Los canales existentes contienen crisis; su cobertura desigual define un punto observable de fragilidad."
+        },
+        {
+          "senal_id": "sig-hemisferio-usmca-review-2026",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La regionalización de cadenas y los controles de triangulación pueden trasladar competencia sistémica al comercio hemisférico sin producir alineamiento automático."
+        },
+        {
+          "senal_id": "sig-hemisferio-greenland-agencia-2025",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La agencia groenlandesa muestra que incluso territorios estratégicos pueden limitar decisiones impuestas por potencias."
+        },
+        {
+          "senal_id": "sig-derechas-argentina-brasil-cooperacion-2025",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La cooperación Argentina–Brasil pese a rivalidad ideológica refuta el alineamiento regional automático por afinidad política."
+        },
+        {
+          "senal_id": "sig-derechas-difusion-sin-integracion-2025",
+          "tipo_uso": "coincidente",
+          "efecto_segundo_orden": "La difusión ideológica transnacional puede amplificar polarización, pero no constituye integración operativa ni alianza estatal."
+        },
+        {
+          "senal_id": "sig-rector-corredores-myanmar-competencia-20260616",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "Los accesos paralelos al Índico muestran competencia logística y redundancia, no una división exhaustiva en bloques."
+        },
+        {
+          "senal_id": "sig-rector-corredores-tailandia-malaca-20260618",
+          "tipo_uso": "contenedora",
+          "efecto_segundo_orden": "La alternativa parcial a Malaca ilustra cómo la redundancia logística puede reducir propagación, sujeta a demanda y ejecución."
+        }
+      ]
     }
   ],
   "expedientes_editoriales": [
@@ -18667,6 +19075,163 @@
       "extension_objetivo": 8000,
       "creado": "2026-08-31",
       "actualizado": "2026-08-31"
+    },
+    {
+      "id": "exp-acoplamiento-conflictos-mundial-20260902",
+      "estado": "borrador",
+      "tipo_documento": "dossier",
+      "titulo_trabajo": "Acoplamiento de conflictos regionales y riesgo de confrontación sistémica mundial",
+      "pregunta_editorial": "¿En qué condiciones conflictos regionales, alianzas, cadenas industriales, tecnologías, recursos estratégicos y decisiones políticas dejan de evolucionar de manera predominantemente autónoma y comienzan a transmitir escalada entre teatros hasta producir una confrontación sistémica mundial?",
+      "tesis_central": "La competencia ya comparte infraestructura, recursos y repertorios, pero la mayor parte de las crisis conserva autonomía. El salto sistémico requiere transmisión causal observable entre teatros; la autonomía regional, la interdependencia, los límites industriales, la mediación y los canales de crisis siguen siendo frenos materiales.",
+      "macroevento_ids": [
+        "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+        "rusia-ucrania-redes-seguridad-sostenimiento",
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "africa-central-minerales-criticos-cadenas-tecnologicas",
+        "remilitarizacion-industrial-cadenas-estrategicas-bloques",
+        "indo-pacifico-taiwan-reconfiguracion-seguridad",
+        "erosion-control-armamentos-disuasion-nuclear-multipolar",
+        "estados-unidos-reordenamiento-hemisferio-occidental",
+        "derechas-transnacionales-reconfiguracion-america-latina",
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "signal_ids": [
+        "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+        "sig-rector-rusia-ucrania-industria-europa-20260427",
+        "sig-rector-rusia-ucrania-contencion-turquia-20220829",
+        "sig-rector-rusia-ucrania-adaptacion-trigo-20240222",
+        "sig-mena-rector-golfo-agenda-integrada-20260625",
+        "sig-mena-rector-defensa-aerea-integrada-20260113",
+        "sig-rector-turquia-articulacion-regional-20260616",
+        "sig-sudan-guerra-civil-regionalizacion-mar-rojo-internacionalizacion-20260417",
+        "sig-sudan-guerra-civil-regionalizacion-mar-rojo-au-rechaza-fragmentacion-20260331",
+        "sig-africa-central-refinado-concentracion-2025",
+        "sig-africa-central-sustitucion-cobalto-2025",
+        "sig-remilitarizacion-gasto-global-2025",
+        "sig-remilitarizacion-europa-municion-brecha",
+        "sig-remilitarizacion-china-fusion-controles",
+        "sig-remilitarizacion-sur-global-localizacion",
+        "sig-indo-pacifico-presion-pla-2024",
+        "sig-indo-pacifico-chips-controles-2024",
+        "sig-indo-pacifico-quad-limites-2025",
+        "sig-indo-pacifico-asean-autonomia",
+        "sig-indo-pacifico-comunicacion-crisis-2024",
+        "sig-indo-pacifico-interdependencia",
+        "sig-nuclear-new-start-expira-2026",
+        "sig-nuclear-iaea-salvaguardias-resiliencia",
+        "sig-nuclear-dualidad-integracion",
+        "sig-nuclear-comunicacion-riesgo",
+        "sig-hemisferio-usmca-review-2026",
+        "sig-hemisferio-greenland-agencia-2025",
+        "sig-derechas-argentina-brasil-cooperacion-2025",
+        "sig-derechas-difusion-sin-integracion-2025",
+        "sig-rector-corredores-myanmar-competencia-20260616",
+        "sig-rector-corredores-tailandia-malaca-20260618"
+      ],
+      "source_ids": [
+        "src-rector-rusia-ucrania-kremlin-rpdc-20240619",
+        "src-rector-rusia-ucrania-msmt-20250529",
+        "src-rector-rusia-ucrania-sipri-milex-20260427",
+        "src-rector-rusia-ucrania-eu-military-support-202608",
+        "src-rector-rusia-ucrania-turquia-montreux-20220829",
+        "src-rector-rusia-ucrania-worldbank-wheat-20240222",
+        "src-mena-rector-gcc-us-ministerial-20260625",
+        "src-mena-rector-centcom-air-defense-20260113",
+        "src-rector-turquia-siria-carnegie-20250708",
+        "src-rector-turquia-orden-brookings-20260616",
+        "src-sudan-guerra-civil-regionalizacion-mar-rojo-csis",
+        "src-sudan-guerra-civil-regionalizacion-mar-rojo-euaaActors",
+        "src-sudan-guerra-civil-regionalizacion-mar-rojo-auDecision",
+        "src-africa-central-iea-outlook-2025",
+        "src-africa-central-afdb-cobalt-2025",
+        "src-remilitarizacion-sipri-milex-2025",
+        "src-remilitarizacion-iiss-balance-2025",
+        "src-remilitarizacion-eu-asap-2025",
+        "src-remilitarizacion-dod-china-2025",
+        "src-remilitarizacion-bis-controls-2025",
+        "src-remilitarizacion-sipri-arms-2025",
+        "src-indo-pacifico-dod-china-2025",
+        "src-indo-pacifico-taiwan-ndr-2025",
+        "src-indo-pacifico-bis-controls-2024",
+        "src-indo-pacifico-taiwan-qdr-2025",
+        "src-indo-pacifico-us-india-2025",
+        "src-indo-pacifico-quad-2024",
+        "src-indo-pacifico-asean-outlook-2019",
+        "src-indo-pacifico-dod-talks-2024",
+        "src-indo-pacifico-us-japan-2025",
+        "src-nuclear-new-start-state",
+        "src-nuclear-sipri-yearbook-2026",
+        "src-nuclear-iaea-safeguards-2025",
+        "src-nuclear-us-npr-2022",
+        "src-nuclear-russia-doctrine-2024",
+        "src-nuclear-china-arms-control-2025",
+        "src-nuclear-npt-2026-un",
+        "src-hemisferio-ustr-review-2026",
+        "src-hemisferio-usmca-text",
+        "src-hemisferio-greenland-2025",
+        "src-derechas-mercosur-cumbre-2025",
+        "src-derechas-brasil-comercio-mercosur-2025",
+        "src-derechas-echoes-2025",
+        "src-derechas-psq-frames-2026",
+        "src-derechas-jird-populism-2026",
+        "src-rector-corredores-myanmar-ft-20260616",
+        "src-rector-corredores-kaladan-toi-20250707",
+        "src-rector-corredores-tailandia-reuters-20260618"
+      ],
+      "geografias_publicas": [
+        "global",
+        "europa",
+        "eurasia",
+        "medio-oriente",
+        "africa",
+        "asia-pacifico",
+        "asia-meridional",
+        "america-del-norte",
+        "america-latina"
+      ],
+      "temas_publicos": [
+        "seguridad-conflicto",
+        "potencias-bloques",
+        "economia-sanciones",
+        "energia-recursos",
+        "infraestructura-logistica",
+        "tecnologia-poder-digital",
+        "diplomacia-gobernanza",
+        "politica-domestica"
+      ],
+      "procesos_publicos": [
+        "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+        "rusia-ucrania-redes-seguridad-sostenimiento",
+        "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+        "turquia-potencia-bisagra-reordenamiento-regional",
+        "sudan-guerra-civil-regionalizacion-mar-rojo",
+        "africa-central-minerales-criticos-cadenas-tecnologicas",
+        "remilitarizacion-industrial-cadenas-estrategicas-bloques",
+        "indo-pacifico-taiwan-reconfiguracion-seguridad",
+        "erosion-control-armamentos-disuasion-nuclear-multipolar",
+        "estados-unidos-reordenamiento-hemisferio-occidental",
+        "derechas-transnacionales-reconfiguracion-america-latina",
+        "corredores-alternativos-redes-logisticas-redundantes"
+      ],
+      "incertidumbres": [
+        "Intenciones y planes operativos no observables",
+        "Atribución de operaciones cibernéticas y espaciales",
+        "Credibilidad y alcance real de garantías informales",
+        "Elasticidad industrial bajo crisis simultáneas",
+        "Duración de sustituciones y redundancias",
+        "Capacidad social y fiscal de movilización prolongada",
+        "Autonomía real de aliados y socios bajo presión",
+        "Efecto de la compresión temporal sobre decisiones",
+        "Capacidad de limitar un enfrentamiento directo"
+      ],
+      "documentos_relacionados": [
+        "src/content/publicaciones/_preview/acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial.md"
+      ],
+      "extension_objetivo": 9000,
+      "creado": "2026-09-02",
+      "actualizado": "2026-09-02"
     }
   ],
   "importaciones_candidatos": [
@@ -20543,6 +21108,183 @@
       "estado_revision": "revisada",
       "justificacion": "Clasificación conservadora del vínculo heredado entre «Erosión del control de armamentos y reconfiguración de la disuasión nuclear multipolar» y «Competencia por minerales críticos y reorganización de las cadenas tecnológicas en África central»; distingue mecanismo de simultaneidad.",
       "condicion_refutacion": "Se revisará o retirará si la evidencia deja de mostrar el mecanismo descrito o si sólo permanece simultaneidad temática."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-rusia-ucrania-redes-seguridad-sostenimiento",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "rusia-ucrania-redes-seguridad-sostenimiento",
+      "tipo": "amplificadora",
+      "mecanismo": "Transferencias, garantías, industria y cooperación Rusia–RPDC conectan la guerra europea con capacidades y cálculos en Asia.",
+      "evidencia_senal_ids": [
+        "sig-rector-rusia-ucrania-rpdc-tratado-20240619",
+        "sig-rector-rusia-ucrania-industria-europa-20260427"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como amplificadora: identifica un mecanismo y conserva la autonomía causal de «Guerra Rusia–Ucrania y reconfiguración de redes internacionales de seguridad y sostenimiento».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
+      "tipo": "amplificadora",
+      "mecanismo": "Defensa integrada, presencia de grandes potencias y coerción energética pueden transmitir decisiones regionales a garantías y recursos externos.",
+      "evidencia_senal_ids": [
+        "sig-mena-rector-golfo-agenda-integrada-20260625",
+        "sig-mena-rector-defensa-aerea-integrada-20260113"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como amplificadora: identifica un mecanismo y conserva la autonomía causal de «De los Acuerdos de Abraham a la guerra regionalizada: Israel, Irán, Palestina y los Estados del Golfo».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-turquia-potencia-bisagra-reordenamiento-regional",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "turquia-potencia-bisagra-reordenamiento-regional",
+      "tipo": "contenedora",
+      "mecanismo": "La autonomía, mediación y control de accesos de Turquía pueden limitar la expansión entre Europa, mar Negro y Medio Oriente, aunque también conecten redes.",
+      "evidencia_senal_ids": [
+        "sig-rector-rusia-ucrania-contencion-turquia-20220829",
+        "sig-rector-turquia-articulacion-regional-20260616"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como contenedora: identifica un mecanismo y conserva la autonomía causal de «Consolidación de Turquía como potencia bisagra multidimensional en el reordenamiento regional».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-sudan-guerra-civil-regionalizacion-mar-rojo",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "sudan-guerra-civil-regionalizacion-mar-rojo",
+      "tipo": "relacionada",
+      "mecanismo": "Apoyos externos, oro y mar Rojo internacionalizan Sudán sin convertir su guerra en simple frente de potencias.",
+      "evidencia_senal_ids": [
+        "sig-sudan-guerra-civil-regionalizacion-mar-rojo-internacionalizacion-20260417",
+        "sig-sudan-guerra-civil-regionalizacion-mar-rojo-au-rechaza-fragmentacion-20260331"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como relacionada: identifica un mecanismo y conserva la autonomía causal de «Regionalización de la guerra civil en Sudán y disputa por el orden del mar Rojo y el Cuerno de África».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-africa-central-minerales-criticos-cadenas-tecnologicas",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "africa-central-minerales-criticos-cadenas-tecnologicas",
+      "tipo": "relacionada",
+      "mecanismo": "Minerales y refinado transmiten dependencia tecnológica e industrial; sustitución y agencia productora impiden equipararla a alianza militar.",
+      "evidencia_senal_ids": [
+        "sig-africa-central-refinado-concentracion-2025",
+        "sig-africa-central-sustitucion-cobalto-2025"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como relacionada: identifica un mecanismo y conserva la autonomía causal de «Competencia por minerales críticos y reorganización de las cadenas tecnológicas en África central».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-remilitarizacion-industrial-cadenas-estrategicas-bloques",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "remilitarizacion-industrial-cadenas-estrategicas-bloques",
+      "tipo": "amplificadora",
+      "mecanismo": "La competencia por producción, munición y doble uso conecta la duración de guerras con capacidades disponibles en otros teatros.",
+      "evidencia_senal_ids": [
+        "sig-remilitarizacion-europa-municion-brecha",
+        "sig-remilitarizacion-china-fusion-controles"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como amplificadora: identifica un mecanismo y conserva la autonomía causal de «Remilitarización industrial y formación de cadenas estratégicas de bloques».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-indo-pacifico-taiwan-reconfiguracion-seguridad",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "indo-pacifico-taiwan-reconfiguracion-seguridad",
+      "tipo": "amplificadora",
+      "mecanismo": "Un bloqueo o enfrentamiento en torno a Taiwán afectaría garantías, semiconductores y logística global; los canales y la autonomía regional contienen esa transmisión.",
+      "evidencia_senal_ids": [
+        "sig-indo-pacifico-presion-pla-2024",
+        "sig-indo-pacifico-comunicacion-crisis-2024"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como amplificadora: identifica un mecanismo y conserva la autonomía causal de «Reconfiguración del Indo-Pacífico y riesgo de confrontación en torno a Taiwán».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-erosion-control-armamentos-disuasion-nuclear-multipolar",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "erosion-control-armamentos-disuasion-nuclear-multipolar",
+      "tipo": "amplificadora",
+      "mecanismo": "La erosión de límites, la doble capacidad y la fragilidad de canales elevan el riesgo de que una crisis convencional se interprete como amenaza estratégica.",
+      "evidencia_senal_ids": [
+        "sig-nuclear-new-start-expira-2026",
+        "sig-nuclear-dualidad-integracion",
+        "sig-nuclear-comunicacion-riesgo"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como amplificadora: identifica un mecanismo y conserva la autonomía causal de «Erosión del control de armamentos y reconfiguración de la disuasión nuclear multipolar».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-estados-unidos-reordenamiento-hemisferio-occidental",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "estados-unidos-reordenamiento-hemisferio-occidental",
+      "tipo": "contextual",
+      "mecanismo": "Comercio, defensa continental y cadenas hemisféricas trasladan competencia, pero no prueban un frente militar hemisférico coherente.",
+      "evidencia_senal_ids": [
+        "sig-hemisferio-usmca-review-2026",
+        "sig-hemisferio-greenland-agencia-2025"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como contextual: identifica un mecanismo y conserva la autonomía causal de «Reordenamiento estratégico del hemisferio occidental bajo el nacionalismo estadounidense».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-derechas-transnacionales-reconfiguracion-america-latina",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "derechas-transnacionales-reconfiguracion-america-latina",
+      "tipo": "coincidente",
+      "mecanismo": "Las redes ideológicas pueden amplificar polarización y afinidades, pero la cooperación Argentina–Brasil y la adaptación nacional refutan alineamiento automático.",
+      "evidencia_senal_ids": [
+        "sig-derechas-argentina-brasil-cooperacion-2025",
+        "sig-derechas-difusion-sin-integracion-2025"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como coincidente: identifica un mecanismo y conserva la autonomía causal de «Articulación transnacional de las derechas y reconfiguración política de América Latina».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
+    },
+    {
+      "id": "rel-acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial-corredores-alternativos-redes-logisticas-redundantes",
+      "origen_id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
+      "destino_id": "corredores-alternativos-redes-logisticas-redundantes",
+      "tipo": "relacionada",
+      "mecanismo": "Rutas, energía, cables y seguros transmiten choques materiales; la redundancia y adaptación pueden desacoplarlos de la escalada militar.",
+      "evidencia_senal_ids": [
+        "sig-rector-corredores-myanmar-competencia-20260616",
+        "sig-rector-corredores-tailandia-malaca-20260618"
+      ],
+      "direccion": "bidireccional",
+      "reciprocidad": true,
+      "estado_revision": "revisada",
+      "justificacion": "El vínculo se incorpora solo como relacionada: identifica un mecanismo y conserva la autonomía causal de «Reconfiguración de la conectividad global mediante corredores alternativos y redes redundantes».",
+      "condicion_refutacion": "Reclasificar o retirar si no aparece secuencia causal, conducta costosa o transmisión observable y la asociación queda reducida a simultaneidad, retórica o contexto."
     }
   ]
 }

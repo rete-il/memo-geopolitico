@@ -6,7 +6,7 @@ import { checkInstallation } from '../server.mjs';
 test('reconoce los datos reales incluidos en el Centro', () => {
   const health = collectDataHealth();
   assert.equal(health.ok, true);
-  assert.equal(health.observatorio.macroeventos, 51);
+  assert.equal(health.observatorio.macroeventos, 52);
   assert.equal(health.observatorio.temas, 314);
   assert.equal(health.medios.canonical, 106);
   assert.equal(health.medios.derived, 106);
