@@ -1,5 +1,20 @@
 # Memo Geopolítico — sitio rediseñado
 
+## Estado del release del 15 de septiembre de 2026
+
+75 artículos públicos y 100 expedientes. Los 50 análisis completados en la
+serie de rectores se publicaron por autorización expresa del usuario.
+
+El SEO usa canonical HTTPS, sitemap con fechas de actualización y datos
+estructurados de artículos, autores y navegación. Producción permite indexación;
+beta y vistas previas usan `noindex`. Ejecutar `npm run validate:seo` después del
+build para comprobar las 761 URLs actuales del sitemap. Google decide cuándo
+rastrear e indexar; el sitemap está anunciado en `/robots.txt` y puede enviarse
+en Search Console. El detalle del release está en
+`project-management/records/RELEASE-SEO-2026-09-15.md`.
+
+Las cifras de las notas históricas siguientes corresponden a versiones previas.
+
 Actualización local v0.4.0 del nuevo modelo editorial:
 
 - Astro 7 y Tailwind CSS 4.

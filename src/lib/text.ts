@@ -9,6 +9,7 @@ export function slugify(value: string): string {
 
 export function formatDate(value: string | Date | null | undefined): string {
   if (!value) return 'Sin fecha';
+  if (typeof value === 'string' && /^\d{4}$/.test(value)) return value;
   const date = value instanceof Date ? value : new Date(`${value}T12:00:00`);
   if (Number.isNaN(date.getTime())) return String(value);
   return new Intl.DateTimeFormat('es', {

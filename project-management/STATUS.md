@@ -2,22 +2,22 @@
 
 > Archivo generado. Editar `data/*.json` y ejecutar `node project-management/tools/update-dashboard.mjs`.
 
-**Actualizado:** 2026-08-27
+**Actualizado:** 2026-09-15
 
 **Rama de trabajo:** `beta`
 
 **Release actual:** Beta 0 — Baseline, seguridad y control
 
-**Avance ponderado total:** **25%**
+**Avance ponderado total:** **30%**
 
 ## Resumen
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 107 |
+| Total de work items | 114 |
 | Terminados | 29 |
 | En progreso | 2 |
-| En revisión | 6 |
+| En revisión | 13 |
 | Bloqueados | 0 |
 | Listos | 5 |
 | P0 abiertos | 19 |
@@ -26,7 +26,7 @@
 
 **Objetivo:** Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual.
 
-**Avance del release:** 85%
+**Avance del release:** 87%
 
 ### Trabajo activo
 
@@ -40,6 +40,13 @@
 | QA-005 | ▶ En progreso | Validar cabecera, índices, rutas heredadas y navegación por teclado | Rete | 70% |
 | OBS-001 | ◆ En revisión | Consolidar el Observatorio autónomo de macroeventos y expedientes v0.3.0 | Rete | 90% |
 | OBS-002 | ▶ En progreso | Completar el piloto del Corredor de Lobito hasta un Markdown publicable | Rete | 45% |
+| ED-ACOP-20260915 | ◆ En revisión | Completar análisis y complementarios del rector de acoplamiento mundial | Codex | 95% |
+| ED-INDOPAC-20260915 | ◆ En revisión | Completar rector y nueve complementarios del Indo-Pacífico | Codex | 95% |
+| ED-NUCLEAR-20260915 | ◆ En revisión | Completar rector nuclear y siete procesos complementarios | Codex | 95% |
+| ED-MINERALES-20260915 | ◆ En revisión | Completar rector de minerales de África central y seis complementarios | Codex | 95% |
+| ED-REARME-20260915 | ◆ En revisión | Completar rector de remilitarización industrial y seis procesos complementarios | Codex | 95% |
+| ED-HEMISFERIO-20260915 | ◆ En revisión | Completar rector hemisférico y seis procesos complementarios | Codex | 95% |
+| ED-DERECHAS-20260915 | ◆ En revisión | Completar rector de derechas transnacionales y seis procesos complementarios | Codex | 95% |
 
 ### Próximas tareas listas
 

@@ -5,6 +5,16 @@
 [build.environment]
   NODE_VERSION = "22.12.0"
   PUBLIC_INCLUDE_DRAFTS = "false"
+  PUBLIC_NOINDEX = "false"
+
+[context.branch-deploy.environment]
+  PUBLIC_NOINDEX = "true"
+
+[context.deploy-preview.environment]
+  PUBLIC_NOINDEX = "true"
+
+[context.beta.environment]
+  PUBLIC_NOINDEX = "true"
 
 [[headers]]
   for = "/*"

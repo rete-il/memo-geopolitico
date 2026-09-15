@@ -2076,5 +2076,145 @@
       "La migración unifica variantes ortográficas equivalentes sin perder valores históricos ni inventar equivalencias ambiguas."
     ],
     "notes": "Necesidad detectada durante la gestión de una advertencia de turquia-iran-competencia-coexistencia el 2026-08-25. El campo Tipo es actualmente texto libre; debe evolucionar hacia un vocabulario administrable semejante al de categorías internas."
+  },
+  {
+    "id": "ED-ACOP-20260915",
+    "type": "ED",
+    "epic": "Producción editorial",
+    "title": "Completar análisis y complementarios del rector de acoplamiento mundial",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Codex",
+    "dependencies": [],
+    "progress": 95,
+    "acceptanceCriteria": [
+      "Tres mecanismos autónomos investigados y vinculados sin duplicar señales.",
+      "Análisis rector y complementarios conservados en fuente canónica.",
+      "Datos y construcciones válidas, cero enlaces internos rotos.",
+      "Decisión de publicación registrada por separado."
+    ],
+    "notes": "Investigación e integración terminadas. Ver records/COMPLECION-ACOPLAMIENTO-MUNDIAL-2026-09-15.md. 211/212 pruebas: discrepancia de medios preexistente. Publicación pendiente de respuesta."
+  },
+  {
+    "id": "ED-INDOPAC-20260915",
+    "type": "ED",
+    "epic": "Producción editorial",
+    "title": "Completar rector y nueve complementarios del Indo-Pacífico",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Codex",
+    "dependencies": [],
+    "progress": 95,
+    "acceptanceCriteria": [
+      "Nueve mecanismos investigados con señales propietarias y fuentes trazables.",
+      "Análisis rector y complementarios conservados en fuente canónica.",
+      "Vista editorial navegable y cero enlaces internos rotos.",
+      "Publicación gestionada como paso editorial separado."
+    ],
+    "notes": "Investigación e integración terminadas. Ver records/COMPLECION-INDO-PACIFICO-2026-09-15.md. Listo para publicación local; sin despliegue remoto. Persiste discrepancia preexistente del catálogo de medios."
+  },
+  {
+    "id": "ED-NUCLEAR-20260915",
+    "type": "ED",
+    "epic": "Producción editorial",
+    "title": "Completar rector nuclear y siete procesos complementarios",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Codex",
+    "dependencies": [],
+    "progress": 95,
+    "acceptanceCriteria": [
+      "Siete mecanismos autónomos con evidencia y análisis canónicos.",
+      "Señales trasladadas sin duplicar propiedad ni romper referencias.",
+      "Escenarios, refutación y límites de fuentes visibles.",
+      "Vista local validada y publicación gestionada por separado."
+    ],
+    "notes": "Investigación e integración terminadas. Ver records/COMPLECION-NUCLEAR-2026-09-15.md. Nueve señales nuevas, doce fuentes y tres antecedentes trasladados. Persiste únicamente fallo preexistente de medios; sin despliegue remoto."
+  },
+  {
+    "id": "ED-MINERALES-20260915",
+    "type": "ED",
+    "epic": "Producción editorial",
+    "title": "Completar rector de minerales de África central y seis complementarios",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Codex",
+    "dependencies": [],
+    "progress": 95,
+    "acceptanceCriteria": [
+      "Seis análisis con mecanismos autónomos y fuentes de alcance explícito.",
+      "Tres antecedentes trasladados sin duplicación; Lobito conserva autonomía.",
+      "Estados de ejecución, escenarios e incertidumbres visibles.",
+      "Vista local validada y publicación gestionada por separado."
+    ],
+    "notes": "Ver records/COMPLECION-MINERALES-AFRICA-CENTRAL-2026-09-15.md. Siete señales nuevas y nueve fuentes; sin despliegue remoto."
+  },
+  {
+    "id": "ED-REARME-20260915",
+    "type": "ED",
+    "epic": "Producción editorial",
+    "title": "Completar rector de remilitarización industrial y seis procesos complementarios",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Codex",
+    "dependencies": [],
+    "progress": 95,
+    "acceptanceCriteria": [
+      "Seis mecanismos autónomos con fuentes, escenarios e indicadores.",
+      "Compromisos, financiación y resultados separados; calendarios revisados visibles.",
+      "Expedientes existentes conservados sin duplicación.",
+      "Vista local validada y publicación gestionada por separado."
+    ],
+    "notes": "Ver records/COMPLECION-REMILITARIZACION-2026-09-15.md. Nueve señales y diez fuentes nuevas; sin despliegue remoto."
+  },
+  {
+    "id": "ED-HEMISFERIO-20260915",
+    "type": "ED",
+    "epic": "Producción editorial",
+    "title": "Completar rector hemisférico y seis procesos complementarios",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Codex",
+    "dependencies": [],
+    "progress": 95,
+    "acceptanceCriteria": [
+      "Seis análisis autónomos con fuentes y escenarios.",
+      "Distinguir hitos jurídicos, anuncios y resultados.",
+      "Conservar autonomía de Panamá y expedientes previos.",
+      "Vista local validada; publicación separada."
+    ],
+    "notes": "Ver records/COMPLECION-HEMISFERIO-2026-09-15.md. Ocho señales y nueve fuentes nuevas; sin despliegue remoto."
+  },
+  {
+    "id": "ED-DERECHAS-20260915",
+    "type": "ED",
+    "epic": "Producción editorial",
+    "title": "Completar rector de derechas transnacionales y seis procesos complementarios",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-0-baseline",
+    "size": "L",
+    "owner": "Codex",
+    "dependencies": [],
+    "progress": 95,
+    "acceptanceCriteria": [
+      "Seis mecanismos con fuentes atribuidas y límites causales.",
+      "Diferenciar afinidad, coordinación, ejecución y resultado.",
+      "Conservar autonomía de procesos anteriores y advertencias metodológicas.",
+      "Vista local comprobada y publicación separada."
+    ],
+    "notes": "Ver records/COMPLECION-DERECHAS-2026-09-15.md. Seis señales y seis fuentes nuevas. Sin despliegue remoto."
   }
 ]

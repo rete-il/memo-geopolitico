@@ -10,6 +10,7 @@ interface Props {
   description?: string;
   canonicalPath?: string;
   noindex?: boolean;
+  article?: Record<string, unknown>;
 }
 
 const {
@@ -17,7 +18,9 @@ const {
   description = 'Observatorio y publicaciones sobre procesos geopolíticos de mediano y largo plazo.',
   canonicalPath,
   noindex = false,
+  article,
 } = Astro.props;
+const preventIndexing = noindex || editorialPreviewEnabled || import.meta.env.PUBLIC_NOINDEX === 'true';
 
 const fullTitle =
   title === 'Memo Geopolítico' ? title : `${title} · Memo Geopolítico`;
@@ -37,12 +40,28 @@ const canonicalURL = new URL(
     <link rel="canonical" href={canonicalURL} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
-    <meta property="og:type" content="website" />
+    <meta name="robots" content={preventIndexing ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:site_name" content="Memo Geopolítico" />
+    <meta property="og:locale" content="es_ES" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        { '@type': 'Organization', '@id': 'https://memogeopolitico.com/#organization', name: 'Memo Geopolítico', url: 'https://memogeopolitico.com/' },
+        { '@type': 'WebSite', '@id': 'https://memogeopolitico.com/#website', name: 'Memo Geopolítico', url: 'https://memogeopolitico.com/', inLanguage: 'es', publisher: { '@id': 'https://memogeopolitico.com/#organization' } },
+        ...(canonicalURL.pathname !== '/' ? [{ '@type': 'BreadcrumbList', itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://memogeopolitico.com/' },
+          { '@type': 'ListItem', position: 2, name: title, item: canonicalURL.href },
+        ] }] : []),
+        ...(article ? [{ '@type': 'Article', ...article, url: canonicalURL.href, mainEntityOfPage: canonicalURL.href, inLanguage: 'es', publisher: { '@id': 'https://memogeopolitico.com/#organization' } }] : []),
+      ],
+    }).replace(/</g, '\\u003c')} />
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>

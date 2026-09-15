@@ -45,6 +45,13 @@
 | DATA-004 | DATA | Relevancia vs. atención mediática | P1 | ✓ Terminada | M | Rete | DATA-002, ED-008 | Enlazar cada tarjeta activa con una página temática publicada |
 | DIR-010 | UX | Medios | P1 | ◆ En revisión | S | Rete | NAV-001 | Renombrar Directorio como Medios y preservar la ruta anterior |
 | ED-010 | CONTENT | Transparencia | P1 | ◆ En revisión | M | Rete | IA-001 | Crear la página Acerca de Memo Geopolítico |
+| ED-ACOP-20260915 | ED | Producción editorial | P1 | ◆ En revisión | L | Codex | — | Completar análisis y complementarios del rector de acoplamiento mundial |
+| ED-DERECHAS-20260915 | ED | Producción editorial | P1 | ◆ En revisión | L | Codex | — | Completar rector de derechas transnacionales y seis procesos complementarios |
+| ED-HEMISFERIO-20260915 | ED | Producción editorial | P1 | ◆ En revisión | L | Codex | — | Completar rector hemisférico y seis procesos complementarios |
+| ED-INDOPAC-20260915 | ED | Producción editorial | P1 | ◆ En revisión | L | Codex | — | Completar rector y nueve complementarios del Indo-Pacífico |
+| ED-MINERALES-20260915 | ED | Producción editorial | P1 | ◆ En revisión | L | Codex | — | Completar rector de minerales de África central y seis complementarios |
+| ED-NUCLEAR-20260915 | ED | Producción editorial | P1 | ◆ En revisión | L | Codex | — | Completar rector nuclear y siete procesos complementarios |
+| ED-REARME-20260915 | ED | Producción editorial | P1 | ◆ En revisión | L | Codex | — | Completar rector de remilitarización industrial y seis procesos complementarios |
 | OPS-002 | OPS | Reproducibilidad | P1 | ◉ Lista | XS | TBD | — | Versionar Node con .nvmrc o .node-version |
 | OPS-003 | OPS | Reproducibilidad | P1 | ◉ Lista | S | TBD | OPS-002 | Versionar configuración Netlify en netlify.toml |
 | QA-004 | QA | Calidad Técnica | P1 | ✓ Terminada | M | Rete | QA-001 | Reducir hints de Astro Check |

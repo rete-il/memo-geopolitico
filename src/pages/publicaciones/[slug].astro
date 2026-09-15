@@ -5,6 +5,7 @@ import SupportCTA from '../../components/SupportCTA.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import {
   catalogMaps,
+  catalog,
   editorialPreviewEnabled,
   processes,
   sourceById,
@@ -56,6 +57,13 @@ const primaryTopic = topics.find((topic) => topic.primary);
 <SiteLayout
   title={entry.data.titulo}
   description={entry.data.resumen}
+  article={entry.data.publicacion.estado === 'publicado' ? {
+    headline: entry.data.titulo,
+    description: entry.data.resumen,
+    datePublished: entry.data.publicacion.publicado_el,
+    dateModified: entry.data.publicacion.actualizado_el,
+    author: entry.data.autor_ids.map((id) => ({ '@type': 'Person', name: catalog('autores').find(author => author.id === id)?.nombre || id })),
+  } : undefined}
   noindex={entry.data.publicacion.estado !== 'publicado'}
 >
   <div class="page-shell publication-page-shell">
@@ -86,7 +94,7 @@ const primaryTopic = topics.find((topic) => topic.primary);
             )
           }
           <span>Actualizado {formatDate(entry.data.publicacion.actualizado_el)}</span>
-          <span>Por {entry.data.autor_ids.join(', ')}</span>
+          <span>Por {entry.data.autor_ids.map(id => catalog('autores').find(author => author.id === id)?.nombre || id).join(', ')}</span>
           {
             entry.data.publicacion.estado !== 'publicado' && (
               <span class="draft-chip">

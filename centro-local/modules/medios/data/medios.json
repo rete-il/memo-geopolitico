@@ -8,7 +8,7 @@
     "ultima_revision": "2026-08-26",
     "descripcion": "Matriz de fuentes clasificada por región, función epistemológica, perspectiva geopolítica y criterios de calidad.",
     "total_fuentes": 106,
-    "generado": "2026-09-01T00:00:00Z"
+    "generado": "2026-09-15T00:00:00Z"
   },
   "columns": [
     {
@@ -152,7 +152,7 @@
       "estado": "Activo",
       "observaciones": "Útil para velocidad y síntesis; verificar primicias de alto impacto.",
       "referencia": "https://www.axios.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "axios"
     },
     {
@@ -182,7 +182,7 @@
       "estado": "Activo",
       "observaciones": "Separar cobertura informativa de análisis y opinión.",
       "referencia": "https://www.bbc.com/aboutthebbc/governance/charter",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "bbc-news"
     },
     {
@@ -212,7 +212,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://elpais.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "el-pais"
     },
     {
@@ -242,7 +242,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.lanacion.com.ar/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "la-nacion-argentina"
     },
     {
@@ -272,7 +272,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.lavanguardia.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "la-vanguardia"
     },
     {
@@ -302,7 +302,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.nbcnews.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "nbc-news"
     },
     {
@@ -332,7 +332,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.politico.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "politico"
     },
     {
@@ -362,7 +362,7 @@
       "estado": "Activo",
       "observaciones": "Referencia principal de la matriz para confirmación factual.",
       "referencia": "https://www.thomsonreuters.com/en/about-us/trust-principles.html",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "reuters"
     },
     {
@@ -392,7 +392,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.theguardian.com/international",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-guardian"
     },
     {
@@ -422,7 +422,7 @@
       "estado": "Activo",
       "observaciones": "Distinguir con claridad noticias, análisis y columnas.",
       "referencia": "https://www.nytimes.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-new-york-times"
     },
     {
@@ -452,7 +452,7 @@
       "estado": "Activo",
       "observaciones": "La sección informativa y la página editorial tienen perfiles distintos.",
       "referencia": "https://www.wsj.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-wall-street-journal"
     },
     {
@@ -482,7 +482,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://apnews.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "associated-press-ap"
     },
     {
@@ -512,7 +512,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.afp.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "agence-france-presse-afp"
     },
     {
@@ -542,7 +542,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.bloomberg.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "bloomberg"
     },
     {
@@ -572,7 +572,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.ft.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "financial-times"
     },
     {
@@ -602,7 +602,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.dw.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "deutsche-welle"
     },
     {
@@ -632,7 +632,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.france24.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "france-24"
     },
     {
@@ -662,7 +662,7 @@
       "estado": "Uso condicionado",
       "observaciones": "No equiparar automáticamente la edición inglesa con la árabe.",
       "referencia": "https://www.aljazeera.com/about-us",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "al-jazeera-english"
     },
     {
@@ -692,7 +692,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Evaluar por programa; mayor carga política que la edición inglesa.",
       "referencia": "https://www.aljazeera.com/about-us",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "al-jazeera-arabic"
     },
     {
@@ -722,7 +722,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://13tv.co.il/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "channel-13-israel"
     },
     {
@@ -752,7 +752,7 @@
       "estado": "Uso condicionado",
       "observaciones": "",
       "referencia": "https://gulfnews.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "gulf-news"
     },
     {
@@ -782,7 +782,7 @@
       "estado": "Activo",
       "observaciones": "Reubicado fuera de la categoría mainstream.",
       "referencia": "https://www.ha-makom.co.il/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "ha-makom"
     },
     {
@@ -812,7 +812,7 @@
       "estado": "Activo",
       "observaciones": "Separar noticias, análisis y columnas editoriales.",
       "referencia": "https://www.haaretz.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "haaretz"
     },
     {
@@ -842,7 +842,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.kan.org.il/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "kan-israel"
     },
     {
@@ -872,7 +872,7 @@
       "estado": "Uso condicionado",
       "observaciones": "",
       "referencia": "https://www.khaleejtimes.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "khaleej-times"
     },
     {
@@ -902,7 +902,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.maariv.co.il/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "maariv"
     },
     {
@@ -932,7 +932,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.n12.co.il/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "n12-israel"
     },
     {
@@ -962,7 +962,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.timesofisrael.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-times-of-israel"
     },
     {
@@ -992,7 +992,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.ynetnews.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "ynet"
     },
     {
@@ -1022,7 +1022,7 @@
       "estado": "Uso condicionado",
       "observaciones": "Útil para diversidad de perspectiva; no usar en solitario.",
       "referencia": "https://www.middleeasteye.net/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "middle-east-eye"
     },
     {
@@ -1052,7 +1052,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.madamasr.com/en/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "mada-masr"
     },
     {
@@ -1082,7 +1082,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.chathamhouse.org/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "chatham-house"
     },
     {
@@ -1112,7 +1112,7 @@
       "estado": "Activo",
       "observaciones": "Corregido: paneuropeo, no Reino Unido/Bélgica.",
       "referencia": "https://ecfr.eu/contact/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "ecfr"
     },
     {
@@ -1142,7 +1142,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.ejil.org/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "european-journal-of-international-law-ejil"
     },
     {
@@ -1172,7 +1172,7 @@
       "estado": "Activo",
       "observaciones": "Distinguir investigación pública de productos comerciales.",
       "referencia": "https://www.eurasiagroup.net/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "eurasia-group"
     },
     {
@@ -1202,7 +1202,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.iiss.org/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "iiss"
     },
     {
@@ -1232,7 +1232,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.inss.org.il/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "inss"
     },
     {
@@ -1262,7 +1262,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://legrandcontinent.eu/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "le-grand-continent"
     },
     {
@@ -1292,7 +1292,7 @@
       "estado": "Uso condicionado",
       "observaciones": "",
       "referencia": "https://www.longwarjournal.org/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "long-war-journal"
     },
     {
@@ -1322,7 +1322,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.rusi.org/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "rusi"
     },
     {
@@ -1352,7 +1352,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.sciencespo.fr/ceri/en/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "sciences-po-ceri"
     },
     {
@@ -1382,7 +1382,7 @@
       "estado": "Activo",
       "observaciones": "Reubicada: no es organismo oficial.",
       "referencia": "https://www.armscontrol.org/about",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "arms-control-association"
     },
     {
@@ -1412,7 +1412,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.sipri.org/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "sipri"
     },
     {
@@ -1442,7 +1442,7 @@
       "estado": "Uso condicionado",
       "observaciones": "No clasificar simplemente como inútil: es fuente primaria de narrativa estatal.",
       "referencia": "https://www.cgtn.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "cgtn"
     },
     {
@@ -1472,7 +1472,7 @@
       "estado": "Uso condicionado",
       "observaciones": "",
       "referencia": "https://tass.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "tass"
     },
     {
@@ -1502,7 +1502,7 @@
       "estado": "Uso condicionado",
       "observaciones": "",
       "referencia": "https://english.news.cn/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "xinhua-news-agency"
     },
     {
@@ -1532,7 +1532,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://asia.nikkei.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "nikkei-asia"
     },
     {
@@ -1562,7 +1562,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.channelnewsasia.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "cna"
     },
     {
@@ -1592,7 +1592,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www3.nhk.or.jp/nhkworld/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "nhk-world-japan"
     },
     {
@@ -1622,7 +1622,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://english.kyodonews.net/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "kyodo-news"
     },
     {
@@ -1652,7 +1652,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://en.yna.co.kr/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "yonhap-news-agency"
     },
     {
@@ -1682,7 +1682,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.caixinglobal.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "caixin-global"
     },
     {
@@ -1712,7 +1712,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.scmp.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "south-china-morning-post"
     },
     {
@@ -1742,7 +1742,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.thehindu.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-hindu"
     },
     {
@@ -1772,7 +1772,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.dawn.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "dawn"
     },
     {
@@ -1802,7 +1802,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.eia.gov/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "u-s-energy-information-administration-eia"
     },
     {
@@ -1832,7 +1832,7 @@
       "estado": "Activo",
       "observaciones": "Corregido: Austria es la sede, no la nacionalidad institucional.",
       "referencia": "https://www.iaea.org/about/partnerships/united-nations-system",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "iaea-oiea"
     },
     {
@@ -1862,7 +1862,7 @@
       "estado": "Activo",
       "observaciones": "Corregido: no asignar como país Estados Unidos.",
       "referencia": "https://www.un.org/en/about-us",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "united-nations-onu"
     },
     {
@@ -1892,7 +1892,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.unesco.org/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "unesco"
     },
     {
@@ -1922,7 +1922,7 @@
       "estado": "Uso condicionado",
       "observaciones": "Fuente primaria, no verificación independiente.",
       "referencia": "https://www.centcom.mil/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "u-s-centcom"
     },
     {
@@ -1952,7 +1952,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.icrc.org/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "icrc-cicr"
     },
     {
@@ -1982,7 +1982,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.bellingcat.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "bellingcat"
     },
     {
@@ -2012,7 +2012,7 @@
       "estado": "Secundario",
       "observaciones": "La propia metodología reconoce que no es un método científico probado.",
       "referencia": "https://mediabiasfactcheck.com/methodology/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "media-bias-fact-check"
     },
     {
@@ -2042,7 +2042,7 @@
       "estado": "Uso condicionado",
       "observaciones": "Sólido en investigación; fuerte marco editorial.",
       "referencia": "https://theintercept.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-intercept"
     },
     {
@@ -2072,7 +2072,7 @@
       "estado": "Activo",
       "observaciones": "",
       "referencia": "https://www.the7eye.org.il/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-seventh-eye"
     },
     {
@@ -2102,7 +2102,7 @@
       "estado": "Uso condicionado",
       "observaciones": "",
       "referencia": "https://iranhr.net/en/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "iran-human-rights"
     },
     {
@@ -2132,7 +2132,7 @@
       "estado": "Uso condicionado",
       "observaciones": "",
       "referencia": "https://iranwire.com/en/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "iranwire"
     },
     {
@@ -2162,7 +2162,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://acleddata.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "acled"
     },
     {
@@ -2192,7 +2192,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://www.dailymaverick.co.za/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "daily-maverick"
     },
     {
@@ -2222,7 +2222,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://meduza.io/en",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "meduza"
     },
     {
@@ -2252,7 +2252,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://novayagazeta.eu/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "novaya-gazeta-europe"
     },
     {
@@ -2282,7 +2282,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "",
       "referencia": "https://kyivindependent.com/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-kyiv-independent"
     },
     {
@@ -2312,7 +2312,7 @@
       "estado": "Secundario",
       "observaciones": "No es fuente directa para hechos geopolíticos.",
       "referencia": "https://pressgazette.co.uk/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "press-gazette"
     },
     {
@@ -2342,7 +2342,7 @@
       "estado": "Activo",
       "observaciones": "Corregido el dominio. Shakuf declara estar financiado íntegramente por el público, sin anuncios, magnates, fundaciones ni financiación gubernamental; debe evaluarse como medio de investigación y watchdog, no como empresa comercial.",
       "referencia": "https://shakuf.co.il/english",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "shakuf"
     },
     {
@@ -2372,7 +2372,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Prioriza autores africanos y declara independencia editorial respecto de las instituciones anfitrionas.",
       "referencia": "https://africanarguments.org/about-us-2026/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "african-arguments"
     },
     {
@@ -2402,7 +2402,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Muy útil para hipótesis y contexto; las exclusivas de fuentes internas requieren confirmación adicional.",
       "referencia": "https://www.africa-confidential.com/about-africa-confidential",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "africa-confidential"
     },
     {
@@ -2432,7 +2432,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Aporta análisis producido desde oficinas africanas y orientado a decisiones de política pública.",
       "referencia": "https://issafrica.org/about-us",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "iss-africa"
     },
     {
@@ -2462,7 +2462,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Fuente prioritaria para medir actitudes ciudadanas; revisar siempre muestra, fecha y formulación de preguntas.",
       "referencia": "https://www.afrobarometer.org/about/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "afrobarometer"
     },
     {
@@ -2492,7 +2492,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Fuente oficial continental: competente para documentos y posiciones propias, no para verificación independiente.",
       "referencia": "https://au.int/en/overview",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "african-union-au"
     },
     {
@@ -2522,7 +2522,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Colectivo independiente fundado en Túnez con fuerte capacidad de investigación y periodismo de datos.",
       "referencia": "https://inkyfada.com/en/apropos/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "inkyfada"
     },
     {
@@ -2552,7 +2552,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Medio de pago con orientación investigativa; corroborar asuntos relacionados con la monarquía, seguridad o fuentes reservadas.",
       "referencia": "https://ledesk.ma/charte-editoriale/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "le-desk"
     },
     {
@@ -2582,7 +2582,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Fuerte orientación al periodismo de interés público y proyectos de investigación colaborativa.",
       "referencia": "https://www.premiumtimesng.com/about",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "premium-times"
     },
     {
@@ -2612,7 +2612,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Especializado en conflictos y crisis humanitarias; distinguir testimonios, estimaciones y hechos verificados.",
       "referencia": "https://humanglemedia.com/about-us/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "humangle"
     },
     {
@@ -2642,7 +2642,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Publicación regional con cobertura de Kenia, Tanzania, Uganda, Ruanda, Burundi y Sudán del Sur.",
       "referencia": "https://www.theeastafrican.co.ke/tea/author-profiles/the-eastafrican-1368402",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-eastafrican"
     },
     {
@@ -2672,7 +2672,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Aporta análisis valioso, pero una parte importante del contenido es opinión o ensayo y no debe tratarse como noticia.",
       "referencia": "https://www.theelephant.info/about/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-elephant"
     },
     {
@@ -2702,7 +2702,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Útil por acceso local y cobertura trilingüe; el entorno político etíope exige triangulación reforzada.",
       "referencia": "https://addisstandard.com/about-us/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "addis-standard"
     },
     {
@@ -2732,7 +2732,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Casa de periodismo investigativo con sede en Nairobi; prioriza investigaciones visuales y de largo formato.",
       "referencia": "https://africauncensored.online/about/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "africa-uncensored"
     },
     {
@@ -2762,7 +2762,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Fuente local importante para la RDC; verificar información operativa sobre grupos armados y zonas de difícil acceso.",
       "referencia": "https://actualite.cd/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "actualite-cd"
     },
     {
@@ -2792,7 +2792,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Amplia red territorial y multilingüe; su vinculación con MONUSCO debe declararse en asuntos relacionados con la misión.",
       "referencia": "https://www.radiookapi.net/page/propos",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "radio-okapi"
     },
     {
@@ -2822,7 +2822,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Redacción sin fines de lucro especializada en investigaciones documentales y de largo plazo.",
       "referencia": "https://amabhungane.org/about/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "amabhungane"
     },
     {
@@ -2852,7 +2852,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Medio de referencia sudafricano; separar claramente investigación, noticias y comentario.",
       "referencia": "https://mg.co.za/about-us/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "mail-guardian"
     },
     {
@@ -2882,7 +2882,7 @@
       "estado": "Nuevo recomendado",
       "observaciones": "Diario de amplia implantación nacional con trayectoria vinculada a la independencia y la prensa libre.",
       "referencia": "https://www.namibian.com.na/about-us/",
-      "fecha_revision": "2026-07-15",
+      "fecha_revision": "2026-07-16",
       "media_id": "the-namibian"
     },
     {

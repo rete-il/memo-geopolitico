@@ -16,9 +16,10 @@
     "test": "node --test \"tests/*.test.mjs\" \"centro-local/tests/*.test.mjs\" \"centro-local/modules/observatorio/tests/*.test.mjs\"",
     "validate:data": "node tools/validate-public-data.mjs",
     "validate:build": "node tools/validate-build.mjs",
+    "validate:seo": "node tools/validate-seo.mjs",
     "sync:media": "node tools/sync-media-catalog.mjs",
     "sync:local": "node tools/sync-local-data.mjs",
-    "qa": "npm run test && npm run validate:data && npm run check && npm run build && npm run build:preview && npm run validate:build"
+    "qa": "npm run test && npm run validate:data && npm run check && npm run build && npm run build:preview && npm run validate:build && npm run validate:seo"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",

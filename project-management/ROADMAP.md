@@ -4,7 +4,7 @@
 
 | Secuencia | Release | Objetivo | Avance | Estado |
 |---:|---|---|---:|---|
-| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 85% | Actual |
+| 0 | Beta 0 — Baseline, seguridad y control | Consolidar documentación, rama de trabajo, reproducibilidad y correcciones P0/P1 antes del refactor visual. | 87% | Actual |
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
 | 2 | Beta 2 — Navegación y exploración temática | Implementar la cabecera editorial, el menú hamburguesa y la navegación secundaria por regiones, temas y medios. | 0% | Planificada |
 | 3 | Beta 3 — Relevancia y atención mediática | Consolidar la columna derecha como módulo editorial manual, administrable y enlazado a páginas temáticas. | 11% | Planificada |
@@ -19,7 +19,7 @@
 
 **Fecha objetivo:** TBD
 
-**Avance:** 85%
+**Avance:** 87%
 
 ### Criterios de salida
 
@@ -74,6 +74,13 @@
 | QA-005 | QA | P0 | ▶ En progreso | M | Validar cabecera, índices, rutas heredadas y navegación por teclado |
 | ED-011 | UX | P0 | ✓ Terminada | S | Recomponer tarjetas de Focos con resumen completo, fecha y enlace |
 | QA-006 | QA | P1 | ✓ Terminada | M | Incorporar vista local simultánea de escritorio, tablet y teléfono |
+| ED-ACOP-20260915 | ED | P1 | ◆ En revisión | L | Completar análisis y complementarios del rector de acoplamiento mundial |
+| ED-INDOPAC-20260915 | ED | P1 | ◆ En revisión | L | Completar rector y nueve complementarios del Indo-Pacífico |
+| ED-NUCLEAR-20260915 | ED | P1 | ◆ En revisión | L | Completar rector nuclear y siete procesos complementarios |
+| ED-MINERALES-20260915 | ED | P1 | ◆ En revisión | L | Completar rector de minerales de África central y seis complementarios |
+| ED-REARME-20260915 | ED | P1 | ◆ En revisión | L | Completar rector de remilitarización industrial y seis procesos complementarios |
+| ED-HEMISFERIO-20260915 | ED | P1 | ◆ En revisión | L | Completar rector hemisférico y seis procesos complementarios |
+| ED-DERECHAS-20260915 | ED | P1 | ◆ En revisión | L | Completar rector de derechas transnacionales y seis procesos complementarios |
 
 ## Beta 1 — Fundamentos y sistema de diseño
 

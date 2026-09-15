@@ -77,9 +77,16 @@ export const GET: APIRoute = async ({ site }) => {
     ...actorItems.map((item) => `/actores/${item.slug}/`),
     ...labelItems.map((item) => `/etiquetas/${item.slug}/`),
   ];
-  const urls = [...new Set(paths)].map(
-    (path) => `<url><loc>${new URL(path, base).href}</loc></url>`,
-  );
+  const modified = new Map(publications.map((item) => [
+    `/publicaciones/${item.data.slug}/`, item.data.publicacion.actualizado_el,
+  ]));
+  for (const item of processes) modified.set(`/observatorio/${item.slug}/`, item.publicacion.actualizado_el);
+  const escapeXML = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+  const urls = [...new Set(paths)].map((path) => {
+    const date = modified.get(path);
+    const lastmod = date && /^\d{4}-\d{2}-\d{2}$/.test(date) ? `<lastmod>${date}</lastmod>` : '';
+    return `<url><loc>${escapeXML(new URL(path, base).href)}</loc>${lastmod}</url>`;
+  });
   const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
   return new Response(body, {
     headers: { 'Content-Type': 'application/xml; charset=utf-8' },

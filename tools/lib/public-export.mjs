@@ -714,9 +714,14 @@ export function validatePublicPackage(data, options = {}) {
       signalOwners.set(signal.senal_id, process.macroevento_id);
     }
     if (process.publicacion.estado === 'publicado') {
+      const referencedIds = new Set((process.referencias_senal || []).map(item => item.senal_id));
+      const referencedSignals = process.es_macroevento_rector
+        ? (data.procesos || []).filter(item => item.macroevento_id !== process.macroevento_id)
+            .flatMap(item => item.senales).filter(signal => referencedIds.has(signal.senal_id))
+        : [];
       if (!process.por_que_importa) errors.push(`${label}: un proceso publicado requiere “por qué importa”.`);
-      if (!process.senales.length) errors.push(`${label}: un proceso publicado requiere señales.`);
-      if (!process.fuente_ids.length) errors.push(`${label}: un proceso publicado requiere fuentes.`);
+      if (!process.senales.length && !referencedSignals.length) errors.push(`${label}: un proceso publicado requiere señales.`);
+      if (!process.fuente_ids.length && !referencedSignals.some(signal => signal.fuente_ids.some(id => sourceIds.has(id)))) errors.push(`${label}: un proceso publicado requiere fuentes.`);
     } else if (!options.allowDrafts && !options.allowDevelopment) {
       errors.push(`${label}: el paquete público contiene un proceso no publicado.`);
     }
