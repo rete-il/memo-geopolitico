@@ -2,6 +2,8 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { processes } from '../lib/data';
 import { getPublicationEntries } from '../lib/publications';
+import OpinionCard from '../components/OpinionCard.astro';
+import { opinionReadings } from '../lib/opinion';
 
 const publications = await getPublicationEntries({
   includePreview: false,
@@ -99,10 +101,23 @@ const rectorCountLabel =
         </a>
       </article>
     </section>
+    {opinionReadings.length > 0 && (
+      <section class="home-opinion" aria-labelledby="opinion-title">
+        <div class="home-opinion-heading">
+          <h2 id="opinion-title">Opinión</h2>
+          <a href="/opinion/">Ver todas las lecturas</a>
+        </div>
+        <OpinionCard reading={opinionReadings[0]} headingLevel="h3" />
+      </section>
+    )}
   </div>
 </SiteLayout>
 
 <style>
+  .home-opinion { margin-top: clamp(2.5rem, 5vw, 4rem); }
+  .home-opinion-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+  .home-opinion-heading h2 { margin: 0; font: 500 2.25rem/1.2 var(--serif); }
+  .home-opinion-heading a { min-height: 2.75rem; font-size: 0.95rem; }
   .home-shell {
     width: var(--content);
     margin-inline: auto;

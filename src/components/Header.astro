@@ -1,15 +1,19 @@
 ---
+import { opinionEnabled } from '../lib/opinion';
+
 const { pathname } = Astro.url;
 
 const navigation = [
   { href: '/', label: 'Inicio' },
   { href: '/observatorio/', label: 'Observatorio' },
   { href: '/publicaciones/', label: 'Publicaciones' },
+  ...(opinionEnabled ? [{ href: '/opinion/', label: 'Opinión' }] : []),
   { href: '/recursos-visuales/', label: 'Recursos visuales' },
   { href: '/acerca-de/', label: 'Acerca de' },
 ];
 
 const exploration = [
+  ...(opinionEnabled ? [{ href: '/opinion/', label: 'Opinión' }] : []),
   { href: '/regiones/', label: 'Regiones' },
   { href: '/espacios-geopoliticos/', label: 'Espacios geopolíticos' },
   { href: '/temas/', label: 'Temas' },

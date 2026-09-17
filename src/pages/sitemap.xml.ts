@@ -8,6 +8,7 @@ import {
   publicProcessesForLabel,
 } from '../lib/data';
 import { editorialStateDefinitions } from '../lib/editorial';
+import { opinionReadings } from '../lib/opinion';
 import {
   getPublicationEntries,
   publicationEntriesForLabel,
@@ -34,6 +35,7 @@ const staticPaths = [
 
 export const GET: APIRoute = async ({ site }) => {
   const base = site || new URL('https://memogeopolitico.com');
+  const publishedOpinions = opinionReadings.filter((reading) => reading.estado === 'publicado');
   const publications = await getPublicationEntries({
     includePreview: false,
     publishedOnly: true,
@@ -61,6 +63,8 @@ export const GET: APIRoute = async ({ site }) => {
   );
   const paths = [
     ...staticPaths,
+    ...(publishedOpinions.length ? ['/opinion/'] : []),
+    ...publishedOpinions.map((reading) => `/opinion/${reading.slug}/`),
     ...processes.map((item) => `/observatorio/${item.slug}/`),
     ...publications.map((item) => `/publicaciones/${item.data.slug}/`),
     ...editorialStateDefinitions.map(

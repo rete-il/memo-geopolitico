@@ -1,5 +1,6 @@
 ---
 import { supportConfig } from '../config/support';
+import { opinionEnabled } from '../lib/opinion';
 
 const showSupport = supportConfig.enabled && supportConfig.showInFooter;
 ---
@@ -14,6 +15,7 @@ const showSupport = supportConfig.enabled && supportConfig.showInFooter;
       <a href="/observatorio/">Observatorio</a>
       <a href="/observatorio/dashboard/">Dashboard</a>
       <a href="/publicaciones/">Publicaciones</a>
+      {opinionEnabled && <a href="/opinion/">Opinión</a>}
       <a href="/medios/">Medios</a>
       <a href="/metodologia/relevancia-atencion-mediatica/">Metodología</a>
       <a href="/acerca-de/">Acerca de</a>

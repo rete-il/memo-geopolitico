@@ -1,0 +1,115 @@
+---
+import type { GetStaticPaths } from 'astro';
+import OpinionCard from '../../components/OpinionCard.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { opinionReadings, type OpinionReading } from '../../lib/opinion';
+import { formatDate } from '../../lib/text';
+
+export const getStaticPaths = (() => {
+  if (!opinionReadings.length) return [];
+  return [
+    { params: { slug: undefined }, props: { reading: null } },
+    ...opinionReadings.map((reading) => ({
+      params: { slug: reading.slug },
+      props: { reading },
+    })),
+  ];
+}) satisfies GetStaticPaths;
+
+interface Props { reading: OpinionReading | null; }
+const { reading } = Astro.props;
+const localDraft = reading
+  ? reading.estado === 'borrador'
+  : opinionReadings.some((item) => item.estado === 'borrador');
+---
+
+<SiteLayout
+  title={reading ? `${reading.titulo} · Opinión` : 'Opinión'}
+  description={reading?.descripcion || 'Firmas y perspectivas sobre las transformaciones del mundo. Lecturas seleccionadas por Memo Geopolítico.'}
+  noindex={localDraft}
+>
+  <div class="opinion-shell">
+    {localDraft && <p class="local-notice" role="status">Vista local · Pendiente de publicación</p>}
+    {reading ? (
+      <>
+        <nav class="reading-breadcrumb" aria-label="Ruta de lectura">
+          <a href="/opinion/">Opinión</a><span aria-hidden="true">/</span><span>Lectura recomendada</span>
+        </nav>
+        <article>
+          <header class="reading-header">
+            <p class="section-label">Opinión · {reading.origen.medio}</p>
+            <h1>{reading.titulo}</h1>
+            <p class="reading-deck">{reading.descripcion}</p>
+            <div class="reading-byline">
+              <div>
+                <span>Autor del artículo original</span>
+                <a href={reading.autor.url} target="_blank" rel="noopener noreferrer">{reading.autor.nombre}<span class="sr-only"> (perfil en Catalunya Plural, abre otra pestaña)</span></a>
+              </div>
+              <div>
+                <span>Publicado en {reading.origen.medio}</span>
+                <time datetime={reading.origen.fecha}>{formatDate(reading.origen.fecha)}</time>
+              </div>
+            </div>
+          </header>
+          <div class="reading-columns">
+            <section class="reading-summary" aria-labelledby="summary-title">
+              <p class="section-label">Presentación de Memo Geopolítico</p>
+              <h2 id="summary-title">Claves de esta lectura</h2>
+              {reading.resumen.map((paragraph) => <p>{paragraph}</p>)}
+              <div class="source-action">
+                <a class="button-primary" href={reading.origen.url} target="_blank" rel="noopener noreferrer">Leer artículo completo en {reading.origen.medio}<span class="sr-only"> (abre otra pestaña)</span></a>
+                <p>El texto íntegro se lee en el medio de origen.</p>
+              </div>
+            </section>
+            <aside class="author-note" aria-labelledby="author-title">
+              <p class="section-label">Sobre el autor</p>
+              <h2 id="author-title">{reading.autor.nombre}</h2>
+              <p>{reading.autor.biografia}</p>
+              <a href={reading.autor.url} target="_blank" rel="noopener noreferrer">Más artículos del autor<span class="sr-only"> en Catalunya Plural (abre otra pestaña)</span></a>
+            </aside>
+          </div>
+        </article>
+      </>
+    ) : (
+      <>
+        <header class="opinion-intro">
+          <p class="section-label">Memo Geopolítico</p>
+          <h1>Opinión</h1>
+          <p>Firmas y perspectivas sobre las transformaciones del mundo.</p>
+        </header>
+        <section class="opinion-readings" aria-label="Lecturas recomendadas">
+          {opinionReadings.map((item) => <OpinionCard reading={item} />)}
+        </section>
+      </>
+    )}
+  </div>
+</SiteLayout>
+
+<style>
+  .opinion-shell { width: var(--content); margin-inline: auto; padding-block: clamp(2rem, 5vw, 4rem); }
+  .local-notice { width: fit-content; margin: 0 0 2rem; padding: 0.45rem 0.75rem; border-left: 3px solid var(--amber); background: var(--amber-pale); color: var(--ink-800); font-size: 0.875rem; }
+  .section-label { margin: 0; color: var(--blue); font-size: 0.875rem; font-weight: 750; }
+  .opinion-intro { padding-bottom: 2.5rem; }
+  .opinion-intro h1 { margin: 0.6rem 0 1rem; font: 500 clamp(3rem, 7vw, 5.5rem)/1 var(--serif); letter-spacing: -0.04em; }
+  .opinion-intro > p:last-child { max-width: 36rem; margin-bottom: 0; font-size: 1.2rem; color: var(--ink-700); }
+  .reading-breadcrumb { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 2rem; color: var(--ink-600); font-size: 0.875rem; }
+  .reading-header { max-width: 65rem; }
+  .reading-header h1 { max-width: 25ch; margin: 0.7rem 0 1.2rem; font: 500 clamp(2.2rem, 4.5vw, 4rem)/1.08 var(--serif); letter-spacing: -0.035em; text-wrap: pretty; }
+  .reading-deck { max-width: 48rem; color: var(--ink-700); font: 1.35rem/1.5 var(--serif); }
+  .reading-byline { display: flex; flex-wrap: wrap; gap: 1.25rem 3rem; margin-block: 2rem; }
+  .reading-byline > div { display: grid; gap: 0.3rem; }
+  .reading-byline > div > span { color: var(--ink-600); font-size: 0.875rem; }
+  .reading-byline a, .reading-byline time { font-weight: 700; }
+  .reading-columns { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; align-items: start; gap: clamp(2rem, 6vw, 6rem); border-top: 1px solid var(--line-strong); padding-top: 2.5rem; }
+  .reading-summary { max-width: 46rem; }
+  .reading-summary h2 { margin-block: 0.55rem 1.25rem; font: 500 2rem/1.2 var(--serif); }
+  .reading-summary > p:not(.section-label) { font: 1.2rem/1.8 var(--serif); }
+  .source-action { margin-top: 2rem; }
+  .source-action .button-primary { text-align: center; font-size: 0.95rem; }
+  .source-action p { color: var(--ink-600); font-size: 0.875rem; }
+  .author-note { padding: 1.5rem; background: var(--blue-pale); border-top: 3px solid var(--blue); }
+  .author-note h2 { margin-block: 0.7rem; font: 500 1.75rem/1.2 var(--serif); }
+  .author-note > p:not(.section-label) { color: var(--ink-700); }
+  .author-note a { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: 0.95rem; }
+  @media (max-width: 800px) { .reading-columns { grid-template-columns: 1fr; } .author-note { max-width: 46rem; } }
+</style>

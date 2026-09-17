@@ -1,0 +1,49 @@
+---
+import type { OpinionReading } from '../lib/opinion';
+import { formatDate } from '../lib/text';
+
+interface Props {
+  reading: OpinionReading;
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { reading, headingLevel: Heading = 'h2' } = Astro.props;
+---
+
+<article class="opinion-card">
+  <div class="opinion-card-body">
+    <p class="reading-label">Lectura recomendada · {reading.origen.medio}</p>
+    <Heading>
+      <a href={`/opinion/${reading.slug}/`}>{reading.titulo}</a>
+    </Heading>
+    <p class="reading-description">{reading.descripcion}</p>
+    <a class="reading-link" href={`/opinion/${reading.slug}/`}>Ver presentación y fuente</a>
+  </div>
+  <div class="opinion-card-author">
+    <p class="author-label">Firma del artículo original</p>
+    <p class="author-name">{reading.autor.nombre}</p>
+    <p class="author-bio">{reading.autor.biografia}</p>
+    <time datetime={reading.origen.fecha}>{formatDate(reading.origen.fecha)}</time>
+  </div>
+</article>
+
+<style>
+  .opinion-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.34fr); border-block: 1px solid var(--line-strong); }
+  .opinion-card-body { padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem) 0; }
+  .reading-label, .author-label { margin: 0; color: var(--ink-600); font-size: 0.875rem; }
+  .reading-label { color: var(--blue); font-weight: 700; }
+  h2, h3 { max-width: 28ch; margin: 0.85rem 0; font: 500 clamp(1.7rem, 3vw, 2.65rem)/1.15 var(--serif); letter-spacing: -0.025em; text-wrap: pretty; }
+  h2 a, h3 a { text-decoration: none; }
+  h2 a:hover, h3 a:hover { text-decoration: underline; text-decoration-color: var(--amber); }
+  .reading-description { max-width: 43rem; color: var(--ink-700); font-size: 1.05rem; }
+  .reading-link { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: 0.5rem; font-weight: 700; text-decoration-color: var(--amber); }
+  .opinion-card-author { padding: clamp(1.5rem, 3vw, 2.5rem); border-left: 1px solid var(--line); background: var(--blue-pale); }
+  .author-name { margin: 0.65rem 0; font: 500 1.65rem/1.2 var(--serif); }
+  .author-bio { margin-block: 0.75rem 1.25rem; color: var(--ink-700); }
+  time { color: var(--ink-600); font-size: 0.875rem; }
+  @media (max-width: 700px) {
+    .opinion-card { grid-template-columns: 1fr; }
+    .opinion-card-body { padding-right: 0; }
+    .opinion-card-author { border-left: 0; border-top: 1px solid var(--line); }
+  }
+</style>

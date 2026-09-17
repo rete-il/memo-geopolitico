@@ -5,6 +5,23 @@ const dir = path.resolve(process.argv[2] || 'dist');
 const noindex = process.argv.includes('--noindex');
 const sitemap = fs.readFileSync(path.join(dir, 'sitemap.xml'), 'utf8');
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
+const opinionCatalog = JSON.parse(fs.readFileSync(new URL('../src/data/opinion/lecturas.json', import.meta.url), 'utf8'));
+const publishedOpinions = opinionCatalog.filter(reading => reading.estado === 'publicado');
+assert.equal(urls.includes('https://memogeopolitico.com/opinion/'), publishedOpinions.length > 0);
+for (const reading of opinionCatalog) {
+  const opinionPath = `/opinion/${reading.slug}/`;
+  const opinionFile = path.join(dir, opinionPath, 'index.html');
+  assert.equal(urls.includes(`https://memogeopolitico.com${opinionPath}`), reading.estado === 'publicado', opinionPath);
+  assert.equal(fs.existsSync(opinionFile), reading.estado === 'publicado', opinionPath);
+  if (reading.estado !== 'publicado') continue;
+  const html = fs.readFileSync(opinionFile, 'utf8');
+  assert.ok(html.includes(reading.autor.nombre), opinionPath);
+  assert.ok(html.includes(`href="${reading.origen.url}"`), opinionPath);
+  assert.ok(!html.includes('Pendiente de publicación'), opinionPath);
+  for (const match of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) {
+    assert.ok(!JSON.parse(match[1])['@graph'].some(item => item['@type'] === 'Article'), `Una recomendación externa no es un Article de Memo: ${opinionPath}`);
+  }
+}
 assert.ok(urls.length > 0);
 assert.equal(new Set(urls).size, urls.length);
 assert.ok(urls.includes('https://memogeopolitico.com/observatorio/rectores/'));
