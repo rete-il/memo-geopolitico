@@ -7,6 +7,24 @@ const sitemap = fs.readFileSync(path.join(dir, 'sitemap.xml'), 'utf8');
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
 assert.ok(urls.length > 0);
 assert.equal(new Set(urls).size, urls.length);
+assert.ok(urls.includes('https://memogeopolitico.com/observatorio/rectores/'));
+const methodologyRoot = '/metodologia/relevancia-atencion-mediatica/';
+assert.ok(urls.includes(`https://memogeopolitico.com${methodologyRoot}`));
+assert.ok(!urls.some(url => new URL(url).pathname.startsWith(methodologyRoot) && new URL(url).pathname !== methodologyRoot));
+const methodologyDir = path.join(dir, methodologyRoot);
+for (const entry of fs.readdirSync(methodologyDir, { withFileTypes: true })) {
+  if (!entry.isDirectory()) continue;
+  const html = fs.readFileSync(path.join(methodologyDir, entry.name, 'index.html'), 'utf8');
+  assert.match(html, /name="robots" content="noindex,follow"/, entry.name);
+}
+for (const line of fs.readFileSync(path.join(dir, '_redirects'), 'utf8').split(/\r?\n/)) {
+  if (!line.trim() || line.trim().startsWith('#')) continue;
+  const [from, to, status] = line.trim().split(/\s+/);
+  assert.equal(status, '301', from);
+  assert.notEqual(to, '/', from);
+  assert.ok(urls.includes(`https://memogeopolitico.com${to}`), `Redirect destination: ${from}`);
+  assert.ok(fs.existsSync(path.join(dir, to, 'index.html')), from);
+}
 let articles = 0;
 for (const url of urls) {
   const address = new URL(url);

@@ -1,0 +1,6 @@
+# Legacy URLs with an equivalent current destination. Preserve genuine 404s
+# for retired articles without a replacement; do not redirect them to home.
+/directorio /medios/ 301
+/directorio/ /medios/ 301
+/ensayos/turquia /publicaciones/turquia-potencia-bisagra-reordenamiento-regional-2026/ 301
+/ensayos/turquia/ /publicaciones/turquia-potencia-bisagra-reordenamiento-regional-2026/ 301

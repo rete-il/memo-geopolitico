@@ -17,6 +17,7 @@ import {
 const staticPaths = [
   '/',
   '/observatorio/',
+  '/observatorio/rectores/',
   '/observatorio/dashboard/',
   '/observatorio/senales/',
   '/publicaciones/',
@@ -61,10 +62,6 @@ export const GET: APIRoute = async ({ site }) => {
   const paths = [
     ...staticPaths,
     ...processes.map((item) => `/observatorio/${item.slug}/`),
-    ...processes.map(
-      (item) =>
-        `/metodologia/relevancia-atencion-mediatica/${item.slug}/`,
-    ),
     ...publications.map((item) => `/publicaciones/${item.data.slug}/`),
     ...editorialStateDefinitions.map(
       (item) => `/observatorio/estado/${item.slug}/`,
