@@ -168,6 +168,13 @@ también esa vista. El administrador de páginas valida los cambios antes de
 guardarlos y conserva separadas la configuración guardada y la edición pendiente;
 guardar no despliega el sitio.
 
+Antes de publicar, ejecutar `npm ci` y `npm run qa:production` con Node.js
+22.12.0, la versión fijada en `.nvmrc` y Netlify. Una ejecución con otra versión
+no reemplaza esta comprobación. `npm test` activa explícitamente
+`--experimental-strip-types` para que las pruebas puedan importar módulos
+TypeScript también en Node 22.12, donde esa capacidad no está activada por
+defecto. La comprobación de tipos sigue a cargo de `npm run check`.
+
 ## Estructura principal
 
 ```text
