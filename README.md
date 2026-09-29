@@ -149,13 +149,24 @@ renderiza el CTA ni el enlace del pie.
 
 `netlify.toml` fija:
 
-- comando: `npm run build`;
+- comando: `npm run qa:production`;
 - carpeta publicada: `dist`;
 - Node.js 22.12;
 - `PUBLIC_INCLUDE_DRAFTS=false`.
 
-La rama `main` debe seguir siendo la única fuente de producción. Este paquete no
-crea commits ni modifica GitHub.
+La rama `main` es la única fuente de producción en Netlify. `beta` es una rama
+de GitHub para integrar cambios; no tiene una dirección web ni un despliegue
+beta independiente. El flujo acordado es comprobar los cambios, actualizar
+`beta`, avanzar `main` al mismo commit y comprobar `https://memogeopolitico.com`.
+Las reglas `noindex` para branch deploys son preventivas y no implican que exista
+un sitio beta. Este paquete no crea commits ni modifica GitHub automáticamente.
+
+El control de producción ejecuta pruebas, validación de datos, comprobación de
+tipos, compilación y revisión de enlaces, SEO y tipografía. No necesita generar
+la vista editorial ni disponer de borradores locales. `npm run qa` comprueba
+también esa vista. El administrador de páginas valida los cambios antes de
+guardarlos y conserva separadas la configuración guardada y la edición pendiente;
+guardar no despliega el sitio.
 
 ## Estructura principal
 

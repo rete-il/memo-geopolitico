@@ -1,7 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import XLSX from 'xlsx';
+import { createRequire } from 'node:module';
 import { paths as defaultPaths } from './paths.mjs';
+
+// SheetJS CommonJS includes Node filesystem support for readFile.
+const XLSX = createRequire(import.meta.url)('xlsx');
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));

@@ -3,12 +3,14 @@ import {
   catalog,
   processes,
   processesForActor,
-  processesForRegion,
   processesForTheme,
   publicProcessesForLabel,
 } from '../lib/data';
 import { editorialStateDefinitions } from '../lib/editorial';
 import { opinionReadings } from '../lib/opinion';
+import { institutionalPages, institutionalLocal } from '../lib/institutional';
+import { geographicEntries } from '../lib/seo';
+import { visualResourcesAvailable } from '../lib/visual-resources';
 import {
   getPublicationEntries,
   publicationEntriesForLabel,
@@ -22,7 +24,7 @@ const staticPaths = [
   '/observatorio/dashboard/',
   '/observatorio/senales/',
   '/publicaciones/',
-  '/recursos-visuales/',
+  ...(visualResourcesAvailable ? ['/recursos-visuales/'] : []),
   '/medios/',
   '/regiones/',
   '/espacios-geopoliticos/',
@@ -40,14 +42,6 @@ export const GET: APIRoute = async ({ site }) => {
     includePreview: false,
     publishedOnly: true,
   });
-  const geographicItems = [
-    ...catalog('regiones'),
-    ...catalog('subregiones'),
-    ...catalog('paises_territorios'),
-  ].filter((item) => processesForRegion(item.id).length > 0);
-  const spaceItems = catalog('espacios_geopoliticos').filter(
-    (item) => processesForRegion(item.id).length > 0,
-  );
   const topicItems = [...catalog('temas'), ...catalog('subtemas')].filter(
     (item) =>
       processesForTheme(item.id).length > 0 ||
@@ -63,6 +57,7 @@ export const GET: APIRoute = async ({ site }) => {
   );
   const paths = [
     ...staticPaths,
+    ...(!institutionalLocal ? institutionalPages.map(page => `/${page.slug}/`) : []),
     ...(publishedOpinions.length ? ['/opinion/'] : []),
     ...publishedOpinions.map((reading) => `/opinion/${reading.slug}/`),
     ...processes.map((item) => `/observatorio/${item.slug}/`),
@@ -70,10 +65,7 @@ export const GET: APIRoute = async ({ site }) => {
     ...editorialStateDefinitions.map(
       (item) => `/observatorio/estado/${item.slug}/`,
     ),
-    ...geographicItems.map((item) => `/regiones/${item.slug}/`),
-    ...spaceItems.map(
-      (item) => `/espacios-geopoliticos/${item.slug}/`,
-    ),
+    ...geographicEntries.map((entry) => entry.path),
     ...topicItems.map((item) => `/temas/${item.slug}/`),
     ...actorItems.map((item) => `/actores/${item.slug}/`),
     ...labelItems.map((item) => `/etiquetas/${item.slug}/`),

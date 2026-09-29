@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { buildMediaDataset, validateMediaDataset } from '../tools/lib/media-export.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const expectedMediaCount = 106;
+const expectedMediaCount = 107;
 const canonical = buildMediaDataset(
   path.join(
     root,
@@ -58,4 +58,13 @@ test('Geopolitical Futures conserva su ficha completa y su ID estable', () => {
   assert.equal(source.estado, 'Nuevo recomendado');
   assert.match(source.uso, /Escenarios/);
   assert.match(source.corroborar_con, /Reuters\/AP/);
+});
+
+test('Periodismo Puro se incorpora sin transformar puntuaciones pendientes en cero', () => {
+  const source = canonical.records.find(item => item.media_id === 'periodismo-puro');
+  assert.ok(source);
+  assert.equal(source.puntuacion, null);
+  assert.equal(source.confianza, 'Por revisar');
+  assert.equal(source.fecha_revision, '2026-09-18');
+  assert.match(source.observaciones, /misma fuente/);
 });

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 import { validateMediaDataset } from './lib/media-export.mjs';
 import { validatePublicPackage } from './lib/public-export.mjs';
+import { publicationSourceErrors } from './lib/publication-bibliography.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -18,6 +19,7 @@ const publicationsPath = path.join(
   'publicaciones',
 );
 const productionPackage = read(productionPath);
+const previewPackage = fs.existsSync(previewPath) ? read(previewPath) : null;
 
 function markdownFiles(directory) {
   const files = [];
@@ -40,6 +42,14 @@ function validatePublicationMetadata(directory, publicData) {
   for (const file of markdownFiles(directory)) {
     const relative = path.relative(root, file);
     const data = matter.read(file).data;
+    const sourceCatalog = data.publicacion?.estado === 'publicado'
+      ? publicData.fuentes
+      : [...publicData.fuentes, ...(previewPackage?.fuentes || [])];
+    if (data.publicacion?.estado === 'publicado' || previewPackage) {
+      for (const error of publicationSourceErrors(data, sourceCatalog)) {
+        errors.push(`${relative}: ${error}.`);
+      }
+    }
     const classification = data.clasificacion || {};
     const primary = classification.tema_principal_id;
     const secondary = classification.tema_secundario_ids || [];
@@ -101,8 +111,8 @@ const results = {
   medios: validateMediaDataset(read(mediaPath)),
 };
 
-if (fs.existsSync(previewPath)) {
-  results.vista_local = validatePublicPackage(read(previewPath), {
+if (previewPackage) {
+  results.vista_local = validatePublicPackage(previewPackage, {
     allowDrafts: true,
   });
 }

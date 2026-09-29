@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import {
   catalog,
@@ -36,7 +37,7 @@ const countLabel = (count: number, singular: string, plural: string) =>
     <header class="page-intro">
       <div>
         <p class="eyebrow">Explorar</p>
-        <h1>Etiquetas</h1>
+        <PageTitle>Etiquetas</PageTitle>
       </div>
       <p>
         Conceptos específicos que conectan publicaciones y procesos del
@@ -108,22 +109,20 @@ const countLabel = (count: number, singular: string, plural: string) =>
 {
   showSearch && (
     <script>
+      import { normalizeSearchText } from '../../../tools/lib/search-policy.mjs';
+
       const input = document.querySelector<HTMLInputElement>('[data-label-search]');
       const items = [
         ...document.querySelectorAll<HTMLElement>('[data-label-name]'),
       ];
       const empty = document.querySelector<HTMLElement>('[data-label-search-empty]');
-      const normalize = (value: string) =>
-        value
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .toLocaleLowerCase('es');
+      const searchIndex = new Map(items.map((item) => [item, normalizeSearchText(item.dataset.labelName)]));
 
       input?.addEventListener('input', () => {
-        const query = normalize(input.value.trim());
+        const query = normalizeSearchText(input.value);
         let visible = 0;
         for (const item of items) {
-          const matches = normalize(item.dataset.labelName || '').includes(query);
+          const matches = searchIndex.get(item)?.includes(query);
           item.hidden = !matches;
           if (matches) visible += 1;
         }

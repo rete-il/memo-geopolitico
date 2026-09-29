@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import ProcessCard from '../../components/ProcessCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import {
@@ -63,7 +64,7 @@ const workflowCounts = {
     <header class="page-intro">
       <div>
         <p class="eyebrow">Observatorio</p>
-        <h1>Procesos geopolíticos en evolución.</h1>
+        <PageTitle>Procesos geopolíticos en evolución</PageTitle>
       </div>
       <p>
         Cada expediente reúne señales fechadas, fuentes trazables, actores y
@@ -76,7 +77,7 @@ const workflowCounts = {
     <aside class="dashboard-entry" aria-labelledby="dashboard-entry-title">
       <div>
         <p class="eyebrow">Dashboard público · modo consulta</p>
-        <h2 id="dashboard-entry-title">Ver el Observatorio como tablero de seguimiento.</h2>
+        <h2 id="dashboard-entry-title">Ver el Observatorio como tablero de seguimiento</h2>
         <p>
           Panorama, matriz de relevancia y atención, procesos, señales, fuentes
           y avances editoriales en una vista pública que no permite modificar
@@ -178,11 +179,16 @@ const workflowCounts = {
 
       <div>
         <div class="results-toolbar">
-          <p data-results-count>{processes.length} procesos</p>
+          <p data-results-count role="status" aria-live="polite" aria-atomic="true">{processes.length} procesos</p>
           <div class="view-switch" aria-label="Tipo de vista">
             <button type="button" data-view="list" aria-pressed="true">Lista</button>
             <button type="button" data-view="cards" aria-pressed="false">Tarjetas</button>
           </div>
+        </div>
+        <div class="view-preference">
+          <label><input type="checkbox" data-remember-view disabled aria-describedby="view-preference-help" /> Recordar esta vista en este navegador</label>
+          <p id="view-preference-help">Opcional. Se conserva durante seis meses desde la activación.</p>
+          <p data-view-preference-status role="status" aria-live="polite" aria-atomic="true"></p>
         </div>
 
         {
@@ -223,5 +229,6 @@ const workflowCounts = {
 
   <script>
     import '../../scripts/observatory-filters';
+    import '../../scripts/observatory-view';
   </script>
 </SiteLayout>

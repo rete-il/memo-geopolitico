@@ -1,0 +1,17 @@
+---
+import { institutionalContacts } from '../lib/institutional';
+import { correctionMailto } from '../../tools/lib/contact-policy.mjs';
+interface Props { title: string; path: string; }
+const { title, path } = Astro.props;
+const contact = institutionalContacts('correcciones').find(item => item.key === 'editorial');
+const url = new URL(path, Astro.site || Astro.url.origin).href;
+---
+{contact && <aside class="correction-note" aria-label="Correcciones">
+  <p>Comunicación de errores y datos que requieren revisión.</p>
+  <a href={correctionMailto(contact.email, title, url)}>Señalar una corrección por correo</a>
+</aside>}
+<style>
+  .correction-note { margin-block: 2rem; padding-block: 1.25rem; border-top: 1px solid var(--line-strong); }
+  .correction-note p { margin: 0 0 .4rem; }
+  .correction-note a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: underline; text-underline-offset: .2em; }
+</style>

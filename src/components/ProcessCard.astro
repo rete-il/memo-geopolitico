@@ -14,11 +14,11 @@ import {
   labelHref,
   topicHref,
   topicReferences,
-  uniqueIds,
 } from '../lib/taxonomy';
 import { editorialStageLabel, formatDate } from '../lib/text';
 import type { PublicationState, PublicProcess } from '../lib/types';
 import RatingPair from './RatingPair.astro';
+import { processSearchText } from '../../tools/lib/search-policy.mjs';
 
 interface Props {
   process: PublicProcess;
@@ -73,14 +73,10 @@ const geographyItems = [
     hrefBase: string;
   } => Boolean(reference.item),
 );
-const geographyIds = uniqueIds(geographyItems.map(({ id }) => id));
-const geography = geographyItems
-  .filter(({ id }, index) => geographyIds.indexOf(id) === index)
-  .map(({ item }) => item.nombre);
 const contextualGeography =
   geographyItems.find(({ id }) => id === currentGeographyId) ||
   geographyItems[0];
-const publicationEntries = await getPublicationEntries({
+const publicationEntries = suppliedRelatedPublication && suppliedEditorialState ? [] : await getPublicationEntries({
   includePreview: true,
 });
 const relatedPublication =
@@ -98,16 +94,7 @@ const editorialState =
 <article
   class="process-card"
   data-process-card
-  data-search={[
-    process.titulo,
-    process.sintesis,
-    ...topics.map(({ item }) => item.nombre),
-    ...labels.map(({ item }) => item.nombre),
-    ...geography,
-    ...process.clasificacion.actor_ids,
-  ]
-    .join(' ')
-    .toLowerCase()}
+  data-search={processSearchText(process, catalogMaps)}
   data-region={[
     ...process.clasificacion.geografia.region_ids,
     ...process.clasificacion.geografia.subregion_ids,

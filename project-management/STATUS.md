@@ -2,20 +2,20 @@
 
 > Archivo generado. Editar `data/*.json` y ejecutar `node project-management/tools/update-dashboard.mjs`.
 
-**Actualizado:** 2026-09-15
+**Actualizado:** 2026-09-18
 
 **Rama de trabajo:** `beta`
 
 **Release actual:** Beta 0 — Baseline, seguridad y control
 
-**Avance ponderado total:** **30%**
+**Avance ponderado total:** **31%**
 
 ## Resumen
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 114 |
-| Terminados | 29 |
+| Total de work items | 115 |
+| Terminados | 30 |
 | En progreso | 2 |
 | En revisión | 13 |
 | Bloqueados | 0 |

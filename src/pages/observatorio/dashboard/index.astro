@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../../components/PageTitle.astro';
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import {
   catalog,
@@ -13,6 +14,8 @@ import {
   humanize,
 } from '../../../lib/text';
 import { getPublicationEntries } from '../../../lib/publications';
+import { processSearchText } from '../../../../tools/lib/search-policy.mjs';
+import { groupMatrixProcesses } from '../../../../tools/lib/matrix-groups.mjs';
 
 const publicationEntries = await getPublicationEntries({
   includePreview: true,
@@ -54,7 +57,7 @@ const inProgressCount = processes.length - publishedCount;
 const verifiedSources = sources.filter(
   (source) => source.estado_verificacion === 'verificada',
 );
-const generatedAt = formatDate(
+const lastProcessUpdate = formatDate(
   [...processes]
     .map((process) => process.publicacion.actualizado_el)
     .sort()
@@ -71,33 +74,37 @@ const taxonomySections = [
   { label: 'Actores', items: catalog('actores'), href: '/actores/' },
 ];
 
-const pointPosition = (value: number) =>
-  Math.max(4, Math.min(96, ((value - 1) / 4) * 100));
+const dashboardSections = [
+  ['panorama', 'Panorama'], ['procesos', 'Procesos'], ['matriz', 'Matriz'],
+  ['senales', 'Señales'], ['fuentes', 'Fuentes'], ['expedientes', 'Expedientes'],
+  ['taxonomia', 'Clasificaciones'],
+];
+const matrixGroups = groupMatrixProcesses(processes);
+const pointPosition = (value: number) => 6 + ((value - 1) / 4) * 88;
 ---
 
 <SiteLayout
-  title="Dashboard público del Observatorio"
+  title="Panel del Observatorio"
   description="Vista pública de consulta del Observatorio de Memo Geopolítico: procesos, señales, fuentes, matriz y avance editorial."
 >
   <div class="dashboard-page-shell">
     <header class="dashboard-page-intro">
       <div>
-        <p class="eyebrow">Observatorio · modo consulta</p>
-        <h1>Dashboard público de seguimiento.</h1>
+        <p class="eyebrow">Observatorio</p>
+        <PageTitle>Panel de seguimiento</PageTitle>
         <p>
-          Una vista del mismo corpus editorial para explorar procesos,
-          valoraciones, señales, fuentes y progreso. No incluye controles de
-          edición ni campos internos.
+          Procesos geopolíticos, acontecimientos y fuentes reunidos para
+          comparar su importancia, su atención mediática y el avance de la investigación.
         </p>
       </div>
       <a class="button-secondary" href="/observatorio/">Volver al Observatorio</a>
     </header>
 
     <aside class="dashboard-readonly-notice">
-      <strong>Vista pública de consulta.</strong>
+      <strong>Cómo consultar el panel.</strong>
       <span>
-        Los datos se editan fuera del sitio, atraviesan revisión y se actualizan
-        mediante el mismo flujo documental que el resto de Memo Geopolítico.
+        Las pestañas permiten explorar los procesos y sus fuentes. Cada expediente
+        reúne el seguimiento del tema y los análisis disponibles.
       </span>
     </aside>
 
@@ -112,41 +119,29 @@ const pointPosition = (value: number) =>
         </div>
         <nav
           class="dashboard-navigation"
-          aria-label="Secciones del dashboard"
+          aria-label="Secciones del panel"
           role="tablist"
+          aria-orientation="vertical"
+          data-dashboard-tabs
         >
-          <button type="button" role="tab" aria-selected="true" data-dashboard-nav="panorama">
-            Panorama
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="procesos">
-            Procesos
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="matriz">
-            Matriz
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="senales">
-            Señales
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="fuentes">
-            Fuentes
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="expedientes">
-            Expedientes
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-dashboard-nav="taxonomia">
-            Taxonomía
-          </button>
+          {dashboardSections.map(([id, label], index) => (
+            <button type="button" role="tab" id={`dashboard-tab-${id}`}
+              aria-controls={id} aria-selected={index === 0 ? 'true' : 'false'}
+              tabindex={index === 0 ? 0 : -1} data-dashboard-nav={id} data-tab={id}>
+              {label}
+            </button>
+          ))}
         </nav>
         <footer>
-          <strong>Corte público</strong>
-          <small>{generatedAt}</small>
+          <strong>Última revisión de procesos</strong>
+          <small>{lastProcessUpdate}</small>
         </footer>
       </aside>
 
       <div class="dashboard-workspace">
         <header class="dashboard-topbar">
           <div>
-            <p class="eyebrow">Dashboard público</p>
+            <p class="eyebrow">Panel de seguimiento</p>
             <h2 data-dashboard-title>Panorama</h2>
           </div>
           <span class="readonly-badge">Solo consulta</span>
@@ -155,14 +150,14 @@ const pointPosition = (value: number) =>
         <section
           class="dashboard-view"
           data-dashboard-view="panorama"
-          role="tabpanel"
+          id="panorama" role="tabpanel" aria-labelledby="dashboard-tab-panorama" tabindex="0"
         >
           <div class="dashboard-heading">
             <div>
-              <p class="eyebrow">Estado del corpus</p>
+              <p class="eyebrow">Investigaciones del Observatorio</p>
               <h3>Panorama editorial</h3>
             </div>
-            <p>Datos públicos saneados del Observatorio.</p>
+            <p>Procesos en seguimiento y análisis publicados.</p>
           </div>
 
           <div class="dashboard-metrics">
@@ -172,9 +167,9 @@ const pointPosition = (value: number) =>
               <small>expedientes visibles</small>
             </article>
             <article>
-              <span>Publicados</span>
+              <span>Procesos con análisis</span>
               <strong>{publishedCount}</strong>
-              <small>análisis disponibles</small>
+              <small>cuentan con una publicación</small>
             </article>
             <article>
               <span>En curso</span>
@@ -220,8 +215,8 @@ const pointPosition = (value: number) =>
             <article class="dashboard-panel">
               <header>
                 <div>
-                  <p class="eyebrow">Estados públicos</p>
-                  <h3>Flujo editorial</h3>
+                  <p class="eyebrow">Estado de las investigaciones</p>
+                  <h3>Avance editorial</h3>
                 </div>
               </header>
               <div class="dashboard-status-list">
@@ -255,7 +250,7 @@ const pointPosition = (value: number) =>
         <section
           class="dashboard-view"
           data-dashboard-view="procesos"
-          role="tabpanel"
+          id="procesos" role="tabpanel" aria-labelledby="dashboard-tab-procesos" tabindex="0"
           hidden
         >
           <div class="dashboard-heading">
@@ -263,13 +258,13 @@ const pointPosition = (value: number) =>
               <p class="eyebrow">Macroeventos</p>
               <h3>Procesos geopolíticos</h3>
             </div>
-            <p data-dashboard-results-count>{processes.length} procesos</p>
+            <p data-dashboard-results-count role="status" aria-live="polite" aria-atomic="true">{processes.length} procesos</p>
           </div>
 
           <form class="dashboard-filters" data-dashboard-filters>
             <label class="grow">
               <span>Buscar</span>
-              <input type="search" name="q" placeholder="Título, región o tema" />
+              <input type="search" name="q" placeholder="Título, actor, región o tema" />
             </label>
             <label>
               <span>Estado editorial</span>
@@ -325,12 +320,7 @@ const pointPosition = (value: number) =>
                         ? catalogMaps.temas.get(themeId)?.nombre || 'Sin tema'
                         : 'Sin tema';
                       const state = stateFor(process);
-                      const search = [
-                        process.titulo,
-                        process.sintesis,
-                        regionNames,
-                        themeName,
-                      ].join(' ').toLowerCase();
+                      const search = processSearchText(process, catalogMaps);
                       return (
                         <tr
                           data-dashboard-process
@@ -371,7 +361,7 @@ const pointPosition = (value: number) =>
         <section
           class="dashboard-view"
           data-dashboard-view="matriz"
-          role="tabpanel"
+          id="matriz" role="tabpanel" aria-labelledby="dashboard-tab-matriz" tabindex="0"
           hidden
         >
           <div class="dashboard-heading">
@@ -379,7 +369,7 @@ const pointPosition = (value: number) =>
               <p class="eyebrow">Comparación editorial</p>
               <h3>Matriz de relevancia y atención</h3>
             </div>
-            <p>Escala provisional de 1 a 5.</p>
+            <p>Escala de 1 a 5. Cada círculo indica cuántos procesos comparten una valoración.</p>
           </div>
           <div class="dashboard-matrix" aria-label="Matriz de procesos">
             <span class="matrix-label matrix-label--top-left">Alta relevancia · baja atención</span>
@@ -387,19 +377,29 @@ const pointPosition = (value: number) =>
             <span class="matrix-label matrix-label--bottom-left">Baja relevancia · baja atención</span>
             <span class="matrix-label matrix-label--bottom-right">Baja relevancia · alta atención</span>
             {
-              processes.map((process) => (
-                <a
+              matrixGroups.map((group) => (
+                <button type="button"
                   class="dashboard-matrix-point"
-                  href={`/observatorio/${process.slug}/`}
-                  style={`left:${pointPosition(process.valoraciones.atencion_mediatica)}%;bottom:${pointPosition(process.valoraciones.relevancia_geopolitica)}%`}
-                  aria-label={`${process.titulo}: relevancia ${process.valoraciones.relevancia_geopolitica}, atención ${process.valoraciones.atencion_mediatica}`}
+                  data-matrix-group={group.id} aria-controls={group.id} aria-expanded="false"
+                  style={`left:${pointPosition(group.attention)}%;bottom:${pointPosition(group.relevance)}%`}
+                  aria-label={`${group.processes.length} ${group.processes.length === 1 ? 'proceso' : 'procesos'}: relevancia ${group.relevance}, atención ${group.attention}. Ver lista`}
                 >
-                  <span>{process.titulo}</span>
-                </a>
+                  {group.processes.length}
+                </button>
               ))
             }
           </div>
           <div class="dashboard-axis dashboard-axis--x">Atención mediática 1 → 5</div>
+          <div class="dashboard-matrix-groups">
+            <h4>Procesos por valoración</h4>
+            <p>Los mismos grupos se pueden consultar en esta lista.</p>
+            {matrixGroups.map(group => (
+              <details id={group.id}>
+                <summary>Relevancia {group.relevance} · Atención {group.attention} — {group.processes.length} {group.processes.length === 1 ? 'proceso' : 'procesos'}</summary>
+                <ul>{group.processes.map(process => <li><a href={`/observatorio/${process.slug}/`}>{process.titulo}</a></li>)}</ul>
+              </details>
+            ))}
+          </div>
           <div class="dashboard-matrix-note">
             <a href="/metodologia/relevancia-atencion-mediatica/">
               Cómo se están definiendo estas valoraciones
@@ -410,7 +410,7 @@ const pointPosition = (value: number) =>
         <section
           class="dashboard-view"
           data-dashboard-view="senales"
-          role="tabpanel"
+          id="senales" role="tabpanel" aria-labelledby="dashboard-tab-senales" tabindex="0"
           hidden
         >
           <div class="dashboard-heading">
@@ -454,7 +454,7 @@ const pointPosition = (value: number) =>
         <section
           class="dashboard-view"
           data-dashboard-view="fuentes"
-          role="tabpanel"
+          id="fuentes" role="tabpanel" aria-labelledby="dashboard-tab-fuentes" tabindex="0"
           hidden
         >
           <div class="dashboard-heading">
@@ -500,7 +500,7 @@ const pointPosition = (value: number) =>
         <section
           class="dashboard-view"
           data-dashboard-view="expedientes"
-          role="tabpanel"
+          id="expedientes" role="tabpanel" aria-labelledby="dashboard-tab-expedientes" tabindex="0"
           hidden
         >
           <div class="dashboard-heading">
@@ -543,13 +543,13 @@ const pointPosition = (value: number) =>
         <section
           class="dashboard-view"
           data-dashboard-view="taxonomia"
-          role="tabpanel"
+          id="taxonomia" role="tabpanel" aria-labelledby="dashboard-tab-taxonomia" tabindex="0"
           hidden
         >
           <div class="dashboard-heading">
             <div>
               <p class="eyebrow">Clasificación</p>
-              <h3>Taxonomía pública</h3>
+              <h3>Clasificaciones del Observatorio</h3>
             </div>
             <p>Ejes utilizados por los expedientes visibles.</p>
           </div>
@@ -559,7 +559,7 @@ const pointPosition = (value: number) =>
                 <article>
                   <span>{items.length}</span>
                   <h4>{label}</h4>
-                  <p>Clasificaciones activas en el corpus público.</p>
+                  <p>Categorías utilizadas en los expedientes.</p>
                   <a href={href}>Explorar</a>
                 </article>
               ))

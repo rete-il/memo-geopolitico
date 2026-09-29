@@ -17,16 +17,23 @@
     "validate:data": "node tools/validate-public-data.mjs",
     "validate:build": "node tools/validate-build.mjs",
     "validate:seo": "node tools/validate-seo.mjs",
+    "validate:typography": "node tools/validate-typography.mjs",
     "sync:media": "node tools/sync-media-catalog.mjs",
     "sync:local": "node tools/sync-local-data.mjs",
-    "qa": "npm run test && npm run validate:data && npm run check && npm run build && npm run build:preview && npm run validate:build && npm run validate:seo"
+    "qa": "npm run test && npm run validate:data && npm run check && npm run build && npm run build:preview && npm run validate:build && npm run validate:seo && npm run validate:navigation && npm run validate:typography && node tools/validate-typography.mjs dist-preview",
+    "qa:production": "npm run test && npm run validate:data && npm run check && npm run build && node tools/validate-build.mjs --production-only && npm run validate:seo && node tools/validate-navigation.mjs dist && npm run validate:typography",
+    "validate:navigation": "node tools/validate-navigation.mjs && node tools/validate-navigation.mjs dist-preview",
+    "build:institutional": "astro build --mode institutional --outDir dist-local",
+    "dev:institutional": "astro dev --mode institutional --port 8766"
   },
   "dependencies": {
+    "@astrojs/markdown-satteri": "0.3.4",
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.7",
     "gray-matter": "^4.0.3",
+    "satteri": "0.9.5",
     "tailwindcss": "^4.3.2",
-    "xlsx": "^0.18.5",
+    "xlsx": "file:centro-local/vendor/xlsx-0.20.3.tgz",
     "yaml": "^2.8.1"
   },
   "devDependencies": {

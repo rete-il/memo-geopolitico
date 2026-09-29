@@ -11,7 +11,7 @@ autor_ids:
 publicacion:
   estado: "publicado"
   publicado_el: "2026-09-15"
-  actualizado_el: "2026-09-15"
+  actualizado_el: "2026-09-18"
 macroevento_principal_id: "derechas-transnacionales-reconfiguracion-america-latina"
 macroevento_secundario_ids: []
 clasificacion:
@@ -75,6 +75,14 @@ fuente_ids:
   - "src-red-salvador-argentina"
   - "src-red-cidh-informe2025"
   - "src-red-arti-argentina"
+  - "src-pp-milanovic"
+  - "src-pp-mounk"
+  - "src-pp-hawley"
+  - "src-pp-benhabib"
+  - "src-pp-trump-investidura-2025"
+  - "src-pp-milei-davos-2025"
+  - "src-pp-vdem-2026"
+  - "src-pp-levitsky-ziblatt-mayorias-2025"
 recurso_visual_ids: []
 post_relacionado_ids:
   - "foros-derechas-cpac-madrid-articulacion"
@@ -315,3 +323,15 @@ La tesis se debilitaría si CPAC y Foro Madrid pierden continuidad; si no aparec
 - [STF: condena por la tentativa de golpe](https://noticias.stf.jus.br/postsnoticias/stf-fixa-penas-de-16-a-27-anos-para-condenados-por-tentativa-de-golpe-de-estado/)
 - [Comunicado presidencial de Mercosur, julio de 2025](https://www.mercosur.int/comunicado-conjunto-de-los-presidentes-de-los-estados-partes-del-mercosur-2)
 - [Datos de comercio de Mercosur — Brasil](https://www.gov.br/mre/pt-br/assuntos/mecanismos-internacionais/mecanismos-de-integracao-regional/mercosul-1/dados-de-comercio-do-mercosul)
+
+## Debate ampliado: ideas, organizaciones y resultados
+
+**Ampliación bibliográfica: 18 de septiembre de 2026.** Las entrevistas de Periodismo Puro aportan hipótesis para este expediente. Se revisaron las notas escritas de Canal Net; no se presentan como transcripciones completas. Las señales documentadas anteriormente conservan su corte del 15 de septiembre.
+
+La lectura conjunta abre tres planos de comparación. [Milanovic](/opinion/milanovic-milei-trump-liberalismo/) interroga las transformaciones del liberalismo; [Mounk](/opinion/mounk-trump-identidad-democracia/) discute proyecto político e identidad; [Hawley](/opinion/hawley-trump-partido-republicano/) dirige la atención a la organización partidaria. [Benhabib](/opinion/benhabib-confianza-democracia-2021/) aporta un antecedente de 2021 sobre confianza y pertenencia. Son lentes analíticas de fechas distintas, procedentes de un mismo programa, y no cuatro corroboraciones independientes de una tesis común.
+
+El contraste con documentos de los propios dirigentes permite precisar un desacuerdo. En enero de 2025, Trump defendió los aranceles como instrumento de protección nacional; Milei reivindicó el libre comercio y presentó sus afinidades internacionales como una alianza por la libertad. Esos discursos acreditan posiciones declaradas. Compararlos sugiere que la afinidad cultural puede convivir con divergencias comerciales; medir la coordinación efectiva exige decisiones, recursos y compromisos posteriores. [Trump](https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/) · [Milei](https://www.casarosada.gob.ar/informacion/discursos/50848-discurso-del-presidente-de-la-nacion-javier-milei-desde-el-foro-de-davos-suiza).
+
+Para evitar trasladar automáticamente categorías entre regiones, el adéndum latinoamericano del [informe V-Dem 2026](https://www.v-dem.net/documents/76/V-Dem_Institute_Democracy_Report_2026_Spanish_lowres.pdf), pp. 43–45, diferencia la derecha convencional de proyectos hostiles a garantías liberales y examina la mediación de partidos, legislaturas y autoridades electorales. Su comparación es descriptiva y trabaja con datos de 2025. Orienta preguntas; no identifica por sí misma efectos causales de redes internacionales.
+
+El criterio de seguimiento de Memo sigue siendo observar el paso de afinidades a cooperación y resultados. Si los socios mantienen políticas incompatibles, carecen de compromisos estables o sus conexiones se disuelven con el liderazgo, la hipótesis de un bloque se debilita. Si aparecen reglas compartidas, recursos identificables y continuidad organizativa, gana sustento. Esta ampliación desarrolla los [contrapesos institucionales](/publicaciones/derechas-contrapesos-institucionales-sucesion/) y el [alineamiento exterior argentino](/publicaciones/milei-alineamiento-exterior-autonomia-interdependencia/).

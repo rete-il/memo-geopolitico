@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import PublicationCard from '../../components/PublicationCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getPublicationEntries } from '../../lib/publications';
@@ -17,7 +18,7 @@ const published = await getPublicationEntries({
     <header class="page-intro">
       <div>
         <p class="eyebrow">Publicaciones</p>
-        <h1>Análisis completos, sin categorías rígidas.</h1>
+        <PageTitle>Análisis completos, sin categorías rígidas</PageTitle>
       </div>
       <p>
         Ensayos, explicadores, comparaciones y ejercicios de prospectiva
@@ -66,7 +67,7 @@ const published = await getPublicationEntries({
     <aside class="publications-observatory-link">
       <div>
         <p class="eyebrow">Trabajo editorial</p>
-        <h2>Los procesos todavía no publicados se siguen en el Observatorio.</h2>
+        <h2>Los procesos todavía no publicados se siguen en el Observatorio</h2>
         <p>
           Allí se muestran su estado, avances e hitos sin convertir borradores
           en publicaciones.

@@ -1,0 +1,71 @@
+---
+import { browserStorageDefinitions } from '../../tools/lib/browser-storage-policy.mjs';
+const preference = browserStorageDefinitions.find(item => item.id === 'observatoryView')!;
+---
+<div class="storage-preference" data-browser-storage-controls>
+  <dl>
+    <div><dt>Finalidad</dt><dd>{preference.purpose}</dd></div>
+    <div><dt>Tecnología</dt><dd>{preference.technology}</dd></div>
+    <div><dt>Duración</dt><dd>{preference.retention}</dd></div>
+  </dl>
+  <div class="storage-controls">
+    <p class="storage-status" data-storage-status role="status" aria-live="polite" aria-atomic="true"></p>
+    <button type="button" data-reset-storage hidden>Borrar preferencia guardada</button>
+    <p class="storage-scope">Esta acción se aplica a este navegador y a esta dirección del sitio. La preferencia solo volverá a guardarse si se marca «Recordar esta vista en este navegador» en el Observatorio. Cambiar entre lista y tarjetas no activa el guardado.</p>
+    <noscript><p>El control de esta página requiere JavaScript. La preferencia también puede eliminarse desde la configuración de datos del sitio en el navegador.</p></noscript>
+  </div>
+  <details>
+    <summary>Información técnica</summary>
+    <p>Identificador: <code>{preference.key}</code>. Valores admitidos: {preference.values.map((value, index) => <>{index > 0 && ', '}<code>{value}</code></>)}.</p>
+  </details>
+</div>
+
+<script>
+  import { browserStorageDefinitions, getViewPreference, clearViewPreference } from '../../tools/lib/browser-storage-policy.mjs';
+  const preference = browserStorageDefinitions.find(item => item.id === 'observatoryView')!;
+  for (const panel of document.querySelectorAll<HTMLElement>('[data-browser-storage-controls]')) {
+    const button = panel.querySelector<HTMLButtonElement>('[data-reset-storage]');
+    const status = panel.querySelector<HTMLElement>('[data-storage-status]');
+    if (!button || !status) continue;
+    const showState = (cleared = false) => {
+      const state = getViewPreference();
+      button.hidden = false;
+      button.disabled = state.status !== 'stored';
+      status.textContent = state.status === 'unavailable'
+        ? 'El navegador no permite acceder a esta preferencia. Puede gestionarse desde su configuración de datos del sitio.'
+        : state.status === 'stored'
+          ? `Preferencia guardada: vista de ${state.value === 'cards' ? 'tarjetas' : 'lista'}. Vence el ${new Intl.DateTimeFormat('es', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(state.expiresAt)}.`
+          : cleared
+            ? 'Preferencia eliminada. La próxima visita al Observatorio utilizará la vista de lista.'
+            : state.status === 'expired'
+              ? 'La preferencia ha vencido y ya no se aplica. Para volver a guardarla es necesario marcar la casilla en el Observatorio.'
+              : 'No hay una preferencia guardada. El Observatorio se abrirá en vista de lista.';
+    };
+    button.addEventListener('click', () => {
+      if (clearViewPreference()) showState(true);
+      else status.textContent = 'No se pudo borrar la preferencia. Puede eliminarse desde la configuración de datos del sitio en el navegador.';
+    });
+    window.addEventListener('storage', event => {
+      if (event.key === preference.key || event.key === null) showState();
+    });
+    window.addEventListener('pageshow', () => showState());
+    showState();
+  }
+</script>
+
+<style>
+  .storage-preference { margin-block: 1.5rem; padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid var(--line-strong); background: var(--surface); }
+  dl { margin: 0; }
+  dl > div { display: grid; grid-template-columns: minmax(6rem, .3fr) minmax(0, 1fr); gap: .5rem 1.25rem; padding-block: .8rem; border-bottom: 1px solid var(--line); }
+  dt { font-weight: 600; } dd { margin: 0; }
+  .storage-controls { padding-block: .5rem 1rem; }
+  .storage-status { font-weight: 600; }
+  .storage-status:empty { display: none; }
+  button { min-height: 2.75rem; max-width: 100%; padding: .65rem 1rem; border: 1px solid var(--ink-900); border-radius: .25rem; background: var(--ink-900); color: var(--paper); font: inherit; cursor: pointer; }
+  button:hover:not(:disabled) { background: var(--blue); }
+  button:disabled { background: var(--paper-deep); color: var(--ink-600); border-color: var(--line-strong); cursor: default; }
+  .storage-scope { margin-bottom: 0; color: var(--ink-600); font-size: .92rem; }
+  summary { padding-block: .4rem; cursor: pointer; color: var(--ink-700); }
+  code { overflow-wrap: anywhere; }
+  @media (max-width: 540px) { dl > div { grid-template-columns: minmax(0, 1fr); gap: .2rem; } }
+</style>

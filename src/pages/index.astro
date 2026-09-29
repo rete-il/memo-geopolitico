@@ -2,7 +2,8 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { processes } from '../lib/data';
 import { getPublicationEntries } from '../lib/publications';
-import OpinionCard from '../components/OpinionCard.astro';
+import HomeOpinion from '../components/HomeOpinion.astro';
+import PageTitle from '../components/PageTitle.astro';
 import { opinionReadings } from '../lib/opinion';
 
 const publications = await getPublicationEntries({
@@ -44,7 +45,7 @@ const rectorCountLabel =
   <div class="home-shell">
     <header class="home-intro">
       <p class="eyebrow">ANÁLISIS GEOPOLÍTICO INDEPENDIENTE</p>
-      <h1>Procesos que transforman el mundo</h1>
+      <PageTitle class="home-title">Procesos que transforman el mundo</PageTitle>
       <p class="home-lead">
         Más allá de la noticia inmediata, Memo Geopolítico sigue dinámicas de
         mediano y largo plazo mediante análisis completos, señales verificadas y
@@ -57,7 +58,7 @@ const rectorCountLabel =
         class="home-path home-path--publications"
         aria-labelledby="publications-title"
       >
-        <p class="home-path-category">Publicaciones</p>
+        <p class="eyebrow">Publicaciones</p>
         <h2 id="publications-title">Leer análisis completos</h2>
         <p class="home-path-description">
           Ensayos, explicadores y comparaciones preparados para una lectura
@@ -73,7 +74,7 @@ const rectorCountLabel =
         class="home-path home-path--observatory"
         aria-labelledby="observatory-title"
       >
-        <p class="home-path-category">Observatorio</p>
+        <p class="eyebrow">Observatorio</p>
         <h2 id="observatory-title">Seguir procesos en evolución</h2>
         <p class="home-path-description">
           Expedientes con señales fechadas, actores, fuentes y valoraciones
@@ -89,7 +90,7 @@ const rectorCountLabel =
         class="home-path home-path--rectors"
         aria-labelledby="rectors-title"
       >
-        <p class="home-path-category">Síntesis estructurales</p>
+        <p class="eyebrow">Síntesis estructurales</p>
         <h2 id="rectors-title">Explorar macroeventos rectores</h2>
         <p class="home-path-description">
           Hipótesis amplias que organizan varios procesos relacionados para
@@ -101,23 +102,11 @@ const rectorCountLabel =
         </a>
       </article>
     </section>
-    {opinionReadings.length > 0 && (
-      <section class="home-opinion" aria-labelledby="opinion-title">
-        <div class="home-opinion-heading">
-          <h2 id="opinion-title">Opinión</h2>
-          <a href="/opinion/">Ver todas las lecturas</a>
-        </div>
-        <OpinionCard reading={opinionReadings[0]} headingLevel="h3" />
-      </section>
-    )}
+    <HomeOpinion readings={opinionReadings} />
   </div>
 </SiteLayout>
 
 <style>
-  .home-opinion { margin-top: clamp(2.5rem, 5vw, 4rem); }
-  .home-opinion-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
-  .home-opinion-heading h2 { margin: 0; font: 500 2.25rem/1.2 var(--serif); }
-  .home-opinion-heading a { min-height: 2.75rem; font-size: 0.95rem; }
   .home-shell {
     width: var(--content);
     margin-inline: auto;
@@ -128,22 +117,15 @@ const rectorCountLabel =
     max-width: 58rem;
   }
 
-  .home-intro h1 {
-    max-width: 15ch;
-    margin: 0.6rem 0 0;
-    font-family: var(--serif);
-    font-size: clamp(2.75rem, 6vw, 5.4rem);
-    font-weight: 500;
-    letter-spacing: -0.04em;
-    line-height: 0.98;
-    text-wrap: balance;
+  :global(.home-title) {
+    max-width: 22ch;
   }
 
   .home-lead {
     max-width: 47rem;
     margin: 1.6rem 0 0;
     color: var(--ink-700);
-    font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+    font-size: var(--type-lead-size);
     text-wrap: pretty;
   }
 
@@ -183,23 +165,14 @@ const rectorCountLabel =
       var(--surface);
   }
 
-  .home-path-category {
-    margin: 0;
-    color: var(--amber);
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
   .home-path h2 {
     max-width: 18ch;
     margin: 0.55rem 0 0;
     font-family: var(--serif);
-    font-size: clamp(1.8rem, 3vw, 2.55rem);
+    font-size: var(--type-card-size);
     font-weight: 500;
     letter-spacing: -0.025em;
-    line-height: 1.05;
+    line-height: 1.2;
     text-wrap: balance;
   }
 
@@ -246,12 +219,6 @@ const rectorCountLabel =
     transform: translateY(1px);
   }
 
-  @media (min-width: 900px) {
-    .home-intro h1 {
-      max-width: 19ch;
-      font-size: clamp(3.25rem, 5vw, 4.75rem);
-    }
-  }
   @media (max-width: 1040px) {
     .home-paths {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -265,10 +232,6 @@ const rectorCountLabel =
   @media (max-width: 760px) {
     .home-shell {
       padding-block: 2.25rem 3.5rem;
-    }
-
-    .home-intro h1 {
-      font-size: clamp(2.35rem, 12vw, 3.7rem);
     }
 
     .home-paths {

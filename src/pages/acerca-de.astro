@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../components/PageTitle.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 ---
 
@@ -10,7 +11,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
     <header class="page-intro">
       <div>
         <p class="eyebrow">Acerca de</p>
-        <h1>Una publicación para pensar más allá del ciclo informativo.</h1>
+        <PageTitle>Una publicación para pensar más allá del ciclo informativo</PageTitle>
       </div>
       <p>
         Memo Geopolítico es un proyecto editorial independiente dedicado a
@@ -32,9 +33,10 @@ import SiteLayout from '../layouts/SiteLayout.astro';
         <section class="content-section">
           <h2>Cómo trabajamos</h2>
           <p>
-            El Observatorio local conserva investigación, estados de revisión y
-            controles editoriales. El sitio recibe solo una proyección pública
-            validada, con fuentes trazables y sin notas administrativas.
+            Cada análisis parte de fuentes identificadas y se amplía con documentos,
+            estudios y otras perspectivas. Los hechos se contrastan antes de publicar;
+            las interpretaciones, los desacuerdos y las limitaciones de la evidencia
+            se explicitan para que el lector pueda evaluar las conclusiones.
           </p>
         </section>
         <section class="content-section">
@@ -46,12 +48,12 @@ import SiteLayout from '../layouts/SiteLayout.astro';
           </p>
         </section>
         <section class="content-section">
-          <h2>Arquitectura abierta y estática</h2>
+          <h2>Fuentes y actualización</h2>
           <p>
-            El sitio se genera con Astro y archivos locales. No utiliza una base
-            de datos, un CMS remoto ni APIs en producción. Las actualizaciones se
-            revisan primero fuera de línea y se publican mediante el flujo
-            editorial del repositorio.
+            Las publicaciones permiten consultar las fuentes que respaldan sus
+            argumentos. Los expedientes reúnen el seguimiento de cada proceso y
+            sus principales acontecimientos. Cuando se incorpora información o
+            se corrige un error relevante, se indica la fecha y el alcance del cambio.
           </p>
         </section>
       </article>
@@ -60,7 +62,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
           <h2>Principios</h2>
           <ul>
             <li>Separar hechos, inferencias y escenarios.</li>
-            <li>Conservar incertidumbre y trazabilidad.</li>
+            <li>Explicar lo que todavía no se sabe e identificar las fuentes.</li>
             <li>Buscar diversidad geográfica e institucional.</li>
             <li>No publicar para completar una cuota.</li>
           </ul>

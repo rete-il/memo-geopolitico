@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import ProcessCard from '../../components/ProcessCard.astro';
 import PublicationCard from '../../components/PublicationCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
@@ -73,7 +74,7 @@ const orderedProcesses = orderedResults.filter(
     <header class="page-intro label-page-intro">
       <div>
         <p class="eyebrow">Etiqueta</p>
-        <h1>{item.nombre}</h1>
+        <PageTitle>{item.nombre}</PageTitle>
       </div>
       <div>
         {item.descripcion && <p>{item.descripcion}</p>}

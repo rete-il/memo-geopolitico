@@ -18,5 +18,171 @@
       "Santcovsky interpreta la tensión entre España y Marruecos dentro de una competencia internacional más amplia. Su argumento sitúa la migración junto a la energía, la tecnología y las infraestructuras: ámbitos donde depender de otro país puede limitar las decisiones propias.",
       "El autor plantea que los acuerdos entre Estados se vuelven más cambiantes y que la capacidad de presión gana terreno frente a las instituciones multilaterales. Desde esa perspectiva, Ceuta permite examinar las aspiraciones regionales de Marruecos y el margen de acción europeo."
     ]
+  },
+  {
+    "slug": "milanovic-milei-trump-liberalismo",
+    "estado": "publicado",
+    "formato": "entrevista",
+    "titulo": "Milanovic: Milei, Trump y las transformaciones del liberalismo",
+    "descripcion": "Qué comparten Milei y Trump, y cómo sus diferencias económicas limitan la idea de un proyecto común.",
+    "autor": {
+      "nombre": "Branko Milanovic",
+      "biografia": "Economista especializado en desigualdad global y ex economista del Banco Mundial.",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/branko-milanovic-comparo-a-milei-con-trump-y-lanzo-una-definicion-inesperada-sobre-el-presidente-argentino_20260913/"
+    },
+    "entrevistador": "Jorge Fontevecchia",
+    "incorporado_el": "2026-09-18",
+    "origen": {
+      "medio": "Periodismo Puro / Canal Net",
+      "fecha": "2026-09-13",
+      "fecha_emision": "2026-09-13",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/branko-milanovic-comparo-a-milei-con-trump-y-lanzo-una-definicion-inesperada-sobre-el-presidente-argentino_20260913/"
+    },
+    "resumen": [
+      "Milanovic vincula a Milei y Trump con la transformación de las tradiciones políticas, aunque distingue sus posiciones económicas. Su interpretación permite preguntar qué comparten estos liderazgos y dónde divergen sus programas."
+    ],
+    "nota_revision": "Alcance de la revisión: nota escrita de Canal Net. No se atribuyen citas ni conclusiones a fragmentos audiovisuales que no fueron revisados.",
+    "relacionados": [
+      {
+        "titulo": "Análisis de Memo y contraste de perspectivas",
+        "url": "/publicaciones/milei-alineamiento-exterior-autonomia-interdependencia/"
+      },
+      {
+        "titulo": "Fuentes del expediente",
+        "url": "/observatorio/milei-alineamiento-exterior-autonomia-interdependencia/"
+      },
+      {
+        "titulo": "Derechas en red: análisis rector",
+        "url": "/publicaciones/derechas-transnacionales-reconfiguracion-america-latina/"
+      }
+    ]
+  },
+  {
+    "slug": "mounk-trump-identidad-democracia",
+    "perfil_entrevistador": {
+      "presentacion": "Jorge Fontevecchia es un periodista y editor argentino, cofundador de Editorial Perfil y entrevistador de Periodismo Puro. Su trayectoria reúne la creación y dirección de medios, el trabajo de entrevistas y reconocimientos nacionales e internacionales al periodismo.",
+      "hitos": [
+        { "titulo": "Creación y dirección de medios", "texto": "En 1976 fundó Editorial Perfil junto con su padre. Lanzó el diario Perfil en 1998 y lo relanzó en 2005, después de la interrupción de su primera etapa." },
+        { "titulo": "Premio María Moors Cabot · 1997", "texto": "La Universidad de Columbia reconoció su trayectoria con el premio María Moors Cabot, una distinción internacional en el ámbito del periodismo." },
+        { "titulo": "Konex de Platino · 1997 y 2017", "texto": "Recibió el Konex de Platino en Dirección Periodística en ambas ediciones, además del Diploma al Mérito de 2007 en esa disciplina." },
+        { "titulo": "Entrevistas y participación académica", "texto": "Publicó los libros Reportajes y Reportajes 2, que forman parte de su trabajo en el género de la entrevista. Desde 2012 integra la Academia Nacional de Periodismo." }
+      ],
+      "fuentes": [
+        { "titulo": "Fundación Konex", "url": "https://www.fundacionkonex.org/b1185-jorge-fontevecchia" },
+        { "titulo": "Academia Nacional de Periodismo", "url": "https://academiaperiodismo.org.ar/miembros/jorge-fontevecchia/" }
+      ]
+    },
+    "estado": "publicado",
+    "formato": "entrevista",
+    "titulo": "Mounk: proyecto político, identidad y segundo mandato de Trump",
+    "descripcion": "Una interpretación sobre preparación política, disputas de identidad y el acercamiento de líderes tecnológicos a Trump.",
+    "autor": {
+      "nombre": "Yascha Mounk",
+      "biografia": "Politólogo y autor dedicado al populismo, la identidad y la democracia liberal.",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/yasha-mounk-aseguro-que-la-vision-de-donald-trump-en-su-segundo-mandato-es-bastante-desarrollada-y-detallada_20250324/"
+    },
+    "entrevistador": "Jorge Fontevecchia",
+    "incorporado_el": "2026-09-18",
+    "origen": {
+      "medio": "Periodismo Puro / Canal Net",
+      "fecha": "2025-03-24",
+      "fecha_emision": "2025-03-23",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/yasha-mounk-aseguro-que-la-vision-de-donald-trump-en-su-segundo-mandato-es-bastante-desarrollada-y-detallada_20250324/"
+    },
+    "resumen": [
+      "Mounk interpreta el regreso de Trump como un proyecto más preparado y relaciona los cambios de Silicon Valley con disputas sobre innovación e identidad. También critica dinámicas identitarias de izquierda desde una defensa de valores universales."
+    ],
+    "nota_revision": "Alcance de la revisión: nota escrita de Canal Net. No se atribuyen citas ni conclusiones a fragmentos audiovisuales que no fueron revisados.",
+    "relacionados": [
+      {
+        "titulo": "Análisis de Memo y contraste de perspectivas",
+        "url": "/publicaciones/derechas-contrapesos-institucionales-sucesion/"
+      },
+      {
+        "titulo": "Fuentes del expediente",
+        "url": "/observatorio/derechas-contrapesos-institucionales-sucesion/"
+      },
+      {
+        "titulo": "Derechas en red: análisis rector",
+        "url": "/publicaciones/derechas-transnacionales-reconfiguracion-america-latina/"
+      }
+    ]
+  },
+  {
+    "slug": "hawley-trump-partido-republicano",
+    "estado": "publicado",
+    "formato": "entrevista",
+    "titulo": "Hawley: Trump y la transformación del Partido Republicano",
+    "descripcion": "El control del partido como una clave para entender el margen de acción presidencial al comenzar el segundo mandato.",
+    "autor": {
+      "nombre": "George Hawley",
+      "biografia": "Politólogo y profesor de la Universidad de Alabama, estudioso de la derecha estadounidense.",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/george-hawley-aseguro-que-la-oposicion-a-trump-esta-mas-desmoralizada-que-nunca_20250316/"
+    },
+    "entrevistador": "Jorge Fontevecchia",
+    "incorporado_el": "2026-09-18",
+    "origen": {
+      "medio": "Periodismo Puro / Canal Net",
+      "fecha": "2025-03-16",
+      "fecha_emision": "2025-03-16",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/george-hawley-aseguro-que-la-oposicion-a-trump-esta-mas-desmoralizada-que-nunca_20250316/",
+      "audio_url": "https://open.spotify.com/episode/6ddCbRddIBncTpbROQaJ4y"
+    },
+    "resumen": [
+      "Hawley destaca el mayor control de Trump sobre el Partido Republicano frente a su primera presidencia. El mecanismo que propone es organizativo: una menor resistencia interna ampliaría el margen presidencial."
+    ],
+    "nota_revision": "Alcance de la revisión: nota escrita de Canal Net. No se atribuyen citas ni conclusiones a fragmentos audiovisuales que no fueron revisados.",
+    "relacionados": [
+      {
+        "titulo": "Análisis de Memo y contraste de perspectivas",
+        "url": "/publicaciones/derechas-contrapesos-institucionales-sucesion/"
+      },
+      {
+        "titulo": "Fuentes del expediente",
+        "url": "/observatorio/derechas-contrapesos-institucionales-sucesion/"
+      },
+      {
+        "titulo": "Derechas en red: análisis rector",
+        "url": "/publicaciones/derechas-transnacionales-reconfiguracion-america-latina/"
+      }
+    ]
+  },
+  {
+    "slug": "benhabib-confianza-democracia-2021",
+    "estado": "publicado",
+    "formato": "entrevista",
+    "titulo": "Benhabib: confianza democrática y nihilismo político, una lectura de 2021",
+    "descripcion": "Un antecedente de 2021 sobre desigualdad, pertenencia y pérdida de confianza en las instituciones democráticas.",
+    "autor": {
+      "nombre": "Seyla Benhabib",
+      "biografia": "Filósofa y politóloga dedicada a la democracia, los derechos y la ciudadanía.",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/seyla-benhabib-en-estados-unidos-esta-surgiendo-el-nihilismo-politico_20211231/"
+    },
+    "entrevistador": "Jorge Fontevecchia",
+    "incorporado_el": "2026-09-18",
+    "origen": {
+      "medio": "Periodismo Puro / Canal Net",
+      "fecha": "2021-12-31",
+      "fecha_emision": "2021-12-30",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/seyla-benhabib-en-estados-unidos-esta-surgiendo-el-nihilismo-politico_20211231/"
+    },
+    "resumen": [
+      "Benhabib interpreta la pérdida de confianza democrática mediante desigualdad, transformaciones del trabajo y conflictos de pertenencia. La conversación está situada después del primer mandato de Trump y del ataque al Capitolio de enero de 2021."
+    ],
+    "nota_revision": "Alcance de la revisión: nota escrita de Canal Net. No se atribuyen citas ni conclusiones a fragmentos audiovisuales que no fueron revisados.",
+    "relacionados": [
+      {
+        "titulo": "Análisis de Memo y contraste de perspectivas",
+        "url": "/publicaciones/derechas-contrapesos-institucionales-sucesion/"
+      },
+      {
+        "titulo": "Fuentes del expediente",
+        "url": "/observatorio/derechas-contrapesos-institucionales-sucesion/"
+      },
+      {
+        "titulo": "Derechas en red: análisis rector",
+        "url": "/publicaciones/derechas-transnacionales-reconfiguracion-america-latina/"
+      }
+    ]
   }
 ]

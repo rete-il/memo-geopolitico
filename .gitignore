@@ -34,6 +34,7 @@ Thumbs.db
 /staging-*.txt
 
 # Herramientas y capturas técnicas locales
+/dist-local/
 /ACTUALIZAR-GITHUB-BETA*.bat
 /memo-geopolitico-centro-local-*.zip
 /centro-local/modules/observatorio.zip
@@ -41,3 +42,4 @@ Thumbs.db
 # Exportaciones y utilidades de recuperación locales
 /notion-export/
 /tools/restore-preview-from-astro-cache.mjs
+/outputs/periodismo-puro-20260918/

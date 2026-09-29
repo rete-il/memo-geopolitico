@@ -14,6 +14,6 @@
     "check": "node --test && node server.mjs --check"
   },
   "dependencies": {
-    "xlsx": "^0.18.5"
+    "xlsx": "file:vendor/xlsx-0.20.3.tgz"
   }
 }

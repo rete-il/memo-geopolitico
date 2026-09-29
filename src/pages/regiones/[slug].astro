@@ -1,42 +1,42 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
+import CanonicalRedirect from '../../components/CanonicalRedirect.astro';
 import ProcessCard from '../../components/ProcessCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import {
-  catalog,
   editorialPreviewEnabled,
   processesForRegion,
 } from '../../lib/data';
 import type { CatalogItem } from '../../lib/types';
+import { geographicEntries } from '../../lib/seo';
 
 export function getStaticPaths() {
-  const allItems = [
-    ...catalog('regiones'),
-    ...catalog('subregiones'),
-    ...catalog('paises_territorios'),
-    ...catalog('espacios_geopoliticos'),
-  ];
-  return allItems
-    .filter((item) => processesForRegion(item.id).length > 0)
-    .map((item) => ({
-      params: { slug: item.slug },
-      props: { item },
-    }));
+  return geographicEntries.flatMap(({ item, path, aliases }) =>
+    [path, ...aliases].filter(route => route.startsWith('/regiones/')).map(route => ({
+      params: { slug: route.split('/')[2] },
+      props: { item, canonicalPath: path },
+    })),
+  );
 }
 
 interface Props {
   item: CatalogItem;
+  canonicalPath: string;
 }
 
-const { item } = Astro.props;
+const { item, canonicalPath } = Astro.props;
 const related = processesForRegion(item.id);
 ---
 
+{canonicalPath !== Astro.url.pathname ? (
+  <CanonicalRedirect title={item.nombre} destination={canonicalPath} />
+) : (
 <SiteLayout title={item.nombre} description={`Procesos vinculados con ${item.nombre}.`}>
   <div class="page-shell">
     <header class="page-intro">
       <div>
         <p class="eyebrow">Geografía</p>
-        <h1>{item.nombre}</h1>
+        <PageTitle>{item.nombre}</PageTitle>
       </div>
       <p>{related.length} procesos del Observatorio vinculados con esta geografía.</p>
     </header>
@@ -53,3 +53,4 @@ const related = processesForRegion(item.id);
     </section>
   </div>
 </SiteLayout>
+)}

@@ -1,5 +1,44 @@
 # Changelog de gestión del proyecto
 
+## 2026-09-29 — Release autorizado a beta y main
+
+- Se reúne el trabajo editorial, institucional y de experiencia de lectura desarrollado desde el 18 de septiembre.
+- Corregidos filtros, bibliografías, matriz, accesibilidad, rutas, metadatos y administración local; preferencia de vista opcional durante seis meses.
+- SheetJS 0.20.3 comprobado con los mismos 107 registros; caché de recursos versionados corregida.
+- 303 pruebas aprobadas; las seis páginas institucionales y los correos quedan habilitados. Suscripción y apoyo siguen desactivados.
+- Autorización, alcance, comprobaciones y reversión en `records/RELEASE-2026-09-29.md`.
+
+## 2026-09-23 — Páginas institucionales y funciones opcionales
+
+- Siete páginas con textos compartidos y control local/público en el Centro local, junto a Ko-fi.
+- Configuración única para correos e integración con suscripción alojada; no se habilitan servicios sin datos ni se simulan altas.
+- Pie, rutas y sitemap respetan los indicadores. Todos los agregados institucionales permanecen privados para revisión local; sin beta ni despliegue.
+- Alcance, puesta en marcha y datos externos pendientes en `records/PAGINAS-INSTITUCIONALES-2026-09-23.md`.
+
+## 2026-09-19 — Opinión en portada por incorporación
+
+- La portada muestra hasta tres lecturas publicadas, seleccionadas por `incorporado_el`; en registros antiguos sin ese dato usa la fecha original. Los empates se resuelven por fecha original y slug, sin rotación aleatoria.
+- Componente `HomeOpinion.astro` con tarjetas adaptables, un enlace por ficha y acceso al catálogo. Se distinguen fecha original y fecha de incorporación; se reutiliza el catálogo sin copiar contenido en la home.
+- Selector independiente probado con una entrevista antigua recién incorporada, exclusión de borradores y conservación del catálogo original. Para nuevas lecturas, registrar siempre la fecha de incorporación; la portada se actualiza en la siguiente compilación.
+
+## 2026-09-19 — Navegación editorial sin accesos redundantes
+
+- Política compartida y componente reutilizable para publicaciones, expedientes y Opinión; referencias a señales con destino preciso y acceso único a originales.
+- Se evita repetir la introducción como actualización y se conserva ese campo independiente durante la sincronización.
+- Auditoría automática de destinos y anclas sobre ambas compilaciones. Diagnóstico, alcance y límites en `records/NAVEGACION-EDITORIAL-2026-09-19.md`.
+
+## 2026-09-19 — Fuente única para el catálogo publicado
+
+- Se generaliza la propiedad de subtítulos y resúmenes a todas las publicaciones, sin activación individual; las copias se actualizan al iniciar, compilar o guardar durante desarrollo.
+- Los expedientes con varios artículos toman la presentación del más reciente, conservando cada artículo y los borradores independientes.
+- Se comprueba la propagación de cambios, la incorporación automática de publicaciones futuras y la conservación de datos de investigación. Ver `records/PRESENTACION-EDITORIAL-2026-09-19.md`.
+
+## 2026-09-18 — Periodismo Puro
+
+- Primera integración local: fuente curada, cuatro entrevistas en Opinión y ampliación de tres análisis y expedientes con perspectivas de contraste.
+- Catálogo sincronizado de 107 fuentes; puntuaciones pendientes visibles como «Por evaluar».
+- Fechas, atribuciones y alcance de revisión documentados. Ver `records/INTEGRACION-PERIODISMO-PURO-2026-09-18.md`. Sin despliegue remoto.
+
 ## 2.3 — 2026-07-21
 
 - Se registra el Observatorio editorial autónomo v0.3.0, mantenido fuera del repositorio y del build de Astro.

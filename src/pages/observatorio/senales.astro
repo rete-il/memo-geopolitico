@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import SignalTimeline from '../../components/SignalTimeline.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { processes } from '../../lib/data';
@@ -21,7 +22,7 @@ const signals = processes
     <header class="page-intro">
       <div>
         <p class="eyebrow">Cronología</p>
-        <h1>Señales dentro de procesos.</h1>
+        <PageTitle>Señales dentro de procesos</PageTitle>
       </div>
       <p>
         Esta vista reúne hechos fechados y con fuentes vinculadas. Una señal no
@@ -33,7 +34,7 @@ const signals = processes
     <section class="section-shell">
       {
         signals.length ? (
-          <SignalTimeline signals={signals} />
+          <SignalTimeline signals={signals} headingLevel={2} />
         ) : (
           <div class="empty-state">
             <h2>No hay señales públicas todavía</h2>

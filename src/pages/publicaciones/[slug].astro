@@ -1,14 +1,17 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import { render } from 'astro:content';
 import ClassificationFooter from '../../components/ClassificationFooter.astro';
+import ReadingLinks from '../../components/ReadingLinks.astro';
+import { evidenceHref } from '../../../tools/lib/navigation-policy.mjs';
 import SupportCTA from '../../components/SupportCTA.astro';
+import CorrectionLink from '../../components/CorrectionLink.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import {
   catalogMaps,
   catalog,
   editorialPreviewEnabled,
   processes,
-  sourceById,
 } from '../../lib/data';
 import { topicHref, topicReferences } from '../../lib/taxonomy';
 import {
@@ -47,9 +50,6 @@ const rectorProcesses = process
       .map((id) => processes.find((item) => item.macroevento_id === id))
       .filter((item): item is (typeof processes)[number] => Boolean(item))
   : [];
-const publicationSources = entry.data.fuente_ids
-  .map((id) => sourceById.get(id))
-  .filter(Boolean);
 const topics = topicReferences(entry.data.clasificacion, catalogMaps);
 const primaryTopic = topics.find((topic) => topic.primary);
 ---
@@ -82,7 +82,7 @@ const primaryTopic = topics.find((topic) => topic.primary);
             )
           }
         </p>
-        <h1>{entry.data.titulo}</h1>
+        <PageTitle>{entry.data.titulo}</PageTitle>
       </div>
 
       <div class="publication-hero__secondary">
@@ -122,43 +122,6 @@ const primaryTopic = topics.find((topic) => topic.primary);
     }
 
     {
-      process && (
-        <aside class="sidebar-card publication-process-context">
-          <p class="eyebrow">Proceso principal</p>
-          <h2><a href={`/observatorio/${process.slug}/`}>{process.titulo}</a></h2>
-          <p>{process.sintesis}</p>
-          <a class="process-context-action" href={`/observatorio/${process.slug}/`}>
-            Abrir expediente del Observatorio →
-          </a>
-          {
-            rectorProcesses.length > 0 && (
-              <div class="publication-rector-context">
-                <p class="eyebrow">
-                  {rectorProcesses.length === 1 ? 'Macroevento rector' : 'Macroeventos rectores'}
-                </p>
-                <ul>
-                  {rectorProcesses.map((rector) => (
-                    <li>
-                      <a href={`/observatorio/${rector.slug}/`}>
-                        {rector.titulo}
-                      </a>
-                      {rector.publicacion.estado !== 'publicado' && (
-                        <span class="draft-chip">En preparación</span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-                <p>
-                  Este análisis aporta evidencia a una o más hipótesis rectoras más amplias.
-                </p>
-              </div>
-            )
-          }
-        </aside>
-      )
-    }
-
-    {
       showFullPublication && Content ? (
         <div class="prose prose-slate max-w-none">
           <Content />
@@ -176,28 +139,14 @@ const primaryTopic = topics.find((topic) => topic.primary);
       )
     }
 
-    {
-      showFullPublication && publicationSources.length > 0 && (
-        <section class="content-section">
-          <h2>Fuentes vinculadas</h2>
-          <ol class="source-list">
-            {publicationSources.map((source) => (
-              <li>
-                <a href={source?.url} target="_blank" rel="noopener noreferrer">
-                  {source?.titulo || source?.medio}
-                </a>
-                <p>
-                  {source?.medio} · {formatDate(source?.fecha)} ·{' '}
-                  {source?.estado_verificacion}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </section>
-      )
-    }
+    {process && <ReadingLinks title="Consultar la evidencia y el seguimiento" items={[
+      { href: evidenceHref(process.slug), label: 'Ver cronología y seguimiento en el Observatorio' },
+      ...rectorProcesses.map(rector => ({ href: `/observatorio/${rector.slug}/`, label: `Explorar el proceso general: ${rector.titulo}` })),
+    ]} />}
 
     <ClassificationFooter classification={entry.data.clasificacion} />
+
+    {showFullPublication && <CorrectionLink title={entry.data.titulo} path={`/publicaciones/${entry.data.slug}/`} />}
 
     <SupportCTA />
   </article>

@@ -11,7 +11,7 @@ autor_ids:
 publicacion:
   estado: "publicado"
   publicado_el: "2026-09-15"
-  actualizado_el: "2026-09-15"
+  actualizado_el: "2026-09-18"
 macroevento_principal_id: "milei-alineamiento-exterior-autonomia-interdependencia"
 macroevento_secundario_ids:
   - "derechas-transnacionales-reconfiguracion-america-latina"
@@ -37,6 +37,9 @@ fuente_ids:
   - "src-derechas-us-argentina-trade-2025"
   - "src-derechas-mercosur-cumbre-2025"
   - "src-derechas-brasil-comercio-mercosur-2025"
+  - "src-pp-milanovic"
+  - "src-pp-trump-investidura-2025"
+  - "src-pp-milei-davos-2025"
 recurso_visual_ids: []
 post_relacionado_ids:
   - "derechas-transnacionales-reconfiguracion-america-latina"
@@ -67,6 +70,16 @@ La relación Argentina–Brasil debe conservarse como interdependencia y límite
 La explicación alternativa es pragmatismo económico: necesidades de mercado, financiación o inversión pueden favorecer cooperación entre gobiernos con valores distintos. Para atribuir un efecto específico a las redes partidarias haría falta reconstruir interlocución, secuencia y decisiones que esas redes facilitaron. El acuerdo bilateral, por sí solo, no prueba que un foro haya causado su contenido.
 
 Este proceso conecta con el rector hemisférico sin sustituirlo. Aquí interesa la conversión de afinidad y vínculos personales en acción estatal; allí, la organización de instrumentos estadounidenses. Mantener ambas escalas permite observar dónde coinciden y dónde divergencias comerciales, instituciones nacionales o costos sociales cambian la conducta.
+
+## Milei y Trump: afinidad política y diferencias programáticas
+
+**Ampliación bibliográfica: 18 de septiembre de 2026.** La [lectura de Milanovic](/opinion/milanovic-milei-trump-liberalismo/) incorpora una interpretación sobre liberalismo y transformación partidaria. La fuente revisada es la nota de Canal Net del 13 de septiembre, no la entrevista audiovisual completa.
+
+La comparación necesita separar tres dimensiones: ideas económicas, alianzas políticas y compromisos externos. En su [discurso de Davos del 23 de enero de 2025](https://www.casarosada.gob.ar/informacion/discursos/50848-discurso-del-presidente-de-la-nacion-javier-milei-desde-el-foro-de-davos-suiza), Milei defendió propiedad privada y libre comercio y nombró a Trump entre sus aliados ideológicos. En su [investidura del 20 de enero](https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/), Trump propuso utilizar aranceles para proteger a trabajadores y familias estadounidenses. Son formulaciones oficiales cuya aplicación concreta debe examinarse por separado.
+
+Esta divergencia acota el alcance de la afinidad. Una coincidencia en adversarios culturales no establece una política comercial compartida, ni garantiza beneficios recíprocos. La interpretación alternativa es que el acercamiento sea selectivo: cooperación en ciertos asuntos junto con negociación o conflicto en otros. La evidencia decisiva serían obligaciones asumidas, excepciones concedidas, cumplimiento y costos de apartarse del socio.
+
+Tampoco corresponde tomar la autodefinición de libertad de un dirigente, o la clasificación de neoliberalismo de un analista, como medición suficiente de autonomía. La evaluación de Memo requiere identificar quién decide, qué alternativas conserva y qué restricciones materiales enfrenta. Esta ampliación mantiene la distinción previa entre firma, vigencia y ejecución del acuerdo bilateral; no presupone que una declaración haya alterado su estado jurídico.
 
 ## Explicaciones alternativas
 

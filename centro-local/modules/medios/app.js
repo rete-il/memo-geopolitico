@@ -176,8 +176,9 @@
   };
 
   const average = (rows, key) => {
-    if (!rows.length) return 0;
-    return rows.reduce((sum, row) => sum + Number(row[key] || 0), 0) / rows.length;
+    const scored = rows.filter(row => row[key] !== null && row[key] !== undefined);
+    if (!scored.length) return null;
+    return scored.reduce((sum, row) => sum + Number(row[key]), 0) / scored.length;
   };
 
   const countBy = (rows, key) => {
@@ -213,7 +214,7 @@
     const africa = rows.filter((r) => normalize(r.region).includes("africa")).length;
     const kpis = {
       "kpi-total": rows.length.toLocaleString("es"),
-      "kpi-score": average(rows, "puntuacion").toFixed(1),
+      "kpi-score": average(rows, "puntuacion")?.toFixed(1) ?? "Por evaluar",
       "kpi-high": high.toLocaleString("es"),
       "kpi-usable": active.toLocaleString("es"),
       "kpi-africa": africa.toLocaleString("es")
@@ -286,7 +287,7 @@
         <td>${escapeHtml(row.familia)}</td>
         <td>${escapeHtml(row.funcion)}</td>
         <td>${escapeHtml(row.perspectiva)}</td>
-        <td><span class="score">${Number(row.puntuacion || 0).toFixed(1)}</span></td>
+        <td><span class="score">${row.puntuacion === null ? "Por evaluar" : Number(row.puntuacion || 0).toFixed(1)}</span></td>
         <td><span class="badge ${badgeClass(row.confianza, "confidence")}">${escapeHtml(row.confianza)}</span></td>
         <td><span class="badge ${badgeClass(row.estado, "status")}">${escapeHtml(row.estado)}</span></td>
         <td><button class="btn btn--ghost btn--small details-btn" data-id="${escapeHtml(row.id)}">Ficha</button></td>
@@ -325,7 +326,7 @@
   };
 
   const metric = (label, value) => `
-    <div class="metric"><b>${Number(value || 0).toFixed(1)}</b><span>${escapeHtml(label)}</span></div>
+    <div class="metric"><b>${value === null ? "Por evaluar" : Number(value || 0).toFixed(1)}</b><span>${escapeHtml(label)}</span></div>
   `;
 
   const openModal = (id) => {

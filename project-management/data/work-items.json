@@ -2216,5 +2216,25 @@
       "Vista local comprobada y publicación separada."
     ],
     "notes": "Ver records/COMPLECION-DERECHAS-2026-09-15.md. Seis señales y seis fuentes nuevas. Sin despliegue remoto."
+  },
+  {
+    "id": "ED-PP-001",
+    "type": "CONTENT",
+    "epic": "Editorial",
+    "title": "Integrar Periodismo Puro y primer bloque de democracia y derechas",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-4-editorial",
+    "size": "M",
+    "owner": "Codex",
+    "dependencies": [],
+    "progress": 100,
+    "acceptanceCriteria": [
+      "Fuente incorporada al Excel canónico y vistas sincronizadas.",
+      "Cuatro fichas con atribución, fechas y alcance de revisión.",
+      "Tres análisis y expedientes amplían perspectivas con fuentes independientes.",
+      "Comprobaciones de datos, rutas y presentación aprobadas."
+    ],
+    "notes": "Primera entrega local completada el 18/09/2026; sin despliegue remoto. Ver records/INTEGRACION-PERIODISMO-PURO-2026-09-18.md. Restan los bloques de financiarización, tierras, IA y migración."
   }
 ]

@@ -1,6 +1,9 @@
 ---
 import type { GetStaticPaths } from 'astro';
+import ReadingLinks from '../../components/ReadingLinks.astro';
+import { destinationKey } from '../../../tools/lib/navigation-policy.mjs';
 import OpinionCard from '../../components/OpinionCard.astro';
+import PageTitle from '../../components/PageTitle.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { opinionReadings, type OpinionReading } from '../../lib/opinion';
 import { formatDate } from '../../lib/text';
@@ -33,39 +36,55 @@ const localDraft = reading
     {reading ? (
       <>
         <nav class="reading-breadcrumb" aria-label="Ruta de lectura">
-          <a href="/opinion/">Opinión</a><span aria-hidden="true">/</span><span>Lectura recomendada</span>
+          <a href="/opinion/">Opinión</a><span aria-hidden="true">/</span><span>{reading.formato === 'entrevista' ? 'Entrevista recomendada' : 'Lectura recomendada'}</span>
         </nav>
         <article>
           <header class="reading-header">
-            <p class="section-label">Opinión · {reading.origen.medio}</p>
-            <h1>{reading.titulo}</h1>
+            <p class="eyebrow">Opinión · {reading.origen.medio}</p>
+            <PageTitle class="reading-title">{reading.titulo}</PageTitle>
             <p class="reading-deck">{reading.descripcion}</p>
             <div class="reading-byline">
               <div>
-                <span>Autor del artículo original</span>
-                <a href={reading.autor.url} target="_blank" rel="noopener noreferrer">{reading.autor.nombre}<span class="sr-only"> (perfil en Catalunya Plural, abre otra pestaña)</span></a>
+                <span>{reading.formato === 'entrevista' ? 'Persona entrevistada' : 'Autor del artículo original'}</span>
+                <strong>{reading.autor.nombre}</strong>
               </div>
               <div>
                 <span>Publicado en {reading.origen.medio}</span>
                 <time datetime={reading.origen.fecha}>{formatDate(reading.origen.fecha)}</time>
               </div>
             </div>
+            {reading.entrevistador && <p>Entrevista de {reading.entrevistador}.</p>}
+            {reading.origen.fecha_emision && <p>Fecha del programa: <time datetime={reading.origen.fecha_emision}>{formatDate(reading.origen.fecha_emision)}</time>.</p>}
+            {reading.incorporado_el && <p>Incorporado a Memo Geopolítico: <time datetime={reading.incorporado_el}>{formatDate(reading.incorporado_el)}</time>.</p>}
           </header>
+          {reading.perfil_entrevistador && <aside class="interviewer-note" aria-labelledby="interviewer-title">
+            <p class="eyebrow">El periodista detrás de la entrevista</p>
+            <h2 id="interviewer-title">{reading.entrevistador}</h2>
+            <p class="interviewer-intro">{reading.perfil_entrevistador.presentacion}</p>
+            <dl class="interviewer-milestones">{reading.perfil_entrevistador.hitos.map(hito => <div><dt>{hito.titulo}</dt><dd>{hito.texto}</dd></div>)}</dl>
+            <p class="interviewer-sources">Fuentes de la reseña: {reading.perfil_entrevistador.fuentes.map((fuente, i) => <>{i > 0 && ' · '}<a href={fuente.url} target="_blank" rel="noopener noreferrer">{fuente.titulo}<span class="sr-only"> (abre otra pestaña)</span></a></>)}</p>
+          </aside>}
           <div class="reading-columns">
             <section class="reading-summary" aria-labelledby="summary-title">
-              <p class="section-label">Presentación de Memo Geopolítico</p>
+              <p class="eyebrow">Presentación de Memo Geopolítico</p>
               <h2 id="summary-title">Claves de esta lectura</h2>
               {reading.resumen.map((paragraph) => <p>{paragraph}</p>)}
+              {reading.nota_revision && <aside class="editorial-note"><p>{reading.nota_revision}</p></aside>}
               <div class="source-action">
-                <a class="button-primary" href={reading.origen.url} target="_blank" rel="noopener noreferrer">Leer artículo completo en {reading.origen.medio}<span class="sr-only"> (abre otra pestaña)</span></a>
-                <p>El texto íntegro se lee en el medio de origen.</p>
+                <a class="button-primary" href={reading.origen.url} target="_blank" rel="noopener noreferrer">{reading.formato === 'entrevista' ? 'Ver nota y acceso a la entrevista' : `Leer artículo completo en ${reading.origen.medio}`}<span class="sr-only"> (abre otra pestaña)</span></a>
+                {reading.origen.audio_url && <p><a href={reading.origen.audio_url} target="_blank" rel="noopener noreferrer">Escuchar episodio en Spotify</a></p>}
+                <p>{reading.formato === 'entrevista' ? 'Presentación propia basada en la nota de Canal Net. El material original se consulta en el medio de origen.' : 'El texto íntegro se lee en el medio de origen.'}</p>
               </div>
+              <ReadingLinks title="Análisis y documentación asociados" items={reading.relacionados.map(item => ({
+                href: item.url.startsWith('/observatorio/') && !item.url.includes('#') ? `${item.url}#fuentes` : item.url,
+                label: item.titulo,
+              }))} />
             </section>
             <aside class="author-note" aria-labelledby="author-title">
-              <p class="section-label">Sobre el autor</p>
+              <p class="eyebrow">{reading.formato === 'entrevista' ? 'Sobre la persona entrevistada' : 'Sobre el autor'}</p>
               <h2 id="author-title">{reading.autor.nombre}</h2>
               <p>{reading.autor.biografia}</p>
-              <a href={reading.autor.url} target="_blank" rel="noopener noreferrer">Más artículos del autor<span class="sr-only"> en Catalunya Plural (abre otra pestaña)</span></a>
+              {destinationKey(reading.autor.url) !== destinationKey(reading.origen.url) && <a href={reading.autor.url} target="_blank" rel="noopener noreferrer">{reading.formato === 'entrevista' ? 'Consultar fuente original' : 'Más artículos del autor'}<span class="sr-only"> (abre otra pestaña)</span></a>}
             </aside>
           </div>
         </article>
@@ -73,9 +92,10 @@ const localDraft = reading
     ) : (
       <>
         <header class="opinion-intro">
-          <p class="section-label">Memo Geopolítico</p>
-          <h1>Opinión</h1>
+          <p class="eyebrow">Memo Geopolítico</p>
+          <PageTitle>Opinión</PageTitle>
           <p>Firmas y perspectivas sobre las transformaciones del mundo.</p>
+          <p>Las últimas opiniones incorporadas al sitio aparecen primero. Cada ficha distingue la fecha de incorporación de la publicación original.</p>
         </header>
         <section class="opinion-readings" aria-label="Lecturas recomendadas">
           {opinionReadings.map((item) => <OpinionCard reading={item} />)}
@@ -86,30 +106,37 @@ const localDraft = reading
 </SiteLayout>
 
 <style>
+  .interviewer-note { margin-block: 2rem 3rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--amber-pale); border: 1px solid var(--line-strong); border-left: 4px solid var(--amber); }
+  .interviewer-note h2 { margin: .6rem 0 1rem; font: 500 var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; }
+  .interviewer-intro { max-width: 62rem; color: var(--ink-700); line-height: 1.7; }
+  .interviewer-milestones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2.5rem; margin-block: 1.75rem; }
+  .interviewer-milestones dt { font-weight: 750; color: var(--ink-800); }
+  .interviewer-milestones dd { margin: .4rem 0 0; color: var(--ink-700); line-height: 1.65; }
+  .interviewer-sources { margin-bottom: 0; font-size: .875rem; line-height: 1.7; }
+  .interviewer-sources a { text-decoration: underline; text-underline-offset: .2em; }
+  @media (max-width: 600px) { .interviewer-milestones { grid-template-columns: 1fr; } }
   .opinion-shell { width: var(--content); margin-inline: auto; padding-block: clamp(2rem, 5vw, 4rem); }
   .local-notice { width: fit-content; margin: 0 0 2rem; padding: 0.45rem 0.75rem; border-left: 3px solid var(--amber); background: var(--amber-pale); color: var(--ink-800); font-size: 0.875rem; }
-  .section-label { margin: 0; color: var(--blue); font-size: 0.875rem; font-weight: 750; }
   .opinion-intro { padding-bottom: 2.5rem; }
-  .opinion-intro h1 { margin: 0.6rem 0 1rem; font: 500 clamp(3rem, 7vw, 5.5rem)/1 var(--serif); letter-spacing: -0.04em; }
-  .opinion-intro > p:last-child { max-width: 36rem; margin-bottom: 0; font-size: 1.2rem; color: var(--ink-700); }
+  .opinion-intro > p:not(.eyebrow) { max-width: 48rem; margin: 1rem 0 0; font-size: var(--type-lead-size); color: var(--ink-700); }
   .reading-breadcrumb { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 2rem; color: var(--ink-600); font-size: 0.875rem; }
   .reading-header { max-width: 65rem; }
-  .reading-header h1 { max-width: 25ch; margin: 0.7rem 0 1.2rem; font: 500 clamp(2.2rem, 4.5vw, 4rem)/1.08 var(--serif); letter-spacing: -0.035em; text-wrap: pretty; }
-  .reading-deck { max-width: 48rem; color: var(--ink-700); font: 1.35rem/1.5 var(--serif); }
+  :global(.reading-title) { max-width: 25ch; }
+  .reading-deck { max-width: 48rem; margin-top: 1rem; color: var(--ink-700); font: var(--type-lead-size)/1.6 var(--sans); }
   .reading-byline { display: flex; flex-wrap: wrap; gap: 1.25rem 3rem; margin-block: 2rem; }
   .reading-byline > div { display: grid; gap: 0.3rem; }
   .reading-byline > div > span { color: var(--ink-600); font-size: 0.875rem; }
   .reading-byline a, .reading-byline time { font-weight: 700; }
   .reading-columns { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; align-items: start; gap: clamp(2rem, 6vw, 6rem); border-top: 1px solid var(--line-strong); padding-top: 2.5rem; }
   .reading-summary { max-width: 46rem; }
-  .reading-summary h2 { margin-block: 0.55rem 1.25rem; font: 500 2rem/1.2 var(--serif); }
-  .reading-summary > p:not(.section-label) { font: 1.2rem/1.8 var(--serif); }
+  .reading-summary h2 { margin-block: 0.55rem 1.25rem; font: 500 var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; }
+  .reading-summary > p:not(.eyebrow) { font: 1.05rem/1.82 var(--serif); }
   .source-action { margin-top: 2rem; }
   .source-action .button-primary { text-align: center; font-size: 0.95rem; }
   .source-action p { color: var(--ink-600); font-size: 0.875rem; }
   .author-note { padding: 1.5rem; background: var(--blue-pale); border-top: 3px solid var(--blue); }
-  .author-note h2 { margin-block: 0.7rem; font: 500 1.75rem/1.2 var(--serif); }
-  .author-note > p:not(.section-label) { color: var(--ink-700); }
+  .author-note h2 { margin-block: 0.7rem; font: 500 var(--type-subheading-size)/1.2 var(--serif); }
+  .author-note > p:not(.eyebrow) { color: var(--ink-700); }
   .author-note a { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: 0.95rem; }
   @media (max-width: 800px) { .reading-columns { grid-template-columns: 1fr; } .author-note { max-width: 46rem; } }
 </style>

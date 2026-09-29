@@ -1,6 +1,8 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { mediaRecords } from '../../lib/data';
+import { assessedMediaScore } from '../../../tools/lib/media-assessment.mjs';
 
 const unique = (values: string[]) =>
   [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es'));
@@ -8,6 +10,7 @@ const unique = (values: string[]) =>
 const regions = unique(mediaRecords.map((item) => item.region));
 const functions = unique(mediaRecords.map((item) => item.funcion));
 const perspectives = unique(mediaRecords.map((item) => item.perspectiva));
+const mediaRows = mediaRecords.map(item => ({ ...item, displayScore: assessedMediaScore(item) }));
 ---
 
 <SiteLayout
@@ -18,12 +21,12 @@ const perspectives = unique(mediaRecords.map((item) => item.perspectiva));
     <header class="page-intro">
       <div>
         <p class="eyebrow">Directorio de medios</p>
-        <h1>Fuentes clasificadas para una lectura crítica.</h1>
+        <PageTitle>Fuentes clasificadas para una lectura crítica</PageTitle>
       </div>
       <p>
-        El catálogo se mantiene fuera de línea en su Excel canónico. Esta vista
-        pública permite cruzar región, función epistemológica, perspectiva y
-        criterios de calidad sin llamadas externas.
+        Un directorio de medios, organismos y centros de investigación para
+        contrastar información. Permite buscar por región, tipo de cobertura
+        y perspectiva, y consultar el uso recomendado de cada fuente.
       </p>
     </header>
 
@@ -49,7 +52,7 @@ const perspectives = unique(mediaRecords.map((item) => item.perspectiva));
               {perspectives.map((item) => <option value={item}>{item}</option>)}
             </select>
           </form>
-          <p class="media-summary" data-media-count>{mediaRecords.length} medios</p>
+          <p class="media-summary" data-media-count role="status" aria-live="polite" aria-atomic="true">{mediaRecords.length} medios</p>
           <div class="media-table-wrap">
             <table class="media-table">
               <thead>
@@ -63,7 +66,7 @@ const perspectives = unique(mediaRecords.map((item) => item.perspectiva));
                 </tr>
               </thead>
               <tbody>
-                {mediaRecords.map((item) => (
+                {mediaRows.map((item) => (
                   <tr
                     data-media-row
                     data-search={[
@@ -81,13 +84,11 @@ const perspectives = unique(mediaRecords.map((item) => item.perspectiva));
                       <a href={item.url} target="_blank" rel="noopener noreferrer">
                         {item.nombre}
                       </a>
-                      <br />
-                      <small>{item.media_id}</small>
                     </td>
                     <td>{item.region}</td>
                     <td>{item.funcion}</td>
                     <td>{item.perspectiva}</td>
-                    <td><span class="media-score">{item.puntuacion.toFixed(1)}</span>/5</td>
+                    <td>{item.displayScore === null ? 'Evaluación pendiente' : <><span class="media-score">{item.displayScore.toFixed(1)}</span>/5</>}</td>
                     <td>{item.uso}</td>
                   </tr>
                 ))}
@@ -98,8 +99,8 @@ const perspectives = unique(mediaRecords.map((item) => item.perspectiva));
       ) : (
         <section class="section-shell">
           <div class="empty-state">
-            <h2>Catálogo pendiente de sincronización</h2>
-            <p>Ejecutá la sincronización local desde el Excel maestro.</p>
+            <h2>Directorio en preparación</h2>
+            <p>Las fuentes se incorporarán a medida que se complete su revisión.</p>
           </div>
         </section>
       )

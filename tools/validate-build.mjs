@@ -7,6 +7,7 @@ import matter from 'gray-matter';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const production = path.join(root, 'dist');
 const preview = path.join(root, 'dist-preview');
+const productionOnly = process.argv.includes('--production-only');
 
 function htmlFiles(directory) {
   const files = [];
@@ -121,7 +122,7 @@ const energyTheme = fs.readFileSync(
 );
 
 const productionPages = validateLinks(production);
-const previewPages = validateLinks(preview);
+const previewPages = productionOnly ? null : validateLinks(preview);
 const publicationArchiveCards = (
   publications.match(/class="publication-card publication-card--published"/g) ||
   []
@@ -152,7 +153,7 @@ const observatoryData = JSON.parse(
   fs.readFileSync(path.join(root, 'src', 'data', 'public', 'observatorio.json'), 'utf8'),
 );
 const expectedProcessCount = observatoryData.procesos.length;
-const editorialPublicationRoutes = expectedEditorialPublicationRoutes();
+const editorialPublicationRoutes = productionOnly ? null : expectedEditorialPublicationRoutes();
 const publishedPublicationRoutes = expectedPublishedPublicationRoutes();
 
 assert.equal(home.includes('home-path--publications'), true);
@@ -176,7 +177,7 @@ assert.equal(observatoryStateLinks, expectedProcessCount);
 assert.equal(dashboardProcessRows, expectedProcessCount);
 assert.equal(/>(?:Guardar|Editar|Eliminar)</.test(dashboard), false);
 assert.equal(countRoutes(production, 'publicaciones'), publishedPublicationRoutes.posts);
-assert.equal(countRoutes(preview, 'publicaciones'), editorialPublicationRoutes);
+if (!productionOnly) assert.equal(countRoutes(preview, 'publicaciones'), editorialPublicationRoutes);
 assert.equal(stateRouteCount, 4);
 assert.ok(
   (energyTheme.match(/publication-card--published/g) || []).length > 0,

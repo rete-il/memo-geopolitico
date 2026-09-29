@@ -5,5 +5,72 @@
     "kofiUrl": "https://ko-fi.com/reteil",
     "showOnPublications": true,
     "showInFooter": true
+  },
+  "institutional": {
+    "identity": {
+      "responsible": "Ricardo Retyk",
+      "country": "Israel",
+      "address": "Ashdod",
+      "hostingProvider": "Netlify",
+      "mailProvider": "Zoho",
+      "retention": "Las consultas generales y sus datos de contacto se conservarán durante la atención del asunto y hasta 12 meses después de su cierre. El responsable revisará periódicamente los mensajes y eliminará los que hayan dejado de ser necesarios.\n\nLas comunicaciones que documenten una autorización, colaboración, corrección o reclamación podrán conservarse durante más tiempo cuando exista una necesidad concreta y justificada. Se limitarán a la información necesaria y su conservación se revisará al menos una vez al año. El archivo de artículos y correcciones no justifica conservar indefinidamente todos los mensajes o datos de sus remitentes.\n\nCuando se habiliten las alertas, los datos se utilizarán mientras la suscripción permanezca activa. Tras la baja, solo se conservará la información mínima necesaria para respetar esa solicitud y acreditar su gestión.\n\nLos registros técnicos y las copias de recuperación de los proveedores de alojamiento y correo están sujetos a sus condiciones y opciones de conservación. La eliminación de un mensaje del buzón no supone su desaparición inmediata de todas las copias de recuperación."
+    },
+    "contacts": {
+      "domain": "memogeopolitico.com",
+      "enabledInDevelopment": true,
+      "enabledInProduction": true,
+      "channels": {
+        "general": "contacto",
+        "editorial": "editorial",
+        "collaborations": "colaboraciones",
+        "press": "prensa"
+      },
+      "privacyChannel": "general"
+    },
+    "reviewed": true,
+    "subscription": {
+      "provider": "",
+      "signupUrl": "",
+      "preferencesUrl": "",
+      "privacyUrl": "",
+      "doubleOptInVerified": false
+    },
+    "pages": {
+      "contacto": {
+        "label": "Contacto",
+        "enabledInDevelopment": true,
+        "enabledInProduction": true
+      },
+      "aviso-legal": {
+        "label": "Aviso legal",
+        "enabledInDevelopment": true,
+        "enabledInProduction": true
+      },
+      "privacidad": {
+        "label": "Privacidad",
+        "enabledInDevelopment": true,
+        "enabledInProduction": true
+      },
+      "cookies": {
+        "label": "Cookies y servicios externos",
+        "enabledInDevelopment": true,
+        "enabledInProduction": true
+      },
+      "derechos": {
+        "label": "Derechos y reutilización",
+        "enabledInDevelopment": true,
+        "enabledInProduction": true
+      },
+      "correcciones": {
+        "label": "Política de correcciones",
+        "enabledInDevelopment": true,
+        "enabledInProduction": true
+      },
+      "suscripcion": {
+        "label": "Suscripción y alertas",
+        "enabledInDevelopment": true,
+        "enabledInProduction": false
+      }
+    }
   }
 }

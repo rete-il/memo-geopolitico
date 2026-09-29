@@ -1,13 +1,10 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import { catalog, processesForRegion } from '../../lib/data';
+import { processesForRegion } from '../../lib/data';
+import { geographicEntries } from '../../lib/seo';
 
-const items = [
-  ...catalog('regiones'),
-  ...catalog('subregiones'),
-  ...catalog('paises_territorios'),
-  ...catalog('espacios_geopoliticos'),
-].filter((item) => processesForRegion(item.id).length > 0);
+const items = geographicEntries;
 ---
 
 <SiteLayout title="Regiones" description="Exploración geográfica del Observatorio.">
@@ -15,7 +12,7 @@ const items = [
     <header class="page-intro">
       <div>
         <p class="eyebrow">Explorar</p>
-        <h1>Regiones, países y espacios geopolíticos.</h1>
+        <PageTitle>Regiones, países y espacios geopolíticos</PageTitle>
       </div>
       <p>
         La geografía no se reduce a Estados: mares, corredores y zonas
@@ -24,11 +21,11 @@ const items = [
     </header>
     <section class="section-shell">
       <div class="explore-grid">
-        {items.map((item) => (
+        {items.map(({ item, path }) => (
           <article class="explore-card">
             <h2>{item.nombre}</h2>
             <p>{processesForRegion(item.id).length} procesos relacionados.</p>
-            <a href={`/regiones/${item.slug}/`}>Abrir</a>
+            <a href={path}>Abrir</a>
           </article>
         ))}
       </div>

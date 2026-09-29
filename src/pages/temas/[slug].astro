@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import PublicationCard from '../../components/PublicationCard.astro';
 import ProcessCard from '../../components/ProcessCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
@@ -61,7 +62,7 @@ const processLabel =
     <header class="page-intro">
       <div>
         <p class="eyebrow">Tema</p>
-        <h1>{item.nombre}</h1>
+        <PageTitle>{item.nombre}</PageTitle>
       </div>
       <div class="taxonomy-page-summary">
         {item.descripcion && <p>{item.descripcion}</p>}

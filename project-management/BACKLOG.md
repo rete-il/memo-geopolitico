@@ -115,6 +115,7 @@
 | ED-004 | FEAT | Editorial | P1 | ○ Propuesta | L | TBD | ED-001 | Crear fuentes, notas y contenido relacionado |
 | ED-005 | SEO | Editorial | P1 | ○ Propuesta | L | TBD | SEO-001, ED-001 | Implementar canonical, Open Graph y JSON-LD por artículo |
 | ED-006 | UX | Editorial | P1 | ○ Propuesta | M | TBD | DS-002, ED-002 | Diseñar lectura responsive y ancho editorial |
+| ED-PP-001 | CONTENT | Editorial | P1 | ✓ Terminada | M | Codex | — | Integrar Periodismo Puro y primer bloque de democracia y derechas |
 | OBS-002 | CONTENT | Piloto editorial | P1 | ▶ En progreso | L | Rete | OBS-001 | Completar el piloto del Corredor de Lobito hasta un Markdown publicable |
 | TRUST-001 | CONTENT | Transparencia | P1 | ○ Propuesta | XL | TBD | IA-001 | Crear Acerca de, Política editorial, Uso de IA y Correcciones |
 | ED-003 | FEAT | Editorial | P2 | ○ Propuesta | M | TBD | ED-001 | Crear índice de contenidos y anclas |

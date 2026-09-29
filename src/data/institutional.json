@@ -1,0 +1,128 @@
+{
+  "contacto": [
+    {
+      "title": "Consultas y comunicaciones",
+      "text": "Los canales de contacto de Memo Geopolítico atienden consultas generales, comunicaciones editoriales, propuestas de colaboración y solicitudes de prensa. Para consultas sobre una publicación, se solicita indicar su enlace y el motivo del mensaje."
+    },
+    {
+      "title": "Información para la consulta",
+      "text": "El mensaje debe incluir únicamente los datos necesarios para atender la consulta. No es necesario enviar documentos de identidad, contraseñas ni información sensible de terceros. La recepción de una propuesta de colaboración no implica un compromiso de publicación."
+    }
+  ],
+  "aviso-legal": [
+    {
+      "title": "Objeto del sitio",
+      "text": "Memo Geopolítico ofrece investigación, análisis y selección de fuentes sobre procesos geopolíticos. Las publicaciones distinguen hechos documentados, interpretaciones y escenarios, con sus fechas de referencia e incertidumbres."
+    },
+    {
+      "title": "Uso de la información",
+      "text": "Los contenidos tienen finalidad informativa y editorial. No constituyen asesoramiento profesional individual. Los escenarios son hipótesis sujetas a revisión y no garantías de acontecimientos futuros."
+    },
+    {
+      "title": "Fuentes y opiniones",
+      "text": "Las opiniones de autores y entrevistados se atribuyen a sus responsables. Enlazar una fuente no implica adoptar todas sus posiciones."
+    }
+  ],
+  "privacidad": [
+    {
+      "title": "Datos recibidos por correo",
+      "text": "Al recibir una consulta por correo, el sitio recibe la dirección del remitente, el contenido del mensaje y los datos incluidos. Esa información se utiliza para atender la consulta y gestionar su seguimiento. El envío de una consulta no incorpora la dirección del remitente a un boletín."
+    },
+    {
+      "title": "Responsable del tratamiento",
+      "text": "La responsabilidad sobre los datos recibidos corresponde a la persona identificada en el aviso legal.",
+      "references": [
+        {
+          "page": "aviso-legal",
+          "anchor": "responsable",
+          "label": "Identificación del responsable"
+        }
+      ]
+    },
+    {
+      "title": "Navegación y servicios",
+      "text": "El proveedor de alojamiento web puede procesar registros técnicos necesarios para mostrar las páginas y proteger el servicio. Los proveedores y los criterios de conservación se detallan a continuación.",
+      "references": [
+        {
+          "page": "cookies",
+          "label": "Cookies y acceso a servicios externos"
+        }
+      ]
+    },
+    {
+      "title": "Consultas y solicitudes sobre datos personales",
+      "text": "El canal de privacidad permite consultar el tratamiento de datos personales y solicitar su corrección o eliminación, así como ejercer los derechos que correspondan conforme a la normativa aplicable. Solo debe enviarse documentación de identidad cuando se solicite de forma justificada y por un canal adecuado."
+    }
+  ],
+  "cookies": [
+    {
+      "title": "Navegación en este sitio",
+      "text": "Esta página describe la información que Memo Geopolítico guarda en el navegador y el acceso a servicios externos. El código actual del sitio no instala cookies publicitarias ni incorpora herramientas de analítica de comportamiento."
+    },
+    {
+      "title": "Preferencia de presentación del Observatorio",
+      "text": "La vista de lista o tarjetas solo se guarda al marcar «Recordar esta vista en este navegador» en el Observatorio. Se utiliza almacenamiento local, una tecnología distinta de las cookies. El código del sitio no envía esta preferencia a un servidor. Las elecciones guardadas anteriormente sin esa casilla se descartan.",
+      "block": "browser-storage"
+    },
+    {
+      "title": "Gestión desde el navegador",
+      "text": "La configuración del navegador permite consultar, eliminar o bloquear los datos guardados por el sitio. Si se impide el almacenamiento, el Observatorio sigue disponible, pero la elección de vista no se recuerda en visitas posteriores. En navegación privada, la duración de los datos depende de las reglas del navegador."
+    },
+    {
+      "title": "Servicios externos",
+      "text": "Los enlaces a medios, audio, apoyo al proyecto y suscripción abren servicios de terceros. Al acceder a ellos, esos servicios pueden utilizar cookies o procesar datos conforme a sus propias políticas. La gestión de esos datos se realiza en el servicio externo o en el navegador. Las entrevistas y los audios se consultan mediante enlaces, sin reproductores incrustados en estas páginas.",
+      "references": [
+        {
+          "page": "privacidad",
+          "anchor": "servicios-y-datos",
+          "label": "Proveedores del sitio y conservación de datos"
+        }
+      ]
+    }
+  ],
+  "derechos": [
+    {
+      "title": "Contenido propio",
+      "text": "Se permite compartir enlaces a las publicaciones y citarlas identificando el título, la autoría, Memo Geopolítico, la fecha y la dirección de la página. Para reproducir artículos completos, traducirlos o realizar otros usos que requieran autorización, las solicitudes se reciben por el canal editorial indicado en esta página."
+    },
+    {
+      "title": "Contenido de terceros",
+      "text": "Los textos, imágenes, entrevistas y documentos de terceros conservan sus respectivos derechos y condiciones de uso. Su inclusión como referencia no concede una licencia de reproducción. Cuando el uso requiera autorización, la solicitud debe dirigirse al titular correspondiente."
+    },
+    {
+      "title": "Integridad de las citas",
+      "text": "Las citas y referencias deben conservar su contexto y distinguirse de los comentarios de quien las reutiliza. Las autorizaciones específicas y los usos permitidos por la normativa aplicable se valoran por separado."
+    }
+  ],
+  "correcciones": [
+    {
+      "title": "Comunicar un error",
+      "text": "Los avisos deben incluir la dirección de la publicación, el pasaje cuestionado y la corrección propuesta. Cuando sea posible, conviene añadir un enlace a evidencia verificable. También se reciben avisos sobre enlaces rotos, atribuciones incompletas o fechas incorrectas."
+    },
+    {
+      "title": "Revisión de los avisos",
+      "text": "Cada aviso se revisa y sus fuentes se contrastan antes de modificar el contenido. Una discrepancia de interpretación no se considera automáticamente un error de hecho: puede requerir incorporar una perspectiva alternativa o explicar mejor los límites de una conclusión."
+    },
+    {
+      "title": "Registro de los cambios",
+      "text": "Las correcciones sustanciales deben incluir una nota que explique qué cambió y la fecha de revisión. Las ampliaciones conservan la fecha de los acontecimientos y distinguen la actualización de la publicación original. Los ajustes de ortografía o presentación no alteran el sentido del texto."
+    }
+  ],
+  "suscripcion": [
+    {
+      "title": "Recibir novedades",
+      "text": "El boletín reunirá nuevas publicaciones y opiniones incorporadas al sitio. Las alertas temáticas permitirán elegir asuntos de interés. La frecuencia y las opciones disponibles se indicarán en el formulario del proveedor antes de confirmar el alta."
+    },
+    {
+      "title": "Control de la suscripción",
+      "text": "El alta requiere confirmación por correo. Las preferencias y la cancelación de los envíos se gestionan desde el servicio de suscripción. La baja del boletín no impide seguir consultando el sitio.",
+      "references": [
+        {
+          "page": "privacidad",
+          "anchor": "servicios-y-datos",
+          "label": "Uso y conservación de los datos de suscripción"
+        }
+      ]
+    }
+  ]
+}

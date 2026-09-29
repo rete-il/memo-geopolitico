@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../../components/PageTitle.astro';
 import ProcessCard from '../../../components/ProcessCard.astro';
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import {
@@ -46,7 +47,7 @@ const related = processes
     <header class="page-intro">
       <div>
         <p class="eyebrow">Estado del Observatorio</p>
-        <h1>{definition.title}</h1>
+        <PageTitle>{definition.title}</PageTitle>
       </div>
       <div class="taxonomy-page-summary">
         <p>{definition.description}</p>

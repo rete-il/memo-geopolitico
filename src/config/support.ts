@@ -2,7 +2,7 @@ import features from './features.json';
 
 const config = features.support;
 
-const environmentEnabled = import.meta.env.PROD
+const environmentEnabled = import.meta.env.PROD && import.meta.env.MODE !== 'institutional'
   ? config.enabledInProduction
   : config.enabledInDevelopment;
 

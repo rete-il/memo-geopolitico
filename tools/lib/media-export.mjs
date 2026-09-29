@@ -1,5 +1,8 @@
-import XLSX from 'xlsx';
+import { createRequire } from 'node:module';
 import { slugify } from './public-export.mjs';
+
+// SheetJS CommonJS includes Node filesystem support for readFile.
+const XLSX = createRequire(import.meta.url)('xlsx');
 
 const KEYS = [
   'id',
@@ -82,7 +85,7 @@ export function buildMediaDataset(workbookPath, options = {}) {
       const key = KEYS[index];
       const value = row[index] ?? '';
       record[key] = NUMERIC_KEYS.has(key)
-        ? Number(value || 0)
+        ? (value === '' || value === null ? null : Number(value))
         : key === 'fecha_revision'
           ? excelDate(value)
           : String(value).trim();

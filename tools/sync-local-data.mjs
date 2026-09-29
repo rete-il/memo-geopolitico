@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
+import { synchronizeEditorialPresentation } from './lib/editorial-presentation.mjs';
 import { buildMediaDataset, validateMediaDataset } from './lib/media-export.mjs';
 import { synchronizeMediaCatalog } from './lib/media-sync.mjs';
 import {
@@ -226,6 +227,7 @@ if (!mediaValidation.valid) {
 
 writeJson(path.join(root, 'src', 'data', 'public', 'observatorio.json'), productionPackage);
 writeJson(path.join(root, 'local-preview', 'observatorio.json'), previewPackage);
+synchronizeEditorialPresentation(root);
 synchronizeMediaCatalog({
   root,
   workbookPath: paths.medios,

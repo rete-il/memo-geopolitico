@@ -1,0 +1,109 @@
+{
+  "fecha": "2026-09-18",
+  "alcance": "Primera entrega: democracia y derechas. Integración local, sin despliegue remoto.",
+  "fuente_curada": "periodismo-puro",
+  "material_revisado": "Notas escritas, discursos oficiales, introducción de artículo académico y adéndum de informe. Sin revisión audiovisual completa.",
+  "entrevistas": [
+    {
+      "id": "milanovic",
+      "entrevistado": "Branko Milanovic",
+      "fecha_nota": "2026-09-13",
+      "fecha_programa": "2026-09-13",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/branko-milanovic-comparo-a-milei-con-trump-y-lanzo-una-definicion-inesperada-sobre-el-presidente-argentino_20260913/",
+      "estado": "nota escrita revisada"
+    },
+    {
+      "id": "mounk",
+      "entrevistado": "Yascha Mounk",
+      "fecha_nota": "2025-03-24",
+      "fecha_programa": "2025-03-23",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/yasha-mounk-aseguro-que-la-vision-de-donald-trump-en-su-segundo-mandato-es-bastante-desarrollada-y-detallada_20250324/",
+      "estado": "nota escrita revisada"
+    },
+    {
+      "id": "hawley",
+      "entrevistado": "George Hawley",
+      "fecha_nota": "2025-03-16",
+      "fecha_programa": "2025-03-16",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/george-hawley-aseguro-que-la-oposicion-a-trump-esta-mas-desmoralizada-que-nunca_20250316/",
+      "audio": "https://open.spotify.com/episode/6ddCbRddIBncTpbROQaJ4y",
+      "estado": "nota escrita revisada"
+    },
+    {
+      "id": "benhabib",
+      "entrevistado": "Seyla Benhabib",
+      "fecha_nota": "2021-12-31",
+      "fecha_programa": "2021-12-30",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/seyla-benhabib-en-estados-unidos-esta-surgiendo-el-nihilismo-politico_20211231/",
+      "estado": "nota escrita revisada"
+    }
+  ],
+  "contrastes": [
+    {
+      "id": "src-pp-trump-investidura-2025",
+      "medio": "The White House",
+      "titulo": "The Inaugural Address",
+      "fecha": "2025-01-20",
+      "url": "https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/",
+      "idioma": "en",
+      "tipo": "fuente_primaria",
+      "observaciones": "Discurso oficial: documenta prioridades declaradas, no su ejecución ni sus efectos."
+    },
+    {
+      "id": "src-pp-milei-davos-2025",
+      "medio": "Casa Rosada",
+      "titulo": "Discurso de Javier Milei en Davos",
+      "fecha": "2025-01-23",
+      "url": "https://www.casarosada.gob.ar/informacion/discursos/50848-discurso-del-presidente-de-la-nacion-javier-milei-desde-el-foro-de-davos-suiza",
+      "idioma": "es",
+      "tipo": "fuente_primaria",
+      "observaciones": "Discurso oficial: posición del dirigente. Sus afirmaciones empíricas no se dan por verificadas."
+    },
+    {
+      "id": "src-pp-vdem-2026",
+      "medio": "V-Dem Institute",
+      "titulo": "Informe sobre la Democracia 2026: ¿El fin de la era democrática?",
+      "fecha": "2026-03",
+      "url": "https://www.v-dem.net/documents/76/V-Dem_Institute_Democracy_Report_2026_Spanish_lowres.pdf",
+      "idioma": "es",
+      "tipo": "analisis",
+      "observaciones": "Revisión acotada al adéndum latinoamericano, pp. 43–45. Comparación descriptiva; datos de 2025, no medición de septiembre de 2026."
+    },
+    {
+      "id": "src-pp-levitsky-ziblatt-mayorias-2025",
+      "medio": "Journal of Democracy",
+      "titulo": "When Should the Majority Rule? — Steven Levitsky y Daniel Ziblatt",
+      "fecha": "2025-01",
+      "url": "https://www.journalofdemocracy.org/articles/when-should-the-majority-rule/",
+      "idioma": "en",
+      "tipo": "analisis",
+      "observaciones": "Marco conceptual sobre derechos y límites a mayorías. Revisión de resumen e introducción pública; no evaluación completa de casos nacionales."
+    }
+  ],
+  "pendientes": [
+    {
+      "tema": "Financiarización",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/brian-judge-explico-como-la-financiarizacion-impulso-el-neoliberalismo-y-cuestiono-las-teorias-sobre-la-inflacion-de-los-70_20260830/"
+    },
+    {
+      "tema": "IA y autonomía humana",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/luciano-floridi-advirtio-sobre-la-inteligencia-artificial-y-el-riesgo-de-adaptar-el-mundo-a-las-maquinas_20260906/"
+    },
+    {
+      "tema": "Tierras y activos",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/brett-christophers-economista-britanico-analizo-la-privatizacion-de-tierras-quien-se-beneficia_20260816/",
+      "pendiente": "Verificar discrepancia entre fecha de nota 2026 y programa referido de 2024."
+    },
+    {
+      "tema": "Migración",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/hein-de-haas-asevero-que-existe-una-campana-de-odio-contra-los-inmigrantes_20250629/"
+    }
+  ],
+  "directorios": [
+    "https://www.canalnet.tv/programas/periodismo-puro/",
+    "https://www.canalnet.tv/tag/periodismo-puro/",
+    "https://radio-argentina.net/podcast/2724-periodismo-puro-con-jorge-fontevecchia.html",
+    "https://podcastrepublic.net/podcast/1494750755"
+  ],
+  "criterio_directorios": "Acceso y descubrimiento. No contar reediciones y plataformas como corroboraciones independientes."
+}

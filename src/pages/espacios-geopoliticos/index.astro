@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { catalog, processesForRegion } from '../../lib/data';
 
@@ -15,7 +16,7 @@ const items = catalog('espacios_geopoliticos').filter(
     <header class="page-intro">
       <div>
         <p class="eyebrow">Explorar</p>
-        <h1>Espacios que no caben dentro de una frontera.</h1>
+        <PageTitle>Espacios que no caben dentro de una frontera</PageTitle>
       </div>
       <p>
         Mares, estrechos, corredores y zonas transfronterizas organizan procesos

@@ -1,14 +1,17 @@
 ---
 import { sourceById } from '../lib/data';
 import { formatDate } from '../lib/text';
+import { signalHref } from '../../tools/lib/navigation-policy.mjs';
 import type { PublicSignal } from '../lib/types';
 
 interface Props {
   signals: PublicSignal[];
   processSlug?: string;
+  headingLevel?: 2 | 3;
 }
 
-const { signals, processSlug } = Astro.props;
+const { signals, processSlug, headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
 ---
 
 <ol class="signal-timeline">
@@ -18,21 +21,22 @@ const { signals, processSlug } = Astro.props;
         .map((id) => sourceById.get(id))
         .filter(Boolean);
       const href = processSlug
-        ? `/observatorio/${processSlug}/#${signal.senal_id}`
+        ? signalHref(processSlug, signal.senal_id)
         : undefined;
       return (
         <li id={processSlug ? signal.senal_id : undefined}>
           <time datetime={signal.fecha}>{formatDate(signal.fecha)}</time>
           <div>
             <div class="signal-heading">
-              <h3>
-                {href ? <a href={href}>{signal.titulo}</a> : signal.titulo}
-              </h3>
+              <Heading class="signal-title">
+                {signal.titulo}
+              </Heading>
               <span class={`verification ${signal.estado_verificacion}`}>
                 {signal.estado_verificacion}
               </span>
             </div>
             <p>{signal.resumen}</p>
+            {href && <a class="signal-permalink" href={href} aria-label={`Enlace permanente: ${signal.titulo}`}>Enlace permanente a esta señal</a>}
             {signalSources.length > 0 && (
               <p class="signal-sources">
                 Fuentes:{' '}

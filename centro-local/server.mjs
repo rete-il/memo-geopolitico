@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { collectDataHealth } from './lib/health.mjs';
 import { ModuleManager } from './lib/module-manager.mjs';
 import { paths } from './lib/paths.mjs';
+import { siteSettingsRequest } from './lib/site-settings.mjs';
 
 const HOST = '127.0.0.1';
 const DEFAULT_PORT = 4322;
@@ -111,6 +112,10 @@ export function createCentroServer(options = {}) {
         return;
       }
       const url = new URL(req.url, `http://${req.headers.host}`);
+      if (url.pathname === '/api/site-settings' || url.pathname === '/api/site-settings/validate') {
+        await siteSettingsRequest(req, res, sendJson, options.siteSettingsFile, url.pathname.endsWith('/validate'));
+        return;
+      }
 
       if (req.method === 'GET' && url.pathname === '/api/health') {
         sendJson(res, 200, { ok: true, version: VERSION, host: HOST });

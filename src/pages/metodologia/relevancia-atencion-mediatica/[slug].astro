@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../../components/PageTitle.astro';
 import RatingPair from '../../../components/RatingPair.astro';
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { processes } from '../../../lib/data';
@@ -48,7 +49,7 @@ const isPublished = publication?.publicacion.estado === 'publicado';
   <div class="page-shell">
     <header class="methodology-note-hero">
       <p class="eyebrow">Interpretación en desarrollo</p>
-      <h1>Cómo interpretar los valores de «{publicationTitle}».</h1>
+      <PageTitle>Cómo interpretar los valores de «{publicationTitle}»</PageTitle>
       <p class="lead">
         Esta página reserva un espacio específico para documentar cómo se
         asignaron y cómo deberán leerse las valoraciones de esta publicación.

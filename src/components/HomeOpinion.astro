@@ -1,0 +1,49 @@
+---
+import type { OpinionReading } from '../lib/opinion';
+import { latestOpinionReadings } from '../../tools/lib/opinion-selection.mjs';
+import { formatDate } from '../lib/text';
+import MoreOpinionsLink from './MoreOpinionsLink.astro';
+interface Props { readings: OpinionReading[]; }
+const selected = latestOpinionReadings(Astro.props.readings);
+---
+{selected.length > 0 && <section class="home-opinion" aria-labelledby="opinion-title">
+  <header>
+    <div><p class="eyebrow">Últimas incorporaciones</p><h2 id="opinion-title">Opinión</h2></div>
+    <MoreOpinionsLink />
+  </header>
+  <p class="intro">Voces y perspectivas para contrastar nuestros análisis. Lecturas recién incorporadas al sitio, con su fecha original a la vista.</p>
+  <div class="opinion-grid">
+    {selected.map(reading => <article>
+      <p class="format">{reading.formato === 'entrevista' ? 'Entrevista' : 'Artículo'} · {reading.origen.medio}</p>
+      <h3><a href={`/opinion/${reading.slug}/`}>{reading.titulo}</a></h3>
+      <p class="author">{reading.autor.nombre}{reading.entrevistador && <span> · Entrevista de {reading.entrevistador}</span>}</p>
+      <p class="description">{reading.descripcion}</p>
+      <footer>
+        {reading.incorporado_el && <p>Incorporado al sitio: <time datetime={reading.incorporado_el}>{formatDate(reading.incorporado_el)}</time></p>}
+        <p>Publicación original: <time datetime={reading.origen.fecha}>{formatDate(reading.origen.fecha)}</time></p>
+      </footer>
+    </article>)}
+  </div>
+  <div class="section-end"><MoreOpinionsLink /></div>
+</section>}
+<style>
+  .home-opinion { margin-top: clamp(2.5rem, 5vw, 4rem); }
+  header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; }
+  .format { color: var(--blue); font-size: .875rem; font-weight: 700; }
+  h2 { margin: .55rem 0 0; font: 500 var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; }
+  .section-end { display: flex; justify-content: flex-end; margin-top: 1.5rem; }
+  .intro { max-width: 65ch; color: var(--ink-700); margin: 1rem 0 1.5rem; font-size: var(--type-lead-size); }
+  .opinion-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  article { display: flex; flex-direction: column; padding: clamp(1.25rem, 2.5vw, 2rem); border: 1px solid var(--line); border-top: 3px solid var(--amber); background: var(--blue-pale); }
+  .format { margin: 0; }
+  h3 { margin: .85rem 0; font: 500 var(--type-card-size)/1.2 var(--serif); letter-spacing: -.025em; text-wrap: pretty; }
+  h3 a { text-decoration: none; }
+  h3 a:hover { text-decoration: underline; }
+  h3 a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+  .author { margin: 0; font-weight: 700; font-size: .9rem; }
+  .author span { font-weight: 400; }
+  .description { color: var(--ink-700); }
+  footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--ink-600); font-size: .8rem; }
+  footer p { margin: .25rem 0; }
+  @media (max-width: 900px) { .opinion-grid { grid-template-columns: 1fr; } }
+</style>

@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import PreviewBanner from '../components/PreviewBanner.astro';
 import { editorialPreviewEnabled } from '../lib/data';
+import { pageMetaTitle } from '../../tools/lib/seo-policy.mjs';
 
 interface Props {
   title?: string;
@@ -11,6 +12,7 @@ interface Props {
   canonicalPath?: string;
   noindex?: boolean;
   article?: Record<string, unknown>;
+  redirectPath?: string;
 }
 
 const {
@@ -19,11 +21,11 @@ const {
   canonicalPath,
   noindex = false,
   article,
+  redirectPath,
 } = Astro.props;
 const preventIndexing = noindex || editorialPreviewEnabled || import.meta.env.PUBLIC_NOINDEX === 'true';
 
-const fullTitle =
-  title === 'Memo Geopolítico' ? title : `${title} · Memo Geopolítico`;
+const fullTitle = pageMetaTitle(title, canonicalPath || Astro.url.pathname);
 const canonicalURL = new URL(
   canonicalPath || Astro.url.pathname,
   Astro.site || 'https://memogeopolitico.com',
@@ -38,6 +40,8 @@ const canonicalURL = new URL(
     <meta name="theme-color" content="#101c2c" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+    {redirectPath && <meta http-equiv="refresh" content={`0;url=${redirectPath}`} />}
+    {redirectPath && <meta name="memo:redirect" content={redirectPath} />}
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={preventIndexing ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />

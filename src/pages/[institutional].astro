@@ -1,0 +1,74 @@
+---
+import PageTitle from '../components/PageTitle.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import BrowserStorageControls from '../components/BrowserStorageControls.astro';
+import content from '../data/institutional.json';
+import { institutionalConfig as config, institutionalPages, institutionalLocal, institutionalBlockers, institutionalContacts, identityDefinitions, identitySections, contactActions, resolveInstitutionalLinks } from '../lib/institutional';
+export function getStaticPaths() {
+  return institutionalPages.map(page => ({ params: { institutional: page.slug }, props: { page } }));
+}
+const { page } = Astro.props;
+const seenReferences = new Set<string>();
+const sections = content[page.slug as keyof typeof content].map(section => ({
+  ...section,
+  links: resolveInstitutionalLinks('references' in section ? section.references : [], page.slug, institutionalPages).filter(link => {
+    const path = link.href.split('#')[0];
+    if (seenReferences.has(path)) return false;
+    seenReferences.add(path);
+    return true;
+  }),
+}));
+const id = config.identity;
+const blockers = institutionalBlockers(page.slug);
+const contacts = institutionalContacts(page.slug);
+const identitySection = identitySections[page.slug as keyof typeof identitySections];
+const identityFields = identityDefinitions.filter(field => identitySection?.keys.includes(field.key));
+const contactAction = contactActions[page.slug as keyof typeof contactActions];
+const actionContact = contactAction ? contacts[0] : undefined;
+---
+<SiteLayout title={page.label} description={`${page.label} de Memo Geopolítico.`} noindex={institutionalLocal}>
+  <article class="institutional-page">
+    <PageTitle>{page.label}</PageTitle>
+    {institutionalLocal && <aside class="local-note" aria-label="Estado de revisión"><span>Vista local · No publicado</span><a href="http://127.0.0.1:4322/sitio.html">Administrar páginas y funciones</a></aside>}
+    {sections.map(section => <section><h2>{section.title}</h2><p>{section.text}</p>{'block' in section && section.block === 'browser-storage' && <BrowserStorageControls />}{section.links.map(link => <p class="contextual-link"><a href={link.href}>{link.label} →</a></p>)}</section>)}
+    {page.slug === 'contacto' && <section><h2>Canales de contacto</h2><div class="contact-channels">{contacts.map(contact => <section class="contact-channel" id={`canal-${contact.key}`}><h3>{contact.label}</h3><p>{contact.description}</p><a href={contact.href}>{contact.email}</a></section>)}</div>{!contacts.length && <p>Los canales de contacto aún no están habilitados.</p>}</section>}
+    {actionContact && <p class="contact-action"><strong>{contactAction.label}</strong><a href={`${actionContact.href}?subject=${encodeURIComponent(contactAction.subject)}`}>{actionContact.email}</a></p>}
+    {identitySection && <section id={identitySection.id}>
+      <h2>{identitySection.title}</h2>
+      <dl class="identity-fields">
+        {identityFields.map(({ key, label, description }) => <div class:list={['identity-field', { 'identity-field-wide': key === 'retention' }]}>
+          <dt>{label}</dt>
+          <dd class:list={['identity-value', { 'identity-pending': !id[key as keyof typeof id] }]}>{id[key as keyof typeof id] ? id[key as keyof typeof id].split(/\n\s*\n/).map(paragraph => <p>{paragraph}</p>) : 'Pendiente de confirmar'}</dd>
+          {['hostingProvider', 'mailProvider'].includes(key) && <dd class="identity-description">{description}</dd>}
+        </div>)}
+      </dl>
+    </section>}
+    {page.slug === 'suscripcion' && <section><h2>Gestión de la suscripción</h2>{!institutionalLocal && blockers.length === 0 ? <><p>Proveedor: {config.subscription.provider}</p><p><a href={config.subscription.signupUrl} rel="noopener noreferrer" target="_blank">Suscripción y selección de temas (sitio del proveedor)</a></p><p><a href={config.subscription.preferencesUrl} rel="noopener noreferrer" target="_blank">Modificar preferencias o cancelar la suscripción</a></p><p><a href={config.subscription.privacyUrl} rel="noopener noreferrer" target="_blank">Privacidad del proveedor</a></p></> : <p>Suscripción desactivada. No se recogen direcciones ni se envían correos desde esta vista.</p>}</section>}
+  </article>
+</SiteLayout>
+<style>
+  .institutional-page { width: min(90%, 54rem); margin: 3rem auto 5rem; }
+  h2 { font: 500 var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; margin-top: 2rem; }
+  p, li, dd { line-height: 1.75; }
+  .local-note { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .35rem 1rem; margin-top: .75rem; padding-block: .5rem; border-block: 1px solid var(--line); color: var(--ink-600); font-size: .85rem; }
+  .local-note a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: underline; }
+  section[id] { scroll-margin-top: 7rem; }
+  .contextual-link a { display: inline-flex; align-items: center; min-height: 2.75rem; gap: .5rem; text-decoration: underline; }
+  .contact-action { margin-block: 1.5rem; padding-block: 1rem; border-block: 1px solid var(--line); }
+  .contact-action strong { display: block; font-weight: 600; }
+  .contact-action a { display: inline-block; max-width: 100%; min-height: 2.75rem; padding-block: .45rem; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: .2em; }
+  dt { font-weight: bold; } dd { margin: 0 0 1rem; }
+  .identity-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1.25rem; margin-top: 1rem; }
+  .identity-field { min-width: 0; padding: 1.25rem; border: 1px solid var(--line-strong); }
+  .identity-field-wide { grid-column: 1 / -1; }
+  .identity-value { margin: .4rem 0; overflow-wrap: anywhere; white-space: pre-line; }
+  .identity-value p { margin: 0 0 1rem; }
+  .identity-value p:last-child { margin-bottom: 0; }
+  .identity-pending { color: var(--ink-600); font-style: italic; }
+  .identity-description { margin: 0; color: var(--ink-600); font-size: .92rem; }
+  summary { cursor: pointer; font-weight: 600; }
+  .contact-channels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1.25rem; }
+  .contact-channel { padding: 1.25rem; border: 1px solid var(--line-strong); background: var(--paper); }
+  .contact-channel h3 { margin: 0; font: 500 var(--type-subheading-size)/1.2 var(--serif); }
+  .contact-channel a { display: inline-flex; align-items: center; min-height: 2.75rem; overflow-wrap: anywhere; max-width: 100%; text-decoration: underline; text-underline-offset: .2em; }
+</style>

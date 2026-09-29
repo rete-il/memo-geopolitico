@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { catalog, processesForActor } from '../../lib/data';
 
@@ -12,7 +13,7 @@ const items = catalog('actores').filter(
     <header class="page-intro">
       <div>
         <p class="eyebrow">Explorar</p>
-        <h1>Actores dentro de procesos más amplios.</h1>
+        <PageTitle>Actores dentro de procesos más amplios</PageTitle>
       </div>
       <p>
         Estados, organismos, empresas y coaliciones se conectan automáticamente

@@ -1,0 +1,25 @@
+---
+import PageTitle from './PageTitle.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+interface Props { title: string; destination: string; }
+const { title, destination } = Astro.props;
+---
+
+<SiteLayout
+  title={`Nueva dirección: ${title}`}
+  description={`Acceso a la página de ${title}.`}
+  canonicalPath={destination}
+  redirectPath={destination}
+  noindex
+>
+  <div class="page-shell">
+    <header class="page-intro">
+      <div>
+        <p class="eyebrow">Espacio geopolítico</p>
+        <PageTitle>{title}</PageTitle>
+      </div>
+      <p>Esta página tiene una dirección única. <a href={destination}>Continuar a {title}</a></p>
+    </header>
+  </div>
+</SiteLayout>

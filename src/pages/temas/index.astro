@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../components/PageTitle.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { catalog, processesForTheme } from '../../lib/data';
 import {
@@ -27,7 +28,7 @@ const items = [...catalog('temas'), ...catalog('subtemas')]
     <header class="page-intro">
       <div>
         <p class="eyebrow">Explorar</p>
-        <h1>Temas que atraviesan regiones y actores.</h1>
+        <PageTitle>Temas que atraviesan regiones y actores</PageTitle>
       </div>
       <p>
         Cada tema reúne Publicaciones y procesos del Observatorio a partir de

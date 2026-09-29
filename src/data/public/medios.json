@@ -4,8 +4,8 @@
     "titulo": "Directorio profesional de medios geopolíticos",
     "archivo_fuente": "Medios_Matriz_Geopolitica_Navegacion_actualizado.xlsx",
     "hoja_fuente": "Matriz profesional",
-    "total_medios": 106,
-    "ultima_revision": "2026-08-26",
+    "total_medios": 107,
+    "ultima_revision": "2026-09-18",
     "descripcion": "Matriz de fuentes clasificada por región, función epistemológica, perspectiva geopolítica y criterios de calidad."
   },
   "columns": [
@@ -3302,6 +3302,36 @@
       "referencia": "https://www.washingtoninstitute.org/",
       "fecha_revision": "2026-08-26",
       "media_id": "washington-institute"
+    },
+    {
+      "id": 107,
+      "nombre": "Periodismo Puro, con Jorge Fontevecchia",
+      "url": "https://www.canalnet.tv/programas/periodismo-puro/",
+      "sede": "Argentina; entrevistas de alcance internacional",
+      "region": "América Latina / Global",
+      "idioma": "Español",
+      "familia": "Programa de entrevistas",
+      "funcion": "Interpretaciones y debate con especialistas",
+      "propiedad": "NET TV: Perfil Network y Kuarzo, según información institucional",
+      "control": "Privado",
+      "orientacion": "Selección editorial de entrevistas; perspectivas atribuibles a cada invitado",
+      "perspectiva": "Argentina / debate internacional",
+      "fiabilidad": null,
+      "independencia": null,
+      "transparencia": null,
+      "rigor": null,
+      "correcciones": null,
+      "separacion": null,
+      "puntuacion": null,
+      "confianza": "Por revisar",
+      "uso": "Formular hipótesis y localizar autores. Verificar hechos con documentos y estudios independientes.",
+      "corroboracion": "Alta para afirmaciones fácticas, causalidad y cifras",
+      "corroborar_con": "Obras originales; documentos oficiales; estudios comparados; fuentes de otra familia",
+      "estado": "Nuevo recomendado",
+      "observaciones": "Alta curada el 18/09/2026. Puntuación pendiente de evaluación. Distinguir nota, emisión y entrevista completa. Spotify y agregadores son vías de acceso a la misma fuente.",
+      "referencia": "https://www.canalnet.tv/programas/periodismo-puro/",
+      "fecha_revision": "2026-09-18",
+      "media_id": "periodismo-puro"
     }
   ]
 }

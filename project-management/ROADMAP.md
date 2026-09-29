@@ -8,7 +8,7 @@
 | 1 | Beta 1 — Fundamentos y sistema de diseño | Crear contratos, tokens, componentes UI y shell de sitio reutilizable. | 0% | Planificada |
 | 2 | Beta 2 — Navegación y exploración temática | Implementar la cabecera editorial, el menú hamburguesa y la navegación secundaria por regiones, temas y medios. | 0% | Planificada |
 | 3 | Beta 3 — Relevancia y atención mediática | Consolidar la columna derecha como módulo editorial manual, administrable y enlazado a páginas temáticas. | 11% | Planificada |
-| 4 | Beta 4 — Alertas, Focos y Dossiers | Normalizar los tres tipos editoriales, sus índices, metadatos, resúmenes diferenciados y lectura extensa. | 5% | Planificada |
+| 4 | Beta 4 — Alertas, Focos y Dossiers | Normalizar los tres tipos editoriales, sus índices, metadatos, resúmenes diferenciados y lectura extensa. | 11% | Planificada |
 | 5 | Beta 5 — Medios | Modularizar la página Medios, preservar el directorio actual y mejorar filtros, móvil y accesibilidad. | 0% | Planificada |
 | 6 | Beta 6 — QA, rendimiento y preparación de release | Cerrar calidad, accesibilidad, seguridad, rendimiento y documentación antes de fusionar a main. | 0% | Planificada |
 | 99 | Futuro — Capacidades posteriores | Funciones no bloqueantes para el reacondicionamiento inicial. | 0% | Planificada |
@@ -180,7 +180,7 @@
 
 **Fecha objetivo:** TBD
 
-**Avance:** 5%
+**Avance:** 11%
 
 ### Criterios de salida
 
@@ -205,6 +205,7 @@
 | OBS-002 | CONTENT | P1 | ▶ En progreso | L | Completar el piloto del Corredor de Lobito hasta un Markdown publicable |
 | OBS-004 | UX | P2 | ○ Propuesta | S | Diferenciar visualmente los estados Revisada y Verificada en Señales |
 | OBS-005 | UX | P2 | ○ Propuesta | M | Administrar los tipos de advertencias, señales y fuentes como vocabularios controlados |
+| ED-PP-001 | CONTENT | P1 | ✓ Terminada | M | Integrar Periodismo Puro y primer bloque de democracia y derechas |
 
 ## Beta 5 — Medios
 

@@ -1,31 +1,41 @@
 ---
 import { supportConfig } from '../config/support';
-import { opinionEnabled } from '../lib/opinion';
+import { footerNavigation } from '../lib/navigation';
+import { institutionalContacts, institutionalPages } from '../lib/institutional';
 
 const showSupport = supportConfig.enabled && supportConfig.showInFooter;
+const generalContact = institutionalContacts('contacto').find(contact => contact.key === 'general');
+const institutionalPaths = new Set(institutionalPages.map(page => `/${page.slug}/`));
+const explorationLinks = footerNavigation.filter(item => !institutionalPaths.has(item.href));
+const informationLinks = footerNavigation.filter(item => institutionalPaths.has(item.href));
+const hasInformation = informationLinks.length > 0 || showSupport;
 ---
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <div>
+    <div class="footer-identity">
       <a class="footer-brand" href="/">Memo Geopolítico</a>
       <p>Análisis independiente de procesos geopolíticos de mediano y largo plazo.</p>
+      {generalContact && <a class="footer-contact" href={generalContact.href}>{generalContact.email}</a>}
     </div>
-    <nav aria-label="Navegación del pie">
-      <a href="/observatorio/">Observatorio</a>
-      <a href="/observatorio/dashboard/">Dashboard</a>
-      <a href="/publicaciones/">Publicaciones</a>
-      {opinionEnabled && <a href="/opinion/">Opinión</a>}
-      <a href="/medios/">Medios</a>
-      <a href="/metodologia/relevancia-atencion-mediatica/">Metodología</a>
-      <a href="/acerca-de/">Acerca de</a>
-      {
-        showSupport && (
-          <a href={supportConfig.url} target="_blank" rel="noopener noreferrer">
-            Apoyar el proyecto <span class="sr-only">mediante Ko-fi</span>
-          </a>
-        )
-      }
+    <nav class:list={['footer-navigation', { 'footer-navigation--single': !hasInformation }]} aria-label="Navegación del pie">
+      <div class="footer-navigation-group">
+        <h2>Explorar</h2>
+        <ul>
+          {explorationLinks.map(item => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </div>
+      {hasInformation && <div class="footer-navigation-group">
+        <h2>Información</h2>
+        <ul>
+          {informationLinks.map(item => <li><a href={item.href}>{item.label}</a></li>)}
+          {showSupport && <li>
+            <a href={supportConfig.url} target="_blank" rel="noopener noreferrer">
+              Apoyar el proyecto <span class="sr-only">mediante Ko-fi</span>
+            </a>
+          </li>}
+        </ul>
+      </div>}
     </nav>
   </div>
   <div class="footer-legal">

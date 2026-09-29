@@ -1,5 +1,7 @@
 ---
-import PublicationCard from '../../components/PublicationCard.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import ReadingLinks from '../../components/ReadingLinks.astro';
+import { sameText, signalHref } from '../../../tools/lib/navigation-policy.mjs';
 import ClassificationFooter from '../../components/ClassificationFooter.astro';
 import RatingPair from '../../components/RatingPair.astro';
 import SignalTimeline from '../../components/SignalTimeline.astro';
@@ -43,16 +45,12 @@ const processSources = process.fuente_ids
   .map((id) => sourceById.get(id))
   .filter(Boolean);
 
-const publications = (await getPublicationEntries({
-  includePreview: editorialPreviewEnabled,
-})).filter(
+const publicationEntries = await getPublicationEntries({ includePreview: true });
+const publications = publicationEntries.filter(({ data }) => editorialPreviewEnabled || data.publicacion.estado === 'publicado').filter(
   ({ data }) =>
     data.macroevento_principal_id === process.macroevento_id ||
     data.macroevento_secundario_ids.includes(process.macroevento_id),
 );
-const publicationEntries = await getPublicationEntries({
-  includePreview: true,
-});
 const publicationMetadata = relatedPublicationForProcess(
   process,
   publicationEntries,
@@ -149,7 +147,7 @@ const referencedSignals = (process.referencias_senal || [])
           )
         }
       </p>
-      <h1>{process.titulo}</h1>
+      <PageTitle>{process.titulo}</PageTitle>
       <p class="lead">{process.sintesis}</p>
       <div class="hero-meta">
         <span>Actualizado {formatDate(process.publicacion.actualizado_el)}</span>
@@ -179,10 +177,10 @@ const referencedSignals = (process.referencias_senal || [])
           )
         }
 
-        <section class="content-section">
+        {process.que_esta_ocurriendo && !sameText(process.que_esta_ocurriendo, process.sintesis) && <section class="content-section">
           <h2>Qué está ocurriendo</h2>
-          <p>{process.que_esta_ocurriendo || process.sintesis}</p>
-        </section>
+          <p>{process.que_esta_ocurriendo}</p>
+        </section>}
 
         <section class="content-section">
           <h2>Por qué importa</h2>
@@ -299,7 +297,9 @@ const referencedSignals = (process.referencias_senal || [])
                       <li>
                         <div class="typed-relation-heading">
                           <span class="relation-type">{humanize(relation.tipo)}</span>
-                          <a href={`/observatorio/${counterpart!.slug}/`}>{counterpart!.titulo}</a>
+                          {[...rectorProcesses, ...complementaryProcesses, ...relatedProcesses].some(item => item.macroevento_id === counterpart!.macroevento_id)
+                            ? <strong>{counterpart!.titulo}</strong>
+                            : <a href={`/observatorio/${counterpart!.slug}/`}>{counterpart!.titulo}</a>}
                         </div>
                         <p>{relation.mecanismo}</p>
                         <small>
@@ -330,7 +330,7 @@ const referencedSignals = (process.referencias_senal || [])
           )
         }
 
-        <section class="content-section">
+        <section class="content-section" id="cronologia">
           <h2>Señales y cronología</h2>
           {
             process.senales.length ? (
@@ -358,7 +358,7 @@ const referencedSignals = (process.referencias_senal || [])
                   <li>
                     <div class="typed-relation-heading">
                       <span class="relation-type">{humanize(reference.tipo_uso)}</span>
-                      <a href={`/observatorio/${evidence!.owner.slug}/`}>
+                      <a href={signalHref(evidence!.owner.slug, evidence!.signal.senal_id)}>
                         {evidence!.signal.titulo}
                       </a>
                     </div>
@@ -463,7 +463,7 @@ const referencedSignals = (process.referencias_senal || [])
           )
         }
 
-        <section class="content-section">
+        <section class="content-section" id="fuentes">
           <h2>Fuentes</h2>
           {
             processSources.length ? (
@@ -488,21 +488,10 @@ const referencedSignals = (process.referencias_senal || [])
 
         <ClassificationFooter classification={process.clasificacion} />
 
-        {
-          publications.length > 0 && (
-            <section class="content-section">
-              <h2>Publicaciones relacionadas</h2>
-              <div class="publication-grid">
-                {publications.map((publication) => (
-                  <PublicationCard
-                    publication={publication.data}
-                    editorialPreview={editorialPreviewEnabled}
-                  />
-                ))}
-              </div>
-            </section>
-          )
-        }
+        <ReadingLinks title="Análisis de este expediente" items={publications.map(({ data }) => ({
+          href: `/publicaciones/${data.slug}/`,
+          label: `Leer el análisis: ${data.titulo}`,
+        }))} />
       </article>
 
       <aside class="process-sidebar" aria-label="Clasificación del proceso">

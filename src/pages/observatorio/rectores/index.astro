@@ -1,4 +1,5 @@
 ---
+import PageTitle from '../../../components/PageTitle.astro';
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import { editorialPreviewEnabled, processes } from '../../../lib/data';
 import {
@@ -66,7 +67,7 @@ const rectorCountLabel =
     <header class="page-intro rector-intro">
       <div>
         <p class="eyebrow">Macroeventos rectores</p>
-        <h1>Procesos que organizan otros procesos.</h1>
+        <PageTitle>Procesos que organizan otros procesos</PageTitle>
       </div>
       <p>
         Un macroevento rector reúne varios procesos complementarios dentro de
@@ -255,8 +256,9 @@ const rectorCountLabel =
 
   .rector-summary strong {
     font-family: var(--serif);
-    font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+    font-size: var(--type-card-size);
     font-weight: 500;
+    line-height: 1.2;
   }
 
   .rector-summary span {
@@ -309,10 +311,10 @@ const rectorCountLabel =
     max-width: 30ch;
     margin: 0.65rem 0 0;
     font-family: var(--serif);
-    font-size: clamp(1.75rem, 3.5vw, 2.65rem);
+    font-size: var(--type-section-size);
     font-weight: 500;
     letter-spacing: -0.025em;
-    line-height: 1.04;
+    line-height: 1.2;
     text-wrap: balance;
   }
 

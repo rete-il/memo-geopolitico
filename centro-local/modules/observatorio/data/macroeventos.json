@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "titulo": "Observatorio de macroeventos geopolíticos",
-  "actualizado": "2026-09-15",
+  "actualizado": "2026-09-18",
   "notas": [
     "Datos iniciales derivados del análisis del chat. Todas las fuentes comienzan como no verificadas.\nContrato transversal incorporado el 2026-09-01: propiedad única de señales, referencias de segundo orden y relaciones tipadas.\nContrato transversal incorporado el 2026-09-01: propiedad única de señales, referencias de segundo orden y relaciones tipadas.",
     "Arquitectura complementaria del rector Rusia–Ucrania incorporada el 2026-09-02: cinco procesos nuevos, uno reutilizado y propiedad específica de señales."
@@ -957,7 +957,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "La vulnerabilidad simultánea de Hormuz, Bab el-Mandeb y Suez impulsa una transición desde la logística de máxima eficiencia hacia redes redundantes: oleoductos terrestres, puertos exteriores al Golfo, almacenamiento, rutas por el Cabo y corredores ferroviarios.",
+      "descripcion": "La vulnerabilidad simultánea de Hormuz, Bab el-Mandeb y Suez obliga a pasar de una logística de máxima eficiencia a otra basada en redundancia, almacenamiento y rutas alternativas.",
       "por_que_importa": "",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "medio-oriente-acuerdos-abraham-guerra-regionalizada",
@@ -1057,9 +1057,9 @@
           "idioma": "en",
           "tipo": "analisis",
           "url": "https://www.chathamhouse.org/2026/06/next-strait-hormuz-crisis-could-be-even-worse",
-          "estado_verificacion": "pendiente",
-          "observaciones": "",
-          "revisada_el": ""
+          "estado_verificacion": "verificada",
+          "observaciones": "Revisión 2026-09-29: comentario experto publicado el 17/06/2026 y actualizado el 18/06/2026. Analiza el riesgo combinado de interrupciones en Hormuz y Bab el Mandeb. Sus escenarios se conservan como interpretación, no como acontecimientos confirmados.",
+          "revisada_el": "2026-09-29"
         },
         {
           "id": "src-hormuz-bab-el-mandeb-suez-002",
@@ -1083,7 +1083,8 @@
       "macroevento_rector_ids": [
         "medio-oriente-acuerdos-abraham-guerra-regionalizada"
       ],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "Tres pasos marítimos, un solo sistema de riesgo"
     },
     {
       "id": "cables-submarinos-infraestructura-critica",
@@ -1120,7 +1121,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Los cables submarinos dejan de tratarse como infraestructura comercial invisible y pasan a integrarse en la planificación de defensa, inteligencia, soberanía digital y resiliencia económica.",
+      "descripcion": "Los cables submarinos dejan de tratarse como una infraestructura comercial invisible y pasan a integrarse en la planificación de defensa, soberanía digital y resiliencia económica.",
       "por_que_importa": "",
       "es_macroevento_rector": false,
       "macroevento_rector_id": null,
@@ -1215,9 +1216,9 @@
           "idioma": "en",
           "tipo": "analisis",
           "url": "https://www.iscpc.org/events/2026-plenary-meeting/",
-          "estado_verificacion": "pendiente",
-          "observaciones": "",
-          "revisada_el": ""
+          "estado_verificacion": "verificada",
+          "observaciones": "Revisión 2026-09-29: página institucional 2026 Plenary Highlights, actualizada el 20/04/2026. Confirmados los datos atribuidos a la presentación del ICPC: 178 reparaciones, 23,4 días y demora máxima de 947 días. Informe de la organización; no auditoría independiente.",
+          "revisada_el": "2026-09-29"
         },
         {
           "id": "src-cables-submarinos-infraestructura-critica-002",
@@ -1229,16 +1230,17 @@
           "idioma": "en",
           "tipo": "analisis",
           "url": "https://committees.parliament.uk/event/27216/formal-meeting-oral-evidence-session/",
-          "estado_verificacion": "pendiente",
-          "observaciones": "",
-          "revisada_el": ""
+          "estado_verificacion": "verificada",
+          "observaciones": "Revisión 2026-09-29: ficha oficial de la sesión del 18/05/2026, con participantes y enlaces a transcripciones. Confirma el objeto de la sesión sobre protección, respuesta y reparación de cables; no se revisaron las transcripciones completas.",
+          "revisada_el": "2026-09-29"
         }
       ],
       "actualizaciones": [],
       "historial_evaluacion": [],
       "advertencias": [],
       "excepciones_advertencias": [],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "La infraestructura invisible entra en la planificación de seguridad"
     },
     {
       "id": "corredor-medio-caucaso-sur",
@@ -1278,7 +1280,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "La Unión Europea, Turquía, Estados Unidos y los Estados de Asia Central intentan consolidar una ruta China–Europa que reduzca la exposición a Rusia, Irán y los estrechos de Oriente Medio.",
+      "descripcion": "Europa y Asia Central intentan consolidar una ruta transcaspiana que reduzca la exposición a Rusia, pero su viabilidad depende tanto de aduanas y acuerdos políticos como de ferrocarriles y puertos.",
       "por_que_importa": "",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -1423,9 +1425,9 @@
           "idioma": "en",
           "tipo": "analisis",
           "url": "https://enlargement.ec.europa.eu/news/eu-launches-connectivity-agenda-platform-strengthen-links-between-europe-and-central-asia-through-2026-06-23_en",
-          "estado_verificacion": "pendiente",
-          "observaciones": "",
-          "revisada_el": ""
+          "estado_verificacion": "verificada",
+          "observaciones": "Revisión 2026-09-29: comunicado oficial del 23/06/2026. Confirma la plataforma, cooperación entre regiones e intenciones de movilizar financiación; no equivale a inversión ejecutada.",
+          "revisada_el": "2026-09-29"
         },
         {
           "id": "src-corredor-medio-caucaso-sur-002",
@@ -1464,7 +1466,8 @@
       "historial_evaluacion": [],
       "advertencias": [],
       "excepciones_advertencias": [],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "El Cáucaso Sur busca convertirse en la bisagra entre Europa y Asia Central"
     },
     {
       "id": "mar-negro-azov-guerra-logistica",
@@ -1504,7 +1507,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-21"
       },
-      "descripcion": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial.",
+      "descripcion": "Los ataques contra embarcaciones y la suspensión temporal del canal Don-Azov confirman que la logística marítima del mar de Azov se ha convertido en un ámbito operativo del conflicto. La evidencia disponible todavía no demuestra una campaña coordinada y persistente contra el conjunto de la infraestructura regional ni permite medir efectos estratégicos duraderos.",
       "por_que_importa": "Puertos, ferrocarriles, puentes, depósitos y flotas comerciales se han convertido en blancos sistemáticos para degradar exportaciones, ingresos fiscales, evasión de sanciones y sostenimiento territorial. El mar Negro y el mar de Azov conectan producción agrícola, energía, industria y sostenimiento militar. Desde 2022, ataques, bloqueos y corredores negociados mostraron que el control marítimo no depende solo de grandes buques: drones, misiles y daños a terminales pueden alterar el valor estratégico de toda la costa. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "rusia-ucrania-redes-seguridad-sostenimiento",
@@ -2403,7 +2406,7 @@
         "No atribuye daños, intención o autoría con una sola parte beligerante.",
         "No absorbe la seguridad marítima global ni todos los efectos de sanciones sobre la flota sombra."
       ],
-      "pregunta_seguimiento": "¿Los ataques, restricciones y adaptaciones están cambiando de manera persistente la capacidad logística, exportadora y de contención en el mar Negro y Azov?",
+      "pregunta_seguimiento": "Qué confirman los ataques contra embarcaciones y la suspensión de la navegación, y qué falta comprobar",
       "hipotesis_principal": "El teatro marítimo se ha convertido en un sistema adaptativo donde ataques de precisión y no tripulados, rutas alternativas, protección, seguros y Montreux redistribuyen acceso sin producir control permanente de una sola parte.",
       "hipotesis_alternativas": [
         "Los incidentes producen interrupciones breves sin reconfiguración estructural de rutas o capacidad.",
@@ -2641,7 +2644,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos.",
+      "descripcion": "El Corredor de Lobito avanza como una infraestructura estratégica vinculada al transporte de minerales críticos desde África central hacia el Atlántico. La evidencia verificada confirma un cierre financiero de US$753 millones para rehabilitar, modernizar y operar el tramo ferroviario existente en Angola, mientras otros componentes continúan buscando financiación y un proyecto eléctrico específico enfrenta incertidumbre tras la retirada de Trafigura. El corredor puede reducir vulnerabilidades logísticas y ampliar opciones de exportación, pero todavía no está demostrado que vaya a convertirse en una plataforma regional de transformación productiva.",
       "por_que_importa": "El proyecto evoluciona desde una línea de exportación minera hacia un sistema de ferrocarriles, electricidad, agroindustria y gobernanza de recursos. El ferrocarril de Benguela conecta el puerto angoleño de Lobito con la República Democrática del Congo y proyecta una futura extensión hacia Zambia. La rehabilitación ferroviaria crea una salida occidental para el Copperbelt, pero el corredor más amplio depende de componentes eléctricos, fronterizos, digitales y productivos que no avanzan al mismo ritmo. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
@@ -3020,7 +3023,8 @@
       "historial_evaluacion": [],
       "advertencias": [],
       "excepciones_advertencias": [],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "Una infraestructura ferroviaria con ambición geopolítica, condicionada por la financiación, la energía y la capacidad de generar desarrollo regional"
     },
     {
       "id": "imec-reconfiguracion-modular",
@@ -3358,7 +3362,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-26"
       },
-      "descripcion": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo.",
+      "descripcion": "Irak proyecta un corredor desde Grand Faw hasta Turquía y busca diversificar sus exportaciones energéticas. Las señales verificadas muestran prioridad ferroviaria, coordinación diplomática y planes de inversión, aunque aún no demuestran una red integrada de puerto, ferrocarril y oleoductos.",
       "por_que_importa": "Irak busca pasar de la dependencia de terminales del Golfo a una posición de nodo entre Asia y Europa mediante Grand Faw, ferrocarriles y oleoductos hacia el Mediterráneo. El puerto de Grand Faw y el Development Road prometen llevar carga desde el Golfo hasta Turquía y Europa. A la vez, la reapertura de salidas energéticas hacia el Mediterráneo ampliaría opciones iraquíes. El corredor atraviesa un espacio donde compiten agendas nacionales, milicias, vecinos y grandes potencias. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -3703,7 +3707,8 @@
         }
       ],
       "excepciones_advertencias": [],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "Grand Faw, el ferrocarril hacia la frontera turca y Ceyhan forman una arquitectura potencial, pero sus componentes todavía avanzan con ritmos y acuerdos separados."
     },
     {
       "id": "instc-rusia-iran-india",
@@ -3881,7 +3886,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica.",
+      "descripcion": "Chancay plantea una cuestión que excede al puerto peruano: si puede convertirse en un nodo capaz de reorganizar corredores sudamericanos orientados hacia Asia. La evidencia autorizada permite confirmar que el proyecto ya es percibido en Chile como un desafío estratégico, pero no alcanza todavía para demostrar la conformación de una red bioceánica articulada alrededor del puerto. El proceso debe seguirse como una competencia por conectividad, jerarquía portuaria e influencia sobre las futuras reglas de infraestructura regional.",
       "por_que_importa": "Chancay puede convertirse en el extremo pacífico de corredores que integren zonas agrícolas y mineras brasileñas, alterando jerarquías portuarias e influencia regulatoria en Sudamérica. Chancay ofrece una gran terminal del Pacífico con conexión directa hacia Asia. Su potencial excede al comercio peruano si logra captar carga de Brasil, Bolivia y otras economías interiores. Pero cruzar los Andes exige obras costosas y acuerdos que han frustrado proyectos anteriores. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
@@ -3996,7 +4001,8 @@
       "historial_evaluacion": [],
       "advertencias": [],
       "excepciones_advertencias": [],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "El valor estratégico del puerto dependerá menos de su infraestructura aislada que de su capacidad para articular redes terrestres capaces de acercar el interior sudamericano al Pacífico."
     },
     {
       "id": "myanmar-corredores-china-india",
@@ -4037,7 +4043,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil.",
+      "descripcion": "India intenta completar el corredor Kaladan para conectar su nordeste con la bahía de Bengala, mientras China consolida un eje entre Kyaukphyu y Yunnan apoyado en oleoductos y gasoductos ya operativos y en un puerto profundo todavía en desarrollo. La evidencia disponible no demuestra que ambos proyectos hayan sido concebidos oficialmente como respuestas directas entre sí, pero su coexistencia configura una competencia geopolítica por conectividad, acceso al Índico e influencia en un territorio fragmentado por la guerra.",
       "por_que_importa": "China busca acceso terrestre al Índico mediante Kyaukphyu y sus oleoductos; India intenta conectar su nordeste mediante Sittwe y Kaladan. Ambos dependen de territorios fragmentados por la guerra civil. China conecta Yunnan con el Índico mediante Kyaukphyu y oleoductos; India desarrolla Sittwe y Kaladan para vincular su nordeste. Ambos proyectos evitan cuellos de botella externos, pero atraviesan Rakhine y otras zonas afectadas por guerra, desplazamiento y poder territorial disputado. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
@@ -4316,7 +4322,8 @@
       "historial_evaluacion": [],
       "advertencias": [],
       "excepciones_advertencias": [],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "Kaladan y Kyaukphyu proyectan dos accesos estratégicos al Índico, pero su desarrollo depende cada vez más del control territorial y de la guerra civil birmana"
     },
     {
       "id": "africa-oriental-puertas-entrada",
@@ -4633,7 +4640,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Rail Baltica deja de ser solamente un proyecto de mercado único y se convierte en infraestructura potencial para el refuerzo militar del flanco oriental europeo. Su utilidad depende de la continuidad transfronteriza, la coordinación y la financiación.",
+      "descripcion": "Rail Baltica combina integración ferroviaria, desarrollo regional y movilidad militar en el flanco oriental europeo, pero su valor estratégico depende de completar una línea continua y financiable.",
       "por_que_importa": "",
       "es_macroevento_rector": false,
       "macroevento_rector_id": null,
@@ -4792,9 +4799,9 @@
           "idioma": "en",
           "tipo": "fuente_oficial",
           "url": "https://www.railbaltica.org/news/rail-baltica-in-focus-brussels-event-spotlights-europes-strategic-cross-border-rail-link/",
-          "estado_verificacion": "pendiente",
-          "observaciones": "",
-          "revisada_el": ""
+          "estado_verificacion": "verificada",
+          "observaciones": "Revisión 2026-09-29: texto indexado del original de RB Rail, fechado el 08/06/2026. Confirma cuatro objetivos y 267 km preparados para construcción, aproximadamente 43 % de la primera fase. Es información del promotor; preparación no significa infraestructura operativa. La apertura directa del sitio devolvió error temporal.",
+          "revisada_el": "2026-09-29"
         },
         {
           "id": "fuente-2",
@@ -4820,9 +4827,9 @@
           "idioma": "en",
           "tipo": "noticia",
           "url": "https://eng.lsm.lv/article/economy/transport/01.06.2026-latvia-might-lose-eur50-million-eu-funding-for-rail-baltica.a649505/",
-          "estado_verificacion": "pendiente",
-          "observaciones": "",
-          "revisada_el": ""
+          "estado_verificacion": "verificada",
+          "observaciones": "Revisión 2026-09-29: nota original de LSM del 01/06/2026 sobre el riesgo de devolución de cerca de 50 millones de euros, incluidos 25,7 millones de movilidad militar. Se conserva el carácter condicional de la pérdida de financiación.",
+          "revisada_el": "2026-09-29"
         },
         {
           "id": "fuente-4",
@@ -4850,7 +4857,8 @@
         "importado_el": "2026-07-23",
         "advertencia_ids_agregadas": []
       },
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "El ferrocarril civil que debe sostener la movilidad militar europea"
     },
     {
       "id": "ferrocarril-china-kirguistan-uzbekistan",
@@ -4871,7 +4879,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito.",
+      "descripcion": "El ferrocarril China–Kirguistán–Uzbekistán dejó de ser solamente un proyecto negociado y muestra señales verificables de ejecución física en territorio kirguís. Su importancia potencial reside en abrir una salida ferroviaria directa desde China occidental hacia Asia Central y, eventualmente, hacia corredores más occidentales. Sin embargo, la evidencia disponible todavía no demuestra que ya constituya un bypass operativo de Rusia y Kazajistán ni que vaya a transformar automáticamente a Kirguistán en un gran Estado de tránsito. La ingeniería, la financiación, las expropiaciones, la coordinación y las conexiones posteriores siguen siendo variables decisivas.",
       "por_que_importa": "Tras décadas de negociación, el ferrocarril China–Kirguistán–Uzbekistán entra en construcción y puede reducir la dependencia de corredores que atraviesan Rusia y Kazajistán, transformando a Kirguistán en un Estado de tránsito. El ferrocarril China–Kirguistán–Uzbekistán promete conectar Xinjiang con el valle de Ferganá y redes hacia el oeste. Reduce dependencia de trayectos por Kazajistán y Rusia. El trazado montañoso exige decenas de puentes y túneles, lo que convierte la transición a la obra física en una prueba política y financiera. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
@@ -5068,7 +5076,8 @@
         "importado_el": "2026-07-23",
         "advertencia_ids_agregadas": []
       },
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "La construcción confirma un salto cualitativo tras décadas de negociación, pero la capacidad del corredor para alterar las rutas euroasiáticas dependerá de superar obstáculos técnicos, financieros y de conexión."
     },
     {
       "id": "land-bridge-tailandes-malaca",
@@ -5088,7 +5097,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local.",
+      "descripcion": "Tailandia vuelve a promover un corredor terrestre entre sus costas como alternativa parcial al tránsito por el estrecho de Malaca. Dos informaciones de Reuters publicadas en abril y junio de 2026 confirman la reactivación política de un proyecto estimado en alrededor de US$30.000 millones y el intento de atraer capital e interés internacional. La iniciativa puede ganar relevancia en un contexto de preocupación por los chokepoints marítimos, pero la evidencia disponible todavía no demuestra que exista demanda suficiente, financiación asegurada ni una ventaja económica capaz de compensar el doble transbordo.",
       "por_que_importa": "Tailandia reactiva el proyecto de dos puertos unidos por aproximadamente 90 kilómetros de ferrocarril y carretera para captar flujos que eviten el estrecho de Malaca. Su viabilidad depende de costes de transbordo, demanda naviera, financiación y oposición local. Tailandia propone dos puertos, en el golfo de Tailandia y el mar de Andamán, unidos por unos 90 kilómetros de carretera y ferrocarril. El proyecto evitaría parte del paso por Malaca. A diferencia de un canal, requiere doble manipulación de la carga y grandes volúmenes para justificar una inversión cercana a US$30.000 millones. El proceso debe observarse como una transformación de mediano o largo plazo, no como una sucesión de anuncios. Una obra inaugurada, un memorando o una crisis puntual pueden acelerar el cambio, pero no demuestran por sí solos que el corredor o sistema esté plenamente operativo. La pregunta relevante es si los componentes físicos, financieros, regulatorios y políticos empiezan a reforzarse entre sí.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "corredores-alternativos-redes-logisticas-redundantes",
@@ -5246,7 +5255,8 @@
         "importado_el": "2026-07-23",
         "advertencia_ids_agregadas": []
       },
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "La vulnerabilidad de las rutas marítimas reactiva un proyecto ambicioso cuya viabilidad todavía depende de inversores, navieras y costes de transbordo"
     },
     {
       "id": "turquia-arabia-saudita-pakistan-defensa",
@@ -5270,7 +5280,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-23"
       },
-      "descripcion": "Consolidación de una arquitectura de defensa entre Turquía, Arabia Saudita y Pakistán mediante el Acuerdo de Defensa Conjunta de La Meca. El proceso puede generar mecanismos militares permanentes, ejercicios, cooperación en sistemas no tripulados, guerra electrónica, inteligencia artificial y coproducción de defensa. Turquía participa como potencia militar de la OTAN con capacidad industrial propia y como actor de una estructura regional de disuasión que no depende exclusivamente del paraguas estadounidense.",
+      "descripcion": "El acuerdo de defensa firmado por Turquía, Arabia Saudita y Pakistán incorpora una cláusula de defensa colectiva y prevé mecanismos políticos y militares permanentes. Ankara ha descrito un sistema de asistencia a solicitud del Estado atacado, junto con estructuras de coordinación todavía no constituidas. La evidencia disponible permite identificar el inicio de una arquitectura regional de seguridad, pero no demostrar todavía la existencia de un bloque militar operativo. Su desarrollo puede afectar los cálculos estratégicos de Israel, India e Irán y plantear nuevas preguntas sobre la articulación de Turquía entre sus compromisos regionales y su pertenencia a la OTAN.",
       "por_que_importa": "El pacto conecta la arquitectura de seguridad de Medio Oriente con Asia meridional a través de Turquía, miembro de la OTAN y aliado de Estados Unidos, sin convertir el acuerdo en una extensión automática de la Alianza. Su institucionalización podría consolidar un nuevo polo de disuasión y cooperación militar entre Ankara, Riad e Islamabad, alterar los cálculos estratégicos de Israel, India e Irán y ampliar la autonomía regional de los tres participantes. El seguimiento debe distinguir entre el compromiso político de defensa colectiva y su traducción efectiva en órganos permanentes, ejercicios, coproducción y asistencia ante una crisis.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -5832,7 +5842,8 @@
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
       },
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "El Acuerdo de La Meca introduce compromisos de defensa colectiva y un diseño institucional todavía no implementado, con Turquía como articulador entre Medio Oriente y Asia meridional."
     },
     {
       "id": "siria-turquia-israel-reordenamiento",
@@ -5857,7 +5868,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-26"
       },
-      "descripcion": "Reconfiguración del equilibrio externo en Siria tras la caída del orden anterior, con Turquía como uno de los principales aliados del gobierno sirio, participante en entrenamiento militar, reconstrucción institucional e infraestructura. La expansión de esa influencia genera fricción creciente con Israel y ha obligado a Estados Unidos a trabajar en mecanismos de desconflicción entre Turquía, Israel y Siria. El proceso puede determinar la futura arquitectura militar y política siria y el grado de presencia turca en el país.",
+      "descripcion": "La ampliación de la influencia turca en Siria y la continuidad de las operaciones israelíes han creado una zona de contacto estratégico. Los mecanismos de desconflinción reducen el riesgo inmediato, pero no equivalen todavía a un arreglo estable ni resuelven la competencia política y militar.",
       "por_que_importa": "Siria es el espacio donde la expansión de la influencia militar e institucional turca puede entrar en contacto directo con la libertad de acción que Israel reclama para sí. La existencia de canales de desconflinción reduce el riesgo accidental, pero también confirma que Ankara, Jerusalén, Damasco y Washington deben negociar reglas operativas. La evolución del proceso mostrará si Turquía consolida una presencia duradera, si Israel logra limitarla o si surge un arreglo de seguridad más estable.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -6116,7 +6127,8 @@
         "turquia-potencia-bisagra-reordenamiento-regional",
         "medio-oriente-acuerdos-abraham-guerra-regionalizada"
       ],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "La competencia por presencia, acceso y libertad de acción obliga a construir reglas operativas en un espacio sirio cada vez más disputado."
     },
     {
       "id": "pkk-sdf-transformacion-cuestion-kurda",
@@ -6145,7 +6157,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-26"
       },
-      "descripcion": "Proceso de desarme, disolución y reintegración del PKK mediante un nuevo marco legal turco, con posibles efectos sobre el norte de Irak y sobre la relación entre las SDF y Damasco. Turquía busca convertir un conflicto armado de décadas en un arreglo institucional y reducir la dimensión transfronteriza de la amenaza kurda, mientras permanece abierta la cuestión más amplia de los derechos políticos y culturales kurdos y de la situación de las fuerzas kurdas sirias.",
+      "descripcion": "El marco legal turco, los gestos de desarme del PKK y el anuncio de integración de las SDF en el ejército sirio abren una transición regional. La evidencia muestra avances observables, aunque todavía no demuestra desarme completo, mando unificado ni un nuevo acuerdo político sobre la cuestión kurda.",
       "por_que_importa": "La transición del PKK desde la lucha armada hacia un marco político y jurídico puede modificar la seguridad interna de Turquía y su intervención en Irak y Siria. La evolución paralela de las SDF determina si el conflicto kurdo transfronterizo se desmilitariza o simplemente cambia de instituciones y territorio. El proceso solo será estructural si el desarme, la reintegración, los derechos políticos y la integración siria producen arreglos sostenibles.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -6432,7 +6444,8 @@
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
       },
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "Turquía intenta convertir un conflicto armado transfronterizo en un proceso jurídico e institucional, pero Irak y Siria siguen imponiendo ritmos y problemas distintos."
     },
     {
       "id": "hormuz-turquia-corredor-energia-mediacion",
@@ -6463,7 +6476,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-26"
       },
-      "descripcion": "La interrupción o amenaza persistente sobre el estrecho de Hormuz refuerza la búsqueda de corredores energéticos alternativos y aumenta el valor de las infraestructuras terrestres conectadas con Turquía. Paralelamente, Ankara mantiene contactos con Estados Unidos, Irán, Pakistán y Qatar y ofrece apoyo a negociaciones, intentando combinar su función de corredor energético con una posición diplomática de mediación regional.",
+      "descripcion": "Las tensiones en Hormuz aumentan el interés por conexiones energéticas asociadas con Turquía y por la capacidad de Ankara para hablar con Irán, Estados Unidos y actores del Golfo. La evidencia confirma acceso y proyectos, pero no un corredor integrado capaz de sustituir los flujos marítimos ni una mediación turca decisiva.",
       "por_que_importa": "Una crisis prolongada en Hormuz puede elevar simultáneamente el valor de las conexiones terrestres que atraviesan Turquía y de la capacidad diplomática de Ankara para hablar con Irán, Estados Unidos y los Estados del Golfo. Esa ventaja no es automática: depende de infraestructura operativa, volúmenes transferibles y resultados negociadores verificables. El macroevento permite medir si Turquía convierte ubicación y relaciones en capacidad efectiva de reducir riesgos regionales.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -6767,7 +6780,8 @@
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
       },
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "La crisis amplía la demanda de rutas terrestres e interlocución diplomática; convertir esa oportunidad en influencia exige capacidad operativa y resultados verificables."
     },
     {
       "id": "turquia-iran-competencia-coexistencia",
@@ -6792,7 +6806,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-24"
       },
-      "descripcion": "Turquía e Irán mantienen una relación de competencia y coexistencia. Ankara preserva comercio, energía y estabilidad fronteriza mientras compite con Teherán por influencia en Siria, Irak y otros espacios regionales, y mantiene interlocución con Estados Unidos y los Estados del Golfo. Análisis especializados coinciden en que Turquía se beneficia de una menor proyección iraní, pero no tendría interés en un colapso de Irán; esta motivación debe conservarse como evaluación analítica y no como doctrina oficial turca.",
+      "descripcion": "Turquía combina cooperación económica y energética con Irán, competencia por influencia regional y vínculos simultáneos con Estados Unidos y los Estados del Golfo. Esa capacidad de mantener abiertos canales entre actores enfrentados aumenta el margen diplomático de Ankara, pero enfrenta límites derivados de las sanciones estadounidenses, la incertidumbre energética, la competencia en Irak y la falta de evidencia suficiente para afirmar que su función mediadora se haya institucionalizado.",
       "por_que_importa": "La relación entre Turquía e Irán condiciona el equilibrio regional porque combina interdependencia económica y energética con competencia por influencia en Siria e Irak. La capacidad de Ankara para mantener interlocución con Teherán, Estados Unidos y los Estados del Golfo puede contribuir a contener escaladas y reforzar su función de potencia bisagra, pero también expone a Turquía a sanciones, crisis fronterizas y presiones derivadas de alianzas contrapuestas.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -7409,7 +7423,8 @@
         "turquia-potencia-bisagra-reordenamiento-regional",
         "medio-oriente-acuerdos-abraham-guerra-regionalizada"
       ],
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "La interdependencia económica, la competencia regional y la diplomacia multivectorial permiten a Ankara ampliar su margen de maniobra, pero no consolidan todavía una posición estable de potencia bisagra."
     },
     {
       "id": "industria-defensa-turca-proyeccion-regional",
@@ -7439,7 +7454,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-26"
       },
-      "descripcion": "Expansión acelerada de las exportaciones de defensa turcas y de los programas de cooperación, coproducción y suministro militar. Turquía utiliza drones, plataformas, sistemas electrónicos y otros productos de defensa para crear relaciones de largo plazo basadas en entrenamiento, repuestos, munición, actualizaciones e interoperabilidad. El proceso aumenta su autonomía estratégica y su capacidad de construir vínculos políticos y militares duraderos dentro y fuera de Medio Oriente.",
+      "descripcion": "Turquía está llevando su industria de defensa a una nueva escala. Las exportaciones crecieron, aumentó su participación en las transferencias internacionales de armamento y cinco empresas turcas ingresaron en el Top 100 de SIPRI. El proceso puede fortalecer la autonomía estratégica y la influencia exterior de Ankara, aunque las cifras disponibles miden fenómenos distintos y todavía no demuestran por sí solas que las ventas militares produzcan alineamientos políticos duraderos.",
       "por_que_importa": "La industria de defensa permite a Turquía convertir capacidad productiva en relaciones militares duraderas: entrenamiento, repuestos, munición, mantenimiento, coproducción y dependencia tecnológica. El crecimiento exportador amplía la autonomía de Ankara y su acceso a socios de Europa, Asia, África y Medio Oriente. La cuestión central es si las ventas se traducen en influencia política sostenible y no solamente en ingresos o entregas puntuales.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -7788,7 +7803,8 @@
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
       },
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "El crecimiento exportador amplía la autonomía de Ankara, pero convertir ventas militares en influencia duradera dependerá de la ejecución de los contratos y de las relaciones industriales que logre consolidar."
     },
     {
       "id": "mediterraneo-oriental-cronos-turquia",
@@ -7820,7 +7836,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-26"
       },
-      "descripcion": "Desarrollo comercial del yacimiento Cronos frente a Chipre mediante conexión con infraestructura egipcia y exportación de GNL hacia Europa. El proceso demuestra la viabilidad de una ruta energética del Mediterráneo Oriental que no necesita atravesar Turquía, lo que puede limitar el grado en que Ankara sea considerada un corredor inevitable para los recursos gasíferos de la región.",
+      "descripcion": "TotalEnergies y Eni aprobaron el desarrollo de Cronos con procesamiento en Egipto y exportación de GNL hacia Europa. La ruta reduce la condición de Turquía como paso inevitable, pero su alcance dependerá del calendario de 2028, de la capacidad egipcia y de la incorporación de nuevos campos.",
       "por_que_importa": "Cronos demuestra que Chipre puede monetizar gas mediante instalaciones egipcias y exportar GNL a Europa sin atravesar Turquía. La ruta limita la idea de Ankara como paso inevitable, pero no elimina su importancia en otros sistemas energéticos ni resuelve las disputas marítimas del Mediterráneo Oriental. El proceso ofrece una prueba concreta para comparar capacidad, calendario, costos y resiliencia entre corredores rivales.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -8107,7 +8123,8 @@
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
       },
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "La conexión del campo chipriota con Zohr y Damietta abre una ruta comercial alternativa, aunque la decisión de inversión todavía debe convertirse en producción y exportaciones sostenidas."
     },
     {
       "id": "somalia-turquia-energia-seguridad",
@@ -8138,7 +8155,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-26"
       },
-      "descripcion": "Expansión de la presencia turca en Somalia mediante exploración energética offshore, cooperación militar y una infraestructura de entrenamiento y apoyo logístico. La perforación del primer pozo turco de aguas profundas en el exterior extiende la proyección de Ankara desde la seguridad hacia los recursos estratégicos. El proceso permanece sujeto a elevada incertidumbre geológica y de seguridad.",
+      "descripcion": "Turquía combina en Somalia un acuerdo de defensa, entrenamiento militar, apoyo marítimo y la primera perforación profunda turca en el exterior. La arquitectura muestra capacidad de proyección sostenida, pero todavía no existen reservas comerciales probadas ni resultados que permitan medir su retorno económico.",
       "por_que_importa": "Somalia reúne las dimensiones energética, militar, marítima y de construcción estatal de la proyección turca. Curad-1 es la primera perforación turca de aguas profundas en el exterior y se apoya en una relación de defensa, entrenamiento y protección marítima de largo plazo. El resultado permitirá observar si Ankara transforma asistencia y presencia militar en acceso sostenible a recursos y mayor influencia en el Cuerno de África.",
       "es_macroevento_rector": false,
       "macroevento_rector_id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -8398,7 +8415,8 @@
         "importado_el": "2026-08-22",
         "advertencia_ids_agregadas": []
       },
-      "referencias_senal": []
+      "referencias_senal": [],
+      "pregunta_seguimiento": "Defensa, entrenamiento, seguridad marítima y perforación offshore forman una presencia multidimensional, aunque el resultado energético y los términos económicos siguen abiertos."
     },
     {
       "id": "corredores-alternativos-redes-logisticas-redundantes",
@@ -8433,7 +8451,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-28"
       },
-      "descripcion": "Proceso mediante el cual Estados, empresas e instituciones financieras impulsan rutas terrestres, marítimas, portuarias y multimodales para diversificar la dependencia de corredores tradicionales expuestos a guerra, sanciones, cuellos de botella, concentración logística o rivalidad estratégica. El conjunto incluye proyectos promovidos por China, India, Rusia, Estados Unidos, la Unión Europea, Estados del Golfo y actores regionales; su evolución debe medirse por financiación, ejecución física, interoperabilidad, demanda y capacidad efectiva de complementar o sustituir rutas existentes.",
+      "descripcion": "La multiplicación de corredores terrestres, portuarios y multimodales puede redistribuir flujos, inversiones y poder de negociación. China ocupa una posición transversal, pero el corpus no describe una estrategia única dirigida desde Pekín: incluye proyectos chinos, competidores, respuestas occidentales y apuestas regionales. La transformación dependerá de financiación cerrada, ejecución física, interoperabilidad y demanda sostenida, no de la cantidad de anuncios.",
       "por_que_importa": "La multiplicación de corredores alternativos puede redistribuir flujos comerciales, acceso a recursos, poder regulatorio y capacidad de negociación de los países de tránsito. No existe, sin embargo, una estrategia única ni un ganador predeterminado: algunos proyectos responden a China, otros compiten con sus redes y muchos dependen de decisiones locales. El seguimiento conjunto permite distinguir anuncios de infraestructura operativa, diversificación real de dependencia y simples superposiciones de proyectos inconexos.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -8803,7 +8821,8 @@
           "tipo_uso": "amplificadora",
           "efecto_segundo_orden": "La vulnerabilidad de estrechos y accesos marítimos impulsa dispersión portuaria y corredores terrestres alternativos."
         }
-      ]
+      ],
+      "pregunta_seguimiento": "Diez procesos muestran una búsqueda global de rutas menos vulnerables, pero también proyectos fragmentados, patrocinadores rivales y Estados de tránsito con capacidad propia de decisión."
     },
     {
       "id": "turquia-potencia-bisagra-reordenamiento-regional",
@@ -8834,7 +8853,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Proceso mediante el cual Turquía amplía su capacidad de influencia combinando posición geográfica, pertenencia a la OTAN, relación con Estados Unidos, autonomía diplomática, industria de defensa, corredores energéticos y logísticos, presencia militar y vínculos simultáneos con actores rivales. El proceso puede desplazar parcialmente funciones tradicionalmente ejercidas por Estados Unidos sin implicar necesariamente una ruptura de la alianza bilateral.",
+      "descripcion": "La influencia turca surge de la combinación de capacidades que se refuerzan entre sí: industria de defensa, asociaciones de seguridad, interlocución con rivales, corredores euroasiáticos y presencia en el Cuerno de África. El patrón permite formular una hipótesis de potencia bisagra, aunque Cronos, las tensiones regionales y la implementación incompleta de varios proyectos impiden hablar de centralidad inevitable.",
       "por_que_importa": "Importa porque reúne en un mismo proceso capacidades militares, diplomáticas, industriales, energéticas y logísticas que hoy aparecen dispersas en varios escenarios. Su seguimiento permite evaluar si Turquía pasa de ser un aliado regional relevante a convertirse en un organizador indispensable de la seguridad y la conectividad entre Europa, Medio Oriente, Asia Central y el Cuerno de África, y en qué medida complementa o sustituye funciones de influencia tradicionalmente ejercidas por Estados Unidos.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -9134,7 +9153,8 @@
           "tipo_uso": "contenedora",
           "efecto_segundo_orden": "La aplicación turca de Montreux y su interlocución simultánea limitan parte de la expansión naval sin separar por completo el teatro."
         }
-      ]
+      ],
+      "pregunta_seguimiento": "Diez macroeventos muestran cómo Ankara combina seguridad, industria, mediación y corredores para ocupar funciones regionales sin reemplazar integralmente a Estados Unidos ni abandonar la OTAN."
     },
     {
       "id": "sudan-guerra-civil-regionalizacion-mar-rojo",
@@ -9173,7 +9193,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-28"
       },
-      "descripcion": "Proceso mediante el cual la guerra iniciada en abril de 2023 entre las Fuerzas Armadas de Sudán (SAF) y las Fuerzas de Apoyo Rápido (RSF) evoluciona hacia una fragmentación territorial y estatal sostenida por economías de guerra, redes transfronterizas y apoyos externos. El conflicto articula intereses del Golfo, Egipto, Irán, Turquía, Rusia y otros actores en torno al mar Rojo, el oro, las rutas logísticas, la influencia militar y la competencia diplomática; al mismo tiempo, desplaza población, degrada la seguridad alimentaria y transmite inestabilidad a los países vecinos.",
+      "descripcion": "La guerra sudanesa ya no puede entenderse únicamente como una lucha interna ni como una guerra proxy entre dos bloques. Las coaliciones sudanesas conservan objetivos propios, mientras redes de armas, oro, puertos, mediación y ayuda vinculan el conflicto con el Golfo, Egipto, Irán, Turquía, Rusia, Ucrania y los países vecinos. El desenlace dependerá tanto del equilibrio militar como de la capacidad de coordinar presiones externas, limitar la economía de guerra y evitar una partición de hecho.",
       "por_que_importa": "Sudán enlaza tres espacios que suelen analizarse por separado: la seguridad africana, el orden del mar Rojo y rivalidades de Medio Oriente y Eurasia. La cuestión rectora no es solamente quién gana la guerra, sino si el país queda dividido de hecho, qué redes externas hacen sostenible esa división y cómo los intereses contrapuestos de patrocinadores y mediadores alteran el acceso a puertos, minerales, rutas, alianzas y negociaciones. Seguir las ramificaciones permite evaluar tanto la posibilidad de un arreglo como el riesgo de una guerra regional crónica.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -9601,7 +9621,8 @@
           "tipo_uso": "amplificadora",
           "efecto_segundo_orden": "Redes de sostenimiento, oro y acceso al mar Rojo trasladan recursos e incentivos entre la guerra europea y actores presentes en Sudán."
         }
-      ]
+      ],
+      "pregunta_seguimiento": "La confrontación entre las SAF y las RSF fragmenta el Estado, moviliza apoyos externos y conecta oro, puertos, mediaciones y crisis humanitaria con los intereses de Medio Oriente y la confrontación Rusia–Ucrania."
     },
     {
       "id": "sudan-fragmentacion-territorial-gobiernos-rivales",
@@ -11414,7 +11435,7 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-08-29"
       },
-      "descripcion": "Proceso mediante el cual la arquitectura de normalización abierta por los Acuerdos de Abraham se superpone con la cuestión palestina no resuelta, la guerra de Gaza, la confrontación directa e indirecta entre Israel e Irán y la búsqueda de seguridad y autonomía estratégica de los Estados del Golfo. El sistema conecta Gaza y Cisjordania con Líbano, Siria, Iraq, Yemen, el mar Rojo, el estrecho de Ormuz y las garantías militares de Estados Unidos, sin convertir a todos los actores en dos bloques homogéneos.",
+      "descripcion": "Medio Oriente no se está organizando alrededor de una sola arquitectura. La normalización árabe-israelí, la disuasión entre Israel e Irán, la presencia estadounidense, la autonomía de los Estados del Golfo y los conflictos de Gaza, Cisjordania, Líbano, Siria, Iraq y Yemen forman capas que se superponen sin integrarse. El escenario base es una normalización condicionada y una disuasión inestable; un orden más estable exigiría vincular seguridad, gobernanza palestina, control estatal de las armas, verificación nuclear y protección de las rutas regionales.",
       "por_que_importa": "Importa porque permite evaluar si Medio Oriente evoluciona hacia una arquitectura de normalización y seguridad ampliada, una guerra regional prolongada o una combinación inestable de cooperación económica, disuasión militar y conflictos recurrentes. El seguimiento rector mantiene a Palestina como dimensión política propia, distingue las estrategias de cada Estado del Golfo y mide cuándo un frente local altera simultáneamente alianzas, rutas marítimas, energía, proliferación y presencia estadounidense.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -11969,7 +11990,8 @@
           "tipo_uso": "amplificadora",
           "efecto_segundo_orden": "La incertidumbre sobre Irán, garantías y defensa misilística transmite riesgo de proliferación y escalada al orden regional."
         }
-      ]
+      ],
+      "pregunta_seguimiento": "La cooperación entre Estados sobrevivió a Gaza, pero convive con la cuestión palestina no resuelta, la confrontación Israel–Irán, redes armadas con autonomía propia y monarquías del Golfo que buscan seguridad sin quedar atrapadas en una alineación única."
     },
     {
       "id": "abraham-normalizacion-arabia-saudita-israel",
@@ -13886,7 +13908,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Macroevento rector que observa cómo la guerra iniciada en 2014 y transformada por la invasión rusa a gran escala de 2022 genera e institucionaliza redes internacionales de apoyo militar, financiación, tecnología, producción, sanciones, logística y seguridad. Evalúa en qué medida esas redes prolongan el conflicto, modifican la arquitectura de seguridad europea, reorientan las relaciones de Rusia y Ucrania con terceros Estados y transmiten capacidades o respuestas hacia otros teatros. Distingue alianzas formales, asociaciones, dependencias y transacciones; incorpora mecanismos de contención y evidencia contraria; y no presupone bloques homogéneos ni una confrontación sistémica mundial.",
+      "descripcion": "La guerra Rusia–Ucrania ya no puede explicarse únicamente por el frente militar. Ucrania depende de una red plurianual de asistencia y Rusia combina producción propia, comercio adaptado y cooperación selectiva con Bielorrusia, Irán y Corea del Norte. El efecto más consolidado es la transformación de la seguridad europea; la conexión con otros teatros existe, pero no demuestra dos bloques mundiales coherentes.",
       "por_que_importa": "El seguimiento conjunto permite determinar si decisiones dispersas sobre ayuda, producción, sanciones, comercio, compromisos de seguridad y cooperación con terceros forman un mecanismo común de sostenimiento y adaptación o son solamente coincidencias. El rector explica dependencias cruzadas, cambios cualitativos y mecanismos de transmisión que los expedientes separados no pueden evaluar por sí solos, sin absorber la causalidad propia de otros teatros.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -14127,7 +14149,8 @@
           "tipo_uso": "contextual",
           "efecto_segundo_orden": "La adaptación del comercio de trigo aporta contraevidencia frente a una propagación mundial lineal e irreversible."
         }
-      ]
+      ],
+      "pregunta_seguimiento": "La invasión rusa reordenó la seguridad europea y conectó producción militar, financiación, sanciones, logística y asociaciones exteriores. La transformación es estructural, pero desigual y contenida por intereses que todavía impiden una confrontación mundial integrada."
     },
     {
       "id": "asistencia-militar-occidental-ucrania-transformacion",
@@ -15724,7 +15747,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Proceso estructural centrado en la RDC y el Copperbelt RDC-Zambia que conecta extracción, propiedad, procesamiento, energía, financiación, corredores atlánticos e índicos, trazabilidad y demanda tecnológica y militar. Su alcance regional incluye Angola y Tanzania por logística, y el este de la RDC, Ruanda, Burundi y Uganda cuando existen flujos minerales o de seguridad demostrables.",
+      "descripcion": "La concentración extractiva de la RDC y Zambia da margen de negociación, pero energía, contratos, procesamiento, trazabilidad y cambios tecnológicos determinan cuánto valor y autonomía conserva la región.",
       "por_que_importa": "La concentración minera en la RDC y Zambia no equivale al control de la cadena: el refinado, la química de baterías, la manufactura, la financiación y buena parte de la propiedad siguen concentrados fuera de África. El rector explica cómo decisiones sobre concesiones, cuotas, energía, corredores, trazabilidad e industrialización se transmiten entre sectores y potencias. Mantiene agencia africana: la cuota congoleña de cobalto, la renegociación de Sicomines y la zona económica especial RDC-Zambia son intentos de modificar precio, renta y valor local. No absorbe la identidad propia de Lobito ni atribuye automáticamente la guerra oriental a los minerales. Se debilitaría si la diversificación tecnológica reduce de forma duradera la centralidad regional, si los proyectos de procesamiento no pasan de anuncios o si los cambios mineros dejan de alterar financiación, logística y seguridad de suministro.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -16132,7 +16155,7 @@
           "efecto_segundo_orden": "Fabricantes eligen química según costo y desempeño; cambia metal por unidad; reciclaje y vida útil modifican necesidad primaria; cuotas y precios pueden acelerar esas decisiones."
         }
       ],
-      "pregunta_seguimiento": "¿Las decisiones sobre minerales cambian de forma verificable la energía, la logística, la renta y las capacidades industriales regionales?",
+      "pregunta_seguimiento": "La concentración extractiva da a la RDC y Zambia capacidad de negociación, pero el control decisivo sigue repartido entre propiedad, energía, financiación, refinado, logística y manufactura fuera de la región.",
       "hipotesis_principal": "La concentración minera en la RDC y Zambia no equivale al control de la cadena: el refinado, la química de baterías, la manufactura, la financiación y buena parte de la propiedad siguen concentrados fuera de África. El rector explica cómo decisiones sobre concesiones, cuotas, energía, corredores, trazabilidad e industrialización se transmiten entre sectores y potencias. Mantiene agencia africana: la cuota congoleña de cobalto, la renegociación de Sicomines y la zona económica especial RDC-Zambia son intentos de modificar precio, renta y valor local. No absorbe la identidad propia de Lobito ni atribuye automáticamente la guerra oriental a los minerales. Se debilitaría si la diversificación tecnológica reduce de forma duradera la centralidad regional, si los proyectos de procesamiento no pasan de anuncios o si los cambios mineros dejan de alterar financiación, logística y seguridad de suministro.",
       "mecanismo_causal": "Concentración y regulación modifican condiciones de suministro; energía, transformación y contratos determinan valor local; demanda y trazabilidad retroalimentan inversión y acceso.",
       "delimitacion_exclusiones": [
@@ -16200,7 +16223,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Proceso global por el que Estados y alianzas convierten demandas de seguridad inicialmente coyunturales en capacidad industrial militar persistente, mediante contratos plurianuales, ampliación de plantas, integración tecnológica, reservas, controles de exportación y selección política de proveedores. No equivale a gasto militar agregado ni presupone bloques industriales cerrados y homogéneos.",
+      "descripcion": "La remilitarización industrial no es sinónimo de gasto militar creciente. Es una transformación más exigente: aparece cuando los Estados convierten amenazas y guerras en demanda previsible; esa demanda sostiene plantas, empleo, proveedores y reservas; los aliados conectan estándares, compras, mantenimiento y tecnología; y minerales, energía, semiconductores, logística y financiación empiezan a administrarse como insumos de seguridad.",
       "por_que_importa": "El rector permite observar un mecanismo que los programas nacionales aislados no explican: amenazas simultáneas y aprendizaje bélico agregan demanda; las garantías públicas reducen riesgo inversor; empresas amplían capacidad; aliados normalizan estándares, coproducción y mantenimiento; y minerales, semiconductores, energía, logística y capital pasan a tratarse como insumos de seguridad. La evidencia revisada al 15 de septiembre de 2026 favorece una remilitarización estructural pero desigual: el gasto real crece desde antes de 2022 y los compromisos se prolongan, aunque la producción efectiva avanza más lentamente que los anuncios y las cadenas conservan dependencias cruzadas. Se debilitaría si contratos, plantas y personal revierten después de una desescalada, si los inventarios se normalizan sin demanda sostenida o si la selección de proveedores deja de responder a criterios de seguridad.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -16874,7 +16897,7 @@
           "efecto_segundo_orden": "Compras incorporan compromisos industriales; formación, documentación y derechos habilitan tareas locales; mantenimiento y proveedores propios determinan autonomía; restricciones pueden limitar el alcance adquirido."
         }
       ],
-      "pregunta_seguimiento": "¿La demanda de seguridad se transforma en producción, integración y capacidad persistente más allá de la reposición?",
+      "pregunta_seguimiento": "El rearme se vuelve estructural cuando gasto, contratos, plantas, tecnología y seguridad de suministro se refuerzan; la evidencia muestra redes aliadas más densas, no bloques cerrados.",
       "hipotesis_principal": "La institucionalización de demanda, plantas y cooperación favorece remilitarización persistente y desigual; la evidencia no demuestra bloques autosuficientes.",
       "mecanismo_causal": "Presupuestos y contratos estabilizan demanda; inversión, madurez tecnológica y proveedores condicionan producción; estándares y derechos industriales conectan aliados; entregas y costos retroalimentan decisiones fiscales.",
       "delimitacion_exclusiones": [
@@ -17631,7 +17654,8 @@
         "estado": "publicado",
         "publicado_el": "2026-09-15",
         "actualizado_el": "2026-09-15"
-      }
+      },
+      "pregunta_seguimiento": "Trump articula y acelera una securitización regional apoyada en estructuras anteriores; la coerción crece más rápido que la integración y aún no existe un bloque hemisférico rígido."
     },
     {
       "id": "derechas-transnacionales-reconfiguracion-america-latina",
@@ -17675,7 +17699,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Proceso por el cual partidos, dirigentes, gobiernos, fundaciones, organizaciones religiosas y empresariales, comunicadores y plataformas de derechas latinoamericanas intercambian marcos, legitimidad, contactos, asesores y repertorios de acción a través de redes regionales y extrarregionales. El rector mide cuándo esa circulación supera la afinidad y produce coordinación, capacidad institucional o resultados duraderos, sin tratar a la derecha como actor único ni confundir alternancia electoral con derechización uniforme.",
+      "descripcion": "Foros, intermediarios digitales, organizaciones religiosas y vínculos gubernamentales sostienen circulación transnacional y coordinación selectiva. El encuentro de Chile, la cooperación de seguridad y los compromisos comerciales muestran mecanismos diferentes, no un mando único. Los controles nacionales, las divergencias económicas y la diversificación regional limitan la tesis de bloque. La evidencia apoya circulación y algunos compromisos materiales; todavía no demuestra efectos electorales regionales atribuibles ni delegación personal.",
       "por_que_importa": "Foros, intermediarios digitales, organizaciones religiosas y vínculos gubernamentales sostienen circulación transnacional y coordinación selectiva. El encuentro de Chile, la cooperación de seguridad y los compromisos comerciales muestran mecanismos diferentes, no un mando único. Los controles nacionales, las divergencias económicas y la diversificación regional limitan la tesis de bloque. La evidencia apoya circulación y algunos compromisos materiales; todavía no demuestra efectos electorales regionales atribuibles ni delegación personal.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -18224,6 +18248,118 @@
           "estado_verificacion": "verificada",
           "observaciones": "Mide interdependencia comercial; no demuestra por sí sola armonía política.",
           "revisada_el": "2026-08-30"
+        },
+        {
+          "media_id": "periodismo-puro",
+          "medio_catalogado": true,
+          "id": "src-pp-milanovic",
+          "medio": "Periodismo Puro / Canal Net",
+          "titulo": "Branko Milanovic: nota sobre entrevista de Jorge Fontevecchia",
+          "fecha": "2026-09-13",
+          "url": "https://www.canalnet.tv/programas/periodismo-puro/branko-milanovic-comparo-a-milei-con-trump-y-lanzo-una-definicion-inesperada-sobre-el-presidente-argentino_20260913/",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Nota escrita revisada. La entrevista audiovisual completa no se ha revisado. Se acredita una interpretación atribuida, no la veracidad independiente de todas sus afirmaciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "periodismo-puro",
+          "medio_catalogado": true,
+          "id": "src-pp-mounk",
+          "medio": "Periodismo Puro / Canal Net",
+          "titulo": "Yascha Mounk: nota sobre entrevista de Jorge Fontevecchia",
+          "fecha": "2025-03-24",
+          "url": "https://www.canalnet.tv/programas/periodismo-puro/yasha-mounk-aseguro-que-la-vision-de-donald-trump-en-su-segundo-mandato-es-bastante-desarrollada-y-detallada_20250324/",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Nota escrita revisada. La entrevista audiovisual completa no se ha revisado. Se acredita una interpretación atribuida, no la veracidad independiente de todas sus afirmaciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "periodismo-puro",
+          "medio_catalogado": true,
+          "id": "src-pp-hawley",
+          "medio": "Periodismo Puro / Canal Net",
+          "titulo": "George Hawley: nota sobre entrevista de Jorge Fontevecchia",
+          "fecha": "2025-03-16",
+          "url": "https://www.canalnet.tv/programas/periodismo-puro/george-hawley-aseguro-que-la-oposicion-a-trump-esta-mas-desmoralizada-que-nunca_20250316/",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Nota escrita revisada. La entrevista audiovisual completa no se ha revisado. Se acredita una interpretación atribuida, no la veracidad independiente de todas sus afirmaciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "periodismo-puro",
+          "medio_catalogado": true,
+          "id": "src-pp-benhabib",
+          "medio": "Periodismo Puro / Canal Net",
+          "titulo": "Seyla Benhabib: nota sobre entrevista de Jorge Fontevecchia",
+          "fecha": "2021-12-31",
+          "url": "https://www.canalnet.tv/programas/periodismo-puro/seyla-benhabib-en-estados-unidos-esta-surgiendo-el-nihilismo-politico_20211231/",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Nota escrita revisada. La entrevista audiovisual completa no se ha revisado. Se acredita una interpretación atribuida, no la veracidad independiente de todas sus afirmaciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "",
+          "medio_catalogado": false,
+          "id": "src-pp-trump-investidura-2025",
+          "medio": "The White House",
+          "titulo": "The Inaugural Address",
+          "fecha": "2025-01-20",
+          "url": "https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/",
+          "idioma": "en",
+          "tipo": "fuente_primaria",
+          "observaciones": "Discurso oficial: documenta prioridades declaradas, no su ejecución ni sus efectos.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "",
+          "medio_catalogado": false,
+          "id": "src-pp-milei-davos-2025",
+          "medio": "Casa Rosada",
+          "titulo": "Discurso de Javier Milei en Davos",
+          "fecha": "2025-01-23",
+          "url": "https://www.casarosada.gob.ar/informacion/discursos/50848-discurso-del-presidente-de-la-nacion-javier-milei-desde-el-foro-de-davos-suiza",
+          "idioma": "es",
+          "tipo": "fuente_primaria",
+          "observaciones": "Discurso oficial: posición del dirigente. Sus afirmaciones empíricas no se dan por verificadas.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "",
+          "medio_catalogado": false,
+          "id": "src-pp-vdem-2026",
+          "medio": "V-Dem Institute",
+          "titulo": "Informe sobre la Democracia 2026: ¿El fin de la era democrática?",
+          "fecha": "2026-03",
+          "url": "https://www.v-dem.net/documents/76/V-Dem_Institute_Democracy_Report_2026_Spanish_lowres.pdf",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Revisión acotada al adéndum latinoamericano, pp. 43–45. Comparación descriptiva; datos de 2025, no medición de septiembre de 2026.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "",
+          "medio_catalogado": false,
+          "id": "src-pp-levitsky-ziblatt-mayorias-2025",
+          "medio": "Journal of Democracy",
+          "titulo": "When Should the Majority Rule? — Steven Levitsky y Daniel Ziblatt",
+          "fecha": "2025-01",
+          "url": "https://www.journalofdemocracy.org/articles/when-should-the-majority-rule/",
+          "idioma": "en",
+          "tipo": "analisis",
+          "observaciones": "Marco conceptual sobre derechos y límites a mayorías. Revisión de resumen e introducción pública; no evaluación completa de casos nacionales.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
         }
       ],
       "actualizaciones": [],
@@ -18349,8 +18485,12 @@
       "publicacion": {
         "estado": "publicado",
         "publicado_el": "2026-09-15",
-        "actualizado_el": "2026-09-15"
-      }
+        "actualizado_el": "2026-09-18"
+      },
+      "incertidumbres": [
+        "Ampliación bibliográfica del 18/09/2026: entrevistas y perspectivas contrastadas. El corte de las señales previas no se modifica. Revisión audiovisual completa pendiente."
+      ],
+      "pregunta_seguimiento": "Foros, canales digitales, organizaciones religiosas y acuerdos conectan actores; las instituciones nacionales y la interdependencia limitan la formación de un bloque único."
     },
     {
       "id": "indo-pacifico-taiwan-reconfiguracion-seguridad",
@@ -18400,7 +18540,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Proceso estructural por el cual la presión de la República Popular China sobre Taiwán, la respuesta defensiva taiwanesa, la postura estadounidense y la agencia de Japón, las Coreas, Australia, Filipinas, India y los Estados del Sudeste Asiático reorganizan de manera conectada fuerzas, bases, tecnología, cadenas de suministro, rutas y mecanismos de crisis. Taiwán es el nodo de mayor riesgo, no la causa única de toda competencia regional.",
+      "descripcion": "La competencia alrededor de Taiwán reorganiza capacidades y decisiones del Indo-Pacífico mediante coerción, defensa resiliente, mando, acceso, cooperación submarina, tecnología y diplomacia. Nueve procesos permiten comprobar esos mecanismos sin reducir la autonomía regional a una guerra única ni convertir ejercicios y anuncios en decisiones de intervención.",
       "por_que_importa": "El mecanismo rector es una espiral de seguridad y resiliencia: coerción y modernización chinas elevan la demanda de negación y dispersión; alianzas y socios conectan acceso, inteligencia, logística y producción; controles tecnológicos y diversificación convierten eficiencia económica en vulnerabilidad estratégica; esas respuestas pueden fortalecer la disuasión y, simultáneamente, ampliar el dilema de seguridad. La evidencia respalda una arquitectura común selectiva, no un bloque regional homogéneo. El rector conserva utilidad con menor tensión en el Estrecho mientras persistan infraestructura, cadenas tecnológicas y compromisos creados; debe dividirse si esos cambios dejan de compartir decisiones, recursos o planificación.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -19180,7 +19320,8 @@
         "estado": "publicado",
         "publicado_el": "2026-09-15",
         "actualizado_el": "2026-09-15"
-      }
+      },
+      "pregunta_seguimiento": "Taiwán concentra un riesgo elevado de choque entre China y Estados Unidos; nueve procesos distinguen capacidades, ejecución, autonomía regional y mecanismos de contención."
     },
     {
       "id": "erosion-control-armamentos-disuasion-nuclear-multipolar",
@@ -19226,7 +19367,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Transformación estructural por la cual el debilitamiento de límites y verificación, la modernización simultánea, la interacción de más de dos centros nucleares, las garantías extendidas y la integración nuclear-convencional-tecnológica reducen la previsibilidad entre teatros. No es un inventario de arsenales: observa reglas, doctrina, postura, mando, alerta, comunicación y transmisión sistémica del riesgo.",
+      "descripcion": "La pérdida de límites verificables, la modernización y las garantías amplían incertidumbre, mientras la cooperación y la verificación conservan resultados parciales. Siete mecanismos permiten distinguir erosión, adaptación y contención sin inferir inevitabilidad de empleo nuclear.",
       "por_que_importa": "El mecanismo común es una retroalimentación de incertidumbre: menos límites y transparencia elevan la planificación por peor caso; la modernización y los sistemas de doble capacidad vuelven ambiguas señales y ataques; las garantías conectan crisis regionales con potencias nucleares; y la compresión tecnológica del tiempo de decisión aumenta la posibilidad de error. La resiliencia del TNP, salvaguardias, moratorias de ensayo, canales y prudencia impide concluir que el deterioro sea lineal o que el empleo sea probable. La tesis se debilita si se restauran límites verificables, notificaciones y diálogo sostenido o si los teatros continúan sin compartir cálculos, recursos ni escaladas.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -19848,7 +19989,8 @@
         "estado": "publicado",
         "publicado_el": "2026-09-15",
         "actualizado_el": "2026-09-15"
-      }
+      },
+      "pregunta_seguimiento": "El fin de límites centrales, la modernización simultánea y la interacción entre teatros reducen previsibilidad, pero no han eliminado la contención ni vuelven inevitable el empleo nuclear."
     },
     {
       "id": "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
@@ -19897,7 +20039,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Macroevento rector que observa cuándo conflictos, alianzas, cadenas industriales, tecnologías, recursos y decisiones políticas dejan de evolucionar de manera predominantemente autónoma y transmiten escalada entre teatros. Distingue simultaneidad, interdependencia limitada, acoplamiento selectivo y confrontación sistémica; no presenta una guerra mundial como desenlace consumado ni inevitable.",
+      "descripcion": "La competencia contemporánea comparte cadenas industriales, tecnologías, alianzas y rutas, pero la mayor parte de sus conflictos conserva causalidad y gestión propias. Este análisis construye una escala desde la simultaneidad desacoplada hasta la escalada mundial extrema y define qué evidencia permitiría avanzar —o retroceder— entre niveles.",
       "por_que_importa": "El riesgo sistémico no surge de sumar guerras, sino de mecanismos verificables: compromisos de defensa, reasignación competitiva de municiones e inteligencia, represalias cruzadas, cuellos de botella energéticos y tecnológicos, interrupción de rutas, operaciones ciberespaciales, ambigüedad nuclear-convencional y compresión del tiempo de decisión. La autonomía regional, la interdependencia, la redundancia, los canales militares, la mediación y los límites industriales pueden contener o revertir esa transmisión.",
       "es_macroevento_rector": true,
       "macroevento_rector_id": null,
@@ -20289,7 +20431,8 @@
         "estado": "publicado",
         "publicado_el": "2026-09-15",
         "actualizado_el": "2026-09-15"
-      }
+      },
+      "pregunta_seguimiento": "La coincidencia de crisis no compone por sí sola una guerra mundial: el riesgo cambia cuando decisiones, capacidades y represalias comienzan a transmitirse entre teatros."
     },
     {
       "id": "priorizacion-capacidades-militares-entre-teatros",
@@ -20313,7 +20456,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Competencia por calendarios de entrega, existencias y capacidades de defensa aérea cuando una prioridad operativa desplaza compromisos con otros receptores. El proceso sigue quién decide, quién obtiene capacidad y quién asume el retraso.",
+      "descripcion": "Las cadenas compartidas permiten trasladar costos de oportunidad entre socios; la evidencia suiza demuestra desplazamiento de entregas, pero todavía no prueba una pérdida operativa en Asia ni coordinación mundial de adversarios.",
       "por_que_importa": "Una decisión de suministro puede transmitir el costo de una guerra a la preparación defensiva de terceros antes de que exista combate entre grandes potencias. La adaptación contractual, la sustitución y la reposición pueden contener esa transmisión.",
       "definicion_operativa": "Hay desplazamiento verificable cuando una autoridad identifica una prioridad de seguridad y modifica por ella la entrega o disponibilidad comprometida a otro receptor. Solo se hablará de acoplamiento operativo interteatros si se demuestra además un efecto sobre una misión en otro teatro.",
       "delimitacion_exclusiones": [
@@ -20517,7 +20660,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Extensión de interrupciones desde un conflicto hacia usuarios y servicios de terceros países mediante infraestructura satelital comercial compartida, con atribución, recuperación y respuesta política como eslabones diferenciados.",
+      "descripcion": "El uso compartido permite propagación transfronteriza comprobable; no hace automática la escalada militar ni demuestra una intención de atacar a todos los usuarios perjudicados.",
       "por_que_importa": "La huella de una red puede exceder el territorio de la guerra. El daño transfronterizo eleva costos y presión política, pero su transformación en escalada depende de decisiones posteriores de atribución y respuesta.",
       "definicion_operativa": "El proceso se observa cuando un incidente vinculado a hostilidades afecta un servicio satelital compartido fuera del ámbito inicial y existe evidencia técnica sobre el servicio y su extensión. La represalia y el cambio de alerta requieren evidencia adicional.",
       "delimitacion_exclusiones": [
@@ -20719,7 +20862,7 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Conversión de incidentes y percepciones de amenaza en consultas, decisiones colectivas y comunicación militar, atendiendo tanto a la ampliación de compromisos como a sus límites operativos.",
+      "descripcion": "Las instituciones ofrecen filtros entre incidente y acción colectiva, pero su eficacia depende del consenso, la comunicación efectiva y la delimitación de objetivos; ni consulta ni contacto equivalen a garantía de desescalada.",
       "por_que_importa": "Una alianza puede transmitir una crisis y también contenerla. La diferencia está en las decisiones adoptadas, sus límites y el funcionamiento de los canales durante el incidente.",
       "definicion_operativa": "Se registran solicitudes formales de consulta, decisiones posteriores y contactos de crisis con fecha, actores y resultado comprobable. No se asigna efecto de contención a la sola existencia de un canal.",
       "delimitacion_exclusiones": [
@@ -27941,14 +28084,14 @@
         "taxonomy_version": 1,
         "revisada_el": null
       },
-      "descripcion": "Instituciones, coaliciones y reglas de sucesión filtran la influencia de las redes: pueden limitar a líderes o facilitar concentración, sin que la orientación ideológica explique por sí sola cada resultado.",
-      "por_que_importa": "¿La red persiste cuando cambian liderazgos y cómo interactúa con límites constitucionales?",
+      "descripcion": "Las alianzas entre partidos y dirigentes de derecha también dependen de las reglas de cada país. En Brasil, las decisiones judiciales limitan la participación de un líder; en El Salvador, una reforma permite prolongar la continuidad presidencial. Estos casos ayudan a examinar qué ocurre cuando cambian los dirigentes y si sus organizaciones mantienen la cooperación internacional. El análisis compara el control de los partidos, la independencia de los tribunales y el papel de los congresos. También distingue los límites que protegen derechos de aquellos que preservan privilegios, y pregunta qué pruebas permiten reconocer una concentración de poder.",
+      "por_que_importa": "Los tribunales, los congresos y las reglas electorales pueden frenar la concentración de poder o facilitar la continuidad de un gobierno.",
       "definicion_operativa": "Vínculos externos aportan legitimidad; decisiones nacionales modifican elegibilidad y distribución de poder; partidos y electores reorganizan liderazgo; la capacidad de la red depende de sobrevivir a estos filtros sin presumir un resultado uniforme.",
       "delimitacion_exclusiones": [
         "La comparación no establece causalidad externa de reformas nacionales.",
         "No se anticipan resultados brasileños de octubre de 2026."
       ],
-      "pregunta_seguimiento": "¿La red persiste cuando cambian liderazgos y cómo interactúa con límites constitucionales?",
+      "pregunta_seguimiento": "¿Las alianzas internacionales entre las derechas sobreviven a los cambios de liderazgo? ¿Cómo las condicionan las constituciones, los tribunales y los congresos?",
       "hipotesis_principal": "Instituciones, coaliciones y reglas de sucesión filtran la influencia de las redes: pueden limitar a líderes o facilitar concentración, sin que la orientación ideológica explique por sí sola cada resultado.",
       "hipotesis_alternativas": [
         "Mayorías y conflictos nacionales explican los cambios institucionales.",
@@ -27964,7 +28107,7 @@
         "derechas-transnacionales-reconfiguracion-america-latina"
       ],
       "claves_estructurales": [
-        "¿La red persiste cuando cambian liderazgos y cómo interactúa con límites constitucionales?",
+        "La cooperación entre partidos puede continuar después de un cambio de dirigente, pero debe comprobarse en sus acuerdos y actividades.",
         "Vínculos externos aportan legitimidad; decisiones nacionales modifican elegibilidad y distribución de poder; partidos y electores reorganizan liderazgo; la capacidad de la red depende de sobrevivir a estos filtros sin presumir un resultado uniforme."
       ],
       "actores": [
@@ -27976,8 +28119,8 @@
         "CIDH"
       ],
       "intereses": [
-        "Instituciones, coaliciones y reglas de sucesión filtran la influencia de las redes: pueden limitar a líderes o facilitar concentración, sin que la orientación ideológica explique por sí sola cada resultado.",
-        "¿La red persiste cuando cambian liderazgos y cómo interactúa con límites constitucionales?"
+        "Conservar o disputar el liderazgo de los partidos.",
+        "Mantener la cooperación internacional después de una sucesión."
       ],
       "horizonte": {
         "min_anios": 1,
@@ -28005,7 +28148,8 @@
       ],
       "incertidumbres": [
         "La comparación no establece causalidad externa de reformas nacionales.",
-        "No se anticipan resultados brasileños de octubre de 2026."
+        "No se anticipan resultados brasileños de octubre de 2026.",
+        "Ampliación bibliográfica del 18/09/2026: entrevistas y perspectivas contrastadas. El corte de las señales previas no se modifica. Revisión audiovisual completa pendiente."
       ],
       "evaluacion": {
         "impacto": 4,
@@ -28037,6 +28181,90 @@
           "tipo": "fuente_primaria",
           "estado_verificacion": "verificada",
           "revisada_el": "2026-09-15"
+        },
+        {
+          "media_id": "periodismo-puro",
+          "medio_catalogado": true,
+          "id": "src-pp-mounk",
+          "medio": "Periodismo Puro / Canal Net",
+          "titulo": "Yascha Mounk: nota sobre entrevista de Jorge Fontevecchia",
+          "fecha": "2025-03-24",
+          "url": "https://www.canalnet.tv/programas/periodismo-puro/yasha-mounk-aseguro-que-la-vision-de-donald-trump-en-su-segundo-mandato-es-bastante-desarrollada-y-detallada_20250324/",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Nota escrita revisada. La entrevista audiovisual completa no se ha revisado. Se acredita una interpretación atribuida, no la veracidad independiente de todas sus afirmaciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "periodismo-puro",
+          "medio_catalogado": true,
+          "id": "src-pp-hawley",
+          "medio": "Periodismo Puro / Canal Net",
+          "titulo": "George Hawley: nota sobre entrevista de Jorge Fontevecchia",
+          "fecha": "2025-03-16",
+          "url": "https://www.canalnet.tv/programas/periodismo-puro/george-hawley-aseguro-que-la-oposicion-a-trump-esta-mas-desmoralizada-que-nunca_20250316/",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Nota escrita revisada. La entrevista audiovisual completa no se ha revisado. Se acredita una interpretación atribuida, no la veracidad independiente de todas sus afirmaciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "periodismo-puro",
+          "medio_catalogado": true,
+          "id": "src-pp-benhabib",
+          "medio": "Periodismo Puro / Canal Net",
+          "titulo": "Seyla Benhabib: nota sobre entrevista de Jorge Fontevecchia",
+          "fecha": "2021-12-31",
+          "url": "https://www.canalnet.tv/programas/periodismo-puro/seyla-benhabib-en-estados-unidos-esta-surgiendo-el-nihilismo-politico_20211231/",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Nota escrita revisada. La entrevista audiovisual completa no se ha revisado. Se acredita una interpretación atribuida, no la veracidad independiente de todas sus afirmaciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "",
+          "medio_catalogado": false,
+          "id": "src-pp-trump-investidura-2025",
+          "medio": "The White House",
+          "titulo": "The Inaugural Address",
+          "fecha": "2025-01-20",
+          "url": "https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/",
+          "idioma": "en",
+          "tipo": "fuente_primaria",
+          "observaciones": "Discurso oficial: documenta prioridades declaradas, no su ejecución ni sus efectos.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "",
+          "medio_catalogado": false,
+          "id": "src-pp-vdem-2026",
+          "medio": "V-Dem Institute",
+          "titulo": "Informe sobre la Democracia 2026: ¿El fin de la era democrática?",
+          "fecha": "2026-03",
+          "url": "https://www.v-dem.net/documents/76/V-Dem_Institute_Democracy_Report_2026_Spanish_lowres.pdf",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Revisión acotada al adéndum latinoamericano, pp. 43–45. Comparación descriptiva; datos de 2025, no medición de septiembre de 2026.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "",
+          "medio_catalogado": false,
+          "id": "src-pp-levitsky-ziblatt-mayorias-2025",
+          "medio": "Journal of Democracy",
+          "titulo": "When Should the Majority Rule? — Steven Levitsky y Daniel Ziblatt",
+          "fecha": "2025-01",
+          "url": "https://www.journalofdemocracy.org/articles/when-should-the-majority-rule/",
+          "idioma": "en",
+          "tipo": "analisis",
+          "observaciones": "Marco conceptual sobre derechos y límites a mayorías. Revisión de resumen e introducción pública; no evaluación completa de casos nacionales.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
         }
       ],
       "actualizaciones": [],
@@ -28077,7 +28305,7 @@
       "publicacion": {
         "estado": "publicado",
         "publicado_el": "2026-09-15",
-        "actualizado_el": "2026-09-15"
+        "actualizado_el": "2026-09-18"
       }
     },
     {
@@ -28162,7 +28390,8 @@
       ],
       "incertidumbres": [
         "La firma no acredita aplicación íntegra ni una tasa arancelaria vigente.",
-        "No existe evidencia suficiente de representación personal de Trump ni causalidad exclusiva de foros."
+        "No existe evidencia suficiente de representación personal de Trump ni causalidad exclusiva de foros.",
+        "Ampliación bibliográfica del 18/09/2026: entrevistas y perspectivas contrastadas. El corte de las señales previas no se modifica. Revisión audiovisual completa pendiente."
       ],
       "evaluacion": {
         "impacto": 4,
@@ -28194,6 +28423,48 @@
           "tipo": "fuente_primaria",
           "estado_verificacion": "verificada",
           "revisada_el": "2026-09-15"
+        },
+        {
+          "media_id": "periodismo-puro",
+          "medio_catalogado": true,
+          "id": "src-pp-milanovic",
+          "medio": "Periodismo Puro / Canal Net",
+          "titulo": "Branko Milanovic: nota sobre entrevista de Jorge Fontevecchia",
+          "fecha": "2026-09-13",
+          "url": "https://www.canalnet.tv/programas/periodismo-puro/branko-milanovic-comparo-a-milei-con-trump-y-lanzo-una-definicion-inesperada-sobre-el-presidente-argentino_20260913/",
+          "idioma": "es",
+          "tipo": "analisis",
+          "observaciones": "Nota escrita revisada. La entrevista audiovisual completa no se ha revisado. Se acredita una interpretación atribuida, no la veracidad independiente de todas sus afirmaciones.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "",
+          "medio_catalogado": false,
+          "id": "src-pp-trump-investidura-2025",
+          "medio": "The White House",
+          "titulo": "The Inaugural Address",
+          "fecha": "2025-01-20",
+          "url": "https://www.whitehouse.gov/remarks/2025/01/the-inaugural-address/",
+          "idioma": "en",
+          "tipo": "fuente_primaria",
+          "observaciones": "Discurso oficial: documenta prioridades declaradas, no su ejecución ni sus efectos.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
+        },
+        {
+          "media_id": "",
+          "medio_catalogado": false,
+          "id": "src-pp-milei-davos-2025",
+          "medio": "Casa Rosada",
+          "titulo": "Discurso de Javier Milei en Davos",
+          "fecha": "2025-01-23",
+          "url": "https://www.casarosada.gob.ar/informacion/discursos/50848-discurso-del-presidente-de-la-nacion-javier-milei-desde-el-foro-de-davos-suiza",
+          "idioma": "es",
+          "tipo": "fuente_primaria",
+          "observaciones": "Discurso oficial: posición del dirigente. Sus afirmaciones empíricas no se dan por verificadas.",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-09-18"
         }
       ],
       "actualizaciones": [],
@@ -28239,7 +28510,7 @@
       "publicacion": {
         "estado": "publicado",
         "publicado_el": "2026-09-15",
-        "actualizado_el": "2026-09-15"
+        "actualizado_el": "2026-09-18"
       }
     }
   ],
@@ -28249,7 +28520,7 @@
       "estado": "publicado",
       "tipo_documento": "dossier",
       "titulo_trabajo": "Indo-Pacífico en red: Taiwán, disuasión y fragmentación estratégica",
-      "pregunta_editorial": "¿En qué medida la competencia alrededor de Taiwán está reorganizando la seguridad, la tecnología y las cadenas económicas del Indo-Pacífico, y bajo qué condiciones podría producir confrontación directa, contención o coerción sin guerra abierta?",
+      "pregunta_editorial": "Taiwán concentra un riesgo elevado de choque entre China y Estados Unidos; nueve procesos distinguen capacidades, ejecución, autonomía regional y mecanismos de contención.",
       "tesis_central": "Taiwán es el nodo de mayor riesgo y el catalizador más intenso, pero la transformación regional surge de la interacción entre modernización china, negación taiwanesa, alianzas estadounidenses, agencia regional, tecnología y logística. La arquitectura es común y persistente en capacidades seleccionadas, aunque sigue superpuesta, desigual y contenida por autonomía e interdependencia.",
       "macroevento_ids": [
         "indo-pacifico-taiwan-reconfiguracion-seguridad",
@@ -28407,7 +28678,7 @@
       "estado": "publicado",
       "tipo_documento": "dossier",
       "titulo_trabajo": "Derechas en red: circulación transnacional y límites de un bloque latinoamericano",
-      "pregunta_editorial": "¿En qué medida las derechas latinoamericanas están formando redes transnacionales capaces de transformar de manera duradera la orientación política, institucional y geopolítica de la región, y qué papel cumplen Trump, Milei y otros actores como referentes, articuladores, aliados o beneficiarios?",
+      "pregunta_editorial": "Foros, canales digitales, organizaciones religiosas y acuerdos conectan actores; las instituciones nacionales y la interdependencia limitan la formación de un bloque único.",
       "tesis_central": "Foros, intermediarios digitales, organizaciones religiosas y vínculos gubernamentales sostienen circulación transnacional y coordinación selectiva. El encuentro de Chile, la cooperación de seguridad y los compromisos comerciales muestran mecanismos diferentes, no un mando único. Los controles nacionales, las divergencias económicas y la diversificación regional limitan la tesis de bloque. La evidencia apoya circulación y algunos compromisos materiales; todavía no demuestra efectos electorales regionales atribuibles ni delegación personal.",
       "macroevento_ids": [
         "derechas-transnacionales-reconfiguracion-america-latina",
@@ -28467,7 +28738,15 @@
         "src-red-lara-red",
         "src-red-salvador-argentina",
         "src-red-cidh-informe2025",
-        "src-red-arti-argentina"
+        "src-red-arti-argentina",
+        "src-pp-milanovic",
+        "src-pp-mounk",
+        "src-pp-hawley",
+        "src-pp-benhabib",
+        "src-pp-trump-investidura-2025",
+        "src-pp-milei-davos-2025",
+        "src-pp-vdem-2026",
+        "src-pp-levitsky-ziblatt-mayorias-2025"
       ],
       "geografias_publicas": [
         "america-latina",
@@ -28521,14 +28800,14 @@
       ],
       "extension_objetivo": 6200,
       "creado": "2026-08-30",
-      "actualizado": "2026-09-15"
+      "actualizado": "2026-09-18"
     },
     {
       "id": "exp-africa-central-minerales-criticos-20260830",
       "estado": "publicado",
       "tipo_documento": "dossier",
       "titulo_trabajo": "África central entre extracción y poder tecnológico",
-      "pregunta_editorial": "¿En qué medida la competencia por los minerales críticos de África central está reorganizando las cadenas tecnológicas, industriales y de seguridad internacionales, y cómo interactúan potencias externas, Estados africanos, empresas, corredores y conflictos regionales?",
+      "pregunta_editorial": "La concentración extractiva da a la RDC y Zambia capacidad de negociación, pero el control decisivo sigue repartido entre propiedad, energía, financiación, refinado, logística y manufactura fuera de la región.",
       "tesis_central": "La región funciona como nodo rector porque concentra insumos y decisiones capaces de propagarse hacia precios, corredores, refinado y seguridad tecnológica; sin embargo, la capacidad de convertir esa centralidad geológica en poder industrial africano sigue limitada por energía, financiación, propiedad y control aguas abajo.",
       "macroevento_ids": [
         "africa-central-minerales-criticos-cadenas-tecnologicas",
@@ -28616,7 +28895,7 @@
       "estado": "publicado",
       "tipo_documento": "dossier",
       "titulo_trabajo": "De la reposición a la movilización: industria militar y cadenas estratégicas",
-      "pregunta_editorial": "¿En qué medida el aumento del gasto, la producción militar y la securitización de cadenas industriales transforman respuestas coyunturales en una remilitarización estructural organizada alrededor de alianzas o bloques flexibles?",
+      "pregunta_editorial": "El rearme se vuelve estructural cuando gasto, contratos, plantas, tecnología y seguridad de suministro se refuerzan; la evidencia muestra redes aliadas más densas, no bloques cerrados.",
       "tesis_central": "Existe una remilitarización industrial estructural pero desigual: antecede a 2022, fue acelerada por Ucrania y la rivalidad con China y se manifiesta donde demanda plurianual, inversión productiva, integración aliada y seguridad de suministro se refuerzan. La evidencia no sostiene todavía bloques cerrados ni una movilización global uniforme.",
       "macroevento_ids": [
         "remilitarizacion-industrial-cadenas-estrategicas-bloques",
@@ -28739,7 +29018,7 @@
       "estado": "publicado",
       "tipo_documento": "dossier",
       "titulo_trabajo": "Hemisferio condicionado: seguridad, cadenas y predominio estadounidense",
-      "pregunta_editorial": "¿En qué medida el nacionalismo estratégico estadounidense está reorganizando el hemisferio occidental como espacio de seguridad, recursos, infraestructura y competencia entre potencias, y qué papel cumple Donald Trump como causa, acelerador, articulador o expresión de ese proceso?",
+      "pregunta_editorial": "Trump articula y acelera una securitización regional apoyada en estructuras anteriores; la coerción crece más rápido que la integración y aún no existe un bloque hemisférico rígido.",
       "tesis_central": "La seguridad, el acceso comercial y la infraestructura conectan políticas hemisféricas, pero tribunales, soberanía y diversificación limitan su integración. La evidencia incluye coerción militar en Venezuela, cooperación fronteriza, planes árticos y negociación comercial; no demuestra un bloque cerrado ni control uniforme. El rector distingue ejecución, anuncios y efectos aún no comprobados.",
       "macroevento_ids": [
         "estados-unidos-reordenamiento-hemisferio-occidental",
@@ -28860,7 +29139,7 @@
       "estado": "publicado",
       "tipo_documento": "dossier",
       "titulo_trabajo": "Después de la bilateralidad: gobernanza y disuasión nuclear multipolar",
-      "pregunta_editorial": "¿En qué medida la erosión del control de armamentos y la transición hacia una disuasión nuclear multipolar reducen la previsibilidad, modifican umbrales y permiten que una crisis regional se convierta en confrontación sistémica?",
+      "pregunta_editorial": "El fin de límites centrales, la modernización simultánea y la interacción entre teatros reducen previsibilidad, pero no han eliminado la contención ni vuelven inevitable el empleo nuclear.",
       "tesis_central": "La erosión es estructural pero incompleta: desaparecen límites centrales y aumenta la ambigüedad entre dominios y teatros, mientras el TNP, las salvaguardias, la norma de no ensayo, las garantías y la prudencia conservan capacidad de contención. El riesgo crece principalmente por interacción y error de cálculo, no porque el uso sea inevitable.",
       "macroevento_ids": [
         "erosion-control-armamentos-disuasion-nuclear-multipolar",
@@ -28997,7 +29276,7 @@
       "estado": "publicado",
       "tipo_documento": "dossier",
       "titulo_trabajo": "Acoplamiento de conflictos regionales y riesgo de confrontación sistémica mundial",
-      "pregunta_editorial": "¿En qué condiciones conflictos regionales, alianzas, cadenas industriales, tecnologías, recursos estratégicos y decisiones políticas dejan de evolucionar de manera predominantemente autónoma y comienzan a transmitir escalada entre teatros hasta producir una confrontación sistémica mundial?",
+      "pregunta_editorial": "La coincidencia de crisis no compone por sí sola una guerra mundial: el riesgo cambia cuando decisiones, capacidades y represalias comienzan a transmitirse entre teatros.",
       "tesis_central": "La competencia ya comparte infraestructura, recursos y repertorios, pero la mayor parte de las crisis conserva autonomía. El salto sistémico requiere transmisión causal observable entre teatros; la autonomía regional, la interdependencia, los límites industriales, la mediación y los canales de crisis siguen siendo frenos materiales.",
       "macroevento_ids": [
         "acoplamiento-conflictos-regionales-confrontacion-sistemica-mundial",
@@ -30959,7 +31238,7 @@
       "estado": "publicado",
       "tipo_documento": "analisis",
       "titulo_trabajo": "Contrapesos institucionales, continuidad y sucesión de las derechas",
-      "pregunta_editorial": "¿La red persiste cuando cambian liderazgos y cómo interactúa con límites constitucionales?",
+      "pregunta_editorial": "¿Las alianzas internacionales entre las derechas sobreviven a los cambios de liderazgo? ¿Cómo las condicionan las constituciones, los tribunales y los congresos?",
       "tesis_central": "Instituciones, coaliciones y reglas de sucesión filtran la influencia de las redes: pueden limitar a líderes o facilitar concentración, sin que la orientación ideológica explique por sí sola cada resultado.",
       "macroevento_ids": [
         "derechas-contrapesos-institucionales-sucesion",
@@ -30976,7 +31255,13 @@
         "src-derechas-stf-bolsonaro-2025",
         "src-derechas-cebri-brasil-2024",
         "src-derechas-latinobarometro-2024",
-        "src-derechas-vdem-2025"
+        "src-derechas-vdem-2025",
+        "src-pp-mounk",
+        "src-pp-hawley",
+        "src-pp-benhabib",
+        "src-pp-vdem-2026",
+        "src-pp-levitsky-ziblatt-mayorias-2025",
+        "src-pp-trump-investidura-2025"
       ],
       "geografias_publicas": [
         "america-latina"
@@ -30997,7 +31282,7 @@
       ],
       "extension_objetivo": 800,
       "creado": "2026-09-15",
-      "actualizado": "2026-09-15"
+      "actualizado": "2026-09-18"
     },
     {
       "id": "exp-milei-alineamiento-exterior-autonomia-interdependencia-20260915",
@@ -31020,7 +31305,10 @@
         "src-derechas-argentina-brics-2024",
         "src-derechas-us-argentina-trade-2025",
         "src-derechas-mercosur-cumbre-2025",
-        "src-derechas-brasil-comercio-mercosur-2025"
+        "src-derechas-brasil-comercio-mercosur-2025",
+        "src-pp-milanovic",
+        "src-pp-trump-investidura-2025",
+        "src-pp-milei-davos-2025"
       ],
       "geografias_publicas": [
         "america-latina"
@@ -31041,7 +31329,7 @@
       ],
       "extension_objetivo": 800,
       "creado": "2026-09-15",
-      "actualizado": "2026-09-15"
+      "actualizado": "2026-09-18"
     }
   ],
   "importaciones_candidatos": [

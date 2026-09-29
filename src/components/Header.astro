@@ -1,25 +1,11 @@
 ---
-import { opinionEnabled } from '../lib/opinion';
+import { primaryNavigation, explorationNavigation, followUpNavigation, siteSearch } from '../lib/navigation';
 
 const { pathname } = Astro.url;
 
-const navigation = [
-  { href: '/', label: 'Inicio' },
-  { href: '/observatorio/', label: 'Observatorio' },
-  { href: '/publicaciones/', label: 'Publicaciones' },
-  ...(opinionEnabled ? [{ href: '/opinion/', label: 'Opinión' }] : []),
-  { href: '/recursos-visuales/', label: 'Recursos visuales' },
-  { href: '/acerca-de/', label: 'Acerca de' },
-];
-
-const exploration = [
-  ...(opinionEnabled ? [{ href: '/opinion/', label: 'Opinión' }] : []),
-  { href: '/regiones/', label: 'Regiones' },
-  { href: '/espacios-geopoliticos/', label: 'Espacios geopolíticos' },
-  { href: '/temas/', label: 'Temas' },
-  { href: '/actores/', label: 'Actores' },
-  { href: '/etiquetas/', label: 'Etiquetas' },
-  { href: '/medios/', label: 'Medios' },
+const secondaryGroups = [
+  { id: 'menu-explore-title', label: 'Explorar por tema y lugar', links: explorationNavigation },
+  { id: 'menu-follow-up-title', label: 'Seguimiento', links: followUpNavigation },
 ];
 
 const active = (href: string) =>
@@ -31,7 +17,7 @@ const active = (href: string) =>
     <button
       class="menu-trigger"
       type="button"
-      aria-label="Abrir menú de exploración"
+      aria-label="Abrir menú del sitio"
       aria-controls="site-menu"
       aria-expanded="false"
       data-menu-open
@@ -51,7 +37,7 @@ const active = (href: string) =>
 
     <nav class="desktop-nav" aria-label="Navegación principal">
       {
-        navigation.map((item) => (
+        primaryNavigation.map((item) => (
           <a
             href={item.href}
             aria-current={active(item.href) ? 'page' : undefined}
@@ -62,7 +48,7 @@ const active = (href: string) =>
       }
     </nav>
 
-    <a class="search-shortcut" href="/observatorio/#explorar" aria-label="Buscar en el Observatorio">
+    <a class="search-shortcut" href={siteSearch.href} aria-label={siteSearch.label}>
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="11" cy="11" r="6.5"></circle>
         <path d="m16 16 4 4"></path>
@@ -75,8 +61,8 @@ const active = (href: string) =>
   <div class="menu-shell">
     <div class="menu-heading">
       <div>
-        <p class="eyebrow">Exploración</p>
-        <h2 id="menu-title">Explorar Memo Geopolítico</h2>
+        <p class="eyebrow">Memo Geopolítico</p>
+        <h2 id="menu-title">Menú del sitio</h2>
       </div>
       <button type="button" class="menu-close" aria-label="Cerrar menú" data-menu-close>
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -85,9 +71,9 @@ const active = (href: string) =>
       </button>
     </div>
 
-    <nav class="menu-primary" aria-label="Exploración transversal">
+    <nav class="menu-primary" aria-label="Secciones principales">
       {
-        exploration.map((item) => (
+        primaryNavigation.map((item) => (
           <a href={item.href} aria-current={active(item.href) ? 'page' : undefined}>
             <span>{item.label}</span>
             <span aria-hidden="true">→</span>
@@ -96,15 +82,14 @@ const active = (href: string) =>
       }
     </nav>
 
-    <div class="menu-explore">
-      <p class="eyebrow">Seguimiento</p>
-      <div>
-        <a href="/observatorio/?editorial=en_curso#explorar">Trabajo en curso</a>
-        <a href="/observatorio/dashboard/">Dashboard público</a>
-        <a href="/observatorio/senales/">Señales</a>
-        <a href="/metodologia/relevancia-atencion-mediatica/">Metodología</a>
-      </div>
-    </div>
+    {secondaryGroups.map(group => (
+      <nav class="menu-explore" aria-labelledby={group.id}>
+        <h3 id={group.id} class="eyebrow">{group.label}</h3>
+        <div>
+          {group.links.map(item => <a href={item.href}>{item.label}</a>)}
+        </div>
+      </nav>
+    ))}
   </div>
 </dialog>
 
@@ -121,7 +106,8 @@ const active = (href: string) =>
   };
 
   openButton?.addEventListener('click', () => {
-    dialog?.showModal();
+    if (!dialog || dialog.open) return;
+    dialog.showModal();
     document.documentElement.classList.add('menu-open');
     openButton.setAttribute('aria-expanded', 'true');
     closeButton?.focus();
@@ -136,5 +122,6 @@ const active = (href: string) =>
   dialog?.addEventListener('close', () => {
     document.documentElement.classList.remove('menu-open');
     openButton?.setAttribute('aria-expanded', 'false');
+    openButton?.focus();
   });
 </script>

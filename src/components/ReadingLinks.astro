@@ -1,0 +1,20 @@
+---
+import { uniqueDestinations } from '../../tools/lib/navigation-policy.mjs';
+interface Props {
+  title: string;
+  items: { href: string; label: string }[];
+  currentHref?: string;
+}
+const { title, items, currentHref = Astro.url.pathname } = Astro.props;
+const links = uniqueDestinations(items, currentHref);
+---
+{links.length > 0 && <nav class="reading-links" aria-label={title}>
+  <h2>{title}</h2>
+  <ul>{links.map(item => <li><a href={item.href}>{item.label}</a></li>)}</ul>
+</nav>}
+<style>
+  .reading-links { margin-block: 2rem; padding-block: 1.25rem; border-block: 1px solid var(--line-strong); }
+  h2 { margin: 0 0 .8rem; font: 500 var(--type-subheading-size)/1.2 var(--serif); }
+  ul { display: grid; gap: .75rem; margin: 0; padding-left: 1.2rem; }
+  a { text-decoration: underline; text-underline-offset: .2em; }
+</style>

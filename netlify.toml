@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run qa:production"
   publish = "dist"
 
 [build.environment]
@@ -24,6 +24,6 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 [[headers]]
-  for = "/assets/*"
+  for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"

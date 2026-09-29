@@ -1,0 +1,9 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'h1'>;
+const { class: className, ...attributes } = Astro.props;
+---
+
+<!-- Page headings share one typographic role across every route. -->
+<h1 {...attributes} class:list={['page-title', className]}><slot /></h1>
