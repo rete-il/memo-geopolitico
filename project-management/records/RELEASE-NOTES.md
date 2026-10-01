@@ -46,3 +46,12 @@
 - Tres vínculos transversales conservados; sin incorporar Sahel ni alterar main o producción. La entrega beta y el futuro pase a main se registran como pasos separados.
 - Detalles y comprobaciones: [COMPLECION-EEUU-CHINA-2026-10-01.md](COMPLECION-EEUU-CHINA-2026-10-01.md).
 - Entrega de producto verificada: ac16472c1e1f2c57e4bbbcffdc5a3e4f5ecaf72f en origin/beta. QA: 326 pruebas, check/build público y editorial, datos, enlaces y revisión responsive aprobados. Main permanece en 5790d4a4c338e21d01820b64069b4249f76dc4a0.
+
+## Producción — EE. UU.–China — 2026-10-01
+
+**Estado actual:** promoción autorizada a main ejecutada; tarea done, avance 100 %.
+
+- El pedido «actualizar main» habilitó el avance desde 5790d4a4c338e21d01820b64069b4249f76dc4a0 a 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113, conservando el producto previamente validado en beta. Origin/main y origin/beta quedaron iguales.
+- Incluye el análisis rector, cuatro análisis y expedientes propios, relaciones transversales diferenciadas y anclas conservadas, con límites de fuentes y evaluación editorial sin asignar.
+- La comprobación HTTP inicial confirma el nuevo contenido en el índice de rectores. Las once rutas respondieron HTTP 200, con canónicas correctas y sin noindex; la tarjeta pública muestra cuatro complementarios y tres relacionados. Detalle en [COMPLECION-EEUU-CHINA-2026-10-01.md](COMPLECION-EEUU-CHINA-2026-10-01.md).
+- El estado anterior de beta en review y de main pendiente queda superado por esta entrega; se conserva como antecedente histórico.

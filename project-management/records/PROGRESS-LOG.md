@@ -370,3 +370,10 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 - QA de integración aprobado y producto entregado a beta. Pendiente: revisión humana y un futuro pase a main expresamente autorizado.
 - Entrega de producto verificada: ac16472c1e1f2c57e4bbbcffdc5a3e4f5ecaf72f en origin/beta. QA: 326 pruebas, check/build público y editorial, datos, enlaces y revisión responsive aprobados. Main permanece en 5790d4a4c338e21d01820b64069b4249f76dc4a0.
 - Alcance, fuentes y límites: [Compleción EE. UU.–China](COMPLECION-EEUU-CHINA-2026-10-01.md).
+
+## 2026-10-01 — ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 — Cierre tras promoción autorizada a main
+
+- Estado actual: done; avance: 100 %. El usuario aceptó la entrega y autorizó «actualizar main».
+- Se promovió 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113 desde beta a main, avanzando desde 5790d4a4c338e21d01820b64069b4249f76dc4a0. Origin/main y origin/beta quedaron iguales tras la promoción.
+- El producto ya había superado 326 pruebas y QA integral. Producción respondió HTTP 200 con el nuevo rector y complemento de IA presentes; el detalle de comprobación ampliada se incorpora en [el registro de compleción](COMPLECION-EEUU-CHINA-2026-10-01.md).
+- Este hito supera el estado review y la espera de autorización para main registrados en la etapa beta; se conserva ese historial.

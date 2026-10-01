@@ -1,5 +1,12 @@
 # Changelog de gestión del proyecto
 
+## 2026-10-01 — Promoción autorizada de EE. UU.–China a main
+
+- El usuario indicó «actualizar main» y aceptó la entrega validada. La tarea ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 pasa de review a done, avance 100 %.
+- Main avanzó de 5790d4a4c338e21d01820b64069b4249f76dc4a0 a 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113; origin/main y origin/beta quedaron iguales. Se promovió el mismo producto con QA aprobado: 326 pruebas y comprobaciones públicas/editoriales.
+- Producción respondió HTTP 200 en /observatorio/rectores/ con el nuevo rector y su complemento de IA. Resultados ampliados de rutas y presentación: ver records/COMPLECION-EEUU-CHINA-2026-10-01.md.
+- Esta entrada sustituye el estado anterior de revisión y main pendiente; las entradas de entrega beta se conservan como historial.
+
 ## 2026-10-01 — Compleción EE. UU.–China en beta, previa a main
 
 - Se prepara la tarea ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 en review para beta-4-editorial: cuatro complementarios propios y cuatro análisis, conservando tres relaciones transversales.

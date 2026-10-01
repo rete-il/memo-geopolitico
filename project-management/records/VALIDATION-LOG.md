@@ -40,3 +40,14 @@ Cada tarea `review` o `done` que cambie código debe registrar aquí la validaci
 <!-- FIN-QA-EEUU-CHINA-COMPLEMENTARIOS-20261001 -->
 
 Registro: [Compleción EE. UU.–China](COMPLECION-EEUU-CHINA-2026-10-01.md).
+
+## 2026-10-01 — ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 — Promoción a main y comprobación pública
+
+<!-- QA-PRODUCCION-EEUU-CHINA-20261001 -->
+- Usuario: autorización expresa «actualizar main»; aceptación de la entrega y cierre de la tarea en done, avance 100 %.
+- Promoción de 5790d4a4c338e21d01820b64069b4249f76dc4a0 a 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113; origin/main y origin/beta iguales después del push. QA previo aprobado sobre el mismo producto: 326 pruebas y comprobaciones integrales ya documentadas.
+- HTTP inicial: https://memogeopolitico.com/observatorio/rectores/?verificacion=9b9f927 respondió 200 con el nuevo rector y el complemento de IA.
+- Verificación en producción el 1 de octubre de 2026: once rutas respondieron HTTP 200 (índice de rectores, cinco artículos y cinco expedientes), todas con título correcto, URL canónica propia y sin noindex. El navegador público mostró 13 rectores; la tarjeta EE. UU.–China mostró cuatro complementarios y tres relacionados, y al desplegar los complementarios se mostraron los cuatro con enlaces a análisis y expedientes. Captura a 1280 × 720 sin desbordamiento horizontal. El producto coincide con la versión que aprobó las 326 pruebas y el QA responsive previo.
+<!-- FIN-QA-PRODUCCION-EEUU-CHINA-20261001 -->
+
+Esta entrada supera la espera de revisión y promoción a main de la etapa beta. Detalle: [Compleción EE. UU.–China](COMPLECION-EEUU-CHINA-2026-10-01.md).

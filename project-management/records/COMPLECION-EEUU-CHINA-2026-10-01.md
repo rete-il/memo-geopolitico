@@ -1,15 +1,17 @@
 # Compleción del rector EE. UU.–China
 
-Fecha de corte y preparación: 1 de octubre de 2026. Tarea: ED-EEUU-CHINA-COMPLEMENTARIOS-20261001. Release: beta-4-editorial. Estado: review.
+Fecha de corte y preparación: 1 de octubre de 2026. Tarea: ED-EEUU-CHINA-COMPLEMENTARIOS-20261001. Release: beta-4-editorial. Estado: done; avance: 100 %.
 
 ## Alcance y estado de entrega
 
-Se incorporó la compleción del rector existente mediante cuatro expedientes propios y cuatro análisis autónomos, junto con una tarjeta que diferencia procesos complementarios y relaciones transversales. La fuente de verdad es la copia local del usuario; el trabajo conserva las fuentes, identidades y jerarquías existentes fuera de los cambios delimitados. Este registro documenta el QA y la entrega del producto a beta; la revisión humana previa a main sigue pendiente.
+Se incorporó la compleción del rector existente mediante cuatro expedientes propios y cuatro análisis autónomos, junto con una tarjeta que diferencia procesos complementarios y relaciones transversales. La fuente de verdad es la copia local del usuario; el trabajo conserva las fuentes, identidades y jerarquías existentes fuera de los cambios delimitados. Este registro documenta el QA, la entrega previa a beta y la promoción posterior a main autorizada por el usuario. La revisión y aceptación de la entrega quedan cumplidas mediante el pedido explícito «actualizar main».
 
-El pedido original habilita la incorporación al sitio y la entrega a beta. La preparación para un futuro pase a main no constituye autorización para modificar main ahora. La línea de base de main documentada para esta entrega es 5790d4a4c338e21d01820b64069b4249f76dc4a0. Debe conservarse y comprobarse al cierre. Beta no dispone de un sitio público independiente; la producción en memogeopolitico.com depende de main.
+El pedido original habilitó la incorporación al sitio y la entrega a beta. Posteriormente, el usuario autorizó «actualizar main». La promoción avanzó main desde 5790d4a4c338e21d01820b64069b4249f76dc4a0 hasta 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113, el mismo commit validado y entregado en beta. Origin/main y origin/beta quedaron iguales al terminar ese paso. Beta no dispone de un sitio público independiente; la producción en memogeopolitico.com depende de main.
 
 <!-- ESTADO-ENTREGA-COMPLECION -->
-Producto aplicado, validado y entregado a origin/beta en ac16472c1e1f2c57e4bbbcffdc5a3e4f5ecaf72f. Main local y remota permanecen en 5790d4a4c338e21d01820b64069b4249f76dc4a0. La revisión del usuario y un futuro pase a main siguen pendientes; la tarea conserva review. La gestión se registra por separado del producto.
+Estado actual: promoción a origin/main ejecutada y verificada en 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113, por autorización expresa del usuario; tarea done, avance 100 %. Producción respondió HTTP 200 en /observatorio/rectores/ con el nuevo rector y el complemento de IA presentes. La comprobación ampliada de rutas y presentación quedó aprobada y se documenta abajo.
+
+Entrega anterior: el producto se incorporó a origin/beta en ac16472c1e1f2c57e4bbbcffdc5a3e4f5ecaf72f y su gestión quedó registrada en 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113. En aquella etapa main permanecía en 5790d4a4c338e21d01820b64069b4249f76dc4a0; ese estado histórico queda superado por la promoción autorizada. La gestión de cierre se registra por separado del producto.
 <!-- FIN-ESTADO-ENTREGA-COMPLECION -->
 
 ## Procesos propios y límites
@@ -66,7 +68,7 @@ MOFCOM comunica el 28/09 una prórroga del arreglo general hasta el 10/01/2027. 
 
 ## IA y pronósticos
 
-El estado se expresa como «primer diálogo celebrado según MOFCOM; canal de incidentes anunciado y operatividad pendiente de verificación». La escala cualitativa mantiene su estado anunciado mientras no se acrediten los componentes operativos exigidos por sus reglas; no significa que todas las reuniones permanezcan pendientes. La falta de información pública no prueba interrupción.
+El estado se expresa como «primer diálogo celebrado según MOFCOM; canal de incidentes anunciado y operatividad pendiente de verificación». El parámetro canónico conserva el estado dialogo_inicial_reportado: se distingue la reunión informada de la operatividad del canal, que no está verificada. La falta de información pública no prueba interrupción.
 
 El parámetro canónico de IA permanece únicamente en el rector. El artículo complementario enlaza esa definición y aporta seguimiento del mecanismo; no crea una segunda copia editable ni suma probabilidades. Las propuestas de Graylin y las reservas de Christensen se atribuyen a sus autores; no constituyen consenso ni evidencia de ejecución. Los análisis de CSIS y Rhodium fechados en abril de 2026 conservan ese corte, sin convertirse en mediciones de octubre.
 
@@ -92,7 +94,7 @@ El inventario siguiente conserva las nueve identidades de fuente preparadas por 
 - [Fact Sheet: President Donald J. Trump Secures Historic Deals with China, Delivering for American Workers, Farmers, and Industry](https://www.whitehouse.gov/fact-sheets/2026/05/fact-sheet-president-donald-j-trump-secures-historic-deals-with-china-delivering-for-american-workers-farmers-and-industry/). ID: `src-eeuu-china-whitehouse-boards-20260517`. Fecha editorial: 2026-05-17.
 - [U.S.–China Board of Trade Working Procedures](https://www.whitehouse.gov/wp-content/uploads/2026/09/US-China-Board-of-Trade-Working-Procedures.pdf). ID: `src-eeuu-china-board-procedures-20260927`. Fecha editorial: 2026-09-27.
 
-## Validación realizada y revisión humana pendiente
+## Validación realizada y aceptación de la entrega
 
 <!-- RESULTADOS-QA-COMPLECION -->
 Node 22.12.0: npm run qa aprobado, 326 pruebas y cero fallos; Astro Check con 0 errores, 0 warnings y 60 hints. Compilaciones pública/editorial aprobadas: 836/853 documentos HTML, 105 expedientes y 80 artículos públicos. Datos, SEO, navegación y tipografía aprobados; cero enlaces internos o anclas rotos en ambos builds. git diff --check aprobado. QA visual a 1440, 768 y 390 píxeles sin desbordamiento horizontal; cuatro hijos y tres transversales visibles, artículos/fichas legibles, teclado, Escape, clic exterior y retorno del foco comprobados. Se verificó el enlace anterior de la señal IA y su navegación al nuevo propietario.
@@ -100,10 +102,18 @@ Node 22.12.0: npm run qa aprobado, 326 pruebas y cero fallos; Astro Check con 0 
 Preservación comprobada contra la copia previa: los otros 100 macroeventos canónicos y procesos públicos permanecen iguales. Se conserva una sola definición del parámetro IA; la fuente MOFCOM informa el primer diálogo y el canal permanece sin verificación operativa. Los cuatro traslados conservan sus IDs y se añaden cinco hechos diferentes. Los avisos de datos conservados no invalidan el esquema; las puntuaciones nuevas continúan sin asignar.
 <!-- FIN-RESULTADOS-QA-COMPLECION -->
 
-Comprobar especialmente los cuatro complementarios y tres transversales en /observatorio/rectores/, los cuatro artículos autónomos y sus expedientes, las cuatro anclas anteriores del rector, los enlaces hacia los nuevos propietarios y la ausencia de duplicación del parámetro de IA. Verificar conservación de los otros 100 macroeventos y sus señales, exceptuando solo los cambios expresamente delimitados para esta entrega.
+El pedido «actualizar main» acepta la entrega previamente validada y autoriza su promoción. Los controles anteriores corresponden al mismo producto promovido; no se presenta la comprobación HTTP inicial como sustituto de la revisión ampliada en producción.
+
+### Verificación de producción
+
+<!-- VERIFICACION-PRODUCCION-COMPLECION -->
+- Promoción ejecutada de 5790d4a4c338e21d01820b64069b4249f76dc4a0 a 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113; origin/main y origin/beta iguales tras el push.
+- Comprobación inicial: https://memogeopolitico.com/observatorio/rectores/?verificacion=9b9f927 responde HTTP 200 y contiene el rector EE. UU.–China y el complemento de IA.
+- Verificación en producción el 1 de octubre de 2026: once rutas respondieron HTTP 200 (índice de rectores, cinco artículos y cinco expedientes), todas con título correcto, URL canónica propia y sin noindex. El navegador público mostró 13 rectores; la tarjeta EE. UU.–China mostró cuatro complementarios y tres relacionados, y al desplegar los complementarios se mostraron los cuatro con enlaces a análisis y expedientes. Captura a 1280 × 720 sin desbordamiento horizontal. El producto coincide con la versión que aprobó las 326 pruebas y el QA responsive previo.
+<!-- FIN-VERIFICACION-PRODUCCION-COMPLECION -->
 
 ## Entrega y reversión
 
-Tras aplicar los JSON de gestión, regenerar el dashboard con la herramienta habitual; no editar manualmente STATUS, ROADMAP ni BACKLOG. Registrar QA y revisión humana, revisar archivos concretos y conservar la separación de gestión y producto cuando corresponda. Anotar commit y verificación remota únicamente después de ejecutarlos. El pase a main requiere otro paso autorizado.
+El pase autorizado a main se ejecutó sobre 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113. Este cierre de gestión conserva las evidencias previas y registra la aceptación del usuario y la disponibilidad inicial en producción. Tras aplicar el JSON de gestión, regenerar el dashboard con la herramienta habitual; no editar manualmente STATUS, ROADMAP ni BACKLOG. Cualquier commit documental posterior debe identificarse por separado de la promoción del producto.
 
 Una eventual reversión deberá retirar exclusivamente los cambios de esta compleción, devolver los propietarios de las cuatro señales conservando sus IDs y comprobar las referencias y anclas. Debe preservar la incorporación anterior, el historial y cualquier trabajo posterior; no usar reset --hard ni force push.
