@@ -1,5 +1,11 @@
 # Changelog de gestión del proyecto
 
+## 2026-10-01 — Incorporación EE. UU.–China para beta
+
+- Se registra el alcance autorizado del artículo y su macroevento, incluido el parámetro cualitativo de cooperación en IA; Sahel queda fuera.
+- La integración necesita conservar la evaluación no asignada y los campos analíticos en persistencia y proyección, sin inventar puntuaciones.
+- Producto integrado, validado y entregado en origin/beta: bb5b49eeabcddf28fb2847d91b951edfe6930647. La instrucción del usuario autorizó la incorporación y su entrega a beta. Main conserva 5790d4a4c338e21d01820b64069b4249f76dc4a0; producción permanece sin cambios. Este registro documenta la verificación remota del commit de producto. Main y producción quedan fuera del alcance. Detalles en `records/INCORPORACION-EEUU-CHINA-2026-10-01.md`.
+
 ## 2026-09-29 — Release autorizado a beta y main
 
 - Se reúne el trabajo editorial, institucional y de experiencia de lectura desarrollado desde el 18 de septiembre.

@@ -346,3 +346,17 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 - El dashboard permanece en `D:\Memo dashboards`, fuera del repositorio y de Netlify.
 - El encargo de redacción probado no es contenido publicable.
 - La integración con el sitio se decidirá después de completar y analizar el corpus piloto.
+
+## 2026-10-01 — ED-EEUU-CHINA-20261001 — Preparación de incorporación EE. UU.–China
+
+- Estado: `in_progress`; avance inicial: 25 %.
+- Autorización: «Incorporarlo al sitio y pasarlo a beta».
+- En curso: integración del artículo y macroevento EE. UU.–China, preservación de evaluación no asignada y parámetro de cooperación en IA. Sahel permanece fuera de esta entrega.
+- Validaciones, revisión del diff, commit y entrega beta pendientes; no se afirma publicación en producción.
+- Registro de alcance y evidencia: [Incorporación EE. UU.–China](INCORPORACION-EEUU-CHINA-2026-10-01.md).
+
+### Resultado de ED-EEUU-CHINA-20261001
+
+- Estado: `done`; avance: 100 %.
+- Producto integrado, validado y entregado en origin/beta: bb5b49eeabcddf28fb2847d91b951edfe6930647. La instrucción del usuario autorizó la incorporación y su entrega a beta. Main conserva 5790d4a4c338e21d01820b64069b4249f76dc4a0; producción permanece sin cambios. Este registro documenta la verificación remota del commit de producto.
+- Validaciones: ver el registro de incorporación y VALIDATION-LOG.md.

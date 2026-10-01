@@ -2,7 +2,7 @@
 
 > Archivo generado. Editar `data/*.json` y ejecutar `node project-management/tools/update-dashboard.mjs`.
 
-**Actualizado:** 2026-09-18
+**Actualizado:** 2026-10-01
 
 **Rama de trabajo:** `beta`
 
@@ -14,8 +14,8 @@
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 115 |
-| Terminados | 30 |
+| Total de work items | 116 |
+| Terminados | 31 |
 | En progreso | 2 |
 | En revisión | 13 |
 | Bloqueados | 0 |

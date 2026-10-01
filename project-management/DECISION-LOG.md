@@ -24,6 +24,8 @@ Las decisiones se numeran de forma estable. No eliminar decisiones reemplazadas;
 | DEC-018 | 2026-07-21 | Aprobada | Mantener el Observatorio como aplicación local autónoma fuera del repositorio y del build de producción | Se preserva la separación entre herramienta editorial, sitio Astro y experimentos de datos |
 | DEC-019 | 2026-07-21 | Aprobada | Separar el encargo de investigación del encargo de redacción y exigir revisión humana entre ambos | La búsqueda de evidencia, su verificación y la redacción dejan de formar una cadena automática |
 | DEC-020 | 2026-07-21 | Aprobada | Definir la integración futura del Observatorio y la taxonomía pública después de completar un corpus piloto | La arquitectura del sitio se basará en documentos reales y en el esquema local de Astro, no en supuestos previos |
+| DEC-021 | 2026-10-01 | Aplicada en la incorporación autorizada | Conservar las evaluaciones pendientes sin puntuación ni confianza y preservar los parámetros cualitativos explícitos de pronóstico | Las ausencias no se convierten en cifras ni probabilidades automáticas; las fichas sin evaluar no reciben posición numérica ni se ubican en la matriz. La evidencia, los estados y las reglas condicionales se conservan al guardar y proyectar. Ver [incorporación EE. UU.–China](records/INCORPORACION-EEUU-CHINA-2026-10-01.md). |
+
 ## Plantilla para nueva decisión
 
 ```markdown

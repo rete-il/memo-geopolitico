@@ -2236,5 +2236,26 @@
       "Comprobaciones de datos, rutas y presentación aprobadas."
     ],
     "notes": "Primera entrega local completada el 18/09/2026; sin despliegue remoto. Ver records/INTEGRACION-PERIODISMO-PURO-2026-09-18.md. Restan los bloques de financiarización, tierras, IA y migración."
+  },
+  {
+    "id": "ED-EEUU-CHINA-20261001",
+    "type": "CONTENT",
+    "epic": "Editorial",
+    "title": "Incorporar el análisis EE. UU.–China y cooperación en IA y entregar en beta",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-4-editorial",
+    "size": "M",
+    "owner": "Codex",
+    "dependencies": [],
+    "progress": 100,
+    "acceptanceCriteria": [
+      "Artículo y macroevento EE. UU.–China incorporados con fuentes, relaciones y parámetro condicional de cooperación en IA; Sahel fuera del alcance.",
+      "Hechos documentales, interpretaciones expertas y escenarios diferenciados; ocho referencias del artículo trazables.",
+      "El estado no_asignada, los campos analíticos y los parámetros se conservan al guardar y exportar, sin generar puntuaciones ni probabilidades.",
+      "Datos, pruebas de contrato, comprobación de tipos, compilación, enlaces, SEO y tipografía válidos con Node 22.12.0; QA visual y navegación realizadas.",
+      "Diferencias y archivos de entrega revisados; commit y entrega verificados únicamente en origin/beta, con main sin cambios."
+    ],
+    "notes": "Artículo EE. UU.–China y cooperación en IA incorporado al sitio local y confirmado en origin/beta (bb5b49e), por autorización del usuario del 01/10/2026. QA final completa con Node 22.12.0: 320 pruebas aprobadas, check/build de producción y editorial, navegación, SEO, tipografía y revisión visual. Estado IA anunciado, sin puntuaciones ni probabilidades automáticas. Main y producción intactas; candidato Sahel fuera de esta entrega."
   }
 ]
