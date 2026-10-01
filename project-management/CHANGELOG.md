@@ -107,3 +107,17 @@ Este registro documenta cambios en alcance, prioridades, releases y sistema de s
 - Se incluyen menú hamburguesa, navegación regional, páginas regionales y Fricción vs. Narrativa.
 - Se crea dashboard regenerable desde JSON.
 - Se documentan quality gates, riesgos y decisiones iniciales.
+
+## 2026-10-01 — Valoración documentada de EE. UU.–China, aplicación local
+
+- Se registra ED-EEUU-CHINA-EVALUACION-20261001 en review. Se asignan relevancia 4,8/5, atención 4/5, brecha +0,8 y confianza media al rector, con siete fuentes estructurales y siete piezas periodísticas de cinco orígenes.
+- Fundamento canónico y público con fechas, muestra atribuida, acceso parcial, criterios, límites y revisión; cambios posteriores de la evaluación invalidan la vigencia del fundamento. Los otros 104 procesos permanecen intactos.
+- QA integral aprobado: 333 pruebas, check y ambas compilaciones, datos, navegación, SEO y tipografía. QA visual responsive aprobado a 1200, 768 y 390 píxeles mediante marcos del build local, con teclado y retorno de foco comprobados. Revisión del usuario y publicación pendientes. Sin cambios remotos.
+- Detalle: [Evaluación EE. UU.–China](records/EVALUACION-EEUU-CHINA-2026-10-01.md).
+
+## 2026-10-01 — Publicación autorizada de la valoración EE. UU.–China
+
+- Producto d9d117cc76f5d6c0539e4ca9ed2b42a669f5b099, enviado atómicamente a origin/beta y origin/main por autorización expresa «pasar a beta y a main». Main local coincide y el checkout permanece en beta.
+- Tarea ED-EEUU-CHINA-EVALUACION-20261001: done, avance 100 %. La instrucción del usuario acepta la entrega y autoriza beta y main.
+- Verificación pública del 2026-10-01T19:29:05.3457195Z: relevancia 4,8/5, atención 4/5, brecha +0,8 y confianza media; expediente y fundamento disponibles en producción. Ficha de fundamento con relevancia 4,8; atención4,0; brecha+0,8; confianza media; siete piezas periodísticas. Enlace Abrir expediente funciona; expediente muestra los mismos valores.
+- El mismo producto aprobó 333 pruebas y QA integral y visual local. Esta publicación supera el estado local en review registrado anteriormente. Detalle en [Evaluación EE. UU.–China](records/EVALUACION-EEUU-CHINA-2026-10-01.md).

@@ -14,8 +14,8 @@
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 117 |
-| Terminados | 32 |
+| Total de work items | 118 |
+| Terminados | 33 |
 | En progreso | 2 |
 | En revisión | 13 |
 | Bloqueados | 0 |

@@ -55,3 +55,23 @@
 - Incluye el análisis rector, cuatro análisis y expedientes propios, relaciones transversales diferenciadas y anclas conservadas, con límites de fuentes y evaluación editorial sin asignar.
 - La comprobación HTTP inicial confirma el nuevo contenido en el índice de rectores. Las once rutas respondieron HTTP 200, con canónicas correctas y sin noindex; la tarjeta pública muestra cuatro complementarios y tres relacionados. Detalle en [COMPLECION-EEUU-CHINA-2026-10-01.md](COMPLECION-EEUU-CHINA-2026-10-01.md).
 - El estado anterior de beta en review y de main pendiente queda superado por esta entrega; se conserva como antecedente histórico.
+
+## Preparación local — Evaluación EE. UU.–China — 2026-10-01
+
+**Estado:** review; QA automatizado y visual aprobados, revisión del usuario y publicación pendientes. Tarea ED-EEUU-CHINA-EVALUACION-20261001.
+
+- El rector recibe relevancia 4,8/5, atención 4/5 y brecha +0,8, con confianza media. La ficha metodológica expone la evidencia y los límites de la muestra dirigida.
+- Siete piezas periodísticas de cinco orígenes dentro de la ventana del 1 de septiembre al 1 de octubre; deduplicación editorial de agencias y límites de acceso explícitos. Siete fuentes estructurales respaldan la relevancia.
+- Fundamentos conservados al guardar; solo se publican con evaluación coincidente y fuentes verificadas. Los cuatro complementarios continúan sin asignación propia y el resto del corpus no cambia.
+- QA automatizado integral aprobado: 333 pruebas y ambas compilaciones. Comprobación visual responsive aprobada a 1200, 768 y 390 píxeles mediante marcos del build local; sin desbordamiento, enlaces legibles, teclado y retorno de foco comprobados. Esta entrega no se ha enviado a beta ni a main y no constituye un despliegue.
+- Detalle: [Evaluación EE. UU.–China](EVALUACION-EEUU-CHINA-2026-10-01.md).
+
+## Producción — Evaluación EE. UU.–China — 2026-10-01
+
+**Estado actual:** producto publicado y verificado; tarea ED-EEUU-CHINA-EVALUACION-20261001 en done, avance 100 %.
+
+- Producto d9d117cc76f5d6c0539e4ca9ed2b42a669f5b099, enviado atómicamente a origin/beta y origin/main por autorización expresa «pasar a beta y a main». Main local coincide y el checkout permanece en beta.
+- Verificación pública del 2026-10-01T19:29:05.3457195Z: relevancia 4,8/5, atención 4/5, brecha +0,8 y confianza media; expediente y fundamento disponibles en producción. Ficha de fundamento con relevancia 4,8; atención4,0; brecha+0,8; confianza media; siete piezas periodísticas. Enlace Abrir expediente funciona; expediente muestra los mismos valores.
+- El fundamento expone siete fuentes estructurales y siete piezas periodísticas de cinco orígenes, con fechas, atribución, acceso parcial y límites. Los cuatro complementarios conservan la ausencia de valoración propia.
+- QA de 333 pruebas, check, compilaciones, datos, SEO, navegación, tipografía y revisión responsive aprobados sobre el producto publicado.
+- Este hito supera la preparación local en review y sus pendientes. La gestión de cierre se conserva separada del commit de producto; detalle en [Evaluación EE. UU.–China](EVALUACION-EEUU-CHINA-2026-10-01.md).

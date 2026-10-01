@@ -51,3 +51,34 @@ Registro: [Compleción EE. UU.–China](COMPLECION-EEUU-CHINA-2026-10-01.md).
 <!-- FIN-QA-PRODUCCION-EEUU-CHINA-20261001 -->
 
 Esta entrada supera la espera de revisión y promoción a main de la etapa beta. Detalle: [Compleción EE. UU.–China](COMPLECION-EEUU-CHINA-2026-10-01.md).
+
+## 2026-10-01 — ED-EEUU-CHINA-EVALUACION-20261001 — QA local
+
+- Node 22.12.0; npm run qa completo: 333 pruebas aprobadas, cero fallos. Astro Check: 0 errores, 0 warnings, 61 hints.
+- Build público y editorial aprobados: 836/853 documentos HTML, 105 expedientes, 80 artículos públicos. Validación de datos, SEO, navegación y tipografía aprobadas. Cero enlaces internos y anclas rotos en ambos builds.
+- Contrato de fundamento: persistencia y recarga; omisión de campos internos; invalidación al cambiar puntuaciones o confianza; exclusión de referencias pendientes, desconocidas o ajenas; validación temporal; HTML escapado y enlaces atribuidos.
+- Preservados los otros 104 procesos y las cuatro evaluaciones complementarias pendientes. La gestión conserva los 117 work items anteriores y agrega solo ED-EEUU-CHINA-EVALUACION-20261001; releases globales intactos.
+- QA visual responsive pendiente por timeout del control de viewport. No equivale a error visual confirmado ni a revisión aprobada. Revisión del usuario y publicación también pendientes.
+- Registro y fuentes: [Evaluación EE. UU.–China](EVALUACION-EEUU-CHINA-2026-10-01.md).
+
+### ED-EEUU-CHINA-EVALUACION-20261001 — Resultado visual y navegación local
+
+- QA visual responsive aprobado sobre el build de producción servido localmente en localhost:8767, mediante marcos de igual origen de 1200, 768 y 390 píxeles. En los tres, body.clientWidth y body.scrollWidth coincidieron: 1185, 753 y 375 píxeles, sin desbordamiento horizontal. Texto y enlaces legibles. En teléfono, el menú abre, Tab conduce a Inicio y Escape cierra y devuelve el foco al botón. En localhost:8766, el expediente muestra 4,8 / 4,0 / +0,8 y el enlace «Cómo interpretar estos valores» navega al fundamento.
+- La capacidad de modificar el viewport devolvió un timeout; la comprobación se completó mediante marcos de dimensiones fijas que cargaron el build desde un servidor temporal fuera del repositorio. Las medidas corresponden al contenido de esos marcos, no a dispositivos físicos. No se añaden herramientas de revisión al producto.
+- Capturas de esta evaluación: escritorio.png, tablet.png, telefono.png y valoracion-local.png, conservadas en outputs/evaluacion-eeuu-china-2026-10-01 del workspace de la tarea.
+- La revisión visual pendiente registrada arriba queda completada. El QA integral conserva 333 pruebas aprobadas; no hubo cambios de código o datos después de esa ejecución. Pendientes revisión del usuario y publicación.
+
+## 2026-10-01 — ED-EEUU-CHINA-EVALUACION-20261001 — Comprobación en producción
+
+Producto d9d117cc76f5d6c0539e4ca9ed2b42a669f5b099, enviado atómicamente a origin/beta y origin/main por autorización expresa «pasar a beta y a main». Main local coincide y el checkout permanece en beta.
+
+- [/metodologia/relevancia-atencion-mediatica/eeuu-china-competencia-geoeconomica-interdependencias/](https://memogeopolitico.com/metodologia/relevancia-atencion-mediatica/eeuu-china-competencia-geoeconomica-interdependencias/): HTTP 200; canónica https://memogeopolitico.com/metodologia/relevancia-atencion-mediatica/eeuu-china-competencia-geoeconomica-interdependencias/; noindex intencional de la ficha metodológica.
+- [/observatorio/eeuu-china-competencia-geoeconomica-interdependencias/](https://memogeopolitico.com/observatorio/eeuu-china-competencia-geoeconomica-interdependencias/): HTTP 200; canónica https://memogeopolitico.com/observatorio/eeuu-china-competencia-geoeconomica-interdependencias/; sin noindex.
+- [/publicaciones/eeuu-china-competencia-tecnologica-cooperacion-ia/](https://memogeopolitico.com/publicaciones/eeuu-china-competencia-tecnologica-cooperacion-ia/): HTTP 200; canónica https://memogeopolitico.com/publicaciones/eeuu-china-competencia-tecnologica-cooperacion-ia/; sin noindex.
+
+Verificación pública del 2026-10-01T19:29:05.3457195Z: relevancia 4,8/5, atención 4/5, brecha +0,8 y confianza media; expediente y fundamento disponibles en producción. Ficha de fundamento con relevancia 4,8; atención4,0; brecha+0,8; confianza media; siete piezas periodísticas. Enlace Abrir expediente funciona; expediente muestra los mismos valores.
+
+Capturas de producción: valoracion-publicada.png, conservadas entre los artefactos de la tarea.
+
+- Se conserva el QA de 333 pruebas y revisión visual local sobre el mismo producto. Las comprobaciones públicas confirman esta entrega; no se presentan como un nuevo censo de fuentes ni un recálculo de puntuaciones.
+- La autorización del usuario y la publicación completan la tarea: done, avance 100 %. Sin modificaciones de los otros 104 procesos ni de releases globales.

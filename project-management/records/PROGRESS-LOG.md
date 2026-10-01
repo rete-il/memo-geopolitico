@@ -377,3 +377,25 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 - Se promovió 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113 desde beta a main, avanzando desde 5790d4a4c338e21d01820b64069b4249f76dc4a0. Origin/main y origin/beta quedaron iguales tras la promoción.
 - El producto ya había superado 326 pruebas y QA integral. Producción respondió HTTP 200 con el nuevo rector y complemento de IA presentes; el detalle de comprobación ampliada se incorpora en [el registro de compleción](COMPLECION-EEUU-CHINA-2026-10-01.md).
 - Este hito supera el estado review y la espera de autorización para main registrados en la etapa beta; se conserva ese historial.
+
+## 2026-10-01 — ED-EEUU-CHINA-EVALUACION-20261001 — Asignación con evidencia
+
+- Estado: review. Aplicación local; revisión del usuario y publicación pendientes.
+- Rector: relevancia 4,8; atención 4; brecha +0,8; confianza media. Ventana periodística del 01/09 al 01/10; siete piezas distintas, cinco orígenes y límites documentados.
+- Persistencia, proyección y ficha metodológica incorporan el fundamento verificado. Los cuatro complementarios siguen sin evaluación propia; los otros 104 procesos están preservados.
+- npm run qa aprobado: 333 pruebas, check, compilaciones, datos, SEO, navegación y tipografía. QA visual responsive pendiente por timeout del control de viewport; no se afirma aprobada.
+- No se realizaron staging, commit, push ni despliegue. Registro: [Evaluación EE. UU.–China](EVALUACION-EEUU-CHINA-2026-10-01.md).
+
+### Cierre del QA visual de ED-EEUU-CHINA-EVALUACION-20261001
+
+- QA visual responsive aprobado sobre el build de producción servido localmente en localhost:8767, mediante marcos de igual origen de 1200, 768 y 390 píxeles. En los tres, body.clientWidth y body.scrollWidth coincidieron: 1185, 753 y 375 píxeles, sin desbordamiento horizontal. Texto y enlaces legibles. En teléfono, el menú abre, Tab conduce a Inicio y Escape cierra y devuelve el foco al botón. En localhost:8766, el expediente muestra 4,8 / 4,0 / +0,8 y el enlace «Cómo interpretar estos valores» navega al fundamento.
+- La capacidad de modificar el viewport devolvió un timeout; la comprobación se completó mediante marcos de dimensiones fijas que cargaron el build desde un servidor temporal fuera del repositorio. Las medidas corresponden al contenido de esos marcos, no a dispositivos físicos. No se añaden herramientas de revisión al producto.
+- Capturas de esta evaluación: escritorio.png, tablet.png, telefono.png y valoracion-local.png, conservadas en outputs/evaluacion-eeuu-china-2026-10-01 del workspace de la tarea.
+- Esta comprobación supera el pendiente visual de la entrada anterior. La tarea conserva review: faltan revisión del usuario y publicación. Sin staging, commits, pushes ni despliegue.
+
+## 2026-10-01 — ED-EEUU-CHINA-EVALUACION-20261001 — Cierre tras publicación autorizada
+
+- Producto d9d117cc76f5d6c0539e4ca9ed2b42a669f5b099, enviado atómicamente a origin/beta y origin/main por autorización expresa «pasar a beta y a main». Main local coincide y el checkout permanece en beta.
+- Verificación pública del 2026-10-01T19:29:05.3457195Z: relevancia 4,8/5, atención 4/5, brecha +0,8 y confianza media; expediente y fundamento disponibles en producción. Ficha de fundamento con relevancia 4,8; atención4,0; brecha+0,8; confianza media; siete piezas periodísticas. Enlace Abrir expediente funciona; expediente muestra los mismos valores.
+- Estado: done, avance 100 %. La instrucción «pasar a beta y a main» acepta la entrega preparada y autoriza su publicación. Los pendientes de revisión y publicación de las entradas anteriores quedan superados; se conserva su historia.
+- QA previo sobre el mismo producto: 333 pruebas, check, ambas compilaciones, datos, navegación, SEO, tipografía y revisión visual local. Los otros 104 procesos y los 117 work items previos permanecen intactos.

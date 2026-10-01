@@ -2281,5 +2281,28 @@
       "Entrega beta registrada separadamente; promoción a main realizada con autorización expresa del usuario, preservando el mismo producto validado y comprobando su disponibilidad en producción."
     ],
     "notes": "El usuario aceptó la entrega y autorizó expresamente «actualizar main» el 01/10/2026. Promoción ejecutada de 5790d4a4c338e21d01820b64069b4249f76dc4a0 a 9b9f9273c7e1696e84bee5b43a4261c6cbeb5113, con origin/main y origin/beta iguales al cierre de la promoción. QA previo aprobado sobre el mismo producto: 326 pruebas, check, compilaciones pública y editorial, datos, navegación, SEO, tipografía y revisión responsive. Producción responde HTTP 200 en /observatorio/rectores/ y muestra el rector nuevo y su complemento de IA. Verificación en producción el 1 de octubre de 2026: once rutas respondieron HTTP 200 (índice de rectores, cinco artículos y cinco expedientes), todas con título correcto, URL canónica propia y sin noindex. El navegador público mostró 13 rectores; la tarjeta EE. UU.–China mostró cuatro complementarios y tres relacionados, y al desplegar los complementarios se mostraron los cuatro con enlaces a análisis y expedientes. Captura a 1280 × 720 sin desbordamiento horizontal. El producto coincide con la versión que aprobó las 326 pruebas y el QA responsive previo.. Cuatro complementarios, tres relaciones transversales, cuatro señales trasladadas, cinco históricas nuevas, nueve fuentes nuevas y tres reverificadas; sin puntuaciones ni probabilidades automáticas. Ver records/COMPLECION-EEUU-CHINA-2026-10-01.md."
+  },
+  {
+    "id": "ED-EEUU-CHINA-EVALUACION-20261001",
+    "type": "CONTENT",
+    "epic": "Editorial",
+    "title": "Documentar y asignar la relevancia y atención mediática del rector EE. UU.–China",
+    "priority": "P1",
+    "status": "done",
+    "release": "beta-4-editorial",
+    "size": "M",
+    "owner": "Codex",
+    "dependencies": [
+      "ED-EEUU-CHINA-COMPLEMENTARIOS-20261001"
+    ],
+    "progress": 100,
+    "acceptanceCriteria": [
+      "La valoración del rector tiene cuatro dimensiones justificadas: impacto 5, probabilidad de avance 4, alcance 5 y persistencia 5; la fórmula existente produce relevancia 4,8, atención 4 y brecha +0,8, con confianza editorial media.",
+      "El fundamento diferencia siete fuentes estructurales de siete piezas periodísticas de cinco orígenes, en la ventana del 1 de septiembre al 1 de octubre de 2026; identifica republicaciones, acceso parcial, sesgos y criterios de revisión.",
+      "El expediente y la ficha metodológica exponen fuentes, fechas, alcance y límites. La persistencia conserva el fundamento; la proyección exige fuentes verificadas y evaluación coincidente, y excluye notas y dimensiones internas.",
+      "Los otros 104 procesos, incluidas las cuatro evaluaciones complementarias pendientes, se conservan; el parámetro cualitativo de IA no recibe probabilidades automáticas.",
+      "Pruebas, datos, check, compilaciones pública y editorial, navegación, SEO, tipografía y QA visual responsive aprobados; revisión y autorización del usuario recibidas, entrega a beta y main y disponibilidad pública verificadas."
+    ],
+    "notes": "El usuario revisó la entrega local y autorizó expresamente «pasar a beta y a main». Producto d9d117cc76f5d6c0539e4ca9ed2b42a669f5b099, enviado atómicamente a origin/beta y origin/main por autorización expresa «pasar a beta y a main». Main local coincide y el checkout permanece en beta. Verificación pública del 2026-10-01T19:29:05.3457195Z: relevancia 4,8/5, atención 4/5, brecha +0,8 y confianza media; expediente y fundamento disponibles en producción. Ficha de fundamento con relevancia 4,8; atención4,0; brecha+0,8; confianza media; siete piezas periodísticas. Enlace Abrir expediente funciona; expediente muestra los mismos valores. QA previo sobre el mismo producto: 333 pruebas aprobadas, Astro Check con 0 errores, 0 warnings y 61 hints; compilaciones pública y editorial, datos, navegación, SEO y tipografía aprobados. Revisión visual local a 1200/768/390 píxeles mediante marcos del build, sin desbordamiento y con teclado y retorno del foco comprobados. Siete fuentes estructurales existentes y siete piezas periodísticas nuevas de cinco orígenes; los otros 104 procesos y las cuatro evaluaciones complementarias pendientes permanecen intactos. La gestión de cierre se registra separadamente de la entrega de producto. Ver records/EVALUACION-EEUU-CHINA-2026-10-01.md."
   }
 ]

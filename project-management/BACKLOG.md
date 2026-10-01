@@ -117,6 +117,7 @@
 | ED-006 | UX | Editorial | P1 | ○ Propuesta | M | TBD | DS-002, ED-002 | Diseñar lectura responsive y ancho editorial |
 | ED-EEUU-CHINA-20261001 | CONTENT | Editorial | P1 | ✓ Terminada | M | Codex | — | Incorporar el análisis EE. UU.–China y cooperación en IA y entregar en beta |
 | ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 | CONTENT | Editorial | P1 | ✓ Terminada | L | Codex | ED-EEUU-CHINA-20261001 | Completar cuatro procesos propios del rector EE. UU.–China y distinguir sus relaciones transversales |
+| ED-EEUU-CHINA-EVALUACION-20261001 | CONTENT | Editorial | P1 | ✓ Terminada | M | Codex | ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 | Documentar y asignar la relevancia y atención mediática del rector EE. UU.–China |
 | ED-PP-001 | CONTENT | Editorial | P1 | ✓ Terminada | M | Codex | — | Integrar Periodismo Puro y primer bloque de democracia y derechas |
 | OBS-002 | CONTENT | Piloto editorial | P1 | ▶ En progreso | L | Rete | OBS-001 | Completar el piloto del Corredor de Lobito hasta un Markdown publicable |
 | TRUST-001 | CONTENT | Transparencia | P1 | ○ Propuesta | XL | TBD | IA-001 | Crear Acerca de, Política editorial, Uso de IA y Correcciones |
