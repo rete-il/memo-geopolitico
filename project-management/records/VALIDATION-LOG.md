@@ -30,3 +30,13 @@ Cada tarea `review` o `done` que cambie código debe registrar aquí la validaci
 - git diff --check y git diff --cached --check aprobados antes del commit de producto. Commit bb5b49eeabcddf28fb2847d91b951edfe6930647 subido y confirmado en origin/beta; main remota y local permanecen en 5790d4a4c338e21d01820b64069b4249f76dc4a0.
 - npm ci informó ocho vulnerabilidades del conjunto de dependencias fijado (una moderada, seis altas y una crítica) y un aviso de limpieza EPERM, con salida exitosa. No se alteraron dependencias ni se aplicaron actualizaciones fuera del alcance.
 <!-- FIN-QA-EEUU-CHINA-20261001 -->
+
+## 2026-10-01 — ED-EEUU-CHINA-COMPLEMENTARIOS-20261001
+
+<!-- QA-EEUU-CHINA-COMPLEMENTARIOS-20261001 -->
+- Node 22.12.0: npm run qa aprobado, 326 pruebas y cero fallos; Astro Check con 0 errores, 0 warnings y 60 hints. Compilaciones pública/editorial aprobadas: 836/853 documentos HTML, 105 expedientes y 80 artículos públicos. Datos, SEO, navegación y tipografía aprobados; cero enlaces internos o anclas rotos en ambos builds. git diff --check aprobado. QA visual a 1440, 768 y 390 píxeles sin desbordamiento horizontal; cuatro hijos y tres transversales visibles, artículos/fichas legibles, teclado, Escape, clic exterior y retorno del foco comprobados. Se verificó el enlace anterior de la señal IA y su navegación al nuevo propietario.
+- Preservados los otros 100 macroeventos y sus proyecciones, las tres relaciones transversales y sus propietarios. Cuatro señales trasladadas sin duplicación; cinco antecedentes distintos, nueve fuentes nuevas y tres reverificadas.
+- Producto aplicado, validado y entregado a origin/beta en ac16472c1e1f2c57e4bbbcffdc5a3e4f5ecaf72f. Main local y remota permanecen en 5790d4a4c338e21d01820b64069b4249f76dc4a0. La revisión del usuario y un futuro pase a main siguen pendientes; la tarea conserva review. La gestión se registra por separado del producto.
+<!-- FIN-QA-EEUU-CHINA-COMPLEMENTARIOS-20261001 -->
+
+Registro: [Compleción EE. UU.–China](COMPLECION-EEUU-CHINA-2026-10-01.md).

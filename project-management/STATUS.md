@@ -8,16 +8,16 @@
 
 **Release actual:** Beta 0 — Baseline, seguridad y control
 
-**Avance ponderado total:** **31%**
+**Avance ponderado total:** **32%**
 
 ## Resumen
 
 | Métrica | Valor |
 |---|---:|
-| Total de work items | 116 |
+| Total de work items | 117 |
 | Terminados | 31 |
 | En progreso | 2 |
-| En revisión | 13 |
+| En revisión | 14 |
 | Bloqueados | 0 |
 | Listos | 5 |
 | P0 abiertos | 19 |
@@ -47,6 +47,7 @@
 | ED-REARME-20260915 | ◆ En revisión | Completar rector de remilitarización industrial y seis procesos complementarios | Codex | 95% |
 | ED-HEMISFERIO-20260915 | ◆ En revisión | Completar rector hemisférico y seis procesos complementarios | Codex | 95% |
 | ED-DERECHAS-20260915 | ◆ En revisión | Completar rector de derechas transnacionales y seis procesos complementarios | Codex | 95% |
+| ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 | ◆ En revisión | Completar cuatro procesos propios del rector EE. UU.–China y distinguir sus relaciones transversales | Codex | 90% |
 
 ### Próximas tareas listas
 

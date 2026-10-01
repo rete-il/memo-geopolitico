@@ -1,5 +1,13 @@
 # Changelog de gestión del proyecto
 
+## 2026-10-01 — Compleción EE. UU.–China en beta, previa a main
+
+- Se prepara la tarea ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 en review para beta-4-editorial: cuatro complementarios propios y cuatro análisis, conservando tres relaciones transversales.
+- Se registran cuatro señales trasladadas sin duplicación, cinco antecedentes históricos nuevos, nueve fuentes nuevas y tres reverificadas. La cronología y sus límites están en records/COMPLECION-EEUU-CHINA-2026-10-01.md.
+- La tarjeta distingue dependencias y relaciones; las referencias conservan anclas y enlazan al propietario. IA mantiene un parámetro único en el rector y evaluación sin asignar.
+- QA de la integración final aprobado y producto entregado a beta. La revisión humana y el futuro pase a main permanecen pendientes; producción no se modifica.
+- Entrega de producto verificada: ac16472c1e1f2c57e4bbbcffdc5a3e4f5ecaf72f en origin/beta. QA: 326 pruebas, check/build público y editorial, datos, enlaces y revisión responsive aprobados. Main permanece en 5790d4a4c338e21d01820b64069b4249f76dc4a0.
+
 ## 2026-10-01 — Incorporación EE. UU.–China para beta
 
 - Se registra el alcance autorizado del artículo y su macroevento, incluido el parámetro cualitativo de cooperación en IA; Sahel queda fuera.

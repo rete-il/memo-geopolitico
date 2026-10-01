@@ -2257,5 +2257,29 @@
       "Diferencias y archivos de entrega revisados; commit y entrega verificados únicamente en origin/beta, con main sin cambios."
     ],
     "notes": "Artículo EE. UU.–China y cooperación en IA incorporado al sitio local y confirmado en origin/beta (bb5b49e), por autorización del usuario del 01/10/2026. QA final completa con Node 22.12.0: 320 pruebas aprobadas, check/build de producción y editorial, navegación, SEO, tipografía y revisión visual. Estado IA anunciado, sin puntuaciones ni probabilidades automáticas. Main y producción intactas; candidato Sahel fuera de esta entrega."
+  },
+  {
+    "id": "ED-EEUU-CHINA-COMPLEMENTARIOS-20261001",
+    "type": "CONTENT",
+    "epic": "Editorial",
+    "title": "Completar cuatro procesos propios del rector EE. UU.–China y distinguir sus relaciones transversales",
+    "priority": "P1",
+    "status": "review",
+    "release": "beta-4-editorial",
+    "size": "L",
+    "owner": "Codex",
+    "dependencies": [
+      "ED-EEUU-CHINA-20261001"
+    ],
+    "progress": null,
+    "acceptanceCriteria": [
+      "Cuatro expedientes y análisis autónomos: gestión bilateral de riesgos de IA, inversión saliente en tecnologías sensibles, comercio de bienes no sensibles y licencias de tierras raras; cada uno delimita mecanismo, escenarios, indicadores, refutación y fuentes.",
+      "Cuatro señales trasladadas conservan sus IDs y un único propietario; el rector las referencia. Cinco antecedentes históricos nuevos y nueve fuentes nuevas se distinguen de tres fuentes existentes reverificadas. Los tres procesos transversales conservan jerarquía y propietarios.",
+      "La tarjeta separa complementarios y relaciones transversales, con enlaces, tipo y mecanismo. Los enlaces anteriores a señales trasladadas conservan anclas y conducen al nuevo propietario; controles y foco accesibles.",
+      "El primer diálogo de IA se atribuye a MOFCOM; la operación del canal permanece pendiente de prueba. El parámetro cualitativo mantiene una sola definición canónica en el rector y no se generan puntuaciones ni probabilidades.",
+      "QA integral, compilaciones, rutas, navegación, responsive, datos y revisión del diff ejecutados y documentados sobre la integración final; revisión humana completada antes de cerrar la tarea.",
+      "Entrega beta registrada separadamente. Main y producción permanecen sin modificaciones; un futuro pase a main requiere un paso de autorización y entrega distinto."
+    ],
+    "notes": "Integración local y QA completados. Producto aplicado, validado y entregado a origin/beta en ac16472c1e1f2c57e4bbbcffdc5a3e4f5ecaf72f. Main local y remota permanecen en 5790d4a4c338e21d01820b64069b4249f76dc4a0. La revisión del usuario y un futuro pase a main siguen pendientes; la tarea conserva review. La gestión se registra por separado del producto. Alcance: cuatro complementarios propios, tres relaciones transversales, cuatro señales trasladadas, cinco históricas nuevas, nueve fuentes nuevas y tres reverificadas. Cronología delimitada, sin probabilidades ni valoración automática. Ver records/COMPLECION-EEUU-CHINA-2026-10-01.md."
   }
 ]

@@ -360,3 +360,13 @@ Registro cronológico y append-only. No reemplazar entradas anteriores; agregar 
 - Estado: `done`; avance: 100 %.
 - Producto integrado, validado y entregado en origin/beta: bb5b49eeabcddf28fb2847d91b951edfe6930647. La instrucción del usuario autorizó la incorporación y su entrega a beta. Main conserva 5790d4a4c338e21d01820b64069b4249f76dc4a0; producción permanece sin cambios. Este registro documenta la verificación remota del commit de producto.
 - Validaciones: ver el registro de incorporación y VALIDATION-LOG.md.
+
+## 2026-10-01 — ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 — Cuatro complementarios de EE. UU.–China
+
+- Estado: review; sin porcentaje de cierre. Release: beta-4-editorial.
+- Preparados cuatro expedientes y análisis autónomos, con cuatro señales trasladadas, cinco antecedentes históricos nuevos, nueve fuentes nuevas y tres reverificadas.
+- Se mantienen tres vínculos transversales y las jerarquías previas. La tarjeta distingue ambas clases de relación y preserva acceso a señales trasladadas.
+- El primer diálogo de IA se atribuye a MOFCOM; la operatividad del canal sigue pendiente. El parámetro permanece único en el rector y las evaluaciones siguen sin asignar.
+- QA de integración aprobado y producto entregado a beta. Pendiente: revisión humana y un futuro pase a main expresamente autorizado.
+- Entrega de producto verificada: ac16472c1e1f2c57e4bbbcffdc5a3e4f5ecaf72f en origin/beta. QA: 326 pruebas, check/build público y editorial, datos, enlaces y revisión responsive aprobados. Main permanece en 5790d4a4c338e21d01820b64069b4249f76dc4a0.
+- Alcance, fuentes y límites: [Compleción EE. UU.–China](COMPLECION-EEUU-CHINA-2026-10-01.md).
