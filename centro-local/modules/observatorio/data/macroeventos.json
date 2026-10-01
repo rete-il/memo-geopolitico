@@ -28519,7 +28519,7 @@
       "tipo_proceso": "macroproceso_en_maduracion",
       "estado_editorial": "publicado",
       "estado_verificacion": "pendiente",
-      "fecha_corte": "2026-09-30",
+      "fecha_corte": "2026-10-01",
       "regiones": [
         "Global",
         "Estados Unidos",
@@ -28565,9 +28565,54 @@
           "senal_id": "sig-africa-central-refinado-concentracion-2025",
           "tipo_uso": "contextual",
           "efecto_segundo_orden": "Aporta contexto local sobre concentración del procesamiento. No equivale a atribuir toda decisión minera africana a la rivalidad bilateral."
+        },
+        {
+          "senal_id": "sig-eeuu-china-dialogo-incidentes-ia-20260925",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La apertura y eventual funcionamiento de mecanismos de riesgo de IA pueden contener una dimensión de la competencia; no prueban distensión en chips o seguridad militar."
+        },
+        {
+          "senal_id": "sig-eeuu-china-ginebra-riesgos-ia-20240514",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La apertura y eventual funcionamiento de mecanismos de riesgo de IA pueden contener una dimensión de la competencia; no prueban distensión en chips o seguridad militar."
+        },
+        {
+          "senal_id": "sig-eeuu-china-inversion-saliente-20250102",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La selección de capital y conocimientos asociados concreta una dimensión de la reorganización de interdependencias, junto con intercambios permitidos y negociación."
+        },
+        {
+          "senal_id": "sig-eeuu-china-coins-transicion-20251218",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La selección de capital y conocimientos asociados concreta una dimensión de la reorganización de interdependencias, junto con intercambios permitidos y negociación."
+        },
+        {
+          "senal_id": "sig-eeuu-china-continuacion-emergencia-inversion-20260803",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La selección de capital y conocimientos asociados concreta una dimensión de la reorganización de interdependencias, junto con intercambios permitidos y negociación."
+        },
+        {
+          "senal_id": "sig-eeuu-china-30for30-procedimientos-20260927",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La preservación negociada de bienes no sensibles permite evaluar si la competencia sigue siendo selectiva o se generaliza; exige distinguir medidas de resultados."
+        },
+        {
+          "senal_id": "sig-eeuu-china-tierras-raras-licencias-20250404",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La continuidad o pérdida de capacidad para condicionar suministros muestra cómo negociación, licencias y sustitución reorganizan una interdependencia estratégica concreta."
+        },
+        {
+          "senal_id": "sig-eeuu-china-suspension-anuncios-20251107",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La continuidad o pérdida de capacidad para condicionar suministros muestra cómo negociación, licencias y sustitución reorganizan una interdependencia estratégica concreta."
+        },
+        {
+          "senal_id": "sig-eeuu-china-licencias-generales-20251218",
+          "tipo_uso": "relacionada",
+          "efecto_segundo_orden": "La continuidad o pérdida de capacidad para condicionar suministros muestra cómo negociación, licencias y sustitución reorganizan una interdependencia estratégica concreta."
         }
       ],
-      "nota_fecha_corte": "Actualización focalizada al 30/09/2026 sobre cooperación bilateral en IA. Las demás evidencias conservan sus fechas y limitaciones de la preparación del 29/09; no constituye revisión exhaustiva del macroevento.",
+      "nota_fecha_corte": "Revisión focalizada al 01/10/2026 de cuatro mecanismos propios: riesgos de IA, inversión saliente, comercio no sensible y licencias de tierras raras. Se contrastan hitos históricos y anuncios recientes; no se afirma inventario normativo exhaustivo ni ejecución de compromisos sin evidencia específica.",
       "pregunta_seguimiento": "El diálogo sobre inteligencia artificial abre una vía de cooperación entre rivales. Su alcance dependerá de que los compromisos se conviertan en mecanismos capaces de gestionar riesgos compartidos.",
       "hipotesis_principal": "La selección estatal de capital, tecnologías e insumos por criterios de seguridad reorganiza interdependencias entre Estados Unidos y China. Restricciones, licencias, sustitución y negociación pueden coexistir; no implican un desacople uniforme. La apertura del diálogo sobre IA añade una vía de gestión conjunta de riesgos cuya ejecución y continuidad deben verificarse; puede coexistir con competencia por capacidades y mercados.",
       "definicion_operativa": "Cambios persistentes en acceso a tecnologías, financiación, insumos y mercados atribuibles a instrumentos de competencia estratégica; diferenciar norma, implementación y efecto económico.",
@@ -28607,9 +28652,10 @@
         "La gestión de riesgos de IA se institucionaliza sin extenderse a cooperación industrial ni reducir controles tecnológicos."
       ],
       "escenarios": {
-        "base": "Competencia administrada con restricciones sectoriales e intercambios negociados. La IA añade cooperación selectiva anunciada; su contribución a gestionar riesgos depende de procedimientos operativos y continuidad verificables. Escenario de trabajo cualitativo, sin probabilidad asignada.",
+        "base": "Competencia administrada con selección de capital, licencias de suministros e intercambios comerciales negociados. Según MOFCOM, ya hubo un diálogo inicial de IA; el funcionamiento del canal de incidentes sigue pendiente de verificación. Cada dimensión requiere indicadores propios. Escenario cualitativo sin probabilidad asignada.",
         "adverso": "Restricciones y represalias profundizan la separación; si además se documenta interrupción del diálogo o del canal de IA, se debilita la gestión bilateral de incidentes. La relación entre ambas dinámicas debe demostrarse. Falta de noticias no prueba ruptura.",
-        "transformador": "Reglas estables, diversificación y cooperación sostenida en seguridad de IA alteran la gestión de interdependencias. Protocolos compatibles y evaluación acordada de riesgos podrían institucionalizarla; son posibilidades propuestas por expertos, no compromisos adoptados ni alianza demostrada."
+        "transformador": "Reglas estables, diversificación y cooperación sostenida en seguridad de IA alteran la gestión de interdependencias. Protocolos compatibles y evaluación acordada de riesgos podrían institucionalizarla; son posibilidades propuestas por expertos, no compromisos adoptados ni alianza demostrada.",
+        "reversion": "Normalización sostenida de acceso a capital, insumos y mercados reduce el peso de la selección por seguridad. Si solo mejora una dimensión, revisar esa rama sin extrapolar al conjunto."
       },
       "indicadores": [
         "Normas anunciadas, vigentes, suspendidas y ejecutadas, con historial por producto y jurisdicción.",
@@ -28638,7 +28684,7 @@
         "Ejecución del marco comercial de septiembre.",
         "Elasticidad de sustitución y capacidad operativa.",
         "Desvíos y valor agregado por terceros países.",
-        "Vigencia actual de medidas históricas y restricciones posteriores.",
+        "Alcance de cada reforma, excepción y acto ejecutor de los acuerdos generales; la cronología normativa incorporada es delimitada.",
         "Responsables, protocolos, alcance y funcionamiento del canal de incidentes aún no verificados.",
         "Compatibilidad de objetivos y métodos de verificación de riesgos de IA; los análisis expertos no expresan consenso.",
         "Continuidad del diálogo más allá de la relación personal de los presidentes y de la reunión prevista para noviembre."
@@ -28697,9 +28743,11 @@
           "media_id": "",
           "medio_catalogado": false,
           "tipo": "fuente_primaria",
-          "estado_verificacion": "pendiente",
-          "observaciones": "Comunicado leído; fecha según cierre Released on May 16. Perspectiva de una parte, cotejada con Casa Blanca. Resultados preliminares, no ejecución económica.",
-          "revisada_el": ""
+          "estado_verificacion": "verificada",
+          "observaciones": "Texto original reabierto y leído el 01/10/2026. Fecha 16/05 tomada del cierre del documento. Corrobora anuncio de los consejos de comercio e inversión; resultados preliminares y detalles todavía en consulta. No acredita ejecución de compras o rebajas.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
         },
         {
           "id": "src-eeuu-china-whitehouse-boards-20260517",
@@ -28711,9 +28759,11 @@
           "media_id": "",
           "medio_catalogado": false,
           "tipo": "fuente_primaria",
-          "estado_verificacion": "pendiente",
-          "observaciones": "Comunicado leído. Coteja los órganos anunciados; adjetivos y beneficios previstos pertenecen a la posición oficial estadounidense.",
-          "revisada_el": ""
+          "estado_verificacion": "verificada",
+          "observaciones": "Texto original reabierto y leído el 01/10/2026, fecha editorial 17/05/2026. Corrobora la creación anunciada de Board of Trade y Board of Investment. Las promesas y beneficios previstos se atribuyen a la Casa Blanca; no se presentan como comercio ejecutado.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
         },
         {
           "id": "src-eeuu-china-ustr-30for30-20260927",
@@ -28753,9 +28803,11 @@
           "media_id": "",
           "medio_catalogado": false,
           "tipo": "fuente_primaria",
-          "estado_verificacion": "pendiente",
-          "observaciones": "PDF leído. Registra procedimientos del órgano; no demuestra eficacia ni implementación arancelaria.",
-          "revisada_el": ""
+          "estado_verificacion": "verificada",
+          "observaciones": "PDF original de dos páginas reabierto y leído el 01/10/2026, fechado 27/09/2026. Define responsabilidades y reuniones de adjuntos al menos trimestrales, ajustables; no acredita por sí solo reducción arancelaria ya aplicada.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
         },
         {
           "id": "src-eeuu-china-afp-cna-20260928",
@@ -28848,45 +28900,153 @@
           "revisada_el": "2026-09-30",
           "consultada_el": "2026-09-30",
           "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-ginebra-ia-20240515",
+          "medio": "The White House (archivo administración Biden)",
+          "titulo": "Statement from NSC Spokesperson Adrienne Watson on the U.S.-PRC Talks on AI Risk and Safety",
+          "fecha": "2024-05-15",
+          "url": "https://bidenwhitehouse.archives.gov/briefing-room/statements-releases/2024/05/15/statement-from-nsc-spokesperson-adrienne-watson-on-the-u-s-prc-talks-on-ai-risk-and-safety-2/",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado original del archivo presidencial leído. Documenta la reunión celebrada en Ginebra el 14/05/2024; fecha de publicación 15/05/2024. Hito histórico, sin inferir continuidad ni canal de incidentes operativo.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mofcom-octava-ronda-20260928",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "Interpretación de los resultados de la octava ronda de consultas económicas y comerciales entre China y Estados Unidos",
+          "fecha": "2026-09-28",
+          "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_cd060e0649964da8ae13216c3bb1a645.html",
+          "idioma": "zh",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado original chino leído; traducción de trabajo propia. Informa primer diálogo IA, próximo antes de terminar noviembre, y prórroga del arreglo de Kuala Lumpur al 10/01/2027. Atribuir a MOFCOM. No acredita funcionamiento del canal, rebajas ya aplicadas ni enmienda de cada norma.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-treasury-coins-faq-20251223",
+          "medio": "U.S. Department of the Treasury",
+          "titulo": "Frequently Asked Questions — Outbound Investment Security Program, XI. COINS Act",
+          "fecha": "2025-12-23",
+          "url": "https://home.treasury.gov/policy-issues/international/outbound-investment-program/frequently-asked-questions",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Sección XI, respuestas 1–2, leída en la página oficial consultada 01/10/2026. Fecha de las respuestas 23/12/2025; ley 18/12/2025. Confirma la explicación de transición regulatoria, sin convertirla en inventario exhaustivo de reformas posteriores.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-treasury-pilkerton-20260422",
+          "medio": "U.S. Department of the Treasury",
+          "titulo": "Assistant Secretary Chris Pilkerton's Remarks at ACI CFIUS Conference",
+          "fecha": "2026-04-22",
+          "url": "https://home.treasury.gov/news/press-releases/sb0467",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Discurso oficial leído. Expresa prioridades y adaptación del programa saliente conforme a COINS. Distinguir inversión entrante/CFIUS y programa saliente; no tratar el discurso como nueva regla o sanción individual.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-rhodium-inversion-20260430",
+          "medio": "Rhodium Group",
+          "titulo": "Why Chinese FDI in the US Won’t Rebound",
+          "fecha": "2026-04-30",
+          "url": "https://rhg.com/research/why-chinese-fdi-in-the-us-wont-rebound/",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis original de Armand Meyer, Thilo Hanemann, Ian Hutchinson y Danielle Goh leído. Pronóstico cualitativo anterior a la cumbre de septiembre; considera factores regulatorios, políticos y de demanda. No prueba por sí solo efecto causal de una medida concreta.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mofcom-suspension70-20251107",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "Anuncio MOFCOM–GACC 70 de 2025: suspensión de determinados anuncios",
+          "fecha": "2025-11-07",
+          "url": "https://www.mofcom.gov.cn/zcfb/blgg/art/2025/art_2ec8b9f2c6404a56b311abc82d87f486.html",
+          "idioma": "zh",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "documento_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Anuncio original chino leído. Suspende anuncios 55, 56, 57, 58, 61 y 62 hasta 10/11/2026; no incluye anuncio 18 de abril 2025. La prórroga política anunciada en septiembre de 2026 no se presenta como enmienda jurídica de todos los instrumentos.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mofcom-licencias-generales-20251223",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "MOFCOM Regular Press Conference December18,2025 — General rare-earth export licenses",
+          "fecha": "2025-12-23",
+          "url": "https://english.mofcom.gov.cn/News/PressConference/art/2025/art_ab552360b92f43ccbeb0054d2715768b.html",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Texto oficial abierto y leído. Distinguir conferencia 18/12/2025 y publicación 23/12/2025. La respuesta acredita que MOFCOM informó aprobación de algunas licencias generales; no identifica universo de empresas, destinos, volumen o acceso uniforme de Estados Unidos.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-csis-tierras-raras-20260427",
+          "medio": "Center for Strategic and International Studies (CSIS)",
+          "titulo": "Rare Earth Export Restrictions One Year Later",
+          "fecha": "2026-04-27",
+          "url": "https://www.csis.org/analysis/rare-earth-export-restrictions-one-year-later",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis original de Gracelin Baskaran y Meredith Schwartz leído. Diagnóstico con corte de abril 2026 y evaluación experta de resiliencia. No trasladar cifras al 01/10/2026 ni inferir efectos actuales sin datos posteriores.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-continuacion-emergencia-inversion-20260805",
+          "medio": "Federal Register / The White House",
+          "titulo": "Continuation of the National Emergency With Respect to the Advancement by Countries of Concern in Sensitive Technologies and Products Critical for the Military, Intelligence, Surveillance, or Cyber-Enabled Capabilities of Such Countries",
+          "fecha": "2026-08-05",
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-05/pdf/2026-16015.pdf",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "documento_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "PDF oficial leído y enlazado desde Program Regulations de Treasury. Aviso 03/08/2026, publicación 05/08/2026. Continúa la emergencia E.O. 14105 durante un año más allá del 09/08/2026; no equivale a una nueva prohibición general.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
         }
       ],
       "senales": [
-        {
-          "id": "sig-eeuu-china-inversion-saliente-20250102",
-          "fecha": "2025-01-02",
-          "titulo": "Inicio del programa estadounidense de inversión saliente en tecnologías sensibles",
-          "descripcion": "Hecho: la norma fijó vigencia desde 02/01/2025 para prohibiciones y notificaciones de determinadas inversiones vinculadas a semiconductores, cuántica e IA en entidades cubiertas relacionadas con China, Hong Kong y Macao. Inferencia: el capital entra en la selección estratégica. No prueba caída de flujos.",
-          "fuente_ids": [
-            "src-eeuu-china-treasury-inversion-20241028"
-          ],
-          "tipo": "cambio_regulatorio",
-          "estado_revision": "verificada",
-          "origen": "ia",
-          "intensidad": null,
-          "localizaciones": [
-            "Estados Unidos",
-            "China"
-          ],
-          "propietario_macroevento_id": "eeuu-china-competencia-geoeconomica-interdependencias"
-        },
-        {
-          "id": "sig-eeuu-china-tierras-raras-licencias-20250404",
-          "fecha": "2025-04-04",
-          "titulo": "China incorpora licencias para artículos de siete tierras raras",
-          "descripcion": "Hecho: el anuncio establece controles de exportación para artículos de siete tierras raras y ciertos compuestos e imanes. Inferencia: el acceso material puede convertirse en instrumento de negociación. No es prohibición universal ni prueba de escasez efectiva; hito histórico.",
-          "fuente_ids": [
-            "src-eeuu-china-mofcom-licencias-20250404"
-          ],
-          "tipo": "control_exportaciones",
-          "estado_revision": "verificada",
-          "origen": "ia",
-          "intensidad": null,
-          "localizaciones": [
-            "China",
-            "Global"
-          ],
-          "propietario_macroevento_id": "eeuu-china-competencia-geoeconomica-interdependencias"
-        },
         {
           "id": "sig-eeuu-china-boards-comercio-inversion-20260516",
           "fecha": "2026-05-16",
@@ -28895,46 +29055,6 @@
           "fuente_ids": [
             "src-eeuu-china-mofcom-boards-20260516",
             "src-eeuu-china-whitehouse-boards-20260517"
-          ],
-          "tipo": "acuerdo_politico",
-          "estado_revision": "pendiente",
-          "origen": "ia",
-          "intensidad": null,
-          "localizaciones": [
-            "Estados Unidos",
-            "China"
-          ],
-          "propietario_macroevento_id": "eeuu-china-competencia-geoeconomica-interdependencias"
-        },
-        {
-          "id": "sig-eeuu-china-30for30-procedimientos-20260927",
-          "fecha": "2026-09-27",
-          "titulo": "Procedimientos y recomendaciones comerciales del marco 30-for-30",
-          "descripcion": "Hecho: se publican procedimientos y listas recomendadas, de valor comparable aproximado de USD 30.000 millones por lado sobre comercio de referencia de 2024. El trato arancelario futuro depende de procedimientos nacionales. Inferencia: segmentación de productos sensibles y no sensibles; no son rebajas ya aplicadas ni comercio adicional.",
-          "fuente_ids": [
-            "src-eeuu-china-ustr-30for30-20260927",
-            "src-eeuu-china-30for30-terms-20260927",
-            "src-eeuu-china-board-procedures-20260927",
-            "src-eeuu-china-afp-cna-20260928"
-          ],
-          "tipo": "evidencia_documental",
-          "estado_revision": "verificada",
-          "origen": "ia",
-          "intensidad": null,
-          "localizaciones": [
-            "Estados Unidos",
-            "China"
-          ],
-          "propietario_macroevento_id": "eeuu-china-competencia-geoeconomica-interdependencias"
-        },
-        {
-          "id": "sig-eeuu-china-dialogo-incidentes-ia-20260925",
-          "fecha": "2026-09-25",
-          "titulo": "Acuerdo anunciado sobre diálogo bilateral y canal de incidentes de IA",
-          "descripcion": "Hecho documental: Estados Unidos anunció un diálogo sobre riesgos y beneficios de IA, un intercambio previsto para noviembre de 2026 y el acuerdo de crear un canal bilateral para incidentes. China confirmó esos compromisos el 26/09. La fecha identifica el anuncio estadounidense al cierre de la visita a Washington. Inferencia de trabajo: se abre cooperación selectiva para gestionar riesgos dentro de la competencia tecnológica. No se acredita funcionamiento, normas comunes ni alianza tecnológica.",
-          "fuente_ids": [
-            "src-eeuu-china-whitehouse-ia-20260925",
-            "src-eeuu-china-mision-onu-ia-20260926"
           ],
           "tipo": "acuerdo_politico",
           "estado_revision": "verificada",
@@ -29025,44 +29145,10 @@
           ]
         },
         {
-          "advertencia_id": "adv-eeuu-china-ejecucion-30for30",
-          "descripcion": "No publicar que USD 60.000 millones son compras ejecutadas, comercio adicional o que las rebajas ya rigen. Se trata de valor de referencia y recomendaciones; verificar procedimientos, tasas, fechas y flujos efectivos.",
-          "tipo": "inferencia_fragil",
-          "signal_ids": [
-            "sig-eeuu-china-30for30-procedimientos-20260927"
-          ],
-          "fuente_ids": [
-            "src-eeuu-china-ustr-30for30-20260927",
-            "src-eeuu-china-30for30-terms-20260927",
-            "src-eeuu-china-afp-cna-20260928"
-          ],
-          "estado": "pendiente",
-          "tratamiento": "relevante",
-          "prioridad": "media",
-          "notas_editoriales": "Limitación conservada para seguimiento. El artículo distingue hechos, inferencias y escenarios y explicita el alcance de la evidencia.",
-          "creada_el": "2026-09-29T00:00:00Z",
-          "actualizada_el": "2026-10-01T09:22:21.157Z",
-          "resuelta_el": null,
-          "resuelta_con_fuente_ids": [],
-          "resolucion": null,
-          "historial": [
-            {
-              "cambio_id": "adv-eeuu-china-ejecucion-30for30-incorporada-20261001",
-              "accion": "incorporada_desde_analisis",
-              "detalle": "Advertencia conservada del candidato durante su incorporación autorizada.",
-              "realizada_el": "2026-10-01T09:22:21.157Z",
-              "realizada_por": "Codex"
-            }
-          ]
-        },
-        {
           "advertencia_id": "adv-eeuu-china-vigencia-normas",
-          "descripcion": "Los documentos de 2024–2025 acreditan decisiones históricas. Falta cronología completa de suspensiones, licencias generales y reformas para describir el régimen vigente al 29/09/2026.",
+          "descripcion": "La cronología incorporada distingue inicio del programa saliente, COINS, prórroga de la emergencia, licencias y suspensiones parciales. No constituye inventario exhaustivo de reformas ni acredita cada acto de ejecución del arreglo anunciado para enero de 2027. Las señales históricas conservan sus IDs y ahora se consultan por referencias en los complementos de inversión y tierras raras.",
           "tipo": "laguna_evidencia",
-          "signal_ids": [
-            "sig-eeuu-china-inversion-saliente-20250102",
-            "sig-eeuu-china-tierras-raras-licencias-20250404"
-          ],
+          "signal_ids": [],
           "fuente_ids": [
             "src-eeuu-china-treasury-inversion-20241028",
             "src-eeuu-china-mofcom-licencias-20250404"
@@ -29072,7 +29158,7 @@
           "prioridad": "media",
           "notas_editoriales": "Limitación conservada para seguimiento. El artículo distingue hechos, inferencias y escenarios y explicita el alcance de la evidencia.",
           "creada_el": "2026-09-29T00:00:00Z",
-          "actualizada_el": "2026-10-01T09:22:21.157Z",
+          "actualizada_el": "2026-10-01T10:14:33.130Z",
           "resuelta_el": null,
           "resuelta_con_fuente_ids": [],
           "resolucion": null,
@@ -29082,6 +29168,13 @@
               "accion": "incorporada_desde_analisis",
               "detalle": "Advertencia conservada del candidato durante su incorporación autorizada.",
               "realizada_el": "2026-10-01T09:22:21.157Z",
+              "realizada_por": "Codex"
+            },
+            {
+              "cambio_id": "adv-eeuu-china-vigencia-normas-complecion-20261001",
+              "accion": "actualizada",
+              "detalle": "Ampliación de cronología acotada y traslado de señales a sus complementos; se conserva la limitación de exhaustividad.",
+              "realizada_el": "2026-10-01T10:14:33.130Z",
               "realizada_por": "Codex"
             }
           ]
@@ -29135,38 +29228,6 @@
               "realizada_por": "Codex"
             }
           ]
-        },
-        {
-          "advertencia_id": "adv-eeuu-china-ia-alcance-evidencia",
-          "descripcion": "Diálogo y canal anunciados no acreditan operatividad, alianza tecnológica ni normas comunes. Las propuestas de Graylin y las reservas de Christensen se atribuyen y contrastan; no forman un consenso. Actualizar estados con evidencia fechada, sin asignar probabilidades automáticas.",
-          "tipo": "inferencia_fragil",
-          "signal_ids": [
-            "sig-eeuu-china-dialogo-incidentes-ia-20260925"
-          ],
-          "fuente_ids": [
-            "src-eeuu-china-whitehouse-ia-20260925",
-            "src-eeuu-china-mision-onu-ia-20260926",
-            "src-eeuu-china-asiasociety-ia-20260929",
-            "src-eeuu-china-csis-ia-20260928"
-          ],
-          "estado": "pendiente",
-          "tratamiento": "relevante",
-          "prioridad": "media",
-          "notas_editoriales": "Limitación conservada para seguimiento. El artículo distingue hechos, inferencias y escenarios y explicita el alcance de la evidencia.",
-          "creada_el": "2026-09-30T00:00:00Z",
-          "actualizada_el": "2026-10-01T09:22:21.157Z",
-          "resuelta_el": null,
-          "resuelta_con_fuente_ids": [],
-          "resolucion": null,
-          "historial": [
-            {
-              "cambio_id": "adv-eeuu-china-ia-alcance-evidencia-incorporada-20261001",
-              "accion": "incorporada_desde_analisis",
-              "detalle": "Advertencia conservada del candidato durante su incorporación autorizada.",
-              "realizada_el": "2026-10-01T09:22:21.157Z",
-              "realizada_por": "Codex"
-            }
-          ]
         }
       ],
       "descripcion": "Washington y Beijing combinan restricciones estratégicas, negociación comercial y un diálogo sobre riesgos de IA. Los acuerdos anunciados permiten considerar una cooperación selectiva, pero su ejecución y continuidad todavía deben comprobarse.",
@@ -29204,18 +29265,20 @@
           "id": "param-eeuu-china-cooperacion-riesgos-ia",
           "nombre": "Cooperación bilateral para gestionar riesgos de IA",
           "tipo": "cualitativo_condicional",
-          "fecha_evaluacion": "2026-09-30",
-          "estado_actual": "anunciada",
-          "lectura_actual": "Acuerdo anunciado; ejecución operativa aún no verificada. Apoyo inicial al escenario de competencia administrada, limitado a la apertura institucional.",
-          "pregunta": "¿El diálogo anunciado produce mecanismos verificables y sostenidos de gestión de riesgos compartidos?",
+          "fecha_evaluacion": "2026-10-01",
+          "estado_actual": "dialogo_inicial_reportado",
+          "lectura_actual": "MOFCOM informó el 28/09/2026 que se realizó un primer diálogo. La operación del canal de incidentes acordado sigue sin verificarse. La apertura institucional respalda de forma acotada la competencia administrada; no acredita eficacia ni alianza tecnológica.",
+          "pregunta": "¿El diálogo iniciado, según la información oficial china, produce mecanismos verificables y sostenidos de gestión de riesgos compartidos?",
           "senal_ids": [
-            "sig-eeuu-china-dialogo-incidentes-ia-20260925"
+            "sig-eeuu-china-dialogo-incidentes-ia-20260925",
+            "sig-eeuu-china-ginebra-riesgos-ia-20240514"
           ],
           "fuente_ids": [
             "src-eeuu-china-whitehouse-ia-20260925",
             "src-eeuu-china-mision-onu-ia-20260926",
             "src-eeuu-china-asiasociety-ia-20260929",
-            "src-eeuu-china-csis-ia-20260928"
+            "src-eeuu-china-csis-ia-20260928",
+            "src-eeuu-china-mofcom-octava-ronda-20260928"
           ],
           "analisis_experto_ids": [
             "op-eeuu-china-ia-graylin-20260929",
@@ -29229,6 +29292,11 @@
               "estado": "anunciada",
               "evidencia_necesaria": "Compromisos oficiales sin verificación suficiente de funcionamiento.",
               "efecto": "Apoyo inicial y acotado a competencia administrada; no acredita reducción efectiva del riesgo."
+            },
+            {
+              "estado": "dialogo_inicial_reportado",
+              "evidencia_necesaria": "Una fuente oficial informa un primer intercambio realizado; identificar atribución y límites de corroboración. La operación del canal se evalúa por separado.",
+              "efecto": "La interlocución supera el mero calendario anunciado, pero aún no prueba un mecanismo operativo de gestión de incidentes."
             },
             {
               "estado": "operativa",
@@ -29288,10 +29356,11 @@
             "horizonte_operativo": "Octubre–diciembre de 2026; revisar persistencia en marzo de 2027. No extrapolar automáticamente al horizonte estructural de 3–10 años.",
             "hito_oficial": {
               "periodo": "2026-11",
-              "descripcion": "Próximo intercambio bilateral previsto para noviembre; los comunicados difieren entre en noviembre y para noviembre.",
+              "descripcion": "Próximo intercambio previsto para noviembre de 2026; MOFCOM precisa antes de finalizar el mes. Verificar realización y resultados, por separado del funcionamiento del canal.",
               "fuente_ids": [
                 "src-eeuu-china-whitehouse-ia-20260925",
-                "src-eeuu-china-mision-onu-ia-20260926"
+                "src-eeuu-china-mision-onu-ia-20260926",
+                "src-eeuu-china-mofcom-octava-ronda-20260928"
               ]
             },
             "cortes_editoriales_propuestos": [
@@ -29394,8 +29463,1488 @@
             "analisis_expertos",
             "estado_evaluacion"
           ]
+        },
+        {
+          "lote_id": "complecion-eeuu-china-20261001",
+          "actualizado_el": "2026-10-01T10:14:33.130Z",
+          "origen": "mixto",
+          "candidato_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+          "candidato_titulo": "Competencia geoeconómica y tecnológica entre Estados Unidos y China y reorganización de las interdependencias estratégicas",
+          "tipo_evolucion": "ampliacion",
+          "justificacion": "Cuatro complementos propios, cuatro señales trasladadas conservando IDs y cinco antecedentes únicos añadidos a sus expedientes. Se conservan los tres vínculos transversales y una sola definición del parámetro IA. Preparación en beta para futura revisión de pase a main.",
+          "fuente_ids_agregadas": [
+            "src-eeuu-china-ginebra-ia-20240515",
+            "src-eeuu-china-mofcom-octava-ronda-20260928",
+            "src-eeuu-china-treasury-coins-faq-20251223",
+            "src-eeuu-china-treasury-pilkerton-20260422",
+            "src-eeuu-china-rhodium-inversion-20260430",
+            "src-eeuu-china-mofcom-suspension70-20251107",
+            "src-eeuu-china-mofcom-licencias-generales-20251223",
+            "src-eeuu-china-csis-tierras-raras-20260427",
+            "src-eeuu-china-continuacion-emergencia-inversion-20260805"
+          ],
+          "senal_ids_agregadas": [],
+          "advertencia_ids_agregadas": [],
+          "campos_modificados": [
+            "referencias_senal",
+            "fuentes",
+            "senales",
+            "advertencias",
+            "escenarios",
+            "parametros_pronostico",
+            "nota_fecha_corte"
+          ]
         }
       ]
+    },
+    {
+      "id": "eeuu-china-cooperacion-riesgos-ia",
+      "titulo": "Cooperación EE. UU.–China para gestionar riesgos de inteligencia artificial",
+      "tipo_proceso": "tendencia_estructural",
+      "estado_editorial": "publicado",
+      "estado_verificacion": "verificada",
+      "fecha_corte": "2026-10-01",
+      "regiones": [
+        "Global",
+        "Estados Unidos",
+        "China"
+      ],
+      "categoria": "tecnologia_soberania_digital",
+      "tema_ids": [
+        71,
+        83
+      ],
+      "clasificacion_tematica": {
+        "origen": "mixto",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-10-01"
+      },
+      "descripcion": "Según el Ministerio de Comercio chino, Washington y Beijing ya realizaron un primer diálogo sobre riesgos y beneficios de la IA. Su continuidad y la operación del canal de incidentes permitirán evaluar si la apertura diplomática produce una cooperación verificable entre competidores.",
+      "por_que_importa": "Procedimientos de comunicación utilizables podrían reducir incertidumbre ante incidentes de IA entre competidores. Su eficacia depende de interlocutores, reciprocidad y continuidad; no requiere una alianza industrial ni demuestra que la competencia tecnológica se atenúe.",
+      "definicion_operativa": "Institucionalización de reuniones, protocolos y canales bilaterales dedicados a riesgos de IA, diferenciando anuncio, intercambio realizado, operación comprobada y resultados.",
+      "delimitacion_exclusiones": [
+        "No cubre investigación conjunta, reparto de modelos, acceso a chips ni apertura industrial sin acuerdos específicos.",
+        "Mando nuclear e IA militar conservan sus expedientes; Ginebra de 2024 es un antecedente bajo otra administración estadounidense.",
+        "La cordialidad presidencial facilita interlocución, pero no acredita continuidad institucional ni reducción de riesgos.",
+        "El parámetro cualitativo de cooperación se mantiene en una sola definición canónica en el rector EE. UU.–China; esta ficha desarrolla su mecanismo y evidencia."
+      ],
+      "pregunta_seguimiento": "China informó que ya se realizó un primer diálogo. La prueba siguiente será convertir el compromiso de comunicar incidentes en una capacidad de respuesta sostenida.",
+      "hipotesis_principal": "El reconocimiento de riesgos comunes puede sostener cooperación funcional limitada incluso bajo competencia tecnológica. La apertura de conversaciones respalda esa posibilidad, mientras que la capacidad de gestionar incidentes requiere pruebas adicionales.",
+      "hipotesis_alternativas": [
+        "El diálogo funciona principalmente como señal diplomática y no se traduce en procedimientos utilizables.",
+        "Intercambios técnicos limitados perduran sin producir normas compartidas ni ampliar la cooperación industrial.",
+        "Divergencias sobre riesgos, confidencialidad o verificación bloquean el funcionamiento del canal."
+      ],
+      "mecanismo_causal": "Riesgos compartidos generan incentivos para dialogar; interlocutores y protocolos permiten intercambiar información; pruebas o usos del canal revelan si reduce incertidumbre o facilita respuestas. Cada transición debe observarse por separado.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+      "macroevento_rector_ids": [
+        "eeuu-china-competencia-geoeconomica-interdependencias"
+      ],
+      "macroevento_relacionado_ids": [],
+      "claves_estructurales": [
+        "Gestión compartida de riesgos y competencia por capacidades pueden coexistir.",
+        "Diálogo realizado y canal operativo son hitos diferentes.",
+        "Las opiniones expertas orientan escenarios; la evidencia determina el estado observado."
+      ],
+      "actores": [
+        "Estados Unidos",
+        "China",
+        "U.S. Department of the Treasury",
+        "Consejo de Estado de China",
+        "Desarrolladores de inteligencia artificial",
+        "Comunidades de investigación en seguridad de IA"
+      ],
+      "intereses": [
+        "Gobiernos buscan contener riesgos sin ceder ventajas tecnológicas.",
+        "Desarrolladores necesitan claridad sobre incidentes y protección de información sensible.",
+        "Expertos proponen evaluación y comunicación verificables, con enfoques distintos sobre su viabilidad."
+      ],
+      "horizonte": {
+        "min_anios": 1,
+        "max_anios": 3
+      },
+      "escenarios": {
+        "base": "Continúan intercambios selectivos, mientras se negocian detalles del canal. Competencia administrada con cooperación acotada, sin probabilidad asignada.",
+        "adverso": "Aplazamientos, desacuerdos o suspensión documentada impiden consolidar procedimientos y reducen capacidad de comunicación. El silencio público no demuestra ruptura.",
+        "transformador": "El canal se prueba o utiliza y la continuidad permite acuerdos técnicos verificables. La cooperación en seguridad gana estabilidad sin implicar alianza tecnológica.",
+        "reversion": "Las partes interrumpen expresamente el mecanismo o abandonan compromisos; se revisa el apoyo inicial a la institucionalización."
+      },
+      "indicadores": [
+        "Realización y resultados del próximo intercambio previsto para noviembre de 2026.",
+        "Interlocutores, protocolos, alcance y condiciones de comunicación de incidentes.",
+        "Prueba o utilización documentada del canal y respuesta recíproca.",
+        "Continuidad entre reuniones y acuerdos técnicos efectivamente adoptados.",
+        "Desacuerdos, suspensión o abandono expresamente documentados."
+      ],
+      "indicadores_fortalecimiento": [
+        "Responsables y procedimientos identificables, con evidencia de prueba o uso.",
+        "Continuidad de intercambios y resultados que ambas partes reconocen."
+      ],
+      "indicadores_debilitamiento": [
+        "Aplazamientos reiterados acompañados de desacuerdos documentados.",
+        "Suspensión explícita o ausencia documentada de implementación; no mera falta de noticias."
+      ],
+      "condiciones_refutacion": [
+        "La suspensión o el abandono documentados debilitan la hipótesis de institucionalización.",
+        "Si un canal operativo no mejora la información o gestión de incidentes, revisar el mecanismo causal, sin atribuir contención por su sola existencia.",
+        "Si los acuerdos no se extienden a capacidades industriales, descartar inferencias de alianza tecnológica, aunque continúe la cooperación de seguridad."
+      ],
+      "incertidumbres": [
+        "La celebración del primer diálogo de 2026 está informada por MOFCOM; no se ha verificado un acta técnica conjunta.",
+        "Protocolos, pruebas y operación del canal no verificados al corte.",
+        "Diferencias en la definición de riesgos, confidencialidad y métodos de comprobación.",
+        "Persistencia institucional más allá de la relación presidencial."
+      ],
+      "evaluacion": null,
+      "palabras_clave": [
+        "seguridad de IA",
+        "diálogo bilateral",
+        "canal de incidentes",
+        "cooperación selectiva",
+        "Ginebra"
+      ],
+      "fuentes": [
+        {
+          "id": "src-eeuu-china-ginebra-ia-20240515",
+          "medio": "The White House (archivo administración Biden)",
+          "titulo": "Statement from NSC Spokesperson Adrienne Watson on the U.S.-PRC Talks on AI Risk and Safety",
+          "fecha": "2024-05-15",
+          "url": "https://bidenwhitehouse.archives.gov/briefing-room/statements-releases/2024/05/15/statement-from-nsc-spokesperson-adrienne-watson-on-the-u-s-prc-talks-on-ai-risk-and-safety-2/",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado original del archivo presidencial leído. Documenta la reunión celebrada en Ginebra el 14/05/2024; fecha de publicación 15/05/2024. Hito histórico, sin inferir continuidad ni canal de incidentes operativo.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mofcom-octava-ronda-20260928",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "Interpretación de los resultados de la octava ronda de consultas económicas y comerciales entre China y Estados Unidos",
+          "fecha": "2026-09-28",
+          "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_cd060e0649964da8ae13216c3bb1a645.html",
+          "idioma": "zh",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado original chino leído; traducción de trabajo propia. Informa primer diálogo IA, próximo antes de terminar noviembre, y prórroga del arreglo de Kuala Lumpur al 10/01/2027. Atribuir a MOFCOM. No acredita funcionamiento del canal, rebajas ya aplicadas ni enmienda de cada norma.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-asiasociety-ia-20260929",
+          "medio": "Asia Society / Center for China Analysis",
+          "titulo": "What Actually Happened at the Xi-Trump Summit",
+          "fecha": "2026-09-29",
+          "url": "https://centerforchinaanalysis.asiasociety.org/p/what-actually-happened-at-the-xi",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis leído. Se usan las contribuciones atribuidas a Alvin Wang Graylin y Neil Thomas. Comparten publicación: no se cuentan como dos corroboraciones independientes. Las propuestas de protocolos, definiciones y evaluaciones no son acuerdos adoptados. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-csis-ia-20260928",
+          "medio": "Center for Strategic and International Studies (CSIS)",
+          "titulo": "Takeaways from the Trump-Xi White House Summit",
+          "fecha": "2026-09-28",
+          "url": "https://www.csis.org/analysis/takeaways-trump-xi-white-house-summit",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis leído. Se usa la contribución de Thomas J. Christensen: hay incentivos para cooperar ante pérdida de control, pero prevé límites por divergencias sobre cómo y por qué cooperar. Opinión atribuida, no consenso ni probabilidad medida. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-whitehouse-ia-20260925",
+          "medio": "The White House",
+          "titulo": "Fact Sheet: President Donald J. Trump Advances a Fair and Reciprocal Relationship with China While Hosting Historic State Visit",
+          "fecha": "2026-09-25",
+          "url": "https://www.whitehouse.gov/fact-sheets/2026/09/fact-sheet-president-donald-j-trump-advances-a-fair-and-reciprocal-relationship-with-china-while-hosting-historic-state-visit/",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado oficial leído: anuncia diálogo sobre riesgos y beneficios, próximo intercambio para noviembre y acuerdo de crear un canal de incidentes. Acredita compromisos anunciados, no funcionamiento. Washington usa la denominación Super Intelligence; no se infiere de esa etiqueta una capacidad técnica alcanzada. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mision-onu-ia-20260926",
+          "medio": "Permanent Mission of the People’s Republic of China to the UN",
+          "titulo": "China and the United States Reach Eight Deliverables and Understandings",
+          "fecha": "2026-09-26",
+          "url": "https://un.china-mission.gov.cn/eng/zgyw/202609/t20260926_12031663.htm",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado oficial leído, punto 7: coincide con Estados Unidos en diálogo, intercambio en noviembre de 2026 y canal de incidentes. Es la posición de la otra parte sobre el mismo acuerdo; no una segunda señal ni una auditoría independiente de ejecución. La visita ocurrió en Washington del 23 al 25 de septiembre; el dominio de la misión ante ONU no sitúa la cumbre en la ONU. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        }
+      ],
+      "actualizaciones": [
+        {
+          "lote_id": "complecion-eeuu-china-20261001",
+          "actualizado_el": "2026-10-01T10:14:33.130Z",
+          "origen": "mixto",
+          "candidato_id": "eeuu-china-cooperacion-riesgos-ia",
+          "candidato_titulo": "Cooperación EE. UU.–China para gestionar riesgos de inteligencia artificial",
+          "tipo_evolucion": "ampliacion",
+          "justificacion": "Proceso propio incorporado por solicitud del usuario. Conserva la identidad de su señal previa, añade evidencia delimitada y análisis autónomo; sin valoración automática.",
+          "fuente_ids_agregadas": [
+            "src-eeuu-china-ginebra-ia-20240515",
+            "src-eeuu-china-mofcom-octava-ronda-20260928",
+            "src-eeuu-china-asiasociety-ia-20260929",
+            "src-eeuu-china-csis-ia-20260928",
+            "src-eeuu-china-whitehouse-ia-20260925",
+            "src-eeuu-china-mision-onu-ia-20260926"
+          ],
+          "senal_ids_agregadas": [
+            "sig-eeuu-china-dialogo-incidentes-ia-20260925",
+            "sig-eeuu-china-ginebra-riesgos-ia-20240514"
+          ],
+          "advertencia_ids_agregadas": [
+            "adv-eeuu-china-ia-alcance-evidencia"
+          ],
+          "campos_modificados": [
+            "expediente",
+            "jerarquia",
+            "senales",
+            "fuentes",
+            "publicacion"
+          ]
+        }
+      ],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-eeuu-china-ia-alcance-evidencia",
+          "descripcion": "MOFCOM reporta un primer diálogo; el canal de incidentes continúa sin verificación operativa. No inferir alianza ni normas comunes. Las propuestas de Graylin y reservas de Christensen son opiniones atribuidas, sin consenso ni probabilidades automáticas.",
+          "tipo": "inferencia_fragil",
+          "signal_ids": [
+            "sig-eeuu-china-dialogo-incidentes-ia-20260925"
+          ],
+          "fuente_ids": [
+            "src-eeuu-china-whitehouse-ia-20260925",
+            "src-eeuu-china-mision-onu-ia-20260926",
+            "src-eeuu-china-asiasociety-ia-20260929",
+            "src-eeuu-china-csis-ia-20260928"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "media",
+          "notas_editoriales": "Limitación conservada para seguimiento. El artículo distingue hechos, inferencias y escenarios y explicita el alcance de la evidencia. Trasladada junto a su señal al complemento propio, conservando ID y condición pendiente.",
+          "creada_el": "2026-09-30T00:00:00Z",
+          "actualizada_el": "2026-10-01T10:14:33.130Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "adv-eeuu-china-ia-alcance-evidencia-incorporada-20261001",
+              "accion": "incorporada_desde_analisis",
+              "detalle": "Advertencia conservada del candidato durante su incorporación autorizada.",
+              "realizada_el": "2026-10-01T09:22:21.157Z",
+              "realizada_por": "Codex"
+            },
+            {
+              "cambio_id": "adv-eeuu-china-ia-alcance-evidencia-complemento-20261001",
+              "accion": "actualizada",
+              "detalle": "Cambio de expediente propietario junto a la señal; la limitación permanece pendiente.",
+              "realizada_el": "2026-10-01T10:14:33.130Z",
+              "realizada_por": "Codex"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": [],
+      "referencias_senal": [],
+      "senales": [
+        {
+          "id": "sig-eeuu-china-dialogo-incidentes-ia-20260925",
+          "fecha": "2026-09-25",
+          "titulo": "Acuerdo anunciado sobre diálogo bilateral y canal de incidentes de IA",
+          "descripcion": "Hecho documental: Estados Unidos anunció el 25/09/2026 un diálogo sobre riesgos y beneficios de IA, otro intercambio previsto para noviembre y el acuerdo de crear un canal bilateral de incidentes. China confirmó los compromisos el 26/09; MOFCOM informó el 28/09 que ya se había realizado un primer diálogo. La fecha de señal identifica el anuncio estadounidense, no una fecha exacta atribuida a esa primera reunión. Inferencia: apertura de cooperación selectiva dentro de la competencia. No se ha verificado operación del canal, normas comunes ni alianza tecnológica.",
+          "fuente_ids": [
+            "src-eeuu-china-whitehouse-ia-20260925",
+            "src-eeuu-china-mision-onu-ia-20260926",
+            "src-eeuu-china-mofcom-octava-ronda-20260928"
+          ],
+          "tipo": "acuerdo_politico",
+          "estado_revision": "verificada",
+          "origen": "ia",
+          "intensidad": null,
+          "localizaciones": [
+            "Estados Unidos",
+            "China"
+          ],
+          "propietario_macroevento_id": "eeuu-china-cooperacion-riesgos-ia"
+        },
+        {
+          "id": "sig-eeuu-china-ginebra-riesgos-ia-20240514",
+          "fecha": "2024-05-14",
+          "titulo": "Antecedente bilateral de Ginebra sobre riesgos y seguridad de IA",
+          "descripcion": "Hecho: delegaciones interinstitucionales de Estados Unidos y China se reunieron en Ginebra para intercambiar enfoques sobre riesgos y seguridad de IA, según el comunicado estadounidense del 15/05/2024. Inferencia: hay un antecedente institucional anterior a la apertura de 2026. Límite: esta reunión no demuestra continuidad posterior, normas comunes ni un canal operativo de incidentes.",
+          "fuente_ids": [
+            "src-eeuu-china-ginebra-ia-20240515"
+          ],
+          "tipo": "cooperacion",
+          "estado_revision": "verificada",
+          "origen": "ia",
+          "intensidad": null,
+          "localizaciones": [
+            "Estados Unidos",
+            "China"
+          ],
+          "propietario_macroevento_id": "eeuu-china-cooperacion-riesgos-ia"
+        }
+      ],
+      "publicacion": {
+        "estado": "publicado",
+        "publicado_el": "2026-10-01",
+        "actualizado_el": "2026-10-01"
+      },
+      "nota_fecha_corte": "Revisión focalizada al 01/10/2026 de cuatro mecanismos propios: riesgos de IA, inversión saliente, comercio no sensible y licencias de tierras raras. Se contrastan hitos históricos y anuncios recientes; no se afirma inventario normativo exhaustivo ni ejecución de compromisos sin evidencia específica.",
+      "estado_seguimiento": "en_seguimiento",
+      "estado_evaluacion": "no_asignada",
+      "clasificacion": {
+        "tema_principal_id": "diplomacia-gobernanza",
+        "tema_secundario_ids": [
+          "tecnologia-poder-digital"
+        ],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "USA",
+            "CHN"
+          ],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "estados-unidos",
+          "china"
+        ],
+        "etiqueta_ids": []
+      }
+    },
+    {
+      "id": "eeuu-china-inversion-saliente-tecnologias-sensibles",
+      "titulo": "Inversión estadounidense en tecnologías sensibles de China: restricciones y acceso a capital",
+      "tipo_proceso": "tendencia_estructural",
+      "estado_editorial": "publicado",
+      "estado_verificacion": "verificada",
+      "fecha_corte": "2026-10-01",
+      "regiones": [
+        "Global",
+        "Estados Unidos",
+        "China"
+      ],
+      "categoria": "comercio_finanzas_sanciones",
+      "tema_ids": [
+        94,
+        69,
+        71,
+        73
+      ],
+      "clasificacion_tematica": {
+        "origen": "mixto",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-10-01"
+      },
+      "descripcion": "Los controles a determinadas inversiones estadounidenses en tecnologías sensibles siguen una trayectoria propia dentro de la relación con China. El diálogo bilateral puede explorar oportunidades, pero no acredita la eliminación de restricciones ni una recuperación de los flujos de capital.",
+      "por_que_importa": "La inversión puede aportar capital, conocimientos y acceso empresarial. Su selección por seguridad afecta decisiones de financiación y organización de operaciones; las restricciones y el diálogo no demuestran por sí solos una caída de flujos ni una recuperación del acceso.",
+      "definicion_operativa": "Cambios normativos y de aplicación de la regulación estadounidense de inversión saliente hacia entidades cubiertas relacionadas con China, distinguidos de negociación diplomática y resultados empresariales.",
+      "delimitacion_exclusiones": [
+        "La unidad principal es la inversión estadounidense saliente; CFIUS y la inversión china entrante no son el mismo régimen.",
+        "No confundir restricción de transacciones cubiertas con prohibición general de invertir en China.",
+        "Los controles de exportación y la capacidad industrial de semiconductores permanecen en el expediente de Indo-Pacífico.",
+        "El Board of Investment se observa como interlocución bajo legislación existente, sin presumir proyectos aprobados ni derogación de controles."
+      ],
+      "pregunta_seguimiento": "La negociación de oportunidades de inversión convive con controles estadounidenses y una transición normativa que debe seguirse por separado.",
+      "hipotesis_principal": "La seguridad nacional mantiene una selección de transacciones sensibles aun cuando se negocien oportunidades bilaterales. Su efecto económico depende de alcance, excepciones, cumplimiento y respuesta empresarial.",
+      "hipotesis_alternativas": [
+        "Demanda, costos y rentabilidad explican más cambios de inversión que la regulación de seguridad.",
+        "Las restricciones se concentran en pocas transacciones y coexisten con intercambios permitidos amplios.",
+        "Reformas y excepciones aclaran o reducen fricciones sin eliminar la selección estratégica."
+      ],
+      "mecanismo_causal": "La definición de transacciones cubiertas impone prohibición, notificación y diligencia; los inversores ajustan estructuras y decisiones; financiación y conocimientos asociados pueden cambiar. Demanda, rentabilidad y otras políticas también influyen en los flujos.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+      "macroevento_rector_ids": [
+        "eeuu-china-competencia-geoeconomica-interdependencias"
+      ],
+      "macroevento_relacionado_ids": [],
+      "claves_estructurales": [
+        "Norma, cumplimiento y efecto sobre flujos son niveles distintos.",
+        "Inversión entrante y saliente requieren evidencia y atribución separadas.",
+        "La negociación bilateral no reemplaza los actos legales internos."
+      ],
+      "actores": [
+        "Estados Unidos",
+        "China",
+        "U.S. Department of the Treasury",
+        "MOFCOM",
+        "Inversores estadounidenses",
+        "Empresas de semiconductores, cuántica e IA"
+      ],
+      "intereses": [
+        "Estados Unidos busca limitar determinados beneficios estratégicos de inversión sin cerrar toda relación económica.",
+        "China y las empresas receptoras buscan financiación y acceso a mercados y conocimientos.",
+        "Inversores buscan rentabilidad y certeza sobre operaciones permitidas y obligaciones."
+      ],
+      "horizonte": {
+        "min_anios": 2,
+        "max_anios": 5
+      },
+      "escenarios": {
+        "base": "Continúa una selección sectorial con transición regulatoria y negociaciones acotadas, sin recuperación o desplome de flujos presupuestos.",
+        "adverso": "Se amplían operaciones restringidas o incertidumbre de cumplimiento y las empresas reducen o desplazan proyectos verificables.",
+        "transformador": "Reglas más claras y acuerdos compatibles con ellas estabilizan acceso permitido; deben observarse operaciones ejecutadas.",
+        "reversion": "Una normalización sostenida reduce el peso de seguridad en las decisiones de capital y obliga a revisar la selección estratégica como causa dominante."
+      },
+      "indicadores": [
+        "Publicación y entrada en vigor de reglas de aplicación de COINS; distinguir consulta, norma final y vigencia.",
+        "Alcance, excepciones, notificaciones y decisiones de cumplimiento documentadas.",
+        "Operaciones anunciadas, aprobadas, canceladas y efectivamente ejecutadas.",
+        "Resultados del Board of Investment y compatibilidad con los regímenes internos.",
+        "Demanda, rentabilidad y políticas chinas como explicaciones alternativas."
+      ],
+      "indicadores_fortalecimiento": [
+        "Decisiones verificables de inversión atribuidas a transacciones cubiertas o incertidumbre regulatoria.",
+        "Ampliación normativa ejecutada y evidencia de cumplimiento."
+      ],
+      "indicadores_debilitamiento": [
+        "Normalización sostenida de operaciones y reducción material de selección por seguridad.",
+        "Resultados empresariales explicados por factores ajenos a la regulación estudiada."
+      ],
+      "condiciones_refutacion": [
+        "Si los cambios de inversión se explican por demanda o costos sin transmisión regulatoria identificable, revisar la atribución causal.",
+        "Una normalización sostenida del acceso con menor selección por seguridad debilita la hipótesis principal.",
+        "Un consejo bilateral sin decisiones o proyectos verificables no prueba apertura efectiva de capital."
+      ],
+      "incertidumbres": [
+        "No se presenta un inventario exhaustivo de cada reforma o decisión individual hasta el corte.",
+        "La información pública no permite atribuir todos los flujos a una sola regulación.",
+        "Alcance final y aplicación de la transición de COINS.",
+        "Mandato efectivo y resultados del consejo de inversión."
+      ],
+      "evaluacion": null,
+      "palabras_clave": [
+        "inversión saliente",
+        "COINS Act",
+        "capital tecnológico",
+        "31 CFR 850",
+        "Board of Investment"
+      ],
+      "fuentes": [
+        {
+          "id": "src-eeuu-china-treasury-coins-faq-20251223",
+          "medio": "U.S. Department of the Treasury",
+          "titulo": "Frequently Asked Questions — Outbound Investment Security Program, XI. COINS Act",
+          "fecha": "2025-12-23",
+          "url": "https://home.treasury.gov/policy-issues/international/outbound-investment-program/frequently-asked-questions",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Sección XI, respuestas 1–2, leída en la página oficial consultada 01/10/2026. Fecha de las respuestas 23/12/2025; ley 18/12/2025. Confirma la explicación de transición regulatoria, sin convertirla en inventario exhaustivo de reformas posteriores.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-continuacion-emergencia-inversion-20260805",
+          "medio": "Federal Register / The White House",
+          "titulo": "Continuation of the National Emergency With Respect to the Advancement by Countries of Concern in Sensitive Technologies and Products Critical for the Military, Intelligence, Surveillance, or Cyber-Enabled Capabilities of Such Countries",
+          "fecha": "2026-08-05",
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-05/pdf/2026-16015.pdf",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "documento_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "PDF oficial leído y enlazado desde Program Regulations de Treasury. Aviso 03/08/2026, publicación 05/08/2026. Continúa la emergencia E.O. 14105 durante un año más allá del 09/08/2026; no equivale a una nueva prohibición general.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-treasury-pilkerton-20260422",
+          "medio": "U.S. Department of the Treasury",
+          "titulo": "Assistant Secretary Chris Pilkerton's Remarks at ACI CFIUS Conference",
+          "fecha": "2026-04-22",
+          "url": "https://home.treasury.gov/news/press-releases/sb0467",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Discurso oficial leído. Expresa prioridades y adaptación del programa saliente conforme a COINS. Distinguir inversión entrante/CFIUS y programa saliente; no tratar el discurso como nueva regla o sanción individual.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-rhodium-inversion-20260430",
+          "medio": "Rhodium Group",
+          "titulo": "Why Chinese FDI in the US Won’t Rebound",
+          "fecha": "2026-04-30",
+          "url": "https://rhg.com/research/why-chinese-fdi-in-the-us-wont-rebound/",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis original de Armand Meyer, Thilo Hanemann, Ian Hutchinson y Danielle Goh leído. Pronóstico cualitativo anterior a la cumbre de septiembre; considera factores regulatorios, políticos y de demanda. No prueba por sí solo efecto causal de una medida concreta.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-whitehouse-ia-20260925",
+          "medio": "The White House",
+          "titulo": "Fact Sheet: President Donald J. Trump Advances a Fair and Reciprocal Relationship with China While Hosting Historic State Visit",
+          "fecha": "2026-09-25",
+          "url": "https://www.whitehouse.gov/fact-sheets/2026/09/fact-sheet-president-donald-j-trump-advances-a-fair-and-reciprocal-relationship-with-china-while-hosting-historic-state-visit/",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado oficial leído: anuncia diálogo sobre riesgos y beneficios, próximo intercambio para noviembre y acuerdo de crear un canal de incidentes. Acredita compromisos anunciados, no funcionamiento. Washington usa la denominación Super Intelligence; no se infiere de esa etiqueta una capacidad técnica alcanzada. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mofcom-octava-ronda-20260928",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "Interpretación de los resultados de la octava ronda de consultas económicas y comerciales entre China y Estados Unidos",
+          "fecha": "2026-09-28",
+          "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_cd060e0649964da8ae13216c3bb1a645.html",
+          "idioma": "zh",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado original chino leído; traducción de trabajo propia. Informa primer diálogo IA, próximo antes de terminar noviembre, y prórroga del arreglo de Kuala Lumpur al 10/01/2027. Atribuir a MOFCOM. No acredita funcionamiento del canal, rebajas ya aplicadas ni enmienda de cada norma.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-treasury-inversion-20241028",
+          "medio": "U.S. Department of the Treasury",
+          "titulo": "Additional Information on Final Regulations Implementing Outbound Investment Executive Order (E.O. 14105)",
+          "fecha": "2024-10-28",
+          "url": "https://home.treasury.gov/news/press-releases/jy2690",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "Texto leído. Hito normativo con vigencia inicial 02/01/2025; no inventariar con esta sola fuente todas las reformas posteriores. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30"
+        },
+        {
+          "id": "src-eeuu-china-asiasociety-ia-20260929",
+          "medio": "Asia Society / Center for China Analysis",
+          "titulo": "What Actually Happened at the Xi-Trump Summit",
+          "fecha": "2026-09-29",
+          "url": "https://centerforchinaanalysis.asiasociety.org/p/what-actually-happened-at-the-xi",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis leído. Se usan las contribuciones atribuidas a Alvin Wang Graylin y Neil Thomas. Comparten publicación: no se cuentan como dos corroboraciones independientes. Las propuestas de protocolos, definiciones y evaluaciones no son acuerdos adoptados. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        }
+      ],
+      "actualizaciones": [
+        {
+          "lote_id": "complecion-eeuu-china-20261001",
+          "actualizado_el": "2026-10-01T10:14:33.130Z",
+          "origen": "mixto",
+          "candidato_id": "eeuu-china-inversion-saliente-tecnologias-sensibles",
+          "candidato_titulo": "Inversión estadounidense en tecnologías sensibles de China: restricciones y acceso a capital",
+          "tipo_evolucion": "ampliacion",
+          "justificacion": "Proceso propio incorporado por solicitud del usuario. Conserva la identidad de su señal previa, añade evidencia delimitada y análisis autónomo; sin valoración automática.",
+          "fuente_ids_agregadas": [
+            "src-eeuu-china-treasury-coins-faq-20251223",
+            "src-eeuu-china-continuacion-emergencia-inversion-20260805",
+            "src-eeuu-china-treasury-pilkerton-20260422",
+            "src-eeuu-china-rhodium-inversion-20260430",
+            "src-eeuu-china-whitehouse-ia-20260925",
+            "src-eeuu-china-mofcom-octava-ronda-20260928",
+            "src-eeuu-china-treasury-inversion-20241028",
+            "src-eeuu-china-asiasociety-ia-20260929"
+          ],
+          "senal_ids_agregadas": [
+            "sig-eeuu-china-inversion-saliente-20250102",
+            "sig-eeuu-china-coins-transicion-20251218",
+            "sig-eeuu-china-continuacion-emergencia-inversion-20260803"
+          ],
+          "advertencia_ids_agregadas": [],
+          "campos_modificados": [
+            "expediente",
+            "jerarquia",
+            "senales",
+            "fuentes",
+            "publicacion"
+          ]
+        }
+      ],
+      "historial_evaluacion": [],
+      "advertencias": [],
+      "excepciones_advertencias": [],
+      "referencias_senal": [
+        {
+          "senal_id": "sig-eeuu-china-boards-comercio-inversion-20260516",
+          "tipo_uso": "contextual",
+          "efecto_segundo_orden": "El antecedente institucional del consejo permite seguir interlocución sobre acceso a capital; no implica derogación del programa saliente ni aprobación de operaciones."
+        }
+      ],
+      "senales": [
+        {
+          "id": "sig-eeuu-china-inversion-saliente-20250102",
+          "fecha": "2025-01-02",
+          "titulo": "Inicio del programa estadounidense de inversión saliente en tecnologías sensibles",
+          "descripcion": "Hecho: la norma fijó vigencia desde 02/01/2025 para prohibiciones y notificaciones de determinadas inversiones vinculadas a semiconductores, cuántica e IA en entidades cubiertas relacionadas con China, Hong Kong y Macao. Inferencia: el capital entra en la selección estratégica. No prueba caída de flujos.",
+          "fuente_ids": [
+            "src-eeuu-china-treasury-inversion-20241028"
+          ],
+          "tipo": "cambio_regulatorio",
+          "estado_revision": "verificada",
+          "origen": "ia",
+          "intensidad": null,
+          "localizaciones": [
+            "Estados Unidos",
+            "China"
+          ],
+          "propietario_macroevento_id": "eeuu-china-inversion-saliente-tecnologias-sensibles"
+        },
+        {
+          "id": "sig-eeuu-china-coins-transicion-20251218",
+          "fecha": "2025-12-18",
+          "titulo": "COINS Act establece una transición para regular la inversión saliente",
+          "descripcion": "Hecho: según las respuestas oficiales del Tesoro publicadas el 23/12/2025, COINS Act se convirtió en ley el 18/12/2025 y dispuso reglamentación en 450 días; las obligaciones existentes continúan hasta la emisión de las nuevas reglas. Inferencia: se refuerza la continuidad institucional de la selección del capital por seguridad. Límite: no es evidencia de reducción efectiva de flujos ni de una nueva regla ya aplicada.",
+          "fuente_ids": [
+            "src-eeuu-china-treasury-coins-faq-20251223"
+          ],
+          "tipo": "cambio_legal",
+          "estado_revision": "verificada",
+          "origen": "ia",
+          "intensidad": null,
+          "localizaciones": [
+            "Estados Unidos",
+            "China"
+          ],
+          "propietario_macroevento_id": "eeuu-china-inversion-saliente-tecnologias-sensibles"
+        },
+        {
+          "id": "sig-eeuu-china-continuacion-emergencia-inversion-20260803",
+          "fecha": "2026-08-03",
+          "titulo": "Prórroga de la emergencia estadounidense vinculada a determinadas inversiones tecnológicas",
+          "descripcion": "Hecho: un aviso presidencial del 03/08/2026, publicado en el Federal Register el 05/08, continúa durante un año la emergencia de E.O. 14105 más allá del 09/08/2026. Inferencia: el fundamento de seguridad del control de determinadas inversiones persiste durante las negociaciones bilaterales. Límite: el aviso no demuestra sanciones individuales, un veto general al capital ni efectos económicos cuantificados.",
+          "fuente_ids": [
+            "src-eeuu-china-continuacion-emergencia-inversion-20260805"
+          ],
+          "tipo": "cambio_legal",
+          "estado_revision": "verificada",
+          "origen": "ia",
+          "intensidad": null,
+          "localizaciones": [
+            "Estados Unidos",
+            "China"
+          ],
+          "propietario_macroevento_id": "eeuu-china-inversion-saliente-tecnologias-sensibles"
+        }
+      ],
+      "publicacion": {
+        "estado": "publicado",
+        "publicado_el": "2026-10-01",
+        "actualizado_el": "2026-10-01"
+      },
+      "nota_fecha_corte": "Revisión focalizada al 01/10/2026 de cuatro mecanismos propios: riesgos de IA, inversión saliente, comercio no sensible y licencias de tierras raras. Se contrastan hitos históricos y anuncios recientes; no se afirma inventario normativo exhaustivo ni ejecución de compromisos sin evidencia específica.",
+      "estado_seguimiento": "en_seguimiento",
+      "estado_evaluacion": "no_asignada",
+      "clasificacion": {
+        "tema_principal_id": "geoeconomia-comercio-sanciones",
+        "tema_secundario_ids": [
+          "tecnologia-poder-digital"
+        ],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "USA",
+            "CHN"
+          ],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "estados-unidos",
+          "china"
+        ],
+        "etiqueta_ids": []
+      }
+    },
+    {
+      "id": "eeuu-china-comercio-bienes-no-sensibles",
+      "titulo": "Bienes no sensibles en la negociación comercial EE. UU.–China",
+      "tipo_proceso": "tendencia_estructural",
+      "estado_editorial": "publicado",
+      "estado_verificacion": "pendiente",
+      "fecha_corte": "2026-10-01",
+      "regiones": [
+        "Global",
+        "Estados Unidos",
+        "China"
+      ],
+      "categoria": "comercio_finanzas_sanciones",
+      "tema_ids": [
+        93,
+        95
+      ],
+      "clasificacion_tematica": {
+        "origen": "mixto",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-10-01"
+      },
+      "descripcion": "Estados Unidos y China han acordado un marco para negociar bienes considerados no sensibles. Sus valores de referencia describen comercio de 2024; el efecto del acuerdo dependerá de las medidas que adopte cada país y de su ejecución.",
+      "por_que_importa": "La preservación de determinados intercambios puede contener costos para productores y consumidores sin resolver las disputas tecnológicas. Su importancia depende de tasas aplicadas, utilización y continuidad, no del valor anunciado de listas.",
+      "definicion_operativa": "Implementación de recomendaciones comerciales bilaterales, en particular 30-for-30, desde selección de productos y procedimientos nacionales hasta medidas vigentes y utilización.",
+      "delimitacion_exclusiones": [
+        "USD 30.000 millones por dirección es una referencia basada en comercio de 2024, no compras nuevas ni ahorro obtenido.",
+        "Recomendación, aprobación, vigencia y utilización son fases diferentes.",
+        "No abarca el T-MEC ni la política comercial mundial; no traslada automáticamente acuerdos de bienes no sensibles a tecnología estratégica.",
+        "El consejo de inversión es un instrumento distinto, aunque comparta origen diplomático."
+      ],
+      "pregunta_seguimiento": "El marco «30-for-30» necesita decisiones internas y aplicación aduanera para transformar sus listas de productos en reducciones arancelarias efectivas.",
+      "hipotesis_principal": "Órganos regulares y acuerdos sobre productos específicos pueden preservar comercio selectivo mientras persisten restricciones en segmentos estratégicos. La aplicación requiere decisiones internas y continuidad de negociación.",
+      "hipotesis_alternativas": [
+        "Listas recomendadas no superan los procedimientos nacionales o enfrentan demoras.",
+        "La rebaja es utilizada pero sus efectos dependen más de demanda y costos que de la interlocución institucional.",
+        "Se preservan concesiones puntuales sin cooperación comercial duradera."
+      ],
+      "mecanismo_causal": "La selección bilateral de bienes produce recomendaciones; actos nacionales determinan tasas y fechas; empresas ajustan pedidos y abastecimiento; los flujos permiten evaluar utilización y efectos, controlando demanda y anticipación de compras.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+      "macroevento_rector_ids": [
+        "eeuu-china-competencia-geoeconomica-interdependencias"
+      ],
+      "macroevento_relacionado_ids": [],
+      "claves_estructurales": [
+        "Distinguir escala de referencia y comercio adicional.",
+        "Un procedimiento aprobado facilita seguimiento, pero no acredita eficacia.",
+        "Las consecuencias sobre tecnologías sensibles requieren evidencia separada."
+      ],
+      "actores": [
+        "Estados Unidos",
+        "China",
+        "USTR",
+        "MOFCOM",
+        "Productores agrícolas e industriales",
+        "Importadores y consumidores"
+      ],
+      "intereses": [
+        "Gobiernos buscan beneficios económicos acotados compatibles con restricciones estratégicas.",
+        "Productores e importadores buscan acceso y previsibilidad de costos.",
+        "Consumidores pueden beneficiarse si los cambios llegan a precios y disponibilidad."
+      ],
+      "horizonte": {
+        "min_anios": 1,
+        "max_anios": 3
+      },
+      "escenarios": {
+        "base": "Implementación gradual y acotada de productos negociados, con seguimiento de trámites y resultados, sin asumir tasas ya reducidas.",
+        "adverso": "Demoras, desacuerdos o nuevas barreras impiden aplicar o utilizar las recomendaciones.",
+        "transformador": "Medidas aplicadas, reuniones regulares y utilización comprobada permiten ampliar intercambios permitidos sin presumir liberalización general.",
+        "reversion": "Se suspenden o revierten concesiones y las listas dejan de aportar acceso previsible."
+      },
+      "indicadores": [
+        "Versiones de listas y actos nacionales de aprobación y vigencia.",
+        "Tasas efectivamente aplicadas, fechas y requisitos por producto.",
+        "Reuniones del consejo y desarrollo del grupo agrícola, distinguidos de su calendario anunciado.",
+        "Comercio observado frente a la referencia de 2024 y factores de demanda.",
+        "Barreras técnicas, represalias o suspensiones documentadas."
+      ],
+      "indicadores_fortalecimiento": [
+        "Medidas internas publicadas y utilización verificable por las empresas.",
+        "Continuidad institucional acompañada de resolución de obstáculos concretos."
+      ],
+      "indicadores_debilitamiento": [
+        "Recomendaciones sin aplicación tras demoras documentadas.",
+        "Nuevas barreras o reversión expresa de concesiones."
+      ],
+      "condiciones_refutacion": [
+        "Si las recomendaciones no se traducen en normas aplicables, se debilita su capacidad para preservar intercambios.",
+        "Si las medidas rigen pero no se utilizan, revisar los costos y barreras que impiden transmisión económica.",
+        "Los flujos por sí solos no prueban éxito institucional sin controlar otras explicaciones."
+      ],
+      "incertidumbres": [
+        "Tasas y calendario de aplicación efectiva no verificados al corte.",
+        "Utilización futura y transmisión a precios y volúmenes.",
+        "Continuidad de personal técnico y coordinación interinstitucional.",
+        "El alcance jurídico de cada prórroga general exige verificar instrumentos concretos."
+      ],
+      "evaluacion": null,
+      "palabras_clave": [
+        "30-for-30",
+        "Board of Trade",
+        "bienes no sensibles",
+        "aranceles",
+        "comercio administrado"
+      ],
+      "fuentes": [
+        {
+          "id": "src-eeuu-china-board-procedures-20260927",
+          "medio": "The White House",
+          "titulo": "U.S.–China Board of Trade Working Procedures",
+          "fecha": "2026-09-27",
+          "url": "https://www.whitehouse.gov/wp-content/uploads/2026/09/US-China-Board-of-Trade-Working-Procedures.pdf",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "PDF original de dos páginas reabierto y leído el 01/10/2026, fechado 27/09/2026. Define responsabilidades y reuniones de adjuntos al menos trimestrales, ajustables; no acredita por sí solo reducción arancelaria ya aplicada.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mofcom-octava-ronda-20260928",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "Interpretación de los resultados de la octava ronda de consultas económicas y comerciales entre China y Estados Unidos",
+          "fecha": "2026-09-28",
+          "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_cd060e0649964da8ae13216c3bb1a645.html",
+          "idioma": "zh",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado original chino leído; traducción de trabajo propia. Informa primer diálogo IA, próximo antes de terminar noviembre, y prórroga del arreglo de Kuala Lumpur al 10/01/2027. Atribuir a MOFCOM. No acredita funcionamiento del canal, rebajas ya aplicadas ni enmienda de cada norma.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-whitehouse-ia-20260925",
+          "medio": "The White House",
+          "titulo": "Fact Sheet: President Donald J. Trump Advances a Fair and Reciprocal Relationship with China While Hosting Historic State Visit",
+          "fecha": "2026-09-25",
+          "url": "https://www.whitehouse.gov/fact-sheets/2026/09/fact-sheet-president-donald-j-trump-advances-a-fair-and-reciprocal-relationship-with-china-while-hosting-historic-state-visit/",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado oficial leído: anuncia diálogo sobre riesgos y beneficios, próximo intercambio para noviembre y acuerdo de crear un canal de incidentes. Acredita compromisos anunciados, no funcionamiento. Washington usa la denominación Super Intelligence; no se infiere de esa etiqueta una capacidad técnica alcanzada. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-asiasociety-ia-20260929",
+          "medio": "Asia Society / Center for China Analysis",
+          "titulo": "What Actually Happened at the Xi-Trump Summit",
+          "fecha": "2026-09-29",
+          "url": "https://centerforchinaanalysis.asiasociety.org/p/what-actually-happened-at-the-xi",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis leído. Se usan las contribuciones atribuidas a Alvin Wang Graylin y Neil Thomas. Comparten publicación: no se cuentan como dos corroboraciones independientes. Las propuestas de protocolos, definiciones y evaluaciones no son acuerdos adoptados. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-csis-ia-20260928",
+          "medio": "Center for Strategic and International Studies (CSIS)",
+          "titulo": "Takeaways from the Trump-Xi White House Summit",
+          "fecha": "2026-09-28",
+          "url": "https://www.csis.org/analysis/takeaways-trump-xi-white-house-summit",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis leído. Se usa la contribución de Thomas J. Christensen: hay incentivos para cooperar ante pérdida de control, pero prevé límites por divergencias sobre cómo y por qué cooperar. Opinión atribuida, no consenso ni probabilidad medida. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-ustr-30for30-20260927",
+          "medio": "United States Trade Representative (USTR)",
+          "titulo": "Ambassador Greer Issues a Statement on Announcement of Recommendations from the U.S.-China Board of Trade",
+          "fecha": "2026-09-27",
+          "url": "https://ustr.gov/about/policy-offices/press-office/press-releases/2026/september/ambassador-greer-issues-statement-announcement-recommendations-us-china-board-trade",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado leído. Recomendaciones para trato futuro; no acredita tasas reducidas ni compras ejecutadas. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30"
+        },
+        {
+          "id": "src-eeuu-china-30for30-terms-20260927",
+          "medio": "The White House",
+          "titulo": "Terms of Reference for 30-for-30 Framework",
+          "fecha": "2026-09-27",
+          "url": "https://www.whitehouse.gov/wp-content/uploads/2026/09/Terms-of-Reference-for-30-for-30-Framework.pdf",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "PDF leído. Valor de referencia basado en comercio de 2024 y procesos nacionales posteriores. Mismo paquete institucional que USTR, no corroboración independiente. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30"
+        },
+        {
+          "id": "src-eeuu-china-afp-cna-20260928",
+          "medio": "AFP, publicado por CNA",
+          "titulo": "White House releases list of products US, China could tax less",
+          "fecha": "2026-09-28",
+          "url": "https://www.channelnewsasia.com/world/us-china-list-products-lower-tariffs-tax-less-6414956",
+          "idioma": "en",
+          "media_id": "agence-france-presse-afp",
+          "medio_catalogado": true,
+          "tipo": "noticia",
+          "estado_verificacion": "pendiente",
+          "observaciones": "Artículo leído; crédito AFP/co. Republicación en CNA: se cuenta una familia periodística. Precisa ausencia de tasas y calendario; no independencia respecto de la evidencia oficial subyacente.",
+          "revisada_el": ""
+        }
+      ],
+      "actualizaciones": [
+        {
+          "lote_id": "complecion-eeuu-china-20261001",
+          "actualizado_el": "2026-10-01T10:14:33.130Z",
+          "origen": "mixto",
+          "candidato_id": "eeuu-china-comercio-bienes-no-sensibles",
+          "candidato_titulo": "Bienes no sensibles en la negociación comercial EE. UU.–China",
+          "tipo_evolucion": "ampliacion",
+          "justificacion": "Proceso propio incorporado por solicitud del usuario. Conserva la identidad de su señal previa, añade evidencia delimitada y análisis autónomo; sin valoración automática.",
+          "fuente_ids_agregadas": [
+            "src-eeuu-china-board-procedures-20260927",
+            "src-eeuu-china-mofcom-octava-ronda-20260928",
+            "src-eeuu-china-whitehouse-ia-20260925",
+            "src-eeuu-china-asiasociety-ia-20260929",
+            "src-eeuu-china-csis-ia-20260928",
+            "src-eeuu-china-ustr-30for30-20260927",
+            "src-eeuu-china-30for30-terms-20260927",
+            "src-eeuu-china-afp-cna-20260928"
+          ],
+          "senal_ids_agregadas": [
+            "sig-eeuu-china-30for30-procedimientos-20260927"
+          ],
+          "advertencia_ids_agregadas": [
+            "adv-eeuu-china-ejecucion-30for30"
+          ],
+          "campos_modificados": [
+            "expediente",
+            "jerarquia",
+            "senales",
+            "fuentes",
+            "publicacion"
+          ]
+        }
+      ],
+      "historial_evaluacion": [],
+      "advertencias": [
+        {
+          "advertencia_id": "adv-eeuu-china-ejecucion-30for30",
+          "descripcion": "No publicar que USD 60.000 millones son compras ejecutadas, comercio adicional o que las rebajas ya rigen. Se trata de valor de referencia y recomendaciones; verificar procedimientos, tasas, fechas y flujos efectivos.",
+          "tipo": "inferencia_fragil",
+          "signal_ids": [
+            "sig-eeuu-china-30for30-procedimientos-20260927"
+          ],
+          "fuente_ids": [
+            "src-eeuu-china-ustr-30for30-20260927",
+            "src-eeuu-china-30for30-terms-20260927",
+            "src-eeuu-china-afp-cna-20260928"
+          ],
+          "estado": "pendiente",
+          "tratamiento": "relevante",
+          "prioridad": "media",
+          "notas_editoriales": "Limitación conservada para seguimiento. El artículo distingue hechos, inferencias y escenarios y explicita el alcance de la evidencia. Trasladada junto a su señal al complemento propio, conservando ID y condición pendiente.",
+          "creada_el": "2026-09-29T00:00:00Z",
+          "actualizada_el": "2026-10-01T10:14:33.130Z",
+          "resuelta_el": null,
+          "resuelta_con_fuente_ids": [],
+          "resolucion": null,
+          "historial": [
+            {
+              "cambio_id": "adv-eeuu-china-ejecucion-30for30-incorporada-20261001",
+              "accion": "incorporada_desde_analisis",
+              "detalle": "Advertencia conservada del candidato durante su incorporación autorizada.",
+              "realizada_el": "2026-10-01T09:22:21.157Z",
+              "realizada_por": "Codex"
+            },
+            {
+              "cambio_id": "adv-eeuu-china-ejecucion-30for30-complemento-20261001",
+              "accion": "actualizada",
+              "detalle": "Cambio de expediente propietario junto a la señal; la limitación permanece pendiente.",
+              "realizada_el": "2026-10-01T10:14:33.130Z",
+              "realizada_por": "Codex"
+            }
+          ]
+        }
+      ],
+      "excepciones_advertencias": [],
+      "referencias_senal": [
+        {
+          "senal_id": "sig-eeuu-china-boards-comercio-inversion-20260516",
+          "tipo_uso": "contextual",
+          "efecto_segundo_orden": "El anuncio de mayo aporta el antecedente institucional del consejo que formula recomendaciones comerciales; no equivale a aplicación arancelaria."
+        }
+      ],
+      "senales": [
+        {
+          "id": "sig-eeuu-china-30for30-procedimientos-20260927",
+          "fecha": "2026-09-27",
+          "titulo": "Procedimientos y recomendaciones comerciales del marco 30-for-30",
+          "descripcion": "Hecho: se publican procedimientos y listas recomendadas, de valor comparable aproximado de USD 30.000 millones por lado sobre comercio de referencia de 2024. El trato arancelario futuro depende de procedimientos nacionales. Inferencia: segmentación de productos sensibles y no sensibles; no son rebajas ya aplicadas ni comercio adicional. Los procedimientos fijan reuniones de adjuntos al menos trimestrales; un calendario institucional no prueba aplicación ni resultados.",
+          "fuente_ids": [
+            "src-eeuu-china-ustr-30for30-20260927",
+            "src-eeuu-china-30for30-terms-20260927",
+            "src-eeuu-china-board-procedures-20260927",
+            "src-eeuu-china-afp-cna-20260928"
+          ],
+          "tipo": "evidencia_documental",
+          "estado_revision": "verificada",
+          "origen": "ia",
+          "intensidad": null,
+          "localizaciones": [
+            "Estados Unidos",
+            "China"
+          ],
+          "propietario_macroevento_id": "eeuu-china-comercio-bienes-no-sensibles"
+        }
+      ],
+      "publicacion": {
+        "estado": "publicado",
+        "publicado_el": "2026-10-01",
+        "actualizado_el": "2026-10-01"
+      },
+      "nota_fecha_corte": "Revisión focalizada al 01/10/2026 de cuatro mecanismos propios: riesgos de IA, inversión saliente, comercio no sensible y licencias de tierras raras. Se contrastan hitos históricos y anuncios recientes; no se afirma inventario normativo exhaustivo ni ejecución de compromisos sin evidencia específica.",
+      "estado_seguimiento": "en_seguimiento",
+      "estado_evaluacion": "no_asignada",
+      "clasificacion": {
+        "tema_principal_id": "geoeconomia-comercio-sanciones",
+        "tema_secundario_ids": [
+          "diplomacia-gobernanza"
+        ],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "USA",
+            "CHN"
+          ],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "estados-unidos",
+          "china"
+        ],
+        "etiqueta_ids": []
+      }
+    },
+    {
+      "id": "eeuu-china-licencias-tierras-raras",
+      "titulo": "Licencias de tierras raras y seguridad del suministro bilateral",
+      "tipo_proceso": "tendencia_estructural",
+      "estado_editorial": "publicado",
+      "estado_verificacion": "verificada",
+      "fecha_corte": "2026-10-01",
+      "regiones": [
+        "Global",
+        "Estados Unidos",
+        "China"
+      ],
+      "categoria": "minerales_recursos_estrategicos",
+      "tema_ids": [
+        51,
+        52,
+        66,
+        90
+      ],
+      "clasificacion_tematica": {
+        "origen": "mixto",
+        "estado_revision": "revisada",
+        "taxonomy_version": 1,
+        "revisada_el": "2026-10-01"
+      },
+      "descripcion": "La negociación entre Washington y Beijing combina controles de exportación, suspensiones parciales y autorizaciones. La continuidad del suministro depende de cada instrumento y de su aplicación; los acuerdos políticos no prueban una liberalización completa.",
+      "por_que_importa": "Materiales difíciles de sustituir pueden afectar plazos y producción industrial. La capacidad de condicionar entregas genera incentivos para negociar y diversificar, pero ni una licencia ni financiación alternativa equivalen a suministro asegurado.",
+      "definicion_operativa": "Transmisión de controles y licencias de determinados artículos de tierras raras hacia disponibilidad y respuesta industrial bilateral, con seguimiento por instrumento, producto y destino.",
+      "delimitacion_exclusiones": [
+        "No absorbe minería de África central, cobre, cobalto ni corredores logísticos por asociación temática.",
+        "El anuncio 70 suspende instrumentos expresamente enumerados; no acredita suspensión universal de controles ni del anuncio 18 de abril de 2025.",
+        "La prórroga general informada por MOFCOM hasta enero de 2027 no se presenta como reforma ejecutiva verificada de cada instrumento.",
+        "Licencias generales declaradas no prueban entregas homogéneas a todos los compradores estadounidenses."
+      ],
+      "pregunta_seguimiento": "Las suspensiones y prórrogas anunciadas tienen alcances distintos. La prueba de una estabilización será el acceso efectivo y previsible a materiales y componentes.",
+      "hipotesis_principal": "La selectividad y los plazos de autorización pueden mantener influencia sobre suministros difíciles de sustituir, incluso con suspensiones parciales y licencias generales. La influencia efectiva depende de entregas, inventarios y alternativas productivas.",
+      "hipotesis_alternativas": [
+        "Demanda, precios e inventarios explican las variaciones de entrega más que las restricciones.",
+        "Licencias y acuerdos estabilizan acceso suficiente sin cambios importantes en concentración productiva.",
+        "Sustitución y capacidad alternativa reducen gradualmente la vulnerabilidad y el poder de negociación asociado."
+      ],
+      "mecanismo_causal": "Controles y condiciones de licencia alteran elegibilidad y plazos; compradores ajustan inventarios, pedidos y producción; las vulnerabilidades incentivan negociación y diversificación. La producción alternativa sostenida puede reducir esa dependencia.",
+      "es_macroevento_rector": false,
+      "macroevento_rector_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+      "macroevento_rector_ids": [
+        "eeuu-china-competencia-geoeconomica-interdependencias"
+      ],
+      "macroevento_relacionado_ids": [],
+      "claves_estructurales": [
+        "Licencia, despacho y entrega son etapas distintas.",
+        "Suspensión parcial y eliminación de controles no son equivalentes.",
+        "Resiliencia exige producción sostenida, no solo anuncios de inversión."
+      ],
+      "actores": [
+        "Estados Unidos",
+        "China",
+        "MOFCOM",
+        "Administración General de Aduanas de China",
+        "Exportadores de tierras raras",
+        "Fabricantes de imanes y componentes",
+        "Productores alternativos"
+      ],
+      "intereses": [
+        "China busca control y trazabilidad sobre artículos estratégicos, conservando intercambios permitidos.",
+        "Estados Unidos y compradores industriales buscan acceso previsible y alternativas.",
+        "Productores alternativos necesitan demanda, capital y capacidad sostenida a lo largo de la cadena."
+      ],
+      "horizonte": {
+        "min_anios": 2,
+        "max_anios": 7
+      },
+      "escenarios": {
+        "base": "Se administran permisos y excepciones mientras persiste dependencia; la previsibilidad varía por material y comprador.",
+        "adverso": "Demoras o restricciones efectivas deterioran entregas e inventarios y afectan producción verificable.",
+        "transformador": "Acceso más previsible y producción alternativa efectiva reducen vulnerabilidad y capacidad de condicionar suministros.",
+        "reversion": "Tras una mejora inicial, cambios de licencias o nuevos obstáculos revierten la previsibilidad; la recuperación transitoria no prueba normalización."
+      },
+      "indicadores": [
+        "Instrumentos normativos publicados, productos cubiertos y plazos de cada suspensión.",
+        "Solicitudes, licencias concedidas, despacho y entregas por material y destino.",
+        "Inventarios, precios, tiempos de abastecimiento y cambios de producción.",
+        "Actos ejecutores de la prórroga diplomática anunciada y su alcance exacto.",
+        "Producción alternativa sostenida, integración de etapas y utilización industrial."
+      ],
+      "indicadores_fortalecimiento": [
+        "Variaciones de entrega atribuibles a licencias y reflejadas en decisiones productivas.",
+        "Continuidad de cuellos de botella pese a acuerdos y financiación anunciados."
+      ],
+      "indicadores_debilitamiento": [
+        "Entregas previsibles durante un período sostenido y sustitución efectiva.",
+        "Variaciones explicadas por demanda o inventarios sin transmisión desde los controles."
+      ],
+      "condiciones_refutacion": [
+        "Acceso previsible sostenido y sustitución efectiva que reduzcan capacidad de condicionar suministro debilitan la hipótesis.",
+        "Si no se prueba conexión entre licencia y entrega o decisión productiva, revisar la atribución causal.",
+        "Un repunte transitorio o una licencia general sin destino y volumen conocidos no refutan por sí solos la vulnerabilidad."
+      ],
+      "incertidumbres": [
+        "No hay inventario público completo de licencias individuales y destinatarios.",
+        "Implementación jurídica instrumento por instrumento de la prórroga general de septiembre no verificada.",
+        "Efectos actuales sobre producción y plazos requieren datos empresariales y comerciales adicionales.",
+        "Elasticidad de sustitución y tiempos para completar cadenas alternativas."
+      ],
+      "evaluacion": null,
+      "palabras_clave": [
+        "tierras raras",
+        "licencias",
+        "suministro",
+        "anuncio 70",
+        "imanes",
+        "diversificación"
+      ],
+      "fuentes": [
+        {
+          "id": "src-eeuu-china-mofcom-suspension70-20251107",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "Anuncio MOFCOM–GACC 70 de 2025: suspensión de determinados anuncios",
+          "fecha": "2025-11-07",
+          "url": "https://www.mofcom.gov.cn/zcfb/blgg/art/2025/art_2ec8b9f2c6404a56b311abc82d87f486.html",
+          "idioma": "zh",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "documento_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Anuncio original chino leído. Suspende anuncios 55, 56, 57, 58, 61 y 62 hasta 10/11/2026; no incluye anuncio 18 de abril 2025. La prórroga política anunciada en septiembre de 2026 no se presenta como enmienda jurídica de todos los instrumentos.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mofcom-licencias-generales-20251223",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "MOFCOM Regular Press Conference December18,2025 — General rare-earth export licenses",
+          "fecha": "2025-12-23",
+          "url": "https://english.mofcom.gov.cn/News/PressConference/art/2025/art_ab552360b92f43ccbeb0054d2715768b.html",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Texto oficial abierto y leído. Distinguir conferencia 18/12/2025 y publicación 23/12/2025. La respuesta acredita que MOFCOM informó aprobación de algunas licencias generales; no identifica universo de empresas, destinos, volumen o acceso uniforme de Estados Unidos.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-csis-tierras-raras-20260427",
+          "medio": "Center for Strategic and International Studies (CSIS)",
+          "titulo": "Rare Earth Export Restrictions One Year Later",
+          "fecha": "2026-04-27",
+          "url": "https://www.csis.org/analysis/rare-earth-export-restrictions-one-year-later",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis original de Gracelin Baskaran y Meredith Schwartz leído. Diagnóstico con corte de abril 2026 y evaluación experta de resiliencia. No trasladar cifras al 01/10/2026 ni inferir efectos actuales sin datos posteriores.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-whitehouse-ia-20260925",
+          "medio": "The White House",
+          "titulo": "Fact Sheet: President Donald J. Trump Advances a Fair and Reciprocal Relationship with China While Hosting Historic State Visit",
+          "fecha": "2026-09-25",
+          "url": "https://www.whitehouse.gov/fact-sheets/2026/09/fact-sheet-president-donald-j-trump-advances-a-fair-and-reciprocal-relationship-with-china-while-hosting-historic-state-visit/",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado oficial leído: anuncia diálogo sobre riesgos y beneficios, próximo intercambio para noviembre y acuerdo de crear un canal de incidentes. Acredita compromisos anunciados, no funcionamiento. Washington usa la denominación Super Intelligence; no se infiere de esa etiqueta una capacidad técnica alcanzada. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mofcom-octava-ronda-20260928",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "Interpretación de los resultados de la octava ronda de consultas económicas y comerciales entre China y Estados Unidos",
+          "fecha": "2026-09-28",
+          "url": "https://www.mofcom.gov.cn/xwfb/sjfzrfb/art/2026/art_cd060e0649964da8ae13216c3bb1a645.html",
+          "idioma": "zh",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "comunicado_oficial",
+          "estado_verificacion": "verificada",
+          "observaciones": "Comunicado original chino leído; traducción de trabajo propia. Informa primer diálogo IA, próximo antes de terminar noviembre, y prórroga del arreglo de Kuala Lumpur al 10/01/2027. Atribuir a MOFCOM. No acredita funcionamiento del canal, rebajas ya aplicadas ni enmienda de cada norma.",
+          "revisada_el": "2026-10-01",
+          "consultada_el": "2026-10-01",
+          "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "src-eeuu-china-mofcom-licencias-20250404",
+          "medio": "Ministry of Commerce of the People’s Republic of China (MOFCOM)",
+          "titulo": "MOFCOM and GACC Announcement No. 18 of 2025",
+          "fecha": "2025-04-04",
+          "url": "https://english.mofcom.gov.cn/Policies/AnnouncementsOrders/art/2025/art_0dd87cbee7b045bf93fabe6ab2faceee.html",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "fuente_primaria",
+          "estado_verificacion": "verificada",
+          "observaciones": "Título abreviado por número oficial. Anuncio leído y reabierto correctamente tras un error transitorio. Documenta licencias, no embargo universal. Mantener como hito histórico; falta cronología completa de modificaciones. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30"
+        },
+        {
+          "id": "src-eeuu-china-asiasociety-ia-20260929",
+          "medio": "Asia Society / Center for China Analysis",
+          "titulo": "What Actually Happened at the Xi-Trump Summit",
+          "fecha": "2026-09-29",
+          "url": "https://centerforchinaanalysis.asiasociety.org/p/what-actually-happened-at-the-xi",
+          "idioma": "en",
+          "media_id": "",
+          "medio_catalogado": false,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "observaciones": "Análisis leído. Se usan las contribuciones atribuidas a Alvin Wang Graylin y Neil Thomas. Comparten publicación: no se cuentan como dos corroboraciones independientes. Las propuestas de protocolos, definiciones y evaluaciones no son acuerdos adoptados. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
+          "revisada_el": "2026-09-30",
+          "consultada_el": "2026-09-30",
+          "alcance_lectura": "texto_original_consultado"
+        }
+      ],
+      "actualizaciones": [
+        {
+          "lote_id": "complecion-eeuu-china-20261001",
+          "actualizado_el": "2026-10-01T10:14:33.130Z",
+          "origen": "mixto",
+          "candidato_id": "eeuu-china-licencias-tierras-raras",
+          "candidato_titulo": "Licencias de tierras raras y seguridad del suministro bilateral",
+          "tipo_evolucion": "ampliacion",
+          "justificacion": "Proceso propio incorporado por solicitud del usuario. Conserva la identidad de su señal previa, añade evidencia delimitada y análisis autónomo; sin valoración automática.",
+          "fuente_ids_agregadas": [
+            "src-eeuu-china-mofcom-suspension70-20251107",
+            "src-eeuu-china-mofcom-licencias-generales-20251223",
+            "src-eeuu-china-csis-tierras-raras-20260427",
+            "src-eeuu-china-whitehouse-ia-20260925",
+            "src-eeuu-china-mofcom-octava-ronda-20260928",
+            "src-eeuu-china-mofcom-licencias-20250404",
+            "src-eeuu-china-asiasociety-ia-20260929"
+          ],
+          "senal_ids_agregadas": [
+            "sig-eeuu-china-tierras-raras-licencias-20250404",
+            "sig-eeuu-china-suspension-anuncios-20251107",
+            "sig-eeuu-china-licencias-generales-20251218"
+          ],
+          "advertencia_ids_agregadas": [],
+          "campos_modificados": [
+            "expediente",
+            "jerarquia",
+            "senales",
+            "fuentes",
+            "publicacion"
+          ]
+        }
+      ],
+      "historial_evaluacion": [],
+      "advertencias": [],
+      "excepciones_advertencias": [],
+      "referencias_senal": [],
+      "senales": [
+        {
+          "id": "sig-eeuu-china-tierras-raras-licencias-20250404",
+          "fecha": "2025-04-04",
+          "titulo": "China incorpora licencias para artículos de siete tierras raras",
+          "descripcion": "Hecho: el anuncio establece controles de exportación para artículos de siete tierras raras y ciertos compuestos e imanes. Inferencia: el acceso material puede convertirse en instrumento de negociación. No es prohibición universal ni prueba de escasez efectiva; hito histórico.",
+          "fuente_ids": [
+            "src-eeuu-china-mofcom-licencias-20250404"
+          ],
+          "tipo": "control_exportaciones",
+          "estado_revision": "verificada",
+          "origen": "ia",
+          "intensidad": null,
+          "localizaciones": [
+            "China",
+            "Global"
+          ],
+          "propietario_macroevento_id": "eeuu-china-licencias-tierras-raras"
+        },
+        {
+          "id": "sig-eeuu-china-suspension-anuncios-20251107",
+          "fecha": "2025-11-07",
+          "titulo": "China suspende un conjunto acotado de anuncios de exportación",
+          "descripcion": "Hecho: el anuncio conjunto 70 de MOFCOM y Aduanas suspende los anuncios 55, 56, 57, 58 y los anuncios MOFCOM 61 y 62 desde el 07/11/2025 hasta el 10/11/2026. Inferencia: las restricciones pueden modularse mediante decisiones temporales y negociación. Límite: el listado no incluye el anuncio 18 de abril de 2025; no es una suspensión universal de licencias ni prueba de normalización de entregas. La extensión política general anunciada en septiembre de 2026 requiere distinguir sus actos de ejecución por instrumento.",
+          "fuente_ids": [
+            "src-eeuu-china-mofcom-suspension70-20251107"
+          ],
+          "tipo": "decision_institucional",
+          "estado_revision": "verificada",
+          "origen": "ia",
+          "intensidad": null,
+          "localizaciones": [
+            "Estados Unidos",
+            "China"
+          ],
+          "propietario_macroevento_id": "eeuu-china-licencias-tierras-raras"
+        },
+        {
+          "id": "sig-eeuu-china-licencias-generales-20251218",
+          "fecha": "2025-12-18",
+          "titulo": "MOFCOM informa aprobación de algunas licencias generales de tierras raras",
+          "descripcion": "Hecho: en su conferencia del 18/12/2025, publicada el 23/12, MOFCOM informó que había recibido y aprobado solicitudes de licencias generales de algunos exportadores chinos. Inferencia: la administración de licencias contempla facilitación selectiva junto con controles. Límite: la respuesta no permite determinar empresas, cantidades, destinos o acceso uniforme de compradores estadounidenses.",
+          "fuente_ids": [
+            "src-eeuu-china-mofcom-licencias-generales-20251223"
+          ],
+          "tipo": "decision_institucional",
+          "estado_revision": "verificada",
+          "origen": "ia",
+          "intensidad": null,
+          "localizaciones": [
+            "Estados Unidos",
+            "China"
+          ],
+          "propietario_macroevento_id": "eeuu-china-licencias-tierras-raras"
+        }
+      ],
+      "publicacion": {
+        "estado": "publicado",
+        "publicado_el": "2026-10-01",
+        "actualizado_el": "2026-10-01"
+      },
+      "nota_fecha_corte": "Revisión focalizada al 01/10/2026 de cuatro mecanismos propios: riesgos de IA, inversión saliente, comercio no sensible y licencias de tierras raras. Se contrastan hitos históricos y anuncios recientes; no se afirma inventario normativo exhaustivo ni ejecución de compromisos sin evidencia específica.",
+      "estado_seguimiento": "en_seguimiento",
+      "estado_evaluacion": "no_asignada",
+      "clasificacion": {
+        "tema_principal_id": "energia-recursos-estrategicos",
+        "tema_secundario_ids": [
+          "geoeconomia-comercio-sanciones",
+          "tecnologia-poder-digital"
+        ],
+        "subtema_ids": [],
+        "geografia": {
+          "alcance": "global",
+          "region_ids": [
+            "global"
+          ],
+          "subregion_ids": [],
+          "pais_ids": [
+            "USA",
+            "CHN"
+          ],
+          "espacio_ids": []
+        },
+        "actor_ids": [
+          "estados-unidos",
+          "china"
+        ],
+        "etiqueta_ids": []
+      }
     }
   ],
   "expedientes_editoriales": [
@@ -35448,6 +36997,71 @@
       "evidencia_senal_ids": [],
       "justificacion": "Relación incorporada con el proceso por instrucción editorial del 01/10/2026. Se mantiene el alcance expresado en el mecanismo y la condición de refutación; no modifica jerarquías ni propietarios de señales.",
       "condicion_refutacion": "Retirar si los insumos o instrumentos no afectan las cadenas de defensa estudiadas; exigir trazabilidad antes de atribuir amplificación."
+    },
+    {
+      "id": "rel-eeuu-china-propio-cooperacion-riesgos-ia",
+      "origen_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+      "destino_id": "eeuu-china-cooperacion-riesgos-ia",
+      "tipo": "subordinada",
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "revisada",
+      "mecanismo": "Riesgos compartidos generan incentivos para dialogar; interlocutores y protocolos permiten intercambiar información; pruebas o usos del canal revelan si reduce incertidumbre o facilita respuestas. Cada transición debe observarse por separado.",
+      "evidencia_senal_ids": [
+        "sig-eeuu-china-dialogo-incidentes-ia-20260925",
+        "sig-eeuu-china-ginebra-riesgos-ia-20240514"
+      ],
+      "justificacion": "El expediente sigue un mecanismo directo y delimitado de la competencia e interdependencia bilateral. Conserva señales únicas y no altera la pertenencia de otros procesos.",
+      "condicion_refutacion": "La suspensión o el abandono documentados debilitan la hipótesis de institucionalización. Si un canal operativo no mejora la información o gestión de incidentes, revisar el mecanismo causal, sin atribuir contención por su sola existencia. Si los acuerdos no se extienden a capacidades industriales, descartar inferencias de alianza tecnológica, aunque continúe la cooperación de seguridad."
+    },
+    {
+      "id": "rel-eeuu-china-propio-inversion-saliente-tecnologias-sensibles",
+      "origen_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+      "destino_id": "eeuu-china-inversion-saliente-tecnologias-sensibles",
+      "tipo": "subordinada",
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "revisada",
+      "mecanismo": "La definición de transacciones cubiertas impone prohibición, notificación y diligencia; los inversores ajustan estructuras y decisiones; financiación y conocimientos asociados pueden cambiar. Demanda, rentabilidad y otras políticas también influyen en los flujos.",
+      "evidencia_senal_ids": [
+        "sig-eeuu-china-inversion-saliente-20250102",
+        "sig-eeuu-china-coins-transicion-20251218",
+        "sig-eeuu-china-continuacion-emergencia-inversion-20260803"
+      ],
+      "justificacion": "El expediente sigue un mecanismo directo y delimitado de la competencia e interdependencia bilateral. Conserva señales únicas y no altera la pertenencia de otros procesos.",
+      "condicion_refutacion": "Si los cambios de inversión se explican por demanda o costos sin transmisión regulatoria identificable, revisar la atribución causal. Una normalización sostenida del acceso con menor selección por seguridad debilita la hipótesis principal. Un consejo bilateral sin decisiones o proyectos verificables no prueba apertura efectiva de capital."
+    },
+    {
+      "id": "rel-eeuu-china-propio-comercio-bienes-no-sensibles",
+      "origen_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+      "destino_id": "eeuu-china-comercio-bienes-no-sensibles",
+      "tipo": "subordinada",
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "revisada",
+      "mecanismo": "La selección bilateral de bienes produce recomendaciones; actos nacionales determinan tasas y fechas; empresas ajustan pedidos y abastecimiento; los flujos permiten evaluar utilización y efectos, controlando demanda y anticipación de compras.",
+      "evidencia_senal_ids": [
+        "sig-eeuu-china-30for30-procedimientos-20260927"
+      ],
+      "justificacion": "El expediente sigue un mecanismo directo y delimitado de la competencia e interdependencia bilateral. Conserva señales únicas y no altera la pertenencia de otros procesos.",
+      "condicion_refutacion": "Si las recomendaciones no se traducen en normas aplicables, se debilita su capacidad para preservar intercambios. Si las medidas rigen pero no se utilizan, revisar los costos y barreras que impiden transmisión económica. Los flujos por sí solos no prueban éxito institucional sin controlar otras explicaciones."
+    },
+    {
+      "id": "rel-eeuu-china-propio-licencias-tierras-raras",
+      "origen_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+      "destino_id": "eeuu-china-licencias-tierras-raras",
+      "tipo": "subordinada",
+      "direccion": "origen_destino",
+      "reciprocidad": false,
+      "estado_revision": "revisada",
+      "mecanismo": "Controles y condiciones de licencia alteran elegibilidad y plazos; compradores ajustan inventarios, pedidos y producción; las vulnerabilidades incentivan negociación y diversificación. La producción alternativa sostenida puede reducir esa dependencia.",
+      "evidencia_senal_ids": [
+        "sig-eeuu-china-tierras-raras-licencias-20250404",
+        "sig-eeuu-china-suspension-anuncios-20251107",
+        "sig-eeuu-china-licencias-generales-20251218"
+      ],
+      "justificacion": "El expediente sigue un mecanismo directo y delimitado de la competencia e interdependencia bilateral. Conserva señales únicas y no altera la pertenencia de otros procesos.",
+      "condicion_refutacion": "Acceso previsible sostenido y sustitución efectiva que reduzcan capacidad de condicionar suministro debilitan la hipótesis. Si no se prueba conexión entre licencia y entrega o decisión productiva, revisar la atribución causal. Un repunte transitorio o una licencia general sin destino y volumen conocidos no refutan por sí solos la vulnerabilidad."
     }
   ]
 }

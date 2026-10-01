@@ -8,8 +8,8 @@ import {
   relatedPublicationForProcess,
 } from '../../../lib/editorial';
 import { getPublicationEntries } from '../../../lib/publications';
-import { editorialStageLabel, formatDate } from '../../../lib/text';
-import { processDependsOnRector } from '../../../lib/process-relations';
+import { editorialStageLabel, formatDate, humanize } from '../../../lib/text';
+import { groupRectorProcesses } from '../../../lib/process-relations';
 
 const publicationEntries = await getPublicationEntries({
   includePreview: true,
@@ -25,8 +25,8 @@ const rectorGroups = processes
   .filter((process) => process.es_macroevento_rector)
   .map((rector) => {
     const publication = publicationFor(rector);
-    const complementaries = processes
-      .filter((process) => processDependsOnRector(process, rector.macroevento_id))
+    const links = groupRectorProcesses(rector, processes);
+    const complementaries = links.complementaries
       .sort(
         (a, b) =>
           compareProcessRelevance(a, b) ||
@@ -46,6 +46,7 @@ const rectorGroups = processes
       publication,
       editorialState: effectiveEditorialState(rector, publicationEntries),
       complementaries,
+      transversals: links.transversals,
     };
   });
 
@@ -89,7 +90,7 @@ const rectorCountLabel =
       rectorGroups.length ? (
         <section class="rector-list" aria-label="Macroeventos rectores disponibles">
           {rectorGroups.map(
-            ({ rector, publication, editorialState, complementaries }) => {
+            ({ rector, publication, editorialState, complementaries, transversals }) => {
               const publicationHref =
                 publication &&
                 (publication.data.publicacion.estado === 'publicado' ||
@@ -98,7 +99,7 @@ const rectorCountLabel =
                   : '';
 
               return (
-                <article class="rector-entry">
+                <article class="rector-entry" data-rector-id={rector.macroevento_id}>
                   <header class="rector-entry-header">
                     <div class="rector-entry-copy">
                       <div class="rector-meta">
@@ -126,7 +127,7 @@ const rectorCountLabel =
                     </div>
                   </header>
 
-                  <details open={rectorGroups.length === 1} data-branch-details>
+                  <details open={rectorGroups.length === 1} data-branch-details data-open-label="Cerrar procesos complementarios" data-closed-label="Ver procesos complementarios">
                     <summary>
                       <strong>
                         {complementaries.length === 1
@@ -135,13 +136,13 @@ const rectorCountLabel =
                       </strong>
                       <span data-branch-toggle-label>
                         {rectorGroups.length === 1
-                          ? 'Cerrar ramificaciones'
-                          : 'Ver ramificaciones'}
+                          ? 'Cerrar procesos complementarios'
+                          : 'Ver procesos complementarios'}
                       </span>
                     </summary>
 
                     {complementaries.length ? (
-                      <ol class="branch-list">
+                      <ol class="branch-list" data-complementary-list>
                         {complementaries.map(
                           ({ process, publication: childPublication, editorialState: childState }) => {
                             const childPublicationHref =
@@ -181,6 +182,26 @@ const rectorCountLabel =
                       </p>
                     )}
                   </details>
+
+                  <details data-branch-details data-open-label="Cerrar relaciones transversales" data-closed-label="Ver relaciones transversales">
+                    <summary>
+                      <strong>{transversals.length === 1 ? '1 proceso relacionado' : `${transversals.length} procesos relacionados`}</strong>
+                      <span data-branch-toggle-label>Ver relaciones transversales</span>
+                    </summary>
+                    {transversals.length ? (
+                      <ul class="transversal-list" data-transversal-list>
+                        {transversals.map(({ process, relations }) => (
+                          <li>
+                            <a class="branch-title" href={`/observatorio/${process.slug}/`}>{process.titulo}</a>
+                            <span class="transversal-role">{process.es_macroevento_rector ? 'Macroevento rector relacionado' : 'Proceso relacionado'}</span>
+                            {relations.length ? relations.map(relation => (
+                              <p><strong>{humanize(relation.tipo)}.</strong> {relation.mecanismo}</p>
+                            )) : <p>Vínculo transversal registrado en el Observatorio.</p>}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : <p class="branch-empty">Este rector todavía no tiene relaciones transversales vinculadas.</p>}
+                  </details>
                 </article>
               );
             },
@@ -206,13 +227,21 @@ const rectorCountLabel =
     const updateLabel = () => {
       if (label) {
         label.textContent = details.open
-          ? 'Cerrar ramificaciones'
-          : 'Ver ramificaciones';
+          ? details.dataset.openLabel || 'Cerrar'
+          : details.dataset.closedLabel || 'Ver';
       }
     };
 
     updateLabel();
     details.addEventListener('toggle', updateLabel);
+    details.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !details.open) return;
+      event.preventDefault();
+      event.stopPropagation();
+      details.open = false;
+      updateLabel();
+      details.querySelector('summary')?.focus();
+    });
   });
 </script>
 
@@ -451,6 +480,38 @@ const rectorCountLabel =
     font-size: 0.75rem;
     font-weight: 800;
     text-underline-offset: 0.2em;
+  }
+
+  .transversal-list {
+    display: grid;
+    gap: 1rem;
+    margin: 0 clamp(1.25rem, 3vw, 2rem) 1.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .transversal-list li {
+    display: grid;
+    gap: 0.35rem;
+    padding-block: 0.85rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .transversal-role {
+    color: var(--ink-600);
+    font-size: 0.72rem;
+  }
+
+  .transversal-list p {
+    margin: 0;
+    color: var(--ink-700);
+    font-size: 0.85rem;
+  }
+
+  .rector-entry summary:focus-visible,
+  .branch-title:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
   }
 
   .branch-empty {
