@@ -62,8 +62,14 @@ test('la proyección guardada conserva los complementos y un único parámetro I
     const stored=saved.procesos.find(x=>x.macroevento_id===id);
     const projected=generated.procesos.find(x=>x.macroevento_id===id);
     assert.ok(stored);
-    for(const field of ['senales','referencias_senal','relaciones_tipadas','macroevento_rector_ids','valoraciones','parametros_pronostico'])assert.deepEqual(stored[field],projected[field],`${id}: ${field}`);
-    assert.equal(stored.valoraciones.relevancia_geopolitica,null);
+    for(const field of ['senales','referencias_senal','relaciones_tipadas','macroevento_rector_ids','valoraciones','parametros_pronostico','estado_evaluacion','fundamento_evaluacion'])assert.deepEqual(stored[field],projected[field],`${id}: ${field}`);
+    const canonical=data.macroeventos.find(item=>item.id===id);
+    assert.equal(stored.estado_evaluacion,canonical.estado_evaluacion);
+    if(id!==rectorId){
+      assert.equal(stored.valoraciones.relevancia_geopolitica,null);
+      assert.equal(stored.valoraciones.atencion_mediatica,null);
+      assert.equal(stored.fundamento_evaluacion,undefined,'Un complemento no hereda la evaluación ni los fundamentos del rector.');
+    }
     for(const signal of stored.senales)assert.ok(signal.fuente_ids.every(sourceId=>saved.fuentes.some(f=>f.fuente_id===sourceId&&f.estado_verificacion==='verificada')));
   }
 });

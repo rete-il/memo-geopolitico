@@ -1,8 +1,9 @@
 ---
 import PageTitle from '../../../components/PageTitle.astro';
 import RatingPair from '../../../components/RatingPair.astro';
+import RatingEvidence from '../../../components/RatingEvidence.astro';
 import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { processes } from '../../../lib/data';
+import { processes, sourceById } from '../../../lib/data';
 import { formatDate } from '../../../lib/text';
 import {
   getPublicationEntries,
@@ -40,6 +41,7 @@ const { process, publication } = Astro.props as Props;
 const publicationTitle = publication?.titulo || process.titulo;
 const isPublished = publication?.publicacion.estado === 'publicado';
 const unassigned = process.estado_evaluacion === 'no_asignada';
+const basis = process.fundamento_evaluacion;
 ---
 
 <SiteLayout
@@ -49,22 +51,23 @@ const unassigned = process.estado_evaluacion === 'no_asignada';
 >
   <div class="page-shell">
     <header class="methodology-note-hero">
-      <p class="eyebrow">Interpretación en desarrollo</p>
+      <p class="eyebrow">{basis ? 'Fundamento de la valoración' : 'Interpretación en desarrollo'}</p>
       <PageTitle>Cómo interpretar los valores de «{publicationTitle}»</PageTitle>
-      <p class="lead">
+      {basis ? <p class="lead">Fuentes, criterios y límites de la valoración editorial de este proceso.</p> : <p class="lead">
         Esta página reserva un espacio específico para documentar cómo se
         asignaron y cómo deberán leerse las valoraciones de esta publicación.
         Las indicaciones y la evidencia cuantitativa todavía están en
         desarrollo.
-      </p>
+      </p>}
       <div class="hero-meta">
-        <span>Actualizado {formatDate(process.publicacion.actualizado_el)}</span>
+        <span>Actualizado {formatDate(basis?.fecha || process.publicacion.actualizado_el)}</span>
         <span>Escala editorial provisional de 1 a 5</span>
       </div>
     </header>
 
     <div class="methodology-note-layout">
       <article>
+        {basis ? <RatingEvidence process={process} sourceById={sourceById} /> : <>
         <aside class="editorial-note development-note">
           <strong>Metodología en desarrollo.</strong>
           <span>
@@ -114,6 +117,8 @@ const unassigned = process.estado_evaluacion === 'no_asignada';
           </p>
         </section>
 
+        </>}
+
         <nav class="methodology-note-actions" aria-label="Enlaces relacionados">
           {
             isPublished && publication && (
@@ -139,10 +144,7 @@ const unassigned = process.estado_evaluacion === 'no_asignada';
           publicationTitle={publicationTitle}
           showMethodLink={false}
         />
-        <p>
-          Se conservará un historial de cambios cuando la metodología de
-          respaldo quede implementada.
-        </p>
+        <p>{basis ? `Evaluación documentada al ${formatDate(basis.fecha)}. Las puntuaciones se revisan cuando cambia la evidencia.` : 'Se conservará un historial de cambios cuando la metodología de respaldo quede implementada.'}</p>
       </aside>
     </div>
   </div>

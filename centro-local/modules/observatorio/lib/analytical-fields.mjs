@@ -4,7 +4,7 @@ const ANALYTICAL_FIELDS = Object.freeze([
   'indicadores_fortalecimiento', 'indicadores_debilitamiento',
   'condiciones_refutacion', 'incertidumbres', 'claves_estructurales',
   'parametros_pronostico', 'analisis_expertos', 'publicacion',
-  'clasificacion', 'nota_fecha_corte', 'estado_seguimiento',
+  'clasificacion', 'nota_fecha_corte', 'estado_seguimiento', 'fundamento_evaluacion',
 ]);
 
 // These researched fields have no editor controls. Preserve their JSON structure,

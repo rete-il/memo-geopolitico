@@ -82,6 +82,29 @@ export interface PublicForecastParameter {
   revision: { horizonte_operativo: string; hito_oficial: { periodo: string; descripcion: string; fuente_ids: string[] }; cortes_editoriales_propuestos: string[]; disparadores: string[]; nota: string };
 }
 
+export interface PublicEvaluationBasis {
+  schema_version: 1;
+  fecha: string;
+  caracter: 'editorial_provisional';
+  alcance: string;
+  confianza_justificacion: string;
+  relevancia: {
+    resumen: string;
+    dimensiones: { clave: 'impacto' | 'probabilidad' | 'alcance' | 'persistencia'; valor: number; justificacion: string; fuente_ids: string[] }[];
+  };
+  atencion: {
+    resumen: string;
+    periodo: { desde: string; hasta: string };
+    seleccion: string;
+    criterios: { criterio: string; observacion: string }[];
+    muestra: { fuente_id: string; origen_editorial: string; funcion: string; observacion: string }[];
+    exclusiones: string[];
+  };
+  brecha: string;
+  limites: string[];
+  condiciones_revision: string[];
+}
+
 export interface PublicProcess {
   schema_version: 2;
   macroevento_id: string;
@@ -117,6 +140,7 @@ export interface PublicProcess {
   macroevento_rector_ids?: string[];
   claves_estructurales: string[];
   estado_evaluacion?: 'asignada' | 'no_asignada';
+  fundamento_evaluacion?: PublicEvaluationBasis;
   valoraciones: {
     relevancia_geopolitica: number | null;
     atencion_mediatica: number | null;

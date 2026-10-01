@@ -1,0 +1,98 @@
+---
+import type { PublicProcess, PublicSource } from '../lib/types';
+import { formatDate } from '../lib/text';
+
+interface Props {
+  process: PublicProcess;
+  sourceById: Map<string, PublicSource>;
+}
+const { process, sourceById } = Astro.props;
+const basis = process.fundamento_evaluacion;
+const labels: Record<string, string> = {
+  impacto: 'Impacto', probabilidad: 'Probabilidad de avance',
+  alcance: 'Alcance', persistencia: 'Persistencia',
+};
+const number = (value: number | null) => value?.toFixed(1).replace('.', ',') || 'Sin asignar';
+const referencedSource = (id: string) => sourceById.get(id);
+---
+
+{basis && <div class="rating-evidence" data-evaluation-evidence>
+  <section class="content-section">
+    <h2>Alcance y fecha de la evaluación</h2>
+    <p><strong>Evaluación editorial provisional del {formatDate(basis.fecha)}.</strong></p>
+    <p>{basis.alcance}</p>
+    <p>Las puntuaciones expresan un juicio editorial sustentado en las fuentes indicadas. No representan probabilidades estadísticas ni un índice cuantitativo definitivo.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Relevancia: {number(process.valoraciones.relevancia_geopolitica)} sobre 5</h2>
+    <p>{basis.relevancia.resumen}</p>
+    <p>Se utiliza la media aritmética de las cuatro dimensiones, con igual peso y redondeo a un decimal: ({basis.relevancia.dimensiones.map(item => item.valor).join(' + ')}) ÷ 4 = {number(process.valoraciones.relevancia_geopolitica)}.</p>
+    <div class="evidence-dimensions">
+      {basis.relevancia.dimensiones.map(dimension => <section class="evidence-item">
+        <h3>{labels[dimension.clave]}: {dimension.valor} sobre 5</h3>
+        <p>{dimension.justificacion}</p>
+        <ul class="evidence-sources">
+          {dimension.fuente_ids.map(id => {
+            const source = referencedSource(id);
+            return source && <li><a href={source.url} rel="noopener noreferrer">{source.medio}: {source.titulo}</a><span> · {formatDate(source.fecha)}</span></li>;
+          })}
+        </ul>
+      </section>)}
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>Atención mediática: {number(process.valoraciones.atencion_mediatica)} sobre 5</h2>
+    <p>{basis.atencion.resumen}</p>
+    <p><strong>Periodo de la muestra:</strong> {formatDate(basis.atencion.periodo.desde)} a {formatDate(basis.atencion.periodo.hasta)}.</p>
+    <p>{basis.atencion.seleccion}</p>
+    <dl class="evidence-criteria">
+      {basis.atencion.criterios.map(item => <div><dt>{item.criterio}</dt><dd>{item.observacion}</dd></div>)}
+    </dl>
+    <h3>Documentos periodísticos observados</h3>
+    <p>La muestra identifica el origen editorial de cada documento. Una republicación no constituye otra cobertura independiente.</p>
+    <ol class="evidence-sample">
+      {basis.atencion.muestra.map(item => {
+        const source = referencedSource(item.fuente_id);
+        return source && <li>
+          <p><a href={source.url} rel="noopener noreferrer">{source.titulo}</a></p>
+          <p><strong>{source.medio}</strong> · {formatDate(source.fecha)}<br />Origen editorial: {item.origen_editorial}. Función en la muestra: {item.funcion}.</p>
+          <p>{item.observacion}</p>
+        </li>;
+      })}
+    </ol>
+    {basis.atencion.exclusiones.length > 0 && <><h3>Qué se excluye de esta muestra</h3><ul>{basis.atencion.exclusiones.map(item => <li>{item}</li>)}</ul></>}
+  </section>
+
+  <section class="content-section">
+    <h2>Brecha: {process.valoraciones.brecha !== null && process.valoraciones.brecha > 0 ? '+' : ''}{number(process.valoraciones.brecha)}</h2>
+    <p>{basis.brecha}</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Confianza y límites</h2>
+    <p><strong>Confianza editorial: {process.valoraciones.confianza}.</strong> {basis.confianza_justificacion}</p>
+    <ul>{basis.limites.map(item => <li>{item}</li>)}</ul>
+  </section>
+
+  <section class="content-section">
+    <h2>Cuándo revisar la valoración</h2>
+    <ul>{basis.condiciones_revision.map(item => <li>{item}</li>)}</ul>
+  </section>
+</div>}
+
+<style>
+  .rating-evidence { min-width: 0; overflow-wrap: anywhere; }
+  .evidence-dimensions { display: grid; gap: 1.3rem; margin-top: 1.5rem; }
+  .evidence-item { border-left: 3px solid var(--line, #ded7cc); padding-left: 1rem; }
+  .evidence-item h3 { margin-top: 0; }
+  .evidence-sources { font-size: .9em; }
+  .evidence-sources li + li { margin-top: .6rem; }
+  .evidence-criteria { display: grid; gap: 1rem; margin: 1.5rem 0; }
+  .evidence-criteria dt { font-weight: 700; }
+  .evidence-criteria dd { margin: .35rem 0 0; }
+  .evidence-sample { padding-left: 1.4rem; }
+  .evidence-sample > li { padding-left: .3rem; margin-bottom: 1.3rem; }
+  .evidence-sample p { margin: .35rem 0; }
+</style>

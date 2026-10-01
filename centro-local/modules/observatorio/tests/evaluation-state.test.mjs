@@ -88,7 +88,7 @@ test('guardar otra ficha del corpus real conserva clasificación, seguimiento y 
   const targetId = 'eeuu-china-competencia-geoeconomica-interdependencias';
   const original = corpus.macroeventos.find((event) => event.id === targetId);
   assert.ok(original, 'La ficha incorporada debe existir en el corpus canónico.');
-  const protectedKeys = ['clasificacion', 'nota_fecha_corte', 'estado_seguimiento', 'parametros_pronostico', 'analisis_expertos'];
+  const protectedKeys = ['clasificacion', 'nota_fecha_corte', 'estado_seguimiento', 'parametros_pronostico', 'analisis_expertos', ...(original.fundamento_evaluacion ? ['fundamento_evaluacion'] : [])];
   for (const key of protectedKeys) assert.ok(Object.hasOwn(original, key), `El corpus debe contener ${key}.`);
 
   const changed = copy(corpus);
@@ -101,8 +101,8 @@ test('guardar otra ficha del corpus real conserva clasificación, seguimiento y 
   assert.deepEqual(reloaded.macroeventos.map((event) => event.id), corpus.macroeventos.map((event) => event.id));
   const retained = reloaded.macroeventos.find((event) => event.id === targetId);
   for (const key of protectedKeys) assert.deepEqual(retained[key], original[key], `No debe alterarse ${key} al guardar otra ficha.`);
-  assert.equal(retained.estado_evaluacion, 'no_asignada');
-  assert.ok(Object.values(retained.evaluacion).every((value) => value === null));
+  assert.equal(retained.estado_evaluacion, original.estado_evaluacion);
+  assert.deepEqual(retained.evaluacion, normalizeEventEvaluation(original).evaluacion);
   for (const event of corpus.macroeventos) {
     const saved = reloaded.macroeventos.find((item) => item.id === event.id);
     assert.deepEqual(preserveAnalyticalFields(saved), preserveAnalyticalFields(event), `Campos analíticos de ${event.id}`);
@@ -163,4 +163,16 @@ test('la matriz real excluye fichas sin evaluación y explica su ausencia', () =
   assert.doesNotMatch(nodes['#matrix-chart'].innerHTML, /data-edit-event="sin-evaluacion"/);
   assert.match(nodes['#matrix-table'].innerHTML, /1 macroevento sin evaluación completa, excluido/);
   assert.doesNotMatch(nodes['#matrix-table'].innerHTML, /null\/5|NaN|undefined/);
+});
+
+test('el fundamento y la evaluación previa conservan su trazabilidad al guardar y recargar', () => {
+  const basis = { fecha: '2026-10-01', evaluacion_referenciada: { ...scores, confianza: 'media' }, relevancia: { dimensiones: [{ clave: 'impacto', valor: 3, fuente_ids: ['src-1'] }] }, otras_dimensiones: [{ clave: 'urgencia', valor: 3, justificacion: 'Nota interna' }] };
+  const event = { id: 'con-fundamento', titulo: 'Fundamento', estado_evaluacion: 'asignada', evaluacion: { ...scores, confianza: 'media' }, fundamento_evaluacion: basis, historial_evaluacion: [{ fecha: '2026-10-01', lote_id: 'evaluacion-inicial', ...unassigned }] };
+  const saved = copy(normalizeEvent(normalizeEvent(event, 0, {}), 0, {}));
+  assert.deepEqual(saved.fundamento_evaluacion, basis);
+  assert.deepEqual(saved.evaluacion, event.evaluacion);
+  assert.equal(saved.historial_evaluacion[0].estado_evaluacion, 'no_asignada');
+  assert.ok(Object.values(saved.historial_evaluacion[0].evaluacion).every(value => value === null));
+  saved.fundamento_evaluacion.relevancia.dimensiones[0].fuente_ids.push('otra');
+  assert.equal(basis.relevancia.dimensiones[0].fuente_ids.length, 1);
 });

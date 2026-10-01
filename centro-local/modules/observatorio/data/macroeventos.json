@@ -28549,7 +28549,7 @@
         "min_anios": 3,
         "max_anios": 10
       },
-      "estado_evaluacion": "no_asignada",
+      "estado_evaluacion": "asignada",
       "referencias_senal": [
         {
           "senal_id": "sig-ip-bis-h200",
@@ -28730,8 +28730,8 @@
           "medio_catalogado": false,
           "tipo": "fuente_primaria",
           "estado_verificacion": "verificada",
-          "observaciones": "Título abreviado por número oficial. Anuncio leído y reabierto correctamente tras un error transitorio. Documenta licencias, no embargo universal. Mantener como hito histórico; falta cronología completa de modificaciones. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
-          "revisada_el": "2026-09-30"
+          "observaciones": "Título abreviado por número oficial. Anuncio leído y reabierto correctamente tras un error transitorio. Documenta licencias, no embargo universal. Mantener como hito histórico; falta cronología completa de modificaciones. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual. Reabierta el 01/10/2026 para la valoración editorial. Listado de productos y párrafos finales sobre licencias, aduana y entrada en vigor. Es un hito normativo histórico; control de exportaciones no equivale a embargo universal. La versión inglesa se identifica como referencia, con original chino auténtico.",
+          "revisada_el": "2026-10-01"
         },
         {
           "id": "src-eeuu-china-mofcom-boards-20260516",
@@ -28776,8 +28776,8 @@
           "medio_catalogado": false,
           "tipo": "fuente_primaria",
           "estado_verificacion": "verificada",
-          "observaciones": "Comunicado leído. Recomendaciones para trato futuro; no acredita tasas reducidas ni compras ejecutadas. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
-          "revisada_el": "2026-09-30"
+          "observaciones": "Comunicado leído. Recomendaciones para trato futuro; no acredita tasas reducidas ni compras ejecutadas. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual. Reabierta el 01/10/2026 para la valoración editorial. Comunicado, párrafos iniciales y declaración de Greer. Recomendaciones y beneficios afirmados por USTR no acreditan rebajas aplicadas, compras realizadas o resultados medidos.",
+          "revisada_el": "2026-10-01"
         },
         {
           "id": "src-eeuu-china-30for30-terms-20260927",
@@ -28896,8 +28896,8 @@
           "medio_catalogado": false,
           "tipo": "analisis",
           "estado_verificacion": "verificada",
-          "observaciones": "Análisis leído. Se usa la contribución de Thomas J. Christensen: hay incentivos para cooperar ante pérdida de control, pero prevé límites por divergencias sobre cómo y por qué cooperar. Opinión atribuida, no consenso ni probabilidad medida. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual.",
-          "revisada_el": "2026-09-30",
+          "observaciones": "Análisis leído. Se usa la contribución de Thomas J. Christensen: hay incentivos para cooperar ante pérdida de control, pero prevé límites por divergencias sobre cómo y por qué cooperar. Opinión atribuida, no consenso ni probabilidad medida. Verificación documental para el artículo: URL, fecha y contenido cotejados; autorización de incorporación al sitio del 01/10/2026. Las opiniones conservan atribución y los documentos históricos no acreditan por sí solos la vigencia actual. Reabierta el 01/10/2026 para la valoración editorial. The U.S.-China Truce Is Fragile; No Long-Term Solutions; Still Waiting on Substantive AI Discussions. Opiniones atribuidas; una publicación compartida no son tres corroboraciones independientes. No establecen probabilidades medibles ni prueban una alianza tecnológica.",
+          "revisada_el": "2026-10-01",
           "consultada_el": "2026-09-30",
           "alcance_lectura": "texto_original_consultado"
         },
@@ -28928,7 +28928,7 @@
           "medio_catalogado": false,
           "tipo": "comunicado_oficial",
           "estado_verificacion": "verificada",
-          "observaciones": "Comunicado original chino leído; traducción de trabajo propia. Informa primer diálogo IA, próximo antes de terminar noviembre, y prórroga del arreglo de Kuala Lumpur al 10/01/2027. Atribuir a MOFCOM. No acredita funcionamiento del canal, rebajas ya aplicadas ni enmienda de cada norma.",
+          "observaciones": "Comunicado original chino leído; traducción de trabajo propia. Informa primer diálogo IA, próximo antes de terminar noviembre, y prórroga del arreglo de Kuala Lumpur al 10/01/2027. Atribuir a MOFCOM. No acredita funcionamiento del canal, rebajas ya aplicadas ni enmienda de cada norma. Reabierta el 01/10/2026 para la valoración editorial. Puntos II, VII y VIII; lectura del texto chino con traducción de trabajo. Información atribuida a una parte. La realización reportada del diálogo no verifica la operación del canal de incidentes ni acredita modificaciones de cada norma afectada.",
           "revisada_el": "2026-10-01",
           "consultada_el": "2026-10-01",
           "alcance_lectura": "texto_original_consultado"
@@ -28944,7 +28944,7 @@
           "medio_catalogado": false,
           "tipo": "comunicado_oficial",
           "estado_verificacion": "verificada",
-          "observaciones": "Sección XI, respuestas 1–2, leída en la página oficial consultada 01/10/2026. Fecha de las respuestas 23/12/2025; ley 18/12/2025. Confirma la explicación de transición regulatoria, sin convertirla en inventario exhaustivo de reformas posteriores.",
+          "observaciones": "Sección XI, respuestas 1–2, leída en la página oficial consultada 01/10/2026. Fecha de las respuestas 23/12/2025; ley 18/12/2025. Confirma la explicación de transición regulatoria, sin convertirla en inventario exhaustivo de reformas posteriores. Reabierta el 01/10/2026 para la valoración editorial. Sección XI, respuestas 1–2. La fecha de publicación de las respuestas se conserva. La página no constituye una auditoría exhaustiva de todas las modificaciones normativas posteriores.",
           "revisada_el": "2026-10-01",
           "consultada_el": "2026-10-01",
           "alcance_lectura": "texto_original_consultado"
@@ -28976,7 +28976,7 @@
           "medio_catalogado": false,
           "tipo": "analisis",
           "estado_verificacion": "verificada",
-          "observaciones": "Análisis original de Armand Meyer, Thilo Hanemann, Ian Hutchinson y Danielle Goh leído. Pronóstico cualitativo anterior a la cumbre de septiembre; considera factores regulatorios, políticos y de demanda. No prueba por sí solo efecto causal de una medida concreta.",
+          "observaciones": "Análisis original de Armand Meyer, Thilo Hanemann, Ian Hutchinson y Danielle Goh leído. Pronóstico cualitativo anterior a la cumbre de septiembre; considera factores regulatorios, políticos y de demanda. No prueba por sí solo efecto causal de una medida concreta. Reabierta el 01/10/2026 para la valoración editorial. Clean tech drives China’s OFDI rebound, but US projects stall; No return to the glory days. Diagnóstico y pronóstico de abril, anterior a la cumbre de septiembre. Se refiere principalmente a inversión china entrante; no demuestra por sí solo efectos del programa estadounidense de inversión saliente.",
           "revisada_el": "2026-10-01",
           "consultada_el": "2026-10-01",
           "alcance_lectura": "texto_original_consultado"
@@ -29024,7 +29024,7 @@
           "medio_catalogado": false,
           "tipo": "analisis",
           "estado_verificacion": "verificada",
-          "observaciones": "Análisis original de Gracelin Baskaran y Meredith Schwartz leído. Diagnóstico con corte de abril 2026 y evaluación experta de resiliencia. No trasladar cifras al 01/10/2026 ni inferir efectos actuales sin datos posteriores.",
+          "observaciones": "Análisis original de Gracelin Baskaran y Meredith Schwartz leído. Diagnóstico con corte de abril 2026 y evaluación experta de resiliencia. No trasladar cifras al 01/10/2026 ni inferir efectos actuales sin datos posteriores. Reabierta el 01/10/2026 para la valoración editorial. Introduction; The Status of Supply Chains and Export Flows; Measuring the Success of U.S. Strategy. Corte de abril: no extrapolar cifras o problemas concretos a octubre. Los anuncios de proyectos y capital no equivalen a capacidad operativa.",
           "revisada_el": "2026-10-01",
           "consultada_el": "2026-10-01",
           "alcance_lectura": "texto_original_consultado"
@@ -29044,6 +29044,104 @@
           "revisada_el": "2026-10-01",
           "consultada_el": "2026-10-01",
           "alcance_lectura": "texto_original_consultado"
+        },
+        {
+          "id": "cov-eeuu-china-20260904-reuters-tierras-raras",
+          "medio": "Reuters",
+          "titulo": "China rare earth firms halt some US shipments over geopolitical worries, sources say",
+          "fecha": "2026-09-04",
+          "url": "https://www.investing.com/news/stock-market-news/china-rare-earth-firms-halt-some-us-shipments-over-geopolitical-worries-sources-say-4888882",
+          "idioma": "en",
+          "media_id": "reuters",
+          "medio_catalogado": true,
+          "tipo": "noticia",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-10-01",
+          "observaciones": "Evidencia de atención periodística, no una nueva señal del proceso. Autoría: Laurie Chen, Solomon Cefai, Trevor Hunnicutt y Lewis Jackson. Publicación consultada: Investing.com. Página abierta; título, fecha, firmas y texto visibles. Despacho atribuido expresamente a Reuters. Evidencia de cobertura de implementación a comienzos de septiembre, antes del pico de cumbre. Origen editorial conservado para no duplicar agencias. URL original declarada: https://www.reuters.com/business/aerospace-defense/china-rare-earth-firms-halt-some-us-shipments-over-geopolitical-worries-sources-2026-09-04/"
+        },
+        {
+          "id": "cov-eeuu-china-20260921-reuters-analisis",
+          "medio": "Reuters",
+          "titulo": "Analysis-Rare earths force Trump to be less hostile before Xi summit",
+          "fecha": "2026-09-21",
+          "url": "https://www.investing.com/news/world-news/analysisrare-earths-force-trump-to-be-less-hostile-before-xi-summit-4908566",
+          "idioma": "en",
+          "media_id": "reuters",
+          "medio_catalogado": true,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-10-01",
+          "observaciones": "Evidencia de atención periodística, no una nueva señal del proceso. Autoría: Alexandra Alper. Publicación consultada: Investing.com. Página abierta; título, fecha, firma y texto visibles; Reuters identificado. Análisis de mecanismos, no mera noticia del encuentro; misma agencia que el 04/09, pieza distinta. Origen editorial conservado para no duplicar agencias. URL original declarada: https://www.reuters.com/world/china/rare-earths-force-trump-be-less-hostile-before-xi-summit-2026-09-21/"
+        },
+        {
+          "id": "cov-eeuu-china-20260922-cna-video",
+          "medio": "CNA",
+          "titulo": "US-China AI rivalry: Can Trump and Xi agree on rules for the artificial intelligence race?",
+          "fecha": "2026-09-22",
+          "url": "https://www.channelnewsasia.com/watch/us-china-ai-rivalry-can-trump-and-xi-agree-rules-artificial-intelligence-race-6402501",
+          "idioma": "en",
+          "media_id": "cna",
+          "medio_catalogado": true,
+          "tipo": "noticia",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-10-01",
+          "observaciones": "Evidencia de atención periodística, no una nueva señal del proceso. Autoría: Ira Spitzer. Publicación consultada: CNA. Página abierta; fecha, duración, sinopsis y periodista visibles. Se verificó la ficha y sinopsis, no una transcripción íntegra del video. Demuestra cobertura en formato audiovisual; no se infieren contenidos no transcritos. Origen editorial conservado para no duplicar agencias. URL original declarada: https://www.channelnewsasia.com/watch/us-china-ai-rivalry-can-trump-and-xi-agree-rules-artificial-intelligence-race-6402501"
+        },
+        {
+          "id": "cov-eeuu-china-20260922-scmp",
+          "medio": "South China Morning Post",
+          "titulo": "The US-China tech war has evolved since the last Xi-Trump summit. Who has the edge now?",
+          "fecha": "2026-09-22",
+          "url": "https://www.scmp.com/economy/global-economy/article/3368262/us-china-tech-war-has-evolved-last-xi-trump-summit-who-has-edge-now",
+          "idioma": "en",
+          "media_id": "south-china-morning-post",
+          "medio_catalogado": true,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-10-01",
+          "observaciones": "Evidencia de atención periodística, no una nueva señal del proceso. Autoría: Sylvia Ma. Publicación consultada: South China Morning Post. Página abierta, acceso parcial: título, firma, fecha y comienzo visibles; texto se presenta como cuarta parte de una serie. No lectura íntegra. Otra redacción asiática y tratamiento explicativo. Limitación de acceso consignada. Origen editorial conservado para no duplicar agencias. URL original declarada: https://www.scmp.com/economy/global-economy/article/3368262/us-china-tech-war-has-evolved-last-xi-trump-summit-who-has-edge-now"
+        },
+        {
+          "id": "cov-eeuu-china-20260924-efe-elpais",
+          "medio": "EFE / El País",
+          "titulo": "China confirma su primer diálogo con EE UU sobre inteligencia artificial",
+          "fecha": "2026-09-24",
+          "url": "https://elpais.com/tecnologia/2026-09-24/china-confirma-su-primer-dialogo-con-ee-uu-sobre-inteligencia-artificial.html",
+          "idioma": "es",
+          "media_id": "el-pais",
+          "medio_catalogado": true,
+          "tipo": "noticia",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-10-01",
+          "observaciones": "Evidencia de atención periodística, no una nueva señal del proceso. Autoría: EFE / El País (firma visible). Publicación consultada: El País. Página abierta; doble firma EFE/El País y fecha visibles. Añade un idioma a la muestra; no se considera una segunda investigación independiente de EFE. Origen editorial conservado para no duplicar agencias. URL original declarada: https://elpais.com/tecnologia/2026-09-24/china-confirma-su-primer-dialogo-con-ee-uu-sobre-inteligencia-artificial.html"
+        },
+        {
+          "id": "cov-eeuu-china-20260925-cna-analisis",
+          "medio": "CNA",
+          "titulo": "Warm words, limited deals: Trump-Xi summit puts focus on managing US-China rivalry",
+          "fecha": "2026-09-25",
+          "url": "https://www.channelnewsasia.com/east-asia/warm-words-limited-deals-trump-xi-summit-puts-focus-managing-us-china-rivalry-6410746",
+          "idioma": "en",
+          "media_id": "cna",
+          "medio_catalogado": true,
+          "tipo": "analisis",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-10-01",
+          "observaciones": "Evidencia de atención periodística, no una nueva señal del proceso. Autoría: Lee Gim Siong. Publicación consultada: CNA. Página abierta; fecha de publicación y actualización, firma y texto visibles. Source: CNA. Profundidad y pluralidad de fuentes expertas; solo se considera el tramo económico y tecnológico, no la sección sobre Taiwán. Origen editorial conservado para no duplicar agencias. URL original declarada: https://www.channelnewsasia.com/east-asia/warm-words-limited-deals-trump-xi-summit-puts-focus-managing-us-china-rivalry-6410746"
+        },
+        {
+          "id": "cov-eeuu-china-20260930-ap-vehiculos",
+          "medio": "Associated Press",
+          "titulo": "Senate punts bill to permanently ban Chinese cars until after midterm elections",
+          "fecha": "2026-09-30",
+          "url": "https://www.washingtonpost.com/business/2026/09/30/senate-chinese-ev-ban-elections-mercedesbenz/9a9832be-bd1c-11f1-81fc-9b76f8343b6c_story.html",
+          "idioma": "en",
+          "media_id": "associated-press-ap",
+          "medio_catalogado": true,
+          "tipo": "noticia",
+          "estado_verificacion": "verificada",
+          "revisada_el": "2026-10-01",
+          "observaciones": "Evidencia de atención periodística, no una nueva señal del proceso. Autoría: Joey Cappelletti y Didi Tang. Publicación consultada: The Washington Post (AP). Despacho AP recuperado por el buscador con fecha exacta y texto; republicación abierta confirma firmas y atribución AP. Cobertura posterior a la cumbre. Origen editorial conservado para no duplicar agencias. URL original declarada: https://apnews.com/article/220c9c816ed0f73eb867775c666b0b9e"
         }
       ],
       "senales": [
@@ -29414,8 +29512,26 @@
         "taxonomy_version": 1,
         "revisada_el": "2026-10-01"
       },
-      "evaluacion": null,
-      "historial_evaluacion": [],
+      "evaluacion": {
+        "impacto": 5,
+        "probabilidad": 4,
+        "alcance": 5,
+        "persistencia": 5,
+        "propagacion": 5,
+        "subcobertura": 2,
+        "incertidumbre": 3,
+        "urgencia": 3,
+        "cobertura_observada": 4,
+        "confianza": "media"
+      },
+      "historial_evaluacion": [
+        {
+          "fecha": "2026-10-01",
+          "lote_id": "evaluacion-eeuu-china-20261001",
+          "estado_evaluacion": "no_asignada",
+          "evaluacion": null
+        }
+      ],
       "excepciones_advertencias": [],
       "actualizaciones": [
         {
@@ -29494,8 +29610,222 @@
             "parametros_pronostico",
             "nota_fecha_corte"
           ]
+        },
+        {
+          "lote_id": "evaluacion-eeuu-china-20261001",
+          "actualizado_el": "2026-10-01T16:54:49.343Z",
+          "origen": "mixto",
+          "candidato_id": "eeuu-china-competencia-geoeconomica-interdependencias",
+          "candidato_titulo": "Competencia geoeconómica y tecnológica entre Estados Unidos y China y reorganización de las interdependencias estratégicas",
+          "tipo_evolucion": "revision_evaluacion",
+          "justificacion": "Asignación editorial solicitada por el usuario con evidencia: relevancia 4,8, atención 4, brecha +0,8 y confianza media. Siete fuentes estructurales reabiertas y siete piezas periodísticas de septiembre, deduplicadas por origen. Se conserva evaluación anterior nula y no se alteran los cuatro complementarios ni el parámetro cualitativo de IA.",
+          "fuente_ids_agregadas": [
+            "cov-eeuu-china-20260904-reuters-tierras-raras",
+            "cov-eeuu-china-20260921-reuters-analisis",
+            "cov-eeuu-china-20260922-cna-video",
+            "cov-eeuu-china-20260922-scmp",
+            "cov-eeuu-china-20260924-efe-elpais",
+            "cov-eeuu-china-20260925-cna-analisis",
+            "cov-eeuu-china-20260930-ap-vehiculos"
+          ],
+          "senal_ids_agregadas": [],
+          "advertencia_ids_agregadas": [],
+          "campos_modificados": [
+            "estado_evaluacion",
+            "evaluacion",
+            "historial_evaluacion",
+            "fundamento_evaluacion",
+            "fuentes"
+          ]
         }
-      ]
+      ],
+      "fundamento_evaluacion": {
+        "schema_version": 1,
+        "fecha": "2026-10-01",
+        "caracter": "editorial_provisional",
+        "alcance": "Evaluación del proceso rector de competencia geoeconómica y tecnológica EE. UU.–China. Los complementarios requieren valoraciones propias. Los números expresan un juicio editorial documentado; las fuentes no publican estas puntuaciones.",
+        "evaluacion_referenciada": {
+          "impacto": 5,
+          "probabilidad": 4,
+          "alcance": 5,
+          "persistencia": 5,
+          "propagacion": 5,
+          "subcobertura": 2,
+          "incertidumbre": 3,
+          "urgencia": 3,
+          "cobertura_observada": 4,
+          "confianza": "media"
+        },
+        "confianza_justificacion": "Confianza editorial media: los instrumentos y mecanismos cuentan con respaldo documental y contraste experto, pero la ejecución sigue siendo desigual y la cobertura procede de una muestra dirigida con sesgos de idioma y de coyuntura. No es un intervalo de confianza estadístico.",
+        "relevancia": {
+          "resumen": "Relevancia muy alta: las restricciones y los acuerdos afectan capital, tecnologías, suministros y mercados a través de varias regiones, con costes de adaptación que persisten durante años. La plausibilidad se mantiene en 4 por la ejecución desigual y la reversibilidad de algunas concesiones. El promedio de impacto 5, probabilidad 4, alcance 5 y persistencia 5 es 4,75; la presentación a un decimal es 4,8.",
+          "dimensiones": [
+            {
+              "clave": "impacto",
+              "valor": 5,
+              "justificacion": "El proceso afecta simultáneamente acceso a capital, tecnologías sensibles, insumos industriales y mercados. Su importancia procede de esas consecuencias productivas y regulatorias, no de la cordialidad presidencial. Magnitud potencial sistémica; no cuantifica pérdidas acumuladas ni da por ejecutados compromisos comerciales.",
+              "fuente_ids": [
+                "src-eeuu-china-treasury-coins-faq-20251223",
+                "src-eeuu-china-mofcom-licencias-20250404",
+                "src-eeuu-china-csis-tierras-raras-20260427"
+              ]
+            },
+            {
+              "clave": "probabilidad",
+              "valor": 4,
+              "justificacion": "Existen mecanismos regulatorios y comerciales identificables, por lo que la reorganización supera la mera hipótesis. Se mantiene un valor inferior al máximo porque las concesiones pueden cambiar y los nuevos arreglos requieren ejecución comprobable. No asigna probabilidad a ninguno de los escenarios ni al parámetro de cooperación sobre riesgos de IA.",
+              "fuente_ids": [
+                "src-eeuu-china-treasury-coins-faq-20251223",
+                "src-eeuu-china-ustr-30for30-20260927",
+                "src-eeuu-china-mofcom-octava-ronda-20260928",
+                "src-eeuu-china-csis-ia-20260928"
+              ]
+            },
+            {
+              "clave": "alcance",
+              "valor": 5,
+              "justificacion": "Las cadenas expuestas y las respuestas de diversificación atraviesan varias regiones: fabricantes y proveedores de Estados Unidos, Europa y Asia, con alternativas de suministro en Australia y otros socios. El criterio es la exposición transregional concreta. No presupone efectos iguales en todos los países ni incorpora como propios los conflictos militares de otros macroeventos.",
+              "fuente_ids": [
+                "src-eeuu-china-csis-tierras-raras-20260427",
+                "src-eeuu-china-rhodium-inversion-20260430"
+              ]
+            },
+            {
+              "clave": "persistencia",
+              "valor": 5,
+              "justificacion": "Las normas de inversión y la reconstrucción de capacidades industriales tienen horizontes de varios años. La evidencia experta sobre inversión identifica obstáculos estructurales que una mejora diplomática por sí sola no elimina. Persistencia de efectos y costes de reversión; no permanencia garantizada de cada restricción o acuerdo.",
+              "fuente_ids": [
+                "src-eeuu-china-treasury-coins-faq-20251223",
+                "src-eeuu-china-rhodium-inversion-20260430",
+                "src-eeuu-china-csis-tierras-raras-20260427"
+              ]
+            }
+          ]
+        },
+        "atencion": {
+          "resumen": "Atención mediática alta (4/5): una muestra documental del 1 de septiembre al 1 de octubre de 2026 reúne siete piezas distintas sobre controles tecnológicos, tierras raras, negociación comercial y riesgos de IA, con noticias, reportajes y análisis. Se identifica el origen de agencia para evitar contar republicaciones como coberturas independientes. La variedad de formatos y el seguimiento de mecanismos concretos sostienen una valoración alta; la muestra dirigida no permite afirmar que el proceso domine la agenda mundial.",
+          "periodo": {
+            "desde": "2026-09-01",
+            "hasta": "2026-10-01"
+          },
+          "seleccion": "Muestra dirigida de siete piezas distintas publicadas del 4 al 30 de septiembre, dentro de la ventana del 1 de septiembre al 1 de octubre de 2026. Selección por mecanismo (IA, controles tecnológicos, tierras raras y negociación comercial), fecha y medios del catálogo local. La unidad es la pieza; la diversidad se cuenta por redacción o agencia de origen. Reuters reproducido en Investing y AP en The Washington Post cuentan por su agencia, no como redacciones adicionales. El antecedente de mayo de la investigación queda fuera de esta muestra y de sus recuentos.",
+          "criterios": [
+            {
+              "criterio": "Presencia observada",
+              "observacion": "Siete piezas identificadas; este es el tamaño de la selección, no el volumen total de noticias. Cinco piezas se consultaron en texto, una como ficha audiovisual y otra con acceso parcial."
+            },
+            {
+              "criterio": "Diversidad",
+              "observacion": "Cinco orígenes editoriales: Reuters, Associated Press, CNA, South China Morning Post y EFE / El País. Dos piezas de Reuters y dos de CNA siguen siendo dos redacciones, no cuatro."
+            },
+            {
+              "criterio": "Continuidad",
+              "observacion": "Se comprobaron piezas fechadas el 4, 21, 22, 24, 25 y 30 de septiembre: hay seguimiento antes, durante y después de la cumbre. Esto no demuestra cobertura diaria ni continuidad uniforme de cada rama."
+            },
+            {
+              "criterio": "Profundidad",
+              "observacion": "Los textos completos de Reuters y CNA desarrollan mecanismos, restricciones y opiniones identificadas de especialistas. La ficha audiovisual de CNA y la entrada parcial de SCMP acreditan presencia temática; no se les atribuye una profundidad no examinada."
+            },
+            {
+              "criterio": "Razón de la nota",
+              "observacion": "La recurrencia, diversidad y análisis de mecanismos sostienen 4/5. La selección no permite afirmar predominio sostenido sobre la agenda mundial ni justificar el máximo de 5/5."
+            }
+          ],
+          "muestra": [
+            {
+              "fuente_id": "cov-eeuu-china-20260904-reuters-tierras-raras",
+              "origen_editorial": "Reuters",
+              "funcion": "Reportaje informativo",
+              "observacion": "Investiga interrupciones comerciales pese a la tregua; incluye fuentes sectoriales, datos aduaneros y a Reva Goujon (Rhodium Group). Página abierta; título, fecha, firmas y texto visibles. Despacho atribuido expresamente a Reuters."
+            },
+            {
+              "fuente_id": "cov-eeuu-china-20260921-reuters-analisis",
+              "origen_editorial": "Reuters",
+              "funcion": "Análisis periodístico",
+              "observacion": "Examina la influencia de las dependencias minerales sobre la negociación y aporta interpretaciones de especialistas. Página abierta; título, fecha, firma y texto visibles; Reuters identificado."
+            },
+            {
+              "fuente_id": "cov-eeuu-china-20260922-cna-video",
+              "origen_editorial": "CNA",
+              "funcion": "Reporte audiovisual de tres minutos",
+              "observacion": "La ficha anuncia un reporte propio sobre competencia de IA y seguridad compartida. Página abierta; fecha, duración, sinopsis y periodista visibles. Se verificó la ficha y sinopsis, no una transcripción íntegra del video."
+            },
+            {
+              "fuente_id": "cov-eeuu-china-20260922-scmp",
+              "origen_editorial": "South China Morning Post",
+              "funcion": "In Focus / serie analítica",
+              "observacion": "La entrada vincula IA, chips, tierras raras y cadenas de suministro como recursos de competencia. Página abierta, acceso parcial: título, firma, fecha y comienzo visibles; texto se presenta como cuarta parte de una serie. No lectura íntegra."
+            },
+            {
+              "fuente_id": "cov-eeuu-china-20260924-efe-elpais",
+              "origen_editorial": "EFE / El País",
+              "funcion": "Noticia",
+              "observacion": "Cobertura en español del inicio del diálogo sobre IA. Página abierta; doble firma EFE/El País y fecha visibles."
+            },
+            {
+              "fuente_id": "cov-eeuu-china-20260925-cna-analisis",
+              "origen_editorial": "CNA",
+              "funcion": "Análisis periodístico",
+              "observacion": "Contrasta tregua y competencia; entrevista a William Yang (International Crisis Group), Bonnie Glaser (German Marshall Fund), Wang Zichen (Center for China and Globalization) y otros especialistas. Página abierta; fecha de publicación y actualización, firma y texto visibles. Source: CNA."
+            },
+            {
+              "fuente_id": "cov-eeuu-china-20260930-ap-vehiculos",
+              "origen_editorial": "Associated Press",
+              "funcion": "Noticia con contexto sectorial",
+              "observacion": "Seguimiento de restricciones industriales. Despacho AP recuperado por el buscador con fecha exacta y texto; republicación abierta confirma firmas y atribución AP."
+            }
+          ],
+          "exclusiones": [
+            "Comunicados de gobiernos y empresas no cuentan como atención periodística.",
+            "No se suman las réplicas de un despacho como artículos o redacciones independientes.",
+            "Se excluyen resultados de redes sociales, agregadores de IA y piezas exclusivamente protocolarias, militares o sobre Taiwán.",
+            "No se utilizan los números aproximados del buscador como estimación de volumen."
+          ]
+        },
+        "brecha": "La diferencia mostrada es +0,8 (4,8 menos 4,0). Sugiere una distancia limitada entre importancia estructural y atención observada. No significa silencio informativo, porcentaje de noticias faltantes ni medición de sesgo: ambas notas son juicios editoriales y el corte está influido por la cumbre.",
+        "limites": [
+          "La escala local define dimensiones, pero no umbrales empíricos exhaustivos para cada entero; el 4,8 es una agregación editorial, no una medición científica.",
+          "La plausibilidad de avance del proceso no representa una probabilidad de alianza tecnológica, éxito de la cumbre o cooperación operativa en IA. El parámetro de pronóstico conserva su evaluación cualitativa independiente.",
+          "Los documentos oficiales acreditan medidas o posiciones; no verifican por sí mismos su eficacia. Los análisis de abril aportan antecedentes y mecanismos, no un inventario de flujos actualizado a octubre.",
+          "El contraste experto estructural está concentrado en centros estadounidenses. La muestra periodística contiene seis piezas en inglés y una en español; no cubre sistemáticamente prensa en chino u otros idiomas.",
+          "La selección es intencional y la cumbre de septiembre puede elevar la visibilidad observada. No se midieron portadas, audiencias ni el volumen relativo frente a todos los demás procesos.",
+          "SCMP permitió leer título, firma, fecha y entrada inicial; CNA audiovisual se verificó mediante ficha y sinopsis. Las republicaciones de Reuters y AP conservan su origen. Esas restricciones están indicadas junto a cada pieza."
+        ],
+        "condiciones_revision": [
+          "Revisar la atención con un nuevo corte mensual posterior a la cumbre, manteniendo criterios comparables y ampliando idiomas; una caída de piezas o diversidad justificaría reconsiderar el 4.",
+          "Revisar impacto, alcance y persistencia si resultados sostenidos documentan menor exposición industrial o reducción de obstáculos en varias dimensiones, no por una sola concesión.",
+          "Revisar la plausibilidad de avance ante normas nuevas, concesiones efectivamente aplicadas o cancelaciones verificadas, distinguiendo anuncio, ejecución y resultado.",
+          "Reexaminar por separado el diálogo de IA y la operación del canal de incidentes; no trasladar cordialidad presidencial ni ausencia de noticias a probabilidades de alianza.",
+          "Una futura modificación de las puntuaciones requiere actualizar este fundamento y su fecha antes de volver a presentarlo como vigente."
+        ],
+        "otras_dimensiones": [
+          {
+            "clave": "propagacion",
+            "valor": 5,
+            "justificacion": "Encadenamiento documentado: controles y licencias alteran acceso a insumos y capital; fabricantes y proveedores ajustan producción, diversificación y decisiones de inversión. Evalúa transmisión entre sectores, además de extensión geográfica."
+          },
+          {
+            "clave": "subcobertura",
+            "valor": 2,
+            "justificacion": "Subcobertura limitada: la muestra muestra presencia recurrente y diversa, junto con lagunas de seguimiento operativo y desigual profundidad entre ramas. Es un juicio independiente; no resulta de convertir automáticamente la brecha +0,8 a esta escala."
+          },
+          {
+            "clave": "incertidumbre",
+            "valor": 3,
+            "justificacion": "Incertidumbre intermedia del conjunto: instrumentos y dependencias están documentados; efectos acumulados, cumplimiento de concesiones y operación del canal de IA siguen abiertos. No describe el riesgo ni iguala la incertidumbre de todas las ramas."
+          },
+          {
+            "clave": "urgencia",
+            "valor": 3,
+            "justificacion": "Necesidad editorial intermedia de revisar ejecución y cobertura después de la cumbre mediante un nuevo corte mensual, sin convertir la actualidad mediática en urgencia máxima."
+          },
+          {
+            "clave": "cobertura_observada",
+            "valor": 4,
+            "justificacion": "Siete piezas distintas y cinco orígenes en la ventana, con recurrencia y análisis de mecanismos. Muestra dirigida; no censo exhaustivo ni prueba de predominio mundial."
+          }
+        ]
+      }
     },
     {
       "id": "eeuu-china-cooperacion-riesgos-ia",

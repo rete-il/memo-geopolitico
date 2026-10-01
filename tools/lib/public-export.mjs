@@ -1,3 +1,4 @@
+import { projectEvaluationBasis, validateEvaluationBasis } from './evaluation-basis.mjs';
 import { isAssignedRating } from './editorial-ratings.mjs';
 import {
   normalizeCharacterization,
@@ -481,6 +482,11 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
     const relevance = assigned ? proposedRelevance : null;
     const attention = assigned ? event.evaluacion.cobertura_observada : null;
     const sourceIds = allowedSources.map((source) => source.fuente_id);
+    const evaluationBasis = projectEvaluationBasis(event, {
+      estado_evaluacion: assigned ? 'asignada' : 'no_asignada',
+      fuente_ids: sourceIds,
+      valoraciones: { relevancia_geopolitica: relevance },
+    }, new Map(allowedSources.map(source => [source.fuente_id, source])));
     const completedMilestones = [
       'Expediente abierto y clasificado',
       ...(sourceIds.length ? ['Fuentes verificadas incorporadas'] : []),
@@ -559,6 +565,7 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
         confianza: assigned && event.evaluacion?.confianza ? String(event.evaluacion.confianza) : null,
         incertidumbre: assigned && isAssignedRating(event.evaluacion?.incertidumbre) ? event.evaluacion.incertidumbre : null,
       },
+      ...(evaluationBasis ? { fundamento_evaluacion: evaluationBasis } : {}),
       senales: signals.sort((a, b) => b.fecha.localeCompare(a.fecha)),
       cronologia: [],
       fuente_ids: sourceIds,
@@ -686,6 +693,8 @@ export function validatePublicPackage(data, options = {}) {
   for (const process of data?.procesos || []) {
     const label = process.titulo || process.macroevento_id;
     const ratings = process.valoraciones || {};
+    errors.push(...validateEvaluationBasis(process.fundamento_evaluacion, process,
+      new Map((data.fuentes || []).map(source => [source.fuente_id, source]))).map(error => label + ': ' + error));
     if (process.estado_evaluacion === 'no_asignada') {
       if (Object.values(ratings).some((value) => value !== null)) errors.push(`${label}: una evaluación sin asignar no puede contener puntuaciones ni confianza.`);
     } else if (!isAssignedRating(ratings.relevancia_geopolitica) || !isAssignedRating(ratings.atencion_mediatica)) {
