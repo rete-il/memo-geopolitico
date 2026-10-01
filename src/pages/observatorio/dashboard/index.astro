@@ -1,4 +1,5 @@
 ---
+import { compareProcessRatings, hasAssignedRatings, formatRating, formatRatingGap } from '../../../../tools/lib/editorial-ratings.mjs';
 import PageTitle from '../../../components/PageTitle.astro';
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import {
@@ -44,12 +45,8 @@ const signals = processes
     })),
   )
   .sort((a, b) => b.fecha.localeCompare(a.fecha));
-const ranked = [...processes].sort(
-  (a, b) =>
-    b.valoraciones.relevancia_geopolitica -
-      a.valoraciones.relevancia_geopolitica ||
-    b.valoraciones.brecha - a.valoraciones.brecha,
-);
+const ranked = processes.filter(hasAssignedRatings).sort(compareProcessRatings);
+const unassignedCount = processes.length - ranked.length;
 const publishedCount = processes.filter(
   (process) => stateFor(process) === 'publicado',
 ).length;
@@ -205,7 +202,7 @@ const pointPosition = (value: number) => 6 + ((value - 1) / 4) * 88;
                         <strong>{process.titulo}</strong>
                         <small>{editorialStageLabel(stateFor(process))}</small>
                       </a>
-                      <b>{process.valoraciones.relevancia_geopolitica.toFixed(1)}</b>
+                      <b>{formatRating(process.valoraciones.relevancia_geopolitica)}</b>
                     </li>
                   ))
                 }
@@ -342,9 +339,9 @@ const pointPosition = (value: number) => 6 + ((value - 1) / 4) * 88;
                           <td><span class={`dashboard-state dashboard-state--${state}`}>{editorialStageLabel(state)}</span></td>
                           <td>{regionNames || 'Global'}</td>
                           <td>{themeName}</td>
-                          <td><b class="dashboard-score">{process.valoraciones.relevancia_geopolitica.toFixed(1)}</b></td>
-                          <td><b class="dashboard-score">{process.valoraciones.atencion_mediatica.toFixed(1)}</b></td>
-                          <td><b class:list={['dashboard-score', { 'dashboard-score--gap': process.valoraciones.brecha > 0 }]}>{process.valoraciones.brecha > 0 ? '+' : ''}{process.valoraciones.brecha.toFixed(1)}</b></td>
+                          <td><b class="dashboard-score">{formatRating(process.valoraciones.relevancia_geopolitica)}</b></td>
+                          <td><b class="dashboard-score">{formatRating(process.valoraciones.atencion_mediatica)}</b></td>
+                          <td><b class:list={['dashboard-score', { 'dashboard-score--gap': process.valoraciones.brecha !== null && process.valoraciones.brecha > 0 }]}>{formatRatingGap(process.valoraciones.brecha)}</b></td>
                         </tr>
                       );
                     })
@@ -371,6 +368,7 @@ const pointPosition = (value: number) => 6 + ((value - 1) / 4) * 88;
             </div>
             <p>Escala de 1 a 5. Cada círculo indica cuántos procesos comparten una valoración.</p>
           </div>
+          {unassignedCount > 0 && <p>{unassignedCount} {unassignedCount === 1 ? 'proceso pendiente' : 'procesos pendientes'} de evaluación editorial, sin posición en la matriz.</p>}
           <div class="dashboard-matrix" aria-label="Matriz de procesos">
             <span class="matrix-label matrix-label--top-left">Alta relevancia · baja atención</span>
             <span class="matrix-label matrix-label--top-right">Alta relevancia · alta atención</span>

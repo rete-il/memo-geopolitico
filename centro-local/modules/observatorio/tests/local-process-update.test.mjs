@@ -18,6 +18,8 @@ function process(signals = []) {
     schema_version: 2,
     macroevento_id: EVENT_ID,
     slug: EVENT_ID,
+    estado_evaluacion: 'no_asignada',
+    valoraciones: { relevancia_geopolitica: null, atencion_mediatica: null, brecha: null, confianza: null, incertidumbre: null },
     titulo: 'Chancay y corredores bioceánicos',
     sintesis: 'Seguimiento público.',
     publicacion: { estado: 'publicado', publicado_el: '2026-08-13', actualizado_el: '2026-08-13' },

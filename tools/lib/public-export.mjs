@@ -1,3 +1,4 @@
+import { isAssignedRating } from './editorial-ratings.mjs';
 import {
   normalizeCharacterization,
   normalizeLanguageCode,
@@ -67,6 +68,7 @@ const GEOGRAPHY = {
   Chad: { type: 'country', id: 'TCD', nombre: 'Chad', parent_id: 'africa' },
   Chile: { type: 'country', id: 'CHL', nombre: 'Chile', parent_id: 'americas' },
   China: { type: 'country', id: 'CHN', nombre: 'China', parent_id: 'asia' },
+  'Estados Unidos': { type: 'country', id: 'USA', nombre: 'Estados Unidos', slug: 'estados-unidos-america', parent_id: 'americas' },
   Egipto: { type: 'country', id: 'EGY', nombre: 'Egipto', parent_id: 'africa' },
   Eritrea: { type: 'country', id: 'ERI', nombre: 'Eritrea', parent_id: 'africa' },
   Etiopía: { type: 'country', id: 'ETH', nombre: 'Etiopía', parent_id: 'africa' },
@@ -245,7 +247,10 @@ function geographyProjection(labels) {
       nombre: label,
       parent_id: 'global',
     };
-    const extra = entry.parent_id ? { parent_id: entry.parent_id } : {};
+    const extra = {
+      ...(entry.parent_id ? { parent_id: entry.parent_id } : {}),
+      ...(entry.slug ? { slug: entry.slug } : {}),
+    };
     if (entry.type === 'region') {
       regionIds.push(entry.id);
       catalogEntries.regiones.set(entry.id, catalogItem(entry.id, entry.nombre, 100, extra));
@@ -302,9 +307,8 @@ function geographyProjection(labels) {
 
 function averageScale(evaluation) {
   const values = ['impacto', 'probabilidad', 'alcance', 'persistencia']
-    .map((key) => Number(evaluation?.[key]))
-    .filter(Number.isFinite);
-  if (!values.length) return 1;
+    .map((key) => evaluation?.[key]);
+  if (!values.every(isAssignedRating)) return null;
   return Number((values.reduce((sum, value) => sum + value, 0) / values.length).toFixed(1));
 }
 
@@ -332,6 +336,15 @@ function nextEditorialStep(state) {
     publicado: 'Mantener el seguimiento e incorporar nuevas señales verificadas.',
   };
   return steps[state] || steps.borrador;
+}
+
+function publicForecastParameter(parameter) {
+  const keys = ['id', 'nombre', 'tipo', 'fecha_evaluacion', 'estado_actual', 'lectura_actual',
+    'pregunta', 'senal_ids', 'fuente_ids', 'analisis_experto_ids', 'probabilidades_asignadas',
+    'automatiza_puntuaciones', 'estados_observables', 'reglas_de_actualizacion',
+    'reglas_editoriales', 'revision'];
+  return Object.fromEntries(keys.filter((key) => Object.hasOwn(parameter, key))
+    .map((key) => [key, structuredClone(parameter[key])]));
 }
 
 export function buildPublicPackage(data, taxonomy = {}, options = {}) {
@@ -461,8 +474,12 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
       });
     }
 
-    const relevance = averageScale(event.evaluacion);
-    const attention = Number(event.evaluacion?.cobertura_observada || 1);
+    const proposedRelevance = averageScale(event.evaluacion);
+    const assigned = !['no_asignada', 'parcial'].includes(event.estado_evaluacion)
+      && isAssignedRating(proposedRelevance)
+      && isAssignedRating(event.evaluacion?.cobertura_observada);
+    const relevance = assigned ? proposedRelevance : null;
+    const attention = assigned ? event.evaluacion.cobertura_observada : null;
     const sourceIds = allowedSources.map((source) => source.fuente_id);
     const completedMilestones = [
       'Expediente abierto y clasificado',
@@ -534,12 +551,13 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
       claves_estructurales: Array.isArray(event.claves_estructurales)
         ? event.claves_estructurales.map(String)
         : [],
+      estado_evaluacion: assigned ? 'asignada' : 'no_asignada',
       valoraciones: {
         relevancia_geopolitica: relevance,
         atencion_mediatica: attention,
-        brecha: Number((relevance - attention).toFixed(1)),
-        confianza: String(event.evaluacion?.confianza || 'media'),
-        incertidumbre: Number(event.evaluacion?.incertidumbre || 1),
+        brecha: assigned ? Number((relevance - attention).toFixed(1)) : null,
+        confianza: assigned && event.evaluacion?.confianza ? String(event.evaluacion.confianza) : null,
+        incertidumbre: assigned && isAssignedRating(event.evaluacion?.incertidumbre) ? event.evaluacion.incertidumbre : null,
       },
       senales: signals.sort((a, b) => b.fecha.localeCompare(a.fecha)),
       cronologia: [],
@@ -564,6 +582,19 @@ export function buildPublicPackage(data, taxonomy = {}, options = {}) {
         adverso: String(event.escenarios?.adverso || ''),
         transformador: String(event.escenarios?.transformador || ''),
       },
+      ...(Array.isArray(event.analisis_expertos) ? {
+        analisis_expertos: event.analisis_expertos
+          .filter((analysis) => allowedSourceIds.has(analysis.fuente_id))
+          .map((analysis) => ({
+            id: String(analysis.id || ''), autor: String(analysis.autor || ''),
+            fuente_id: String(analysis.fuente_id || ''), fecha: String(analysis.fecha || ''),
+            tipo: String(analysis.tipo || ''), sintesis: String(analysis.sintesis || ''),
+            limite: String(analysis.limite || ''),
+          })),
+      } : {}),
+      ...(Array.isArray(event.parametros_pronostico) ? {
+        parametros_pronostico: event.parametros_pronostico.map(publicForecastParameter),
+      } : {}),
       ...(includeInternal
         ? {
             metricas_editoriales: {
@@ -654,6 +685,12 @@ export function validatePublicPackage(data, options = {}) {
 
   for (const process of data?.procesos || []) {
     const label = process.titulo || process.macroevento_id;
+    const ratings = process.valoraciones || {};
+    if (process.estado_evaluacion === 'no_asignada') {
+      if (Object.values(ratings).some((value) => value !== null)) errors.push(`${label}: una evaluación sin asignar no puede contener puntuaciones ni confianza.`);
+    } else if (!isAssignedRating(ratings.relevancia_geopolitica) || !isAssignedRating(ratings.atencion_mediatica)) {
+      errors.push(`${label}: valoraciones ausentes o fuera de la escala editorial.`);
+    }
     if (!process.macroevento_id) errors.push(`${label}: falta macroevento_id.`);
     if (processIds.has(process.macroevento_id)) errors.push(`${label}: ID duplicado.`);
     processIds.add(process.macroevento_id);
@@ -730,6 +767,23 @@ export function validatePublicPackage(data, options = {}) {
   const processById = new Map((data?.procesos || []).map((process) => [process.macroevento_id, process]));
   for (const process of data?.procesos || []) {
     const label = process.titulo || process.macroevento_id;
+    const expertIds = new Set((process.analisis_expertos || []).map((analysis) => analysis.id));
+    for (const analysis of process.analisis_expertos || []) {
+      if (!analysis.id || !analysis.autor || !analysis.sintesis) errors.push(`${label}: análisis experto incompleto.`);
+      if (!sourceIds.has(analysis.fuente_id)) errors.push(`${label}: análisis experto sin fuente pública (${analysis.fuente_id}).`);
+    }
+    const parameterIds = new Set();
+    for (const parameter of process.parametros_pronostico || []) {
+      if (!parameter.id || parameterIds.has(parameter.id)) errors.push(`${label}: parámetro de pronóstico ausente o duplicado.`);
+      parameterIds.add(parameter.id);
+      if (!parameter.nombre || !parameter.estado_actual || !parameter.lectura_actual) errors.push(`${label}: parámetro de pronóstico incompleto.`);
+      const evidenceIds = [...(parameter.fuente_ids || []),
+        ...(parameter.reglas_de_actualizacion || []).flatMap((rule) => rule.fuente_ids || []),
+        ...(parameter.revision?.hito_oficial?.fuente_ids || [])];
+      for (const id of evidenceIds) if (!sourceIds.has(id)) errors.push(`${label}: parámetro sin fuente pública (${id}).`);
+      for (const id of parameter.senal_ids || []) if (!signalOwners.has(id)) errors.push(`${label}: parámetro con señal inexistente (${id}).`);
+      for (const id of parameter.analisis_experto_ids || []) if (!expertIds.has(id)) errors.push(`${label}: parámetro con análisis experto inexistente (${id}).`);
+    }
     const rectorIds = rectorIdsFor(process);
     if (process.es_macroevento_rector && rectorIds.length) errors.push(`${label}: un macroevento rector no puede depender de otro rector.`);
     for (const rectorId of rectorIds) {

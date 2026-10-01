@@ -1,4 +1,6 @@
 import fs from 'node:fs';
+import { normalizeEventEvaluation } from './public/evaluation-state.js';
+import { preserveAnalyticalFields } from './lib/analytical-fields.mjs';
 import http from 'node:http';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
@@ -122,12 +124,6 @@ function stringArray(value, max = 1000) {
     : [];
 }
 
-function integer(value, fallback = 1, min = 1, max = 5) {
-  const parsed = Number(value);
-  if (!Number.isFinite(parsed)) return fallback;
-  return Math.min(max, Math.max(min, Math.round(parsed)));
-}
-
 function optionalNumber(value, min, max) {
   if (value === '' || value === null || value === undefined) return null;
   const parsed = Number(value);
@@ -237,28 +233,15 @@ function normalizeCandidateImportRecord(record = {}) {
 }
 
 function normalizeEvaluationHistory(record = {}) {
-  const evaluation = record.evaluacion || {};
   return {
     fecha: text(record.fecha || new Date().toISOString().slice(0, 10), 20),
     lote_id: slug(record.lote_id || `lote-${new Date().toISOString().slice(0, 10)}`),
-    evaluacion: {
-      impacto: integer(evaluation.impacto, 1),
-      probabilidad: integer(evaluation.probabilidad, 1),
-      alcance: integer(evaluation.alcance, 1),
-      persistencia: integer(evaluation.persistencia, 1),
-      propagacion: integer(evaluation.propagacion, 1),
-      subcobertura: integer(evaluation.subcobertura, 1),
-      incertidumbre: integer(evaluation.incertidumbre, 1),
-      urgencia: integer(evaluation.urgencia, 1),
-      cobertura_observada: integer(evaluation.cobertura_observada, 1),
-      confianza: text(evaluation.confianza || 'media', 40),
-    },
+    ...normalizeEventEvaluation(record),
   };
 }
 
 function normalizeEvent(event = {}, index = 0, catalog = {}) {
   const id = slug(event.id || event.titulo || `macroevento-${index + 1}`);
-  const evaluation = event.evaluacion || {};
   const sources = Array.isArray(event.fuentes)
     ? event.fuentes.map((source, sourceIndex) => normalizeSource(source, id, sourceIndex, catalog))
     : [];
@@ -317,18 +300,8 @@ function normalizeEvent(event = {}, index = 0, catalog = {}) {
       transformador: text(event.escenarios?.transformador),
     },
     indicadores: stringArray(event.indicadores),
-    evaluacion: {
-      impacto: integer(evaluation.impacto, 1),
-      probabilidad: integer(evaluation.probabilidad, 1),
-      alcance: integer(evaluation.alcance, 1),
-      persistencia: integer(evaluation.persistencia, 1),
-      propagacion: integer(evaluation.propagacion, 1),
-      subcobertura: integer(evaluation.subcobertura, 1),
-      incertidumbre: integer(evaluation.incertidumbre, 1),
-      urgencia: integer(evaluation.urgencia, 1),
-      cobertura_observada: integer(evaluation.cobertura_observada, 1),
-      confianza: text(evaluation.confianza || 'media', 40),
-    },
+    ...normalizeEventEvaluation(event),
+    ...preserveAnalyticalFields(event),
     palabras_clave: stringArray(event.palabras_clave),
     fuentes: sources,
     actualizaciones: Array.isArray(event.actualizaciones)

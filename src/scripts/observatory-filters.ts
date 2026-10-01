@@ -36,7 +36,7 @@ function applyFilters() {
           : card.dataset.editorialState === editorial)) &&
       (!tracking || card.dataset.trackingState === tracking) &&
       (!relevance || Number(card.dataset.relevance) >= relevance) &&
-      (!attention || Number(card.dataset.attention) <= attention);
+      (!attention || (Boolean(card.dataset.attention) && Number(card.dataset.attention) <= attention));
     card.hidden = !matches;
     if (matches) visible += 1;
   }

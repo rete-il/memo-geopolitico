@@ -66,6 +66,22 @@ export interface PublicSource {
   estado_verificacion: 'pendiente' | 'revisada' | 'verificada';
 }
 
+export interface PublicExpertAnalysis {
+  id: string; autor: string; fuente_id: string; fecha: string;
+  tipo: string; sintesis: string; limite: string;
+}
+
+export interface PublicForecastParameter {
+  id: string; nombre: string; tipo: string; fecha_evaluacion: string;
+  estado_actual: string; lectura_actual: string; pregunta: string;
+  senal_ids: string[]; fuente_ids: string[]; analisis_experto_ids: string[];
+  probabilidades_asignadas: boolean; automatiza_puntuaciones: boolean;
+  estados_observables: { estado: string; evidencia_necesaria: string; efecto: string }[];
+  reglas_de_actualizacion: { id: string; condicion: string; efecto_pronostico: string; fuente_ids: string[] }[];
+  reglas_editoriales: string[];
+  revision: { horizonte_operativo: string; hito_oficial: { periodo: string; descripcion: string; fuente_ids: string[] }; cortes_editoriales_propuestos: string[]; disparadores: string[]; nota: string };
+}
+
 export interface PublicProcess {
   schema_version: 2;
   macroevento_id: string;
@@ -100,13 +116,16 @@ export interface PublicProcess {
   macroevento_rector_id?: string | null;
   macroevento_rector_ids?: string[];
   claves_estructurales: string[];
+  estado_evaluacion?: 'asignada' | 'no_asignada';
   valoraciones: {
-    relevancia_geopolitica: number;
-    atencion_mediatica: number;
-    brecha: number;
-    confianza: string;
-    incertidumbre: number;
+    relevancia_geopolitica: number | null;
+    atencion_mediatica: number | null;
+    brecha: number | null;
+    confianza: string | null;
+    incertidumbre: number | null;
   };
+  analisis_expertos?: PublicExpertAnalysis[];
+  parametros_pronostico?: PublicForecastParameter[];
   senales: PublicSignal[];
   cronologia: PublicSignal[];
   fuente_ids: string[];

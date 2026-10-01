@@ -1,4 +1,5 @@
 import { initContextHelp, closeContextHelp } from './context-help.js';
+import { normalizeEventEvaluation, evaluationFromInputs, hasAssignedEvaluation, relevance, coverageGap, undercoverage, metricLabel } from './evaluation-state.js';
 import {
   languageLabel,
   normalizeCharacterization,
@@ -69,9 +70,15 @@ const setEventRectorIds = (event, values) => {
 const byId = (id) => S.data.macroeventos.find((item) => item.id === id);
 const expById = (id) => S.data.expedientes_editoriales.find((item) => item.id === id);
 const mediaById = (id) => S.catalog.records.find((item) => item.media_id === id);
-const rel = (event) => ['impacto', 'persistencia', 'alcance', 'probabilidad'].reduce((total, key) => total * Number(event.evaluacion?.[key] || 1), 1);
-const gapRaw = (event) => rel(event) / Math.max(1, Number(event.evaluacion?.cobertura_observada || 1));
-const gapLevel = (event) => Number(event.evaluacion?.subcobertura || 1);
+const rel = relevance;
+const gapRaw = coverageGap;
+const gapLevel = undercoverage;
+const scoreMap = { '#s-impact': 'impacto', '#s-prob': 'probabilidad', '#s-reach': 'alcance', '#s-persistence': 'persistencia', '#s-spread': 'propagacion', '#s-gap': 'subcobertura', '#s-uncertainty': 'incertidumbre', '#s-urgency': 'urgencia', '#s-coverage': 'cobertura_observada' };
+const byMetricDescending = (a, b, metric = rel) => {
+  const left = metric(a);
+  const right = metric(b);
+  return left === null ? (right === null ? 0 : 1) : right === null ? -1 : right - left;
+};
 const eventRole = (event) => event?.es_macroevento_rector ? 'rector' : eventRectorIds(event).length ? 'complementario' : 'independiente';
 
 function eventPublicRecord(event) {
@@ -510,7 +517,7 @@ function overviewEvents(events) {
     const topics = (event.tema_ids || []).map(topicById).filter(Boolean).map((topic) => `${topic.id} ${topic.nombre} ${topic.categoria_nombre}`);
     const haystack = normalize([event.id, event.titulo, ...topics].join(' '));
     return (!q || haystack.includes(q)) && (!type || event.tipo_proceso === type) && (!role || eventRole(event) === role) && (!status || event.estado_editorial === status);
-  }).sort((a, b) => rel(b) - rel(a) || a.titulo.localeCompare(b.titulo, 'es'));
+  }).sort((a, b) => byMetricDescending(a, b) || a.titulo.localeCompare(b.titulo, 'es'));
   return { filtered, active: Boolean(q || type || role || status) };
 }
 
@@ -536,7 +543,7 @@ function renderOverview() {
     : `Mostrando los ${Math.min(8, events.length)} de mayor relevancia`;
   $('#ranking').innerHTML = ranked.map((event, index) => {
     const publicState = eventPublicState(event);
-    return `<button class="rank-row" data-edit-event="${esc(event.id)}"><b>${index + 1}</b><span><strong>${esc(event.titulo)}</strong><small>${esc(event.id)} · ${esc(EVENT_ROLE_LABELS[eventRole(event)])} · ${esc((event.regiones || []).join(' · '))}</small><small class="rank-publication ${publicState === 'publicado' ? 'is-published' : ''}">${esc(PUBLICATION_MANAGEMENT_LABELS[publicState] || human(publicState))}</small></span><em>${rel(event)}</em><i>gap ${gapLevel(event)}/5</i></button>`;
+    return `<button class="rank-row" data-edit-event="${esc(event.id)}"><b>${index + 1}</b><span><strong>${esc(event.titulo)}</strong><small>${esc(event.id)} · ${esc(EVENT_ROLE_LABELS[eventRole(event)])} · ${esc((event.regiones || []).join(' · '))}</small><small class="rank-publication ${publicState === 'publicado' ? 'is-published' : ''}">${esc(PUBLICATION_MANAGEMENT_LABELS[publicState] || human(publicState))}</small></span><em>${metricLabel(rel(event))}</em><i>${gapLevel(event) === null ? 'Sin evaluación' : `gap ${gapLevel(event)}/5`}</i></button>`;
   }).join('') || '<p class="empty">No se encontraron macroeventos.</p>';
   renderBars('#regions', countBy(events, (event) => event.regiones || []));
   renderBars('#categories', countBy(events, (event) => internalCategoryLabel(event.categoria)));
@@ -559,9 +566,9 @@ function filteredEvents({ ignorePublication = false } = {}) {
     const haystack = normalize([event.titulo, event.descripcion, event.categoria, ...(event.regiones || []), ...(event.actores || []), ...(event.palabras_clave || [])].join(' '));
     const publicState = eventPublicState(event);
     const publicationMatches = ignorePublication || !publication || (publication === 'pendiente' ? publicState !== 'publicado' : publicState === publication);
-    return (!q || haystack.includes(q)) && (!region || event.regiones?.includes(region)) && (!category || event.categoria === category) && (!type || event.tipo_proceso === type) && (!role || eventRole(event) === role) && (!status || event.estado_editorial === status) && publicationMatches && (!gap || gapLevel(event) >= gap);
+    return (!q || haystack.includes(q)) && (!region || event.regiones?.includes(region)) && (!category || event.categoria === category) && (!type || event.tipo_proceso === type) && (!role || eventRole(event) === role) && (!status || event.estado_editorial === status) && publicationMatches && (!gap || (gapLevel(event) !== null && gapLevel(event) >= gap));
   });
-  events.sort((a, b) => sort === 'publication' ? Number(eventPublicState(a) === 'publicado') - Number(eventPublicState(b) === 'publicado') || rel(b) - rel(a) : sort === 'gap' ? gapLevel(b) - gapLevel(a) : sort === 'title' ? a.titulo.localeCompare(b.titulo, 'es') : sort === 'date' ? String(b.fecha_corte).localeCompare(String(a.fecha_corte)) : rel(b) - rel(a));
+  events.sort((a, b) => sort === 'publication' ? Number(eventPublicState(a) === 'publicado') - Number(eventPublicState(b) === 'publicado') || byMetricDescending(a, b) : sort === 'gap' ? byMetricDescending(a, b, gapLevel) : sort === 'title' ? a.titulo.localeCompare(b.titulo, 'es') : sort === 'date' ? String(b.fecha_corte).localeCompare(String(a.fecha_corte)) : byMetricDescending(a, b));
   return events;
 }
 
@@ -609,8 +616,8 @@ function renderEvents() {
     <td>${eventRole(event) !== 'independiente' ? `<span class="badge info">${esc(EVENT_ROLE_LABELS[eventRole(event)])}</span>` : ''}<strong>${esc(event.titulo)}</strong><small>${esc(internalCategoryLabel(event.categoria))} · ${esc(human(event.tipo_proceso))}</small></td>
     <td>${esc((event.regiones || []).slice(0, 3).join(' · '))}</td>
     <td>${esc(sourceSummary(event))}</td>
-    <td><span class="metric-pill">${rel(event)}</span></td>
-    <td><span class="metric-pill">${gapLevel(event)}/5</span></td>
+    <td><span class="metric-pill">${metricLabel(rel(event))}</span></td>
+    <td><span class="metric-pill">${metricLabel(gapLevel(event), '/5')}</span></td>
     <td class="publication-cell">${publicationControl}${eventPublicRecord(event)?.actualizado_el ? `<small>Actualizado ${esc(eventPublicRecord(event).actualizado_el)}</small>` : ''}</td>
     <td><span class="badge ${event.estado_editorial === 'validado' ? 'good' : event.estado_editorial === 'archivado' ? 'bad' : 'warn'}">${esc(human(event.estado_editorial))}</span><small>${esc(human(event.estado_verificacion))}</small>${pendingUpdateCount(event) ? `<small class="pending-update">${pendingUpdateCount(event)} elementos de actualización pendientes</small>` : ''}</td>
     <td><div class="row-actions"><button class="btn small ghost" data-edit-event="${esc(event.id)}">Editar</button>${publicationAction}<button class="btn small ghost" data-create-exp="${esc(event.id)}">Crear encargo</button></div></td>
@@ -639,15 +646,17 @@ function renderPublicExpedients() {
 }
 
 function renderMatrix() {
-  const events = (S.data.macroeventos || []).filter((event) => event.estado_editorial !== 'archivado');
+  const activeEvents = (S.data.macroeventos || []).filter((event) => event.estado_editorial !== 'archivado');
+  const events = activeEvents.filter(hasAssignedEvaluation);
+  const unassignedCount = activeEvents.length - events.length;
   const maxRel = Math.max(1, ...events.map(rel));
   $('#matrix-chart').innerHTML = `<div class="matrix-label top-left">Alta relevancia · baja cobertura</div><div class="matrix-label top-right">Alta relevancia · alta cobertura</div><div class="matrix-label bottom-left">Baja relevancia · baja cobertura</div><div class="matrix-label bottom-right">Baja relevancia · alta cobertura</div>${events.map((event) => {
-    const x = ((Number(event.evaluacion?.cobertura_observada || 1) - 1) / 4) * 92 + 4;
+    const x = ((Number(event.evaluacion.cobertura_observada) - 1) / 4) * 92 + 4;
     const y = 96 - (rel(event) / maxRel) * 88;
-    const size = 12 + Number(event.evaluacion?.alcance || 1) * 4;
+    const size = 12 + Number(event.evaluacion.alcance) * 4;
     return `<button class="matrix-point" data-edit-event="${esc(event.id)}" style="left:${x}%;top:${y}%;width:${size}px;height:${size}px" title="${esc(event.titulo)} · relevancia ${rel(event)} · cobertura ${event.evaluacion?.cobertura_observada}"><span>${esc(event.titulo)}</span></button>`;
   }).join('')}`;
-  $('#matrix-table').innerHTML = `<details><summary>Tabla accesible de la matriz</summary><div class="table-wrap"><table><thead><tr><th>Macroevento</th><th>Relevancia</th><th>Cobertura</th><th>Gap bruto</th><th>Subcobertura</th></tr></thead><tbody>${events.sort((a, b) => rel(b) - rel(a)).map((event) => `<tr><td><button class="link" data-edit-event="${esc(event.id)}">${esc(event.titulo)}</button></td><td>${rel(event)}</td><td>${event.evaluacion?.cobertura_observada}/5</td><td>${gapRaw(event).toFixed(1)}</td><td>${gapLevel(event)}/5</td></tr>`).join('')}</tbody></table></div></details>`;
+  $('#matrix-table').innerHTML = `${unassignedCount ? `<p class="muted">${unassignedCount} ${unassignedCount === 1 ? 'macroevento sin evaluación completa, excluido' : 'macroeventos sin evaluación completa, excluidos'} de la matriz.</p>` : ''}<details><summary>Tabla accesible de la matriz</summary><div class="table-wrap"><table><thead><tr><th>Macroevento</th><th>Relevancia</th><th>Cobertura</th><th>Gap bruto</th><th>Subcobertura</th></tr></thead><tbody>${events.sort((a, b) => byMetricDescending(a, b)).map((event) => `<tr><td><button class="link" data-edit-event="${esc(event.id)}">${esc(event.titulo)}</button></td><td>${rel(event)}</td><td>${event.evaluacion?.cobertura_observada}/5</td><td>${gapRaw(event).toFixed(1)}</td><td>${gapLevel(event)}/5</td></tr>`).join('')}</tbody></table></div></details>`;
 }
 
 function renderTaxonomy() {
@@ -1113,7 +1122,7 @@ function renderData() {
 }
 
 function blankEvent() {
-  return { id: '', titulo: '', tipo_proceso: 'macroproceso_estructural', estado_editorial: 'borrador', estado_verificacion: 'pendiente', fecha_corte: today(), regiones: [], categoria: 'infraestructura_conectividad', tema_ids: [], clasificacion_tematica: { origen: 'humano', estado_revision: 'pendiente', taxonomy_version: Number(S.taxonomy.schema_version || 1), revisada_el: null }, descripcion: '', por_que_importa: '', es_macroevento_rector: false, macroevento_rector_id: null, macroevento_rector_ids: [], macroevento_relacionado_ids: [], senales: [], actores: [], intereses: [], horizonte: { min_anios: 3, max_anios: 10 }, escenarios: { base: '', adverso: '', transformador: '' }, indicadores: [], evaluacion: { impacto: 3, probabilidad: 3, alcance: 3, persistencia: 3, propagacion: 3, subcobertura: 3, incertidumbre: 3, urgencia: 3, cobertura_observada: 3, confianza: 'media' }, palabras_clave: [], fuentes: [], advertencias: [], excepciones_advertencias: [] };
+  return { id: '', titulo: '', tipo_proceso: 'macroproceso_estructural', estado_editorial: 'borrador', estado_verificacion: 'pendiente', fecha_corte: today(), regiones: [], categoria: 'infraestructura_conectividad', tema_ids: [], clasificacion_tematica: { origen: 'humano', estado_revision: 'pendiente', taxonomy_version: Number(S.taxonomy.schema_version || 1), revisada_el: null }, descripcion: '', por_que_importa: '', es_macroevento_rector: false, macroevento_rector_id: null, macroevento_rector_ids: [], macroevento_relacionado_ids: [], senales: [], actores: [], intereses: [], horizonte: { min_anios: 3, max_anios: 10 }, escenarios: { base: '', adverso: '', transformador: '' }, indicadores: [], ...normalizeEventEvaluation({ estado_evaluacion: 'no_asignada' }), palabras_clave: [], fuentes: [], advertencias: [], excepciones_advertencias: [] };
 }
 
 function uniqueId(base, existing) {
@@ -1259,9 +1268,15 @@ function fillEventFields(event, mode) {
   $('#e-base').value = event.escenarios.base;
   $('#e-adverse').value = event.escenarios.adverso;
   $('#e-transform').value = event.escenarios.transformador;
-  const scoreMap = { '#s-impact': 'impacto', '#s-prob': 'probabilidad', '#s-reach': 'alcance', '#s-persistence': 'persistencia', '#s-spread': 'propagacion', '#s-gap': 'subcobertura', '#s-uncertainty': 'incertidumbre', '#s-urgency': 'urgencia', '#s-coverage': 'cobertura_observada' };
-  Object.entries(scoreMap).forEach(([selector, key]) => { $(selector).value = event.evaluacion[key]; });
-  $('#s-confidence').value = event.evaluacion.confianza;
+  const { evaluacion } = normalizeEventEvaluation(event);
+  Object.entries(scoreMap).forEach(([selector, key]) => {
+    $(selector).value = evaluacion[key] ?? '';
+    $(selector).placeholder = 'Sin evaluación';
+  });
+  if (!$('#s-confidence').querySelector('option[value=""]')) {
+    $('#s-confidence').prepend(new Option('Sin evaluación', ''));
+  }
+  $('#s-confidence').value = evaluacion.confianza ?? '';
   renderEventUpdateHistory(event);
   $('#delete-event').hidden = mode !== 'edit';
   $('#duplicate-event').hidden = mode !== 'edit';
@@ -1351,7 +1366,7 @@ function gatherEvent() {
     palabras_clave: lines($('#e-keywords').value),
     horizonte: { min_anios: Number($('#e-hmin').value), max_anios: Number($('#e-hmax').value) },
     escenarios: { base: $('#e-base').value.trim(), adverso: $('#e-adverse').value.trim(), transformador: $('#e-transform').value.trim() },
-    evaluacion: { impacto: Number($('#s-impact').value), probabilidad: Number($('#s-prob').value), alcance: Number($('#s-reach').value), persistencia: Number($('#s-persistence').value), propagacion: Number($('#s-spread').value), subcobertura: Number($('#s-gap').value), incertidumbre: Number($('#s-uncertainty').value), urgencia: Number($('#s-urgency').value), cobertura_observada: Number($('#s-coverage').value), confianza: $('#s-confidence').value },
+    ...evaluationFromInputs({ ...Object.fromEntries(Object.entries(scoreMap).map(([selector, key]) => [key, $(selector).value])), confianza: $('#s-confidence').value }),
     senales: S.eventDraft.senales,
     fuentes: S.eventDraft.fuentes,
     advertencias: S.eventDraft.advertencias || [],
@@ -1361,8 +1376,8 @@ function gatherEvent() {
 
 function calcEvent() {
   const event = gatherEvent();
-  $('#calc-rel').textContent = rel(event);
-  $('#calc-gap').textContent = gapRaw(event).toFixed(1);
+  $('#calc-rel').textContent = metricLabel(rel(event));
+  $('#calc-gap').textContent = metricLabel(gapRaw(event)?.toFixed(1));
   $('#event-diversity').innerHTML = diversityHtml(analyzeDiversity(event.fuentes));
 }
 

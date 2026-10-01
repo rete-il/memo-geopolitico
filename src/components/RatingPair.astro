@@ -1,7 +1,7 @@
 ---
 interface Props {
-  relevance: number;
-  attention: number;
+  relevance: number | null;
+  attention: number | null;
   compact?: boolean;
   methodHref?: string;
   publicationTitle?: string;
@@ -16,33 +16,37 @@ const {
   publicationTitle = '',
   showMethodLink = true,
 } = Astro.props;
-const gap = Number((relevance - attention).toFixed(1));
+const assigned = typeof relevance === 'number' && Number.isFinite(relevance)
+  && typeof attention === 'number' && Number.isFinite(attention);
+const gap = assigned ? Number(((relevance as number) - (attention as number)).toFixed(1)) : null;
 
-const cells = (value: number) =>
-  Array.from({ length: 5 }, (_, index) => index + 1 <= Math.round(value));
+const cells = (value: number | null) =>
+  Array.from({ length: 5 }, (_, index) => value !== null && index + 1 <= Math.round(value));
 ---
 
 <div
   class:list={['rating-pair', { compact }]}
   aria-label={`Relevancia, atención mediática y brecha, escala editorial de uno a cinco${publicationTitle ? ` para ${publicationTitle}` : ''}`}
 >
+  {assigned ? <>
   <div class="rating-row">
     <span>Relevancia</span>
     <span class="rating-cells" aria-hidden="true">
       {cells(relevance).map((filled) => <i class:list={{ filled }}></i>)}
     </span>
-    <strong>{relevance.toFixed(1)}</strong>
+    <strong>{relevance?.toFixed(1)}</strong>
   </div>
   <div class="rating-row">
     <span>Atención mediática</span>
     <span class="rating-cells attention" aria-hidden="true">
       {cells(attention).map((filled) => <i class:list={{ filled }}></i>)}
     </span>
-    <strong>{attention.toFixed(1)}</strong>
+    <strong>{attention?.toFixed(1)}</strong>
   </div>
-  <p class:list={['rating-gap', { negative: gap < 0 }]}>
-    Brecha {gap > 0 ? '+' : ''}{gap.toFixed(1)}
+  <p class:list={['rating-gap', { negative: gap !== null && gap < 0 }]}>
+    Brecha {gap !== null && gap > 0 ? '+' : ''}{gap?.toFixed(1)}
   </p>
+  </> : <p class="rating-pending">Evaluación editorial sin asignar.</p>}
   {
     showMethodLink && (
       <a class="rating-method-link" href={methodHref}>

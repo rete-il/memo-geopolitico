@@ -52,6 +52,8 @@ function publicProcess(title = 'Corredor de Lobito') {
     schema_version: 2,
     macroevento_id: EVENT_ID,
     slug: EVENT_ID,
+    estado_evaluacion: 'no_asignada',
+    valoraciones: { relevancia_geopolitica: null, atencion_mediatica: null, brecha: null, confianza: null, incertidumbre: null },
     titulo: title,
     sintesis: 'Seguimiento público.',
     publicacion: { estado: 'publicado', publicado_el: '2026-07-26', actualizado_el: '2026-07-26' },

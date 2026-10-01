@@ -82,6 +82,8 @@ function makeFixture(context) {
       schema_version: 2,
       macroevento_id: EVENT_ID,
       slug: EVENT_ID,
+      estado_evaluacion: 'no_asignada',
+      valoraciones: { relevancia_geopolitica: null, atencion_mediatica: null, brecha: null, confianza: null, incertidumbre: null },
       titulo: 'Corredor de Lobito',
       sintesis: 'Seguimiento público del corredor.',
       publicacion: { estado: 'borrador', publicado_el: null, actualizado_el: '2026-08-08' },

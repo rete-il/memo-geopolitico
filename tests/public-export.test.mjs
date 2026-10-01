@@ -156,3 +156,82 @@ test('bloquea un vínculo rector hacia un proceso que no cumple ese rol', () => 
   assert.equal(validation.valid, false);
   assert.match(validation.errors.join('\n'), /macroevento rector inexistente/);
 });
+
+
+test('una evaluación no asignada conserva ausencia de cifras y confianza al proyectar', () => {
+  for (const evaluation of [undefined, null, {}, { impacto: null, probabilidad: null, alcance: null, persistencia: null, cobertura_observada: null }]) {
+    const input = structuredClone(source);
+    input.macroeventos[0].evaluacion = evaluation;
+    input.macroeventos[0].estado_evaluacion = 'no_asignada';
+    const result = buildPublicPackage(input, taxonomy, { includeUnpublished: true });
+    assert.equal(result.procesos[0].estado_evaluacion, 'no_asignada');
+    assert.deepEqual(result.procesos[0].valoraciones, {
+      relevancia_geopolitica: null, atencion_mediatica: null,
+      brecha: null, confianza: null, incertidumbre: null,
+    });
+    assert.equal(validatePublicPackage(result, { allowDevelopment: true }).valid, true);
+  }
+});
+
+test('no completa valoraciones incompletas y mantiene una evaluación explícita completa', () => {
+  const missing = structuredClone(source);
+  delete missing.macroeventos[0].evaluacion.cobertura_observada;
+  const result = buildPublicPackage(missing, taxonomy, { includeUnpublished: true });
+  assert.equal(result.procesos[0].valoraciones.relevancia_geopolitica, null);
+  const assigned = buildPublicPackage(source, taxonomy, { includeUnpublished: true }).procesos[0];
+  assert.equal(assigned.estado_evaluacion, 'asignada');
+  assert.deepEqual(assigned.valoraciones, {
+    relevancia_geopolitica: 4.5, atencion_mediatica: 2, brecha: 2.5,
+    confianza: 'media', incertidumbre: 3,
+  });
+});
+
+test('el estado sin asignar prevalece sobre valores heredados del importador', () => {
+  const input = structuredClone(source);
+  input.macroeventos[0].estado_evaluacion = 'no_asignada';
+  const result = buildPublicPackage(input, taxonomy, { includeUnpublished: true });
+  assert.equal(result.procesos[0].valoraciones.atencion_mediatica, null);
+  result.procesos[0].valoraciones.atencion_mediatica = 3;
+  assert.equal(validatePublicPackage(result, { allowDevelopment: true }).valid, false);
+});
+
+test('Estados Unidos y China se proyectan como países sin crear espacios accidentales', () => {
+  const input = structuredClone(source);
+  input.macroeventos[0].regiones = ['Global', 'Estados Unidos', 'China'];
+  const result = buildPublicPackage(input, taxonomy, { includeUnpublished: true });
+  assert.deepEqual(result.procesos[0].clasificacion.geografia.pais_ids, ['USA', 'CHN']);
+  assert.deepEqual(result.procesos[0].clasificacion.geografia.espacio_ids, []);
+  const usa = result.catalogos.paises_territorios.find(item => item.id === 'USA');
+  assert.equal(usa.parent_id, 'americas');
+  assert.equal(usa.slug, 'estados-unidos-america');
+  assert.equal(result.catalogos.paises_territorios.find(item => item.id === 'CHN').slug, 'china');
+});
+
+test('conserva estados y reglas de pronóstico con expertos atribuidos y controla referencias', () => {
+  const input = structuredClone(source);
+  input.macroeventos[0].analisis_expertos = [{
+    id: 'op-prueba', autor: 'Especialista', fuente_id: 'src-prueba-001', fecha: '2026-07-25',
+    tipo: 'interpretacion', sintesis: 'Lectura atribuida.', limite: 'No equivale a acuerdo.', nota_interna: 'privada',
+  }];
+  input.macroeventos[0].parametros_pronostico = [{
+    id: 'param-prueba', nombre: 'Cooperación', tipo: 'cualitativo_condicional', fecha_evaluacion: '2026-07-25',
+    estado_actual: 'anunciada', lectura_actual: 'Ejecución pendiente.', pregunta: '¿Se ejecuta?',
+    senal_ids: ['sig-prueba-001'], fuente_ids: ['src-prueba-001'], analisis_experto_ids: ['op-prueba'],
+    probabilidades_asignadas: false, automatiza_puntuaciones: false,
+    estados_observables: [{ estado: 'operativa', evidencia_necesaria: 'Prueba documentada.', efecto: 'Reforzar.' }],
+    reglas_de_actualizacion: [{ id: 'regla-prueba', condicion: 'Prueba realizada.', efecto_pronostico: 'Revisar.', fuente_ids: ['src-prueba-001'] }],
+    reglas_editoriales: ['Una propuesta no es un compromiso.'],
+    revision: { horizonte_operativo: 'Tres meses', hito_oficial: { periodo: '2026-11', descripcion: 'Reunión prevista.', fuente_ids: ['src-prueba-001'] }, cortes_editoriales_propuestos: [], disparadores: ['Comunicado'], nota: 'Sin automatización.' },
+    nota_interna: 'privada',
+  }];
+  const result = buildPublicPackage(input, taxonomy, { includeUnpublished: true });
+  const projected = result.procesos[0];
+  assert.equal(projected.analisis_expertos[0].nota_interna, undefined);
+  assert.equal(projected.parametros_pronostico[0].nota_interna, undefined);
+  const { nota_interna, ...expectedParameter } = input.macroeventos[0].parametros_pronostico[0];
+  assert.deepEqual(projected.parametros_pronostico[0], expectedParameter);
+  assert.equal(validatePublicPackage(result, { allowDevelopment: true }).valid, true);
+  projected.parametros_pronostico[0].revision.hito_oficial.fuente_ids.push('fuente-ausente');
+  assert.equal(validatePublicPackage(result, { allowDevelopment: true }).valid, false);
+  assert.equal(input.macroeventos[0].parametros_pronostico[0].revision.hito_oficial.fuente_ids.length, 1);
+});

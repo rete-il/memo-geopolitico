@@ -173,14 +173,26 @@ test('accessible tabs retain filters and handle arrows, Home/End and browser his
   assert.equal(tablist.getAttribute('aria-orientation'), 'vertical');
 });
 
-test('matrix groups expose every catalog process once without discarding overlapping processes', () => {
+test('matrix groups expose every assigned process once and leave pending judgments unpositioned', () => {
   const { procesos: processes } = JSON.parse(read('src/data/public/observatorio.json'));
   const original = JSON.stringify(processes);
   const groups = groupMatrixProcesses(processes);
   assert.ok(groups.some(group => group.processes.length > 1), 'The catalog exercises repeated coordinates');
   const grouped = groups.flatMap(group => group.processes.map(process => process.macroevento_id));
-  assert.equal(new Set(grouped).size, processes.length);
-  assert.deepEqual(grouped.sort(), processes.map(process => process.macroevento_id).sort());
+  const rated = processes.filter(process => process.estado_evaluacion !== 'no_asignada'
+    && ['relevancia_geopolitica', 'atencion_mediatica'].every(key =>
+      typeof process.valoraciones[key] === 'number' && process.valoraciones[key] >= 1 && process.valoraciones[key] <= 5));
+  const pending = processes.filter(process => !rated.includes(process));
+  assert.equal(new Set(grouped).size, rated.length);
+  assert.deepEqual(grouped.sort(), rated.map(process => process.macroevento_id).sort());
+  assert.ok(pending.every(process => !grouped.includes(process.macroevento_id)));
+  assert.equal(rated.length + pending.length, processes.length);
+  for (const group of groups) {
+    assert.ok(group.attention >= 1 && group.attention <= 5);
+    assert.ok(group.relevance >= 1 && group.relevance <= 5);
+    assert.ok(group.processes.every(process => process.valoraciones.atencion_mediatica === group.attention
+      && process.valoraciones.relevancia_geopolitica === group.relevance));
+  }
   assert.equal(new Set(groups.map(group => group.id)).size, groups.length);
   assert.equal(JSON.stringify(processes), original);
 });

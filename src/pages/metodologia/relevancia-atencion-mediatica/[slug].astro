@@ -39,6 +39,7 @@ interface Props {
 const { process, publication } = Astro.props as Props;
 const publicationTitle = publication?.titulo || process.titulo;
 const isPublished = publication?.publicacion.estado === 'publicado';
+const unassigned = process.estado_evaluacion === 'no_asignada';
 ---
 
 <SiteLayout
@@ -67,9 +68,9 @@ const isPublished = publication?.publicacion.estado === 'publicado';
         <aside class="editorial-note development-note">
           <strong>Metodología en desarrollo.</strong>
           <span>
-            Estos números son evaluaciones editoriales provisionales. Todavía no
-            constituyen un índice cuantitativo definitivo ni una medición
-            automatizada de cobertura.
+            {unassigned
+              ? 'Este expediente todavía no tiene una evaluación numérica asignada. La ausencia de puntuación no representa una valoración baja ni cobertura nula.'
+              : 'Estos números son evaluaciones editoriales provisionales. Todavía no constituyen un índice cuantitativo definitivo ni una medición automatizada de cobertura.'}
           </span>
         </aside>
 

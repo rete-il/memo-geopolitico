@@ -463,6 +463,44 @@ const referencedSignals = (process.referencias_senal || [])
           )
         }
 
+        {(process.parametros_pronostico?.length ?? 0) > 0 && (
+          <section class="content-section" id="parametros-pronostico">
+            <h2>Parámetros de los pronósticos</h2>
+            {process.parametros_pronostico?.map((parameter) => (
+              <article>
+                <h3>{parameter.nombre}</h3>
+                <p><strong>Estado: {humanize(parameter.estado_actual)}.</strong> Revisado {formatDate(parameter.fecha_evaluacion)}.</p>
+                <p>{parameter.lectura_actual}</p>
+                <p>{parameter.pregunta}</p>
+                <ul>{parameter.estados_observables.map((state) => <li><strong>{humanize(state.estado)}:</strong> {state.evidencia_necesaria} {state.efecto}</li>)}</ul>
+                <h4>Condiciones para revisar el pronóstico</h4>
+                <ul>{parameter.reglas_de_actualizacion.map((rule) => <li>{rule.condicion} {rule.efecto_pronostico}</li>)}</ul>
+                <p>{parameter.revision.horizonte_operativo}</p>
+                <p>{parameter.revision.hito_oficial.descripcion}</p>
+                <ul>{parameter.reglas_editoriales.map((rule) => <li>{rule}</li>)}</ul>
+                <p>Fuentes: {parameter.fuente_ids.map((id, index) => {
+                  const source = sourceById.get(id);
+                  return source && <>{index > 0 && ' · '}<a href={source.url} target="_blank" rel="noopener noreferrer">{source.medio}</a></>;
+                })}</p>
+              </article>
+            ))}
+          </section>
+        )}
+        {(process.analisis_expertos?.length ?? 0) > 0 && (
+          <section class="content-section" id="analisis-expertos">
+            <h2>Lecturas de especialistas</h2>
+            {process.analisis_expertos?.map((analysis) => {
+              const source = sourceById.get(analysis.fuente_id);
+              return <article>
+                <h3>{analysis.autor}</h3>
+                <p>{analysis.sintesis}</p>
+                <p>{analysis.limite}</p>
+                {source && <p><a href={source.url} target="_blank" rel="noopener noreferrer">{source.medio} · {formatDate(analysis.fecha)}</a></p>}
+              </article>;
+            })}
+          </section>
+        )}
+
         <section class="content-section" id="fuentes">
           <h2>Fuentes</h2>
           {
