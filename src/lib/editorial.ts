@@ -75,7 +75,14 @@ export function relatedPublicationForProcess(
   process: PublicProcess,
   entries: PublicationEntry[],
 ): PublicationEntry | undefined {
-  return relatedPublicationsForProcess(process, entries)[0];
+  const related = relatedPublicationsForProcess(process, entries);
+  // A newer secondary analysis must not replace the process's own published
+  // article. Keep secondary matches available when no principal is published.
+  return related.find(
+    ({ data }) =>
+      data.macroevento_principal_id === process.macroevento_id &&
+      data.publicacion.estado === 'publicado',
+  ) || related[0];
 }
 
 export function primaryPublicationForProcess(
