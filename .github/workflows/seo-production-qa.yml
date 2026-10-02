@@ -1,0 +1,101 @@
+name: SEO production QA
+
+on:
+  push:
+    branches:
+      - fix/seo-process-card-primary-2026-10-02
+      - beta
+  pull_request:
+    branches: [main, beta]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PUBLIC_INCLUDE_DRAFTS: 'false'
+      PUBLIC_NOINDEX: 'false'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Use the production Node version
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run the complete production quality gate
+        run: npm run qa:production
+      - name: Inspect the five priority URLs in live production (read only)
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          import urllib.request
+          import xml.etree.ElementTree as ET
+          from html.parser import HTMLParser
+          from datetime import datetime, timezone
+
+          base = 'https://memogeopolitico.com'
+          paths = [
+              '/observatorio/financiacion-compras-conjuntas-defensa-europea/',
+              '/observatorio/foros-derechas-cpac-madrid-articulacion/',
+              '/publicaciones/africa-central-minerales-criticos-cadenas-tecnologicas/',
+              '/publicaciones/indo-pacifico-taiwan-reconfiguracion-seguridad/',
+              '/publicaciones/semiconductores-indo-pacifico-controles-diversificacion/',
+          ]
+          def fetch(url):
+              req = urllib.request.Request(url, headers={'User-Agent': 'MemoSEOAudit/1.0'})
+              with urllib.request.urlopen(req, timeout=20) as response:
+                  return response.status, response.url, dict(response.headers), response.read().decode('utf-8')
+
+          class Head(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.canonicals = []
+                  self.robots = {}
+              def handle_starttag(self, tag, attrs):
+                  a = dict(attrs)
+                  if tag == 'link' and 'canonical' in a.get('rel', '').lower().split():
+                      self.canonicals.append(a.get('href'))
+                  if tag == 'meta' and a.get('name', '').lower() in ('robots', 'googlebot'):
+                      name = a['name'].lower()
+                      self.robots.setdefault(name, []).append(a.get('content', ''))
+
+          print('LIVE_SEO_INSPECTION', datetime.now(timezone.utc).isoformat())
+          print('This reads the currently deployed site, not necessarily this branch. It is not Google URL Inspection.')
+          sitemap_urls = None
+          try:
+              status, final, headers, body = fetch(base + '/sitemap.xml')
+              sitemap_urls = {e.text for e in ET.fromstring(body).iter() if e.tag.endswith('}loc') or e.tag == 'loc'}
+              print('SITEMAP', json.dumps({'status': status, 'url': final, 'url_count': len(sitemap_urls)}))
+          except Exception as exc:
+              print('SITEMAP_UNVERIFIED', str(exc))
+          try:
+              status, final, headers, body = fetch(base + '/robots.txt')
+              print('ROBOTS_TXT', json.dumps({'status': status, 'url': final, 'body': body}))
+          except Exception as exc:
+              print('ROBOTS_TXT_UNVERIFIED', str(exc))
+          for path in paths:
+              url = base + path
+              try:
+                  status, final, headers, body = fetch(url)
+                  head = Head()
+                  head.feed(body)
+                  xrobots = next((v for k, v in headers.items() if k.lower() == 'x-robots-tag'), None)
+                  print('PAGE', json.dumps({
+                      'requested': url, 'status': status, 'final': final,
+                      'canonical': head.canonicals, 'meta_robots': head.robots,
+                      'x_robots_tag': xrobots,
+                      'in_sitemap': None if sitemap_urls is None else url in sitemap_urls,
+                  }, ensure_ascii=False))
+              except Exception as exc:
+                  print('PAGE_UNVERIFIED', json.dumps({'requested': url, 'error': str(exc)}))
+          PY
