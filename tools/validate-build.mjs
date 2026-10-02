@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
+import { processCardExpectations, validateProcessCards } from './lib/process-card-validation.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const production = path.join(root, 'dist');
@@ -82,15 +83,11 @@ function expectedPublishedPublicationRoutes() {
   const publications = fs
     .readdirSync(publishedDirectory)
     .filter((name) => name.endsWith('.md'))
-    .map((name) => matter.read(path.join(publishedDirectory, name)).data);
+    .map((name) => matter.read(path.join(publishedDirectory, name)).data)
+    .filter((publication) => publication.publicacion?.estado === 'publicado');
   return {
     posts: new Set(publications.map((publication) => publication.post_id)).size,
-    linkedProcesses: new Set(
-      publications.flatMap((publication) => [
-        publication.macroevento_principal_id,
-        ...(publication.macroevento_secundario_ids || []),
-      ]),
-    ).size,
+    publications,
   };
 }
 
@@ -130,9 +127,6 @@ const publicationArchiveCards = (
 const observatoryProcessCards = (
   observatory.match(/<article[^>]*data-process-card/g) || []
 ).length;
-const linkedPublicationTitles = (
-  observatory.match(/<h2>\s*<a href="\/publicaciones\//g) || []
-).length;
 const dashboardProcessRows = (
   dashboard.match(/<tr[^>]*data-dashboard-process/g) || []
 ).length;
@@ -155,6 +149,25 @@ const observatoryData = JSON.parse(
 const expectedProcessCount = observatoryData.procesos.length;
 const editorialPublicationRoutes = productionOnly ? null : expectedEditorialPublicationRoutes();
 const publishedPublicationRoutes = expectedPublishedPublicationRoutes();
+const expectedCardLinks = processCardExpectations(
+  observatoryData.procesos, publishedPublicationRoutes.publications,
+);
+const archiveCardLinks = validateProcessCards(observatory, expectedCardLinks, {
+  source: 'observatorio/index.html', requireAll: true,
+});
+const linkedPublicationTitles = archiveCardLinks.principalTitleLinks;
+const expectedPrincipalCount = [...expectedCardLinks.values()].filter(item => item.primaryHref).length;
+const expectedRelatedCount = [...expectedCardLinks.values()].filter(item => item.relatedHref).length;
+// Also check the actual destinations in every generated category/actor card.
+// The complete archive is checked above; category pages are valid subsets.
+const cardLinkAudit = { pages: 0, cards: 0 };
+for (const file of htmlFiles(production)) {
+  const result = validateProcessCards(fs.readFileSync(file, 'utf8'), expectedCardLinks, {
+    source: path.relative(production, file),
+  });
+  if (result.cards) cardLinkAudit.pages++;
+  cardLinkAudit.cards += result.cards;
+}
 
 assert.equal(home.includes('home-path--publications'), true);
 assert.equal(home.includes('home-path--observatory'), true);
@@ -172,7 +185,8 @@ assert.equal(
 );
 assert.equal(publications.includes('publication-card--in-progress'), false);
 assert.equal(observatoryProcessCards, expectedProcessCount);
-assert.equal(linkedPublicationTitles, publishedPublicationRoutes.linkedProcesses);
+assert.equal(linkedPublicationTitles, expectedPrincipalCount);
+assert.equal(archiveCardLinks.relatedLinks, expectedRelatedCount);
 assert.equal(observatoryStateLinks, expectedProcessCount);
 assert.equal(dashboardProcessRows, expectedProcessCount);
 assert.equal(/>(?:Guardar|Editar|Eliminar)</.test(dashboard), false);
@@ -209,6 +223,9 @@ console.log(
       posts_editoriales: editorialPublicationRoutes,
       expedientes: observatoryProcessCards,
       enlaces_de_titulo_a_posts: linkedPublicationTitles,
+      enlaces_de_analisis_relacionado: archiveCardLinks.relatedLinks,
+      tarjetas_sin_publicacion: archiveCardLinks.withoutPublication,
+      auditoria_enlaces_tarjetas: cardLinkAudit,
       enlaces_de_estado: observatoryStateLinks,
       paginas_de_estado: stateRouteCount,
       enlaces_tematicos_en_publicaciones: publicationThemeLinks,
