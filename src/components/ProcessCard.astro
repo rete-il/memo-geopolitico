@@ -76,16 +76,33 @@ const geographyItems = [
 const contextualGeography =
   geographyItems.find(({ id }) => id === currentGeographyId) ||
   geographyItems[0];
-const publicationEntries = suppliedRelatedPublication && suppliedEditorialState ? [] : await getPublicationEntries({
+const suppliedPublishedPrimary =
+  suppliedRelatedPublication?.data.macroevento_principal_id === process.macroevento_id &&
+  suppliedRelatedPublication?.data.publicacion.estado === 'publicado'
+    ? suppliedRelatedPublication
+    : undefined;
+// Re-evaluate secondary or unpublished hints; they cannot hide a published
+// principal article. Retain the fast path for a preselected published principal.
+const publicationEntries = suppliedPublishedPrimary && suppliedEditorialState ? [] : await getPublicationEntries({
   includePreview: true,
 });
 const relatedPublication =
-  suppliedRelatedPublication ||
+  suppliedPublishedPrimary ||
   relatedPublicationForProcess(process, publicationEntries);
-const publicationHref =
+const publishedPublication =
   relatedPublication?.data.publicacion.estado === 'publicado'
-    ? `/publicaciones/${relatedPublication.data.slug}/`
-    : '';
+    ? relatedPublication
+    : undefined;
+const primaryPublication =
+  publishedPublication?.data.macroevento_principal_id === process.macroevento_id
+    ? publishedPublication
+    : undefined;
+const publicationHref = primaryPublication
+  ? `/publicaciones/${primaryPublication.data.slug}/`
+  : '';
+const relatedPublicationHref = !primaryPublication && publishedPublication
+  ? `/publicaciones/${publishedPublication.data.slug}/`
+  : '';
 const editorialState =
   suppliedEditorialState ||
   effectiveEditorialState(process, publicationEntries);
@@ -187,13 +204,20 @@ const editorialState =
         publicationHref ? (
           <a href={publicationHref}>{process.titulo}</a>
         ) : (
-          <span title="El post todavía no está publicado">
+          <span title="La publicación principal todavía no está publicada">
             {process.titulo}
           </span>
         )
       }
     </h2>
     <p>{process.sintesis}</p>
+    {
+      relatedPublicationHref && publishedPublication && (
+        <p>
+          Análisis relacionado: <a href={relatedPublicationHref}>{publishedPublication.data.titulo}</a>
+        </p>
+      )
+    }
     <footer>
       <span>Actualizado {formatDate(process.publicacion.actualizado_el)}</span>
       <a href={`/observatorio/${process.slug}/`}>
@@ -205,7 +229,7 @@ const editorialState =
     relevance={process.valoraciones.relevancia_geopolitica}
     attention={process.valoraciones.atencion_mediatica}
     compact
-    publicationTitle={relatedPublication?.data.titulo || process.titulo}
+    publicationTitle={primaryPublication?.data.titulo || process.titulo}
     methodHref={`/metodologia/relevancia-atencion-mediatica/${process.slug}/`}
   />
 </article>
