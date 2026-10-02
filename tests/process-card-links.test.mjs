@@ -1,11 +1,19 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
-import {
+import ts from 'typescript';
+
+// Match the repository's TypeScript test strategy without relying on Node's
+// experimental type stripping, which is not enabled by the production test script.
+const editorialSource = readFileSync(new URL('../src/lib/editorial.ts', import.meta.url), 'utf8');
+const editorialJavaScript = ts.transpileModule(editorialSource, {
+  compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
+}).outputText;
+const {
   effectiveEditorialState,
   relatedPublicationForProcess,
   relatedPublicationsForProcess,
-} from '../src/lib/editorial.ts';
+} = await import(`data:text/javascript;base64,${Buffer.from(editorialJavaScript).toString('base64')}`);
 
 const process = { macroevento_id: 'semiconductores', publicacion: { estado: 'borrador' } };
 const entry = (slug, {
