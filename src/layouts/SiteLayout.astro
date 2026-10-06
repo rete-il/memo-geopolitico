@@ -35,6 +35,17 @@ const canonicalURL = new URL(
 <!doctype html>
 <html lang="es">
   <head>
+    {import.meta.env.PROD && !preventIndexing && (
+      <>
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-N879PHE7L2"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-N879PHE7L2');
+        </script>
+      </>
+    )}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#101c2c" />

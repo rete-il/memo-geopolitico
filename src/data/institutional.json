@@ -57,7 +57,7 @@
   "cookies": [
     {
       "title": "Navegación en este sitio",
-      "text": "Esta página describe la información que Memo Geopolítico guarda en el navegador y el acceso a servicios externos. El código actual del sitio no instala cookies publicitarias ni incorpora herramientas de analítica de comportamiento."
+      "text": "Esta página describe la información que Memo Geopolítico guarda en el navegador y el acceso a servicios externos. El sitio público utiliza Google Analytics 4 para medir visitas, páginas consultadas, procedencia del tráfico e interacción. Esta herramienta puede guardar cookies de medición y enviar datos de navegación a Google. La etiqueta no se carga en las vistas locales de desarrollo ni en las vistas editoriales no indexables."
     },
     {
       "title": "Preferencia de presentación del Observatorio",
