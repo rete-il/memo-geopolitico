@@ -1,4 +1,5 @@
 ---
+import ActionLink from '../../../components/ActionLink.astro';
 import PageTitle from '../../../components/PageTitle.astro';
 import RatingPair from '../../../components/RatingPair.astro';
 import RatingEvidence from '../../../components/RatingEvidence.astro';
@@ -122,17 +123,17 @@ const basis = process.fundamento_evaluacion;
         <nav class="methodology-note-actions" aria-label="Enlaces relacionados">
           {
             isPublished && publication && (
-              <a class="button-primary" href={`/publicaciones/${publication.slug}/`}>
+              <ActionLink arrow href={`/publicaciones/${publication.slug}/`}>
                 Leer publicación
-              </a>
+              </ActionLink>
             )
           }
-          <a class="button-secondary" href={`/observatorio/${process.slug}/`}>
+          <ActionLink arrow href={`/observatorio/${process.slug}/`}>
             Abrir expediente
-          </a>
-          <a class="button-secondary" href="/metodologia/relevancia-atencion-mediatica/">
+          </ActionLink>
+          <ActionLink arrow href="/metodologia/relevancia-atencion-mediatica/">
             Ver metodología general
-          </a>
+          </ActionLink>
         </nav>
       </article>
 

@@ -43,3 +43,30 @@ Thumbs.db
 /notion-export/
 /tools/restore-preview-from-astro-cache.mjs
 /outputs/periodismo-puro-20260918/
+
+# Capturas y archivos auxiliares de publicaciones en redes
+/reddit-publicacion-*.jpg
+/reddit-solicitud-revision-*.jpg
+/outputs/social/**/*-preview-*.png
+/outputs/social/**/*.json
+/outputs/social/**/facebook-cabecera-completa.jpg
+/outputs/social/**/facebook-cabecera-final.jpg
+/outputs/social/**/facebook-confirmacion.jpg
+/outputs/social/**/facebook-destacados-final.jpg
+/outputs/social/**/facebook-nombre-pendiente.jpg
+/outputs/social/**/facebook-pagina-completa.jpg
+/outputs/social/**/facebook-presentacion-publicada.jpg
+/outputs/social/**/facebook-publicado.jpg
+/outputs/social/**/facebook-texto-publicado.jpg
+/outputs/social/**/linkedin-borrador.jpg
+/outputs/social/**/linkedin-datos-publicados.jpg
+/outputs/social/**/linkedin-destacado-publicado.jpg
+/outputs/social/**/linkedin-edicion-pendiente.jpg
+/outputs/social/**/linkedin-error-portada.jpg
+/outputs/social/**/linkedin-informacion-publicada.jpg
+/outputs/social/**/linkedin-pagina-actualizada.jpg
+/outputs/social/**/linkedin-portada-publicada.png
+
+# Informes operativos privados, sin uso en la publicación del sitio
+/outputs/monitoring/
+/outputs/analytics-recuperado-2026-10-07.png

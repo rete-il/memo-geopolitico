@@ -1,0 +1,123 @@
+/* Dated signals, verification states and editorial notices. */
+
+.signal-timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.signal-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 2rem;
+  padding: 0 0 2rem;
+}
+
+.signal-timeline li::before {
+  position: absolute;
+  top: 0.48rem;
+  bottom: -0.25rem;
+  left: 10rem;
+  width: 1px;
+  background: var(--line);
+  content: '';
+}
+
+.signal-timeline li::after {
+  position: absolute;
+  top: 0.36rem;
+  left: calc(10rem - 0.31rem);
+  width: 0.66rem;
+  height: 0.66rem;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 1px var(--amber);
+  content: '';
+}
+
+.signal-timeline li:last-child::before {
+  display: none;
+}
+
+.signal-timeline time {
+  color: var(--ink-600);
+  font-size: var(--type-meta-size);
+  font-weight: var(--font-weight-bold);
+}
+
+.signal-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.signal-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--type-subheading-size);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+}
+
+.signal-heading h3 a {
+  text-decoration: underline;
+}
+
+.signal-timeline p {
+  margin: 0.55rem 0 0;
+  color: var(--ink-700);
+  font-size: var(--type-body-small-size);
+}
+
+.signal-timeline .signal-sources {
+  color: var(--ink-600);
+  font-size: var(--type-meta-size);
+}
+
+.verification {
+  flex: 0 0 auto;
+  padding: 0.22rem 0.45rem;
+  border-radius: 999px;
+  background: var(--notice-surface);
+  color: var(--notice-ink);
+  font-size: var(--type-caption-size);
+  font-weight: var(--font-weight-bold);
+  text-transform: capitalize;
+}
+
+.verification.verificada {
+  background: var(--status-verified-surface);
+  color: var(--status-verified-ink);
+}
+
+.editorial-note,
+.empty-state {
+  padding: 1.2rem 1.35rem;
+  border: 1px solid var(--notice-border);
+  border-radius: 0.55rem;
+  background: var(--amber-pale);
+  color: var(--notice-ink);
+  font-size: var(--type-meta-size);
+}
+
+.empty-state {
+  padding: 2rem;
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--ink-700);
+}
+
+.empty-state h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--type-subheading-size);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+}
+
+.empty-state p {
+  margin: 0.5rem 0 0;
+}

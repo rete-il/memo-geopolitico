@@ -1,0 +1,54 @@
+---
+import type { PublicSource } from '../../lib/types';
+import { formatDate, humanize } from '../../lib/text';
+
+interface Props { sources: PublicSource[]; }
+const { sources } = Astro.props;
+
+---
+
+<section
+  class="dashboard-view"
+  data-dashboard-view="fuentes"
+  id="fuentes" role="tabpanel" aria-labelledby="dashboard-tab-fuentes" tabindex="0"
+  hidden
+>
+  <div class="dashboard-heading">
+    <div>
+      <p class="eyebrow">Fuentes públicas</p>
+      <h3>Documentación expuesta</h3>
+    </div>
+    <p>{sources.length} fuentes aptas para consulta pública</p>
+  </div>
+  <div class="dashboard-table-panel">
+    <div class="dashboard-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Medio</th>
+            <th>Publicación</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            sources.map((source) => (
+              <tr>
+                <td>{source.medio}</td>
+                <td>
+                  <a href={source.url} target="_blank" rel="noopener noreferrer">
+                    <strong>{source.titulo || source.medio}</strong>
+                  </a>
+                  <small>{source.tipo} · {source.idioma}</small>
+                </td>
+                <td>{formatDate(source.fecha)}</td>
+                <td><span class="dashboard-state dashboard-state--publicado">{humanize(source.estado_verificacion)}</span></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

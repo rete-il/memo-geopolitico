@@ -1,0 +1,214 @@
+---
+import type { RectorGroup } from '../../lib/rector-presentation';
+import ActionLink from '../ActionLink.astro';
+import { editorialPreviewEnabled } from '../../lib/data';
+import { editorialStageLabel, formatDate, humanize } from '../../lib/text';
+import { siteRoutes } from '../../config/routes';
+
+interface Props {
+  complementaries: RectorGroup['complementaries'];
+  transversals: RectorGroup['transversals'];
+  initiallyOpen: boolean;
+}
+const { complementaries, transversals, initiallyOpen } = Astro.props;
+
+---
+
+<details open={initiallyOpen} data-branch-details data-open-label="Cerrar procesos complementarios" data-closed-label="Ver procesos complementarios">
+  <summary>
+    <strong>
+      {complementaries.length === 1
+        ? '1 proceso complementario'
+        : `${complementaries.length} procesos complementarios`}
+    </strong>
+    <span data-branch-toggle-label>
+      {initiallyOpen
+        ? 'Cerrar procesos complementarios'
+        : 'Ver procesos complementarios'}
+    </span>
+  </summary>
+
+  {complementaries.length ? (
+    <ol class="branch-list" data-complementary-list>
+      {complementaries.map(
+        ({ process, publication: childPublication, editorialState: childState }) => {
+          const childPublicationHref =
+            childPublication &&
+            (childPublication.data.publicacion.estado === 'publicado' ||
+              editorialPreviewEnabled)
+              ? `${siteRoutes.publications}${childPublication.data.slug}/`
+              : '';
+
+          return (
+            <li>
+              <div class="branch-copy">
+                <a class="branch-title" href={`${siteRoutes.observatory}${process.slug}/`}>
+                  {process.titulo}
+                </a>
+                <span>
+                  {editorialStageLabel(childState)} · Actualizado{' '}
+                  {formatDate(process.publicacion.actualizado_el)}
+                </span>
+              </div>
+              <div class="branch-actions">
+                {childPublicationHref && (
+                  <ActionLink size="compact" arrow href={childPublicationHref}>Leer análisis</ActionLink>
+                )}
+                <ActionLink size="compact" arrow href={`${siteRoutes.observatory}${process.slug}/`}>
+                  Expediente
+                </ActionLink>
+              </div>
+            </li>
+          );
+        },
+      )}
+    </ol>
+  ) : (
+    <p class="branch-empty">
+      Este rector todavía no tiene procesos complementarios vinculados.
+    </p>
+  )}
+</details>
+
+<details data-branch-details data-open-label="Cerrar relaciones transversales" data-closed-label="Ver relaciones transversales">
+  <summary>
+    <strong>{transversals.length === 1 ? '1 proceso relacionado' : `${transversals.length} procesos relacionados`}</strong>
+    <span data-branch-toggle-label>Ver relaciones transversales</span>
+  </summary>
+  {transversals.length ? (
+    <ul class="transversal-list" data-transversal-list>
+      {transversals.map(({ process, relations }) => (
+        <li>
+          <a class="branch-title" href={`${siteRoutes.observatory}${process.slug}/`}>{process.titulo}</a>
+          <span class="transversal-role">{process.es_macroevento_rector ? 'Macroevento rector relacionado' : 'Proceso relacionado'}</span>
+          {relations.length ? relations.map(relation => (
+            <p><strong>{humanize(relation.tipo)}.</strong> {relation.mecanismo}</p>
+          )) : <p>Vínculo transversal registrado en el Observatorio.</p>}
+        </li>
+      ))}
+    </ul>
+  ) : <p class="branch-empty">Este rector todavía no tiene relaciones transversales vinculadas.</p>}
+</details>
+
+<style>
+  :global(.rector-entry) details {
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  :global(.rector-entry) summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  :global(.rector-entry) summary span {
+    color: var(--ink-600);
+    font-size: var(--type-caption-size);
+  }
+
+  .branch-list {
+    display: grid;
+    margin: 0 clamp(var(--space-5), 3vw, var(--space-7)) var(--space-6);
+    padding: 0 0 0 var(--space-6);
+    border-left: 2px solid var(--line);
+    list-style: none;
+  }
+
+  .branch-list li {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-3) var(--space-4);
+    align-items: center;
+    padding: var(--space-4) 0 var(--space-4) var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .branch-list li::before {
+    position: absolute;
+    top: 1.25rem;
+    left: -1.72rem;
+    width: 0.62rem;
+    height: 0.62rem;
+    border: 2px solid var(--surface);
+    border-radius: 50%;
+    background: var(--amber);
+    content: '';
+  }
+
+  .branch-copy {
+    display: grid;
+    min-width: 0;
+    gap: var(--space-1);
+  }
+
+  .branch-title {
+    color: var(--ink-950);
+    font-weight: var(--font-weight-heavy);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.22em;
+  }
+
+  .branch-title:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--amber);
+    text-underline-offset: 0.22em;
+  }
+
+  .branch-copy span {
+    color: var(--ink-600);
+    font-size: var(--type-caption-size);
+  }
+
+  .branch-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-2) var(--space-3);
+  }
+
+  .transversal-list {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0 clamp(var(--space-5), 3vw, var(--space-7)) var(--space-6);
+    padding: 0;
+    list-style: none;
+  }
+
+  .transversal-list li {
+    display: grid;
+    gap: var(--space-2);
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .transversal-role {
+    color: var(--ink-600);
+    font-size: var(--type-caption-size);
+  }
+
+  .transversal-list p {
+    margin: 0;
+    color: var(--ink-700);
+    font-size: var(--type-body-small-size);
+  }
+
+  .branch-empty {
+    margin: 0;
+    padding: 0 var(--space-7) var(--space-6);
+    color: var(--ink-600);
+  }
+
+  @media (max-width: 760px) {
+    .branch-list li { grid-template-columns: 1fr; }
+    .branch-actions { justify-content: flex-start; }
+    :global(.rector-entry) summary {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+  }
+</style>

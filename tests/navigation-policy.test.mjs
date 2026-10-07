@@ -1,8 +1,41 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { destinationKey, uniqueDestinations, signalHref, sameText } from '../tools/lib/navigation-policy.mjs';
+import { destinationKey, uniqueDestinations, selectActiveNavigationItem, signalHref, sameText } from '../tools/lib/navigation-policy.mjs';
+import { siteRoutes } from '../src/config/routes.ts';
 import remarkReadingNavigation, { readingNavigationPlugin } from '../tools/lib/remark-reading-navigation.mjs';
 import { markdownToHtml } from 'satteri';
+
+const navigation = [
+  { href: siteRoutes.home, label: 'Inicio' },
+  { href: siteRoutes.rectors, label: 'Macroeventos rectores' },
+  { href: siteRoutes.observatory, label: 'Observatorio' },
+  { href: siteRoutes.publications, label: 'Publicaciones' },
+];
+
+test('navegación: rectores y sus descendientes activan únicamente la sección más específica', () => {
+  for (const pathname of [siteRoutes.rectors, `${siteRoutes.rectors}competencia-tecnologica/`]) {
+    const activeItem = selectActiveNavigationItem(navigation, pathname);
+    assert.equal(activeItem, navigation[1]);
+    assert.deepEqual(navigation.filter(item => item === activeItem), [navigation[1]]);
+  }
+  assert.equal(selectActiveNavigationItem(navigation, '/observatorio/proceso/'), navigation[2]);
+});
+
+test('navegación: conserva límites de segmento y normaliza consulta, ancla y barra final', () => {
+  assert.equal(selectActiveNavigationItem(navigation, '/observatorio/rectores?tema=uno#explorar'), navigation[1]);
+  assert.equal(selectActiveNavigationItem(navigation, '/observatorio/rectores-extra/'), navigation[2]);
+  assert.equal(selectActiveNavigationItem(navigation, '/observatorio-extra/'), undefined);
+  assert.equal(selectActiveNavigationItem(navigation, '/publicaciones/analisis/'), navigation[3]);
+});
+
+test('navegación: selecciona sólo entre destinos visibles y mantiene Inicio limitado a la raíz', () => {
+  const withoutRectors = navigation.filter(item => item.href !== siteRoutes.rectors);
+  assert.equal(selectActiveNavigationItem(withoutRectors, siteRoutes.rectors), navigation[2]);
+  assert.equal(selectActiveNavigationItem(navigation, '/'), navigation[0]);
+  assert.equal(selectActiveNavigationItem(navigation, '/contacto/'), undefined);
+  assert.equal(selectActiveNavigationItem([{ href: 'https://example.org/' }], '/'), undefined);
+  assert.equal(selectActiveNavigationItem(navigation, 'https://example.org/observatorio/'), undefined);
+});
 
 test('el procesador real aplica la política sin perder énfasis ni citas', async () => {
   const { html } = await markdownToHtml('[Consultar expediente](/observatorio/proceso/)\n\nUna **prueba** [externa](https://example.org).', {

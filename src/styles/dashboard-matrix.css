@@ -1,0 +1,210 @@
+/* Relevance matrix, expedients and dashboard taxonomy. */
+
+.dashboard-matrix {
+  position: relative;
+  height: min(40rem, 70vw);
+  min-height: 35rem;
+  margin: 1rem 2rem 0;
+  border-bottom: 2px solid var(--dash-ink);
+  border-left: 2px solid var(--dash-ink);
+  background:
+    linear-gradient(
+      to right,
+      var(--chart-priority-wash) 50%,
+      var(--chart-context-wash) 50%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--chart-context-wash) 50%,
+      var(--chart-muted-wash) 50%
+    );
+}
+
+.dashboard-matrix::after {
+  position: absolute;
+  top: 42%;
+  left: -5.4rem;
+  color: var(--dash-muted);
+  content: 'Relevancia 1 → 5';
+  font-size: var(--type-caption-size);
+  transform: rotate(-90deg);
+}
+
+.matrix-label {
+  position: absolute;
+  z-index: 1;
+  padding: 0.45rem;
+  color: var(--dash-muted);
+  font-size: var(--type-caption-size);
+  pointer-events: none;
+}
+
+.matrix-label--top-left {
+  top: 0;
+  left: 0;
+}
+
+.matrix-label--top-right {
+  top: 0;
+  right: 0;
+}
+
+.matrix-label--bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.matrix-label--bottom-right {
+  right: 0;
+  bottom: 0;
+}
+
+.dashboard-matrix-point {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: var(--dash-primary);
+  color: var(--surface);
+  font-size: var(--type-meta-size);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 3px 9px var(--shadow-color-floating);
+  transform: translate(-50%, 50%);
+}
+
+.dashboard-matrix-point:hover,
+.dashboard-matrix-point:focus-visible {
+  z-index: 5;
+  background: var(--dash-ink);
+}
+
+.dashboard-matrix-groups {
+  margin-top: 1.5rem;
+  font-size: var(--type-body-small-size);
+}
+
+.dashboard-matrix-groups h4 {
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-matrix-groups details {
+  border-top: 1px solid var(--dash-line);
+  scroll-margin-block: 6rem;
+}
+
+.dashboard-matrix-groups summary {
+  padding-block: 0.8rem;
+  cursor: pointer;
+  font-weight: var(--font-weight-semibold);
+}
+
+.dashboard-matrix-groups ul {
+  margin-top: 0;
+  padding-left: 1.5rem;
+}
+
+.dashboard-matrix-groups li + li {
+  margin-top: 0.55rem;
+}
+
+.dashboard-axis--x {
+  margin-top: 0.5rem;
+  color: var(--dash-muted);
+  font-size: var(--type-caption-size);
+  text-align: center;
+}
+
+.dashboard-matrix-note {
+  margin-top: 1.5rem;
+  font-size: var(--type-meta-size);
+  text-align: center;
+}
+
+.dashboard-expedients {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dashboard-expedients article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  padding: 1rem;
+}
+
+.dashboard-expedients h4 {
+  margin: 0.45rem 0 0;
+  font-family: var(--serif);
+  font-size: var(--type-subheading-size);
+  font-weight: var(--font-weight-medium);
+}
+
+.dashboard-expedients h4 a {
+  text-decoration: underline;
+}
+
+.dashboard-expedients p {
+  margin: 0.35rem 0 0;
+  color: var(--dash-muted);
+  font-size: var(--type-body-small-size);
+}
+
+.dashboard-expedients dl {
+  display: flex;
+  gap: 1.2rem;
+  margin: 0;
+}
+
+.dashboard-expedients dt {
+  color: var(--dash-muted);
+  font-size: var(--type-caption-size);
+  font-weight: var(--font-weight-heavy);
+  text-transform: uppercase;
+}
+
+.dashboard-expedients dd {
+  margin: 0.2rem 0 0;
+  font-size: var(--type-meta-size);
+  font-weight: var(--font-weight-bold);
+}
+
+.dashboard-taxonomy {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.dashboard-taxonomy article {
+  padding: 1rem;
+}
+
+.dashboard-taxonomy article > span {
+  color: var(--dash-primary);
+  font-family: var(--serif);
+  font-size: var(--type-metric-size);
+}
+
+.dashboard-taxonomy h4 {
+  margin: 0.2rem 0 0;
+}
+
+.dashboard-taxonomy p {
+  margin: 0.35rem 0 0;
+  color: var(--dash-muted);
+  font-size: var(--type-body-small-size);
+}
+
+.dashboard-taxonomy a {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--dash-primary);
+  font-size: var(--type-meta-size);
+  font-weight: var(--font-weight-bold);
+}

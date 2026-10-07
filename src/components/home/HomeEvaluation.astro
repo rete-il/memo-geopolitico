@@ -1,0 +1,71 @@
+---
+import ActionLink from '../ActionLink.astro';
+import { homeConfig } from '../../config/home';
+import { formatDate } from '../../lib/text';
+import type { HomeEvaluationView } from '../../lib/home';
+
+interface Props { evaluation: HomeEvaluationView; }
+const { process, basis, origins } = Astro.props.evaluation;
+const labels = homeConfig.evaluation;
+const number = (value: number | null) => value?.toFixed(1).replace('.', ',') || labels.unassigned;
+const scores = [
+  { label: labels.relevance, value: process.valoraciones.relevancia_geopolitica },
+  { label: labels.attention, value: process.valoraciones.atencion_mediatica },
+];
+---
+
+<aside class="home-evaluation" aria-labelledby="home-evaluation-title">
+  <p class="eyebrow">{labels.kicker}</p>
+  <h2 id="home-evaluation-title">{labels.title}</h2>
+  <p class="home-evaluation-case">{process.titulo}</p>
+  <p class="home-evaluation-status">
+    {labels.judgment} · {labels.provisional}
+    {process.valoraciones.confianza && <> · {labels.confidence} {process.valoraciones.confianza.toLocaleLowerCase('es')}</>}
+  </p>
+  <dl class="home-evaluation-scores">
+    {scores.map((score) => <div><dt>{score.label}</dt><dd>{number(score.value)} <span>/ 5</span></dd></div>)}
+  </dl>
+  {process.valoraciones.brecha !== null && <p class="home-evaluation-note">
+    {labels.difference}:{' '}{process.valoraciones.brecha > 0 ? '+' : ''}{number(process.valoraciones.brecha)}. {labels.differenceNote}
+  </p>}
+  <p class="home-evaluation-meta">
+    {labels.basis}: <time datetime={basis.fecha}>{formatDate(basis.fecha)}</time><br />
+    {labels.sample}: {basis.atencion.muestra.length} {labels.piece[basis.atencion.muestra.length === 1 ? 0 : 1]} ·{' '}
+    {origins.length} {labels.origin[origins.length === 1 ? 0 : 1]}
+  </p>
+  <details class="home-sample">
+    <summary>{labels.disclosure}</summary>
+    <div class="home-sample-content">
+      <h3>{labels.period}</h3>
+      <p><time datetime={basis.atencion.periodo.desde}>{formatDate(basis.atencion.periodo.desde)}</time>{' '}a{' '}<time datetime={basis.atencion.periodo.hasta}>{formatDate(basis.atencion.periodo.hasta)}</time></p>
+      <h3>{labels.origins}</h3>
+      <p>{origins.join(', ')}</p>
+      <p>{basis.atencion.seleccion}</p>
+      <h3>{labels.limits}</h3>
+      <p>{basis.alcance}</p>
+      <ul>{basis.limites.map((limit) => <li>{limit}</li>)}</ul>
+    </div>
+  </details>
+  <ActionLink href={`${homeConfig.routes.methodology}${process.slug}/`} arrow>{labels.action}</ActionLink>
+</aside>
+
+<style>
+  .home-evaluation { min-width: 0; padding: var(--space-6); background: var(--paper-deep); }
+  h2 { margin: var(--space-3) 0; font: var(--font-weight-medium) var(--type-card-size)/1.2 var(--serif); letter-spacing: -.025em; }
+  .home-evaluation-case { margin: 0 0 var(--space-3); font-size: var(--type-body-small-size); }
+  .home-evaluation-status, .home-evaluation-note, .home-evaluation-meta { color: var(--ink-600); font-size: var(--type-meta-size); }
+  .home-evaluation-status { margin: 0; }
+  .home-evaluation-scores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); margin: var(--space-4) 0; }
+  .home-evaluation-scores dt { color: var(--ink-600); font-size: var(--type-meta-size); }
+  .home-evaluation-scores dd { margin: var(--space-1) 0 0; font: var(--font-weight-medium) var(--type-section-size)/1.2 var(--serif); }
+  .home-evaluation-scores dd span { font: var(--font-weight-regular) var(--type-meta-size)/1.6 var(--sans); color: var(--ink-600); }
+  .home-evaluation-note { margin: 0 0 var(--space-3); }
+  .home-evaluation-meta { margin: 0 0 var(--space-4); }
+  .home-sample { border-top: 1px solid var(--line-strong); margin-bottom: var(--space-1); }
+  .home-sample-content { padding-bottom: var(--space-2); color: var(--ink-700); font-size: var(--type-body-small-size); }
+  .home-sample-content h3 { margin: var(--space-3) 0 var(--space-2); font: var(--font-weight-medium) var(--type-subheading-size)/1.2 var(--serif); }
+  .home-sample-content p { margin: var(--space-2) 0; }
+  .home-sample-content ul { padding-left: var(--space-5); }
+  .home-sample-content li + li { margin-top: var(--space-3); }
+  @media (max-width: 420px) { .home-evaluation { padding: var(--space-5); } }
+</style>

@@ -1,0 +1,52 @@
+---
+import type { PublicSignal } from '../../lib/types';
+import { formatDate, humanize } from '../../lib/text';
+
+interface Props { signals: (PublicSignal & { processSlug: string; processTitle: string })[]; }
+const { signals } = Astro.props;
+
+---
+
+<section
+  class="dashboard-view"
+  data-dashboard-view="senales"
+  id="senales" role="tabpanel" aria-labelledby="dashboard-tab-senales" tabindex="0"
+  hidden
+>
+  <div class="dashboard-heading">
+    <div>
+      <p class="eyebrow">Evidencia trazable</p>
+      <h3>Señales expuestas</h3>
+    </div>
+    <p>{signals.length} señales con fuente vinculada</p>
+  </div>
+  <div class="dashboard-table-panel">
+    <div class="dashboard-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Señal</th>
+            <th>Proceso</th>
+            <th>Verificación</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            signals.map((signal) => (
+              <tr>
+                <td>{formatDate(signal.fecha)}</td>
+                <td>
+                  <strong>{signal.titulo}</strong>
+                  <small>{signal.resumen}</small>
+                </td>
+                <td><a href={`/observatorio/${signal.processSlug}/`}>{signal.processTitle}</a></td>
+                <td><span class="dashboard-state dashboard-state--publicado">{humanize(signal.estado_verificacion)}</span></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,124 @@
+---
+import type { PublicProcess } from '../../lib/types';
+import type { PublicationEntry } from '../../lib/publications';
+import { processes } from '../../lib/data';
+import { effectiveEditorialState } from '../../lib/editorial';
+import { processDependsOnRector, processRectorIds } from '../../lib/process-relations';
+import { humanize } from '../../lib/text';
+
+interface Props { process: PublicProcess; publicationEntries: PublicationEntry[]; }
+const { process, publicationEntries } = Astro.props;
+const processById = new Map(processes.map((item) => [item.macroevento_id, item]));
+const rectorProcesses = processRectorIds(process)
+  .map((id) => processById.get(id))
+  .filter((item): item is PublicProcess => Boolean(item));
+const complementaryProcesses = process.es_macroevento_rector
+  ? processes.filter((item) => processDependsOnRector(item, process.macroevento_id))
+  : [];
+const reservedRelationIds = new Set([
+  process.macroevento_id,
+  ...processRectorIds(process),
+  ...complementaryProcesses.map((item) => item.macroevento_id),
+]);
+const outgoingRelatedProcesses = (process.macroevento_relacionado_ids || [])
+  .map((id) => processById.get(id))
+  .filter((item): item is PublicProcess => Boolean(item));
+const incomingRelatedProcesses = processes.filter((item) =>
+  (item.macroevento_relacionado_ids || []).includes(process.macroevento_id)
+);
+const relatedProcesses = [...new Map(
+  [...outgoingRelatedProcesses, ...incomingRelatedProcesses]
+    .filter((item) => !reservedRelationIds.has(item.macroevento_id))
+    .map((item) => [item.macroevento_id, item]),
+).values()];
+const typedRelations = (process.relaciones_tipadas || []).map((relation) => {
+  const counterpartId = relation.origen_id === process.macroevento_id
+    ? relation.destino_id
+    : relation.origen_id;
+  return { relation, counterpart: processById.get(counterpartId) };
+}).filter((item) => Boolean(item.counterpart));
+
+---
+
+{
+  (process.es_macroevento_rector || rectorProcesses.length > 0 || complementaryProcesses.length > 0 || relatedProcesses.length > 0) && (
+    <section class="content-section">
+      <h2>Relaciones con otros macroeventos</h2>
+      {process.es_macroevento_rector && (
+        <p>
+          <strong>Macroevento rector.</strong> Este proceso articula una hipótesis de seguimiento y organiza procesos complementarios.
+        </p>
+      )}
+      {rectorProcesses.length > 0 && (
+        <div class="process-relation-group">
+          <h3>{rectorProcesses.length === 1 ? 'Macroevento rector' : 'Macroeventos rectores'}</h3>
+          <ul>
+            {rectorProcesses.map((rector) => {
+              const rectorEditorialState = effectiveEditorialState(rector, publicationEntries);
+              return (
+                <li>
+                  <a class="process-relation-link" href={`/observatorio/${rector.slug}/`}>
+                    {rector.titulo}
+                  </a>
+                  {rectorEditorialState !== 'publicado' && (
+                    <span class="draft-chip">En preparación</span>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+          <p>
+            Este expediente aporta evidencia a una o más hipótesis rectoras;
+            cada vínculo conserva su propio estado editorial.
+          </p>
+        </div>
+      )}
+      {complementaryProcesses.length > 0 && (
+        <div class="process-relation-group">
+          <h3>Procesos complementarios</h3>
+          <ul>
+            {complementaryProcesses.map((item) => (
+              <li><a href={`/observatorio/${item.slug}/`}>{item.titulo}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {relatedProcesses.length > 0 && (
+        <div class="process-relation-group">
+          <h3>Otros procesos relacionados</h3>
+          <ul>
+            {relatedProcesses.map((item) => (
+              <li><a href={`/observatorio/${item.slug}/`}>{item.titulo}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {typedRelations.length > 0 && (
+        <div class="process-relation-group typed-relations">
+          <h3>Mecanismos transversales auditados</h3>
+          <ul>
+            {typedRelations.map(({ relation, counterpart }) => (
+              <li>
+                <div class="typed-relation-heading">
+                  <span class="relation-type">{humanize(relation.tipo)}</span>
+                  {[...rectorProcesses, ...complementaryProcesses, ...relatedProcesses].some(item => item.macroevento_id === counterpart!.macroevento_id)
+                    ? <strong>{counterpart!.titulo}</strong>
+                    : <a href={`/observatorio/${counterpart!.slug}/`}>{counterpart!.titulo}</a>}
+                </div>
+                <p>{relation.mecanismo}</p>
+                <small>
+                  {relation.direccion === 'bidireccional'
+                    ? 'Interacción bidireccional'
+                    : relation.origen_id === process.macroevento_id
+                      ? 'Efecto desde este proceso'
+                      : 'Efecto sobre este proceso'}
+                  {' · '}{relation.evidencia_senal_ids.length} señal(es) de evidencia
+                </small>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  )
+}

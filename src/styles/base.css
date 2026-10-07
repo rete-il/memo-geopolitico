@@ -1,0 +1,83 @@
+/* Document defaults and accessible navigation. */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+html.menu-open {
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 4%, var(--page-glow), transparent 28rem),
+    linear-gradient(180deg, var(--page-sheen), transparent 22rem),
+    var(--paper);
+  color: var(--ink-950);
+  font-family: var(--sans);
+  font-size: var(--type-body-size);
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  min-height: 65vh;
+}
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.4rem;
+  background: var(--ink-950);
+  color: var(--surface);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: none;
+}

@@ -1,0 +1,126 @@
+---
+import RectorBranches from './RectorBranches.astro';
+import ActionLink from '../ActionLink.astro';
+import type { RectorGroup } from '../../lib/rector-presentation';
+import { editorialPreviewEnabled } from '../../lib/data';
+import { editorialStageLabel, formatDate } from '../../lib/text';
+import { siteRoutes } from '../../config/routes';
+
+interface Props extends RectorGroup { initiallyOpen: boolean; }
+const { rector, publication, editorialState, complementaries, transversals, initiallyOpen } = Astro.props;
+const publicationHref = publication &&
+  (publication.data.publicacion.estado === 'publicado' || editorialPreviewEnabled)
+    ? `${siteRoutes.publications}${publication.data.slug}/` : '';
+---
+
+<article class="rector-entry" data-rector-id={rector.macroevento_id}>
+  <header class="rector-entry-header">
+    <div class="rector-entry-copy">
+      <div class="rector-meta">
+        <span>Macroevento rector</span>
+        <span>Actualizado {formatDate(rector.publicacion.actualizado_el)}</span>
+        <span>{editorialStageLabel(editorialState)}</span>
+      </div>
+      <h2>
+        <a href={`${siteRoutes.observatory}${rector.slug}/`}>
+          {rector.titulo}
+        </a>
+      </h2>
+      <p>{rector.por_que_importa || rector.sintesis}</p>
+    </div>
+
+    <div class="rector-actions">
+      {publicationHref && (
+        <ActionLink arrow href={publicationHref}>
+          Leer análisis rector
+        </ActionLink>
+      )}
+      <ActionLink arrow href={`${siteRoutes.observatory}${rector.slug}/`}>
+        Abrir expediente
+      </ActionLink>
+    </div>
+  </header>
+
+  <RectorBranches complementaries={complementaries} transversals={transversals} initiallyOpen={initiallyOpen} />
+
+</article>
+
+<style>
+  .rector-entry {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--amber);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(145deg, color-mix(in srgb, var(--blue-pale) 62%, transparent), transparent 55%),
+      var(--surface);
+  }
+
+  .rector-entry-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(var(--space-4), 3vw, var(--space-7));
+    padding: clamp(var(--space-5), 3vw, var(--space-7));
+  }
+
+  .rector-entry-copy {
+    min-width: 0;
+  }
+
+  .rector-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    color: var(--ink-600);
+    font-size: var(--type-meta-size);
+  }
+
+  .rector-meta span:first-child {
+    color: var(--amber-text);
+    font-weight: var(--font-weight-heavy);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .rector-entry h2 {
+    max-width: 30ch;
+    margin: var(--space-3) 0 0;
+    font-family: var(--serif);
+    font-size: var(--type-section-size);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .rector-entry h2 a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 0.18em;
+  }
+
+  .rector-entry h2 a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--amber);
+    text-underline-offset: 0.18em;
+  }
+
+  .rector-entry-copy > p {
+    max-width: 68rem;
+    margin: var(--space-4) 0 0;
+    color: var(--ink-700);
+  }
+
+  .rector-actions {
+    display: flex;
+    min-width: 11.5rem;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  @media (max-width: 760px) {
+    .rector-entry-header { grid-template-columns: 1fr; }
+    .rector-actions { min-width: 0; }
+  }
+</style>

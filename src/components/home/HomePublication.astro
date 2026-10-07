@@ -1,0 +1,48 @@
+---
+import ActionLink from '../ActionLink.astro';
+import { homeConfig } from '../../config/home';
+import { formatDate } from '../../lib/text';
+import type { HomePublicationView } from '../../lib/home';
+
+interface Props { view: HomePublicationView; featured?: boolean; }
+const { view, featured = false } = Astro.props;
+const { data } = view.publication;
+const labels = homeConfig.publication;
+const Heading = featured ? 'h2' : 'h3';
+const destination = `${homeConfig.routes.publications}${data.slug}/`;
+---
+
+<article class:list={['home-publication', { 'home-publication--featured': featured }]}>
+  <p class="eyebrow">{featured ? labels.featured : view.topic?.nombre || labels.fallbackTopic}</p>
+  <Heading id={featured ? 'home-feature-title' : undefined}>
+    <a href={destination}>{data.titulo}</a>
+  </Heading>
+  <div class="home-meta">
+    <span>{data.publicacion.publicado_el
+      ? <>{labels.published}{' '}<time datetime={data.publicacion.publicado_el}>{formatDate(data.publicacion.publicado_el)}</time></>
+      : labels.undated}</span>
+    {featured && view.topic && <a href={`${homeConfig.routes.themes}${view.topic.slug}/`}>{view.topic.nombre}</a>}
+  </div>
+  {data.subtitulo && <p class="home-subtitle">{data.subtitulo}</p>}
+  <p class="home-summary">{data.resumen}</p>
+  <footer class="home-actions">
+    <ActionLink href={destination} size={featured ? 'default' : 'compact'} arrow>{labels.action}</ActionLink>
+    {featured && view.process && <ActionLink href={`${homeConfig.routes.observatory}${view.process.slug}/#${homeConfig.anchors.chronology}`} arrow>{labels.evidenceAction}</ActionLink>}
+  </footer>
+</article>
+
+<style>
+  .home-publication { display: flex; flex-direction: column; min-width: 0; padding-top: var(--space-5); border-top: 2px solid var(--line-strong); }
+  .home-publication :is(h2, h3) { margin: var(--space-3) 0; font: var(--font-weight-medium) var(--type-card-size)/1.2 var(--serif); letter-spacing: -.025em; text-wrap: pretty; }
+  .home-publication :is(h2, h3) a { text-decoration: none; }
+  .home-publication :is(h2, h3) a:hover { text-decoration: underline; }
+  .home-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); color: var(--ink-600); font-size: var(--type-meta-size); }
+  .home-subtitle { margin: var(--space-4) 0 0; color: var(--ink-800); font-size: var(--type-body-small-size); }
+  .home-summary { margin: var(--space-4) 0 var(--space-5); color: var(--ink-700); font-size: var(--type-body-small-size); }
+  .home-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); margin-top: auto; padding-top: var(--space-4); border-top: 1px solid var(--line); }
+  .home-publication--featured { padding-top: 0; border-top: 0; }
+  .home-publication--featured h2 { font-size: var(--type-section-size); }
+  .home-publication--featured .home-subtitle { font-size: var(--type-lead-size); }
+  .home-publication--featured .home-summary { font-size: inherit; }
+  .home-publication--featured .home-actions { margin-top: var(--space-3); padding-top: 0; border-top: 0; }
+</style>

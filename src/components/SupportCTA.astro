@@ -1,5 +1,6 @@
 ---
 import { supportConfig } from '../config/support';
+import ActionLink from './ActionLink.astro';
 
 const visible = supportConfig.enabled && supportConfig.showOnPublications;
 ---
@@ -8,15 +9,15 @@ const visible = supportConfig.enabled && supportConfig.showOnPublications;
   visible && (
     <aside class="support-cta" aria-label="Apoyo a Memo Geopolítico">
       <p class="eyebrow">Proyecto independiente</p>
-      <h2>¿Te resultó útil este análisis?</h2>
+      <h2>Sostener la investigación independiente</h2>
       <p>
-        Tu apoyo contribuye a sostener la investigación, las fuentes y el
+        El apoyo al proyecto contribuye a sostener la investigación, las fuentes y el
         desarrollo de Memo Geopolítico.
       </p>
-      <a href={supportConfig.url} target="_blank" rel="noopener noreferrer">
+      <ActionLink href={supportConfig.url} target="_blank" rel="noopener noreferrer" arrow>
         Apoyar Memo Geopolítico
         <span class="sr-only"> mediante Ko-fi</span>
-      </a>
+      </ActionLink>
     </aside>
   )
 }

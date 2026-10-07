@@ -85,12 +85,12 @@ const referencedSource = (id: string) => sourceById.get(id);
 <style>
   .rating-evidence { min-width: 0; overflow-wrap: anywhere; }
   .evidence-dimensions { display: grid; gap: 1.3rem; margin-top: 1.5rem; }
-  .evidence-item { border-left: 3px solid var(--line, #ded7cc); padding-left: 1rem; }
+  .evidence-item { border-left: 3px solid var(--line); padding-left: 1rem; }
   .evidence-item h3 { margin-top: 0; }
-  .evidence-sources { font-size: .9em; }
+  .evidence-sources { font-size: var(--type-meta-size); }
   .evidence-sources li + li { margin-top: .6rem; }
   .evidence-criteria { display: grid; gap: 1rem; margin: 1.5rem 0; }
-  .evidence-criteria dt { font-weight: 700; }
+  .evidence-criteria dt { font-weight: var(--font-weight-bold); }
   .evidence-criteria dd { margin: .35rem 0 0; }
   .evidence-sample { padding-left: 1.4rem; }
   .evidence-sample > li { padding-left: .3rem; margin-bottom: 1.3rem; }

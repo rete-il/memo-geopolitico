@@ -10,7 +10,7 @@ const preference = browserStorageDefinitions.find(item => item.id === 'observato
   </dl>
   <div class="storage-controls">
     <p class="storage-status" data-storage-status role="status" aria-live="polite" aria-atomic="true"></p>
-    <button type="button" data-reset-storage hidden>Borrar preferencia guardada</button>
+    <button class="ui-action button-primary" type="button" data-reset-storage hidden>Borrar preferencia guardada</button>
     <p class="storage-scope">Esta acción se aplica a este navegador y a esta dirección del sitio. La preferencia solo volverá a guardarse si se marca «Recordar esta vista en este navegador» en el Observatorio. Cambiar entre lista y tarjetas no activa el guardado.</p>
     <noscript><p>El control de esta página requiere JavaScript. La preferencia también puede eliminarse desde la configuración de datos del sitio en el navegador.</p></noscript>
   </div>
@@ -57,15 +57,11 @@ const preference = browserStorageDefinitions.find(item => item.id === 'observato
   .storage-preference { margin-block: 1.5rem; padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid var(--line-strong); background: var(--surface); }
   dl { margin: 0; }
   dl > div { display: grid; grid-template-columns: minmax(6rem, .3fr) minmax(0, 1fr); gap: .5rem 1.25rem; padding-block: .8rem; border-bottom: 1px solid var(--line); }
-  dt { font-weight: 600; } dd { margin: 0; }
+  dt { font-weight: var(--font-weight-semibold); } dd { margin: 0; }
   .storage-controls { padding-block: .5rem 1rem; }
-  .storage-status { font-weight: 600; }
+  .storage-status { font-weight: var(--font-weight-semibold); }
   .storage-status:empty { display: none; }
-  button { min-height: 2.75rem; max-width: 100%; padding: .65rem 1rem; border: 1px solid var(--ink-900); border-radius: .25rem; background: var(--ink-900); color: var(--paper); font: inherit; cursor: pointer; }
-  button:hover:not(:disabled) { background: var(--blue); }
-  button:disabled { background: var(--paper-deep); color: var(--ink-600); border-color: var(--line-strong); cursor: default; }
-  .storage-scope { margin-bottom: 0; color: var(--ink-600); font-size: .92rem; }
-  summary { padding-block: .4rem; cursor: pointer; color: var(--ink-700); }
+  .storage-scope { margin-bottom: 0; color: var(--ink-600); font-size: var(--type-body-small-size); }
   code { overflow-wrap: anywhere; }
   @media (max-width: 540px) { dl > div { grid-template-columns: minmax(0, 1fr); gap: .2rem; } }
 </style>

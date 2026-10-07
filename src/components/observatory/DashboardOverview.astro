@@ -1,0 +1,117 @@
+---
+import type { PublicProcess, PublicationState } from '../../lib/types';
+import { editorialStageLabel } from '../../lib/text';
+import { formatRating } from '../../../tools/lib/editorial-ratings.mjs';
+
+interface Props {
+  processes: PublicProcess[];
+  stateFor: (process: PublicProcess) => PublicationState;
+  ranked: PublicProcess[];
+  publishedCount: number;
+  inProgressCount: number;
+  signalCount: number;
+  verifiedSourceCount: number;
+}
+const { processes, stateFor, ranked, publishedCount, inProgressCount, signalCount, verifiedSourceCount } = Astro.props;
+
+---
+
+<section
+  class="dashboard-view"
+  data-dashboard-view="panorama"
+  id="panorama" role="tabpanel" aria-labelledby="dashboard-tab-panorama" tabindex="0"
+>
+  <div class="dashboard-heading">
+    <div>
+      <p class="eyebrow">Investigaciones del Observatorio</p>
+      <h3>Panorama editorial</h3>
+    </div>
+    <p>Procesos en seguimiento y análisis publicados.</p>
+  </div>
+
+  <div class="dashboard-metrics">
+    <article>
+      <span>Procesos</span>
+      <strong>{processes.length}</strong>
+      <small>expedientes visibles</small>
+    </article>
+    <article>
+      <span>Procesos con análisis</span>
+      <strong>{publishedCount}</strong>
+      <small>cuentan con una publicación</small>
+    </article>
+    <article>
+      <span>En curso</span>
+      <strong>{inProgressCount}</strong>
+      <small>documentación y revisión</small>
+    </article>
+    <article>
+      <span>Señales</span>
+      <strong>{signalCount}</strong>
+      <small>con fuente vinculada</small>
+    </article>
+    <article>
+      <span>Fuentes</span>
+      <strong>{verifiedSourceCount}</strong>
+      <small>verificadas y expuestas</small>
+    </article>
+  </div>
+
+  <div class="dashboard-grid">
+    <article class="dashboard-panel">
+      <header>
+        <div>
+          <p class="eyebrow">Prioridad estructural</p>
+          <h3>Mayor relevancia</h3>
+        </div>
+      </header>
+      <ol class="dashboard-ranking">
+        {
+          ranked.slice(0, 6).map((process, index) => (
+            <li>
+              <span>{index + 1}</span>
+              <a href={`/observatorio/${process.slug}/`}>
+                <strong>{process.titulo}</strong>
+                <small>{editorialStageLabel(stateFor(process))}</small>
+              </a>
+              <b>{formatRating(process.valoraciones.relevancia_geopolitica)}</b>
+            </li>
+          ))
+        }
+      </ol>
+    </article>
+
+    <article class="dashboard-panel">
+      <header>
+        <div>
+          <p class="eyebrow">Estado de las investigaciones</p>
+          <h3>Avance editorial</h3>
+        </div>
+      </header>
+      <div class="dashboard-status-list">
+        {
+          [
+            ['borrador', 'En documentación'],
+            ['en_revision', 'En revisión editorial'],
+            ['listo', 'Listo para publicación'],
+            ['publicado', 'Publicado'],
+          ].map(([state, label]) => {
+            const count = processes.filter(
+              (process) => stateFor(process) === state,
+            ).length;
+            const width = processes.length
+              ? `${Math.max(2, (count / processes.length) * 100)}%`
+              : '0%';
+            return (
+              <div>
+                <span>{label}</span>
+                <i><b style={`width:${width}`}></b></i>
+                <strong>{count}</strong>
+              </div>
+            );
+          })
+        }
+      </div>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+import HomeEvaluation from './HomeEvaluation.astro';
+import HomePublication from './HomePublication.astro';
+import { homeConfig } from '../../config/home';
+import type { HomeEvaluationView, HomePublicationView } from '../../lib/home';
+
+interface Props { featured: HomePublicationView; evaluation?: HomeEvaluationView; }
+const { featured, evaluation } = Astro.props;
+---
+
+<section class:list={['home-feature-zone', { 'home-feature-zone--with-rating': evaluation }]} aria-label={homeConfig.publication.sectionLabel}>
+  <HomePublication view={featured} featured />
+  {evaluation && <HomeEvaluation evaluation={evaluation} />}
+</section>
+
+<style>
+  .home-feature-zone { display: grid; gap: var(--space-8); margin-top: var(--section-gap); }
+  .home-feature-zone--with-rating { grid-template-columns: minmax(0, 1.42fr) minmax(0, 1fr); align-items: start; }
+  @media (max-width: 960px) { .home-feature-zone--with-rating { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+  @media (max-width: 760px) { .home-feature-zone--with-rating { grid-template-columns: 1fr; } }
+</style>

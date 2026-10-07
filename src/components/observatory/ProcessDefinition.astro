@@ -1,0 +1,51 @@
+---
+import type { PublicProcess } from '../../lib/types';
+
+interface Props { process: PublicProcess; }
+const { process } = Astro.props;
+
+---
+
+{
+  (process.definicion_operativa || process.delimitacion_exclusiones?.length) && (
+    <section class="content-section">
+      <h2>Definición y delimitación</h2>
+      {process.definicion_operativa && <p>{process.definicion_operativa}</p>}
+      {(process.delimitacion_exclusiones?.length ?? 0) > 0 && (
+        <>
+          <h3>Qué queda fuera</h3>
+          <ul>{process.delimitacion_exclusiones?.map((item) => <li>{item}</li>)}</ul>
+        </>
+      )}
+    </section>
+  )
+}
+
+{
+  (process.pregunta_seguimiento || process.hipotesis_principal || process.hipotesis_alternativas?.length) && (
+    <section class="content-section">
+      <h2>Pregunta e hipótesis</h2>
+      {process.pregunta_seguimiento && (
+        <p><strong>Pregunta de seguimiento.</strong> {process.pregunta_seguimiento}</p>
+      )}
+      {process.hipotesis_principal && (
+        <p><strong>Hipótesis principal.</strong> {process.hipotesis_principal}</p>
+      )}
+      {(process.hipotesis_alternativas?.length ?? 0) > 0 && (
+        <>
+          <h3>Hipótesis alternativas</h3>
+          <ul>{process.hipotesis_alternativas?.map((item) => <li>{item}</li>)}</ul>
+        </>
+      )}
+    </section>
+  )
+}
+
+{
+  process.mecanismo_causal && (
+    <section class="content-section">
+      <h2>Mecanismo causal</h2>
+      <p>{process.mecanismo_causal}</p>
+    </section>
+  )
+}

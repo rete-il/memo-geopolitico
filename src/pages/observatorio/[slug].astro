@@ -1,10 +1,15 @@
 ---
 import PageTitle from '../../components/PageTitle.astro';
 import ReadingLinks from '../../components/ReadingLinks.astro';
-import { sameText, signalHref } from '../../../tools/lib/navigation-policy.mjs';
+import { sameText } from '../../../tools/lib/navigation-policy.mjs';
 import ClassificationFooter from '../../components/ClassificationFooter.astro';
-import RatingPair from '../../components/RatingPair.astro';
 import SignalTimeline from '../../components/SignalTimeline.astro';
+import ProcessDefinition from '../../components/observatory/ProcessDefinition.astro';
+import ProcessRelations from '../../components/observatory/ProcessRelations.astro';
+import ProcessReferencedSignals from '../../components/observatory/ProcessReferencedSignals.astro';
+import ProcessOutlook from '../../components/observatory/ProcessOutlook.astro';
+import ProcessForecasts from '../../components/observatory/ProcessForecasts.astro';
+import ProcessSidebar from '../../components/observatory/ProcessSidebar.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import {
   catalogMaps,
@@ -23,10 +28,6 @@ import {
 } from '../../lib/text';
 import type { PublicProcess } from '../../lib/types';
 import { getPublicationEntries } from '../../lib/publications';
-import {
-  processDependsOnRector,
-  processRectorIds,
-} from '../../lib/process-relations';
 import { topicHref, topicReferences } from '../../lib/taxonomy';
 
 export function getStaticPaths() {
@@ -58,74 +59,6 @@ const publicationMetadata = relatedPublicationForProcess(
 const editorialState = effectiveEditorialState(process, publicationEntries);
 const topics = topicReferences(process.clasificacion, catalogMaps);
 const primaryTopic = topics.find((topic) => topic.primary);
-
-const geographyItems = [
-  ...process.clasificacion.geografia.region_ids.map((id) => ({
-    id,
-    item: catalogMaps.regiones.get(id),
-  })),
-  ...process.clasificacion.geografia.subregion_ids.map((id) => ({
-    id,
-    item: catalogMaps.subregiones.get(id),
-  })),
-  ...process.clasificacion.geografia.pais_ids.map((id) => ({
-    id,
-    item: catalogMaps.paises.get(id),
-  })),
-  ...process.clasificacion.geografia.espacio_ids.map((id) => ({
-    id,
-    item: catalogMaps.espacios.get(id),
-  })),
-];
-const actorItems = process.clasificacion.actor_ids
-  .map((id) => catalogMaps.actores.get(id))
-  .filter(Boolean);
-const processById = new Map(processes.map((item) => [item.macroevento_id, item]));
-const rectorProcesses = processRectorIds(process)
-  .map((id) => processById.get(id))
-  .filter((item): item is PublicProcess => Boolean(item));
-const complementaryProcesses = process.es_macroevento_rector
-  ? processes.filter((item) => processDependsOnRector(item, process.macroevento_id))
-  : [];
-const reservedRelationIds = new Set([
-  process.macroevento_id,
-  ...processRectorIds(process),
-  ...complementaryProcesses.map((item) => item.macroevento_id),
-]);
-const outgoingRelatedProcesses = (process.macroevento_relacionado_ids || [])
-  .map((id) => processById.get(id))
-  .filter((item): item is PublicProcess => Boolean(item));
-const incomingRelatedProcesses = processes.filter((item) =>
-  (item.macroevento_relacionado_ids || []).includes(process.macroevento_id)
-);
-const relatedProcesses = [...new Map(
-  [...outgoingRelatedProcesses, ...incomingRelatedProcesses]
-    .filter((item) => !reservedRelationIds.has(item.macroevento_id))
-    .map((item) => [item.macroevento_id, item]),
-).values()];
-const typedRelations = (process.relaciones_tipadas || []).map((relation) => {
-  const counterpartId = relation.origen_id === process.macroevento_id
-    ? relation.destino_id
-    : relation.origen_id;
-  return { relation, counterpart: processById.get(counterpartId) };
-}).filter((item) => Boolean(item.counterpart));
-const signalIndex = new Map(
-  processes.flatMap((item) =>
-    item.senales.map((signal) => [signal.senal_id, { signal, owner: item }] as const),
-  ),
-);
-const referencedSignals = (process.referencias_senal || [])
-  .map((reference) => {
-    const evidence = signalIndex.get(reference.senal_id);
-    return {
-      reference,
-      evidence,
-      sources: evidence?.signal.fuente_ids
-        .map((sourceId) => sourceById.get(sourceId))
-        .filter(Boolean) || [],
-    };
-  })
-  .filter((item) => Boolean(item.evidence));
 ---
 
 <SiteLayout
@@ -192,132 +125,9 @@ const referencedSignals = (process.referencias_senal || [])
           </p>
         </section>
 
-        {
-          (process.definicion_operativa || process.delimitacion_exclusiones?.length) && (
-            <section class="content-section">
-              <h2>Definición y delimitación</h2>
-              {process.definicion_operativa && <p>{process.definicion_operativa}</p>}
-              {(process.delimitacion_exclusiones?.length ?? 0) > 0 && (
-                <>
-                  <h3>Qué queda fuera</h3>
-                  <ul>{process.delimitacion_exclusiones?.map((item) => <li>{item}</li>)}</ul>
-                </>
-              )}
-            </section>
-          )
-        }
+        <ProcessDefinition process={process} />
 
-        {
-          (process.pregunta_seguimiento || process.hipotesis_principal || process.hipotesis_alternativas?.length) && (
-            <section class="content-section">
-              <h2>Pregunta e hipótesis</h2>
-              {process.pregunta_seguimiento && (
-                <p><strong>Pregunta de seguimiento.</strong> {process.pregunta_seguimiento}</p>
-              )}
-              {process.hipotesis_principal && (
-                <p><strong>Hipótesis principal.</strong> {process.hipotesis_principal}</p>
-              )}
-              {(process.hipotesis_alternativas?.length ?? 0) > 0 && (
-                <>
-                  <h3>Hipótesis alternativas</h3>
-                  <ul>{process.hipotesis_alternativas?.map((item) => <li>{item}</li>)}</ul>
-                </>
-              )}
-            </section>
-          )
-        }
-
-        {
-          process.mecanismo_causal && (
-            <section class="content-section">
-              <h2>Mecanismo causal</h2>
-              <p>{process.mecanismo_causal}</p>
-            </section>
-          )
-        }
-
-        {
-          (process.es_macroevento_rector || rectorProcesses.length > 0 || complementaryProcesses.length > 0 || relatedProcesses.length > 0) && (
-            <section class="content-section">
-              <h2>Relaciones con otros macroeventos</h2>
-              {process.es_macroevento_rector && (
-                <p>
-                  <strong>Macroevento rector.</strong> Este proceso articula una hipótesis de seguimiento y organiza procesos complementarios.
-                </p>
-              )}
-              {rectorProcesses.length > 0 && (
-                <div class="process-relation-group">
-                  <h3>{rectorProcesses.length === 1 ? 'Macroevento rector' : 'Macroeventos rectores'}</h3>
-                  <ul>
-                    {rectorProcesses.map((rector) => {
-                      const rectorEditorialState = effectiveEditorialState(rector, publicationEntries);
-                      return (
-                        <li>
-                          <a class="process-relation-link" href={`/observatorio/${rector.slug}/`}>
-                            {rector.titulo}
-                          </a>
-                          {rectorEditorialState !== 'publicado' && (
-                            <span class="draft-chip">En preparación</span>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  <p>
-                    Este expediente aporta evidencia a una o más hipótesis rectoras;
-                    cada vínculo conserva su propio estado editorial.
-                  </p>
-                </div>
-              )}
-              {complementaryProcesses.length > 0 && (
-                <div class="process-relation-group">
-                  <h3>Procesos complementarios</h3>
-                  <ul>
-                    {complementaryProcesses.map((item) => (
-                      <li><a href={`/observatorio/${item.slug}/`}>{item.titulo}</a></li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {relatedProcesses.length > 0 && (
-                <div class="process-relation-group">
-                  <h3>Otros procesos relacionados</h3>
-                  <ul>
-                    {relatedProcesses.map((item) => (
-                      <li><a href={`/observatorio/${item.slug}/`}>{item.titulo}</a></li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {typedRelations.length > 0 && (
-                <div class="process-relation-group typed-relations">
-                  <h3>Mecanismos transversales auditados</h3>
-                  <ul>
-                    {typedRelations.map(({ relation, counterpart }) => (
-                      <li>
-                        <div class="typed-relation-heading">
-                          <span class="relation-type">{humanize(relation.tipo)}</span>
-                          {[...rectorProcesses, ...complementaryProcesses, ...relatedProcesses].some(item => item.macroevento_id === counterpart!.macroevento_id)
-                            ? <strong>{counterpart!.titulo}</strong>
-                            : <a href={`/observatorio/${counterpart!.slug}/`}>{counterpart!.titulo}</a>}
-                        </div>
-                        <p>{relation.mecanismo}</p>
-                        <small>
-                          {relation.direccion === 'bidireccional'
-                            ? 'Interacción bidireccional'
-                            : relation.origen_id === process.macroevento_id
-                              ? 'Efecto desde este proceso'
-                              : 'Efecto sobre este proceso'}
-                          {' · '}{relation.evidencia_senal_ids.length} señal(es) de evidencia
-                        </small>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </section>
-          )
-        }
+        <ProcessRelations process={process} publicationEntries={publicationEntries} />
 
         {
           process.claves_estructurales.length > 0 && (
@@ -344,45 +154,7 @@ const referencedSignals = (process.referencias_senal || [])
           }
         </section>
 
-        {
-          referencedSignals.length > 0 && (
-            <section class="content-section">
-              <h2>Señales reutilizadas de otros expedientes</h2>
-              <p>
-                Estas evidencias conservan un único propietario canónico. Este
-                expediente registra solamente su efecto transversal y no las
-                contabiliza como señales propias.
-              </p>
-              <ul class="referenced-signal-list">
-                {referencedSignals.map(({ reference, evidence, sources }) => (
-                  <li id={process.senales.some((signal) => signal.senal_id === reference.senal_id) ? undefined : reference.senal_id}>
-                    <div class="typed-relation-heading">
-                      <span class="relation-type">{humanize(reference.tipo_uso)}</span>
-                      <a href={signalHref(evidence!.owner.slug, evidence!.signal.senal_id)}>
-                        {evidence!.signal.titulo}
-                      </a>
-                    </div>
-                    <p>{reference.efecto_segundo_orden}</p>
-                    <small>Propietario: {evidence!.owner.titulo}</small>
-                    {sources.length > 0 && (
-                      <small>
-                        {' · Fuentes: '}
-                        {sources.map((source, index) => (
-                          <>
-                            {index > 0 && ', '}
-                            <a href={source!.url} target="_blank" rel="noopener noreferrer">
-                              {source!.medio}
-                            </a>
-                          </>
-                        ))}
-                      </small>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )
-        }
+        <ProcessReferencedSignals process={process} />
 
         {
           process.indicadores_seguimiento.length > 0 && (
@@ -395,111 +167,9 @@ const referencedSignals = (process.referencias_senal || [])
           )
         }
 
-        {
-          (process.indicadores_fortalecimiento?.length || process.indicadores_debilitamiento?.length) && (
-            <section class="content-section">
-              <h2>Cómo cambia la hipótesis</h2>
-              {(process.indicadores_fortalecimiento?.length ?? 0) > 0 && (
-                <>
-                  <h3>Indicadores de fortalecimiento</h3>
-                  <ul>{process.indicadores_fortalecimiento?.map((item) => <li>{item}</li>)}</ul>
-                </>
-              )}
-              {(process.indicadores_debilitamiento?.length ?? 0) > 0 && (
-                <>
-                  <h3>Indicadores de debilitamiento</h3>
-                  <ul>{process.indicadores_debilitamiento?.map((item) => <li>{item}</li>)}</ul>
-                </>
-              )}
-            </section>
-          )
-        }
+        <ProcessOutlook process={process} />
 
-        {
-          (process.condiciones_refutacion?.length || process.incertidumbres?.length) && (
-            <section class="content-section">
-              <h2>Refutación e incertidumbres</h2>
-              {(process.condiciones_refutacion?.length ?? 0) > 0 && (
-                <>
-                  <h3>Condiciones de refutación</h3>
-                  <ul>{process.condiciones_refutacion?.map((item) => <li>{item}</li>)}</ul>
-                </>
-              )}
-              {(process.incertidumbres?.length ?? 0) > 0 && (
-                <>
-                  <h3>Incertidumbres abiertas</h3>
-                  <ul>{process.incertidumbres?.map((item) => <li>{item}</li>)}</ul>
-                </>
-              )}
-            </section>
-          )
-        }
-
-        {
-          Object.values(process.escenarios).some(Boolean) && (
-            <section class="content-section">
-              <h2>Escenarios</h2>
-              <div class="explore-grid">
-                {process.escenarios.base && (
-                  <article class="explore-card">
-                    <h3>Base</h3>
-                    <p>{process.escenarios.base}</p>
-                  </article>
-                )}
-                {process.escenarios.adverso && (
-                  <article class="explore-card">
-                    <h3>Adverso</h3>
-                    <p>{process.escenarios.adverso}</p>
-                  </article>
-                )}
-                {process.escenarios.transformador && (
-                  <article class="explore-card">
-                    <h3>Transformador</h3>
-                    <p>{process.escenarios.transformador}</p>
-                  </article>
-                )}
-              </div>
-            </section>
-          )
-        }
-
-        {(process.parametros_pronostico?.length ?? 0) > 0 && (
-          <section class="content-section" id="parametros-pronostico">
-            <h2>Parámetros de los pronósticos</h2>
-            {process.parametros_pronostico?.map((parameter) => (
-              <article>
-                <h3>{parameter.nombre}</h3>
-                <p><strong>Estado: {humanize(parameter.estado_actual)}.</strong> Revisado {formatDate(parameter.fecha_evaluacion)}.</p>
-                <p>{parameter.lectura_actual}</p>
-                <p>{parameter.pregunta}</p>
-                <ul>{parameter.estados_observables.map((state) => <li><strong>{humanize(state.estado)}:</strong> {state.evidencia_necesaria} {state.efecto}</li>)}</ul>
-                <h4>Condiciones para revisar el pronóstico</h4>
-                <ul>{parameter.reglas_de_actualizacion.map((rule) => <li>{rule.condicion} {rule.efecto_pronostico}</li>)}</ul>
-                <p>{parameter.revision.horizonte_operativo}</p>
-                <p>{parameter.revision.hito_oficial.descripcion}</p>
-                <ul>{parameter.reglas_editoriales.map((rule) => <li>{rule}</li>)}</ul>
-                <p>Fuentes: {parameter.fuente_ids.map((id, index) => {
-                  const source = sourceById.get(id);
-                  return source && <>{index > 0 && ' · '}<a href={source.url} target="_blank" rel="noopener noreferrer">{source.medio}</a></>;
-                })}</p>
-              </article>
-            ))}
-          </section>
-        )}
-        {(process.analisis_expertos?.length ?? 0) > 0 && (
-          <section class="content-section" id="analisis-expertos">
-            <h2>Lecturas de especialistas</h2>
-            {process.analisis_expertos?.map((analysis) => {
-              const source = sourceById.get(analysis.fuente_id);
-              return <article>
-                <h3>{analysis.autor}</h3>
-                <p>{analysis.sintesis}</p>
-                <p>{analysis.limite}</p>
-                {source && <p><a href={source.url} target="_blank" rel="noopener noreferrer">{source.medio} · {formatDate(analysis.fecha)}</a></p>}
-              </article>;
-            })}
-          </section>
-        )}
+        <ProcessForecasts process={process} />
 
         <section class="content-section" id="fuentes">
           <h2>Fuentes</h2>
@@ -532,94 +202,11 @@ const referencedSignals = (process.referencias_senal || [])
         }))} />
       </article>
 
-      <aside class="process-sidebar" aria-label="Clasificación del proceso">
-        <section class="sidebar-card progress-card">
-          <p class="eyebrow">Progreso público</p>
-          <h2>{editorialStageLabel(editorialState)}</h2>
-          <dl>
-            <div>
-              <dt>Última actualización</dt>
-              <dd>{formatDate(process.publicacion.actualizado_el)}</dd>
-            </div>
-            <div>
-              <dt>Señales expuestas</dt>
-              <dd>{process.senales.length}</dd>
-            </div>
-            <div>
-              <dt>Fuentes expuestas</dt>
-              <dd>{process.fuente_ids.length}</dd>
-            </div>
-          </dl>
-          <h3>Próximo paso</h3>
-          <p>{process.progreso_publico.proximo_paso}</p>
-          <h3>Hitos completados</h3>
-          <ul>
-            {process.progreso_publico.hitos_completados.map((item) => <li>{item}</li>)}
-          </ul>
-        </section>
-
-        <RatingPair
-          relevance={process.valoraciones.relevancia_geopolitica}
-          attention={process.valoraciones.atencion_mediatica}
-          publicationTitle={publicationMetadata?.data.titulo || process.titulo}
-          methodHref={`/metodologia/relevancia-atencion-mediatica/${process.slug}/`}
-        />
-
-        <section class="sidebar-card">
-          <h2>Geografía</h2>
-          <ul class="taxonomy-list">
-            {
-              geographyItems.map(
-                ({ id, item }) =>
-                  item && (
-                    <li>
-                      <a
-                        href={
-                          catalogMaps.espacios.has(id)
-                            ? `/espacios-geopoliticos/${item.slug}/`
-                            : `/regiones/${item.slug}/`
-                        }
-                      >
-                        {item.nombre}
-                      </a>
-                    </li>
-                  ),
-              )
-            }
-          </ul>
-        </section>
-
-        <section class="sidebar-card">
-          <h2>Actores</h2>
-          <ul class="taxonomy-list">
-            {
-              actorItems.map((item) => (
-                <li>
-                  <a href={`/actores/${item?.slug}/`}>
-                    {item?.nombre}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-
-        {
-          process.metricas_editoriales && editorialPreviewEnabled && (
-            <section class="sidebar-card">
-              <h2>Control editorial</h2>
-              <p>
-                {process.metricas_editoriales.senales_omitidas_sin_fuente} señales
-                omitidas por falta de fuente vinculada.
-              </p>
-              <p>
-                {process.metricas_editoriales.fuentes_pendientes} fuentes
-                pendientes de verificación.
-              </p>
-            </section>
-          )
-        }
-      </aside>
+      <ProcessSidebar
+        process={process}
+        editorialState={editorialState}
+        publicationTitle={publicationMetadata?.data.titulo || process.titulo}
+      />
     </div>
   </div>
 </SiteLayout>

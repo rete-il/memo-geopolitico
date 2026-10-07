@@ -1,5 +1,37 @@
 # Memo Geopolítico — sitio rediseñado
 
+## Revisión local de la portada — octubre de 2026
+
+La versión revisada recibió autorización el 7 de octubre para publicarse en
+`beta` y `main`. Alcance, QA y reversión quedan en el
+[registro de publicación](project-management/records/RELEASE-PORTADA-2026-10-07.md).
+Los originales, prompts, capturas de revisión y entregables gráficos pendientes
+se conservan versionados; los informes de tráfico y créditos son auxiliares locales.
+
+La portada «Investigación y lectura» y las imágenes de Inicio, Macroeventos rectores, Observatorio,
+Publicaciones, Opinión, Acerca de y Contacto se revisan en `http://localhost:4321/` antes de su
+publicación. En VS Code, «Terminal → Ejecutar tarea → Memo: vista local» inicia
+el servidor; «Memo: verificar producción» ejecuta las comprobaciones del sitio.
+El detalle queda en [la nota de revisión](project-management/records/PORTADA-EDITORIAL-2026-10-06.md).
+
+La [revisión visual y modular](project-management/records/REVISION-UI-MODULAR-2026-10-06.md)
+describe las fuentes únicas de configuración: `src/styles/tokens.css` para
+identidad y escalas, `src/config/home.ts` para la portada y
+`src/config/editorial-images.ts` para las imágenes. La portada, los expedientes
+y el dashboard se componen de módulos pequeños. El registro de imágenes también
+define su presentación uniforme en las siete páginas: proporción 3:2 y ancho
+adaptado a la columna disponible, sin tamaños específicos por página.
+`ActionLink.astro` y `controls.css` comparten el criterio de interacción: los
+enlaces subrayados llevan a contenido y los botones ejecutan acciones.
+
+La [propuesta de mapa editorial del 7 de octubre](project-management/records/MAPA-EDITORIAL-PORTADA-2026-10-07.md)
+destaca los accesos estructurales inmediatamente después de la presentación y
+explica que los rectores forman parte del Observatorio. Puede revisarse en
+`http://localhost:4321/#home-structure`; textos y grupos se parametrizan en `src/config/home.ts`.
+La [unificación de Rectores](project-management/records/UNIFICACION-RECTORES-2026-10-07.md)
+añade su acceso a la navegación compartida, utiliza la misma cabecera ilustrada
+y aplica un fondo marfil al mapa editorial.
+
 ## Estado del release del 15 de septiembre de 2026
 
 75 artículos públicos y 100 expedientes. Los 50 análisis completados en la

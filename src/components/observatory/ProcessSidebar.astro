@@ -1,0 +1,120 @@
+---
+import RatingPair from '../RatingPair.astro';
+import type { PublicProcess, PublicationState } from '../../lib/types';
+import { catalogMaps, editorialPreviewEnabled } from '../../lib/data';
+import { editorialStageLabel, formatDate } from '../../lib/text';
+
+interface Props { process: PublicProcess; editorialState: PublicationState; publicationTitle: string; }
+const { process, editorialState, publicationTitle } = Astro.props;
+const geographyItems = [
+  ...process.clasificacion.geografia.region_ids.map((id) => ({
+    id,
+    item: catalogMaps.regiones.get(id),
+  })),
+  ...process.clasificacion.geografia.subregion_ids.map((id) => ({
+    id,
+    item: catalogMaps.subregiones.get(id),
+  })),
+  ...process.clasificacion.geografia.pais_ids.map((id) => ({
+    id,
+    item: catalogMaps.paises.get(id),
+  })),
+  ...process.clasificacion.geografia.espacio_ids.map((id) => ({
+    id,
+    item: catalogMaps.espacios.get(id),
+  })),
+];
+const actorItems = process.clasificacion.actor_ids
+  .map((id) => catalogMaps.actores.get(id))
+  .filter(Boolean);
+
+---
+
+<aside class="process-sidebar" aria-label="Clasificación del proceso">
+  <section class="sidebar-card progress-card">
+    <p class="eyebrow">Progreso público</p>
+    <h2>{editorialStageLabel(editorialState)}</h2>
+    <dl>
+      <div>
+        <dt>Última actualización</dt>
+        <dd>{formatDate(process.publicacion.actualizado_el)}</dd>
+      </div>
+      <div>
+        <dt>Señales expuestas</dt>
+        <dd>{process.senales.length}</dd>
+      </div>
+      <div>
+        <dt>Fuentes expuestas</dt>
+        <dd>{process.fuente_ids.length}</dd>
+      </div>
+    </dl>
+    <h3>Próximo paso</h3>
+    <p>{process.progreso_publico.proximo_paso}</p>
+    <h3>Hitos completados</h3>
+    <ul>
+      {process.progreso_publico.hitos_completados.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <RatingPair
+    relevance={process.valoraciones.relevancia_geopolitica}
+    attention={process.valoraciones.atencion_mediatica}
+    publicationTitle={publicationTitle}
+    methodHref={`/metodologia/relevancia-atencion-mediatica/${process.slug}/`}
+  />
+
+  <section class="sidebar-card">
+    <h2>Geografía</h2>
+    <ul class="taxonomy-list">
+      {
+        geographyItems.map(
+          ({ id, item }) =>
+            item && (
+              <li>
+                <a
+                  href={
+                    catalogMaps.espacios.has(id)
+                      ? `/espacios-geopoliticos/${item.slug}/`
+                      : `/regiones/${item.slug}/`
+                  }
+                >
+                  {item.nombre}
+                </a>
+              </li>
+            ),
+        )
+      }
+    </ul>
+  </section>
+
+  <section class="sidebar-card">
+    <h2>Actores</h2>
+    <ul class="taxonomy-list">
+      {
+        actorItems.map((item) => (
+          <li>
+            <a href={`/actores/${item?.slug}/`}>
+              {item?.nombre}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    process.metricas_editoriales && editorialPreviewEnabled && (
+      <section class="sidebar-card">
+        <h2>Control editorial</h2>
+        <p>
+          {process.metricas_editoriales.senales_omitidas_sin_fuente} señales
+          omitidas por falta de fuente vinculada.
+        </p>
+        <p>
+          {process.metricas_editoriales.fuentes_pendientes} fuentes
+          pendientes de verificación.
+        </p>
+      </section>
+    )
+  }
+</aside>

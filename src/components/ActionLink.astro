@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'> & {
+  size?: 'default' | 'compact';
+  arrow?: boolean;
+};
+
+const {
+  size = 'default',
+  arrow = false,
+  class: className,
+  ...attributes
+} = Astro.props;
+---
+
+<a
+  {...attributes}
+  class:list={[
+    'ui-action',
+    { 'ui-action--compact': size === 'compact' },
+    className,
+  ]}
+>
+  <slot />
+  {arrow && <span aria-hidden="true">→</span>}
+</a>

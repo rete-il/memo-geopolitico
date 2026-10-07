@@ -51,38 +51,74 @@ test('las tarjetas separan dependencias explícitas de vínculos salientes, entr
 });
 
 async function renderCards(processes) {
-  // Render the page's actual card template and grouping. Substitute only the
-  // surrounding layout and data services to keep this an isolated UI test.
-  let source = pageSource.replace(/import\s[\s\S]*?from\s+['"][^'"]+['"];?\r?\n/g, '');
-  source = source.replace(/^---\r?\n/, `---\nconst { compareProcessRelevance, editorialPreviewEnabled, processes, effectiveEditorialState, relatedPublicationForProcess, getPublicationEntries, editorialStageLabel, formatDate, humanize, groupRectorProcesses } = Astro.props;\n`)
-    .replaceAll('<SiteLayout', '<div').replaceAll('</SiteLayout>', '</div>')
-    .replaceAll('<PageTitle>', '<h1>').replaceAll('</PageTitle>', '</h1>')
-    .replace(/<style>[\s\S]*?<\/style>/g, '')
-    .replace(/<script>[\s\S]*?<\/script>/g, '');
-  return renderAstro(source, {
-    processes, groupRectorProcesses, compareProcessRelevance: () => 0,
-    editorialPreviewEnabled: false,
-    effectiveEditorialState: process => process.publicacion.estado,
-    relatedPublicationForProcess: () => undefined,
-    getPublicationEntries: async () => [{ data: { macroevento_principal_id: 'rector', slug: 'analisis-rector', publicacion: { estado: 'publicado' } } }],
-    editorialStageLabel: value => value,
-    formatDate: value => value,
-    humanize: value => value.charAt(0).toUpperCase() + value.slice(1),
+  return renderAstroFile(new URL('../src/pages/observatorio/rectores/index.astro', import.meta.url), {}, {
+    processes,
+    publications: [{ data: {
+      macroevento_principal_id: 'rector', macroevento_secundario_ids: [],
+      slug: 'analisis-rector', publicacion: { estado: 'publicado', actualizado_el: '2026-10-01' },
+    } }],
   });
 }
 
-async function renderAstro(source, props) {
+// Compile the real route and its actual Astro component dependencies. Only
+// page chrome and the public data/collection services are replaced. Grouping,
+// state selection, labels, links, slots and templates use production modules.
+async function compileAstroFile(fileUrl, services, cache = new Map()) {
+  if (cache.has(fileUrl.href)) return cache.get(fileUrl.href);
+  let source = fs.readFileSync(fileUrl, 'utf8')
+    .replace(/<style>[\s\S]*?<\/style>/g, '')
+    .replace(/<script>[\s\S]*?<\/script>/g, '');
+  if (fileUrl.href.endsWith('/observatorio/rectores/index.astro')) {
+    source = source
+      .replace(/import (?:SiteLayout|PageTitle) from ['"][^'"]+['"];?\r?\n/g, '')
+      .replaceAll('<SiteLayout', '<div').replaceAll('</SiteLayout>', '</div>')
+      .replaceAll('<PageTitle>', '<h1>').replaceAll('</PageTitle>', '</h1>');
+  }
+  const moduleUrl = (code) => `data:text/javascript;base64,${Buffer.from(code).toString('base64')}`;
+  const dataService = moduleUrl(`
+    export const processes = ${JSON.stringify(services.processes || [])};
+    export const editorialPreviewEnabled = false;
+    export const sourceById = new Map(${JSON.stringify([...(services.sourceById || new Map())])});
+  `);
+  const collectionService = moduleUrl(`
+    export async function getPublicationEntries() { return ${JSON.stringify(services.publications || [])}; }
+  `);
+  const resolvedImports = new Map();
+  for (const match of source.matchAll(/import\s+(?:type\s+)?[\s\S]*?from\s+['"]([^'"]+)['"];?/g)) {
+    const specifier = match[1];
+    if (!specifier.startsWith('.')) continue;
+    let dependency = new URL(specifier, fileUrl);
+    if (specifier.endsWith('.astro')) {
+      resolvedImports.set(specifier, await compileAstroFile(dependency, services, cache));
+    } else if (dependency.href.endsWith('/src/lib/data')) {
+      resolvedImports.set(specifier, dataService);
+    } else if (dependency.href.endsWith('/src/lib/publications')) {
+      resolvedImports.set(specifier, collectionService);
+    } else {
+      if (!fs.existsSync(dependency) && fs.existsSync(new URL(`${dependency.href}.ts`))) {
+        dependency = new URL(`${dependency.href}.ts`);
+      }
+      resolvedImports.set(specifier, dependency.href);
+    }
+  }
   const compiled = await transform(source, {
-    filename: 'rector-card-test.astro',
+    filename: fileUrl.pathname,
     internalURL: pathToFileURL(require.resolve('astro/compiler-runtime')).href,
-    resolvePath: specifier => specifier,
+    resolvePath: specifier => resolvedImports.get(specifier) || specifier,
     resultScopedSlot: true,
   });
   assert.deepEqual(compiled.diagnostics.filter(item => item.severity === 'error'), []);
   const code = ts.transpileModule(compiled.code, {
     compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
-  }).outputText;
-  const { default: component } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+  }).outputText.replace(/(from\s+)(['"])([^'"]+)\2/g,
+    (statement, prefix, quote, specifier) => `${prefix}${JSON.stringify(resolvedImports.get(specifier) || specifier)}`);
+  const result = moduleUrl(code);
+  cache.set(fileUrl.href, result);
+  return result;
+}
+
+async function renderAstroFile(fileUrl, props, services) {
+  const { default: component } = await import(await compileAstroFile(fileUrl, services));
   const container = await AstroContainer.create();
   return container.renderToString(component, { props });
 }
@@ -142,25 +178,21 @@ test('Escape cierra cada lista abierta, actualiza su etiqueta y devuelve foco al
 });
 
 test('una señal trasladada conserva el ancla antigua en la referencia y enlaza a su único propietario', async () => {
-  const source = fs.readFileSync(new URL('../src/pages/observatorio/[slug].astro', import.meta.url), 'utf8');
-  const resolution = source.slice(source.indexOf('const signalIndex = new Map('), source.indexOf('\n---', source.indexOf('const signalIndex = new Map(')));
-  const list = source.match(/<ul class="referenced-signal-list">[\s\S]*?<\/ul>/)[0];
-  const fragment = `---\nconst { processes, process, sourceById, humanize, signalHref } = Astro.props;\n${resolution}\n---\n${list}`;
+  const componentUrl = new URL('../src/components/observatory/ProcessReferencedSignals.astro', import.meta.url);
   const signal = { senal_id: 'senal-trasladada', titulo: 'Evidencia migrada', fuente_ids: ['fuente-unica'] };
   const root = process('rector', { senales: [], referencias_senal: [{ senal_id: signal.senal_id, tipo_uso: 'contextual', efecto_segundo_orden: 'Efecto sobre el rector.' }] });
   const child = process('hijo', { senales: [signal], macroevento_rector_ids: ['rector'] });
-  const { signalHref } = await import('../tools/lib/navigation-policy.mjs');
-  const props = {
-    process: root, processes: [root, child], signalHref, humanize: value => value,
+  const services = {
+    processes: [root, child],
     sourceById: new Map([['fuente-unica', { url: 'https://example.org/evidencia', medio: 'Fuente conservada' }]]),
   };
-  const html = await renderAstro(fragment, props);
+  const html = await renderAstroFile(componentUrl, { process: root }, services);
   assert.match(html, /<li id="senal-trasladada">/, 'El enlace publicado al ID antiguo sigue encontrando una referencia.');
   assert.match(html, /href="\/observatorio\/hijo\/#senal-trasladada"/, 'La referencia conduce a la nueva ubicación de la evidencia.');
   assert.match(html, /Propietario: hijo/);
   assert.match(html, /href="https:\/\/example.org\/evidencia"/);
   assert.equal(root.senales.length, 0, 'La referencia no vuelve a duplicar la señal trasladada.');
   const own = { ...root, senales: [signal] };
-  const ownHtml = await renderAstro(fragment, { ...props, process: own, processes: [own] });
+  const ownHtml = await renderAstroFile(componentUrl, { process: own }, { ...services, processes: [own] });
   assert.doesNotMatch(ownHtml, /id="senal-trasladada"/, 'Si la cronología propia ya contiene el ancla, la referencia no duplica el ID.');
 });

@@ -1,0 +1,32 @@
+---
+import {
+  editorialImages,
+  editorialImageDesign,
+  editorialImageCaption,
+  editorialImageVariables,
+  editorialImageCss,
+  type EditorialImageAsset,
+} from '../config/editorial-images';
+
+interface Props {
+  asset: EditorialImageAsset;
+}
+
+const { asset } = Astro.props;
+const image = editorialImages[asset];
+---
+
+<figure class="editorial-image" style={editorialImageVariables}>
+  <img
+    src={image.src}
+    alt={image.alt}
+    width={editorialImageDesign.source.width}
+    height={editorialImageDesign.source.height}
+    loading={editorialImageDesign.loading}
+    decoding={editorialImageDesign.decoding}
+    fetchpriority={editorialImageDesign.fetchPriority}
+  />
+  <figcaption>{editorialImageCaption}</figcaption>
+</figure>
+
+<style is:inline set:html={editorialImageCss} />

@@ -1,0 +1,51 @@
+---
+import type { PublicProcess, PublicationState } from '../../lib/types';
+import { editorialStageLabel, formatDate } from '../../lib/text';
+
+interface Props { processes: PublicProcess[]; stateFor: (process: PublicProcess) => PublicationState; }
+const { processes, stateFor } = Astro.props;
+
+---
+
+<section
+  class="dashboard-view"
+  data-dashboard-view="expedientes"
+  id="expedientes" role="tabpanel" aria-labelledby="dashboard-tab-expedientes" tabindex="0"
+  hidden
+>
+  <div class="dashboard-heading">
+    <div>
+      <p class="eyebrow">Seguimiento público</p>
+      <h3>Expedientes y próximos pasos</h3>
+    </div>
+    <p>{processes.length} expedientes</p>
+  </div>
+  <div class="dashboard-expedients">
+    {
+      processes.map((process) => {
+        const state = stateFor(process);
+        return (
+          <article>
+            <div>
+              <span class={`dashboard-state dashboard-state--${state}`}>
+                {editorialStageLabel(state)}
+              </span>
+              <h4><a href={`/observatorio/${process.slug}/`}>{process.titulo}</a></h4>
+              <p>{process.progreso_publico.proximo_paso}</p>
+            </div>
+            <dl>
+              <div>
+                <dt>Actualizado</dt>
+                <dd>{formatDate(process.publicacion.actualizado_el)}</dd>
+              </div>
+              <div>
+                <dt>Hitos</dt>
+                <dd>{process.progreso_publico.hitos_completados.length}</dd>
+              </div>
+            </dl>
+          </article>
+        );
+      })
+    }
+  </div>
+</section>

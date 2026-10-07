@@ -23,6 +23,36 @@ export function uniqueDestinations(items, currentHref = '') {
   });
 }
 
+/** Select the most specific visible section, respecting path segment boundaries.
+ * @template {{href: string}} T
+ * @param {T[]} items
+ * @param {string} currentHref
+ * @returns {T | undefined}
+ */
+export function selectActiveNavigationItem(items, currentHref) {
+  const currentUrl = new URL(currentHref, SITE);
+  if (currentUrl.origin !== SITE) return undefined;
+  const pathname = currentUrl.pathname.replace(/\/+$/, '') || '/';
+  let activeItem;
+  let activePathLength = -1;
+
+  for (const item of items) {
+    const url = new URL(item.href, SITE);
+    if (url.origin !== SITE) continue;
+    const sectionPath = url.pathname.replace(/\/+$/, '') || '/';
+    const matches = sectionPath === '/'
+      ? pathname === '/'
+      : pathname === sectionPath || pathname.startsWith(`${sectionPath}/`);
+
+    if (matches && sectionPath.length > activePathLength) {
+      activeItem = item;
+      activePathLength = sectionPath.length;
+    }
+  }
+
+  return activeItem;
+}
+
 export function evidenceHref(slug, section = 'cronologia') {
   return `/observatorio/${slug}/#${section}`;
 }

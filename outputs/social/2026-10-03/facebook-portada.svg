@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="624" viewBox="0 0 1640 624" role="img" aria-label="Memo Geopolítico. Procesos que exceden la coyuntura. memogeopolitico.com">
+  <rect width="1640" height="624" fill="#f8f6f1"/>
+  <rect width="1640" height="8" fill="#c47a27"/>
+  <path d="M108 92V532M1532 92V532" fill="none" stroke="#d9d5cb" stroke-width="2"/>
+  <path d="M108 92H168M1472 92H1532M108 532H168M1472 532H1532" fill="none" stroke="#d9d5cb" stroke-width="2"/>
+  <rect x="779" y="108" width="82" height="82" rx="18" fill="#101c2c"/>
+  <text x="820" y="162" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="bold" letter-spacing="2" fill="#f4b95e">MG</text>
+  <text x="820" y="294" text-anchor="middle" font-family="Georgia,serif" font-size="80" font-weight="bold" fill="#101c2c">Memo Geopolítico</text>
+  <rect x="775" y="328" width="90" height="4" fill="#c47a27"/>
+  <text x="820" y="389" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="35" fill="#245a78">Procesos que exceden la coyuntura</text>
+  <text x="820" y="472" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="29" fill="#245a78">memogeopolitico.com</text>
+</svg>

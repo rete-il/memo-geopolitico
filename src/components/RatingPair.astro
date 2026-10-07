@@ -1,4 +1,6 @@
 ---
+import ActionLink from './ActionLink.astro';
+
 interface Props {
   relevance: number | null;
   attention: number | null;
@@ -49,9 +51,9 @@ const cells = (value: number | null) =>
   </> : <p class="rating-pending">Evaluación editorial sin asignar.</p>}
   {
     showMethodLink && (
-      <a class="rating-method-link" href={methodHref}>
+      <ActionLink class="rating-method-link" href={methodHref} size="compact" arrow>
         Cómo interpretar estos valores
-      </a>
+      </ActionLink>
     )
   }
 </div>

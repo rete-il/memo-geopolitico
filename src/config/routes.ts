@@ -1,0 +1,20 @@
+/** Shared destinations for navigation and editorial entry points. */
+export const siteRoutes = {
+  home: '/',
+  observatory: '/observatorio/',
+  publications: '/publicaciones/',
+  opinion: '/opinion/',
+  visualResources: '/recursos-visuales/',
+  about: '/acerca-de/',
+  contact: '/contacto/',
+  regions: '/regiones/',
+  geopoliticalSpaces: '/espacios-geopoliticos/',
+  themes: '/temas/',
+  actors: '/actores/',
+  labels: '/etiquetas/',
+  media: '/medios/',
+  rectors: '/observatorio/rectores/',
+  dashboard: '/observatorio/dashboard/',
+  signals: '/observatorio/senales/',
+  methodology: '/metodologia/relevancia-atencion-mediatica/',
+} as const;

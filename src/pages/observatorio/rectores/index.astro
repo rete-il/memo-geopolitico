@@ -1,15 +1,18 @@
 ---
 import { compareProcessRelevance } from '../../../../tools/lib/editorial-ratings.mjs';
+import RectorCard from '../../../components/observatory/RectorCard.astro';
+import EditorialImage from '../../../components/EditorialImage.astro';
+import ActionLink from '../../../components/ActionLink.astro';
 import PageTitle from '../../../components/PageTitle.astro';
 import SiteLayout from '../../../layouts/SiteLayout.astro';
-import { editorialPreviewEnabled, processes } from '../../../lib/data';
+import { processes } from '../../../lib/data';
 import {
   effectiveEditorialState,
   relatedPublicationForProcess,
 } from '../../../lib/editorial';
 import { getPublicationEntries } from '../../../lib/publications';
-import { editorialStageLabel, formatDate, humanize } from '../../../lib/text';
 import { groupRectorProcesses } from '../../../lib/process-relations';
+import { siteRoutes } from '../../../config/routes';
 
 const publicationEntries = await getPublicationEntries({
   includePreview: true,
@@ -60,22 +63,19 @@ const rectorCountLabel =
   title="Macroeventos rectores"
   description="Hipótesis estructurales que organizan procesos geopolíticos complementarios y permiten seguir sus relaciones, evidencias y límites."
 >
-  <div class="page-shell rector-page">
-    <a class="back-link" href="/observatorio/">
-      <span aria-hidden="true">←</span> Volver al Observatorio
-    </a>
-
-    <header class="page-intro rector-intro">
-      <div>
+  <div class="page-shell">
+    <header class="page-intro page-intro--illustrated">
+      <div class="page-intro__copy">
         <p class="eyebrow">Macroeventos rectores</p>
         <PageTitle>Procesos que organizan otros procesos</PageTitle>
+        <p>
+          Un macroevento rector reúne varios procesos complementarios dentro de
+          una misma hipótesis estructural. Permite observar qué dinámicas se
+          refuerzan, cuáles siguen condicionadas y qué evidencia puede debilitar
+          la interpretación general.
+        </p>
       </div>
-      <p>
-        Un macroevento rector reúne varios procesos complementarios dentro de
-        una misma hipótesis estructural. Permite observar qué dinámicas se
-        refuerzan, cuáles siguen condicionadas y qué evidencia puede debilitar
-        la interpretación general.
-      </p>
+      <EditorialImage asset="rectores" />
     </header>
 
     <div class="rector-summary">
@@ -84,128 +84,15 @@ const rectorCountLabel =
         Cada rector conduce a su expediente, su análisis y los procesos que
         organiza.
       </span>
+      <ActionLink href={siteRoutes.observatory} size="compact" arrow>Volver al Observatorio</ActionLink>
     </div>
 
     {
       rectorGroups.length ? (
         <section class="rector-list" aria-label="Macroeventos rectores disponibles">
-          {rectorGroups.map(
-            ({ rector, publication, editorialState, complementaries, transversals }) => {
-              const publicationHref =
-                publication &&
-                (publication.data.publicacion.estado === 'publicado' ||
-                  editorialPreviewEnabled)
-                  ? `/publicaciones/${publication.data.slug}/`
-                  : '';
-
-              return (
-                <article class="rector-entry" data-rector-id={rector.macroevento_id}>
-                  <header class="rector-entry-header">
-                    <div class="rector-entry-copy">
-                      <div class="rector-meta">
-                        <span>Macroevento rector</span>
-                        <span>Actualizado {formatDate(rector.publicacion.actualizado_el)}</span>
-                        <span>{editorialStageLabel(editorialState)}</span>
-                      </div>
-                      <h2>
-                        <a href={`/observatorio/${rector.slug}/`}>
-                          {rector.titulo}
-                        </a>
-                      </h2>
-                      <p>{rector.por_que_importa || rector.sintesis}</p>
-                    </div>
-
-                    <div class="rector-actions">
-                      {publicationHref && (
-                        <a class="rector-action rector-action--primary" href={publicationHref}>
-                          Leer análisis rector
-                        </a>
-                      )}
-                      <a class="rector-action" href={`/observatorio/${rector.slug}/`}>
-                        Abrir expediente
-                      </a>
-                    </div>
-                  </header>
-
-                  <details open={rectorGroups.length === 1} data-branch-details data-open-label="Cerrar procesos complementarios" data-closed-label="Ver procesos complementarios">
-                    <summary>
-                      <strong>
-                        {complementaries.length === 1
-                          ? '1 proceso complementario'
-                          : `${complementaries.length} procesos complementarios`}
-                      </strong>
-                      <span data-branch-toggle-label>
-                        {rectorGroups.length === 1
-                          ? 'Cerrar procesos complementarios'
-                          : 'Ver procesos complementarios'}
-                      </span>
-                    </summary>
-
-                    {complementaries.length ? (
-                      <ol class="branch-list" data-complementary-list>
-                        {complementaries.map(
-                          ({ process, publication: childPublication, editorialState: childState }) => {
-                            const childPublicationHref =
-                              childPublication &&
-                              (childPublication.data.publicacion.estado === 'publicado' ||
-                                editorialPreviewEnabled)
-                                ? `/publicaciones/${childPublication.data.slug}/`
-                                : '';
-
-                            return (
-                              <li>
-                                <div class="branch-copy">
-                                  <a class="branch-title" href={`/observatorio/${process.slug}/`}>
-                                    {process.titulo}
-                                  </a>
-                                  <span>
-                                    {editorialStageLabel(childState)} · Actualizado{' '}
-                                    {formatDate(process.publicacion.actualizado_el)}
-                                  </span>
-                                </div>
-                                <div class="branch-actions">
-                                  {childPublicationHref && (
-                                    <a href={childPublicationHref}>Leer análisis</a>
-                                  )}
-                                  <a href={`/observatorio/${process.slug}/`}>
-                                    Expediente
-                                  </a>
-                                </div>
-                              </li>
-                            );
-                          },
-                        )}
-                      </ol>
-                    ) : (
-                      <p class="branch-empty">
-                        Este rector todavía no tiene procesos complementarios vinculados.
-                      </p>
-                    )}
-                  </details>
-
-                  <details data-branch-details data-open-label="Cerrar relaciones transversales" data-closed-label="Ver relaciones transversales">
-                    <summary>
-                      <strong>{transversals.length === 1 ? '1 proceso relacionado' : `${transversals.length} procesos relacionados`}</strong>
-                      <span data-branch-toggle-label>Ver relaciones transversales</span>
-                    </summary>
-                    {transversals.length ? (
-                      <ul class="transversal-list" data-transversal-list>
-                        {transversals.map(({ process, relations }) => (
-                          <li>
-                            <a class="branch-title" href={`/observatorio/${process.slug}/`}>{process.titulo}</a>
-                            <span class="transversal-role">{process.es_macroevento_rector ? 'Macroevento rector relacionado' : 'Proceso relacionado'}</span>
-                            {relations.length ? relations.map(relation => (
-                              <p><strong>{humanize(relation.tipo)}.</strong> {relation.mecanismo}</p>
-                            )) : <p>Vínculo transversal registrado en el Observatorio.</p>}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : <p class="branch-empty">Este rector todavía no tiene relaciones transversales vinculadas.</p>}
-                  </details>
-                </article>
-              );
-            },
-          )}
+          {rectorGroups.map((group) => (
+            <RectorCard {...group} initiallyOpen={rectorGroups.length === 1} />
+          ))}
         </section>
       ) : (
         <section class="empty-state">
@@ -246,298 +133,33 @@ const rectorCountLabel =
 </script>
 
 <style>
-  .rector-page {
-    display: grid;
-    gap: clamp(1.5rem, 4vw, 2.75rem);
-  }
-
-  .back-link {
-    display: inline-flex;
-    width: fit-content;
-    align-items: center;
-    gap: 0.45rem;
-    color: var(--ink-700);
-    font-size: 0.82rem;
-    font-weight: 800;
-    text-decoration: none;
-  }
-
-  .back-link:hover {
-    color: var(--ink-950);
-    text-decoration: underline;
-    text-decoration-color: var(--amber);
-    text-underline-offset: 0.25em;
-  }
-
-  .rector-intro {
-    margin: 0;
-  }
 
   .rector-summary {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
-    gap: 0.55rem 1.5rem;
-    padding-block: 1rem;
+    gap: var(--space-2) var(--space-6);
+    padding-block: var(--space-4);
     border-block: 1px solid var(--line);
   }
 
   .rector-summary strong {
     font-family: var(--serif);
     font-size: var(--type-card-size);
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     line-height: 1.2;
   }
 
   .rector-summary span {
     color: var(--ink-600);
-    font-size: 0.84rem;
+    font-size: var(--type-meta-size);
   }
 
   .rector-list {
     display: grid;
-    gap: 1.5rem;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
   }
 
-  .rector-entry {
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--amber);
-    border-radius: var(--radius);
-    background:
-      linear-gradient(145deg, rgb(229 240 245 / 62%), transparent 55%),
-      var(--surface);
-  }
-
-  .rector-entry-header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: clamp(1rem, 3vw, 2rem);
-    padding: clamp(1.25rem, 3vw, 2rem);
-  }
-
-  .rector-entry-copy {
-    min-width: 0;
-  }
-
-  .rector-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem 0.8rem;
-    color: var(--ink-600);
-    font-size: 0.72rem;
-  }
-
-  .rector-meta span:first-child {
-    color: var(--amber);
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .rector-entry h2 {
-    max-width: 30ch;
-    margin: 0.65rem 0 0;
-    font-family: var(--serif);
-    font-size: var(--type-section-size);
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-    text-wrap: balance;
-  }
-
-  .rector-entry h2 a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .rector-entry h2 a:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--amber);
-    text-underline-offset: 0.18em;
-  }
-
-  .rector-entry-copy > p {
-    max-width: 68rem;
-    margin: 1rem 0 0;
-    color: var(--ink-700);
-  }
-
-  .rector-actions {
-    display: flex;
-    min-width: 11.5rem;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-
-  .rector-action {
-    display: inline-flex;
-    min-height: 2.75rem;
-    align-items: center;
-    justify-content: center;
-    padding: 0.65rem 0.9rem;
-    border: 1px solid var(--ink-950);
-    border-radius: 0.45rem;
-    color: var(--ink-950);
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .rector-action--primary {
-    background: var(--ink-950);
-    color: var(--paper);
-  }
-
-  .rector-entry details {
-    border-top: 1px solid var(--line);
-    background: var(--surface);
-  }
-
-  .rector-entry summary {
-    display: flex;
-    min-height: 3.75rem;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.85rem clamp(1.25rem, 3vw, 2rem);
-    cursor: pointer;
-  }
-
-  .rector-entry summary strong {
-    font-size: 0.9rem;
-  }
-
-  .rector-entry summary span {
-    color: var(--ink-600);
-    font-size: 0.75rem;
-  }
-
-  .branch-list {
-    display: grid;
-    margin: 0 clamp(1.25rem, 3vw, 2rem) 1.5rem;
-    padding: 0 0 0 1.4rem;
-    border-left: 2px solid var(--line);
-    list-style: none;
-  }
-
-  .branch-list li {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.75rem 1rem;
-    align-items: center;
-    padding: 0.85rem 0 0.85rem 0.9rem;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .branch-list li::before {
-    position: absolute;
-    top: 1.25rem;
-    left: -1.72rem;
-    width: 0.62rem;
-    height: 0.62rem;
-    border: 2px solid var(--surface);
-    border-radius: 50%;
-    background: var(--amber);
-    content: '';
-  }
-
-  .branch-copy {
-    display: grid;
-    min-width: 0;
-    gap: 0.28rem;
-  }
-
-  .branch-title {
-    color: var(--ink-950);
-    font-weight: 800;
-    text-decoration: none;
-  }
-
-  .branch-title:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--amber);
-    text-underline-offset: 0.22em;
-  }
-
-  .branch-copy span {
-    color: var(--ink-600);
-    font-size: 0.72rem;
-  }
-
-  .branch-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0.45rem 0.8rem;
-  }
-
-  .branch-actions a {
-    color: var(--ink-700);
-    font-size: 0.75rem;
-    font-weight: 800;
-    text-underline-offset: 0.2em;
-  }
-
-  .transversal-list {
-    display: grid;
-    gap: 1rem;
-    margin: 0 clamp(1.25rem, 3vw, 2rem) 1.5rem;
-    padding: 0;
-    list-style: none;
-  }
-
-  .transversal-list li {
-    display: grid;
-    gap: 0.35rem;
-    padding-block: 0.85rem;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .transversal-role {
-    color: var(--ink-600);
-    font-size: 0.72rem;
-  }
-
-  .transversal-list p {
-    margin: 0;
-    color: var(--ink-700);
-    font-size: 0.85rem;
-  }
-
-  .rector-entry summary:focus-visible,
-  .branch-title:focus-visible {
-    outline: 2px solid var(--amber);
-    outline-offset: 3px;
-  }
-
-  .branch-empty {
-    margin: 0;
-    padding: 0 2rem 1.5rem;
-    color: var(--ink-600);
-  }
-
-  @media (max-width: 760px) {
-    .rector-entry-header,
-    .branch-list li {
-      grid-template-columns: 1fr;
-    }
-
-    .rector-actions {
-      min-width: 0;
-    }
-
-    .branch-actions {
-      justify-content: flex-start;
-    }
-
-    .rector-entry summary {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-  }
 </style>

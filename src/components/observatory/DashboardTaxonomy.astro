@@ -1,0 +1,34 @@
+---
+import type { CatalogItem } from '../../lib/types';
+
+interface Props { taxonomySections: { label: string; items: CatalogItem[]; href: string }[]; }
+const { taxonomySections } = Astro.props;
+
+---
+
+<section
+  class="dashboard-view"
+  data-dashboard-view="taxonomia"
+  id="taxonomia" role="tabpanel" aria-labelledby="dashboard-tab-taxonomia" tabindex="0"
+  hidden
+>
+  <div class="dashboard-heading">
+    <div>
+      <p class="eyebrow">Clasificación</p>
+      <h3>Clasificaciones del Observatorio</h3>
+    </div>
+    <p>Ejes utilizados por los expedientes visibles.</p>
+  </div>
+  <div class="dashboard-taxonomy">
+    {
+      taxonomySections.map(({ label, items, href }) => (
+        <article>
+          <span>{items.length}</span>
+          <h4>{label}</h4>
+          <p>Categorías utilizadas en los expedientes.</p>
+          <a href={href}>Explorar</a>
+        </article>
+      ))
+    }
+  </div>
+</section>

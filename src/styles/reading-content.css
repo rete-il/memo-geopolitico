@@ -1,0 +1,228 @@
+/* Article prose, sidebar context, source lists and support section. */
+
+.methodology-layout .content-section p + p {
+  margin-top: 1rem;
+}
+
+.development-note {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.process-sidebar {
+  position: sticky;
+  top: 6.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.sidebar-card {
+  padding: 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  background: var(--surface);
+}
+
+.publication-page-shell + .article-shell {
+  --publication-process-gap: clamp(2rem, 3vw, 2.5rem);
+  padding-top: var(--publication-process-gap);
+}
+
+.article-shell > .sidebar-card + .prose {
+  margin-top: var(--publication-process-gap, clamp(2rem, 3vw, 2.5rem));
+}
+
+.publication-process-context .process-context-action {
+  display: inline-flex;
+  margin-top: 0.35rem;
+  font-family: var(--sans);
+  font-size: var(--type-body-small-size);
+  font-weight: var(--font-weight-bold);
+}
+
+.publication-rector-context {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.publication-rector-context .eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.publication-rector-context > a {
+  display: inline-block;
+  font-weight: var(--font-weight-bold);
+}
+
+.publication-rector-context > p:last-child {
+  margin-bottom: 0;
+  color: var(--ink-700);
+  font-size: var(--type-body-small-size);
+}
+
+.progress-card h3 {
+  margin: 1rem 0 0.3rem;
+  font-size: var(--type-meta-size);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.progress-card p,
+.progress-card li,
+.progress-card dd,
+.progress-card dt {
+  font-size: var(--type-body-small-size);
+}
+
+.progress-card dl {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0.8rem 0 0;
+}
+
+.progress-card dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.progress-card dt {
+  color: var(--ink-600);
+}
+
+.progress-card dd {
+  margin: 0;
+  text-align: right;
+}
+
+.progress-card ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.taxonomy-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.taxonomy-list a,
+.taxonomy-list span {
+  display: inline-flex;
+  color: var(--ink-700);
+  font-size: var(--type-meta-size);
+}
+
+.taxonomy-list a:hover {
+  color: var(--blue);
+}
+
+.source-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.source-list li {
+  padding-left: 1rem;
+  border-left: 2px solid var(--line);
+}
+
+.source-list a {
+  font-family: var(--serif);
+  font-size: var(--type-body-small-size);
+  font-weight: var(--font-weight-semibold);
+}
+
+.source-list p {
+  margin: 0.2rem 0 0;
+  color: var(--ink-600);
+  font-size: var(--type-body-small-size);
+}
+
+.article-shell {
+  width: min(760px, calc(100% - 2rem));
+  margin-inline: auto;
+  padding-top: clamp(1.5rem, 3vw, 2.75rem);
+  padding-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.prose {
+  color: var(--ink-900);
+  font-family: var(--serif);
+  font-size: var(--type-reading-size);
+  line-height: 1.82;
+}
+
+.prose :where(h2, h3) {
+  color: var(--ink-950);
+  font-family: var(--serif);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.prose :where(h2) {
+  font-size: var(--type-section-size);
+  margin-top: 2.8rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--line);
+}
+
+.prose :where(h3) {
+  font-size: var(--type-subheading-size);
+}
+
+.prose :where(a) {
+  color: var(--blue);
+}
+
+.prose :where(blockquote) {
+  border-left-color: var(--amber);
+  color: var(--ink-700);
+}
+
+.prose :where(table) {
+  font-family: var(--sans);
+  font-size: var(--type-meta-size);
+}
+
+.support-cta {
+  margin-top: 4rem;
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--amber);
+  background: var(--surface);
+  text-align: center;
+}
+
+.support-cta h2 {
+  margin: 0.35rem 0 0;
+  font-family: var(--serif);
+  font-size: var(--type-section-size);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.support-cta > p:not(.eyebrow) {
+  max-width: 38rem;
+  margin: 0.7rem auto 0;
+  color: var(--ink-700);
+}
+
+/* Support action spacing is part of the article layout, not a button variant. */
+.support-cta a {
+  margin-top: 1.2rem;
+}

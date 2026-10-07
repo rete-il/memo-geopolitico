@@ -18,6 +18,7 @@ import {
 import { editorialStageLabel, formatDate } from '../lib/text';
 import type { PublicationState, PublicProcess } from '../lib/types';
 import RatingPair from './RatingPair.astro';
+import ActionLink from './ActionLink.astro';
 import { processSearchText } from '../../tools/lib/search-policy.mjs';
 
 interface Props {
@@ -196,9 +197,9 @@ const editorialState =
     <p>{process.sintesis}</p>
     <footer>
       <span>Actualizado {formatDate(process.publicacion.actualizado_el)}</span>
-      <a href={`/observatorio/${process.slug}/`}>
-        Abrir expediente <span aria-hidden="true">→</span>
-      </a>
+      <ActionLink href={`/observatorio/${process.slug}/`} size="compact" arrow>
+        Abrir expediente
+      </ActionLink>
     </footer>
   </div>
   <RatingPair

@@ -1,8 +1,10 @@
 ---
+import ActionLink from '../../components/ActionLink.astro';
 import type { GetStaticPaths } from 'astro';
 import ReadingLinks from '../../components/ReadingLinks.astro';
 import { destinationKey } from '../../../tools/lib/navigation-policy.mjs';
 import OpinionCard from '../../components/OpinionCard.astro';
+import EditorialImage from '../../components/EditorialImage.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { opinionReadings, type OpinionReading } from '../../lib/opinion';
@@ -71,7 +73,7 @@ const localDraft = reading
               {reading.resumen.map((paragraph) => <p>{paragraph}</p>)}
               {reading.nota_revision && <aside class="editorial-note"><p>{reading.nota_revision}</p></aside>}
               <div class="source-action">
-                <a class="button-primary" href={reading.origen.url} target="_blank" rel="noopener noreferrer">{reading.formato === 'entrevista' ? 'Ver nota y acceso a la entrevista' : `Leer artículo completo en ${reading.origen.medio}`}<span class="sr-only"> (abre otra pestaña)</span></a>
+                <ActionLink arrow href={reading.origen.url} target="_blank" rel="noopener noreferrer">{reading.formato === 'entrevista' ? 'Ver nota y acceso a la entrevista' : `Leer artículo completo en ${reading.origen.medio}`}<span class="sr-only"> (abre otra pestaña)</span></ActionLink>
                 {reading.origen.audio_url && <p><a href={reading.origen.audio_url} target="_blank" rel="noopener noreferrer">Escuchar episodio en Spotify</a></p>}
                 <p>{reading.formato === 'entrevista' ? 'Presentación propia basada en la nota de Canal Net. El material original se consulta en el medio de origen.' : 'El texto íntegro se lee en el medio de origen.'}</p>
               </div>
@@ -91,11 +93,14 @@ const localDraft = reading
       </>
     ) : (
       <>
-        <header class="opinion-intro">
-          <p class="eyebrow">Memo Geopolítico</p>
-          <PageTitle>Opinión</PageTitle>
-          <p>Firmas y perspectivas sobre las transformaciones del mundo.</p>
-          <p>Las últimas opiniones incorporadas al sitio aparecen primero. Cada ficha distingue la fecha de incorporación de la publicación original.</p>
+        <header class="page-intro page-intro--illustrated">
+          <div class="page-intro__copy">
+            <p class="eyebrow">Memo Geopolítico</p>
+            <PageTitle>Opinión</PageTitle>
+            <p>Firmas y perspectivas sobre las transformaciones del mundo.</p>
+            <p class="opinion-intro-note">Las últimas opiniones incorporadas al sitio aparecen primero. Cada ficha distingue la fecha de incorporación de la publicación original.</p>
+          </div>
+          <EditorialImage asset="opinion" />
         </header>
         <section class="opinion-readings" aria-label="Lecturas recomendadas">
           {opinionReadings.map((item) => <OpinionCard reading={item} />)}
@@ -107,36 +112,34 @@ const localDraft = reading
 
 <style>
   .interviewer-note { margin-block: 2rem 3rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--amber-pale); border: 1px solid var(--line-strong); border-left: 4px solid var(--amber); }
-  .interviewer-note h2 { margin: .6rem 0 1rem; font: 500 var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; }
+  .interviewer-note h2 { margin: .6rem 0 1rem; font: var(--font-weight-medium) var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; }
   .interviewer-intro { max-width: 62rem; color: var(--ink-700); line-height: 1.7; }
   .interviewer-milestones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2.5rem; margin-block: 1.75rem; }
-  .interviewer-milestones dt { font-weight: 750; color: var(--ink-800); }
+  .interviewer-milestones dt { font-weight: var(--font-weight-bold); color: var(--ink-800); }
   .interviewer-milestones dd { margin: .4rem 0 0; color: var(--ink-700); line-height: 1.65; }
-  .interviewer-sources { margin-bottom: 0; font-size: .875rem; line-height: 1.7; }
+  .interviewer-sources { margin-bottom: 0; font-size: var(--type-meta-size); line-height: 1.7; }
   .interviewer-sources a { text-decoration: underline; text-underline-offset: .2em; }
   @media (max-width: 600px) { .interviewer-milestones { grid-template-columns: 1fr; } }
   .opinion-shell { width: var(--content); margin-inline: auto; padding-block: clamp(2rem, 5vw, 4rem); }
-  .local-notice { width: fit-content; margin: 0 0 2rem; padding: 0.45rem 0.75rem; border-left: 3px solid var(--amber); background: var(--amber-pale); color: var(--ink-800); font-size: 0.875rem; }
-  .opinion-intro { padding-bottom: 2.5rem; }
-  .opinion-intro > p:not(.eyebrow) { max-width: 48rem; margin: 1rem 0 0; font-size: var(--type-lead-size); color: var(--ink-700); }
-  .reading-breadcrumb { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 2rem; color: var(--ink-600); font-size: 0.875rem; }
+  .local-notice { width: fit-content; margin: 0 0 2rem; padding: 0.45rem 0.75rem; border-left: 3px solid var(--amber); background: var(--amber-pale); color: var(--ink-800); font-size: var(--type-meta-size); }
+  .page-intro__copy > p.opinion-intro-note { margin-top: var(--space-3); }
+  .reading-breadcrumb { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 2rem; color: var(--ink-600); font-size: var(--type-meta-size); }
   .reading-header { max-width: 65rem; }
   :global(.reading-title) { max-width: 25ch; }
   .reading-deck { max-width: 48rem; margin-top: 1rem; color: var(--ink-700); font: var(--type-lead-size)/1.6 var(--sans); }
   .reading-byline { display: flex; flex-wrap: wrap; gap: 1.25rem 3rem; margin-block: 2rem; }
   .reading-byline > div { display: grid; gap: 0.3rem; }
-  .reading-byline > div > span { color: var(--ink-600); font-size: 0.875rem; }
-  .reading-byline a, .reading-byline time { font-weight: 700; }
+  .reading-byline > div > span { color: var(--ink-600); font-size: var(--type-meta-size); }
+  .reading-byline a, .reading-byline time { font-weight: var(--font-weight-bold); }
   .reading-columns { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; align-items: start; gap: clamp(2rem, 6vw, 6rem); border-top: 1px solid var(--line-strong); padding-top: 2.5rem; }
   .reading-summary { max-width: 46rem; }
-  .reading-summary h2 { margin-block: 0.55rem 1.25rem; font: 500 var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; }
-  .reading-summary > p:not(.eyebrow) { font: 1.05rem/1.82 var(--serif); }
+  .reading-summary h2 { margin-block: 0.55rem 1.25rem; font: var(--font-weight-medium) var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; }
+  .reading-summary > p:not(.eyebrow) { font: var(--type-reading-size)/1.82 var(--serif); }
   .source-action { margin-top: 2rem; }
-  .source-action .button-primary { text-align: center; font-size: 0.95rem; }
-  .source-action p { color: var(--ink-600); font-size: 0.875rem; }
+  .source-action p { color: var(--ink-600); font-size: var(--type-meta-size); }
   .author-note { padding: 1.5rem; background: var(--blue-pale); border-top: 3px solid var(--blue); }
-  .author-note h2 { margin-block: 0.7rem; font: 500 var(--type-subheading-size)/1.2 var(--serif); }
+  .author-note h2 { margin-block: 0.7rem; font: var(--font-weight-medium) var(--type-subheading-size)/1.2 var(--serif); }
   .author-note > p:not(.eyebrow) { color: var(--ink-700); }
-  .author-note a { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: 0.95rem; }
+  .author-note a { font-size: var(--type-meta-size); text-decoration: underline; text-underline-offset: .2em; }
   @media (max-width: 800px) { .reading-columns { grid-template-columns: 1fr; } .author-note { max-width: 46rem; } }
 </style>

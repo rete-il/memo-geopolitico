@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1128" height="191" viewBox="0 0 1128 191" role="img" aria-label="Memo Geopolítico. Procesos que exceden la coyuntura. memogeopolitico.com">
+  <rect width="1128" height="191" fill="#f8f6f1"/>
+  <rect width="1128" height="5" fill="#c47a27"/>
+  <path d="M264 32V159" fill="none" stroke="#d9d5cb" stroke-width="2"/>
+  <text x="682" y="81" text-anchor="middle" font-family="Georgia,serif" font-size="48" font-weight="bold" fill="#101c2c">Memo Geopolítico</text>
+  <text x="682" y="121" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" fill="#245a78">Procesos que exceden la coyuntura</text>
+  <text x="682" y="157" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="19" fill="#245a78">memogeopolitico.com</text>
+</svg>

@@ -1,0 +1,248 @@
+/* Navigation remains underlined links; only native controls receive boxes. */
+
+button.button-primary,
+button.button-secondary,
+.filter-panel button,
+.view-switch button,
+.dashboard-filters button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--control-gap);
+  max-width: 100%;
+  min-height: var(--control-height);
+  padding: var(--control-padding-block) var(--control-padding-inline);
+  border: 1px solid var(--action-secondary-border);
+  border-radius: var(--control-radius);
+  color: var(--action-secondary-ink);
+  background: var(--action-secondary-bg);
+  font-family: var(--sans);
+  font-size: var(--control-font-size);
+  font-weight: var(--control-font-weight);
+  line-height: 1.35;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  cursor: pointer;
+}
+
+button.button-primary {
+  border-color: var(--action-primary-bg);
+  background: var(--action-primary-bg);
+  color: var(--action-primary-ink);
+}
+
+button.button-primary:hover {
+  border-color: var(--action-primary-hover-bg);
+  background: var(--action-primary-hover-bg);
+  color: var(--action-primary-ink);
+}
+
+button.button-secondary {
+  border-color: var(--action-secondary-border);
+  background: var(--action-secondary-bg);
+  color: var(--action-secondary-ink);
+}
+
+button.button-secondary:hover,
+.filter-panel button:hover,
+.dashboard-filters button:hover {
+  border-color: var(--ink-900);
+  background: var(--paper-deep);
+  color: var(--ink-950);
+}
+
+a.ui-action,
+.section-heading > a,
+.process-card footer a,
+.publication-card footer a,
+.explore-card > a,
+.publication-process-context .process-context-action,
+.dashboard-taxonomy a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--control-gap);
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--action-link-ink);
+  font-family: var(--sans);
+  font-size: var(--type-body-small-size);
+  font-weight: var(--control-font-weight);
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+}
+
+a.ui-action:hover,
+.section-heading > a:hover,
+.process-card footer a:hover,
+.publication-card footer a:hover,
+.explore-card > a:hover,
+.publication-process-context .process-context-action:hover,
+.dashboard-taxonomy a:hover {
+  background: transparent;
+  color: var(--action-link-hover-ink);
+  text-decoration: underline;
+}
+
+a.ui-action--compact {
+  gap: var(--space-1);
+  font-size: var(--type-meta-size);
+}
+
+a.ui-action[aria-disabled='true'],
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+a.ui-action[hidden],
+button.ui-action[hidden],
+button[hidden],
+summary[hidden] {
+  display: none;
+}
+
+:where(.hero-actions, .methodology-note-actions) {
+  gap: var(--control-gap);
+}
+
+.filter-panel button {
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+.view-switch {
+  gap: var(--control-gap);
+}
+
+.view-switch button,
+.dashboard-filters button {
+  min-height: var(--control-compact-height);
+  padding: var(--space-2) var(--space-3);
+}
+
+.view-switch button[aria-pressed='true'] {
+  border-color: var(--ink-900);
+  background: var(--ink-900);
+  color: var(--surface);
+}
+
+.filter-panel input,
+.filter-panel select,
+.media-toolbar input,
+.media-toolbar select,
+.dashboard-filters input,
+.dashboard-filters select {
+  width: 100%;
+  min-height: var(--control-height);
+  padding: var(--control-padding-block) var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--control-radius);
+  background: var(--surface);
+  color: var(--ink-950);
+  font-family: var(--sans);
+  font-size: var(--control-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.35;
+}
+
+.dashboard-filters input,
+.dashboard-filters select {
+  min-height: var(--control-compact-height);
+  padding-block: var(--space-2);
+}
+
+.dashboard-navigation button {
+  min-height: var(--control-height);
+  padding: var(--control-padding-block) var(--control-padding-inline);
+  border: 0;
+  border-radius: var(--control-radius);
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: var(--control-font-size);
+  font-weight: var(--control-font-weight);
+  text-align: left;
+  cursor: pointer;
+}
+
+.dashboard-navigation button:hover,
+.dashboard-navigation button[aria-selected='true'] {
+  background: var(--inverse-hover-surface);
+  color: var(--surface);
+}
+
+summary,
+.dashboard-matrix-groups summary {
+  min-height: var(--control-height);
+  padding: var(--control-padding-block) var(--control-padding-inline);
+  border: 1px solid var(--action-secondary-border);
+  border-radius: var(--control-radius);
+  background: var(--action-secondary-bg);
+  color: var(--action-secondary-ink);
+  font-family: var(--sans);
+  font-size: var(--control-font-size);
+  font-weight: var(--control-font-weight);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+a.chip,
+.taxonomy-list a,
+.card-meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--control-gap);
+  padding-block: var(--space-1);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--action-link-ink);
+  font-family: var(--sans);
+  font-size: var(--type-meta-size);
+  line-height: 1.35;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a.chip:hover,
+.taxonomy-list a:hover,
+.card-meta a:hover {
+  color: var(--action-link-hover-ink);
+}
+
+@media (pointer: coarse) {
+  .view-switch button,
+  .dashboard-filters button,
+  .dashboard-filters input,
+  .dashboard-filters select,
+  a.ui-action,
+  a.chip,
+  .taxonomy-list a {
+    min-height: var(--control-height);
+  }
+
+  .filter-panel input,
+  .filter-panel select,
+  .media-toolbar input,
+  .media-toolbar select,
+  .dashboard-filters input,
+  .dashboard-filters select {
+    font-size: var(--type-body-size);
+  }
+
+  .card-meta a,
+  .desktop-nav a,
+  .menu-explore a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--control-height);
+  }
+}

@@ -1,5 +1,6 @@
 ---
 import { primaryNavigation, explorationNavigation, followUpNavigation, siteSearch } from '../lib/navigation';
+import { selectActiveNavigationItem } from '../../tools/lib/navigation-policy.mjs';
 
 const { pathname } = Astro.url;
 
@@ -8,8 +9,7 @@ const secondaryGroups = [
   { id: 'menu-follow-up-title', label: 'Seguimiento', links: followUpNavigation },
 ];
 
-const active = (href: string) =>
-  href === '/' ? pathname === '/' : pathname.startsWith(href);
+const activeItem = selectActiveNavigationItem(primaryNavigation, pathname);
 ---
 
 <header class="site-header">
@@ -40,7 +40,7 @@ const active = (href: string) =>
         primaryNavigation.map((item) => (
           <a
             href={item.href}
-            aria-current={active(item.href) ? 'page' : undefined}
+            aria-current={item === activeItem ? 'page' : undefined}
           >
             {item.label}
           </a>
@@ -74,7 +74,7 @@ const active = (href: string) =>
     <nav class="menu-primary" aria-label="Secciones principales">
       {
         primaryNavigation.map((item) => (
-          <a href={item.href} aria-current={active(item.href) ? 'page' : undefined}>
+          <a href={item.href} aria-current={item === activeItem ? 'page' : undefined}>
             <span>{item.label}</span>
             <span aria-hidden="true">→</span>
           </a>

@@ -1,6 +1,8 @@
 ---
 import type { OpinionReading } from '../lib/opinion';
 import { formatDate } from '../lib/text';
+import ActionLink from './ActionLink.astro';
+import { siteRoutes } from '../config/routes';
 
 interface Props {
   reading: OpinionReading;
@@ -14,10 +16,10 @@ const { reading, headingLevel: Heading = 'h2' } = Astro.props;
   <div class="opinion-card-body">
     <p class="reading-label">{reading.formato === 'entrevista' ? 'Entrevista recomendada' : 'Lectura recomendada'} · {reading.origen.medio}</p>
     <Heading>
-      <a href={`/opinion/${reading.slug}/`}>{reading.titulo}</a>
+      <a href={`${siteRoutes.opinion}${reading.slug}/`}>{reading.titulo}</a>
     </Heading>
     <p class="reading-description">{reading.descripcion}</p>
-    <a class="reading-link" href={`/opinion/${reading.slug}/`}>Ver presentación y fuente</a>
+    <ActionLink class="reading-link" href={`${siteRoutes.opinion}${reading.slug}/`} arrow>Ver presentación y fuente</ActionLink>
   </div>
   <div class="opinion-card-author">
     <p class="author-label">{reading.formato === 'entrevista' ? 'Persona entrevistada' : 'Firma del artículo original'}</p>
@@ -31,18 +33,18 @@ const { reading, headingLevel: Heading = 'h2' } = Astro.props;
 <style>
   .opinion-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.34fr); border-block: 1px solid var(--line-strong); }
   .opinion-card-body { padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem) 0; }
-  .reading-label, .author-label { margin: 0; color: var(--ink-600); font-size: 0.875rem; }
-  .reading-label { color: var(--blue); font-weight: 700; }
-  h2, h3 { max-width: 28ch; margin: 0.85rem 0; font: 500 var(--type-card-size)/1.2 var(--serif); letter-spacing: -0.025em; text-wrap: pretty; }
+  .reading-label, .author-label { margin: 0; color: var(--ink-600); font-size: var(--type-meta-size); }
+  .reading-label { color: var(--blue); font-weight: var(--font-weight-bold); }
+  h2, h3 { max-width: 28ch; margin: var(--space-3) 0; font: var(--font-weight-medium) var(--type-card-size)/1.2 var(--serif); letter-spacing: -0.025em; text-wrap: pretty; }
   h2 a, h3 a { text-decoration: none; }
   h2 a:hover, h3 a:hover { text-decoration: underline; text-decoration-color: var(--amber); }
-  .reading-description { max-width: 43rem; color: var(--ink-700); font-size: 1.05rem; }
-  .reading-link { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: 0.5rem; font-weight: 700; text-decoration-color: var(--amber); }
+  .reading-description { max-width: 43rem; color: var(--ink-700); font-size: var(--type-body-size); }
+  :global(.reading-link) { margin-top: var(--space-2); }
   .opinion-card-author { padding: clamp(1.5rem, 3vw, 2.5rem); border-left: 1px solid var(--line); background: var(--blue-pale); }
-  .author-name { margin: 0.65rem 0; font: 500 var(--type-subheading-size)/1.2 var(--serif); }
+  .author-name { margin: var(--space-3) 0; font: var(--font-weight-medium) var(--type-subheading-size)/1.2 var(--serif); }
   .author-bio { margin-block: 0.75rem 1.25rem; color: var(--ink-700); }
-  time { color: var(--ink-600); font-size: 0.875rem; }
-  .reading-date { color: var(--ink-600); font-size: .875rem; margin-block: .5rem; }
+  time { color: var(--ink-600); font-size: var(--type-meta-size); }
+  .reading-date { color: var(--ink-600); font-size: var(--type-meta-size); margin-block: var(--space-2); }
   @media (max-width: 700px) {
     .opinion-card { grid-template-columns: 1fr; }
     .opinion-card-body { padding-right: 0; }

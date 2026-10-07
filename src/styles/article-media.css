@@ -1,0 +1,144 @@
+/* Editorial article maps, figures and zoom affordances. */
+
+/* Visualizaciones editoriales de artículos · composición magazine */
+.prose .article-map {
+  margin-block: clamp(2rem, 4vw, 3.25rem);
+  font-family: var(--sans);
+}
+
+.prose .article-map picture,
+.prose .article-map img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.prose .article-map img {
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 0.1rem);
+  background: var(--surface);
+  box-shadow: 0 16px 40px var(--shadow-color-soft);
+}
+
+/* Principal: centrado y exactamente del ancho de la columna. */
+.prose .article-map--column {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.prose .article-map--principal {
+  margin-top: clamp(2.2rem, 5vw, 3.8rem);
+  margin-bottom: clamp(2.6rem, 5vw, 4rem);
+}
+
+/* Secundarios: insets editoriales con texto alrededor. */
+.prose .article-map--inset {
+  width: min(46%, 22rem);
+  margin-top: 0.45rem;
+  margin-bottom: 1.35rem;
+}
+
+.prose .article-map--right {
+  float: right;
+  margin-left: 1.7rem;
+}
+
+.prose .article-map--left {
+  float: left;
+  margin-right: 1.7rem;
+}
+
+
+.prose .article-map__zoom {
+  position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: zoom-in;
+}
+
+.prose .article-map__zoom:focus-visible {
+  border-radius: calc(var(--radius) + 0.1rem);
+  outline: 3px solid var(--amber);
+  outline-offset: 4px;
+}
+
+.prose .article-map__zoom-hint {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  display: inline-flex;
+  padding: 0.34rem 0.55rem;
+  border: 1px solid var(--inverse-border);
+  border-radius: 999px;
+  background: var(--image-control-surface);
+  color: var(--surface);
+  font-family: var(--sans);
+  font-size: var(--type-caption-size);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 160ms ease;
+  pointer-events: none;
+}
+
+.prose .article-map__zoom:hover .article-map__zoom-hint,
+.prose .article-map__zoom:focus-visible .article-map__zoom-hint {
+  opacity: 1;
+}
+
+.prose .article-map figcaption {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.7rem 0 0;
+  color: var(--ink-700);
+  font-family: var(--sans);
+  font-size: var(--type-caption-size);
+  line-height: 1.5;
+}
+
+.prose .article-map figcaption strong {
+  color: var(--ink-900);
+  font-weight: var(--font-weight-heavy);
+}
+
+.prose .article-map figcaption span {
+  color: var(--ink-500);
+  font-size: var(--type-caption-size);
+}
+
+.prose .article-map-clear {
+  clear: both;
+  height: 0;
+}
+
+@media (max-width: 760px) {
+  .prose .article-map,
+  .prose .article-map--principal {
+    margin-block: 2rem 2.5rem;
+  }
+
+  .prose .article-map--inset,
+  .prose .article-map--right,
+  .prose .article-map--left {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 2rem auto 2.5rem;
+  }
+
+  .prose .article-map img {
+    border-radius: 0.7rem;
+  }
+
+  .prose .article-map figcaption {
+    font-size: var(--type-caption-size);
+  }
+
+  .prose .article-map figcaption span {
+    font-size: var(--type-caption-size);
+  }
+}

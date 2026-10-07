@@ -1,0 +1,66 @@
+---
+import type { PublicProcess } from '../../lib/types';
+import { processes, sourceById } from '../../lib/data';
+import { humanize } from '../../lib/text';
+import { signalHref } from '../../../tools/lib/navigation-policy.mjs';
+
+interface Props { process: PublicProcess; }
+const { process } = Astro.props;
+const signalIndex = new Map(
+  processes.flatMap((item) =>
+    item.senales.map((signal) => [signal.senal_id, { signal, owner: item }] as const),
+  ),
+);
+const referencedSignals = (process.referencias_senal || [])
+  .map((reference) => {
+    const evidence = signalIndex.get(reference.senal_id);
+    return {
+      reference,
+      evidence,
+      sources: evidence?.signal.fuente_ids
+        .map((sourceId) => sourceById.get(sourceId))
+        .filter(Boolean) || [],
+    };
+  })
+  .filter((item) => Boolean(item.evidence));
+---
+
+{
+  referencedSignals.length > 0 && (
+    <section class="content-section">
+      <h2>Señales reutilizadas de otros expedientes</h2>
+      <p>
+        Estas evidencias conservan un único propietario canónico. Este
+        expediente registra solamente su efecto transversal y no las
+        contabiliza como señales propias.
+      </p>
+      <ul class="referenced-signal-list">
+        {referencedSignals.map(({ reference, evidence, sources }) => (
+          <li id={process.senales.some((signal) => signal.senal_id === reference.senal_id) ? undefined : reference.senal_id}>
+            <div class="typed-relation-heading">
+              <span class="relation-type">{humanize(reference.tipo_uso)}</span>
+              <a href={signalHref(evidence!.owner.slug, evidence!.signal.senal_id)}>
+                {evidence!.signal.titulo}
+              </a>
+            </div>
+            <p>{reference.efecto_segundo_orden}</p>
+            <small>Propietario: {evidence!.owner.titulo}</small>
+            {sources.length > 0 && (
+              <small>
+                {' · Fuentes: '}
+                {sources.map((source, index) => (
+                  <>
+                    {index > 0 && ', '}
+                    <a href={source!.url} target="_blank" rel="noopener noreferrer">
+                      {source!.medio}
+                    </a>
+                  </>
+                ))}
+              </small>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

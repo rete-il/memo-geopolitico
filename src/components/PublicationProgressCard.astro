@@ -1,5 +1,6 @@
 ---
 import { editorialStageLabel, formatDate } from '../lib/text';
+import ActionLink from './ActionLink.astro';
 import type { PublicProcess } from '../lib/types';
 
 interface Props {
@@ -20,8 +21,8 @@ const { process } = Astro.props;
   <p>{process.sintesis}</p>
   <footer>
     <span>Actualizado {formatDate(process.publicacion.actualizado_el)}</span>
-    <a href={`/observatorio/${process.slug}/`}>
-      Abrir expediente <span aria-hidden="true">→</span>
-    </a>
+    <ActionLink href={`/observatorio/${process.slug}/`} size="compact" arrow>
+      Abrir expediente
+    </ActionLink>
   </footer>
 </article>

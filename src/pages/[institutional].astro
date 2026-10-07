@@ -2,6 +2,8 @@
 import PageTitle from '../components/PageTitle.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import BrowserStorageControls from '../components/BrowserStorageControls.astro';
+import EditorialImage from '../components/EditorialImage.astro';
+import ActionLink from '../components/ActionLink.astro';
 import content from '../data/institutional.json';
 import { institutionalConfig as config, institutionalPages, institutionalLocal, institutionalBlockers, institutionalContacts, identityDefinitions, identitySections, contactActions, resolveInstitutionalLinks } from '../lib/institutional';
 export function getStaticPaths() {
@@ -25,14 +27,49 @@ const identitySection = identitySections[page.slug as keyof typeof identitySecti
 const identityFields = identityDefinitions.filter(field => identitySection?.keys.includes(field.key));
 const contactAction = contactActions[page.slug as keyof typeof contactActions];
 const actionContact = contactAction ? contacts[0] : undefined;
+const isContact = page.slug === 'contacto';
+const contactIntro = isContact ? sections[0] : undefined;
+const bodySections = isContact ? sections.slice(1) : sections;
 ---
 <SiteLayout title={page.label} description={`${page.label} de Memo Geopolítico.`} noindex={institutionalLocal}>
-  <article class="institutional-page">
-    <PageTitle>{page.label}</PageTitle>
+  <article class:list={['institutional-page', { 'page-shell': isContact }]}>
+    {contactIntro ? (
+      <header class="page-intro page-intro--illustrated">
+        <div class="page-intro__copy">
+          <p class="eyebrow">{contactIntro.title}</p>
+          <PageTitle>{page.label}</PageTitle>
+          <p>{contactIntro.text}</p>
+        </div>
+        <EditorialImage asset="contacto" />
+      </header>
+    ) : <PageTitle>{page.label}</PageTitle>}
     {institutionalLocal && <aside class="local-note" aria-label="Estado de revisión"><span>Vista local · No publicado</span><a href="http://127.0.0.1:4322/sitio.html">Administrar páginas y funciones</a></aside>}
-    {sections.map(section => <section><h2>{section.title}</h2><p>{section.text}</p>{'block' in section && section.block === 'browser-storage' && <BrowserStorageControls />}{section.links.map(link => <p class="contextual-link"><a href={link.href}>{link.label} →</a></p>)}</section>)}
-    {page.slug === 'contacto' && <section><h2>Canales de contacto</h2><div class="contact-channels">{contacts.map(contact => <section class="contact-channel" id={`canal-${contact.key}`}><h3>{contact.label}</h3><p>{contact.description}</p><a href={contact.href}>{contact.email}</a></section>)}</div>{!contacts.length && <p>Los canales de contacto aún no están habilitados.</p>}</section>}
-    {actionContact && <p class="contact-action"><strong>{contactAction.label}</strong><a href={`${actionContact.href}?subject=${encodeURIComponent(contactAction.subject)}`}>{actionContact.email}</a></p>}
+    {bodySections.map(section => (
+      <section>
+        <h2>{section.title}</h2>
+        <p>{section.text}</p>
+        {'block' in section && section.block === 'browser-storage' && <BrowserStorageControls />}
+        {section.links.map(link => (
+          <p class="contextual-link"><ActionLink href={link.href} arrow>{link.label}</ActionLink></p>
+        ))}
+      </section>
+    ))}
+    {isContact && (
+      <section>
+        <h2>Canales de contacto</h2>
+        <div class="contact-channels">
+          {contacts.map(contact => (
+            <section class="contact-channel" id={`canal-${contact.key}`}>
+              <h3>{contact.label}</h3>
+              <p>{contact.description}</p>
+              <ActionLink href={contact.href}>{contact.email}</ActionLink>
+            </section>
+          ))}
+        </div>
+        {!contacts.length && <p>Los canales de contacto aún no están habilitados.</p>}
+      </section>
+    )}
+    {actionContact && <p class="contact-action"><strong>{contactAction.label}</strong><ActionLink href={`${actionContact.href}?subject=${encodeURIComponent(contactAction.subject)}`}>{actionContact.email}</ActionLink></p>}
     {identitySection && <section id={identitySection.id}>
       <h2>{identitySection.title}</h2>
       <dl class="identity-fields">
@@ -47,16 +84,16 @@ const actionContact = contactAction ? contacts[0] : undefined;
   </article>
 </SiteLayout>
 <style>
-  .institutional-page { width: min(90%, 54rem); margin: 3rem auto 5rem; }
-  h2 { font: 500 var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; margin-top: 2rem; }
+  .institutional-page:not(.page-shell) { width: min(90%, 54rem); margin: 3rem auto 5rem; }
+  .institutional-page > section > p { max-width: var(--reading-measure); }
+  h2 { font: var(--font-weight-medium) var(--type-section-size)/1.2 var(--serif); letter-spacing: -.025em; margin-top: 2rem; }
   p, li, dd { line-height: 1.75; }
-  .local-note { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .35rem 1rem; margin-top: .75rem; padding-block: .5rem; border-block: 1px solid var(--line); color: var(--ink-600); font-size: .85rem; }
+  .local-note { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .35rem 1rem; margin-top: .75rem; padding-block: .5rem; border-block: 1px solid var(--line); color: var(--ink-600); font-size: var(--type-meta-size); }
   .local-note a { display: inline-flex; align-items: center; min-height: 2.75rem; text-decoration: underline; }
   section[id] { scroll-margin-top: 7rem; }
-  .contextual-link a { display: inline-flex; align-items: center; min-height: 2.75rem; gap: .5rem; text-decoration: underline; }
   .contact-action { margin-block: 1.5rem; padding-block: 1rem; border-block: 1px solid var(--line); }
-  .contact-action strong { display: block; font-weight: 600; }
-  .contact-action a { display: inline-block; max-width: 100%; min-height: 2.75rem; padding-block: .45rem; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: .2em; }
+  .contact-action strong { display: block; font-weight: var(--font-weight-semibold); }
+  .contact-action :global(a) { overflow-wrap: anywhere; }
   dt { font-weight: bold; } dd { margin: 0 0 1rem; }
   .identity-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1.25rem; margin-top: 1rem; }
   .identity-field { min-width: 0; padding: 1.25rem; border: 1px solid var(--line-strong); }
@@ -65,10 +102,9 @@ const actionContact = contactAction ? contacts[0] : undefined;
   .identity-value p { margin: 0 0 1rem; }
   .identity-value p:last-child { margin-bottom: 0; }
   .identity-pending { color: var(--ink-600); font-style: italic; }
-  .identity-description { margin: 0; color: var(--ink-600); font-size: .92rem; }
-  summary { cursor: pointer; font-weight: 600; }
+  .identity-description { margin: 0; color: var(--ink-600); font-size: var(--type-body-small-size); }
   .contact-channels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1.25rem; }
   .contact-channel { padding: 1.25rem; border: 1px solid var(--line-strong); background: var(--paper); }
-  .contact-channel h3 { margin: 0; font: 500 var(--type-subheading-size)/1.2 var(--serif); }
-  .contact-channel a { display: inline-flex; align-items: center; min-height: 2.75rem; overflow-wrap: anywhere; max-width: 100%; text-decoration: underline; text-underline-offset: .2em; }
+  .contact-channel h3 { margin: 0; font: var(--font-weight-medium) var(--type-subheading-size)/1.2 var(--serif); }
+  .contact-channel :global(a) { overflow-wrap: anywhere; }
 </style>

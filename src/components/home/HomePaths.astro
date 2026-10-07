@@ -1,0 +1,88 @@
+---
+import ActionLink from '../ActionLink.astro';
+import { homeConfig } from '../../config/home';
+import type { HomeContent } from '../../lib/home';
+
+interface Props { counts: HomeContent['counts']; }
+const { counts } = Astro.props;
+const { paths, pathsSection: section, pathsLabel, routes, anchors } = homeConfig;
+const countLabel = (count: number, path: typeof paths[number]) =>
+  count === 0 ? path.zero : `${count} ${count === 1 ? path.singular : path.plural}`;
+---
+
+<section id={anchors.structure} class="home-paths" aria-labelledby="home-paths-title">
+  <header class="home-paths-heading">
+    <div>
+      <p class="eyebrow">{section.kicker}</p>
+      <h2 id="home-paths-title">{section.title}</h2>
+    </div>
+    <p class="home-paths-intro">{section.description}</p>
+  </header>
+
+  <nav class="home-paths-map" aria-label={pathsLabel}>
+    {section.groups.map(group => (
+      <div class={`home-path-scope home-path-scope--${group.key}`} role="group" aria-label={group.label}>
+        <p class="home-path-scope-label">{group.label}</p>
+        <div class="home-path-columns">
+          {paths.filter(path => path.group === group.key).map(path => (
+            <article class={`home-path home-path--${path.key}`}>
+              <p class="home-path-role">{path.role}</p>
+              <h3>{path.title}</h3>
+              <p class="home-path-description">{path.description}</p>
+              <div class="home-path-access">
+                <p class="home-path-count">{countLabel(counts[path.key], path)}</p>
+                <ActionLink href={routes[path.key]} arrow>{path.action}</ActionLink>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    ))}
+  </nav>
+
+  <p class="home-paths-relationship">{section.relationship}</p>
+</section>
+
+<style>
+  .home-paths {
+    --action-link-ink: var(--structure-accent);
+    --action-link-hover-ink: var(--structure-link-hover);
+    margin-top: var(--section-gap);
+    padding: var(--space-7);
+    border: 1px solid var(--structure-frame);
+    border-top: 3px solid var(--structure-rule);
+    background: var(--structure-surface);
+    color: var(--structure-ink);
+    scroll-margin-top: calc(var(--section-gap) * 3);
+  }
+  .home-paths-heading { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: end; gap: var(--space-7); margin-bottom: var(--space-7); }
+  .home-paths .eyebrow { color: var(--structure-accent); }
+  .home-paths h2 { margin: var(--space-2) 0 0; font: var(--font-weight-medium) var(--type-section-size)/1.15 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
+  .home-paths-intro { margin: 0; color: var(--structure-muted); font-size: var(--type-body-small-size); }
+  .home-paths-map { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--space-7); }
+  .home-path-scope { display: flex; flex-direction: column; min-width: 0; }
+  .home-path-scope-label { margin: 0 0 var(--space-5); padding-bottom: var(--space-3); border-bottom: 1px solid var(--structure-line); color: var(--structure-muted); font-size: var(--type-meta-size); }
+  .home-path-columns { display: grid; flex: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-7); }
+  .home-path-scope--publications .home-path-columns { grid-template-columns: minmax(0, 1fr); }
+  .home-path { display: flex; flex-direction: column; min-width: 0; }
+  .home-path-role { margin: 0 0 var(--space-2); color: var(--structure-accent); font-size: var(--type-caption-size); }
+  .home-path h3 { margin: 0; font: var(--font-weight-medium) var(--type-card-size)/1.2 var(--serif); letter-spacing: -.02em; }
+  .home-path-description { margin: var(--space-3) 0 var(--space-5); color: var(--structure-muted); font-size: var(--type-body-small-size); }
+  .home-path-access { margin-top: auto; }
+  .home-path-count { margin: 0 0 var(--space-2); color: var(--structure-muted); font-size: var(--type-meta-size); }
+  .home-paths-relationship { margin: var(--space-6) 0 0; padding-top: var(--space-4); border-top: 1px solid var(--structure-line); color: var(--structure-muted); font-size: var(--type-meta-size); }
+  @media (max-width: 960px) {
+    .home-paths-heading, .home-paths-map { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+  }
+  @media (max-width: 760px) {
+    .home-paths { padding: var(--space-5); }
+    .home-paths-heading { gap: var(--space-3); margin-bottom: var(--space-5); }
+    .home-paths-map { gap: var(--space-4); }
+    .home-path-scope-label { margin-bottom: var(--space-3); padding-bottom: var(--space-2); }
+    .home-path-columns { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
+    .home-path + .home-path { padding-top: var(--space-4); border-top: 1px solid var(--structure-line); }
+    .home-path-description { margin: var(--space-2) 0 var(--space-3); }
+    .home-path-count { margin-bottom: var(--space-1); }
+    .home-paths-relationship { margin-top: var(--space-5); padding-top: var(--space-3); }
+  }
+</style>

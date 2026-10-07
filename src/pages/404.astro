@@ -1,4 +1,5 @@
 ---
+import ActionLink from '../components/ActionLink.astro';
 import PageTitle from '../components/PageTitle.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 ---
@@ -13,8 +14,8 @@ import SiteLayout from '../layouts/SiteLayout.astro';
           El contenido pudo cambiar de ubicación o todavía no estar publicado.
         </p>
         <div class="hero-actions">
-          <a class="button-primary" href="/">Volver al inicio</a>
-          <a class="button-secondary" href="/observatorio/">Abrir el Observatorio</a>
+          <ActionLink arrow href="/">Volver al inicio</ActionLink>
+          <ActionLink arrow href="/observatorio/">Abrir el Observatorio</ActionLink>
         </div>
       </div>
     </section>

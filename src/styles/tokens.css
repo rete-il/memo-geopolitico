@@ -1,0 +1,143 @@
+/* Brand palette, typography, spacing and shared interaction tokens. */
+
+:root {
+  --ink-950: #101c2c;
+  --ink-900: #17263a;
+  --ink-800: #26384e;
+  --ink-700: #3b4e64;
+  --ink-600: #5b6c7e;
+  --ink-500: #718093;
+  --paper: #f8f6f1;
+  --paper-deep: #efede7;
+  --surface: #fffdf9;
+  --line: #d9d5cb;
+  --line-strong: #b9b3a7;
+  --amber: #c47a27;
+  --amber-text: #905619;
+  --amber-bright: #f4b95e;
+  --amber-pale: #fff0d8;
+  --blue: #245a78;
+  --blue-pale: #e5f0f5;
+  --green: #2d6758;
+  --red: #9b4439;
+  /* Semantic states retain meaning across cards, notices and dashboard views. */
+  --status-draft-surface: var(--amber-pale);
+  --status-draft-ink: var(--amber-text);
+  --status-review-surface: var(--blue-pale);
+  --status-review-ink: var(--blue);
+  --status-ready-surface: #ece9fa;
+  --status-ready-ink: #6354a3;
+  --status-success-surface: #e1f0e9;
+  --status-published-surface: var(--status-success-surface);
+  --status-published-ink: var(--green);
+  --status-published-border: #b8d8cb;
+  --status-verified-surface: var(--status-success-surface);
+  --status-verified-ink: var(--green);
+  --notice-surface: var(--amber-pale);
+  --notice-border: #d5b37b;
+  --notice-ink: var(--amber-text);
+  --info-border: #b8c9d4;
+  --info-hover-surface: #d6e8f0;
+
+  --inverse-text: var(--paper);
+  --inverse-muted: color-mix(in srgb, var(--paper) 74%, var(--ink-950));
+  --inverse-line: color-mix(in srgb, var(--paper) 16%, transparent);
+  --inverse-border: color-mix(in srgb, var(--paper) 28%, transparent);
+  --inverse-hover-surface: color-mix(in srgb, var(--paper) 12%, transparent);
+  --page-glow: color-mix(in srgb, var(--amber-bright) 10%, transparent);
+  --page-sheen: color-mix(in srgb, var(--surface) 28%, transparent);
+  --header-divider: color-mix(in srgb, var(--line-strong) 78%, transparent);
+  --menu-backdrop: color-mix(in srgb, var(--ink-950) 58%, transparent);
+  --floating-surface: color-mix(in srgb, var(--paper) 96%, transparent);
+  --image-control-surface: color-mix(in srgb, var(--ink-950) 82%, transparent);
+  --notice-wash: color-mix(in srgb, var(--notice-surface) 68%, transparent);
+  --info-wash: color-mix(in srgb, var(--blue-pale) 90%, transparent);
+
+  /* Chart colors encode relevance, observed attention and a negative gap. */
+  --chart-relevance: var(--amber-bright);
+  --chart-attention: #78b2ca;
+  --chart-gap-negative: #f2afa5;
+  --chart-gap-positive-surface: var(--amber-pale);
+  --chart-gap-positive-ink: var(--amber-text);
+  --chart-priority-wash: color-mix(in srgb, var(--amber) 7%, transparent);
+  --chart-context-wash: color-mix(in srgb, var(--blue) 5%, transparent);
+  --chart-muted-wash: color-mix(in srgb, var(--ink-600) 3%, transparent);
+
+  --shadow-color-soft: color-mix(in srgb, var(--ink-950) 8%, transparent);
+  --shadow-color-panel: color-mix(in srgb, var(--ink-950) 12%, transparent);
+  --shadow-color-floating: color-mix(in srgb, var(--ink-950) 28%, transparent);
+  --shadow: 0 18px 46px var(--shadow-color-soft);
+  --radius: 0.9rem;
+  --serif: Georgia, 'Times New Roman', serif;
+  --sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-heavy: 800;
+
+  /* Shared editorial hierarchy: page, section, card, subheading and lead.
+     Route styles may change the layout, but must not redefine these scales. */
+  --type-page-size: clamp(2rem, 1.3rem + 2.7vw, 3.5rem);
+  --type-section-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
+  --type-card-size: clamp(1.45rem, 1.15rem + 1.25vw, 2rem);
+  --type-subheading-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.55rem);
+  --type-lead-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.2rem);
+  --type-brand-size: 1.25rem;
+  --type-brand-mobile-size: 1.0625rem;
+  --type-navigation-size: 1.25rem;
+  --type-metric-size: 2rem;
+  --type-metric-compact-size: 1.5rem;
+  --type-reading-size: 1.05rem;
+  --type-body-size: 1rem;
+  --type-body-small-size: 0.9375rem;
+  --type-small-size: var(--type-body-small-size);
+  --type-meta-size: 0.875rem;
+  --type-caption-size: 0.75rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 3rem;
+  --section-gap: clamp(2rem, 4vw, 3rem);
+  --section-padding: clamp(2rem, 4vw, 3.75rem);
+
+  --action-primary-bg: var(--ink-950);
+  --action-primary-ink: var(--surface);
+  --action-primary-hover-bg: var(--ink-800);
+  --action-secondary-bg: var(--surface);
+  --action-secondary-ink: var(--ink-900);
+  --action-secondary-border: var(--line-strong);
+  --action-link-ink: var(--amber-text);
+  --action-link-hover-ink: var(--ink-950);
+
+  --control-height: 2.75rem;
+  --control-font-size: var(--type-meta-size);
+  --control-font-weight: var(--font-weight-semibold);
+  --control-padding-block: 0.625rem;
+  --control-padding-inline: 1rem;
+  --control-radius: 0.35rem;
+  --control-gap: var(--space-2);
+  --control-compact-height: 2.25rem;
+  --chip-radius: 999px;
+
+  --content: min(1200px, calc(100% - 2rem));
+  --reading-measure: 70ch;
+
+  /* Editorial orientation panel uses the shared paper and ochre palette. */
+  --structure-surface: var(--paper-deep);
+  --structure-ink: var(--ink-950);
+  --structure-muted: var(--ink-700);
+  --structure-line: var(--line-strong);
+  --structure-accent: var(--amber-text);
+  --structure-link-hover: var(--ink-950);
+  --structure-frame: var(--line);
+  --structure-rule: var(--amber);
+  color-scheme: light;
+}

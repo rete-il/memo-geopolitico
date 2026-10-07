@@ -1,4 +1,6 @@
 ---
+import ActionLink from '../../components/ActionLink.astro';
+import EditorialImage from '../../components/EditorialImage.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import ProcessCard from '../../components/ProcessCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
@@ -61,17 +63,18 @@ const workflowCounts = {
   description="Procesos geopolíticos de mediano y largo plazo, señales, fuentes y comparación entre relevancia y atención mediática."
 >
   <div class="page-shell">
-    <header class="page-intro">
-      <div>
+    <header class="page-intro page-intro--illustrated">
+      <div class="page-intro__copy">
         <p class="eyebrow">Observatorio</p>
         <PageTitle>Procesos geopolíticos en evolución</PageTitle>
+        <p>
+          Cada expediente reúne señales fechadas, fuentes trazables, actores y
+          valoraciones editoriales. También permite seguir los expedientes en
+          desarrollo mediante una proyección pública que excluye notas internas y
+          material sin verificar.
+        </p>
       </div>
-      <p>
-        Cada expediente reúne señales fechadas, fuentes trazables, actores y
-        valoraciones editoriales. También permite seguir los expedientes en
-        desarrollo mediante una proyección pública que excluye notas internas y
-        material sin verificar.
-      </p>
+      <EditorialImage asset="observatorio" />
     </header>
 
     <aside class="dashboard-entry" aria-labelledby="dashboard-entry-title">
@@ -84,9 +87,9 @@ const workflowCounts = {
           los datos.
         </p>
       </div>
-      <a class="button-primary" href="/observatorio/dashboard/">
+      <ActionLink arrow href="/observatorio/dashboard/">
         Abrir dashboard
-      </a>
+      </ActionLink>
     </aside>
 
     <nav class="workflow-summary" aria-label="Estados de las publicaciones">

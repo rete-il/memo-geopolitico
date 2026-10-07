@@ -1,0 +1,192 @@
+/* Reading headers, process relationships and methodology layout. */
+
+.process-hero {
+  padding: 0 0 clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.process-hero .lead {
+  max-width: 50rem;
+  margin: 1.5rem 0 0;
+  color: var(--ink-700);
+  font-family: var(--sans);
+  font-size: var(--type-lead-size);
+}
+
+/* Publicaciones · cabecera editorial en dos columnas.
+   Inspiración: revista de análisis, adaptada a la identidad de Memo Geopolítico. */
+.publication-page-shell {
+  padding-top: clamp(2.75rem, 5vw, 5.25rem);
+  padding-bottom: 0;
+}
+
+.publication-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.72fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: end;
+  width: 100%;
+  padding: 0 0 clamp(2.25rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.publication-hero__primary,
+.publication-hero__secondary {
+  min-width: 0;
+}
+
+.publication-hero__primary .detail-kicker {
+  margin-bottom: 1rem;
+}
+
+.publication-hero .lead {
+  max-width: 27rem;
+  margin: 0;
+  color: var(--ink-700);
+  font-family: var(--sans);
+  font-size: var(--type-lead-size);
+  line-height: 1.6;
+}
+
+.publication-hero__secondary .hero-meta {
+  display: grid;
+  gap: 0.38rem;
+  margin-top: 1.25rem;
+  color: var(--ink-600);
+  font-size: var(--type-meta-size);
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  margin-top: 1.5rem;
+  color: var(--ink-600);
+  font-size: var(--type-meta-size);
+}
+
+.process-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18rem;
+  gap: clamp(2.5rem, 7vw, 6rem);
+  align-items: start;
+  padding-block: clamp(2rem, 4vw, 3.75rem);
+}
+
+.process-content {
+  min-width: 0;
+}
+
+.content-section {
+  padding-block: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.content-section:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.content-section h2 {
+  margin: 0 0 1rem;
+  font-family: var(--serif);
+  font-size: var(--type-section-size);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.process-sidebar h2 {
+  margin: 0 0 1rem;
+  font: var(--font-weight-medium) var(--type-subheading-size)/1.2 var(--serif);
+}
+
+.content-section > p {
+  margin: 0;
+  color: var(--ink-800);
+}
+
+.content-section ul {
+  padding-left: 1.2rem;
+}
+
+.process-relation-group {
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--paper-deep);
+}
+
+.process-relation-group h3 {
+  margin: 0 0 0.65rem;
+  font-size: var(--type-meta-size);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.process-relation-group h3 .draft-chip {
+  margin-left: 0.65rem;
+  vertical-align: middle;
+}
+
+.process-relation-group ul {
+  margin: 0;
+}
+
+.process-relation-link {
+  font-weight: var(--font-weight-bold);
+}
+
+.methodology-layout {
+  max-width: 54rem;
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.methodology-note-hero {
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.methodology-note-hero .lead {
+  max-width: 54rem;
+  margin: 1.25rem 0 0;
+  color: var(--ink-700);
+  font-family: var(--sans);
+  font-size: var(--type-lead-size);
+}
+
+.methodology-note-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19rem;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.methodology-note-rating {
+  position: sticky;
+  top: 6.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.methodology-note-rating > .eyebrow {
+  margin-bottom: 0.75rem;
+}
+
+.methodology-note-rating > p:last-child {
+  margin: 0.85rem 0 0;
+  color: var(--ink-600);
+  font-size: var(--type-body-small-size);
+}
+
+.methodology-note-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}

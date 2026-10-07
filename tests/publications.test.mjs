@@ -3,6 +3,8 @@ import path from 'node:path';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import matter from 'gray-matter';
+import { homeConfig } from '../src/config/home.ts';
+import { selectHomeContent } from '../src/lib/home.ts';
 
 const root = path.resolve(import.meta.dirname, '..');
 const publishedDir = path.join(
@@ -95,20 +97,31 @@ test('la carga resiste copias antiguas y Publicaciones expone solo textos public
   );
 });
 
-test('Inicio presenta accesos a Publicaciones y Observatorio sin exponer borradores', () => {
+test('Inicio compone lectura y seguimiento desde el corpus público sin exponer borradores', () => {
   const homePage = fs.readFileSync(
     path.join(root, 'src', 'pages', 'index.astro'),
     'utf8',
   );
 
   assert.match(homePage, /publishedOnly:\s*true/);
-  assert.match(homePage, /publicationCountLabel/);
-  assert.match(homePage, /href="\/publicaciones\/"/);
-  assert.match(homePage, /href="\/observatorio\/"/);
-  assert.doesNotMatch(homePage, /PublicationCard/);
-  assert.doesNotMatch(homePage, /ProcessCard/);
-  assert.doesNotMatch(homePage, /Procesos en movimiento/);
-  assert.doesNotMatch(homePage, /Trabajo en curso/);
+  assert.match(homePage, /includePreview:\s*false/);
+  assert.match(homePage, /processes:\s*publicProcesses/);
+  const data = JSON.parse(fs.readFileSync(path.join(root, 'src/data/public/observatorio.json'), 'utf8'));
+  const publications = fs.readdirSync(publishedDir)
+    .filter((file) => file.endsWith('.md'))
+    .map((file) => ({ id: file, data: matter.read(path.join(publishedDir, file)).data }));
+  const home = selectHomeContent({
+    publications, processes: data.procesos, themes: data.catalogos.temas,
+    sourceById: new Map(data.fuentes.map((source) => [source.fuente_id, source])),
+  }, homeConfig);
+  assert.ok(home.featured);
+  for (const view of [home.featured, ...home.latest]) {
+    assert.equal(view.publication.data.publicacion.estado, 'publicado');
+  }
+  const catalogDestinations = homeConfig.paths.map((entry) => homeConfig.routes[entry.key]);
+  assert.ok(catalogDestinations.includes('/publicaciones/'));
+  assert.ok(catalogDestinations.includes('/observatorio/'));
+  assert.equal(home.counts.publications, publications.length);
 });
 
 test('los enlaces de cada proceso separan publicación, expediente y metodología', () => {

@@ -1,4 +1,5 @@
 ---
+import EditorialImage from '../components/EditorialImage.astro';
 import PageTitle from '../components/PageTitle.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 ---
@@ -8,16 +9,17 @@ import SiteLayout from '../layouts/SiteLayout.astro';
   description="Propósito, método y criterios editoriales de Memo Geopolítico."
 >
   <div class="page-shell">
-    <header class="page-intro">
-      <div>
+    <header class="page-intro page-intro--illustrated">
+      <div class="page-intro__copy">
         <p class="eyebrow">Acerca de</p>
         <PageTitle>Una publicación para pensar más allá del ciclo informativo</PageTitle>
+        <p>
+          Memo Geopolítico es un proyecto editorial independiente dedicado a
+          detectar, documentar y explicar transformaciones geopolíticas de mediano
+          y largo plazo.
+        </p>
       </div>
-      <p>
-        Memo Geopolítico es un proyecto editorial independiente dedicado a
-        detectar, documentar y explicar transformaciones geopolíticas de mediano
-        y largo plazo.
-      </p>
+      <EditorialImage asset="acerca-de" />
     </header>
 
     <div class="process-layout">

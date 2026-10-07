@@ -1,0 +1,59 @@
+---
+import type { PublicProcess } from '../../lib/types';
+import { groupMatrixProcesses } from '../../../tools/lib/matrix-groups.mjs';
+
+interface Props { processes: PublicProcess[]; unassignedCount: number; }
+const { processes, unassignedCount } = Astro.props;
+const matrixGroups = groupMatrixProcesses(processes);
+const pointPosition = (value: number) => 6 + ((value - 1) / 4) * 88;
+---
+
+<section
+  class="dashboard-view"
+  data-dashboard-view="matriz"
+  id="matriz" role="tabpanel" aria-labelledby="dashboard-tab-matriz" tabindex="0"
+  hidden
+>
+  <div class="dashboard-heading">
+    <div>
+      <p class="eyebrow">Comparación editorial</p>
+      <h3>Matriz de relevancia y atención</h3>
+    </div>
+    <p>Escala de 1 a 5. Cada círculo indica cuántos procesos comparten una valoración.</p>
+  </div>
+  {unassignedCount > 0 && <p>{unassignedCount} {unassignedCount === 1 ? 'proceso pendiente' : 'procesos pendientes'} de evaluación editorial, sin posición en la matriz.</p>}
+  <div class="dashboard-matrix" aria-label="Matriz de procesos">
+    <span class="matrix-label matrix-label--top-left">Alta relevancia · baja atención</span>
+    <span class="matrix-label matrix-label--top-right">Alta relevancia · alta atención</span>
+    <span class="matrix-label matrix-label--bottom-left">Baja relevancia · baja atención</span>
+    <span class="matrix-label matrix-label--bottom-right">Baja relevancia · alta atención</span>
+    {
+      matrixGroups.map((group) => (
+        <button type="button"
+          class="dashboard-matrix-point"
+          data-matrix-group={group.id} aria-controls={group.id} aria-expanded="false"
+          style={`left:${pointPosition(group.attention)}%;bottom:${pointPosition(group.relevance)}%`}
+          aria-label={`${group.processes.length} ${group.processes.length === 1 ? 'proceso' : 'procesos'}: relevancia ${group.relevance}, atención ${group.attention}. Ver lista`}
+        >
+          {group.processes.length}
+        </button>
+      ))
+    }
+  </div>
+  <div class="dashboard-axis dashboard-axis--x">Atención mediática 1 → 5</div>
+  <div class="dashboard-matrix-groups">
+    <h4>Procesos por valoración</h4>
+    <p>Los mismos grupos se pueden consultar en esta lista.</p>
+    {matrixGroups.map(group => (
+      <details id={group.id}>
+        <summary>Relevancia {group.relevance} · Atención {group.attention} — {group.processes.length} {group.processes.length === 1 ? 'proceso' : 'procesos'}</summary>
+        <ul>{group.processes.map(process => <li><a href={`/observatorio/${process.slug}/`}>{process.titulo}</a></li>)}</ul>
+      </details>
+    ))}
+  </div>
+  <div class="dashboard-matrix-note">
+    <a href="/metodologia/relevancia-atencion-mediatica/">
+      Cómo se están definiendo estas valoraciones
+    </a>
+  </div>
+</section>

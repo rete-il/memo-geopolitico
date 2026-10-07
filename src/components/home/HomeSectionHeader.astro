@@ -1,0 +1,12 @@
+---
+import ActionLink from '../ActionLink.astro';
+interface Props { id: string; title: string; kicker?: string; href: string; action: string; }
+const { id, title, kicker, href, action } = Astro.props;
+---
+<header class="section-heading">
+  <div>{kicker && <p class="eyebrow">{kicker}</p>}<h2 id={id}>{title}</h2></div>
+  <ActionLink href={href} size="compact" arrow>{action}</ActionLink>
+</header>
+<style>
+  .section-heading { flex-wrap: wrap; gap: var(--space-4); }
+</style>

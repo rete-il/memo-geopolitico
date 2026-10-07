@@ -1,0 +1,104 @@
+/* Media directory and taxonomy discovery cards. */
+
+.media-toolbar {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, minmax(10rem, 0.35fr));
+  gap: 0.75rem;
+  margin: 2rem 0 1.2rem;
+}
+
+.media-summary {
+  margin: 0 0 1rem;
+  color: var(--ink-600);
+  font-size: var(--type-body-small-size);
+}
+
+.media-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.media-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--type-meta-size);
+}
+
+.media-table th,
+.media-table td {
+  padding: 0.8rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.media-table th {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background: var(--ink-950);
+  color: var(--surface);
+  font-size: var(--type-meta-size);
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.media-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.media-table tr:hover td {
+  background: var(--paper);
+}
+
+.media-table a {
+  color: var(--blue);
+  font-weight: var(--font-weight-bold);
+}
+
+.media-score {
+  font-family: var(--serif);
+  font-size: var(--type-body-size);
+}
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.explore-card {
+  padding: 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.explore-card h2,
+.explore-card h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--type-card-size);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.explore-card h2 a,
+.explore-card h3 a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.explore-card p {
+  margin: 0.5rem 0 0;
+  color: var(--ink-600);
+  font-size: var(--type-body-small-size);
+}
+
+/* Discovery links share their appearance with text actions; only placement is local. */
+.explore-card > a {
+  margin-top: var(--space-4);
+}

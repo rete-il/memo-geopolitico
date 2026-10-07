@@ -1,0 +1,26 @@
+---
+import ActionLink from '../ActionLink.astro';
+import EditorialImage from '../EditorialImage.astro';
+import PageTitle from '../PageTitle.astro';
+import { homeConfig } from '../../config/home';
+
+interface Props { hasThemes: boolean; }
+const { hasThemes } = Astro.props;
+const { intro, anchors } = homeConfig;
+---
+
+<header class="page-intro page-intro--illustrated">
+  <div class="page-intro__copy">
+    <p class="eyebrow">{intro.kicker}</p>
+    <PageTitle>{intro.title}</PageTitle>
+    <p>{intro.lead}</p>
+    {hasThemes && <div class="home-intro-action">
+      <ActionLink href={`#${anchors.themes}`} arrow>{intro.action}</ActionLink>
+    </div>}
+  </div>
+  <EditorialImage asset={intro.imageAsset} />
+</header>
+
+<style>
+  .home-intro-action { margin-top: var(--space-5); }
+</style>

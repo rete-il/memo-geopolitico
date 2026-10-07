@@ -1,0 +1,123 @@
+---
+import type { PublicProcess, PublicationState } from '../../lib/types';
+import { editorialStageLabel } from '../../lib/text';
+import { catalogMaps } from '../../lib/data';
+import type { CatalogItem } from '../../lib/types';
+import { formatRating, formatRatingGap } from '../../../tools/lib/editorial-ratings.mjs';
+import { processSearchText } from '../../../tools/lib/search-policy.mjs';
+
+interface Props { processes: PublicProcess[]; stateFor: (process: PublicProcess) => PublicationState; regions: CatalogItem[]; themes: CatalogItem[]; }
+const { processes, stateFor, regions, themes } = Astro.props;
+
+---
+
+<section
+  class="dashboard-view"
+  data-dashboard-view="procesos"
+  id="procesos" role="tabpanel" aria-labelledby="dashboard-tab-procesos" tabindex="0"
+  hidden
+>
+  <div class="dashboard-heading">
+    <div>
+      <p class="eyebrow">Macroeventos</p>
+      <h3>Procesos geopolíticos</h3>
+    </div>
+    <p data-dashboard-results-count role="status" aria-live="polite" aria-atomic="true">{processes.length} procesos</p>
+  </div>
+
+  <form class="dashboard-filters" data-dashboard-filters>
+    <label class="grow">
+      <span>Buscar</span>
+      <input type="search" name="q" placeholder="Título, actor, región o tema" />
+    </label>
+    <label>
+      <span>Estado editorial</span>
+      <select name="state">
+        <option value="">Todos</option>
+        <option value="borrador">En documentación</option>
+        <option value="en_revision">En revisión editorial</option>
+        <option value="listo">Listo para publicación</option>
+        <option value="publicado">Publicado</option>
+      </select>
+    </label>
+    <label>
+      <span>Región</span>
+      <select name="region">
+        <option value="">Todas</option>
+        {regions.map((region) => <option value={region.id}>{region.nombre}</option>)}
+      </select>
+    </label>
+    <label>
+      <span>Tema</span>
+      <select name="theme">
+        <option value="">Todos</option>
+        {themes.map((theme) => <option value={theme.id}>{theme.nombre}</option>)}
+      </select>
+    </label>
+    <button type="reset">Restablecer</button>
+  </form>
+
+  <div class="dashboard-table-panel">
+    <div class="dashboard-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Proceso</th>
+            <th>Estado</th>
+            <th>Región</th>
+            <th>Tema</th>
+            <th>Relevancia</th>
+            <th>Atención</th>
+            <th>Brecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            processes.map((process) => {
+              const themeId = process.clasificacion.tema_principal_id || '';
+              const regionIds = process.clasificacion.geografia.region_ids;
+              const regionNames = regionIds
+                .map((id) => catalogMaps.regiones.get(id)?.nombre)
+                .filter(Boolean)
+                .join(', ');
+              const themeName = themeId
+                ? catalogMaps.temas.get(themeId)?.nombre || 'Sin tema'
+                : 'Sin tema';
+              const state = stateFor(process);
+              const search = processSearchText(process, catalogMaps);
+              return (
+                <tr
+                  data-dashboard-process
+                  data-search={search}
+                  data-state={state}
+                  data-region={regionIds.join(' ')}
+                  data-theme={[
+                    themeId,
+                    ...process.clasificacion.tema_secundario_ids,
+                    ...process.clasificacion.subtema_ids,
+                  ].filter(Boolean).join(' ')}
+                >
+                  <td>
+                    <a href={`/observatorio/${process.slug}/`}>
+                      <strong>{process.titulo}</strong>
+                    </a>
+                    <small>{process.sintesis}</small>
+                  </td>
+                  <td><span class={`dashboard-state dashboard-state--${state}`}>{editorialStageLabel(state)}</span></td>
+                  <td>{regionNames || 'Global'}</td>
+                  <td>{themeName}</td>
+                  <td><b class="dashboard-score">{formatRating(process.valoraciones.relevancia_geopolitica)}</b></td>
+                  <td><b class="dashboard-score">{formatRating(process.valoraciones.atencion_mediatica)}</b></td>
+                  <td><b class:list={['dashboard-score', { 'dashboard-score--gap': process.valoraciones.brecha !== null && process.valoraciones.brecha > 0 }]}>{formatRatingGap(process.valoraciones.brecha)}</b></td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="dashboard-empty" data-dashboard-filter-empty hidden>
+    Ningún proceso coincide con los filtros.
+  </p>
+</section>

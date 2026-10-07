@@ -1,4 +1,6 @@
 ---
+import ActionLink from '../../components/ActionLink.astro';
+import EditorialImage from '../../components/EditorialImage.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import PublicationCard from '../../components/PublicationCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
@@ -15,16 +17,17 @@ const published = await getPublicationEntries({
   description="Ensayos, análisis, explicadores, comparaciones y prospectiva conectados con procesos del Observatorio."
 >
   <div class="page-shell">
-    <header class="page-intro">
-      <div>
+    <header class="page-intro page-intro--illustrated">
+      <div class="page-intro__copy">
         <p class="eyebrow">Publicaciones</p>
         <PageTitle>Análisis completos, sin categorías rígidas</PageTitle>
+        <p>
+          Ensayos, explicadores, comparaciones y ejercicios de prospectiva
+          comparten un mismo archivo. Cada texto conserva vínculos explícitos con
+          procesos, fuentes y clasificaciones.
+        </p>
       </div>
-      <p>
-        Ensayos, explicadores, comparaciones y ejercicios de prospectiva
-        comparten un mismo archivo. Cada texto conserva vínculos explícitos con
-        procesos, fuentes y clasificaciones.
-      </p>
+      <EditorialImage asset="publicaciones" />
     </header>
 
     <section
@@ -73,9 +76,9 @@ const published = await getPublicationEntries({
           en publicaciones.
         </p>
       </div>
-      <a class="button-secondary" href="/observatorio/?editorial=en_curso#explorar">
+      <ActionLink arrow href="/observatorio/?editorial=en_curso#explorar">
         Ver trabajo en curso
-      </a>
+      </ActionLink>
     </aside>
   </div>
 </SiteLayout>

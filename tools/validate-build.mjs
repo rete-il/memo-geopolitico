@@ -95,6 +95,8 @@ function expectedPublishedPublicationRoutes() {
 }
 
 const home = fs.readFileSync(path.join(production, 'index.html'), 'utf8');
+const homePathEntries = [...home.matchAll(/<article\b[^>]*\bclass="([^"]*)"/g)]
+  .filter(([, classes]) => classes.split(/\s+/).includes('home-path'));
 const publications = fs.readFileSync(
   path.join(production, 'publicaciones', 'index.html'),
   'utf8',
@@ -158,6 +160,7 @@ const publishedPublicationRoutes = expectedPublishedPublicationRoutes();
 
 assert.equal(home.includes('home-path--publications'), true);
 assert.equal(home.includes('home-path--observatory'), true);
+assert.equal(home.includes('home-path--rectors'), true);
 assert.equal(home.includes('data-process-card'), false);
 assert.equal(home.includes('publication-card--in-progress'), false);
 assert.equal(publicationArchiveCards, publishedPublicationRoutes.posts);
@@ -204,7 +207,7 @@ console.log(
     {
       paginas_produccion: productionPages,
       paginas_editoriales: previewPages,
-      accesos_principales_en_inicio: 2,
+      accesos_principales_en_inicio: homePathEntries.length,
       publicaciones_publicas: publishedPublicationRoutes.posts,
       posts_editoriales: editorialPublicationRoutes,
       expedientes: observatoryProcessCards,

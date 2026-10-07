@@ -1,47 +1,49 @@
 import { opinionEnabled } from './opinion';
 import { institutionalPages } from './institutional';
 import { visualResourcesAvailable } from './visual-resources';
+import { siteRoutes } from '../config/routes';
 
 export type NavigationLink = { href: string; label: string };
 
 // Desktop and the expanded menu share this list and its visibility rules.
 export const primaryNavigation: NavigationLink[] = [
-  { href: '/', label: 'Inicio' },
-  { href: '/observatorio/', label: 'Observatorio' },
-  { href: '/publicaciones/', label: 'Publicaciones' },
-  ...(opinionEnabled ? [{ href: '/opinion/', label: 'Opinión' }] : []),
-  ...(visualResourcesAvailable ? [{ href: '/recursos-visuales/', label: 'Recursos visuales' }] : []),
-  { href: '/acerca-de/', label: 'Acerca de' },
+  { href: siteRoutes.home, label: 'Inicio' },
+  { href: siteRoutes.rectors, label: 'Macroeventos rectores' },
+  { href: siteRoutes.observatory, label: 'Observatorio' },
+  { href: siteRoutes.publications, label: 'Publicaciones' },
+  ...(opinionEnabled ? [{ href: siteRoutes.opinion, label: 'Opinión' }] : []),
+  ...(visualResourcesAvailable ? [{ href: siteRoutes.visualResources, label: 'Recursos visuales' }] : []),
+  { href: siteRoutes.about, label: 'Acerca de' },
   ...institutionalPages
     .filter(page => page.slug === 'contacto')
     .map(page => ({ href: `/${page.slug}/`, label: page.label })),
 ];
 
 export const explorationNavigation: NavigationLink[] = [
-  { href: '/regiones/', label: 'Regiones' },
-  { href: '/espacios-geopoliticos/', label: 'Espacios geopolíticos' },
-  { href: '/temas/', label: 'Temas' },
-  { href: '/actores/', label: 'Actores' },
-  { href: '/etiquetas/', label: 'Etiquetas' },
-  { href: '/medios/', label: 'Medios' },
+  { href: siteRoutes.regions, label: 'Regiones' },
+  { href: siteRoutes.geopoliticalSpaces, label: 'Espacios geopolíticos' },
+  { href: siteRoutes.themes, label: 'Temas' },
+  { href: siteRoutes.actors, label: 'Actores' },
+  { href: siteRoutes.labels, label: 'Etiquetas' },
+  { href: siteRoutes.media, label: 'Medios' },
 ];
 
 export const followUpNavigation: NavigationLink[] = [
-  { href: '/observatorio/?editorial=en_curso#explorar', label: 'Trabajo en curso' },
-  { href: '/observatorio/dashboard/', label: 'Panel de seguimiento' },
-  { href: '/observatorio/senales/', label: 'Señales' },
-  { href: '/metodologia/relevancia-atencion-mediatica/', label: 'Metodología' },
+  { href: `${siteRoutes.observatory}?editorial=en_curso#explorar`, label: 'Trabajo en curso' },
+  { href: siteRoutes.dashboard, label: 'Panel de seguimiento' },
+  { href: siteRoutes.signals, label: 'Señales' },
+  { href: siteRoutes.methodology, label: 'Metodología' },
 ];
 
 export const siteSearch: NavigationLink = {
-  href: '/observatorio/#explorar',
+  href: `${siteRoutes.observatory}#explorar`,
   label: 'Buscar en el Observatorio',
 };
 
 const footerCandidates: NavigationLink[] = [
-  ...primaryNavigation.filter(item => item.href !== '/'),
-  ...explorationNavigation.filter(item => item.href === '/medios/'),
-  ...followUpNavigation.filter(item => ['/observatorio/dashboard/', '/metodologia/relevancia-atencion-mediatica/'].includes(item.href)),
+  ...primaryNavigation.filter(item => item.href !== siteRoutes.home),
+  ...explorationNavigation.filter(item => item.href === siteRoutes.media),
+  ...followUpNavigation.filter(item => ([siteRoutes.dashboard, siteRoutes.methodology] as string[]).includes(item.href)),
   ...institutionalPages.map(page => ({ href: `/${page.slug}/`, label: page.label })),
 ];
 

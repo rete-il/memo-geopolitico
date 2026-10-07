@@ -1,0 +1,32 @@
+---
+import ActionLink from '../ActionLink.astro';
+import HomeSectionHeader from './HomeSectionHeader.astro';
+import { homeConfig } from '../../config/home';
+import type { CatalogItem } from '../../lib/types';
+interface Props { themes: CatalogItem[]; }
+const { themes } = Astro.props;
+const { themes: labels, routes, anchors } = homeConfig;
+---
+{themes.length > 0 && <section id={anchors.themes} class="home-explore" aria-labelledby="home-themes-title">
+  <HomeSectionHeader id="home-themes-title" title={labels.title} href={routes.regions} action={labels.regionAction} />
+  <div class="home-topic-grid">
+    {themes.map((theme) => <article class="home-topic">
+      <h3><a href={`${routes.themes}${theme.slug}/`}>{theme.nombre}</a></h3>
+      <nav aria-label={`${labels.navigationLabel} ${theme.nombre}`}>
+        <ActionLink href={`${routes.themes}${theme.slug}/#${anchors.themePublications}`} size="compact" arrow>{labels.publicationsAction}</ActionLink>
+        <ActionLink href={`${routes.themes}${theme.slug}/#${anchors.themeProcesses}`} size="compact" arrow>{labels.followupAction}</ActionLink>
+      </nav>
+    </article>)}
+  </div>
+</section>}
+<style>
+  .home-explore { margin-top: var(--section-gap); scroll-margin-top: calc(var(--section-gap) * 3); }
+  .home-topic-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+  .home-topic { min-width: 0; padding: var(--space-5); background: var(--paper-deep); }
+  .home-topic h3 { margin: 0 0 var(--space-3); font: var(--font-weight-medium) var(--type-subheading-size)/1.2 var(--serif); }
+  .home-topic h3 a { text-decoration: none; }
+  .home-topic h3 a:hover { text-decoration: underline; }
+  .home-topic nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+  @media (max-width: 960px) { .home-topic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 420px) { .home-topic-grid { grid-template-columns: 1fr; } }
+</style>

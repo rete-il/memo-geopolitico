@@ -1,5 +1,13 @@
 # Changelog de gestión del proyecto
 
+## 2026-10-07 — Publicación autorizada de la portada y del sistema visual
+
+- Autorización explícita para entregar todos los cambios terminados a beta y main y sincronizar el proyecto de VS Code.
+- Portada «Investigación y lectura», mapa marfil, navegación con Rectores, siete cabeceras ilustradas y reglas compartidas de enlaces y controles.
+- Componentes y estilos modularizados, configuración visual centralizada y contenido canónico preservado.
+- QA local: 344 pruebas aprobadas, tipos sin errores, builds público/editorial y validaciones de datos, SEO, navegación y tipografía completados.
+- Alcance, verificación con Node 22.12.0, entrega y reversión en `records/RELEASE-PORTADA-2026-10-07.md`.
+
 ## 2026-10-01 — Promoción autorizada de EE. UU.–China a main
 
 - El usuario indicó «actualizar main» y aceptó la entrega validada. La tarea ED-EEUU-CHINA-COMPLEMENTARIOS-20261001 pasa de review a done, avance 100 %.

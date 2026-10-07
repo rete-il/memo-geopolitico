@@ -1,0 +1,27 @@
+---
+import HomePublication from './HomePublication.astro';
+import HomeSectionHeader from './HomeSectionHeader.astro';
+import { homeConfig } from '../../config/home';
+import type { HomePublicationView } from '../../lib/home';
+interface Props { publications: HomePublicationView[]; }
+const { publications } = Astro.props;
+const { latest, routes } = homeConfig;
+---
+{publications.length > 0 && <section class="home-latest" aria-labelledby="home-latest-title">
+  <HomeSectionHeader id="home-latest-title" title={latest.title} kicker={latest.kicker} href={routes.publications} action={latest.action} />
+  <p class="home-section-description">{latest.description}</p>
+  <div class="home-reading-grid">{publications.map((view) => <HomePublication view={view} />)}</div>
+</section>}
+<style>
+  .home-latest { margin-top: var(--section-gap); }
+  .home-section-description { margin: 0 0 var(--space-6); color: var(--ink-600); font-size: var(--type-body-small-size); }
+  .home-reading-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
+  @media (max-width: 960px) {
+    .home-reading-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .home-reading-grid > :global(:last-child:nth-child(odd)) { grid-column: 1 / -1; }
+  }
+  @media (max-width: 760px) {
+    .home-reading-grid { grid-template-columns: 1fr; }
+    .home-reading-grid > :global(:last-child:nth-child(odd)) { grid-column: auto; }
+  }
+</style>
